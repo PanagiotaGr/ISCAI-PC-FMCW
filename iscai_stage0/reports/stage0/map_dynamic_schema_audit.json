@@ -1,0 +1,103 @@
+{
+  "source_file": "/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00000-of-00150",
+  "scenarios_audited": 50,
+  "total_map_features": 14413,
+  "total_dynamic_map_states": 4550,
+  "map_feature_type_counts": {
+    "crosswalk": 328,
+    "driveway": 1842,
+    "lane": 8244,
+    "road_edge": 1884,
+    "road_line": 1717,
+    "speed_bump": 221,
+    "stop_sign": 177
+  },
+  "dynamic_map_present_field_counts": {
+    "lane_states": 25467
+  },
+  "map_feature_schema": {
+    "full_name": "waymo.open_dataset.MapFeature",
+    "fields": [
+      {
+        "name": "id",
+        "number": 1,
+        "repeated": false,
+        "message_type": null,
+        "enum_type": null
+      },
+      {
+        "name": "lane",
+        "number": 3,
+        "repeated": false,
+        "message_type": "waymo.open_dataset.LaneCenter",
+        "enum_type": null
+      },
+      {
+        "name": "road_line",
+        "number": 4,
+        "repeated": false,
+        "message_type": "waymo.open_dataset.RoadLine",
+        "enum_type": null
+      },
+      {
+        "name": "road_edge",
+        "number": 5,
+        "repeated": false,
+        "message_type": "waymo.open_dataset.RoadEdge",
+        "enum_type": null
+      },
+      {
+        "name": "stop_sign",
+        "number": 7,
+        "repeated": false,
+        "message_type": "waymo.open_dataset.StopSign",
+        "enum_type": null
+      },
+      {
+        "name": "crosswalk",
+        "number": 8,
+        "repeated": false,
+        "message_type": "waymo.open_dataset.Crosswalk",
+        "enum_type": null
+      },
+      {
+        "name": "speed_bump",
+        "number": 9,
+        "repeated": false,
+        "message_type": "waymo.open_dataset.SpeedBump",
+        "enum_type": null
+      },
+      {
+        "name": "driveway",
+        "number": 10,
+        "repeated": false,
+        "message_type": "waymo.open_dataset.Driveway",
+        "enum_type": null
+      }
+    ],
+    "oneofs": {
+      "feature_data": [
+        "lane",
+        "road_line",
+        "road_edge",
+        "stop_sign",
+        "crosswalk",
+        "speed_bump",
+        "driveway"
+      ]
+    }
+  },
+  "dynamic_map_state_schema": {
+    "full_name": "waymo.open_dataset.DynamicMapState",
+    "fields": [
+      {
+        "name": "lane_states",
+        "number": 1,
+        "repeated": true,
+        "message_type": "waymo.open_dataset.TrafficSignalLaneState",
+        "enum_type": null
+      }
+    ],
+    "oneofs": {}
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "dataset_release": "v1.3.0",
+  "scenarios_per_split_requested": 50,
+  "splits": {
+    "training": {
+      "source_file": "/waymo/data/v1_3_0_scenario/training/training.tfrecord-00000-of-01000",
+      "scenarios_audited": 50,
+      "timestamp_counts": {
+        "91": 50
+      },
+      "current_time_indices": {
+        "10": 50
+      },
+      "tracks_to_predict_counts": {
+        "1": 2,
+        "2": 10,
+        "3": 7,
+        "4": 8,
+        "5": 7,
+        "6": 8,
+        "7": 2,
+        "8": 6
+      },
+      "object_type_track_counts": {
+        "TYPE_VEHICLE": 2669,
+        "TYPE_CYCLIST": 34,
+        "TYPE_PEDESTRIAN": 302
+      },
+      "tracks_per_scenario": {
+        "min": 4,
+        "max": 141,
+        "mean": 60.1
+      },
+      "map_features_per_scenario": {
+        "min": 81,
+        "max": 765,
+        "mean": 335.1
+      },
+      "dynamic_map_states_per_scenario": {
+        "min": 91,
+        "max": 91,
+        "mean": 91
+      },
+      "timestamp_delta_seconds": {
+        "min": 0.05866,
+        "max": 0.20014999999999983,
+        "mean": 0.10006486222222222
+      },
+      "validity": {
+        "all_states": {
+          "total": 273455,
+          "valid": 143291,
+          "fraction": 0.5240021210071127
+        },
+        "causal_history_and_current": {
+          "total": 33055,
+          "valid": 16532,
+          "fraction": 0.500136136741794
+        },
+        "future_labels": {
+          "total": 240400,
+          "valid": 126759,
+          "fraction": 0.527283693843594
+        }
+      },
+      "integrity": {
+        "bad_sdc_indices": 0,
+        "bad_track_lengths": 0,
+        "non_monotonic_timestamp_scenarios": 0,
+        "scenarios_with_lidar_payload": 0,
+        "scenarios_with_camera_tokens": 0
+      }
+    },
+    "validation": {
+      "source_file": "/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00000-of-00150",
+      "scenarios_audited": 50,
+      "timestamp_counts": {
+        "91": 50
+      },
+      "current_time_indices": {
+        "10": 50
+      },
+      "tracks_to_predict_counts": {
+        "1": 4,
+        "2": 13,
+        "3": 4,
+        "4": 11,
+        "5": 7,
+        "6": 3,
+        "7": 4,
+        "8": 4
+      },
+      "object_type_track_counts": {
+        "TYPE_VEHICLE": 2615,
+        "TYPE_PEDESTRIAN": 309,
+        "TYPE_CYCLIST": 23
+      },
+      "tracks_per_scenario": {
+        "min": 3,
+        "max": 221,
+        "mean": 58.94
+      },
+      "map_features_per_scenario": {
+        "min": 45,
+        "max": 821,
+        "mean": 288.26
+      },
+      "dynamic_map_states_per_scenario": {
+        "min": 91,
+        "max": 91,
+        "mean": 91
+      },
+      "timestamp_delta_seconds": {
+        "min": 0.09094,
+        "max": 0.10066000000000042,
+        "mean": 0.09999414444444445
+      },
+      "validity": {
+        "all_states": {
+          "total": 268177,
+          "valid": 151036,
+          "fraction": 0.5631952031680569
+        },
+        "causal_history_and_current": {
+          "total": 32417,
+          "valid": 17981,
+          "fraction": 0.5546781009963908
+        },
+        "future_labels": {
+          "total": 235760,
+          "valid": 133055,
+          "fraction": 0.564366304716661
+        }
+      },
+      "integrity": {
+        "bad_sdc_indices": 0,
+        "bad_track_lengths": 0,
+        "non_monotonic_timestamp_scenarios": 0,
+        "scenarios_with_lidar_payload": 0,
+        "scenarios_with_camera_tokens": 0
+      }
+    }
+  }
+}

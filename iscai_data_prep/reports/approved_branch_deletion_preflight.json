@@ -1,0 +1,53 @@
+{
+  "status": "DRY_RUN_READY",
+  "deletion_executed": false,
+  "candidate_branches": {
+    "testing": {
+      "path": "/waymo/data/v1_3_0_scenario/testing",
+      "files": 150,
+      "bytes": 31916755048
+    },
+    "training_20s": {
+      "path": "/waymo/data/v1_3_0_scenario/training_20s",
+      "files": 1000,
+      "bytes": 92523163949
+    },
+    "validation_interactive": {
+      "path": "/waymo/data/v1_3_0_scenario/validation_interactive",
+      "files": 150,
+      "bytes": 40498757497
+    },
+    "testing_interactive": {
+      "path": "/waymo/data/v1_3_0_scenario/testing_interactive",
+      "files": 150,
+      "bytes": 31360234372
+    }
+  },
+  "total_files": 1450,
+  "total_bytes": 196298910866,
+  "manifest_sha256": "327a708e70b0696e3a37d617dc076ce15ffe9ef93250c6d7b19f64074ae98906",
+  "selection": {
+    "selection_status": "frozen_class_audited",
+    "class_audit_status": "PASS_FROZEN",
+    "training_selected": 72085,
+    "validation_selected": 44097
+  },
+  "protected_branches": {
+    "training": {
+      "path": "/waymo/data/v1_3_0_scenario/training",
+      "shards": 1000,
+      "status": "protected"
+    },
+    "validation": {
+      "path": "/waymo/data/v1_3_0_scenario/validation",
+      "shards": 150,
+      "status": "protected"
+    }
+  },
+  "disk_before": {
+    "total_bytes": 1038824554496,
+    "used_bytes": 772255997952,
+    "free_bytes": 266568556544
+  },
+  "projected_free_after_deletion_bytes": 462867467410
+}

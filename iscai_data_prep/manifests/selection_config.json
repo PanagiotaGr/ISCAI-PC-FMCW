@@ -1,0 +1,28 @@
+{
+  "association_key": "exact_scenario_id",
+  "class_gate": {
+    "all_observed_classes_must_remain": true,
+    "forecast_min_valid_causal_states": 2,
+    "max_absolute_share_difference_pp": 0.5,
+    "max_relative_share_difference": 0.1,
+    "supported_core_classes": [
+      "TYPE_CYCLIST",
+      "TYPE_PEDESTRIAN",
+      "TYPE_VEHICLE"
+    ]
+  },
+  "class_preservation_gate_pass": true,
+  "dataset_release": "WOMD/WOMD-LiDAR v1.3.0",
+  "hard_free_space_reserve_gib": 250,
+  "packaging_margin_fraction": 0.02,
+  "status": "frozen_class_audited",
+  "total_pair_bytes": 680625437915,
+  "total_scenarios": 116182,
+  "training_pair_budget_bytes": 422264451994,
+  "training_pair_bytes": 422264416600,
+  "training_scenarios": 72085,
+  "training_selection_policy": "deterministic_sha256_scenario_id",
+  "validation_pair_bytes": 258361021315,
+  "validation_scenarios": 44097,
+  "validation_selection_policy": "all_exact_matching_validation"
+}

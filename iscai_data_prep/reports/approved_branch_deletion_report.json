@@ -1,0 +1,69 @@
+{
+  "status": "DELETION_COMPLETE",
+  "deletion_executed": true,
+  "deleted_branches": [
+    "testing",
+    "training_20s",
+    "validation_interactive",
+    "testing_interactive"
+  ],
+  "deleted_files": 1450,
+  "deleted_bytes": 196298910866,
+  "manifest_sha256": "327a708e70b0696e3a37d617dc076ce15ffe9ef93250c6d7b19f64074ae98906",
+  "manifest_path": "/waymo/iscai_data_prep/manifests/approved_branch_deletion_manifest.jsonl",
+  "renamed_before_deletion": [
+    {
+      "source": "/waymo/data/v1_3_0_scenario/testing",
+      "quarantine": "/waymo/data/v1_3_0_scenario/.approved_deletion_quarantine/testing"
+    },
+    {
+      "source": "/waymo/data/v1_3_0_scenario/training_20s",
+      "quarantine": "/waymo/data/v1_3_0_scenario/.approved_deletion_quarantine/training_20s"
+    },
+    {
+      "source": "/waymo/data/v1_3_0_scenario/validation_interactive",
+      "quarantine": "/waymo/data/v1_3_0_scenario/.approved_deletion_quarantine/validation_interactive"
+    },
+    {
+      "source": "/waymo/data/v1_3_0_scenario/testing_interactive",
+      "quarantine": "/waymo/data/v1_3_0_scenario/.approved_deletion_quarantine/testing_interactive"
+    }
+  ],
+  "protected_after_rename": {
+    "training": {
+      "path": "/waymo/data/v1_3_0_scenario/training",
+      "shards": 1000,
+      "status": "protected"
+    },
+    "validation": {
+      "path": "/waymo/data/v1_3_0_scenario/validation",
+      "shards": 150,
+      "status": "protected"
+    }
+  },
+  "protected_final": {
+    "training": {
+      "path": "/waymo/data/v1_3_0_scenario/training",
+      "shards": 1000,
+      "status": "protected"
+    },
+    "validation": {
+      "path": "/waymo/data/v1_3_0_scenario/validation",
+      "shards": 150,
+      "status": "protected"
+    }
+  },
+  "disk_before": {
+    "total_bytes": 1038824554496,
+    "used_bytes": 772255997952,
+    "free_bytes": 266568556544
+  },
+  "disk_after": {
+    "total_bytes": 1038824554496,
+    "used_bytes": 575950716928,
+    "free_bytes": 462873837568
+  },
+  "timestamp_unix": 1785912187.5805779,
+  "bulk_lidar_download_started": false,
+  "paired_migration_started": false
+}

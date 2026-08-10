@@ -1,0 +1,67 @@
+{
+  "baseline_parameters": {
+    "B_hz": 10000000000.0,
+    "Mchirps": 64,
+    "Nfast": 131072,
+    "T_chirp_s": 1e-05,
+    "Ts_s": 1e-09,
+    "chirp_slope_hz_per_s": 1000000000000000.0,
+    "data_rate_bps": 1000000000.0,
+    "fc_hz": 193400000000000.0,
+    "slow_time_rate_hz": 100000
+  },
+  "binding_conventions": {
+    "existing_gdf_name": "ideal_targetwise_phase_compensation",
+    "full_waveform_high_speed_use": "optional; existing Doppler ambiguity must be respected",
+    "one_way_communication_delay": "tau_OW = R/c",
+    "sensing_reflection_delay": "tau_RT = 2R/c"
+  },
+  "clone_status": "ALREADY_PRESENT",
+  "execution": {
+    "dependencies_installed_by_check": false,
+    "gpu_required": false,
+    "status": "DOCUMENTED_FAILURE_PYTHON_MISSING",
+    "timeout_seconds": 180
+  },
+  "git_branch": "main",
+  "git_commit": "44d62e3478e3818d1757b00971890f844cb032f7",
+  "local_path": "/home/agni/waymo/part_a_reference/ISCAI_pc_fmcw",
+  "notebook": {
+    "all_code_cells_have_stored_output": false,
+    "code_cells": 66,
+    "important_tokens_present": {
+      "B": true,
+      "Mchirps": false,
+      "Nfast": false,
+      "T_chirp": true,
+      "data_rate": true,
+      "m2_gt_mode": true
+    },
+    "path": "/home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb",
+    "sha256": "b5a80a6d3441de6d571db4f65b4a43ed4052cc2b3ccba935ad31b5dd51316ef3",
+    "stored_executed_code_cells": 0
+  },
+  "repository_url": "https://github.com/PanagiotaGr/ISCAI_pc_fmcw.git",
+  "tracked_files": [
+    {
+      "bytes": 4711,
+      "path": "README.md",
+      "sha256": "9ba30f2c95f1a5c963a2707549f40d8aaf18e6a4e80d9ab196528f1bcd03bec2"
+    },
+    {
+      "bytes": 3454355,
+      "path": "docs/ISCAI_Technical_Report.pdf",
+      "sha256": "8d6b18374328d553143d59689c9fc8fe0f39b6c1b111515664f20c286e2a9f31"
+    },
+    {
+      "bytes": 6212517,
+      "path": "notebooks/ISCAI_PC_FMCW.ipynb",
+      "sha256": "b5a80a6d3441de6d571db4f65b4a43ed4052cc2b3ccba935ad31b5dd51316ef3"
+    },
+    {
+      "bytes": 40,
+      "path": "requirements.txt",
+      "sha256": "48061e7fa7686b876b0221aaf663c6576c4aacc7227c1bb192d6250c5d037494"
+    }
+  ]
+}

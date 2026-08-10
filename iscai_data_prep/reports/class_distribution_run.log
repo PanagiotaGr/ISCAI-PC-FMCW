@@ -1,0 +1,70 @@
+Traceback (most recent call last):
+  File "/waymo/iscai_data_prep/scripts/freeze_selection_and_audit_classes.py", line 12, in <module>
+    from waymo_open_dataset.protos import scenario_pb2
+ModuleNotFoundError: No module named 'waymo_open_dataset'
+Selection reproduced exactly.
+Training: 72085 bytes: 422264416600
+Validation: 44097 bytes: 258361021315
+Total: 116182
+training: 1/1000 shards, paired=496, selected=87, elapsed=0.0 min
+training: 25/1000 shards, paired=12216, selected=1772, elapsed=0.0 min
+training: 50/1000 shards, paired=24385, selected=3586, elapsed=0.0 min
+training: 75/1000 shards, paired=36686, selected=5431, elapsed=0.0 min
+training: 100/1000 shards, paired=48805, selected=7213, elapsed=0.0 min
+training: 125/1000 shards, paired=61015, selected=9045, elapsed=0.0 min
+training: 150/1000 shards, paired=73168, selected=10909, elapsed=0.0 min
+training: 175/1000 shards, paired=85458, selected=12735, elapsed=0.0 min
+training: 200/1000 shards, paired=97629, selected=14509, elapsed=0.0 min
+training: 225/1000 shards, paired=109708, selected=16273, elapsed=0.0 min
+training: 250/1000 shards, paired=121882, selected=18062, elapsed=0.0 min
+training: 275/1000 shards, paired=134079, selected=19859, elapsed=0.0 min
+training: 300/1000 shards, paired=146165, selected=21616, elapsed=0.0 min
+training: 325/1000 shards, paired=158366, selected=23400, elapsed=0.0 min
+training: 350/1000 shards, paired=170318, selected=25245, elapsed=0.0 min
+training: 375/1000 shards, paired=182552, selected=27062, elapsed=0.0 min
+training: 400/1000 shards, paired=194609, selected=28805, elapsed=0.0 min
+training: 425/1000 shards, paired=206802, selected=30624, elapsed=0.0 min
+training: 450/1000 shards, paired=218957, selected=32409, elapsed=0.0 min
+training: 475/1000 shards, paired=231209, selected=34161, elapsed=0.0 min
+training: 500/1000 shards, paired=243396, selected=35973, elapsed=0.0 min
+training: 525/1000 shards, paired=255367, selected=37746, elapsed=0.0 min
+training: 550/1000 shards, paired=267598, selected=39520, elapsed=0.0 min
+training: 575/1000 shards, paired=279827, selected=41325, elapsed=0.0 min
+training: 600/1000 shards, paired=292022, selected=43107, elapsed=0.0 min
+training: 625/1000 shards, paired=304295, selected=44955, elapsed=0.0 min
+training: 650/1000 shards, paired=316456, selected=46742, elapsed=0.0 min
+training: 675/1000 shards, paired=328785, selected=48615, elapsed=0.0 min
+training: 700/1000 shards, paired=340917, selected=50403, elapsed=3.1 min
+training: 725/1000 shards, paired=353059, selected=52179, elapsed=40.6 min
+training: 750/1000 shards, paired=365117, selected=53929, elapsed=76.7 min
+training: 775/1000 shards, paired=377248, selected=55761, elapsed=113.0 min
+training: 800/1000 shards, paired=389245, selected=57529, elapsed=148.6 min
+training: 825/1000 shards, paired=401478, selected=59340, elapsed=184.9 min
+training: 850/1000 shards, paired=413681, selected=61141, elapsed=221.1 min
+training: 875/1000 shards, paired=425863, selected=62992, elapsed=257.4 min
+training: 900/1000 shards, paired=438145, selected=64872, elapsed=294.3 min
+training: 925/1000 shards, paired=450283, selected=66695, elapsed=330.8 min
+training: 950/1000 shards, paired=462545, selected=68527, elapsed=367.3 min
+training: 975/1000 shards, paired=474886, selected=70266, elapsed=404.1 min
+training: 1000/1000 shards, paired=486988, selected=72085, elapsed=440.1 min
+validation: 1/150 shards, paired=286, selected=286, elapsed=0.8 min
+validation: 25/150 shards, paired=7420, selected=7420, elapsed=22.2 min
+validation: 50/150 shards, paired=14717, selected=14717, elapsed=44.1 min
+validation: 75/150 shards, paired=22089, selected=22089, elapsed=66.4 min
+validation: 100/150 shards, paired=29506, selected=29506, elapsed=88.4 min
+validation: 125/150 shards, paired=36833, selected=36833, elapsed=110.1 min
+validation: 150/150 shards, paired=44097, selected=44097, elapsed=131.7 min
+
+Class-preservation gate: PASS_FROZEN
+
+training
+  missing classes: []
+  ratio failures: []
+
+validation
+  missing classes: []
+  ratio failures: []
+
+Audit: /waymo/iscai_data_prep/reports/class_distribution_audit.json
+Summary: /waymo/iscai_data_prep/reports/class_distribution_audit.md
+Selection config: /waymo/iscai_data_prep/manifests/selection_config.json

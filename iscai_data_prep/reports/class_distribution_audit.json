@@ -1,0 +1,520 @@
+{
+  "binding_decision": "D11: complete Scenario records are retained; all observed classes must remain represented; supported causal class ratios must pass the configured tolerance.",
+  "class_comparison": {
+    "training": {
+      "all_observed_classes_preserved": true,
+      "class_preservation_gate_pass": true,
+      "metrics": {
+        "all_non_sdc_tracks": {
+          "classes": {
+            "TYPE_CYCLIST": {
+              "absolute_difference_pp": 0.012733883206173142,
+              "full_count": 251128,
+              "full_share": 0.007841934470408835,
+              "relative_difference": 0.01623819129606839,
+              "selected_count": 37796,
+              "selected_share": 0.007969273302470567,
+              "supported_ratio_gate": null
+            },
+            "TYPE_PEDESTRIAN": {
+              "absolute_difference_pp": 0.04806680874572394,
+              "full_count": 3578070,
+              "full_share": 0.111731827874772,
+              "relative_difference": 0.004301979987259922,
+              "selected_count": 532192,
+              "selected_share": 0.11221249596222924,
+              "supported_ratio_gate": null
+            },
+            "TYPE_VEHICLE": {
+              "absolute_difference_pp": -0.060800691951901076,
+              "full_count": 28194533,
+              "full_share": 0.8804262376548192,
+              "relative_difference": 0.0006905824628063692,
+              "selected_count": 4172728,
+              "selected_share": 0.8798182307353002,
+              "supported_ratio_gate": null
+            }
+          },
+          "full_total": 32023731,
+          "selected_total": 4742716
+        },
+        "anchor_valid_actors": {
+          "classes": {
+            "TYPE_CYCLIST": {
+              "absolute_difference_pp": 0.014627535966502386,
+              "full_count": 120343,
+              "full_share": 0.007174681553193387,
+              "relative_difference": 0.020387714573884882,
+              "selected_count": 18202,
+              "selected_share": 0.007320956912858411,
+              "supported_ratio_gate": true
+            },
+            "TYPE_PEDESTRIAN": {
+              "absolute_difference_pp": 0.041678480391696415,
+              "full_count": 1368712,
+              "full_share": 0.08160069748996142,
+              "relative_difference": 0.005107613252548942,
+              "selected_count": 203919,
+              "selected_share": 0.08201748229387838,
+              "supported_ratio_gate": true
+            },
+            "TYPE_VEHICLE": {
+              "absolute_difference_pp": -0.05630601635819854,
+              "full_count": 15284233,
+              "full_share": 0.9112246209568452,
+              "relative_difference": 0.0006179158800502291,
+              "selected_count": 2264166,
+              "selected_share": 0.9106615607932632,
+              "supported_ratio_gate": true
+            }
+          },
+          "full_total": 16773288,
+          "selected_total": 2486287
+        },
+        "context_actors": {
+          "classes": {
+            "TYPE_CYCLIST": {
+              "absolute_difference_pp": 0.011778989487886988,
+              "full_count": 136755,
+              "full_share": 0.0073418526132013225,
+              "relative_difference": 0.016043620198405082,
+              "selected_count": 20592,
+              "selected_share": 0.007459642508080192,
+              "supported_ratio_gate": true
+            },
+            "TYPE_PEDESTRIAN": {
+              "absolute_difference_pp": 0.040901234354831506,
+              "full_count": 1670762,
+              "full_share": 0.08969681807420181,
+              "relative_difference": 0.0045599426192572306,
+              "selected_count": 248733,
+              "selected_share": 0.09010583041775012,
+              "supported_ratio_gate": true
+            },
+            "TYPE_VEHICLE": {
+              "absolute_difference_pp": -0.05268022384271598,
+              "full_count": 16819253,
+              "full_share": 0.9029613293125969,
+              "relative_difference": 0.0005834161678088716,
+              "selected_count": 2491129,
+              "selected_share": 0.9024345270741697,
+              "supported_ratio_gate": true
+            }
+          },
+          "full_total": 18626770,
+          "selected_total": 2760454
+        },
+        "forecasting_target_candidates": {
+          "classes": {
+            "TYPE_CYCLIST": {
+              "absolute_difference_pp": 0.014479703505918505,
+              "full_count": 118803,
+              "full_share": 0.0071535894065001,
+              "relative_difference": 0.020241172204769734,
+              "selected_count": 17966,
+              "selected_share": 0.007298386441559285,
+              "supported_ratio_gate": true
+            },
+            "TYPE_PEDESTRIAN": {
+              "absolute_difference_pp": 0.04037738793131879,
+              "full_count": 1344282,
+              "full_share": 0.08094443300715275,
+              "relative_difference": 0.004988284732039669,
+              "selected_count": 200250,
+              "selected_share": 0.08134820688646593,
+              "supported_ratio_gate": true
+            },
+            "TYPE_VEHICLE": {
+              "absolute_difference_pp": -0.05485709143724371,
+              "full_count": 15144382,
+              "full_share": 0.9119019775863472,
+              "relative_difference": 0.0006015678525277607,
+              "selected_count": 2243424,
+              "selected_share": 0.9113534066719747,
+              "supported_ratio_gate": true
+            }
+          },
+          "full_total": 16607467,
+          "selected_total": 2461640
+        },
+        "scenario_presence": {
+          "classes": {
+            "TYPE_CYCLIST": {
+              "absolute_difference_pp": 0.10598889405025319,
+              "full_count": 89076,
+              "full_share": 0.10154860598101179,
+              "relative_difference": 0.010437257412482026,
+              "selected_count": 13335,
+              "selected_share": 0.10260849492151432,
+              "supported_ratio_gate": true
+            },
+            "TYPE_PEDESTRIAN": {
+              "absolute_difference_pp": -0.05130244584692911,
+              "full_count": 301171,
+              "full_share": 0.3433415870931261,
+              "relative_difference": 0.0014942100746162775,
+              "selected_count": 44554,
+              "selected_share": 0.34282856263465683,
+              "supported_ratio_gate": true
+            },
+            "TYPE_VEHICLE": {
+              "absolute_difference_pp": -0.05468644820332269,
+              "full_count": 486929,
+              "full_share": 0.5551098069258621,
+              "relative_difference": 0.0009851464975221805,
+              "selected_count": 72071,
+              "selected_share": 0.5545629424438289,
+              "supported_ratio_gate": true
+            }
+          },
+          "full_total": 877176,
+          "selected_total": 129960
+        }
+      },
+      "missing_classes": [],
+      "supported_ratio_failures": [],
+      "supported_ratio_gate_pass": true
+    },
+    "validation": {
+      "all_observed_classes_preserved": true,
+      "class_preservation_gate_pass": true,
+      "metrics": {
+        "all_non_sdc_tracks": {
+          "classes": {
+            "TYPE_CYCLIST": {
+              "absolute_difference_pp": 0.0,
+              "full_count": 21704,
+              "full_share": 0.0074671206206269915,
+              "relative_difference": 0.0,
+              "selected_count": 21704,
+              "selected_share": 0.0074671206206269915,
+              "supported_ratio_gate": null
+            },
+            "TYPE_PEDESTRIAN": {
+              "absolute_difference_pp": 0.0,
+              "full_count": 323786,
+              "full_share": 0.11139647609981253,
+              "relative_difference": 0.0,
+              "selected_count": 323786,
+              "selected_share": 0.11139647609981253,
+              "supported_ratio_gate": null
+            },
+            "TYPE_VEHICLE": {
+              "absolute_difference_pp": 0.0,
+              "full_count": 2561119,
+              "full_share": 0.8811364032795604,
+              "relative_difference": 0.0,
+              "selected_count": 2561119,
+              "selected_share": 0.8811364032795604,
+              "supported_ratio_gate": null
+            }
+          },
+          "full_total": 2906609,
+          "selected_total": 2906609
+        },
+        "anchor_valid_actors": {
+          "classes": {
+            "TYPE_CYCLIST": {
+              "absolute_difference_pp": 0.0,
+              "full_count": 10425,
+              "full_share": 0.006838092339499969,
+              "relative_difference": 0.0,
+              "selected_count": 10425,
+              "selected_share": 0.006838092339499969,
+              "supported_ratio_gate": true
+            },
+            "TYPE_PEDESTRIAN": {
+              "absolute_difference_pp": 0.0,
+              "full_count": 124099,
+              "full_share": 0.08140052002298385,
+              "relative_difference": 0.0,
+              "selected_count": 124099,
+              "selected_share": 0.08140052002298385,
+              "supported_ratio_gate": true
+            },
+            "TYPE_VEHICLE": {
+              "absolute_difference_pp": 0.0,
+              "full_count": 1390024,
+              "full_share": 0.9117613876375161,
+              "relative_difference": 0.0,
+              "selected_count": 1390024,
+              "selected_share": 0.9117613876375161,
+              "supported_ratio_gate": true
+            }
+          },
+          "full_total": 1524548,
+          "selected_total": 1524548
+        },
+        "context_actors": {
+          "classes": {
+            "TYPE_CYCLIST": {
+              "absolute_difference_pp": 0.0,
+              "full_count": 11735,
+              "full_share": 0.006989533270714421,
+              "relative_difference": 0.0,
+              "selected_count": 11735,
+              "selected_share": 0.006989533270714421,
+              "supported_ratio_gate": true
+            },
+            "TYPE_PEDESTRIAN": {
+              "absolute_difference_pp": 0.0,
+              "full_count": 149683,
+              "full_share": 0.0891533283817935,
+              "relative_difference": 0.0,
+              "selected_count": 149683,
+              "selected_share": 0.0891533283817935,
+              "supported_ratio_gate": true
+            },
+            "TYPE_VEHICLE": {
+              "absolute_difference_pp": 0.0,
+              "full_count": 1517521,
+              "full_share": 0.903857138347492,
+              "relative_difference": 0.0,
+              "selected_count": 1517521,
+              "selected_share": 0.903857138347492,
+              "supported_ratio_gate": true
+            }
+          },
+          "full_total": 1678939,
+          "selected_total": 1678939
+        },
+        "forecasting_target_candidates": {
+          "classes": {
+            "TYPE_CYCLIST": {
+              "absolute_difference_pp": 0.0,
+              "full_count": 10275,
+              "full_share": 0.0068076112738017945,
+              "relative_difference": 0.0,
+              "selected_count": 10275,
+              "selected_share": 0.0068076112738017945,
+              "supported_ratio_gate": true
+            },
+            "TYPE_PEDESTRIAN": {
+              "absolute_difference_pp": 0.0,
+              "full_count": 121837,
+              "full_share": 0.08072203744683107,
+              "relative_difference": 0.0,
+              "selected_count": 121837,
+              "selected_share": 0.08072203744683107,
+              "supported_ratio_gate": true
+            },
+            "TYPE_VEHICLE": {
+              "absolute_difference_pp": 0.0,
+              "full_count": 1377228,
+              "full_share": 0.9124703512793672,
+              "relative_difference": 0.0,
+              "selected_count": 1377228,
+              "selected_share": 0.9124703512793672,
+              "supported_ratio_gate": true
+            }
+          },
+          "full_total": 1509340,
+          "selected_total": 1509340
+        },
+        "scenario_presence": {
+          "classes": {
+            "TYPE_CYCLIST": {
+              "absolute_difference_pp": 0.0,
+              "full_count": 7864,
+              "full_share": 0.09937950992657744,
+              "relative_difference": 0.0,
+              "selected_count": 7864,
+              "selected_share": 0.09937950992657744,
+              "supported_ratio_gate": true
+            },
+            "TYPE_PEDESTRIAN": {
+              "absolute_difference_pp": 0.0,
+              "full_count": 27177,
+              "full_share": 0.34344315123023844,
+              "relative_difference": 0.0,
+              "selected_count": 27177,
+              "selected_share": 0.34344315123023844,
+              "supported_ratio_gate": true
+            },
+            "TYPE_VEHICLE": {
+              "absolute_difference_pp": 0.0,
+              "full_count": 44090,
+              "full_share": 0.5571773388431841,
+              "relative_difference": 0.0,
+              "selected_count": 44090,
+              "selected_share": 0.5571773388431841,
+              "supported_ratio_gate": true
+            }
+          },
+          "full_total": 79131,
+          "selected_total": 79131
+        }
+      },
+      "missing_classes": [],
+      "supported_ratio_failures": [],
+      "supported_ratio_gate_pass": true
+    }
+  },
+  "class_preservation_gate_pass": true,
+  "definitions": {
+    "anchor_valid": "valid state at current_time_index",
+    "context_actor": "at least one valid causal state",
+    "forecasting_target_candidate": "anchor valid and at least two valid causal states",
+    "non_sdc_only": true,
+    "scenario_presence": "at least one causal context actor of the class in the scenario"
+  },
+  "manifests": {
+    "local_without_lidar": "/waymo/iscai_data_prep/manifests/excluded_local_without_lidar.jsonl",
+    "remote_without_local": "/waymo/iscai_data_prep/manifests/remote_without_local_motion.jsonl",
+    "selection_config": "/waymo/iscai_data_prep/manifests/selection_config.json",
+    "training": "/waymo/iscai_data_prep/manifests/selected_training.jsonl",
+    "validation": "/waymo/iscai_data_prep/manifests/selected_validation.jsonl"
+  },
+  "selection": {
+    "total_pair_bytes": 680625437915,
+    "total_scenarios": 116182,
+    "training_pair_bytes": 422264416600,
+    "training_scenarios": 72085,
+    "validation_pair_bytes": 258361021315,
+    "validation_scenarios": 44097
+  },
+  "split_statistics": {
+    "training": {
+      "full_paired": {
+        "all_non_sdc_tracks": {
+          "TYPE_CYCLIST": 251128,
+          "TYPE_PEDESTRIAN": 3578070,
+          "TYPE_VEHICLE": 28194533
+        },
+        "anchor_valid_actors": {
+          "TYPE_CYCLIST": 120343,
+          "TYPE_PEDESTRIAN": 1368712,
+          "TYPE_VEHICLE": 15284233
+        },
+        "context_actors": {
+          "TYPE_CYCLIST": 136755,
+          "TYPE_PEDESTRIAN": 1670762,
+          "TYPE_VEHICLE": 16819253
+        },
+        "forecasting_target_candidates": {
+          "TYPE_CYCLIST": 118803,
+          "TYPE_PEDESTRIAN": 1344282,
+          "TYPE_VEHICLE": 15144382
+        },
+        "scenario_presence": {
+          "TYPE_CYCLIST": 89076,
+          "TYPE_PEDESTRIAN": 301171,
+          "TYPE_VEHICLE": 486929
+        },
+        "scenarios": 486988,
+        "sdc_scenarios": 486988
+      },
+      "pair_id_digest": "5ceadbd4d20b700d3f391f86f56f8b56a438b3005f3154f921a49eef1f3eebd3",
+      "paired_records_seen": 486988,
+      "selected": {
+        "all_non_sdc_tracks": {
+          "TYPE_CYCLIST": 37796,
+          "TYPE_PEDESTRIAN": 532192,
+          "TYPE_VEHICLE": 4172728
+        },
+        "anchor_valid_actors": {
+          "TYPE_CYCLIST": 18202,
+          "TYPE_PEDESTRIAN": 203919,
+          "TYPE_VEHICLE": 2264166
+        },
+        "context_actors": {
+          "TYPE_CYCLIST": 20592,
+          "TYPE_PEDESTRIAN": 248733,
+          "TYPE_VEHICLE": 2491129
+        },
+        "forecasting_target_candidates": {
+          "TYPE_CYCLIST": 17966,
+          "TYPE_PEDESTRIAN": 200250,
+          "TYPE_VEHICLE": 2243424
+        },
+        "scenario_presence": {
+          "TYPE_CYCLIST": 13335,
+          "TYPE_PEDESTRIAN": 44554,
+          "TYPE_VEHICLE": 72071
+        },
+        "scenarios": 72085,
+        "sdc_scenarios": 72085
+      },
+      "selected_records_seen": 72085,
+      "selection_id_digest": "be536ba6008b25df734e5e0286aa40985dd07d307970a125c17fc46d748b152d"
+    },
+    "validation": {
+      "full_paired": {
+        "all_non_sdc_tracks": {
+          "TYPE_CYCLIST": 21704,
+          "TYPE_PEDESTRIAN": 323786,
+          "TYPE_VEHICLE": 2561119
+        },
+        "anchor_valid_actors": {
+          "TYPE_CYCLIST": 10425,
+          "TYPE_PEDESTRIAN": 124099,
+          "TYPE_VEHICLE": 1390024
+        },
+        "context_actors": {
+          "TYPE_CYCLIST": 11735,
+          "TYPE_PEDESTRIAN": 149683,
+          "TYPE_VEHICLE": 1517521
+        },
+        "forecasting_target_candidates": {
+          "TYPE_CYCLIST": 10275,
+          "TYPE_PEDESTRIAN": 121837,
+          "TYPE_VEHICLE": 1377228
+        },
+        "scenario_presence": {
+          "TYPE_CYCLIST": 7864,
+          "TYPE_PEDESTRIAN": 27177,
+          "TYPE_VEHICLE": 44090
+        },
+        "scenarios": 44097,
+        "sdc_scenarios": 44097
+      },
+      "pair_id_digest": "79c465e98769c68e49f9bb4815a11122c6e389c90855c17271c88fb16406ef76",
+      "paired_records_seen": 44097,
+      "selected": {
+        "all_non_sdc_tracks": {
+          "TYPE_CYCLIST": 21704,
+          "TYPE_PEDESTRIAN": 323786,
+          "TYPE_VEHICLE": 2561119
+        },
+        "anchor_valid_actors": {
+          "TYPE_CYCLIST": 10425,
+          "TYPE_PEDESTRIAN": 124099,
+          "TYPE_VEHICLE": 1390024
+        },
+        "context_actors": {
+          "TYPE_CYCLIST": 11735,
+          "TYPE_PEDESTRIAN": 149683,
+          "TYPE_VEHICLE": 1517521
+        },
+        "forecasting_target_candidates": {
+          "TYPE_CYCLIST": 10275,
+          "TYPE_PEDESTRIAN": 121837,
+          "TYPE_VEHICLE": 1377228
+        },
+        "scenario_presence": {
+          "TYPE_CYCLIST": 7864,
+          "TYPE_PEDESTRIAN": 27177,
+          "TYPE_VEHICLE": 44090
+        },
+        "scenarios": 44097,
+        "sdc_scenarios": 44097
+      },
+      "selected_records_seen": 44097,
+      "selection_id_digest": "79c465e98769c68e49f9bb4815a11122c6e389c90855c17271c88fb16406ef76"
+    }
+  },
+  "status": "PASS_FROZEN",
+  "thresholds": {
+    "max_absolute_difference_pp": 0.5,
+    "max_relative_difference": 0.1,
+    "supported_classes": [
+      "TYPE_CYCLIST",
+      "TYPE_PEDESTRIAN",
+      "TYPE_VEHICLE"
+    ]
+  },
+  "unmatched": {
+    "local_motion_without_lidar": 7,
+    "remote_lidar_without_local_motion": 71
+  }
+}

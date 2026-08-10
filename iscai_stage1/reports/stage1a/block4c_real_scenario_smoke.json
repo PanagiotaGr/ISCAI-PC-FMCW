@@ -1,0 +1,40 @@
+{
+  "artifact_semantics": "causal_womd_annotation_upstream",
+  "block": "stage1a_block4c_real_scenario_smoke",
+  "resolved_pair": {
+    "association_key": "exact_scenario_id",
+    "lidar_bytes": 4467141,
+    "lidar_decoded": false,
+    "lidar_sidecar": "/home/agni/waymo/data/paired_womd_lidar_v1_3_0/validation/lidar/b8/b85e1bd6cc8e74c0.tfrecord",
+    "motion_compact_shard": "/home/agni/waymo/data/paired_womd_lidar_v1_3_0/validation/motion/paired-from-validation.tfrecord-00000-of-00150"
+  },
+  "scenario": {
+    "causal_timestamp_count": 11,
+    "current_time_index": 10,
+    "dynamic_map_states": 91,
+    "map_features": 139,
+    "scenario_id": "b85e1bd6cc8e74c0",
+    "sdc_track_index": 13,
+    "timestamps": 91,
+    "tracks": 14
+  },
+  "selection": {
+    "manifest": "/home/agni/waymo/iscai_data_prep/manifests/selected_validation.jsonl",
+    "manifest_line": 1,
+    "manifest_sha256": "dc10609ef18a2ba881657eb3da3a3df7a81bdcc8345ecbc2227102ab16b8833c",
+    "motion_record_bytes": 647801,
+    "payload_length": 647785,
+    "policy": "first_record_of_frozen_validation_jsonl",
+    "record_offset": 0,
+    "scenario_id": "b85e1bd6cc8e74c0",
+    "source_shard": "/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00000-of-00150",
+    "split": "validation"
+  },
+  "sensor_realistic": false,
+  "status": "PASS",
+  "storage": {
+    "free_gib": 1071.071662902832,
+    "hard_reserve_gate_pass": true,
+    "hard_reserve_gib": 250.0
+  }
+}

@@ -1,0 +1,317 @@
+{
+  "inventory_mode": "read_only",
+  "dataset": {
+    "motion_release": "WOMD Scenario v1.3.0",
+    "lidar_release": "WOMD-LiDAR v1.3.0",
+    "local_motion_root": "/waymo/data/v1_3_0_scenario",
+    "remote_lidar_root": "gs://waymo_open_dataset_motion_v_1_3_0/uncompressed/lidar_and_camera",
+    "included_splits": [
+      "training",
+      "validation"
+    ],
+    "excluded_from_pair_priority": [
+      "testing",
+      "training_20s",
+      "validation_interactive",
+      "testing_interactive"
+    ]
+  },
+  "disk": {
+    "mount": "/waymo",
+    "total_bytes": 1038824554496,
+    "used_bytes": 768733315072,
+    "free_bytes": 270091239424
+  },
+  "local_branch_sizes": {
+    "training": 455380182418,
+    "validation": 41180912383,
+    "testing": 31916755048,
+    "training_20s": 92523163949,
+    "validation_interactive": 40498757497,
+    "testing_interactive": 31360234372
+  },
+  "split_summary": {
+    "training": {
+      "local_motion": {
+        "shards": 1000,
+        "shard_file_bytes": 455380182418,
+        "scenario_records": 486995,
+        "record_bytes": 455380182418
+      },
+      "remote_lidar": {
+        "count": 487054,
+        "total_bytes": 2397999462467,
+        "min_bytes": 1493071,
+        "median_bytes": 4880766.0,
+        "p95_bytes": 6054013.3,
+        "max_bytes": 9490234
+      },
+      "exact_intersection": {
+        "paired_scenarios": 486988,
+        "paired_fraction_of_local": 0.9999856261357919,
+        "motion_record_sizes": {
+          "count": 486988,
+          "total_bytes": 455374521736,
+          "min_bytes": 66238,
+          "median_bytes": 894027.0,
+          "p95_bytes": 1592276.25,
+          "max_bytes": 2897426
+        },
+        "lidar_sidecar_sizes": {
+          "count": 486988,
+          "total_bytes": 2397649356165,
+          "min_bytes": 1493071,
+          "median_bytes": 4880725.0,
+          "p95_bytes": 6053998.949999999,
+          "max_bytes": 9490234
+        },
+        "combined_pair_sizes": {
+          "count": 486988,
+          "total_bytes": 2853023877901,
+          "min_bytes": 2147385,
+          "median_bytes": 5840434.5,
+          "p95_bytes": 6900705.449999997,
+          "max_bytes": 10091538
+        }
+      }
+    },
+    "validation": {
+      "local_motion": {
+        "shards": 150,
+        "shard_file_bytes": 41180912383,
+        "scenario_records": 44097,
+        "record_bytes": 41180912383
+      },
+      "remote_lidar": {
+        "count": 44102,
+        "total_bytes": 217207245265,
+        "min_bytes": 2244101,
+        "median_bytes": 4883846.5,
+        "p95_bytes": 6049495.999999999,
+        "max_bytes": 8298740
+      },
+      "exact_intersection": {
+        "paired_scenarios": 44097,
+        "paired_fraction_of_local": 1.0,
+        "motion_record_sizes": {
+          "count": 44097,
+          "total_bytes": 41180912383,
+          "min_bytes": 72686,
+          "median_bytes": 894674.0,
+          "p95_bytes": 1599195.1999999995,
+          "max_bytes": 2650076
+        },
+        "lidar_sidecar_sizes": {
+          "count": 44097,
+          "total_bytes": 217180108932,
+          "min_bytes": 2244101,
+          "median_bytes": 4883801.0,
+          "p95_bytes": 6049542.399999999,
+          "max_bytes": 8298740
+        },
+        "combined_pair_sizes": {
+          "count": 44097,
+          "total_bytes": 258361021315,
+          "min_bytes": 2800657,
+          "median_bytes": 5839469.0,
+          "p95_bytes": 6898195.199999999,
+          "max_bytes": 9725937
+        }
+      }
+    }
+  },
+  "cross_split_duplicate_scenario_ids": 0,
+  "transactional_repacking": {
+    "source_shards_with_pairs": 1150,
+    "max_all_pairs_from_one_source_shard_bytes": 3284044467,
+    "p95_all_pairs_from_one_source_shard_bytes": 3059008927.3999996,
+    "note": "These values are upper bounds for per-source-shard temporary output. Smaller batches can be used if necessary."
+  },
+  "capacity_estimates": {
+    "reserve_200_gib": {
+      "reserve_bytes": 214748364800,
+      "strict_no_original_deletion": {
+        "raw_pair_capacity_bytes": 55342874624,
+        "effective_pair_capacity_bytes": 54236017131,
+        "packaging_margin_fraction": 0.02,
+        "all_validation_pairs": 44097,
+        "all_validation_bytes": 258361021315,
+        "all_validation_fits": false,
+        "remaining_training_budget_bytes": 0,
+        "count_max_plan": null,
+        "hash_order_plan": null
+      },
+      "transactional_replace_training_validation_only": {
+        "raw_pair_capacity_bytes": 551903969425,
+        "effective_pair_capacity_bytes": 540865890036,
+        "packaging_margin_fraction": 0.02,
+        "all_validation_pairs": 44097,
+        "all_validation_bytes": 258361021315,
+        "all_validation_fits": true,
+        "remaining_training_budget_bytes": 282504868721,
+        "count_max_plan": {
+          "training_pairs": 58331,
+          "training_bytes": 282500902125,
+          "selection_semantics": "count-maximizing upper bound; size-biased and not recommended as the final scientific sampler",
+          "total_pairs": 102428,
+          "total_bytes": 540861923440
+        },
+        "hash_order_plan": {
+          "training_pairs": 48199,
+          "training_bytes": 282504857267,
+          "selection_semantics": "deterministic scenario-id hash order; less size-biased and recommended for the final scientific sampler",
+          "total_pairs": 92296,
+          "total_bytes": 540865878582
+        }
+      },
+      "transactional_replace_core_and_remove_unused_branches": {
+        "raw_pair_capacity_bytes": 748202880291,
+        "effective_pair_capacity_bytes": 733238822685,
+        "packaging_margin_fraction": 0.02,
+        "all_validation_pairs": 44097,
+        "all_validation_bytes": 258361021315,
+        "all_validation_fits": true,
+        "remaining_training_budget_bytes": 474877801370,
+        "count_max_plan": {
+          "training_pairs": 95061,
+          "training_bytes": 474874534381,
+          "selection_semantics": "count-maximizing upper bound; size-biased and not recommended as the final scientific sampler",
+          "total_pairs": 139158,
+          "total_bytes": 733235555696
+        },
+        "hash_order_plan": {
+          "training_pairs": 81056,
+          "training_bytes": 474877228043,
+          "selection_semantics": "deterministic scenario-id hash order; less size-biased and recommended for the final scientific sampler",
+          "total_pairs": 125153,
+          "total_bytes": 733238249358
+        }
+      }
+    },
+    "reserve_250_gib": {
+      "reserve_bytes": 268435456000,
+      "strict_no_original_deletion": {
+        "raw_pair_capacity_bytes": 1655783424,
+        "effective_pair_capacity_bytes": 1622667755,
+        "packaging_margin_fraction": 0.02,
+        "all_validation_pairs": 44097,
+        "all_validation_bytes": 258361021315,
+        "all_validation_fits": false,
+        "remaining_training_budget_bytes": 0,
+        "count_max_plan": null,
+        "hash_order_plan": null
+      },
+      "transactional_replace_training_validation_only": {
+        "raw_pair_capacity_bytes": 498216878225,
+        "effective_pair_capacity_bytes": 488252540660,
+        "packaging_margin_fraction": 0.02,
+        "all_validation_pairs": 44097,
+        "all_validation_bytes": 258361021315,
+        "all_validation_fits": true,
+        "remaining_training_budget_bytes": 229891519345,
+        "count_max_plan": {
+          "training_pairs": 48038,
+          "training_bytes": 229888290218,
+          "selection_semantics": "count-maximizing upper bound; size-biased and not recommended as the final scientific sampler",
+          "total_pairs": 92135,
+          "total_bytes": 488249311533
+        },
+        "hash_order_plan": {
+          "training_pairs": 39228,
+          "training_bytes": 229891389496,
+          "selection_semantics": "deterministic scenario-id hash order; less size-biased and recommended for the final scientific sampler",
+          "total_pairs": 83325,
+          "total_bytes": 488252410811
+        }
+      },
+      "transactional_replace_core_and_remove_unused_branches": {
+        "raw_pair_capacity_bytes": 694515789091,
+        "effective_pair_capacity_bytes": 680625473309,
+        "packaging_margin_fraction": 0.02,
+        "all_validation_pairs": 44097,
+        "all_validation_bytes": 258361021315,
+        "all_validation_fits": true,
+        "remaining_training_budget_bytes": 422264451994,
+        "count_max_plan": {
+          "training_pairs": 85137,
+          "training_bytes": 422262272827,
+          "selection_semantics": "count-maximizing upper bound; size-biased and not recommended as the final scientific sampler",
+          "total_pairs": 129234,
+          "total_bytes": 680623294142
+        },
+        "hash_order_plan": {
+          "training_pairs": 72085,
+          "training_bytes": 422264416600,
+          "selection_semantics": "deterministic scenario-id hash order; less size-biased and recommended for the final scientific sampler",
+          "total_pairs": 116182,
+          "total_bytes": 680625437915
+        }
+      }
+    },
+    "reserve_300_gib": {
+      "reserve_bytes": 322122547200,
+      "strict_no_original_deletion": {
+        "raw_pair_capacity_bytes": 0,
+        "effective_pair_capacity_bytes": 0,
+        "packaging_margin_fraction": 0.02,
+        "all_validation_pairs": 44097,
+        "all_validation_bytes": 258361021315,
+        "all_validation_fits": false,
+        "remaining_training_budget_bytes": 0,
+        "count_max_plan": null,
+        "hash_order_plan": null
+      },
+      "transactional_replace_training_validation_only": {
+        "raw_pair_capacity_bytes": 444529787025,
+        "effective_pair_capacity_bytes": 435639191284,
+        "packaging_margin_fraction": 0.02,
+        "all_validation_pairs": 44097,
+        "all_validation_bytes": 258361021315,
+        "all_validation_fits": true,
+        "remaining_training_budget_bytes": 177278169969,
+        "count_max_plan": {
+          "training_pairs": 37602,
+          "training_bytes": 177273992637,
+          "selection_semantics": "count-maximizing upper bound; size-biased and not recommended as the final scientific sampler",
+          "total_pairs": 81699,
+          "total_bytes": 435635013952
+        },
+        "hash_order_plan": {
+          "training_pairs": 30248,
+          "training_bytes": 177277627176,
+          "selection_semantics": "deterministic scenario-id hash order; less size-biased and recommended for the final scientific sampler",
+          "total_pairs": 74345,
+          "total_bytes": 435638648491
+        }
+      },
+      "transactional_replace_core_and_remove_unused_branches": {
+        "raw_pair_capacity_bytes": 640828697891,
+        "effective_pair_capacity_bytes": 628012123933,
+        "packaging_margin_fraction": 0.02,
+        "all_validation_pairs": 44097,
+        "all_validation_bytes": 258361021315,
+        "all_validation_fits": true,
+        "remaining_training_budget_bytes": 369651102618,
+        "count_max_plan": {
+          "training_pairs": 75126,
+          "training_bytes": 369647084945,
+          "selection_semantics": "count-maximizing upper bound; size-biased and not recommended as the final scientific sampler",
+          "total_pairs": 119223,
+          "total_bytes": 628008106260
+        },
+        "hash_order_plan": {
+          "training_pairs": 63092,
+          "training_bytes": 369651010773,
+          "selection_semantics": "deterministic scenario-id hash order; less size-biased and recommended for the final scientific sampler",
+          "total_pairs": 107189,
+          "total_bytes": 628012032088
+        }
+      }
+    }
+  },
+  "generated_files": {
+    "sqlite_index": "/waymo/iscai_data_prep/reports/paired_inventory.sqlite",
+    "summary_json": "/waymo/iscai_data_prep/reports/paired_inventory_summary.json",
+    "summary_markdown": "/waymo/iscai_data_prep/reports/paired_inventory_summary.md"
+  }
+}

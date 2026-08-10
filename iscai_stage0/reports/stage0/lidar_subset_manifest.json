@@ -1,0 +1,43 @@
+{
+  "dataset_release": "WOMD v1.3.0",
+  "split": "validation",
+  "selection": "deterministic minimal class-covering subset from first 100 scenarios of validation shard 00000",
+  "required_classes": [
+    "TYPE_CYCLIST",
+    "TYPE_PEDESTRIAN",
+    "TYPE_VEHICLE"
+  ],
+  "covered_classes": [
+    "TYPE_CYCLIST",
+    "TYPE_PEDESTRIAN",
+    "TYPE_VEHICLE"
+  ],
+  "download_cap_bytes": 2147483648,
+  "total_download_bytes": 9546008,
+  "objects": [
+    {
+      "scenario_id": "b85e1bd6cc8e74c0",
+      "classes_at_anchor": [
+        "TYPE_VEHICLE"
+      ],
+      "uri": "gs://waymo_open_dataset_motion_v_1_3_0/uncompressed/lidar_and_camera/validation/b85e1bd6cc8e74c0.tfrecord",
+      "remote_bytes": 4467141,
+      "local_path": "/waymo/data/womd_lidar_stage0/validation/b85e1bd6cc8e74c0.tfrecord",
+      "local_bytes": 4467141,
+      "sha256": "85a74c665709cef3398aa3ea0e5a1d4fdcd15181fdf113637dd4c29e7580f7fc"
+    },
+    {
+      "scenario_id": "31dacbbc13bea3a5",
+      "classes_at_anchor": [
+        "TYPE_CYCLIST",
+        "TYPE_PEDESTRIAN",
+        "TYPE_VEHICLE"
+      ],
+      "uri": "gs://waymo_open_dataset_motion_v_1_3_0/uncompressed/lidar_and_camera/validation/31dacbbc13bea3a5.tfrecord",
+      "remote_bytes": 5078867,
+      "local_path": "/waymo/data/womd_lidar_stage0/validation/31dacbbc13bea3a5.tfrecord",
+      "local_bytes": 5078867,
+      "sha256": "bce1c8b0b8e24194b61e73a6794f03d539c448f39037f8c1bd333cc502c77f25"
+    }
+  ]
+}

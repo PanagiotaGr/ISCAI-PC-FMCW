@@ -1,0 +1,202 @@
+{
+  "source_file": "/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00000-of-00150",
+  "record_payload_bytes": 647785,
+  "proto_full_name": "waymo.open_dataset.Scenario",
+  "scenario_id": "b85e1bd6cc8e74c0",
+  "counts": {
+    "timestamps": 91,
+    "tracks": 14,
+    "map_features": 139,
+    "dynamic_map_states": 91,
+    "tracks_to_predict": 2,
+    "objects_of_interest": 0,
+    "compressed_frame_laser_data": 0
+  },
+  "indices": {
+    "current_time_index": 10,
+    "sdc_track_index": 13
+  },
+  "timestamps": {
+    "first": 0.0,
+    "current": 1.00001,
+    "last": 9.00002,
+    "first_deltas": [
+      0.09998,
+      0.09999000000000001,
+      0.09997999999999999,
+      0.09999000000000002,
+      0.10002,
+      0.10001999999999994,
+      0.09999000000000002,
+      0.10002,
+      0.10002,
+      0.10000000000000009
+    ]
+  },
+  "installed_scenario_proto_fields": [
+    {
+      "name": "scenario_id",
+      "number": 5,
+      "type": "string",
+      "repeated": false
+    },
+    {
+      "name": "timestamps_seconds",
+      "number": 1,
+      "type": "double",
+      "repeated": true
+    },
+    {
+      "name": "current_time_index",
+      "number": 10,
+      "type": "int32",
+      "repeated": false
+    },
+    {
+      "name": "tracks",
+      "number": 2,
+      "type": "waymo.open_dataset.Track",
+      "repeated": true
+    },
+    {
+      "name": "dynamic_map_states",
+      "number": 7,
+      "type": "waymo.open_dataset.DynamicMapState",
+      "repeated": true
+    },
+    {
+      "name": "map_features",
+      "number": 8,
+      "type": "waymo.open_dataset.MapFeature",
+      "repeated": true
+    },
+    {
+      "name": "sdc_track_index",
+      "number": 6,
+      "type": "int32",
+      "repeated": false
+    },
+    {
+      "name": "objects_of_interest",
+      "number": 4,
+      "type": "int32",
+      "repeated": true
+    },
+    {
+      "name": "tracks_to_predict",
+      "number": 11,
+      "type": "waymo.open_dataset.RequiredPrediction",
+      "repeated": true
+    },
+    {
+      "name": "compressed_frame_laser_data",
+      "number": 12,
+      "type": "waymo.open_dataset.CompressedFrameLaserData",
+      "repeated": true
+    },
+    {
+      "name": "frame_camera_tokens",
+      "number": 13,
+      "type": "waymo.open_dataset.FrameCameraTokens",
+      "repeated": true
+    }
+  ],
+  "present_top_level_fields": [
+    "timestamps_seconds",
+    "tracks",
+    "scenario_id",
+    "sdc_track_index",
+    "dynamic_map_states",
+    "map_features",
+    "current_time_index",
+    "tracks_to_predict"
+  ],
+  "first_track": {
+    "id": 1807,
+    "object_type": 1,
+    "num_states": 91,
+    "track_proto_fields": [
+      {
+        "name": "id",
+        "number": 1,
+        "type": "int32",
+        "repeated": false
+      },
+      {
+        "name": "object_type",
+        "number": 2,
+        "type": "waymo.open_dataset.Track.ObjectType",
+        "repeated": false
+      },
+      {
+        "name": "states",
+        "number": 3,
+        "type": "waymo.open_dataset.ObjectState",
+        "repeated": true
+      }
+    ],
+    "state_proto_fields": [
+      {
+        "name": "center_x",
+        "number": 2,
+        "type": "double",
+        "repeated": false
+      },
+      {
+        "name": "center_y",
+        "number": 3,
+        "type": "double",
+        "repeated": false
+      },
+      {
+        "name": "center_z",
+        "number": 4,
+        "type": "double",
+        "repeated": false
+      },
+      {
+        "name": "length",
+        "number": 5,
+        "type": "float",
+        "repeated": false
+      },
+      {
+        "name": "width",
+        "number": 6,
+        "type": "float",
+        "repeated": false
+      },
+      {
+        "name": "height",
+        "number": 7,
+        "type": "float",
+        "repeated": false
+      },
+      {
+        "name": "heading",
+        "number": 8,
+        "type": "float",
+        "repeated": false
+      },
+      {
+        "name": "velocity_x",
+        "number": 9,
+        "type": "float",
+        "repeated": false
+      },
+      {
+        "name": "velocity_y",
+        "number": 10,
+        "type": "float",
+        "repeated": false
+      },
+      {
+        "name": "valid",
+        "number": 11,
+        "type": "bool",
+        "repeated": false
+      }
+    ],
+    "valid_state_count": 91
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "dataset_reconciliation_gate": {
+    "pass": true,
+    "report": "/home/agni/waymo/iscai_data_prep/reports/global_reconciliation.json",
+    "sha256": "69b6b530623986263b5fe6f36c25f870f9d0755b68dd7eed493de5857f17cf9a",
+    "status": "PASS_COMPLETE"
+  },
+  "part_a_execution_gate": {
+    "pass": true,
+    "policy": "CLEAN_RUN_PASS or explicitly documented bounded failure accepted",
+    "status": "DOCUMENTED_FAILURE_PYTHON_MISSING"
+  },
+  "part_a_reference_gate": {
+    "git_commit": "44d62e3478e3818d1757b00971890f844cb032f7",
+    "manifest": "/home/agni/waymo/iscai_stage0/reports/stage0/part_a_frozen_reference.json",
+    "pass": true
+  },
+  "stage1_transition": "READY_FOR_EXPLICIT_APPROVAL",
+  "status": "PASS_COMPLETE",
+  "timestamp_unix": 1786101959.1543508,
+  "visualization_inventory_gate": {
+    "3d_elevation": "DEFERRED_TO_STAGE1_VISUAL_GATE",
+    "headlamp_centric": "DEFERRED_TO_STAGE1_VISUAL_GATE",
+    "manifest": "/home/agni/waymo/iscai_stage0/reports/stage0/visualization_inventory.json",
+    "pass": true
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "source_file": "/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00000-of-00150",
+  "map_feature_schemas": {
+    "road_line": {
+      "map_feature_id": 1,
+      "schema": {
+        "full_name": "waymo.open_dataset.RoadLine",
+        "fields": [
+          {
+            "name": "type",
+            "number": 1,
+            "repeated": false,
+            "message_type": null,
+            "enum_type": "waymo.open_dataset.RoadLine.RoadLineType"
+          },
+          {
+            "name": "polyline",
+            "number": 2,
+            "repeated": true,
+            "message_type": "waymo.open_dataset.MapPoint",
+            "enum_type": null
+          }
+        ]
+      },
+      "present_fields": [
+        "type",
+        "polyline"
+      ]
+    },
+    "road_edge": {
+      "map_feature_id": 5,
+      "schema": {
+        "full_name": "waymo.open_dataset.RoadEdge",
+        "fields": [
+          {
+            "name": "type",
+            "number": 1,
+            "repeated": false,
+            "message_type": null,
+            "enum_type": "waymo.open_dataset.RoadEdge.RoadEdgeType"
+          },
+          {
+            "name": "polyline",
+            "number": 2,
+            "repeated": true,
+            "message_type": "waymo.open_dataset.MapPoint",
+            "enum_type": null
+          }
+        ]
+      },
+      "present_fields": [
+        "type",
+        "polyline"
+      ]
+    },
+    "lane": {
+      "map_feature_id": 49,
+      "schema": {
+        "full_name": "waymo.open_dataset.LaneCenter",
+        "fields": [
+          {
+            "name": "speed_limit_mph",
+            "number": 1,
+            "repeated": false,
+            "message_type": null,
+            "enum_type": null
+          },
+          {
+            "name": "type",
+            "number": 2,
+            "repeated": false,
+            "message_type": null,
+            "enum_type": "waymo.open_dataset.LaneCenter.LaneType"
+          },
+          {
+            "name": "interpolating",
+            "number": 3,
+            "repeated": false,
+            "message_type": null,
+            "enum_type": null
+          },
+          {
+            "name": "polyline",
+            "number": 8,
+            "repeated": true,
+            "message_type": "waymo.open_dataset.MapPoint",
+            "enum_type": null
+          },
+          {
+            "name": "entry_lanes",
+            "number": 9,
+            "repeated": true,
+            "message_type": null,
+            "enum_type": null
+          },
+          {
+            "name": "exit_lanes",
+            "number": 10,
+            "repeated": true,
+            "message_type": null,
+            "enum_type": null
+          },
+          {
+            "name": "left_boundaries",
+            "number": 13,
+            "repeated": true,
+            "message_type": "waymo.open_dataset.BoundarySegment",
+            "enum_type": null
+          },
+          {
+            "name": "right_boundaries",
+            "number": 14,
+            "repeated": true,
+            "message_type": "waymo.open_dataset.BoundarySegment",
+            "enum_type": null
+          },
+          {
+            "name": "left_neighbors",
+            "number": 11,
+            "repeated": true,
+            "message_type": "waymo.open_dataset.LaneNeighbor",
+            "enum_type": null
+          },
+          {
+            "name": "right_neighbors",
+            "number": 12,
+            "repeated": true,
+            "message_type": "waymo.open_dataset.LaneNeighbor",
+            "enum_type": null
+          }
+        ]
+      },
+      "present_fields": [
+        "speed_limit_mph",
+        "type",
+        "interpolating",
+        "polyline",
+        "exit_lanes",
+        "right_neighbors",
+        "left_boundaries",
+        "right_boundaries"
+      ]
+    },
+    "speed_bump": {
+      "map_feature_id": 235,
+      "schema": {
+        "full_name": "waymo.open_dataset.SpeedBump",
+        "fields": [
+          {
+            "name": "polygon",
+            "number": 1,
+            "repeated": true,
+            "message_type": "waymo.open_dataset.MapPoint",
+            "enum_type": null
+          }
+        ]
+      },
+      "present_fields": [
+        "polygon"
+      ]
+    },
+    "stop_sign": {
+      "map_feature_id": 239,
+      "schema": {
+        "full_name": "waymo.open_dataset.StopSign",
+        "fields": [
+          {
+            "name": "lane",
+            "number": 1,
+            "repeated": true,
+            "message_type": null,
+            "enum_type": null
+          },
+          {
+            "name": "position",
+            "number": 2,
+            "repeated": false,
+            "message_type": "waymo.open_dataset.MapPoint",
+            "enum_type": null
+          }
+        ]
+      },
+      "present_fields": [
+        "lane",
+        "position"
+      ]
+    },
+    "driveway": {
+      "map_feature_id": 240,
+      "schema": {
+        "full_name": "waymo.open_dataset.Driveway",
+        "fields": [
+          {
+            "name": "polygon",
+            "number": 1,
+            "repeated": true,
+            "message_type": "waymo.open_dataset.MapPoint",
+            "enum_type": null
+          }
+        ]
+      },
+      "present_fields": [
+        "polygon"
+      ]
+    }
+  },
+  "dynamic_map_state": {
+    "schema": {
+      "full_name": "waymo.open_dataset.DynamicMapState",
+      "fields": [
+        {
+          "name": "lane_states",
+          "number": 1,
+          "repeated": true,
+          "message_type": "waymo.open_dataset.TrafficSignalLaneState",
+          "enum_type": null
+        }
+      ]
+    },
+    "present_fields": []
+  },
+  "lane_state": null
+}

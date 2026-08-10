@@ -1,0 +1,6029 @@
+{
+  "status": "pass",
+  "dataset_release": "WOMD v1.3.0",
+  "split": "validation",
+  "scenario_matching": {
+    "method": "exact scenario_id sidecar filename",
+    "scenario_count": 2,
+    "all_matched": true
+  },
+  "lidar_frame_alignment": {
+    "contract": "compressed_frame_laser_data[i] corresponds to timestamps_seconds[i] for i <= current_time_index",
+    "all_frame_counts_match": true
+  },
+  "decompression": {
+    "method": "zlib + DeltaEncodedData, NumPy",
+    "tensorflow_required": false
+  },
+  "coordinate_alignment": {
+    "frame_pose_validated": true,
+    "laser_extrinsics_used": true,
+    "top_lidar_pixel_pose_used": true,
+    "sdc_pose_relationship_time_stable": true
+  },
+  "per_scenario": [
+    {
+      "scenario_id": "31dacbbc13bea3a5",
+      "expected_lidar_frames": 11,
+      "actual_lidar_frames": 11,
+      "timestamp_alignment": {
+        "embedded": false,
+        "alignment": "index correspondence defined by Scenario.compressed_frame_laser_data"
+      },
+      "frame_point_counts": [
+        163401,
+        164457,
+        163780,
+        164855,
+        164650,
+        164924,
+        164305,
+        163836,
+        164415,
+        165137,
+        164555
+      ],
+      "total_points": 1808315,
+      "laser_structure_first_frame": [
+        {
+          "laser_name": 1,
+          "return1_points": 135226,
+          "return2_points": 12568
+        },
+        {
+          "laser_name": 2,
+          "return1_points": 3307,
+          "return2_points": 16
+        },
+        {
+          "laser_name": 3,
+          "return1_points": 4001,
+          "return2_points": 56
+        },
+        {
+          "laser_name": 4,
+          "return1_points": 3687,
+          "return2_points": 57
+        },
+        {
+          "laser_name": 5,
+          "return1_points": 4410,
+          "return2_points": 73
+        }
+      ],
+      "sdc_center_in_lidar_vehicle_frame": {
+        "mean_xyz_m": [
+          1.4450251661294053,
+          -0.003524407647463787,
+          1.17975331352648
+        ],
+        "std_xyz_m": [
+          8.09597436655e-05,
+          4.699659685721117e-05,
+          9.243203849966053e-05
+        ]
+      },
+      "sdc_heading_minus_pose_yaw": {
+        "mean_rad": 4.2806972156871446e-05,
+        "std_rad": 5.789037369115493e-07
+      },
+      "coordinate_consistency": true
+    },
+    {
+      "scenario_id": "b85e1bd6cc8e74c0",
+      "expected_lidar_frames": 11,
+      "actual_lidar_frames": 11,
+      "timestamp_alignment": {
+        "embedded": false,
+        "alignment": "index correspondence defined by Scenario.compressed_frame_laser_data"
+      },
+      "frame_point_counts": [
+        158334,
+        157928,
+        156382,
+        158660,
+        158189,
+        157398,
+        157404,
+        158515,
+        157134,
+        158116,
+        157507
+      ],
+      "total_points": 1735567,
+      "laser_structure_first_frame": [
+        {
+          "laser_name": 1,
+          "return1_points": 138283,
+          "return2_points": 7457
+        },
+        {
+          "laser_name": 2,
+          "return1_points": 3107,
+          "return2_points": 11
+        },
+        {
+          "laser_name": 3,
+          "return1_points": 3312,
+          "return2_points": 3
+        },
+        {
+          "laser_name": 4,
+          "return1_points": 3496,
+          "return2_points": 7
+        },
+        {
+          "laser_name": 5,
+          "return1_points": 2646,
+          "return2_points": 12
+        }
+      ],
+      "sdc_center_in_lidar_vehicle_frame": {
+        "mean_xyz_m": [
+          -0.6248551879204818,
+          -0.024785883739117377,
+          1.1663862668025524
+        ],
+        "std_xyz_m": [
+          0.02373445688258587,
+          0.005417335986015043,
+          0.003165985536939433
+        ]
+      },
+      "sdc_heading_minus_pose_yaw": {
+        "mean_rad": 0.0006051388653841885,
+        "std_rad": 0.00025130524331487303
+      },
+      "coordinate_consistency": true
+    }
+  ],
+  "point_density": {
+    "definition": "all available LiDAR sensors, both returns, count of decoded points inside each valid WOMD 3D box",
+    "distance_definition": "planar range from LiDAR vehicle-frame origin to actor box center",
+    "samples": 644,
+    "summary_by_class_and_distance": {
+      "TYPE_CYCLIST": {
+        "0-20m": {
+          "boxes": 11,
+          "mean_points": 1777.5454545454545,
+          "median_points": 1784.0,
+          "min_points": 1728,
+          "max_points": 1809
+        }
+      },
+      "TYPE_PEDESTRIAN": {
+        "0-20m": {
+          "boxes": 11,
+          "mean_points": 472.09090909090907,
+          "median_points": 458.0,
+          "min_points": 416,
+          "max_points": 547
+        },
+        "40-60m": {
+          "boxes": 10,
+          "mean_points": 15.5,
+          "median_points": 15.5,
+          "min_points": 8,
+          "max_points": 20
+        }
+      },
+      "TYPE_VEHICLE": {
+        "0-20m": {
+          "boxes": 78,
+          "mean_points": 2673.858974358974,
+          "median_points": 1950.5,
+          "min_points": 359,
+          "max_points": 5067
+        },
+        "20-40m": {
+          "boxes": 197,
+          "mean_points": 408.8527918781726,
+          "median_points": 349.0,
+          "min_points": 14,
+          "max_points": 1239
+        },
+        "40-60m": {
+          "boxes": 202,
+          "mean_points": 121.38613861386139,
+          "median_points": 60.0,
+          "min_points": 5,
+          "max_points": 1108
+        },
+        "60-80m": {
+          "boxes": 135,
+          "mean_points": 36.41481481481482,
+          "median_points": 20.0,
+          "min_points": 0,
+          "max_points": 152
+        }
+      }
+    },
+    "raw_samples": [
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2098,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 13.14576935670436,
+        "distance_bin": "0-20m",
+        "points_in_box": 1320
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2099,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 28.659792218554447,
+        "distance_bin": "20-40m",
+        "points_in_box": 1001
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2100,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 14.510645575197945,
+        "distance_bin": "0-20m",
+        "points_in_box": 398
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2101,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.190010236439339,
+        "distance_bin": "0-20m",
+        "points_in_box": 4456
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2102,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 4.348851608748305,
+        "distance_bin": "0-20m",
+        "points_in_box": 5022
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2103,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 29.166342535815343,
+        "distance_bin": "20-40m",
+        "points_in_box": 478
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2104,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.443183463141177,
+        "distance_bin": "0-20m",
+        "points_in_box": 4157
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2105,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.234792794817774,
+        "distance_bin": "0-20m",
+        "points_in_box": 1953
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2106,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.11860888589925,
+        "distance_bin": "20-40m",
+        "points_in_box": 721
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2108,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.01921736669156,
+        "distance_bin": "20-40m",
+        "points_in_box": 705
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2109,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 44.16398296129056,
+        "distance_bin": "40-60m",
+        "points_in_box": 281
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2110,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 32.296325948776555,
+        "distance_bin": "20-40m",
+        "points_in_box": 263
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2111,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.21024083337487,
+        "distance_bin": "40-60m",
+        "points_in_box": 143
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2112,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.33590587204475,
+        "distance_bin": "20-40m",
+        "points_in_box": 499
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2113,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.783036873368275,
+        "distance_bin": "20-40m",
+        "points_in_box": 383
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2114,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 40.758861513670496,
+        "distance_bin": "40-60m",
+        "points_in_box": 333
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2115,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 46.289965022344084,
+        "distance_bin": "40-60m",
+        "points_in_box": 179
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2117,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.577339446106485,
+        "distance_bin": "20-40m",
+        "points_in_box": 199
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2120,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.86700483693872,
+        "distance_bin": "20-40m",
+        "points_in_box": 355
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2121,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 27.923274580510387,
+        "distance_bin": "20-40m",
+        "points_in_box": 137
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2124,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.62759092058509,
+        "distance_bin": "60-80m",
+        "points_in_box": 17
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2125,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 26.658764417635744,
+        "distance_bin": "20-40m",
+        "points_in_box": 114
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2127,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 50.03053240866413,
+        "distance_bin": "40-60m",
+        "points_in_box": 56
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2128,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.37031188113571,
+        "distance_bin": "40-60m",
+        "points_in_box": 40
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2129,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.67066961053814,
+        "distance_bin": "60-80m",
+        "points_in_box": 21
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2130,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 58.47072796652158,
+        "distance_bin": "40-60m",
+        "points_in_box": 57
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2131,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.21467376622011,
+        "distance_bin": "20-40m",
+        "points_in_box": 69
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2132,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.45475487301199,
+        "distance_bin": "60-80m",
+        "points_in_box": 19
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2133,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 75.18062652504484,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2134,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.04362393135132,
+        "distance_bin": "60-80m",
+        "points_in_box": 58
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2135,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 69.85368885135792,
+        "distance_bin": "60-80m",
+        "points_in_box": 16
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2136,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 60.185238260036876,
+        "distance_bin": "60-80m",
+        "points_in_box": 21
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2137,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 51.49880778913264,
+        "distance_bin": "40-60m",
+        "points_in_box": 11
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2138,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.58654818610831,
+        "distance_bin": "40-60m",
+        "points_in_box": 55
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2139,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.636424722082154,
+        "distance_bin": "20-40m",
+        "points_in_box": 191
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2140,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.44866264382451,
+        "distance_bin": "40-60m",
+        "points_in_box": 30
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2144,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.45230026768618,
+        "distance_bin": "40-60m",
+        "points_in_box": 14
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2146,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 61.15462607235151,
+        "distance_bin": "60-80m",
+        "points_in_box": 113
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2147,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 71.1374283485253,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2148,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 61.04423475407599,
+        "distance_bin": "60-80m",
+        "points_in_box": 14
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2153,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.877435089752563,
+        "distance_bin": "20-40m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2155,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 39.41726468751114,
+        "distance_bin": "20-40m",
+        "points_in_box": 446
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2161,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 64.8908541361452,
+        "distance_bin": "60-80m",
+        "points_in_box": 93
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2163,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 56.964040065699166,
+        "distance_bin": "40-60m",
+        "points_in_box": 6
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2165,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 52.16379356877866,
+        "distance_bin": "40-60m",
+        "points_in_box": 8
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 2167,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.07398250443047,
+        "distance_bin": "40-60m",
+        "points_in_box": 29
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 6902,
+        "class": "TYPE_CYCLIST",
+        "distance_m": 8.591668972865087,
+        "distance_bin": "0-20m",
+        "points_in_box": 1728
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 3524,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 9.017067212434846,
+        "distance_bin": "0-20m",
+        "points_in_box": 547
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 0,
+        "track_id": 3528,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 43.78189632434709,
+        "distance_bin": "40-60m",
+        "points_in_box": 8
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2098,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 13.145755951312282,
+        "distance_bin": "0-20m",
+        "points_in_box": 1344
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2099,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 28.65981161605871,
+        "distance_bin": "20-40m",
+        "points_in_box": 973
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2100,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 14.510641513900795,
+        "distance_bin": "0-20m",
+        "points_in_box": 394
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2101,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.19833862806568,
+        "distance_bin": "0-20m",
+        "points_in_box": 4474
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2102,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 4.348828284526021,
+        "distance_bin": "0-20m",
+        "points_in_box": 5036
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2103,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 29.997378270047353,
+        "distance_bin": "20-40m",
+        "points_in_box": 418
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2104,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.443159850989549,
+        "distance_bin": "0-20m",
+        "points_in_box": 4172
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2105,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.234788161240094,
+        "distance_bin": "0-20m",
+        "points_in_box": 1972
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2106,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.118634474688186,
+        "distance_bin": "20-40m",
+        "points_in_box": 706
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2108,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.019200393264136,
+        "distance_bin": "20-40m",
+        "points_in_box": 691
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2109,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 44.16583992849547,
+        "distance_bin": "40-60m",
+        "points_in_box": 274
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2110,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 32.18096490332684,
+        "distance_bin": "20-40m",
+        "points_in_box": 255
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2111,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.2102183937498,
+        "distance_bin": "40-60m",
+        "points_in_box": 149
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2112,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.335897998157424,
+        "distance_bin": "20-40m",
+        "points_in_box": 514
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2113,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.783034485830214,
+        "distance_bin": "20-40m",
+        "points_in_box": 390
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2114,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 40.758889541340736,
+        "distance_bin": "40-60m",
+        "points_in_box": 332
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2115,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 46.28999443818166,
+        "distance_bin": "40-60m",
+        "points_in_box": 182
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2117,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.577356924177295,
+        "distance_bin": "20-40m",
+        "points_in_box": 191
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2120,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.86702702049567,
+        "distance_bin": "20-40m",
+        "points_in_box": 343
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2121,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 27.923274928254255,
+        "distance_bin": "20-40m",
+        "points_in_box": 141
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2124,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.62756627719735,
+        "distance_bin": "60-80m",
+        "points_in_box": 24
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2125,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 26.658759797045622,
+        "distance_bin": "20-40m",
+        "points_in_box": 117
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2127,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 50.030500445098106,
+        "distance_bin": "40-60m",
+        "points_in_box": 64
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2128,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.37028007584518,
+        "distance_bin": "40-60m",
+        "points_in_box": 39
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2129,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.6706772153998,
+        "distance_bin": "60-80m",
+        "points_in_box": 19
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2130,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 58.47069639206362,
+        "distance_bin": "40-60m",
+        "points_in_box": 58
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2131,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.2146760687162,
+        "distance_bin": "20-40m",
+        "points_in_box": 69
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2132,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.45473339187994,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2133,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 75.18059542145822,
+        "distance_bin": "60-80m",
+        "points_in_box": 21
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2134,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.04361325720289,
+        "distance_bin": "60-80m",
+        "points_in_box": 54
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2135,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 69.85367716180977,
+        "distance_bin": "60-80m",
+        "points_in_box": 16
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2136,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 60.18526287970827,
+        "distance_bin": "60-80m",
+        "points_in_box": 17
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2137,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 51.49879301951818,
+        "distance_bin": "40-60m",
+        "points_in_box": 13
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2138,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.58657182602522,
+        "distance_bin": "40-60m",
+        "points_in_box": 59
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2139,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.636456731813656,
+        "distance_bin": "20-40m",
+        "points_in_box": 178
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2140,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.45336365303025,
+        "distance_bin": "40-60m",
+        "points_in_box": 30
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2144,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.452282967468555,
+        "distance_bin": "40-60m",
+        "points_in_box": 10
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2146,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 62.33129058698289,
+        "distance_bin": "60-80m",
+        "points_in_box": 141
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2147,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 71.13740035310397,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2148,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 61.044214538577556,
+        "distance_bin": "60-80m",
+        "points_in_box": 13
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2153,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.87743296752314,
+        "distance_bin": "20-40m",
+        "points_in_box": 17
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2155,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 39.68092869322895,
+        "distance_bin": "20-40m",
+        "points_in_box": 453
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2161,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 64.2175681062381,
+        "distance_bin": "60-80m",
+        "points_in_box": 90
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2163,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 56.96402169388157,
+        "distance_bin": "40-60m",
+        "points_in_box": 7
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2165,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 52.1637630753423,
+        "distance_bin": "40-60m",
+        "points_in_box": 6
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 2167,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.07401274892575,
+        "distance_bin": "40-60m",
+        "points_in_box": 36
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 6902,
+        "class": "TYPE_CYCLIST",
+        "distance_m": 8.503593040662034,
+        "distance_bin": "0-20m",
+        "points_in_box": 1771
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 3524,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 9.104056191034518,
+        "distance_bin": "0-20m",
+        "points_in_box": 530
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 1,
+        "track_id": 3528,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 43.701645374433106,
+        "distance_bin": "40-60m",
+        "points_in_box": 12
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2098,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 13.145715888848567,
+        "distance_bin": "0-20m",
+        "points_in_box": 1359
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2099,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 28.659897878702715,
+        "distance_bin": "20-40m",
+        "points_in_box": 991
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2100,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 14.510595962830443,
+        "distance_bin": "0-20m",
+        "points_in_box": 401
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2101,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.215622605738133,
+        "distance_bin": "0-20m",
+        "points_in_box": 4477
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2102,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 4.3488448405961755,
+        "distance_bin": "0-20m",
+        "points_in_box": 4979
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2103,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 30.84306661527689,
+        "distance_bin": "20-40m",
+        "points_in_box": 408
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2104,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.443123927491434,
+        "distance_bin": "0-20m",
+        "points_in_box": 4212
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2105,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.234749728278694,
+        "distance_bin": "0-20m",
+        "points_in_box": 1972
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2106,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.118709835978414,
+        "distance_bin": "20-40m",
+        "points_in_box": 726
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2108,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.019262552205824,
+        "distance_bin": "20-40m",
+        "points_in_box": 705
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2109,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 44.161130050970726,
+        "distance_bin": "40-60m",
+        "points_in_box": 274
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2110,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 32.07254345809973,
+        "distance_bin": "20-40m",
+        "points_in_box": 263
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2111,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.21020021049139,
+        "distance_bin": "40-60m",
+        "points_in_box": 149
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2112,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.335839990681745,
+        "distance_bin": "20-40m",
+        "points_in_box": 515
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2113,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.78298569701099,
+        "distance_bin": "20-40m",
+        "points_in_box": 388
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2114,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 40.758948440453935,
+        "distance_bin": "40-60m",
+        "points_in_box": 335
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2115,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 46.2900483585942,
+        "distance_bin": "40-60m",
+        "points_in_box": 180
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2117,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.577421436143844,
+        "distance_bin": "20-40m",
+        "points_in_box": 202
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2120,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.86709180338796,
+        "distance_bin": "20-40m",
+        "points_in_box": 353
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2121,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 27.923246719042325,
+        "distance_bin": "20-40m",
+        "points_in_box": 135
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2124,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.62755852378967,
+        "distance_bin": "60-80m",
+        "points_in_box": 20
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2125,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 26.658713695735166,
+        "distance_bin": "20-40m",
+        "points_in_box": 119
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2127,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 50.030499002612515,
+        "distance_bin": "40-60m",
+        "points_in_box": 57
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2128,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.370277042041415,
+        "distance_bin": "40-60m",
+        "points_in_box": 45
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2129,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.67076101925252,
+        "distance_bin": "60-80m",
+        "points_in_box": 24
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2130,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 58.47069513226291,
+        "distance_bin": "40-60m",
+        "points_in_box": 58
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2131,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.2146434277103,
+        "distance_bin": "20-40m",
+        "points_in_box": 70
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2132,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.45468642649274,
+        "distance_bin": "60-80m",
+        "points_in_box": 20
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2133,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 75.18059528694148,
+        "distance_bin": "60-80m",
+        "points_in_box": 16
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2134,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.04351649196238,
+        "distance_bin": "60-80m",
+        "points_in_box": 59
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2135,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 69.85360929034363,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2136,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 60.18518807196797,
+        "distance_bin": "60-80m",
+        "points_in_box": 20
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2137,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 51.4987511673213,
+        "distance_bin": "40-60m",
+        "points_in_box": 16
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2138,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.58650826192681,
+        "distance_bin": "40-60m",
+        "points_in_box": 55
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2139,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.636478520073375,
+        "distance_bin": "20-40m",
+        "points_in_box": 178
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2140,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.45674149172574,
+        "distance_bin": "40-60m",
+        "points_in_box": 27
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2144,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.452267430437615,
+        "distance_bin": "40-60m",
+        "points_in_box": 10
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2146,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 63.422930584525126,
+        "distance_bin": "60-80m",
+        "points_in_box": 148
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2147,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 71.1373814660308,
+        "distance_bin": "60-80m",
+        "points_in_box": 20
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2148,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 61.04417663590687,
+        "distance_bin": "60-80m",
+        "points_in_box": 15
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2153,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.877391059739523,
+        "distance_bin": "20-40m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2155,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 39.99167563722942,
+        "distance_bin": "20-40m",
+        "points_in_box": 443
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2161,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 63.53882200599005,
+        "distance_bin": "60-80m",
+        "points_in_box": 95
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2163,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 56.96400433475432,
+        "distance_bin": "40-60m",
+        "points_in_box": 5
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2165,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 52.16375205561441,
+        "distance_bin": "40-60m",
+        "points_in_box": 6
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 2167,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.07405548033832,
+        "distance_bin": "40-60m",
+        "points_in_box": 39
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 6902,
+        "class": "TYPE_CYCLIST",
+        "distance_m": 8.429291260789078,
+        "distance_bin": "0-20m",
+        "points_in_box": 1795
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 3524,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 9.222036627487281,
+        "distance_bin": "0-20m",
+        "points_in_box": 537
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 2,
+        "track_id": 3528,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 43.60871835955185,
+        "distance_bin": "40-60m",
+        "points_in_box": 13
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2098,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 13.145749418956267,
+        "distance_bin": "0-20m",
+        "points_in_box": 1342
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2099,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 28.65984922855268,
+        "distance_bin": "20-40m",
+        "points_in_box": 972
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2100,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 14.510605937695706,
+        "distance_bin": "0-20m",
+        "points_in_box": 397
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2101,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.2209979562579125,
+        "distance_bin": "0-20m",
+        "points_in_box": 4548
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2102,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 4.348903759383976,
+        "distance_bin": "0-20m",
+        "points_in_box": 5033
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2103,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.68815371005168,
+        "distance_bin": "20-40m",
+        "points_in_box": 392
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2104,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.443183223787184,
+        "distance_bin": "0-20m",
+        "points_in_box": 4183
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2105,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.234761145259933,
+        "distance_bin": "0-20m",
+        "points_in_box": 1942
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2106,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.118645542823856,
+        "distance_bin": "20-40m",
+        "points_in_box": 736
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2108,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.01930551786146,
+        "distance_bin": "20-40m",
+        "points_in_box": 715
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2109,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 44.16082733848254,
+        "distance_bin": "40-60m",
+        "points_in_box": 277
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2110,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.943790543074286,
+        "distance_bin": "20-40m",
+        "points_in_box": 256
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2111,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.210256543661416,
+        "distance_bin": "40-60m",
+        "points_in_box": 151
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2112,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.33585957359277,
+        "distance_bin": "20-40m",
+        "points_in_box": 512
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2113,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.782991455003287,
+        "distance_bin": "20-40m",
+        "points_in_box": 387
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2114,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 40.75887797465202,
+        "distance_bin": "40-60m",
+        "points_in_box": 348
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2115,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 46.28997437389204,
+        "distance_bin": "40-60m",
+        "points_in_box": 196
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2117,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.577377630999894,
+        "distance_bin": "20-40m",
+        "points_in_box": 188
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2120,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.86703611725958,
+        "distance_bin": "20-40m",
+        "points_in_box": 349
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2121,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 27.923245587329852,
+        "distance_bin": "20-40m",
+        "points_in_box": 132
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2124,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.62762042644529,
+        "distance_bin": "60-80m",
+        "points_in_box": 25
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2125,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 26.658725079780343,
+        "distance_bin": "20-40m",
+        "points_in_box": 117
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2127,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 50.03057951916993,
+        "distance_bin": "40-60m",
+        "points_in_box": 63
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2128,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.37035717487725,
+        "distance_bin": "40-60m",
+        "points_in_box": 41
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2129,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.6707421145663,
+        "distance_bin": "60-80m",
+        "points_in_box": 19
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2130,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 58.47077469684967,
+        "distance_bin": "40-60m",
+        "points_in_box": 58
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2131,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.21463737345491,
+        "distance_bin": "20-40m",
+        "points_in_box": 69
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2132,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.45474033841768,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2133,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 75.18067368396619,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2134,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.04354313424344,
+        "distance_bin": "60-80m",
+        "points_in_box": 55
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2135,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 69.85363849299976,
+        "distance_bin": "60-80m",
+        "points_in_box": 17
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2136,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 60.185125901971205,
+        "distance_bin": "60-80m",
+        "points_in_box": 17
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2137,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 51.498788138534536,
+        "distance_bin": "40-60m",
+        "points_in_box": 15
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2138,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.5864485505339,
+        "distance_bin": "40-60m",
+        "points_in_box": 61
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2139,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.63639789790779,
+        "distance_bin": "20-40m",
+        "points_in_box": 189
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2140,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.462084939960015,
+        "distance_bin": "40-60m",
+        "points_in_box": 29
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2144,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.452310786856195,
+        "distance_bin": "40-60m",
+        "points_in_box": 13
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2146,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 64.56959646339062,
+        "distance_bin": "60-80m",
+        "points_in_box": 137
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2147,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 71.13745185024132,
+        "distance_bin": "60-80m",
+        "points_in_box": 19
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2148,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 61.0442273515571,
+        "distance_bin": "60-80m",
+        "points_in_box": 15
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2153,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.877396149362188,
+        "distance_bin": "20-40m",
+        "points_in_box": 14
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2155,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 40.36537446467116,
+        "distance_bin": "40-60m",
+        "points_in_box": 422
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2161,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 62.839246450100404,
+        "distance_bin": "60-80m",
+        "points_in_box": 104
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2163,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 56.96405039581823,
+        "distance_bin": "40-60m",
+        "points_in_box": 5
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2165,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 52.16382877746268,
+        "distance_bin": "40-60m",
+        "points_in_box": 6
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2167,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.073979391490894,
+        "distance_bin": "40-60m",
+        "points_in_box": 35
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 2170,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 67.01813637959442,
+        "distance_bin": "60-80m",
+        "points_in_box": 9
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 6902,
+        "class": "TYPE_CYCLIST",
+        "distance_m": 8.367953418564776,
+        "distance_bin": "0-20m",
+        "points_in_box": 1786
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 3524,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 9.31795430150021,
+        "distance_bin": "0-20m",
+        "points_in_box": 512
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 3,
+        "track_id": 3528,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 43.50985161750549,
+        "distance_bin": "40-60m",
+        "points_in_box": 14
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2098,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 13.145747217039462,
+        "distance_bin": "0-20m",
+        "points_in_box": 1372
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2099,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 28.659798484896317,
+        "distance_bin": "20-40m",
+        "points_in_box": 966
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2100,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 14.510603241759167,
+        "distance_bin": "0-20m",
+        "points_in_box": 393
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2101,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.234586735630747,
+        "distance_bin": "0-20m",
+        "points_in_box": 4447
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2102,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 4.348925659339998,
+        "distance_bin": "0-20m",
+        "points_in_box": 4996
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2103,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 32.572139875766055,
+        "distance_bin": "20-40m",
+        "points_in_box": 366
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2104,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.443190404088638,
+        "distance_bin": "0-20m",
+        "points_in_box": 4239
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2105,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.2347515650617975,
+        "distance_bin": "0-20m",
+        "points_in_box": 1923
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2106,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.1185948591701,
+        "distance_bin": "20-40m",
+        "points_in_box": 722
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2108,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.01928862120336,
+        "distance_bin": "20-40m",
+        "points_in_box": 699
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2109,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 44.15996482764483,
+        "distance_bin": "40-60m",
+        "points_in_box": 273
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2110,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.809879237585527,
+        "distance_bin": "20-40m",
+        "points_in_box": 266
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2111,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.21024387654557,
+        "distance_bin": "40-60m",
+        "points_in_box": 148
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2112,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.33587120349078,
+        "distance_bin": "20-40m",
+        "points_in_box": 510
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2113,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.782991405725245,
+        "distance_bin": "20-40m",
+        "points_in_box": 394
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2114,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 40.75883745362082,
+        "distance_bin": "40-60m",
+        "points_in_box": 333
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2115,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 46.289934175172796,
+        "distance_bin": "40-60m",
+        "points_in_box": 190
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2117,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.57735110647251,
+        "distance_bin": "20-40m",
+        "points_in_box": 180
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2120,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.867002619564495,
+        "distance_bin": "20-40m",
+        "points_in_box": 351
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2121,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 27.923224285555698,
+        "distance_bin": "20-40m",
+        "points_in_box": 136
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2124,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.62760146722279,
+        "distance_bin": "60-80m",
+        "points_in_box": 21
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2125,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 26.65872316230468,
+        "distance_bin": "20-40m",
+        "points_in_box": 121
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2127,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 50.030589989394485,
+        "distance_bin": "40-60m",
+        "points_in_box": 59
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2128,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.370372085447116,
+        "distance_bin": "40-60m",
+        "points_in_box": 40
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2129,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.67070484481305,
+        "distance_bin": "60-80m",
+        "points_in_box": 17
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2130,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 58.47079032190269,
+        "distance_bin": "40-60m",
+        "points_in_box": 55
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2131,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.21462024408135,
+        "distance_bin": "20-40m",
+        "points_in_box": 65
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2132,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.4547548685439,
+        "distance_bin": "60-80m",
+        "points_in_box": 14
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2133,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 75.18069163735646,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2134,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.04359538333674,
+        "distance_bin": "60-80m",
+        "points_in_box": 49
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2135,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 69.85366263279889,
+        "distance_bin": "60-80m",
+        "points_in_box": 20
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2136,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 60.18516426220864,
+        "distance_bin": "60-80m",
+        "points_in_box": 17
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2137,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 51.498789027620006,
+        "distance_bin": "40-60m",
+        "points_in_box": 13
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2138,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.58647412301597,
+        "distance_bin": "40-60m",
+        "points_in_box": 57
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2139,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.63636913330632,
+        "distance_bin": "20-40m",
+        "points_in_box": 183
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2140,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.45960108213224,
+        "distance_bin": "40-60m",
+        "points_in_box": 29
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2144,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.45228812378971,
+        "distance_bin": "40-60m",
+        "points_in_box": 12
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2146,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.73647202788678,
+        "distance_bin": "60-80m",
+        "points_in_box": 118
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2147,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 71.1374522628764,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2148,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 61.04423089138271,
+        "distance_bin": "60-80m",
+        "points_in_box": 14
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2153,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.87738913789926,
+        "distance_bin": "20-40m",
+        "points_in_box": 20
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2155,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 40.80140297334684,
+        "distance_bin": "40-60m",
+        "points_in_box": 393
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2161,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 62.210620980295786,
+        "distance_bin": "60-80m",
+        "points_in_box": 103
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2163,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 56.964030876475796,
+        "distance_bin": "40-60m",
+        "points_in_box": 6
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2165,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 52.16383074390798,
+        "distance_bin": "40-60m",
+        "points_in_box": 7
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2167,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.073946916374936,
+        "distance_bin": "40-60m",
+        "points_in_box": 37
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 2170,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 66.28732214212937,
+        "distance_bin": "60-80m",
+        "points_in_box": 14
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 6902,
+        "class": "TYPE_CYCLIST",
+        "distance_m": 8.31959924884715,
+        "distance_bin": "0-20m",
+        "points_in_box": 1771
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 3524,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 9.399067073921024,
+        "distance_bin": "0-20m",
+        "points_in_box": 458
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 4,
+        "track_id": 3528,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 43.438603461209674,
+        "distance_bin": "40-60m",
+        "points_in_box": 14
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2098,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 13.14572183254708,
+        "distance_bin": "0-20m",
+        "points_in_box": 1364
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2099,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 28.65981407998656,
+        "distance_bin": "20-40m",
+        "points_in_box": 976
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2100,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 14.510566330674967,
+        "distance_bin": "0-20m",
+        "points_in_box": 374
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2101,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.227919592580255,
+        "distance_bin": "0-20m",
+        "points_in_box": 4521
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2102,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 4.348973824102274,
+        "distance_bin": "0-20m",
+        "points_in_box": 4921
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2103,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 33.45672057234502,
+        "distance_bin": "20-40m",
+        "points_in_box": 373
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2104,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.443183370418229,
+        "distance_bin": "0-20m",
+        "points_in_box": 4138
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2105,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.234715250837419,
+        "distance_bin": "0-20m",
+        "points_in_box": 1902
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2106,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.11859714691582,
+        "distance_bin": "20-40m",
+        "points_in_box": 720
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2108,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.01933791572337,
+        "distance_bin": "20-40m",
+        "points_in_box": 703
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2109,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 44.15706185642746,
+        "distance_bin": "40-60m",
+        "points_in_box": 283
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2110,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.661301257460913,
+        "distance_bin": "20-40m",
+        "points_in_box": 260
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2111,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.210234277562094,
+        "distance_bin": "40-60m",
+        "points_in_box": 142
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2112,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.335838524180982,
+        "distance_bin": "20-40m",
+        "points_in_box": 500
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2113,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.782952826093045,
+        "distance_bin": "20-40m",
+        "points_in_box": 386
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2114,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 40.758832826549224,
+        "distance_bin": "40-60m",
+        "points_in_box": 336
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2115,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 46.28992472949254,
+        "distance_bin": "40-60m",
+        "points_in_box": 185
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2117,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.57737009117152,
+        "distance_bin": "20-40m",
+        "points_in_box": 182
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2120,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.867012757958456,
+        "distance_bin": "20-40m",
+        "points_in_box": 340
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2121,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 27.923183220853247,
+        "distance_bin": "20-40m",
+        "points_in_box": 134
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2124,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.62759683477523,
+        "distance_bin": "60-80m",
+        "points_in_box": 24
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2125,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 26.658686834006833,
+        "distance_bin": "20-40m",
+        "points_in_box": 122
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2127,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 50.03061998891445,
+        "distance_bin": "40-60m",
+        "points_in_box": 62
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2128,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.37040432214571,
+        "distance_bin": "40-60m",
+        "points_in_box": 39
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2129,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.67073784319263,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2130,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 58.47082444733368,
+        "distance_bin": "40-60m",
+        "points_in_box": 57
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2131,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.214577586040484,
+        "distance_bin": "20-40m",
+        "points_in_box": 63
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2132,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.45474328649712,
+        "distance_bin": "60-80m",
+        "points_in_box": 15
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2133,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 75.18072827782785,
+        "distance_bin": "60-80m",
+        "points_in_box": 17
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2134,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.04356621473562,
+        "distance_bin": "60-80m",
+        "points_in_box": 47
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2135,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 69.85363482752415,
+        "distance_bin": "60-80m",
+        "points_in_box": 21
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2136,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 60.18511683895549,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2137,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 51.498765678493484,
+        "distance_bin": "40-60m",
+        "points_in_box": 14
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2138,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.58642611813981,
+        "distance_bin": "40-60m",
+        "points_in_box": 58
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2139,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.636340792571083,
+        "distance_bin": "20-40m",
+        "points_in_box": 180
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2140,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.45293483049313,
+        "distance_bin": "40-60m",
+        "points_in_box": 28
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2144,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.452268838459155,
+        "distance_bin": "40-60m",
+        "points_in_box": 15
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2146,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 66.90175436424708,
+        "distance_bin": "60-80m",
+        "points_in_box": 103
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2147,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 71.13745678792682,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2148,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 61.04421682698467,
+        "distance_bin": "60-80m",
+        "points_in_box": 16
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2153,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.877350304107377,
+        "distance_bin": "20-40m",
+        "points_in_box": 16
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2155,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 41.28941806887063,
+        "distance_bin": "40-60m",
+        "points_in_box": 387
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2161,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 61.61101048039462,
+        "distance_bin": "60-80m",
+        "points_in_box": 99
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2163,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 56.96401343698489,
+        "distance_bin": "40-60m",
+        "points_in_box": 7
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2165,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 52.16384479907956,
+        "distance_bin": "40-60m",
+        "points_in_box": 8
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2167,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.0739340288415,
+        "distance_bin": "40-60m",
+        "points_in_box": 39
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 2170,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.55623641952751,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 6902,
+        "class": "TYPE_CYCLIST",
+        "distance_m": 8.269511359698157,
+        "distance_bin": "0-20m",
+        "points_in_box": 1789
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 3524,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 9.481856371108824,
+        "distance_bin": "0-20m",
+        "points_in_box": 435
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 5,
+        "track_id": 3528,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 43.33027307083144,
+        "distance_bin": "40-60m",
+        "points_in_box": 17
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2098,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 13.145701233960429,
+        "distance_bin": "0-20m",
+        "points_in_box": 1345
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2099,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 28.659825635940024,
+        "distance_bin": "20-40m",
+        "points_in_box": 994
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2100,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 14.510534301515614,
+        "distance_bin": "0-20m",
+        "points_in_box": 398
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2101,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.231099365789566,
+        "distance_bin": "0-20m",
+        "points_in_box": 4540
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2102,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 4.349019496410706,
+        "distance_bin": "0-20m",
+        "points_in_box": 5031
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2103,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.3668414723874,
+        "distance_bin": "20-40m",
+        "points_in_box": 339
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2104,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.443180301507425,
+        "distance_bin": "0-20m",
+        "points_in_box": 4239
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2105,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.234683842266191,
+        "distance_bin": "0-20m",
+        "points_in_box": 1963
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2106,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.11859627906103,
+        "distance_bin": "20-40m",
+        "points_in_box": 741
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2108,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.01938346021355,
+        "distance_bin": "20-40m",
+        "points_in_box": 709
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2109,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 44.154323021995694,
+        "distance_bin": "40-60m",
+        "points_in_box": 269
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2110,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.511275744992506,
+        "distance_bin": "20-40m",
+        "points_in_box": 268
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2111,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.210228975941945,
+        "distance_bin": "40-60m",
+        "points_in_box": 142
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2112,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.33581068866932,
+        "distance_bin": "20-40m",
+        "points_in_box": 488
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2113,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.782919097087518,
+        "distance_bin": "20-40m",
+        "points_in_box": 393
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2114,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 40.75882547566481,
+        "distance_bin": "40-60m",
+        "points_in_box": 341
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2115,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 46.28991299715783,
+        "distance_bin": "40-60m",
+        "points_in_box": 189
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2117,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.57738468691841,
+        "distance_bin": "20-40m",
+        "points_in_box": 193
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2120,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.86701901866056,
+        "distance_bin": "20-40m",
+        "points_in_box": 355
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2121,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 27.923146959076064,
+        "distance_bin": "20-40m",
+        "points_in_box": 141
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2124,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.62759632692962,
+        "distance_bin": "60-80m",
+        "points_in_box": 22
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2125,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 26.65865539185176,
+        "distance_bin": "20-40m",
+        "points_in_box": 114
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2127,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 50.03065110807366,
+        "distance_bin": "40-60m",
+        "points_in_box": 60
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2128,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.370437152666064,
+        "distance_bin": "40-60m",
+        "points_in_box": 38
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2129,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.6707660866127,
+        "distance_bin": "60-80m",
+        "points_in_box": 22
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2130,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 58.47085901740907,
+        "distance_bin": "40-60m",
+        "points_in_box": 62
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2131,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.21453964778645,
+        "distance_bin": "20-40m",
+        "points_in_box": 65
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2132,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.45473584263542,
+        "distance_bin": "60-80m",
+        "points_in_box": 14
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2133,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 75.1807650400141,
+        "distance_bin": "60-80m",
+        "points_in_box": 22
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2134,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.04354165916084,
+        "distance_bin": "60-80m",
+        "points_in_box": 57
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2135,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 69.85361173109357,
+        "distance_bin": "60-80m",
+        "points_in_box": 20
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2136,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 60.185072583941356,
+        "distance_bin": "60-80m",
+        "points_in_box": 19
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2137,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 51.49874704537411,
+        "distance_bin": "40-60m",
+        "points_in_box": 10
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2138,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.586381195750654,
+        "distance_bin": "40-60m",
+        "points_in_box": 49
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2139,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.636312295053624,
+        "distance_bin": "20-40m",
+        "points_in_box": 177
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2140,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.44484605925709,
+        "distance_bin": "40-60m",
+        "points_in_box": 29
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2144,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.45225430458699,
+        "distance_bin": "40-60m",
+        "points_in_box": 14
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2146,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.06994534267982,
+        "distance_bin": "60-80m",
+        "points_in_box": 102
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2147,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 71.13746465274882,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2148,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 61.04420711672129,
+        "distance_bin": "60-80m",
+        "points_in_box": 14
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2153,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.877316327969435,
+        "distance_bin": "20-40m",
+        "points_in_box": 17
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2155,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 41.834286920222056,
+        "distance_bin": "40-60m",
+        "points_in_box": 361
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2161,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 61.03180268237984,
+        "distance_bin": "60-80m",
+        "points_in_box": 101
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2163,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 56.96400066772871,
+        "distance_bin": "40-60m",
+        "points_in_box": 6
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2165,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 52.16386148459981,
+        "distance_bin": "40-60m",
+        "points_in_box": 9
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2167,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.073919047521734,
+        "distance_bin": "40-60m",
+        "points_in_box": 37
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 2170,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 64.80791047755017,
+        "distance_bin": "60-80m",
+        "points_in_box": 24
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 6902,
+        "class": "TYPE_CYCLIST",
+        "distance_m": 8.240174161102706,
+        "distance_bin": "0-20m",
+        "points_in_box": 1809
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 3524,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 9.578704066526832,
+        "distance_bin": "0-20m",
+        "points_in_box": 430
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 6,
+        "track_id": 3528,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 43.24317468532021,
+        "distance_bin": "40-60m",
+        "points_in_box": 20
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2098,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 13.145656608902705,
+        "distance_bin": "0-20m",
+        "points_in_box": 1355
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2099,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 28.659894745216814,
+        "distance_bin": "20-40m",
+        "points_in_box": 1000
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2100,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 14.51049420526643,
+        "distance_bin": "0-20m",
+        "points_in_box": 399
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2101,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.231091356106974,
+        "distance_bin": "0-20m",
+        "points_in_box": 4377
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2102,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 4.349034097142464,
+        "distance_bin": "0-20m",
+        "points_in_box": 4975
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2103,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.28804177186483,
+        "distance_bin": "20-40m",
+        "points_in_box": 304
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2104,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.443134592724778,
+        "distance_bin": "0-20m",
+        "points_in_box": 4166
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2105,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.234642934454035,
+        "distance_bin": "0-20m",
+        "points_in_box": 1985
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2106,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.11867857386106,
+        "distance_bin": "20-40m",
+        "points_in_box": 721
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2108,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.01937083794616,
+        "distance_bin": "20-40m",
+        "points_in_box": 676
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2109,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 44.158520064073045,
+        "distance_bin": "40-60m",
+        "points_in_box": 277
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2110,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.37042298253218,
+        "distance_bin": "20-40m",
+        "points_in_box": 269
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2111,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.210195394952414,
+        "distance_bin": "40-60m",
+        "points_in_box": 149
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2112,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.335767243268396,
+        "distance_bin": "20-40m",
+        "points_in_box": 502
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2113,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.78288078886946,
+        "distance_bin": "20-40m",
+        "points_in_box": 392
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2114,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 40.758903433294506,
+        "distance_bin": "40-60m",
+        "points_in_box": 326
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2115,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 46.28999466873377,
+        "distance_bin": "40-60m",
+        "points_in_box": 190
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2117,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.57744038934806,
+        "distance_bin": "20-40m",
+        "points_in_box": 194
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2120,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.86708263821398,
+        "distance_bin": "20-40m",
+        "points_in_box": 351
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2121,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 27.923107197742482,
+        "distance_bin": "20-40m",
+        "points_in_box": 135
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2124,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.62757290284088,
+        "distance_bin": "60-80m",
+        "points_in_box": 25
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2125,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 26.65861488601722,
+        "distance_bin": "20-40m",
+        "points_in_box": 119
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2127,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 50.03066318505765,
+        "distance_bin": "40-60m",
+        "points_in_box": 65
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2128,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.370429005259496,
+        "distance_bin": "40-60m",
+        "points_in_box": 39
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2129,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.6708103754815,
+        "distance_bin": "60-80m",
+        "points_in_box": 21
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2130,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 58.47086331505039,
+        "distance_bin": "40-60m",
+        "points_in_box": 59
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2131,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.21450213432002,
+        "distance_bin": "20-40m",
+        "points_in_box": 68
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2132,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.45468434469865,
+        "distance_bin": "60-80m",
+        "points_in_box": 19
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2133,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 75.18077647428315,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2134,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.04348984044441,
+        "distance_bin": "60-80m",
+        "points_in_box": 55
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2135,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 69.85356274551312,
+        "distance_bin": "60-80m",
+        "points_in_box": 19
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2136,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 60.185170843819314,
+        "distance_bin": "60-80m",
+        "points_in_box": 19
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2137,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 51.49870150824729,
+        "distance_bin": "40-60m",
+        "points_in_box": 11
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2138,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.58644541248367,
+        "distance_bin": "40-60m",
+        "points_in_box": 49
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2139,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.636410358628208,
+        "distance_bin": "20-40m",
+        "points_in_box": 177
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2140,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.472383754565946,
+        "distance_bin": "40-60m",
+        "points_in_box": 32
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2144,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.45221814582997,
+        "distance_bin": "40-60m",
+        "points_in_box": 14
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2146,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 69.24092090038368,
+        "distance_bin": "60-80m",
+        "points_in_box": 84
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2147,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 71.13743401501114,
+        "distance_bin": "60-80m",
+        "points_in_box": 20
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2148,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 61.044161456687696,
+        "distance_bin": "60-80m",
+        "points_in_box": 14
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2153,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.877277370041146,
+        "distance_bin": "20-40m",
+        "points_in_box": 15
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2155,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 42.42988352488668,
+        "distance_bin": "40-60m",
+        "points_in_box": 356
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2161,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 60.362712874458005,
+        "distance_bin": "60-80m",
+        "points_in_box": 117
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2163,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 56.96396452426685,
+        "distance_bin": "40-60m",
+        "points_in_box": 5
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2165,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 52.16384306784729,
+        "distance_bin": "40-60m",
+        "points_in_box": 8
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2167,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.07399146034755,
+        "distance_bin": "40-60m",
+        "points_in_box": 37
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 2170,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 64.16026965553662,
+        "distance_bin": "60-80m",
+        "points_in_box": 28
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 6902,
+        "class": "TYPE_CYCLIST",
+        "distance_m": 8.215219761487981,
+        "distance_bin": "0-20m",
+        "points_in_box": 1784
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 7,
+        "track_id": 3524,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 9.682015971235723,
+        "distance_bin": "0-20m",
+        "points_in_box": 420
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2098,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 13.145725743070797,
+        "distance_bin": "0-20m",
+        "points_in_box": 1371
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2099,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 28.659752358996858,
+        "distance_bin": "20-40m",
+        "points_in_box": 991
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2100,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 14.51056296295729,
+        "distance_bin": "0-20m",
+        "points_in_box": 359
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2101,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.236462466076037,
+        "distance_bin": "0-20m",
+        "points_in_box": 4512
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2102,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 4.34901421111936,
+        "distance_bin": "0-20m",
+        "points_in_box": 5007
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2103,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 36.247510724760595,
+        "distance_bin": "20-40m",
+        "points_in_box": 317
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2104,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.443204607687537,
+        "distance_bin": "0-20m",
+        "points_in_box": 4184
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2105,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.234705480009142,
+        "distance_bin": "0-20m",
+        "points_in_box": 1967
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2106,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.118530565605376,
+        "distance_bin": "20-40m",
+        "points_in_box": 741
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2108,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.019335492276376,
+        "distance_bin": "20-40m",
+        "points_in_box": 694
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2109,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 44.15657973200429,
+        "distance_bin": "40-60m",
+        "points_in_box": 279
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2110,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.2004459457184,
+        "distance_bin": "20-40m",
+        "points_in_box": 274
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2111,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.21023440826621,
+        "distance_bin": "40-60m",
+        "points_in_box": 151
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2112,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.33585215010321,
+        "distance_bin": "20-40m",
+        "points_in_box": 508
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2113,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.782950870501907,
+        "distance_bin": "20-40m",
+        "points_in_box": 376
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2114,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 40.75877434132612,
+        "distance_bin": "40-60m",
+        "points_in_box": 340
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2115,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 46.28986532289647,
+        "distance_bin": "40-60m",
+        "points_in_box": 189
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2117,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.577334026754315,
+        "distance_bin": "20-40m",
+        "points_in_box": 181
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2120,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.866966083337125,
+        "distance_bin": "20-40m",
+        "points_in_box": 350
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2121,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 27.923158048240047,
+        "distance_bin": "20-40m",
+        "points_in_box": 123
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2124,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.62759244694705,
+        "distance_bin": "60-80m",
+        "points_in_box": 24
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2125,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 26.658684529069923,
+        "distance_bin": "20-40m",
+        "points_in_box": 117
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2127,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 50.03065281101477,
+        "distance_bin": "40-60m",
+        "points_in_box": 61
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2128,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.37044167760207,
+        "distance_bin": "40-60m",
+        "points_in_box": 41
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2129,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.67069795466502,
+        "distance_bin": "60-80m",
+        "points_in_box": 21
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2130,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 58.47086253349549,
+        "distance_bin": "40-60m",
+        "points_in_box": 61
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2131,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.2145551918369,
+        "distance_bin": "20-40m",
+        "points_in_box": 58
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2132,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.45476976601192,
+        "distance_bin": "60-80m",
+        "points_in_box": 24
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2133,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 75.18076860771718,
+        "distance_bin": "60-80m",
+        "points_in_box": 21
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2134,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.04362206603082,
+        "distance_bin": "60-80m",
+        "points_in_box": 56
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2135,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 69.8536633041926,
+        "distance_bin": "60-80m",
+        "points_in_box": 16
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2136,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 60.185135832508195,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2137,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 51.49877337456467,
+        "distance_bin": "40-60m",
+        "points_in_box": 12
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2138,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.586432873591015,
+        "distance_bin": "40-60m",
+        "points_in_box": 50
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2139,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.636289766248062,
+        "distance_bin": "20-40m",
+        "points_in_box": 176
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2140,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.43316193381589,
+        "distance_bin": "40-60m",
+        "points_in_box": 30
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2144,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.45225489552863,
+        "distance_bin": "40-60m",
+        "points_in_box": 11
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2146,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 70.43832689085237,
+        "distance_bin": "60-80m",
+        "points_in_box": 78
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2147,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 71.13747470639154,
+        "distance_bin": "60-80m",
+        "points_in_box": 20
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2148,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 61.04423132814131,
+        "distance_bin": "60-80m",
+        "points_in_box": 14
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2153,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.877341100322866,
+        "distance_bin": "20-40m",
+        "points_in_box": 17
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2155,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 43.0894309211411,
+        "distance_bin": "40-60m",
+        "points_in_box": 333
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2161,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 59.779878858074824,
+        "distance_bin": "40-60m",
+        "points_in_box": 114
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2163,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 56.96400345215959,
+        "distance_bin": "40-60m",
+        "points_in_box": 5
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2165,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 52.16386677620125,
+        "distance_bin": "40-60m",
+        "points_in_box": 6
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2167,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.073881556666095,
+        "distance_bin": "40-60m",
+        "points_in_box": 34
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 2170,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 63.42743160695783,
+        "distance_bin": "60-80m",
+        "points_in_box": 30
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 6902,
+        "class": "TYPE_CYCLIST",
+        "distance_m": 8.19585851868203,
+        "distance_bin": "0-20m",
+        "points_in_box": 1767
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 3524,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 9.771808287785428,
+        "distance_bin": "0-20m",
+        "points_in_box": 416
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 8,
+        "track_id": 3528,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 43.04885969979115,
+        "distance_bin": "40-60m",
+        "points_in_box": 20
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2098,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 13.145710013905164,
+        "distance_bin": "0-20m",
+        "points_in_box": 1339
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2099,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 28.65979086489081,
+        "distance_bin": "20-40m",
+        "points_in_box": 965
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2100,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 14.510546336240582,
+        "distance_bin": "0-20m",
+        "points_in_box": 392
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2101,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.240073803575247,
+        "distance_bin": "0-20m",
+        "points_in_box": 4440
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2102,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 4.349032494448091,
+        "distance_bin": "0-20m",
+        "points_in_box": 5067
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2103,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 37.20819895057841,
+        "distance_bin": "20-40m",
+        "points_in_box": 293
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2104,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.443190738261737,
+        "distance_bin": "0-20m",
+        "points_in_box": 4228
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2105,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.234688449994552,
+        "distance_bin": "0-20m",
+        "points_in_box": 1936
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2106,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.11858175721366,
+        "distance_bin": "20-40m",
+        "points_in_box": 714
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2108,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.019317953008006,
+        "distance_bin": "20-40m",
+        "points_in_box": 686
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2109,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 44.15415451337549,
+        "distance_bin": "40-60m",
+        "points_in_box": 278
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2110,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.037910370744743,
+        "distance_bin": "20-40m",
+        "points_in_box": 292
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2111,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.21023295223837,
+        "distance_bin": "40-60m",
+        "points_in_box": 152
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2112,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.33583457562926,
+        "distance_bin": "20-40m",
+        "points_in_box": 495
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2113,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.78293485090194,
+        "distance_bin": "20-40m",
+        "points_in_box": 386
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2114,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 40.758821730739136,
+        "distance_bin": "40-60m",
+        "points_in_box": 337
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2115,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 46.28991726439738,
+        "distance_bin": "40-60m",
+        "points_in_box": 184
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2117,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.57735950263939,
+        "distance_bin": "20-40m",
+        "points_in_box": 181
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2120,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.86699844810817,
+        "distance_bin": "20-40m",
+        "points_in_box": 344
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2121,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 27.923138549090293,
+        "distance_bin": "20-40m",
+        "points_in_box": 132
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2124,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.62760146347591,
+        "distance_bin": "60-80m",
+        "points_in_box": 23
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2125,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 26.658667863495324,
+        "distance_bin": "20-40m",
+        "points_in_box": 120
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2127,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 50.030688486862736,
+        "distance_bin": "40-60m",
+        "points_in_box": 61
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2128,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.370455544317196,
+        "distance_bin": "40-60m",
+        "points_in_box": 40
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2129,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.67071666414157,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2130,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 58.47088769624948,
+        "distance_bin": "40-60m",
+        "points_in_box": 59
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2131,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.214536364671645,
+        "distance_bin": "20-40m",
+        "points_in_box": 61
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2132,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.45475001207232,
+        "distance_bin": "60-80m",
+        "points_in_box": 16
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2133,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 75.18079906465223,
+        "distance_bin": "60-80m",
+        "points_in_box": 19
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2134,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.04359758948735,
+        "distance_bin": "60-80m",
+        "points_in_box": 54
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2135,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 69.85364233341657,
+        "distance_bin": "60-80m",
+        "points_in_box": 19
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2136,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 60.185229178612154,
+        "distance_bin": "60-80m",
+        "points_in_box": 20
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2137,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 51.4987574291736,
+        "distance_bin": "40-60m",
+        "points_in_box": 13
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2138,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.58649336103345,
+        "distance_bin": "40-60m",
+        "points_in_box": 57
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2139,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.636364631013162,
+        "distance_bin": "20-40m",
+        "points_in_box": 173
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2140,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.42548197585144,
+        "distance_bin": "40-60m",
+        "points_in_box": 32
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2144,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.45224953002414,
+        "distance_bin": "40-60m",
+        "points_in_box": 16
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2146,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 71.58562038559585,
+        "distance_bin": "60-80m",
+        "points_in_box": 67
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2147,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 71.13747577627807,
+        "distance_bin": "60-80m",
+        "points_in_box": 17
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2148,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 61.04421720850262,
+        "distance_bin": "60-80m",
+        "points_in_box": 13
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2153,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.877324239350557,
+        "distance_bin": "20-40m",
+        "points_in_box": 16
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2155,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 43.7892917756944,
+        "distance_bin": "40-60m",
+        "points_in_box": 313
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2161,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 59.09015874308393,
+        "distance_bin": "40-60m",
+        "points_in_box": 125
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2163,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 56.96399847015784,
+        "distance_bin": "40-60m",
+        "points_in_box": 6
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2165,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 52.16387820997874,
+        "distance_bin": "40-60m",
+        "points_in_box": 7
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2167,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.07392489528031,
+        "distance_bin": "40-60m",
+        "points_in_box": 35
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 2170,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 62.74466267300529,
+        "distance_bin": "60-80m",
+        "points_in_box": 35
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 6902,
+        "class": "TYPE_CYCLIST",
+        "distance_m": 8.189609859113126,
+        "distance_bin": "0-20m",
+        "points_in_box": 1805
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 3524,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 9.848409941445265,
+        "distance_bin": "0-20m",
+        "points_in_box": 448
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 9,
+        "track_id": 3528,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 42.98072948018959,
+        "distance_bin": "40-60m",
+        "points_in_box": 19
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2098,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 13.145694414920408,
+        "distance_bin": "0-20m",
+        "points_in_box": 1362
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2099,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 28.65981623208065,
+        "distance_bin": "20-40m",
+        "points_in_box": 987
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2100,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 14.510546045849884,
+        "distance_bin": "0-20m",
+        "points_in_box": 403
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2101,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.231630057698473,
+        "distance_bin": "0-20m",
+        "points_in_box": 4449
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2102,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 4.348991315143465,
+        "distance_bin": "0-20m",
+        "points_in_box": 5023
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2103,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 38.17086500946791,
+        "distance_bin": "20-40m",
+        "points_in_box": 264
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2104,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.443157584125112,
+        "distance_bin": "0-20m",
+        "points_in_box": 4226
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2105,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 6.234687220934868,
+        "distance_bin": "0-20m",
+        "points_in_box": 1948
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2106,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.118617973621404,
+        "distance_bin": "20-40m",
+        "points_in_box": 719
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2108,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.01928608899478,
+        "distance_bin": "20-40m",
+        "points_in_box": 711
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2109,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 44.15719916390565,
+        "distance_bin": "40-60m",
+        "points_in_box": 278
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2110,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 30.873233647288835,
+        "distance_bin": "20-40m",
+        "points_in_box": 301
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2111,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.210201695901205,
+        "distance_bin": "40-60m",
+        "points_in_box": 145
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2112,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.33582816619823,
+        "distance_bin": "20-40m",
+        "points_in_box": 511
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2113,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.782937244698857,
+        "distance_bin": "20-40m",
+        "points_in_box": 393
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2114,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 40.75886258970011,
+        "distance_bin": "40-60m",
+        "points_in_box": 337
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2115,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 46.28996081124629,
+        "distance_bin": "40-60m",
+        "points_in_box": 185
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2117,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.577381783511832,
+        "distance_bin": "20-40m",
+        "points_in_box": 191
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2120,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.86702879297231,
+        "distance_bin": "20-40m",
+        "points_in_box": 349
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2121,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 27.923145258948765,
+        "distance_bin": "20-40m",
+        "points_in_box": 137
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2124,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.62756614045591,
+        "distance_bin": "60-80m",
+        "points_in_box": 21
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2125,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 26.65866667557199,
+        "distance_bin": "20-40m",
+        "points_in_box": 119
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2127,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 50.030637213560624,
+        "distance_bin": "40-60m",
+        "points_in_box": 59
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2128,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.370404406032875,
+        "distance_bin": "40-60m",
+        "points_in_box": 42
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2129,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.67072253903862,
+        "distance_bin": "60-80m",
+        "points_in_box": 23
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2130,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 58.470836502122964,
+        "distance_bin": "40-60m",
+        "points_in_box": 60
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2131,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.214546160536486,
+        "distance_bin": "20-40m",
+        "points_in_box": 64
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2132,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 65.4547207145492,
+        "distance_bin": "60-80m",
+        "points_in_box": 15
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2133,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 75.18074813782395,
+        "distance_bin": "60-80m",
+        "points_in_box": 17
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2134,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.04358678212283,
+        "distance_bin": "60-80m",
+        "points_in_box": 56
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2135,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 69.85362972329811,
+        "distance_bin": "60-80m",
+        "points_in_box": 19
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2136,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 60.18527118913769,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2137,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 51.49873955531753,
+        "distance_bin": "40-60m",
+        "points_in_box": 12
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2138,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 55.58653432537138,
+        "distance_bin": "40-60m",
+        "points_in_box": 53
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2139,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.636414550079174,
+        "distance_bin": "20-40m",
+        "points_in_box": 176
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2140,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.4122242994333,
+        "distance_bin": "40-60m",
+        "points_in_box": 30
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2144,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.45222719193426,
+        "distance_bin": "40-60m",
+        "points_in_box": 11
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2146,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 72.75423114626687,
+        "distance_bin": "60-80m",
+        "points_in_box": 64
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2147,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 71.13743436401707,
+        "distance_bin": "60-80m",
+        "points_in_box": 21
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2148,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 61.044190027778356,
+        "distance_bin": "60-80m",
+        "points_in_box": 15
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2153,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.877327043089103,
+        "distance_bin": "20-40m",
+        "points_in_box": 15
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2155,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 44.52376426980664,
+        "distance_bin": "40-60m",
+        "points_in_box": 288
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2161,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 58.43635518003722,
+        "distance_bin": "40-60m",
+        "points_in_box": 139
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2163,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 56.96397430590758,
+        "distance_bin": "40-60m",
+        "points_in_box": 6
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2165,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 52.16383165323961,
+        "distance_bin": "40-60m",
+        "points_in_box": 6
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2167,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.073970269032216,
+        "distance_bin": "40-60m",
+        "points_in_box": 32
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2170,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 62.04840617630764,
+        "distance_bin": "60-80m",
+        "points_in_box": 39
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 2171,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 68.45129460355089,
+        "distance_bin": "60-80m",
+        "points_in_box": 7
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 6902,
+        "class": "TYPE_CYCLIST",
+        "distance_m": 8.182523364672223,
+        "distance_bin": "0-20m",
+        "points_in_box": 1748
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 3524,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 9.934935814415756,
+        "distance_bin": "0-20m",
+        "points_in_box": 460
+      },
+      {
+        "scenario_id": "31dacbbc13bea3a5",
+        "frame_index": 10,
+        "track_id": 3528,
+        "class": "TYPE_PEDESTRIAN",
+        "distance_m": 42.87927110447162,
+        "distance_bin": "40-60m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 0,
+        "track_id": 1807,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 10.781318430718077,
+        "distance_bin": "0-20m",
+        "points_in_box": 1625
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 0,
+        "track_id": 1808,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.536236790824084,
+        "distance_bin": "40-60m",
+        "points_in_box": 144
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 0,
+        "track_id": 1809,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 48.375562735208085,
+        "distance_bin": "40-60m",
+        "points_in_box": 114
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 0,
+        "track_id": 1813,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 74.70779815999327,
+        "distance_bin": "60-80m",
+        "points_in_box": 152
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 0,
+        "track_id": 1814,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 67.99381203241894,
+        "distance_bin": "60-80m",
+        "points_in_box": 83
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 0,
+        "track_id": 1816,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 22.64006032303892,
+        "distance_bin": "20-40m",
+        "points_in_box": 935
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 0,
+        "track_id": 1819,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 29.61443510482455,
+        "distance_bin": "20-40m",
+        "points_in_box": 355
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 0,
+        "track_id": 1817,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 19.34497861163274,
+        "distance_bin": "0-20m",
+        "points_in_box": 1199
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 0,
+        "track_id": 1825,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 28.36964945259712,
+        "distance_bin": "20-40m",
+        "points_in_box": 1081
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 0,
+        "track_id": 1826,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 32.307837262764096,
+        "distance_bin": "20-40m",
+        "points_in_box": 237
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 1,
+        "track_id": 1807,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 10.867025880552651,
+        "distance_bin": "0-20m",
+        "points_in_box": 1607
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 1,
+        "track_id": 1808,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.545971226925786,
+        "distance_bin": "40-60m",
+        "points_in_box": 140
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 1,
+        "track_id": 1809,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 48.208862010875094,
+        "distance_bin": "40-60m",
+        "points_in_box": 104
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 1,
+        "track_id": 1813,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 76.67960402098711,
+        "distance_bin": "60-80m",
+        "points_in_box": 92
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 1,
+        "track_id": 1814,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 70.00412359035366,
+        "distance_bin": "60-80m",
+        "points_in_box": 71
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 1,
+        "track_id": 1816,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 24.221580278643867,
+        "distance_bin": "20-40m",
+        "points_in_box": 821
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 1,
+        "track_id": 1819,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.3520866502194,
+        "distance_bin": "20-40m",
+        "points_in_box": 322
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 1,
+        "track_id": 1817,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 20.72431873632439,
+        "distance_bin": "20-40m",
+        "points_in_box": 1109
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 1,
+        "track_id": 1825,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 29.68847006913403,
+        "distance_bin": "20-40m",
+        "points_in_box": 991
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 1,
+        "track_id": 1826,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 33.95757489223492,
+        "distance_bin": "20-40m",
+        "points_in_box": 221
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 2,
+        "track_id": 1807,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 10.963268074096431,
+        "distance_bin": "0-20m",
+        "points_in_box": 1588
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 2,
+        "track_id": 1808,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.55746923073193,
+        "distance_bin": "40-60m",
+        "points_in_box": 138
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 2,
+        "track_id": 1809,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 48.00459816297224,
+        "distance_bin": "40-60m",
+        "points_in_box": 103
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 2,
+        "track_id": 1813,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 78.65052092234104,
+        "distance_bin": "60-80m",
+        "points_in_box": 0
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 2,
+        "track_id": 1814,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 71.90710183568137,
+        "distance_bin": "60-80m",
+        "points_in_box": 58
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 2,
+        "track_id": 1816,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 25.85877875089501,
+        "distance_bin": "20-40m",
+        "points_in_box": 712
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 2,
+        "track_id": 1819,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 33.11835480345629,
+        "distance_bin": "20-40m",
+        "points_in_box": 304
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 2,
+        "track_id": 1817,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 22.197970211858053,
+        "distance_bin": "20-40m",
+        "points_in_box": 968
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 2,
+        "track_id": 1825,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 31.079404971454068,
+        "distance_bin": "20-40m",
+        "points_in_box": 1025
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 2,
+        "track_id": 1826,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.64213614171184,
+        "distance_bin": "20-40m",
+        "points_in_box": 218
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 3,
+        "track_id": 1807,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 11.05547327464753,
+        "distance_bin": "0-20m",
+        "points_in_box": 1588
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 3,
+        "track_id": 1808,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.58149219838038,
+        "distance_bin": "40-60m",
+        "points_in_box": 147
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 3,
+        "track_id": 1809,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 47.81613738733281,
+        "distance_bin": "40-60m",
+        "points_in_box": 102
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 3,
+        "track_id": 1814,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 73.74414074268547,
+        "distance_bin": "60-80m",
+        "points_in_box": 46
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 3,
+        "track_id": 1816,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 27.536115930126396,
+        "distance_bin": "20-40m",
+        "points_in_box": 592
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 3,
+        "track_id": 1819,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.90338596576986,
+        "distance_bin": "20-40m",
+        "points_in_box": 252
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 3,
+        "track_id": 1817,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 23.743419851223546,
+        "distance_bin": "20-40m",
+        "points_in_box": 868
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 3,
+        "track_id": 1825,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 32.528700559107,
+        "distance_bin": "20-40m",
+        "points_in_box": 1196
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 3,
+        "track_id": 1826,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 37.351504262365694,
+        "distance_bin": "20-40m",
+        "points_in_box": 194
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 4,
+        "track_id": 1807,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 11.159581041659123,
+        "distance_bin": "0-20m",
+        "points_in_box": 1527
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 4,
+        "track_id": 1808,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.579550197710034,
+        "distance_bin": "40-60m",
+        "points_in_box": 145
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 4,
+        "track_id": 1809,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 47.64421438025969,
+        "distance_bin": "40-60m",
+        "points_in_box": 126
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 4,
+        "track_id": 1814,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 75.55761193721067,
+        "distance_bin": "60-80m",
+        "points_in_box": 18
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 4,
+        "track_id": 1816,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 29.246509734183572,
+        "distance_bin": "20-40m",
+        "points_in_box": 505
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 4,
+        "track_id": 1819,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 36.703500062144016,
+        "distance_bin": "20-40m",
+        "points_in_box": 229
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 4,
+        "track_id": 1817,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 25.345934498177318,
+        "distance_bin": "20-40m",
+        "points_in_box": 774
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 4,
+        "track_id": 1825,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.02831177072976,
+        "distance_bin": "20-40m",
+        "points_in_box": 1239
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 4,
+        "track_id": 1826,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 39.081648976555414,
+        "distance_bin": "20-40m",
+        "points_in_box": 178
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 5,
+        "track_id": 1807,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 11.26472511168956,
+        "distance_bin": "0-20m",
+        "points_in_box": 1510
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 5,
+        "track_id": 1808,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.62637019197253,
+        "distance_bin": "40-60m",
+        "points_in_box": 136
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 5,
+        "track_id": 1809,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 47.4727530517312,
+        "distance_bin": "40-60m",
+        "points_in_box": 116
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 5,
+        "track_id": 1816,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 30.981507165722846,
+        "distance_bin": "20-40m",
+        "points_in_box": 456
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 5,
+        "track_id": 1819,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 38.50985489247584,
+        "distance_bin": "20-40m",
+        "points_in_box": 207
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 5,
+        "track_id": 1817,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 26.990244900900787,
+        "distance_bin": "20-40m",
+        "points_in_box": 684
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 5,
+        "track_id": 1825,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.56499116296009,
+        "distance_bin": "20-40m",
+        "points_in_box": 1202
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 5,
+        "track_id": 1826,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 40.823401579318244,
+        "distance_bin": "40-60m",
+        "points_in_box": 137
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 6,
+        "track_id": 1807,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 11.37667948186256,
+        "distance_bin": "0-20m",
+        "points_in_box": 1416
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 6,
+        "track_id": 1808,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.6958778255693,
+        "distance_bin": "40-60m",
+        "points_in_box": 135
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 6,
+        "track_id": 1809,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 47.33771294273222,
+        "distance_bin": "40-60m",
+        "points_in_box": 115
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 6,
+        "track_id": 1816,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 32.73518380269631,
+        "distance_bin": "20-40m",
+        "points_in_box": 391
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 6,
+        "track_id": 1819,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 40.319824279198805,
+        "distance_bin": "40-60m",
+        "points_in_box": 185
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 6,
+        "track_id": 1817,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 28.66624694324102,
+        "distance_bin": "20-40m",
+        "points_in_box": 608
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 6,
+        "track_id": 1825,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 37.132160469835604,
+        "distance_bin": "20-40m",
+        "points_in_box": 1184
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 6,
+        "track_id": 1826,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 42.573717605625696,
+        "distance_bin": "40-60m",
+        "points_in_box": 129
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 7,
+        "track_id": 1807,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 11.514908916709924,
+        "distance_bin": "0-20m",
+        "points_in_box": 1421
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 7,
+        "track_id": 1808,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.74869090440934,
+        "distance_bin": "40-60m",
+        "points_in_box": 146
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 7,
+        "track_id": 1809,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 47.175073890510156,
+        "distance_bin": "40-60m",
+        "points_in_box": 121
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 7,
+        "track_id": 1816,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 34.50101011971699,
+        "distance_bin": "20-40m",
+        "points_in_box": 360
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 7,
+        "track_id": 1819,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 42.132579937533485,
+        "distance_bin": "40-60m",
+        "points_in_box": 164
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 7,
+        "track_id": 1817,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 30.366282536289983,
+        "distance_bin": "20-40m",
+        "points_in_box": 529
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 7,
+        "track_id": 1825,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 38.72587667720529,
+        "distance_bin": "20-40m",
+        "points_in_box": 1188
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 7,
+        "track_id": 1826,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 44.331292026155026,
+        "distance_bin": "40-60m",
+        "points_in_box": 118
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 8,
+        "track_id": 1807,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 11.669736056968507,
+        "distance_bin": "0-20m",
+        "points_in_box": 1349
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 8,
+        "track_id": 1808,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.821485843654166,
+        "distance_bin": "40-60m",
+        "points_in_box": 133
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 8,
+        "track_id": 1809,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 47.040003608485506,
+        "distance_bin": "40-60m",
+        "points_in_box": 115
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 8,
+        "track_id": 1816,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 36.276078887687575,
+        "distance_bin": "20-40m",
+        "points_in_box": 327
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 8,
+        "track_id": 1819,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 43.94858481228163,
+        "distance_bin": "40-60m",
+        "points_in_box": 156
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 8,
+        "track_id": 1817,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 32.087170887744655,
+        "distance_bin": "20-40m",
+        "points_in_box": 508
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 8,
+        "track_id": 1825,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 40.343139798144996,
+        "distance_bin": "40-60m",
+        "points_in_box": 1108
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 8,
+        "track_id": 1826,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 46.095910304659256,
+        "distance_bin": "40-60m",
+        "points_in_box": 127
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 9,
+        "track_id": 1807,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 11.819565129277844,
+        "distance_bin": "0-20m",
+        "points_in_box": 1323
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 9,
+        "track_id": 1808,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 53.904336656504704,
+        "distance_bin": "40-60m",
+        "points_in_box": 143
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 9,
+        "track_id": 1809,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 46.93598438184698,
+        "distance_bin": "40-60m",
+        "points_in_box": 117
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 9,
+        "track_id": 1816,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 38.0595418621612,
+        "distance_bin": "20-40m",
+        "points_in_box": 294
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 9,
+        "track_id": 1819,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 45.765869810616536,
+        "distance_bin": "40-60m",
+        "points_in_box": 125
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 9,
+        "track_id": 1817,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 33.825587221256264,
+        "distance_bin": "20-40m",
+        "points_in_box": 458
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 9,
+        "track_id": 1825,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 41.978991404626306,
+        "distance_bin": "40-60m",
+        "points_in_box": 1021
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 9,
+        "track_id": 1826,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 47.86513211214423,
+        "distance_bin": "40-60m",
+        "points_in_box": 112
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 10,
+        "track_id": 1807,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 11.976812272713193,
+        "distance_bin": "0-20m",
+        "points_in_box": 1289
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 10,
+        "track_id": 1808,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 54.00730853352626,
+        "distance_bin": "40-60m",
+        "points_in_box": 134
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 10,
+        "track_id": 1809,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 46.84220270223702,
+        "distance_bin": "40-60m",
+        "points_in_box": 122
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 10,
+        "track_id": 1816,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 39.84867132601096,
+        "distance_bin": "20-40m",
+        "points_in_box": 249
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 10,
+        "track_id": 1819,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 47.57988509069661,
+        "distance_bin": "40-60m",
+        "points_in_box": 110
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 10,
+        "track_id": 1817,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 35.57549904749318,
+        "distance_bin": "20-40m",
+        "points_in_box": 427
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 10,
+        "track_id": 1825,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 43.62659910668266,
+        "distance_bin": "40-60m",
+        "points_in_box": 970
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 10,
+        "track_id": 1826,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 49.63419518388358,
+        "distance_bin": "40-60m",
+        "points_in_box": 110
+      },
+      {
+        "scenario_id": "b85e1bd6cc8e74c0",
+        "frame_index": 10,
+        "track_id": 1827,
+        "class": "TYPE_VEHICLE",
+        "distance_m": 42.40719812200797,
+        "distance_bin": "40-60m",
+        "points_in_box": 15
+      }
+    ]
+  },
+  "visualization": {
+    "path": "/waymo/iscai_stage0/reports/stage0/common_scene_map_boxes_tracks_lidar.png",
+    "contains": [
+      "LiDAR points",
+      "map",
+      "causal tracks",
+      "3D-box ground-plane footprints"
+    ]
+  }
+}

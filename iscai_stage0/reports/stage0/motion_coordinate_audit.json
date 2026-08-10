@@ -1,0 +1,37 @@
+{
+  "status": "pass",
+  "source_file": "/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00000-of-00150",
+  "scenario_id": "b85e1bd6cc8e74c0",
+  "window": {
+    "timestamps": 91,
+    "current_time_index": 10,
+    "history_steps": 10,
+    "current_steps": 1,
+    "future_steps": 80
+  },
+  "timestamp_delta_seconds": {
+    "min": 0.09994999999999976,
+    "max": 0.10006999999999966,
+    "mean": 0.10000022222222221,
+    "monotonic": true
+  },
+  "sdc_anchor": {
+    "track_index": 13,
+    "global_x": 3581.409034278907,
+    "global_y": 4977.777587666654,
+    "heading": -1.5670559406280518,
+    "valid": true
+  },
+  "coordinate_sanity": {
+    "sdc_origin_error_m": 0.0,
+    "max_global_ego_global_error_m": 0.0
+  },
+  "current_valid_class_counts": {
+    "TYPE_VEHICLE": 10
+  },
+  "visualizations": {
+    "global": "/waymo/iscai_stage0/reports/stage0/common_scene_global.png",
+    "ego_at_anchor": "/waymo/iscai_stage0/reports/stage0/common_scene_ego.png"
+  },
+  "note": "Ego-at-anchor conversion is a Stage-0 sanity check. Production ego/headlamp transforms are Stage 1."
+}

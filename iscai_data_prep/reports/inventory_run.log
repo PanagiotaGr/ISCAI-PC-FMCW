@@ -1,0 +1,100 @@
+
+=== Local motion inventory ===
+training: 1/1000 shards, 496 scenarios, elapsed=0.0 min
+training: 25/1000 shards, 12216 scenarios, elapsed=0.1 min
+training: 50/1000 shards, 24385 scenarios, elapsed=0.3 min
+training: 75/1000 shards, 36686 scenarios, elapsed=0.5 min
+training: 100/1000 shards, 48805 scenarios, elapsed=0.6 min
+training: 125/1000 shards, 61015 scenarios, elapsed=0.8 min
+training: 150/1000 shards, 73168 scenarios, elapsed=1.0 min
+training: 175/1000 shards, 85458 scenarios, elapsed=1.2 min
+training: 200/1000 shards, 97631 scenarios, elapsed=1.3 min
+training: 225/1000 shards, 109710 scenarios, elapsed=1.5 min
+training: 250/1000 shards, 121884 scenarios, elapsed=1.6 min
+training: 275/1000 shards, 134083 scenarios, elapsed=1.8 min
+training: 300/1000 shards, 146169 scenarios, elapsed=2.0 min
+training: 325/1000 shards, 158370 scenarios, elapsed=2.2 min
+training: 350/1000 shards, 170322 scenarios, elapsed=2.3 min
+training: 375/1000 shards, 182556 scenarios, elapsed=2.5 min
+training: 400/1000 shards, 194613 scenarios, elapsed=2.7 min
+training: 425/1000 shards, 206807 scenarios, elapsed=2.8 min
+training: 450/1000 shards, 218962 scenarios, elapsed=3.0 min
+training: 475/1000 shards, 231214 scenarios, elapsed=3.2 min
+training: 500/1000 shards, 243401 scenarios, elapsed=3.3 min
+training: 525/1000 shards, 255372 scenarios, elapsed=3.5 min
+training: 550/1000 shards, 267603 scenarios, elapsed=3.6 min
+training: 575/1000 shards, 279832 scenarios, elapsed=3.8 min
+training: 600/1000 shards, 292027 scenarios, elapsed=4.0 min
+training: 625/1000 shards, 304300 scenarios, elapsed=4.2 min
+training: 650/1000 shards, 316461 scenarios, elapsed=4.3 min
+training: 675/1000 shards, 328790 scenarios, elapsed=4.5 min
+training: 700/1000 shards, 340922 scenarios, elapsed=4.7 min
+training: 725/1000 shards, 353065 scenarios, elapsed=4.8 min
+training: 750/1000 shards, 365123 scenarios, elapsed=5.0 min
+training: 775/1000 shards, 377254 scenarios, elapsed=5.2 min
+training: 800/1000 shards, 389252 scenarios, elapsed=5.3 min
+training: 825/1000 shards, 401485 scenarios, elapsed=5.5 min
+training: 850/1000 shards, 413688 scenarios, elapsed=5.7 min
+training: 875/1000 shards, 425870 scenarios, elapsed=5.8 min
+training: 900/1000 shards, 438152 scenarios, elapsed=6.0 min
+training: 925/1000 shards, 450290 scenarios, elapsed=6.2 min
+training: 950/1000 shards, 462552 scenarios, elapsed=6.3 min
+training: 975/1000 shards, 474893 scenarios, elapsed=6.5 min
+training: 1000/1000 shards, 486995 scenarios, elapsed=6.7 min
+validation: 1/150 shards, 286 scenarios, elapsed=0.0 min
+validation: 25/150 shards, 7420 scenarios, elapsed=0.1 min
+validation: 50/150 shards, 14717 scenarios, elapsed=0.2 min
+validation: 75/150 shards, 22089 scenarios, elapsed=0.3 min
+validation: 100/150 shards, 29506 scenarios, elapsed=0.4 min
+validation: 125/150 shards, 36833 scenarios, elapsed=0.5 min
+validation: 150/150 shards, 44097 scenarios, elapsed=0.6 min
+
+=== Remote LiDAR inventory: training ===
+prefix: gs://waymo_open_dataset_motion_v_1_3_0/uncompressed/lidar_and_camera/training/
+training: 25000 objects, 114.74 GiB
+training: 50000 objects, 229.43 GiB
+training: 75000 objects, 344.01 GiB
+training: 100000 objects, 458.55 GiB
+training: 125000 objects, 573.12 GiB
+training: 150000 objects, 687.84 GiB
+training: 175000 objects, 802.53 GiB
+training: 200000 objects, 917.04 GiB
+training: 225000 objects, 1.01 TiB
+training: 250000 objects, 1.12 TiB
+training: 275000 objects, 1.23 TiB
+training: 300000 objects, 1.34 TiB
+training: 325000 objects, 1.46 TiB
+training: 350000 objects, 1.57 TiB
+training: 375000 objects, 1.68 TiB
+training: 400000 objects, 1.79 TiB
+training: 425000 objects, 1.90 TiB
+training: 450000 objects, 2.01 TiB
+training: 475000 objects, 2.13 TiB
+training: completed, 487054 objects, 2.18 TiB
+
+=== Remote LiDAR inventory: validation ===
+prefix: gs://waymo_open_dataset_motion_v_1_3_0/uncompressed/lidar_and_camera/validation/
+validation: 25000 objects, 114.75 GiB
+validation: completed, 44102 objects, 202.29 GiB
+
+=== Inventory complete ===
+Database: /waymo/iscai_data_prep/reports/paired_inventory.sqlite
+JSON: /waymo/iscai_data_prep/reports/paired_inventory_summary.json
+Markdown: /waymo/iscai_data_prep/reports/paired_inventory_summary.md
+
+Disk:
+  total: 967.48 GiB
+  used: 715.94 GiB
+  free: 251.54 GiB
+
+training:
+  local scenarios: 486995
+  remote LiDAR: 487054
+  exact pairs: 486988
+  exact pair bytes: 2.59 TiB
+
+validation:
+  local scenarios: 44097
+  remote LiDAR: 44102
+  exact pairs: 44097
+  exact pair bytes: 240.62 GiB

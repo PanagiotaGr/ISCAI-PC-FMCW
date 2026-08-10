@@ -1,0 +1,47 @@
+{
+  "actor_count": 14,
+  "anchor_index": 10,
+  "artifact_semantics": "causal_womd_annotation_upstream",
+  "block": "stage1a_block7a_future_mutation_gate",
+  "forbidden_realistic_dependencies": {
+    "future_actor_states": false,
+    "future_dynamic_map": false,
+    "objects_of_interest": false,
+    "tracks_to_predict": false,
+    "womd_annotated_velocity": false
+  },
+  "gates": {
+    "all_causal_actor_hashes_identical": true,
+    "causal_map_hash_identical": true,
+    "causal_selection_hash_identical": true,
+    "combined_causal_artifact_hash_identical": true,
+    "future_dynamic_map_hash_changed": true,
+    "future_labels_hash_changed": true
+  },
+  "hashes": {
+    "causal_artifact_after": "d5b9c742df32e8bff52151d652b23e13223bb4a95c0a937922cdd957eca3c242",
+    "causal_artifact_before": "d5b9c742df32e8bff52151d652b23e13223bb4a95c0a937922cdd957eca3c242",
+    "causal_map_after": "971596866bf0d3b7a75e49818fb22517dbc99276d7f3b94f73a9d7d789f0fa65",
+    "causal_map_before": "971596866bf0d3b7a75e49818fb22517dbc99276d7f3b94f73a9d7d789f0fa65",
+    "future_dynamic_map_after": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "future_dynamic_map_before": "6fd4a56a8c23a59643b12187f38b9e993096d39687f24c62bb1a4b77a6bf4624",
+    "future_labels_after": "a9981c9d1aeba77e8ccd25dc01b122d1bffa735eb4ccbdf5dcef74a64da08048",
+    "future_labels_before": "88b25ca2c80e077f984ecce4e950eb82dbf997374c4fd61e3afd124788a24896",
+    "selection_after": "b9e9972fc4c0425d735ecc3ec5faf46728371af51ab8f7e22ed68c93a89e02e1",
+    "selection_before": "b9e9972fc4c0425d735ecc3ec5faf46728371af51ab8f7e22ed68c93a89e02e1"
+  },
+  "mutations": {
+    "future_center_x_after": 4814.265625,
+    "future_center_x_before": 3579.765625,
+    "future_dynamic_map_removed": true,
+    "future_time_index": 11,
+    "future_track_index": 0,
+    "future_valid_after": false,
+    "future_valid_before": true,
+    "objects_of_interest_cleared": true,
+    "tracks_to_predict_cleared": true
+  },
+  "scenario_id": "b85e1bd6cc8e74c0",
+  "sensor_realistic": false,
+  "status": "PASS"
+}

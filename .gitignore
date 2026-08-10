@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+.venv_*/
+venv/
+env/
+
+# Waymo / WOMD raw data
+data/
+**/data/
+*.tfrecord
+*.tfrecord.*
+*.record
+
+# Large generated inventory databases
+paired_inventory.sqlite
+**/paired_inventory.sqlite
+*.sqlite-journal
+
+# Temporary/downloaded files
+tmp/
+temp/
+*.whl
+*.tar
+*.tar.gz
+*.zip
+
+# Core dumps
+core
+core.*
+
+# Build/cache
+build/
+dist/
+*.egg-info/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+
+# ML/generated heavy files
+checkpoints/
+models/
+wandb/
+runs/

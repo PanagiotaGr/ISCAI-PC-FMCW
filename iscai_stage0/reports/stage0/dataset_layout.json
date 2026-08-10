@@ -1,0 +1,268 @@
+{
+  "dataset_root": "/waymo",
+  "file_groups": {
+    "test:py": 4,
+    "test:pyc": 3,
+    "test:tfrecord": 300,
+    "train:py": 1,
+    "train:pyc": 1,
+    "train:tfrecord": 2000,
+    "unknown:11": 2,
+    "unknown:apache": 2,
+    "unknown:bsd": 2,
+    "unknown:cfg": 1,
+    "unknown:csh": 1,
+    "unknown:exe": 14,
+    "unknown:fish": 1,
+    "unknown:js": 1,
+    "unknown:json": 2,
+    "unknown:md": 4,
+    "unknown:no_suffix": 51,
+    "unknown:pem": 1,
+    "unknown:ps1": 1,
+    "unknown:pth": 1,
+    "unknown:py": 630,
+    "unknown:pyc": 628,
+    "unknown:rst": 1,
+    "unknown:so": 1,
+    "unknown:tmpl": 2,
+    "unknown:txt": 13,
+    "unknown:typed": 14,
+    "unknown:xml": 1,
+    "validation:py": 6,
+    "validation:pyc": 6,
+    "validation:tfrecord": 300
+  },
+  "note": "Split labels here are filename heuristics only; no dataset field is considered confirmed by this report.",
+  "sample_files": {
+    "test:py": [
+      ".venv/lib/python3.11/site-packages/setuptools/command/test.py",
+      ".venv/lib/python3.11/site-packages/setuptools/_vendor/pyparsing/testing.py",
+      ".venv/lib/python3.11/site-packages/pkg_resources/_vendor/pyparsing/testing.py",
+      "iscai_stage0/tests/test_stage0_skeleton.py"
+    ],
+    "test:pyc": [
+      ".venv/lib/python3.11/site-packages/setuptools/command/__pycache__/test.cpython-311.pyc",
+      ".venv/lib/python3.11/site-packages/setuptools/_vendor/pyparsing/__pycache__/testing.cpython-311.pyc",
+      ".venv/lib/python3.11/site-packages/pkg_resources/_vendor/pyparsing/__pycache__/testing.cpython-311.pyc"
+    ],
+    "test:tfrecord": [
+      "data/v1_3_0_scenario/testing/testing.tfrecord-00051-of-00150",
+      "data/v1_3_0_scenario/testing/testing.tfrecord-00021-of-00150",
+      "data/v1_3_0_scenario/testing/testing.tfrecord-00090-of-00150",
+      "data/v1_3_0_scenario/testing/testing.tfrecord-00063-of-00150",
+      "data/v1_3_0_scenario/testing/testing.tfrecord-00101-of-00150",
+      "data/v1_3_0_scenario/testing/testing.tfrecord-00003-of-00150",
+      "data/v1_3_0_scenario/testing/testing.tfrecord-00046-of-00150",
+      "data/v1_3_0_scenario/testing/testing.tfrecord-00120-of-00150"
+    ],
+    "train:py": [
+      ".venv/lib/python3.11/site-packages/pip/_vendor/rich/constrain.py"
+    ],
+    "train:pyc": [
+      ".venv/lib/python3.11/site-packages/pip/_vendor/rich/__pycache__/constrain.cpython-311.pyc"
+    ],
+    "train:tfrecord": [
+      "data/v1_3_0_scenario/training/training.tfrecord-00113-of-01000",
+      "data/v1_3_0_scenario/training/training.tfrecord-00093-of-01000",
+      "data/v1_3_0_scenario/training/training.tfrecord-00171-of-01000",
+      "data/v1_3_0_scenario/training/training.tfrecord-00963-of-01000",
+      "data/v1_3_0_scenario/training/training.tfrecord-00980-of-01000",
+      "data/v1_3_0_scenario/training/training.tfrecord-00923-of-01000",
+      "data/v1_3_0_scenario/training/training.tfrecord-00853-of-01000",
+      "data/v1_3_0_scenario/training/training.tfrecord-00215-of-01000"
+    ],
+    "unknown:11": [
+      ".venv/bin/python3.11",
+      ".venv/bin/pip3.11"
+    ],
+    "unknown:apache": [
+      ".venv/lib/python3.11/site-packages/pip/_vendor/packaging/LICENSE.APACHE",
+      ".venv/lib/python3.11/site-packages/pip-26.1.2.dist-info/licenses/src/pip/_vendor/packaging/LICENSE.APACHE"
+    ],
+    "unknown:bsd": [
+      ".venv/lib/python3.11/site-packages/pip/_vendor/packaging/LICENSE.BSD",
+      ".venv/lib/python3.11/site-packages/pip-26.1.2.dist-info/licenses/src/pip/_vendor/packaging/LICENSE.BSD"
+    ],
+    "unknown:cfg": [
+      ".venv/pyvenv.cfg"
+    ],
+    "unknown:csh": [
+      ".venv/bin/activate.csh"
+    ],
+    "unknown:exe": [
+      ".venv/lib/python3.11/site-packages/setuptools/cli-arm64.exe",
+      ".venv/lib/python3.11/site-packages/setuptools/cli-32.exe",
+      ".venv/lib/python3.11/site-packages/setuptools/gui-64.exe",
+      ".venv/lib/python3.11/site-packages/setuptools/gui-arm64.exe",
+      ".venv/lib/python3.11/site-packages/setuptools/gui-32.exe",
+      ".venv/lib/python3.11/site-packages/setuptools/cli-64.exe",
+      ".venv/lib/python3.11/site-packages/setuptools/gui.exe",
+      ".venv/lib/python3.11/site-packages/setuptools/cli.exe"
+    ],
+    "unknown:fish": [
+      ".venv/bin/activate.fish"
+    ],
+    "unknown:js": [
+      ".venv/lib/python3.11/site-packages/pip/_vendor/urllib3/contrib/emscripten/emscripten_fetch_worker.js"
+    ],
+    "unknown:json": [
+      "iscai_stage0/configs/stage0.json",
+      "iscai_stage0/reports/stage0/environment_manifest.json"
+    ],
+    "unknown:md": [
+      ".venv/lib/python3.11/site-packages/pip/_vendor/idna/LICENSE.md",
+      ".venv/lib/python3.11/site-packages/pip-26.1.2.dist-info/licenses/src/pip/_vendor/idna/LICENSE.md",
+      "iscai_stage0/STAGE0_RUN.md",
+      "iscai_stage0/docs/implementation_log.md"
+    ],
+    "unknown:no_suffix": [
+      ".venv/lib/python3.11/site-packages/pyyaml-6.0.3.dist-info/WHEEL",
+      ".venv/lib/python3.11/site-packages/pyyaml-6.0.3.dist-info/INSTALLER",
+      ".venv/lib/python3.11/site-packages/pyyaml-6.0.3.dist-info/REQUESTED",
+      ".venv/lib/python3.11/site-packages/pyyaml-6.0.3.dist-info/METADATA",
+      ".venv/lib/python3.11/site-packages/pyyaml-6.0.3.dist-info/RECORD",
+      ".venv/lib/python3.11/site-packages/pyyaml-6.0.3.dist-info/licenses/LICENSE",
+      ".venv/lib/python3.11/site-packages/pip/_vendor/certifi/LICENSE",
+      ".venv/lib/python3.11/site-packages/pip/_vendor/pygments/LICENSE"
+    ],
+    "unknown:pem": [
+      ".venv/lib/python3.11/site-packages/pip/_vendor/certifi/cacert.pem"
+    ],
+    "unknown:ps1": [
+      ".venv/bin/Activate.ps1"
+    ],
+    "unknown:pth": [
+      ".venv/lib/python3.11/site-packages/distutils-precedence.pth"
+    ],
+    "unknown:py": [
+      ".venv/lib/python3.11/site-packages/_distutils_hack/__init__.py",
+      ".venv/lib/python3.11/site-packages/_distutils_hack/override.py",
+      ".venv/lib/python3.11/site-packages/setuptools/_itertools.py",
+      ".venv/lib/python3.11/site-packages/setuptools/logging.py",
+      ".venv/lib/python3.11/site-packages/setuptools/_deprecation_warning.py",
+      ".venv/lib/python3.11/site-packages/setuptools/archive_util.py",
+      ".venv/lib/python3.11/site-packages/setuptools/msvc.py",
+      ".venv/lib/python3.11/site-packages/setuptools/_imp.py"
+    ],
+    "unknown:pyc": [
+      ".venv/lib/python3.11/site-packages/_distutils_hack/__pycache__/__init__.cpython-311.pyc",
+      ".venv/lib/python3.11/site-packages/_distutils_hack/__pycache__/override.cpython-311.pyc",
+      ".venv/lib/python3.11/site-packages/setuptools/__pycache__/sandbox.cpython-311.pyc",
+      ".venv/lib/python3.11/site-packages/setuptools/__pycache__/logging.cpython-311.pyc",
+      ".venv/lib/python3.11/site-packages/setuptools/__pycache__/monkey.cpython-311.pyc",
+      ".venv/lib/python3.11/site-packages/setuptools/__pycache__/_itertools.cpython-311.pyc",
+      ".venv/lib/python3.11/site-packages/setuptools/__pycache__/unicode_utils.cpython-311.pyc",
+      ".venv/lib/python3.11/site-packages/setuptools/__pycache__/extension.cpython-311.pyc"
+    ],
+    "unknown:rst": [
+      ".venv/lib/python3.11/site-packages/pip/_vendor/README.rst"
+    ],
+    "unknown:so": [
+      ".venv/lib/python3.11/site-packages/yaml/_yaml.cpython-311-x86_64-linux-gnu.so"
+    ],
+    "unknown:tmpl": [
+      ".venv/lib/python3.11/site-packages/setuptools/script.tmpl",
+      ".venv/lib/python3.11/site-packages/setuptools/script (dev).tmpl"
+    ],
+    "unknown:txt": [
+      ".venv/lib/python3.11/site-packages/pyyaml-6.0.3.dist-info/top_level.txt",
+      ".venv/lib/python3.11/site-packages/pip/_vendor/vendor.txt",
+      ".venv/lib/python3.11/site-packages/pip/_vendor/urllib3/LICENSE.txt",
+      ".venv/lib/python3.11/site-packages/pip/_vendor/distlib/LICENSE.txt",
+      ".venv/lib/python3.11/site-packages/pip/_vendor/cachecontrol/LICENSE.txt",
+      ".venv/lib/python3.11/site-packages/setuptools-65.5.0.dist-info/top_level.txt",
+      ".venv/lib/python3.11/site-packages/setuptools-65.5.0.dist-info/entry_points.txt",
+      ".venv/lib/python3.11/site-packages/pip-26.1.2.dist-info/entry_points.txt"
+    ],
+    "unknown:typed": [
+      ".venv/lib/python3.11/site-packages/pip/py.typed",
+      ".venv/lib/python3.11/site-packages/pip/_vendor/idna/py.typed",
+      ".venv/lib/python3.11/site-packages/pip/_vendor/urllib3/py.typed",
+      ".venv/lib/python3.11/site-packages/pip/_vendor/certifi/py.typed",
+      ".venv/lib/python3.11/site-packages/pip/_vendor/packaging/py.typed",
+      ".venv/lib/python3.11/site-packages/pip/_vendor/tomli_w/py.typed",
+      ".venv/lib/python3.11/site-packages/pip/_vendor/platformdirs/py.typed",
+      ".venv/lib/python3.11/site-packages/pip/_vendor/truststore/py.typed"
+    ],
+    "unknown:xml": [
+      ".venv/lib/python3.11/site-packages/setuptools/command/launcher manifest.xml"
+    ],
+    "validation:py": [
+      ".venv/lib/python3.11/site-packages/setuptools/config/_validate_pyproject/fastjsonschema_validations.py",
+      ".venv/lib/python3.11/site-packages/setuptools/config/_validate_pyproject/error_reporting.py",
+      ".venv/lib/python3.11/site-packages/setuptools/config/_validate_pyproject/fastjsonschema_exceptions.py",
+      ".venv/lib/python3.11/site-packages/setuptools/config/_validate_pyproject/extra_validations.py",
+      ".venv/lib/python3.11/site-packages/setuptools/config/_validate_pyproject/__init__.py",
+      ".venv/lib/python3.11/site-packages/setuptools/config/_validate_pyproject/formats.py"
+    ],
+    "validation:pyc": [
+      ".venv/lib/python3.11/site-packages/setuptools/config/_validate_pyproject/__pycache__/error_reporting.cpython-311.pyc",
+      ".venv/lib/python3.11/site-packages/setuptools/config/_validate_pyproject/__pycache__/formats.cpython-311.pyc",
+      ".venv/lib/python3.11/site-packages/setuptools/config/_validate_pyproject/__pycache__/__init__.cpython-311.pyc",
+      ".venv/lib/python3.11/site-packages/setuptools/config/_validate_pyproject/__pycache__/fastjsonschema_validations.cpython-311.pyc",
+      ".venv/lib/python3.11/site-packages/setuptools/config/_validate_pyproject/__pycache__/fastjsonschema_exceptions.cpython-311.pyc",
+      ".venv/lib/python3.11/site-packages/setuptools/config/_validate_pyproject/__pycache__/extra_validations.cpython-311.pyc"
+    ],
+    "validation:tfrecord": [
+      "data/v1_3_0_scenario/validation/validation.tfrecord-00130-of-00150",
+      "data/v1_3_0_scenario/validation/validation.tfrecord-00011-of-00150",
+      "data/v1_3_0_scenario/validation/validation.tfrecord-00046-of-00150",
+      "data/v1_3_0_scenario/validation/validation.tfrecord-00086-of-00150",
+      "data/v1_3_0_scenario/validation/validation.tfrecord-00088-of-00150",
+      "data/v1_3_0_scenario/validation/validation.tfrecord-00034-of-00150",
+      "data/v1_3_0_scenario/validation/validation.tfrecord-00020-of-00150",
+      "data/v1_3_0_scenario/validation/validation.tfrecord-00071-of-00150"
+    ]
+  },
+  "top_level_directories": [
+    ".venv",
+    "data",
+    "iscai_stage0"
+  ],
+  "total_bytes": 692958438977,
+  "total_files": 3995,
+  "tree": [
+    "d .venv",
+    "d .venv/bin",
+    "f .venv/bin/Activate.ps1",
+    "f .venv/bin/activate",
+    "f .venv/bin/activate.csh",
+    "f .venv/bin/activate.fish",
+    "f .venv/bin/pip",
+    "f .venv/bin/pip3",
+    "f .venv/bin/pip3.11",
+    "f .venv/bin/python",
+    "f .venv/bin/python3",
+    "f .venv/bin/python3.11",
+    "d .venv/include",
+    "d .venv/include/python3.11",
+    "d .venv/lib",
+    "d .venv/lib/python3.11",
+    "d .venv/lib64",
+    "f .venv/pyvenv.cfg",
+    "d data",
+    "d data/v1_3_0_scenario",
+    "d data/v1_3_0_scenario/testing",
+    "d data/v1_3_0_scenario/testing_interactive",
+    "d data/v1_3_0_scenario/training",
+    "d data/v1_3_0_scenario/training_20s",
+    "d data/v1_3_0_scenario/validation",
+    "d data/v1_3_0_scenario/validation_interactive",
+    "d iscai_stage0",
+    "f iscai_stage0/STAGE0_RUN.md",
+    "d iscai_stage0/configs",
+    "f iscai_stage0/configs/stage0.json",
+    "d iscai_stage0/docs",
+    "f iscai_stage0/docs/implementation_log.md",
+    "d iscai_stage0/reports",
+    "d iscai_stage0/reports/stage0",
+    "d iscai_stage0/scripts",
+    "f iscai_stage0/scripts/audit_dataset_layout.py",
+    "f iscai_stage0/scripts/audit_environment.py",
+    "d iscai_stage0/src",
+    "d iscai_stage0/src/iscai_stage0",
+    "d iscai_stage0/tests",
+    "f iscai_stage0/tests/test_stage0_skeleton.py"
+  ]
+}
