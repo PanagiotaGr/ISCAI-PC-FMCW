@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "data_source": "real_WOMD_validation",
+  "sampling": "class_balanced",
+  "seed": 42,
+  "max_files": 5,
+  "available_valid_samples": {
+    "VEHICLE": 37481,
+    "PEDESTRIAN": 2481,
+    "CYCLIST": 247
+  },
+  "selected_per_class": 247,
+  "actors": 741,
+  "class_counts": {
+    "VEHICLE": 247,
+    "PEDESTRIAN": 247,
+    "CYCLIST": 247
+  },
+  "future_steps": 10,
+  "coordinate_frame": "H0_anchor_headlamp_frame",
+  "prediction": "Stage4 trained Gaussian GRU",
+  "checkpoint": "/home/agni/waymo/iscai_stage4/checkpoints/stage4_auto_cuda/ALL_gaussian_h128_l1_d0.0_lr0.001_b32.pt",
+  "future_used_as_input": false,
+  "geometry_assumptions": {
+    "future_xy": "Gaussian predicted",
+    "box_dimensions": "causal current WOMD length/width/height",
+    "future_heading": "causal current relative heading held constant",
+    "future_z": "causal current H0 vertical center held constant"
+  },
+  "mean_std_x_m": 0.20510445535182953,
+  "mean_std_y_m": 0.24099101126194,
+  "generation_time_seconds": 3.1724088069749996,
+  "output": "stage6_real/data/real_stage6_predictions_balanced.npz"
+}

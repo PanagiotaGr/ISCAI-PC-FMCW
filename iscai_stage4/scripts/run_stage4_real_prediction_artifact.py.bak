@@ -1,0 +1,300 @@
+from __future__ import annotations
+
+
+import json
+from pathlib import Path
+
+
+from iscai_stage4.predictor.stage4_input import (
+    Stage4ActorInput,
+)
+
+
+from iscai_stage4.predictor.deterministic_gru import (
+    DeterministicGRUPredictor,
+)
+
+
+from iscai_stage4.predictor.gaussian_gru import (
+    GaussianGRUPredictor,
+)
+
+
+from iscai_stage4.predictor.gmm_predictor import (
+    GMMPredictor,
+)
+
+
+ARTIFACT = Path(
+    "artifacts/stage4_prediction_artifact.json"
+)
+
+
+REPORT = Path(
+    "reports/block4_real_prediction_artifact.json"
+)
+
+
+
+def trajectory_to_list(
+    trajectory,
+):
+
+    return [
+        list(p)
+        for p in trajectory
+    ]
+
+
+
+actor = Stage4ActorInput(
+
+    time_index=30,
+
+    position=(
+        25.0,
+        3.0,
+        0.0,
+    ),
+
+    velocity=(
+        6.0,
+        0.5,
+        0.0,
+    ),
+
+    heading_rad=0.08,
+
+    range_m=25.2,
+
+    radial_velocity_mps=-5.5,
+
+    measurement_covariance=(
+
+        (
+            0.1,
+            0.0,
+            0.0,
+        ),
+
+        (
+            0.0,
+            0.1,
+            0.0,
+        ),
+
+        (
+            0.0,
+            0.0,
+            0.2,
+        ),
+    ),
+
+    length_m=4.5,
+
+    width_m=1.8,
+
+    height_m=1.6,
+
+    actor_class="vehicle",
+)
+
+
+
+records = []
+
+
+
+det = DeterministicGRUPredictor(
+    horizon=10
+).predict(
+    actor
+)
+
+
+records.append({
+
+    "actor_id":
+        0,
+
+    "model_name":
+        "DETERMINISTIC_GRU",
+
+    "trajectory":
+        trajectory_to_list(
+            det.positions
+        ),
+
+    "uncertainty":
+        0.0,
+
+    "future_used":
+        False,
+})
+
+
+
+gaussian = GaussianGRUPredictor(
+    horizon=10
+).predict(
+    actor
+)
+
+
+records.append({
+
+    "actor_id":
+        0,
+
+    "model_name":
+        "GAUSSIAN_GRU",
+
+    "trajectory":
+        trajectory_to_list(
+            gaussian.mean
+        ),
+
+    "uncertainty":
+        0.2,
+
+    "future_used":
+        False,
+})
+
+
+
+gmm = GMMPredictor(
+    horizon=10
+).predict(
+    actor
+)
+
+
+
+for component in gmm.components:
+
+    records.append({
+
+        "actor_id":
+            0,
+
+        "model_name":
+            "GMM_" + component.mode,
+
+        "trajectory":
+            trajectory_to_list(
+                component.trajectory
+            ),
+
+        "uncertainty":
+            1.0 -
+            component.probability,
+
+        "future_used":
+            False,
+    })
+
+
+
+for item in records:
+
+    if item["future_used"]:
+
+        raise RuntimeError(
+            "Future leakage."
+        )
+
+
+    if len(
+        item["trajectory"]
+    ) != 10:
+
+        raise RuntimeError(
+            "Invalid horizon."
+        )
+
+
+
+ARTIFACT.parent.mkdir(
+    exist_ok=True
+)
+
+
+ARTIFACT.write_text(
+    json.dumps(
+        records,
+        indent=2,
+        sort_keys=True,
+    )
+)
+
+
+
+REPORT.parent.mkdir(
+    exist_ok=True
+)
+
+
+REPORT.write_text(
+    json.dumps(
+        {
+            "records":
+                len(records),
+
+            "models":
+                sorted(
+                    {
+                        x["model_name"]
+                        for x in records
+                    }
+                ),
+
+            "future_used":
+                False,
+
+            "status":
+                "PASS",
+        },
+        indent=2,
+        sort_keys=True,
+    )
+)
+
+
+
+print(
+    "===== Stage4 Real Prediction Artifact ====="
+)
+
+print(
+    "records =",
+    len(records)
+)
+
+print(
+    "models =",
+    sorted(
+        {
+            x["model_name"]
+            for x in records
+        }
+    )
+)
+
+print(
+    "future_used = NO"
+)
+
+print(
+    "STATUS = PASS"
+)
+
+print(
+    "artifact =",
+    ARTIFACT
+)
+
+print(
+    "report =",
+    REPORT
+)

@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "stage": 7,
+  "evaluation": "main_connected_vehicle_communication",
+  "receiver_scope": "VEHICLE",
+  "receiver_semantics": "Primary communication evaluation is restricted to connected vehicle receivers. Pedestrians and cyclists remain ADB/safety-relevant actors and their communication results, when reported, are supplementary rather than part of the primary communication endpoint.",
+  "shared_posterior": true,
+  "future_used_as_input": false,
+  "operating_point": {
+    "num_beams": 64,
+    "target_mass": 0.95
+  },
+  "communication_reliability": {
+    "metric": "posterior probability coverage",
+    "mean": 0.9970212765957447,
+    "ci95": [
+      0.9955021319871253,
+      0.9983191515854065
+    ]
+  },
+  "beam_overhead": {
+    "mean_selected_k": 1.8446808510638297,
+    "mean_selected_k_ci95": [
+      1.2553191488727609,
+      2.657446808003365
+    ],
+    "mean_overhead_fraction": 0.02882313829787234,
+    "mean_overhead_fraction_ci95": [
+      0.01961436170113689,
+      0.04182263979529762
+    ]
+  },
+  "sources": {
+    "beam_evaluation": "stage7_real/reports/stage7_joint_beam_evaluation.json",
+    "confidence_intervals": "stage7_real/reports/stage7_joint_confidence_intervals.json"
+  },
+  "scientific_scope": "This report defines the primary Stage-7 communication endpoint on VEHICLE receivers. The all-class joint cohort is retained for illumination and safety evaluation. Existing pedestrian/cyclist communication calculations are not discarded, but are treated as supplementary connected-VRU analyses."
+}

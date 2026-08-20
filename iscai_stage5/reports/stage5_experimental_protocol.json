@@ -1,0 +1,43 @@
+{
+  "actors": {
+    "classes": {
+      "CYCLIST": 18,
+      "PEDESTRIAN": 159,
+      "VEHICLE": 1943
+    },
+    "total": 2120
+  },
+  "beam_management": {
+    "max_active_beams": 16,
+    "scheduler": "ADB safety scheduler V2",
+    "temporal_consistency": true
+  },
+  "experiment": {
+    "dataset_mode": "WOMD causal motion evaluation",
+    "deterministic": true,
+    "evaluation_mode": "causal_one_step_ahead",
+    "future_used": false,
+    "name": "Stage5 Causal Multi-Model Sensor Fusion Evaluation"
+  },
+  "fusion_pipeline": [
+    "PC-FMCW observation model",
+    "measurement uncertainty",
+    "EKF measurement update",
+    "EKF state update",
+    "IMM fusion",
+    "MHT gating",
+    "IMM-MHT probabilistic selection"
+  ],
+  "prediction_models": [
+    "CV",
+    "CA",
+    "CTRV",
+    "KALMAN"
+  ],
+  "sha256": "43d6321f357158485f707f874021ee073231402c8763a434d50f0a9c116247d1",
+  "status": "PASS",
+  "validation": {
+    "all_components_pass": true,
+    "future_used": false
+  }
+}

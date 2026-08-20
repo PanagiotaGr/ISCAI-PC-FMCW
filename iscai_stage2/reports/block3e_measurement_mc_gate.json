@@ -1,0 +1,172 @@
+{
+  "acceptance": {
+    "normalized_mean_abs_max": 0.03,
+    "normalized_rmse_error_max": 0.03,
+    "normalized_std_error_max": 0.03
+  },
+  "angular_covariance_source": "explicit_stage2_angular_assumption",
+  "block": "stage2_block3e_measurement_mc_gate",
+  "crlb_snr_scaling_verified": true,
+  "gaussian_corruption": "sha256_box_muller_v1",
+  "measured_fmcw": false,
+  "measurement_order": [
+    "range",
+    "radial_velocity",
+    "azimuth",
+    "elevation"
+  ],
+  "range_velocity_covariance_source": "frozen_part_a_eq7_crlb",
+  "reports": [
+    {
+      "azimuth_stats": {
+        "component": "azimuth",
+        "configured_std": 0.017453292519943295,
+        "empirical_mean_error": 0.00010437522195557213,
+        "empirical_rmse": 0.017480225006101767,
+        "empirical_std": 0.017479913388715268,
+        "normalized_mean": 0.0059802597037954906,
+        "normalized_rmse": 1.0015431177886749,
+        "normalized_std": 1.0015252634276057,
+        "rmse_ratio_to_configured_std": 1.0015431177886749
+      },
+      "elevation_stats": {
+        "component": "elevation",
+        "configured_std": 0.017453292519943295,
+        "empirical_mean_error": -7.436863372478356e-05,
+        "empirical_rmse": 0.017355237393491874,
+        "empirical_std": 0.017355078054874216,
+        "normalized_mean": -0.004261008840584377,
+        "normalized_rmse": 0.994381855094712,
+        "normalized_std": 0.9943727256644065,
+        "rmse_ratio_to_configured_std": 0.9943818550947119
+      },
+      "radial_velocity_stats": {
+        "component": "radial_velocity",
+        "configured_std": 2.9507338424929557e-05,
+        "empirical_mean_error": 1.4452752037904895e-07,
+        "empirical_rmse": 2.9504940103166172e-05,
+        "empirical_std": 2.950458612296191e-05,
+        "normalized_mean": 0.004898019546789876,
+        "normalized_rmse": 0.9999187211761073,
+        "normalized_std": 0.9999067248313619,
+        "rmse_ratio_to_configured_std": 0.9999187211761073
+      },
+      "range_stats": {
+        "component": "range",
+        "configured_std": 0.0003652300320884082,
+        "empirical_mean_error": -2.533121799302762e-06,
+        "empirical_rmse": 0.00036513038758578846,
+        "empirical_std": 0.0003651216006106705,
+        "normalized_mean": -0.006935688680413856,
+        "normalized_rmse": 0.9997271733048623,
+        "normalized_std": 0.9997031145628479,
+        "rmse_ratio_to_configured_std": 0.9997271733048623
+      },
+      "samples": 30000,
+      "sensing_snr_db": 0.0
+    },
+    {
+      "azimuth_stats": {
+        "component": "azimuth",
+        "configured_std": 0.017453292519943295,
+        "empirical_mean_error": 7.307626167190442e-05,
+        "empirical_rmse": 0.017445857380520142,
+        "empirical_std": 0.017445704330907055,
+        "normalized_mean": 0.004186961376393744,
+        "normalized_rmse": 0.9995739978909619,
+        "normalized_std": 0.9995652287940759,
+        "rmse_ratio_to_configured_std": 0.9995739978909619
+      },
+      "elevation_stats": {
+        "component": "elevation",
+        "configured_std": 0.017453292519943295,
+        "empirical_mean_error": 0.00013174042277680752,
+        "empirical_rmse": 0.01754427923296282,
+        "empirical_std": 0.017543784604958448,
+        "normalized_mean": 0.007548170216380212,
+        "normalized_rmse": 1.0052131546477867,
+        "normalized_std": 1.0051848145507072,
+        "rmse_ratio_to_configured_std": 1.0052131546477867
+      },
+      "radial_velocity_stats": {
+        "component": "radial_velocity",
+        "configured_std": 9.331039711218274e-06,
+        "empirical_mean_error": -1.8965061987004835e-08,
+        "empirical_rmse": 9.372781676483872e-06,
+        "empirical_std": 9.372762489333423e-06,
+        "normalized_mean": -0.002032470397077404,
+        "normalized_rmse": 1.004473452750974,
+        "normalized_std": 1.0044713964795355,
+        "rmse_ratio_to_configured_std": 1.004473452750974
+      },
+      "range_stats": {
+        "component": "range",
+        "configured_std": 0.00011549587712957534,
+        "empirical_mean_error": -1.1379497041884198e-07,
+        "empirical_rmse": 0.00011558323681729916,
+        "empirical_std": 0.00011558318080009983,
+        "normalized_mean": -0.0009852730092795854,
+        "normalized_rmse": 1.0007563879325823,
+        "normalized_std": 1.0007559029178725,
+        "rmse_ratio_to_configured_std": 1.0007563879325823
+      },
+      "samples": 30000,
+      "sensing_snr_db": 10.0
+    },
+    {
+      "azimuth_stats": {
+        "component": "azimuth",
+        "configured_std": 0.017453292519943295,
+        "empirical_mean_error": -6.285458535845781e-05,
+        "empirical_rmse": 0.017420753061684672,
+        "empirical_std": 0.017420639670726653,
+        "normalized_mean": -0.003601302464084411,
+        "normalized_rmse": 0.9981356263741387,
+        "normalized_std": 0.9981291295508093,
+        "rmse_ratio_to_configured_std": 0.9981356263741388
+      },
+      "elevation_stats": {
+        "component": "elevation",
+        "configured_std": 0.017453292519943295,
+        "empirical_mean_error": 0.00012514354195616867,
+        "empirical_rmse": 0.017574785267053868,
+        "empirical_std": 0.0175743397109809,
+        "normalized_mean": 0.007170196787406806,
+        "normalized_rmse": 1.006961021650886,
+        "normalized_std": 1.0069354931683687,
+        "rmse_ratio_to_configured_std": 1.006961021650886
+      },
+      "radial_velocity_stats": {
+        "component": "radial_velocity",
+        "configured_std": 2.9507338424929555e-06,
+        "empirical_mean_error": 1.1578545317192378e-09,
+        "empirical_rmse": 2.9439212759293456e-06,
+        "empirical_std": 2.943921048235219e-06,
+        "normalized_mean": 0.00039239544924221767,
+        "normalized_rmse": 0.9976912297322437,
+        "normalized_std": 0.9976911525669896,
+        "rmse_ratio_to_configured_std": 0.9976912297322438
+      },
+      "range_stats": {
+        "component": "range",
+        "configured_std": 3.6523003208840815e-05,
+        "empirical_mean_error": -4.787723660986861e-08,
+        "empirical_rmse": 3.643845046149674e-05,
+        "empirical_std": 3.6438419008035556e-05,
+        "normalized_mean": -0.0013108789640354482,
+        "normalized_rmse": 0.9976849453792013,
+        "normalized_std": 0.9976840841832858,
+        "rmse_ratio_to_configured_std": 0.9976849453792013
+      },
+      "samples": 30000,
+      "sensing_snr_db": 20.0
+    }
+  ],
+  "samples_per_snr": 30000,
+  "snr_values_db": [
+    0.0,
+    10.0,
+    20.0
+  ],
+  "status": "PASS"
+}

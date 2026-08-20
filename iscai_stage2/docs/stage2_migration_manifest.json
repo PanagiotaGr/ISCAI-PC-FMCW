@@ -1,0 +1,151 @@
+{
+  "cleanup": {
+    "stage1_stage2_owned_files_removed": 21,
+    "stage1_stage2_reports_removed": true,
+    "stage2_behavior_verified_before_cleanup": true
+  },
+  "destination_repository": "/home/agni/waymo/iscai_stage2",
+  "files": [
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/src/iscai_stage2/observations/contracts.py",
+      "destination_sha256": "09d41d423c9e14042364e731fba2c3dbebc8afca7c512fd4ebc1fb8fe74f8622",
+      "source": "/home/agni/waymo/iscai_stage1/src/iscai_stage1/observations/contracts.py",
+      "source_sha256": "09d41d423c9e14042364e731fba2c3dbebc8afca7c512fd4ebc1fb8fe74f8622"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/src/iscai_stage2/observations/ideal.py",
+      "destination_sha256": "8f2e29706e9b274aa98ceb3b75fed905f21e027e0ebd43ad8fd50bcd2ea8f74c",
+      "source": "/home/agni/waymo/iscai_stage1/src/iscai_stage1/observations/ideal.py",
+      "source_sha256": "8f2e29706e9b274aa98ceb3b75fed905f21e027e0ebd43ad8fd50bcd2ea8f74c"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/src/iscai_stage2/observations/womd_ideal_adapter.py",
+      "destination_sha256": "5b56af117ef40a7b3fb16d0e3d2778ef98e2a5572ba30d1b0ca34853ccd00f4d",
+      "source": "/home/agni/waymo/iscai_stage1/src/iscai_stage1/observations/womd_ideal_adapter.py",
+      "source_sha256": "c4385b5014943bcf9298e6877d5065c02c0f6fa258a46ed8ad157bfe509bad0a"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/src/iscai_stage2/observations/clean_measurement.py",
+      "destination_sha256": "612d21d5dc19e68d76adb34e0b4ee57fdb1cbb7a97407334b48f4af0199d357c",
+      "source": "/home/agni/waymo/iscai_stage1/src/iscai_stage1/observations/clean_measurement.py",
+      "source_sha256": "4947b67bd577d0dac211ba1587941ce1dcff4766da477b5abbb66e0d32e757a7"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/src/iscai_stage2/observations/clean_scene.py",
+      "destination_sha256": "419a929f7559476ebc1d509ee0f4ec0a22e05a303a0a88b1439159ba4414e438",
+      "source": "/home/agni/waymo/iscai_stage1/src/iscai_stage1/observations/clean_scene.py",
+      "source_sha256": "a2bede5b3b2c7cc5ed6feab9a82f1094c6cd42d71ca72103b7ee6e766a73826f"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/src/iscai_stage2/observations/gaussian_corruption.py",
+      "destination_sha256": "f1d30434b2902d1bd1a262733dd3542e037bcf57e660045e4f553276183fe9b8",
+      "source": "/home/agni/waymo/iscai_stage1/src/iscai_stage1/observations/gaussian_corruption.py",
+      "source_sha256": "d69b83a4f3663f24190f44d7b9e93ae3a019c5e80e637202fe09a4436067ca7d"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/src/iscai_stage2/observations/detection.py",
+      "destination_sha256": "24417c6c3f38a7eb0fa4336201446419e08ac556413e23e3d8e79426492c67eb",
+      "source": "/home/agni/waymo/iscai_stage1/src/iscai_stage1/observations/detection.py",
+      "source_sha256": "21b65995f4da359f79201580a894fb88053be05c6f0ebe5ff3c5f1e407b495e0"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/src/iscai_stage2/pc_fmcw/reference.py",
+      "destination_sha256": "b5d57292f737b9722261ea508bedb5c3f240c61202f4bc0af09dc0988327cf58",
+      "source": "/home/agni/waymo/iscai_stage1/src/iscai_stage1/pc_fmcw/reference.py",
+      "source_sha256": "b5d57292f737b9722261ea508bedb5c3f240c61202f4bc0af09dc0988327cf58"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/src/iscai_stage2/pc_fmcw/snr.py",
+      "destination_sha256": "44c918aa1653dad51b85354667847cc4ea56b95cb26f1201923f876e2a55c0c5",
+      "source": "/home/agni/waymo/iscai_stage1/src/iscai_stage1/pc_fmcw/snr.py",
+      "source_sha256": "44c918aa1653dad51b85354667847cc4ea56b95cb26f1201923f876e2a55c0c5"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/src/iscai_stage2/pc_fmcw/crlb.py",
+      "destination_sha256": "bc508bb84165da4db5bafe88b75e150649bf791bd666a148e9c338a1b0669c6a",
+      "source": "/home/agni/waymo/iscai_stage1/src/iscai_stage1/pc_fmcw/crlb.py",
+      "source_sha256": "996bcd25cdfb80031e23518b2fe813a3b0064f8d12680e6d354b23baa3743c6c"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/src/iscai_stage2/pc_fmcw/covariance.py",
+      "destination_sha256": "feaad91244e79da7c328e4504b0631bf117425db4ecf0297cc0cc8200061fe8c",
+      "source": "/home/agni/waymo/iscai_stage1/src/iscai_stage1/pc_fmcw/covariance.py",
+      "source_sha256": "645acfa10dfbaa9bee892aa3d72cc06a9089936f25139036f83e8b46d3c29190"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/src/iscai_stage2/pc_fmcw/sensing_snr.py",
+      "destination_sha256": "ed1813a62530b45a889b28d45d0891edb5a4d6a15cdf5503fc76fa081666f1cd",
+      "source": "/home/agni/waymo/iscai_stage1/src/iscai_stage1/pc_fmcw/sensing_snr.py",
+      "source_sha256": "390d0c1d1dc7510076eb381579f8ac5fec363cb86578c5f0451acfce19463e35"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/tests/test_observation_contracts.py",
+      "destination_sha256": "ba4e699f7acd232620df58921b08ce3fa78f6fd905804941a8c134bb6ca1e2b1",
+      "source": "/home/agni/waymo/iscai_stage1/tests/test_observation_contracts.py",
+      "source_sha256": "61e8508d856de9657975ec821d45278dad18452d3f0589f7d440673e07dc81fd"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/tests/test_ideal_observations.py",
+      "destination_sha256": "734cf9c6a6464c4d124b07d66a1818a18ebd72590f720253799aba74d3c978ba",
+      "source": "/home/agni/waymo/iscai_stage1/tests/test_ideal_observations.py",
+      "source_sha256": "5c2a7b3f7880b3eb365e96be8d301a34ae7fb64e81363578366c4747fda577ed"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/tests/test_part_a_pc_fmcw_physics.py",
+      "destination_sha256": "d928f564164c86fecce1c2221f8941b0928de2c2b6551b7315f55922b1bc3e5a",
+      "source": "/home/agni/waymo/iscai_stage1/tests/test_part_a_pc_fmcw_physics.py",
+      "source_sha256": "852b2d2c484750b4a268c077332461c7122146b5773d7a67b0e116b77154474c"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/tests/test_sensing_snr.py",
+      "destination_sha256": "f5e8a6f19e365c84f022f6ceb7583976cce9279ecf1738ac7ac77c16632eb003",
+      "source": "/home/agni/waymo/iscai_stage1/tests/test_sensing_snr.py",
+      "source_sha256": "6d79a60514c9cfe5017e424cf58e3126d2a9a67b06c5d5e64017d90acb917d7c"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/tests/test_clean_measurement.py",
+      "destination_sha256": "d5f3e65c81ef3b0d3035cfb4b74c0ecbff0b42136a35d88ef55ba68a0a6522b1",
+      "source": "/home/agni/waymo/iscai_stage1/tests/test_clean_measurement.py",
+      "source_sha256": "a88e73c0d1651921ed6f1fa13fa41a9a46a5580b649dfbb76f479df6afde365a"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/tests/test_gaussian_corruption.py",
+      "destination_sha256": "e2aaf573a008d85b6843914e424a3ac84b22c33a34f6631d3f1c2c200b322f29",
+      "source": "/home/agni/waymo/iscai_stage1/tests/test_gaussian_corruption.py",
+      "source_sha256": "104efd2c7ed405c5669afa8ac9cc96e0c22ea207ca53a0badf8e4ed0085f3907"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/tests/test_detection.py",
+      "destination_sha256": "43be154798ebc0312287a533ebc2607390e22c48fb23d6096ae1197b98f69075",
+      "source": "/home/agni/waymo/iscai_stage1/tests/test_detection.py",
+      "source_sha256": "fdb1af808970f1317f0930ba258788309a2cae18abc23bbe8ffcf58fa61cff8c"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/scripts/run_stage2_real_ideal_observation_smoke.py",
+      "destination_sha256": "8d977eb590c6e8544eaf52d4e3ed335b203fed61768fcf6519f7553ce7b22ed0",
+      "source": "/home/agni/waymo/iscai_stage1/scripts/run_stage2_real_ideal_observation_smoke.py",
+      "source_sha256": "7eb165504f88651b21b0c2f8f66ad9c5e95fe8a1bbedc66c4fd2f82de4020d55"
+    },
+    {
+      "destination": "/home/agni/waymo/iscai_stage2/scripts/run_stage2_clean_crlb_smoke.py",
+      "destination_sha256": "69ba9ebf9bc9896d2822f64f40d93089270636ba7a0bc4516e2542d32015743f",
+      "source": "/home/agni/waymo/iscai_stage1/scripts/run_stage2_clean_crlb_smoke.py",
+      "source_sha256": "6c8a9b6ddc25f0204193e105e909db4d628e59c0084c9926ef63d6940664edd2"
+    }
+  ],
+  "namespace_policy": {
+    "frozen_stage1_dependencies": [
+      "iscai_stage1.actors",
+      "iscai_stage1.geometry",
+      "iscai_stage1.contracts"
+    ],
+    "stage2_owned": [
+      "iscai_stage2.observations",
+      "iscai_stage2.pc_fmcw"
+    ]
+  },
+  "source_repository": "/home/agni/waymo/iscai_stage1",
+  "stage1_role": "frozen_upstream_causal_scene_representation",
+  "stage2_role": "pc_fmcw_like_observation_and_measurement_uncertainty",
+  "status": "COMPLETE_STAGE1_CLEANED"
+}

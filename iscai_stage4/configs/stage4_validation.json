@@ -1,0 +1,39 @@
+{
+    "stage": "stage4",
+    "name": "probabilistic_trajectory_prediction_validation",
+
+    "scenarios": [
+        "b85e1bd6cc8e74c0",
+        "75ae707721eb23b4",
+        "52dafd686fe77b21"
+    ],
+
+    "prediction_horizon_steps": 10,
+    "dt_seconds": 0.1,
+
+    "models": [
+        "GaussianCV",
+        "GaussianCV_calibrated",
+        "GaussianCA",
+        "GMM"
+    ],
+
+    "calibration": {
+        "enabled": true,
+        "alpha": 0.25
+    },
+
+    "metrics": [
+        "ADE",
+        "FDE",
+        "NLL",
+        "coverage50",
+        "coverage90"
+    ],
+
+    "constraints": {
+        "future_used_by_predictor": false,
+        "future_used_by_evaluator": true,
+        "measured_fmcw": false
+    }
+}

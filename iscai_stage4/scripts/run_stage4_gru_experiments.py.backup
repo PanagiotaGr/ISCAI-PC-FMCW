@@ -1,0 +1,209 @@
+import json
+from pathlib import Path
+
+import torch
+from torch.utils.data import DataLoader
+
+from iscai_stage4.training.womd_dataset import WOMDGRUDataset
+from iscai_stage4.training.gru_model import GRUPredictor
+
+
+DATA = (
+    "/home/agni/waymo/"
+    "data/paired_womd_lidar_v1_3_0/"
+    "training/motion"
+)
+
+
+EXPERIMENTS = [
+
+    {
+        "name": "exp1_baseline",
+        "hidden": 64,
+        "batch": 32,
+        "lr": 1e-3,
+        "epochs": 50,
+    },
+
+    {
+        "name": "exp2_batch64",
+        "hidden": 64,
+        "batch": 64,
+        "lr": 1e-3,
+        "epochs": 50,
+    },
+
+    {
+        "name": "exp3_hidden128",
+        "hidden": 128,
+        "batch": 64,
+        "lr": 1e-3,
+        "epochs": 50,
+    },
+
+    {
+        "name": "exp4_hidden256",
+        "hidden": 256,
+        "batch": 64,
+        "lr": 1e-3,
+        "epochs": 50,
+    },
+
+    {
+        "name": "exp5_lr5e4",
+        "hidden": 128,
+        "batch": 64,
+        "lr": 5e-4,
+        "epochs": 100,
+    },
+
+    {
+        "name": "exp6_batch128",
+        "hidden": 128,
+        "batch": 128,
+        "lr": 5e-4,
+        "epochs": 100,
+    },
+
+]
+
+
+Path("checkpoints/stage4_experiments").mkdir(
+    parents=True,
+    exist_ok=True
+)
+
+Path("reports/stage4_experiments").mkdir(
+    parents=True,
+    exist_ok=True
+)
+
+
+for exp in EXPERIMENTS:
+
+    print("\n==============================")
+    print("RUNNING:", exp["name"])
+    print("==============================")
+
+
+    model = GRUPredictor(
+        hidden=exp["hidden"]
+    )
+
+
+    dataset = WOMDGRUDataset(
+        DATA,
+        max_files=200
+    )
+
+
+    loader = DataLoader(
+        dataset,
+        batch_size=exp["batch"],
+        shuffle=True
+    )
+
+
+    optimizer = torch.optim.Adam(
+        model.parameters(),
+        lr=exp["lr"]
+    )
+
+
+    loss_fn = torch.nn.MSELoss()
+
+
+    history=[]
+
+
+    for epoch in range(exp["epochs"]):
+
+        total=0
+
+
+        for x,y in loader:
+
+            pred=model(x)
+
+            loss=loss_fn(
+                pred,
+                y
+            )
+
+            optimizer.zero_grad()
+
+            loss.backward()
+
+            torch.nn.utils.clip_grad_norm_(
+                model.parameters(),
+                1.0
+            )
+
+            optimizer.step()
+
+            total += loss.item()
+
+
+        avg = total / len(loader)
+
+        history.append(avg)
+
+        print(
+            exp["name"],
+            "epoch",
+            epoch+1,
+            "loss",
+            avg
+        )
+
+
+    ckpt = (
+        "checkpoints/stage4_experiments/"
+        + exp["name"]
+        + ".pt"
+    )
+
+
+    torch.save(
+        model.state_dict(),
+        ckpt
+    )
+
+
+    report={
+
+        **exp,
+
+        "dataset_records":
+            len(dataset),
+
+        "loss_history":
+            history,
+
+        "final_loss":
+            history[-1],
+
+        "checkpoint":
+            True,
+
+        "future_used":
+            False,
+
+        "status":
+            "PASS"
+    }
+
+
+    Path(
+        "reports/stage4_experiments/"
+        + exp["name"]
+        + ".json"
+    ).write_text(
+        json.dumps(
+            report,
+            indent=2
+        )
+    )
+
+
+print("\nALL EXPERIMENTS FINISHED")

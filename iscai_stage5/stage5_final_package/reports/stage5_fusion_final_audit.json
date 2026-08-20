@@ -1,0 +1,69 @@
+{
+  "components": {
+    "adb_scheduler": {
+      "future_used": false,
+      "status": "PASS"
+    },
+    "ekf_measurement_update": {
+      "future_used": false,
+      "status": "PASS"
+    },
+    "ekf_state_update": {
+      "future_used": false,
+      "status": "PASS"
+    },
+    "imm_fusion": {
+      "future_used": false,
+      "status": "PASS"
+    },
+    "imm_measurement_driven": {
+      "future_used": false,
+      "status": "PASS"
+    },
+    "measurement_uncertainty": {
+      "future_used": false,
+      "status": "PASS"
+    },
+    "mht_gating": {
+      "future_used": false,
+      "status": "PASS"
+    },
+    "mht_lambda": {
+      "future_used": false,
+      "status": "PASS"
+    },
+    "pcfmcw_observation": {
+      "future_used": false,
+      "status": "PASS"
+    },
+    "temporal_closed_loop": {
+      "future_used": false,
+      "status": "PASS"
+    },
+    "temporal_persistence": {
+      "future_used": false,
+      "status": "PASS"
+    }
+  },
+  "deterministic": true,
+  "future_used": false,
+  "imm_metrics": {
+    "dominant_model_distribution": {
+      "CA": 3904,
+      "CTRV": 4447,
+      "CV": 6712
+    },
+    "nonuniform_fraction": 0.490938060147381,
+    "normalized_entropy": 0.9233082895081272
+  },
+  "mht_metrics": {
+    "best_after": {
+      "CTRV": 632,
+      "CV": 1488
+    },
+    "change_rate": 0.07028301886792453,
+    "selected_lambda": 1.0
+  },
+  "sha256": "4a5bdc6b85555e04467b399e6385337cd6b2e21dd010cd36a1b71ec43e56ff02",
+  "status": "PASS"
+}

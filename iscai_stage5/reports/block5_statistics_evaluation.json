@@ -1,0 +1,74 @@
+{
+  "finite": true,
+  "future_used": false,
+  "models": [
+    "DETERMINISTIC_GRU",
+    "GAUSSIAN_GRU",
+    "GMM_cross_wait",
+    "GMM_lane_change",
+    "GMM_stop_decelerate",
+    "GMM_straight",
+    "GMM_turn"
+  ],
+  "records": 70,
+  "sha256": "f0e4f62f6ea9af54dd2c51e224def9ae1a0c2d4c873b8b3f69ec750b57a55416",
+  "statistics": {
+    "DETERMINISTIC_GRU": {
+      "count": 10,
+      "mean_uncertainty": 0.0,
+      "trajectory_length": [
+        10
+      ],
+      "uncertainty_sum": 0.0
+    },
+    "GAUSSIAN_GRU": {
+      "count": 10,
+      "mean_uncertainty": 0.19999999999999998,
+      "trajectory_length": [
+        10
+      ],
+      "uncertainty_sum": 1.9999999999999998
+    },
+    "GMM_cross_wait": {
+      "count": 10,
+      "mean_uncertainty": 0.7999999999999999,
+      "trajectory_length": [
+        10
+      ],
+      "uncertainty_sum": 7.999999999999999
+    },
+    "GMM_lane_change": {
+      "count": 10,
+      "mean_uncertainty": 0.7999999999999999,
+      "trajectory_length": [
+        10
+      ],
+      "uncertainty_sum": 7.999999999999999
+    },
+    "GMM_stop_decelerate": {
+      "count": 10,
+      "mean_uncertainty": 0.7999999999999999,
+      "trajectory_length": [
+        10
+      ],
+      "uncertainty_sum": 7.999999999999999
+    },
+    "GMM_straight": {
+      "count": 10,
+      "mean_uncertainty": 0.7999999999999999,
+      "trajectory_length": [
+        10
+      ],
+      "uncertainty_sum": 7.999999999999999
+    },
+    "GMM_turn": {
+      "count": 10,
+      "mean_uncertainty": 0.7999999999999999,
+      "trajectory_length": [
+        10
+      ],
+      "uncertainty_sum": 7.999999999999999
+    }
+  },
+  "status": "PASS"
+}

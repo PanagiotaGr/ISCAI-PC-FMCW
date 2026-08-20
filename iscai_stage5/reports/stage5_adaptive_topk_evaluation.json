@@ -1,0 +1,244 @@
+{
+  "actors": 2120,
+  "codebook_sizes": [
+    16,
+    32,
+    64
+  ],
+  "coverage_targets": [
+    0.9,
+    0.95,
+    0.975,
+    0.99
+  ],
+  "fixed_k_baselines": [
+    1,
+    3,
+    5
+  ],
+  "future_used": false,
+  "models": [
+    "CV",
+    "CA",
+    "CTRV",
+    "KALMAN"
+  ],
+  "results": {
+    "16": {
+      "adaptive": {
+        "0.9": {
+          "actors": 2120,
+          "empirical_target_success": 1.0,
+          "max_K": 1,
+          "mean_K": 1.0,
+          "mean_overhead_fraction": 0.0625,
+          "mean_selected_mass": 1.0,
+          "min_K": 1,
+          "overhead_reduction_vs_exhaustive": 0.9375,
+          "requested_mass": 0.9
+        },
+        "0.95": {
+          "actors": 2120,
+          "empirical_target_success": 1.0,
+          "max_K": 1,
+          "mean_K": 1.0,
+          "mean_overhead_fraction": 0.0625,
+          "mean_selected_mass": 1.0,
+          "min_K": 1,
+          "overhead_reduction_vs_exhaustive": 0.9375,
+          "requested_mass": 0.95
+        },
+        "0.975": {
+          "actors": 2120,
+          "empirical_target_success": 1.0,
+          "max_K": 1,
+          "mean_K": 1.0,
+          "mean_overhead_fraction": 0.0625,
+          "mean_selected_mass": 1.0,
+          "min_K": 1,
+          "overhead_reduction_vs_exhaustive": 0.9375,
+          "requested_mass": 0.975
+        },
+        "0.99": {
+          "actors": 2120,
+          "empirical_target_success": 1.0,
+          "max_K": 1,
+          "mean_K": 1.0,
+          "mean_overhead_fraction": 0.0625,
+          "mean_selected_mass": 1.0,
+          "min_K": 1,
+          "overhead_reduction_vs_exhaustive": 0.9375,
+          "requested_mass": 0.99
+        }
+      },
+      "fixed": {
+        "1": {
+          "K": 1,
+          "actors": 2120,
+          "mean_overhead_fraction": 0.0625,
+          "mean_selected_mass": 1.0,
+          "overhead_reduction_vs_exhaustive": 0.9375
+        },
+        "3": {
+          "K": 3,
+          "actors": 2120,
+          "mean_overhead_fraction": 0.1875,
+          "mean_selected_mass": 1.0,
+          "overhead_reduction_vs_exhaustive": 0.8125
+        },
+        "5": {
+          "K": 5,
+          "actors": 2120,
+          "mean_overhead_fraction": 0.3125,
+          "mean_selected_mass": 1.0,
+          "overhead_reduction_vs_exhaustive": 0.6875
+        }
+      }
+    },
+    "32": {
+      "adaptive": {
+        "0.9": {
+          "actors": 2120,
+          "empirical_target_success": 1.0,
+          "max_K": 1,
+          "mean_K": 1.0,
+          "mean_overhead_fraction": 0.03125,
+          "mean_selected_mass": 1.0,
+          "min_K": 1,
+          "overhead_reduction_vs_exhaustive": 0.96875,
+          "requested_mass": 0.9
+        },
+        "0.95": {
+          "actors": 2120,
+          "empirical_target_success": 1.0,
+          "max_K": 1,
+          "mean_K": 1.0,
+          "mean_overhead_fraction": 0.03125,
+          "mean_selected_mass": 1.0,
+          "min_K": 1,
+          "overhead_reduction_vs_exhaustive": 0.96875,
+          "requested_mass": 0.95
+        },
+        "0.975": {
+          "actors": 2120,
+          "empirical_target_success": 1.0,
+          "max_K": 1,
+          "mean_K": 1.0,
+          "mean_overhead_fraction": 0.03125,
+          "mean_selected_mass": 1.0,
+          "min_K": 1,
+          "overhead_reduction_vs_exhaustive": 0.96875,
+          "requested_mass": 0.975
+        },
+        "0.99": {
+          "actors": 2120,
+          "empirical_target_success": 1.0,
+          "max_K": 1,
+          "mean_K": 1.0,
+          "mean_overhead_fraction": 0.03125,
+          "mean_selected_mass": 1.0,
+          "min_K": 1,
+          "overhead_reduction_vs_exhaustive": 0.96875,
+          "requested_mass": 0.99
+        }
+      },
+      "fixed": {
+        "1": {
+          "K": 1,
+          "actors": 2120,
+          "mean_overhead_fraction": 0.03125,
+          "mean_selected_mass": 1.0,
+          "overhead_reduction_vs_exhaustive": 0.96875
+        },
+        "3": {
+          "K": 3,
+          "actors": 2120,
+          "mean_overhead_fraction": 0.09375,
+          "mean_selected_mass": 1.0,
+          "overhead_reduction_vs_exhaustive": 0.90625
+        },
+        "5": {
+          "K": 5,
+          "actors": 2120,
+          "mean_overhead_fraction": 0.15625,
+          "mean_selected_mass": 1.0,
+          "overhead_reduction_vs_exhaustive": 0.84375
+        }
+      }
+    },
+    "64": {
+      "adaptive": {
+        "0.9": {
+          "actors": 2120,
+          "empirical_target_success": 1.0,
+          "max_K": 1,
+          "mean_K": 1.0,
+          "mean_overhead_fraction": 0.015625,
+          "mean_selected_mass": 1.0,
+          "min_K": 1,
+          "overhead_reduction_vs_exhaustive": 0.984375,
+          "requested_mass": 0.9
+        },
+        "0.95": {
+          "actors": 2120,
+          "empirical_target_success": 1.0,
+          "max_K": 1,
+          "mean_K": 1.0,
+          "mean_overhead_fraction": 0.015625,
+          "mean_selected_mass": 1.0,
+          "min_K": 1,
+          "overhead_reduction_vs_exhaustive": 0.984375,
+          "requested_mass": 0.95
+        },
+        "0.975": {
+          "actors": 2120,
+          "empirical_target_success": 1.0,
+          "max_K": 1,
+          "mean_K": 1.0,
+          "mean_overhead_fraction": 0.015625,
+          "mean_selected_mass": 1.0,
+          "min_K": 1,
+          "overhead_reduction_vs_exhaustive": 0.984375,
+          "requested_mass": 0.975
+        },
+        "0.99": {
+          "actors": 2120,
+          "empirical_target_success": 1.0,
+          "max_K": 1,
+          "mean_K": 1.0,
+          "mean_overhead_fraction": 0.015625,
+          "mean_selected_mass": 1.0,
+          "min_K": 1,
+          "overhead_reduction_vs_exhaustive": 0.984375,
+          "requested_mass": 0.99
+        }
+      },
+      "fixed": {
+        "1": {
+          "K": 1,
+          "actors": 2120,
+          "mean_overhead_fraction": 0.015625,
+          "mean_selected_mass": 1.0,
+          "overhead_reduction_vs_exhaustive": 0.984375
+        },
+        "3": {
+          "K": 3,
+          "actors": 2120,
+          "mean_overhead_fraction": 0.046875,
+          "mean_selected_mass": 1.0,
+          "overhead_reduction_vs_exhaustive": 0.953125
+        },
+        "5": {
+          "K": 5,
+          "actors": 2120,
+          "mean_overhead_fraction": 0.078125,
+          "mean_selected_mass": 1.0,
+          "overhead_reduction_vs_exhaustive": 0.921875
+        }
+      }
+    }
+  },
+  "sha256": "8fb012a8a63b4320e72d09a07c5cefaff7def31ab4a1f9e1f22aa0c48c507074",
+  "source": "artifacts/stage5_class_aware_trajectories.json",
+  "status": "PASS"
+}

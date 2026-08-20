@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "data_source": "real_WOMD_validation",
+  "checkpoint": "/home/agni/waymo/iscai_stage4/checkpoints/stage4_auto_cuda/ALL_gaussian_h128_l1_d0.0_lr0.001_b32.pt",
+  "causal_prediction": true,
+  "future_used_as_input": false,
+  "controller_frame_interval_s": 0.1,
+  "history_steps": 10,
+  "future_steps": 10,
+  "sequences_per_class": 10,
+  "anchors_per_sequence": 20,
+  "total_sequences": 30,
+  "total_controller_frames": 600,
+  "sequence_counts": {
+    "VEHICLE": 10,
+    "PEDESTRIAN": 10,
+    "CYCLIST": 10
+  },
+  "semantics": "Each sequence contains consecutive WOMD anchor times for the same scenario/track pair. The headlamp frame and causal predictor history are rebuilt at every 100 ms anchor. Future states are not used as predictor inputs.",
+  "runtime_s": 4.475676542031579
+}

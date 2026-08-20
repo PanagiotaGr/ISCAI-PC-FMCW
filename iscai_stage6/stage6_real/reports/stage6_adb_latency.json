@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "stage": 6,
+  "data_source": "real_WOMD_validation_class_balanced",
+  "future_used_as_input": false,
+  "scope": "Measured software ADB map-generation latency only. No physical actuator latency is invented.",
+  "cohort": {
+    "relevant_actors": 167,
+    "future_states": 1670
+  },
+  "configuration": {
+    "grid": [
+      501,
+      361
+    ],
+    "mc_samples_per_state": 200,
+    "latency_gamma_operating_point": 0.25,
+    "gamma_note": "Gamma only changes thresholding cost negligibly; 0.25 is used as a representative operating point for latency measurement."
+  },
+  "latency": {
+    "deterministic_predictive_map": {
+      "samples": 1670,
+      "mean_ms": 0.2483545366847542,
+      "median_ms": 0.2447469742037356,
+      "p95_ms": 0.2684441104065627,
+      "max_ms": 0.9707369608804584
+    },
+    "uncertainty_aware_map": {
+      "samples": 1670,
+      "mean_ms": 14.125852539234733,
+      "median_ms": 13.65691953105852,
+      "p95_ms": 18.667694152100008,
+      "max_ms": 23.799768066965044
+    },
+    "class_aware_map": {
+      "samples": 1670,
+      "mean_ms": 14.868148681665856,
+      "median_ms": 14.458630990702659,
+      "p95_ms": 19.010010518832132,
+      "max_ms": 24.53951898496598
+    },
+    "constructed_oracle_reference": {
+      "samples": 1670,
+      "mean_ms": 0.2640412593383097,
+      "median_ms": 0.26135402731597424,
+      "p95_ms": 0.28646475984714925,
+      "max_ms": 0.5850159795954823
+    }
+  },
+  "actuation_latency": {
+    "status": "NOT_MEASURED",
+    "reason": "No physical ADB actuator or validated actuator timing model is available."
+  }
+}

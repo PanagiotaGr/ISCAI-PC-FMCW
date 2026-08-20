@@ -1,0 +1,1551 @@
+{
+  "status": "PASS",
+  "stage": 7,
+  "evaluation": "common_cohort_beam_management",
+  "source": "stage7_real/data/stage7_common_probabilistic_input.npz",
+  "actors": 741,
+  "future_steps": 10,
+  "evaluated_future_points": 7410,
+  "mc_samples_per_future_point": 500,
+  "seed": 42,
+  "codebooks": [
+    16,
+    32,
+    64
+  ],
+  "targets": [
+    0.9,
+    0.95,
+    0.975,
+    0.99
+  ],
+  "fixed_k": [
+    1,
+    3,
+    5
+  ],
+  "future_used_as_input": false,
+  "shared_posterior": true,
+  "adaptive_topk": [
+    {
+      "num_beams": 16,
+      "beam_width_deg": 22.5,
+      "target_mass": 0.9,
+      "selected_k": {
+        "count": 7410,
+        "mean": 1.0635627530364373,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 2.0,
+        "p99": 2.0
+      },
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.998519028340081,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "mean_overhead_fraction": 0.06647267206477733
+    },
+    {
+      "num_beams": 16,
+      "beam_width_deg": 22.5,
+      "target_mass": 0.95,
+      "selected_k": {
+        "count": 7410,
+        "mean": 1.0757085020242916,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 2.0,
+        "p99": 2.0
+      },
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9993157894736843,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "mean_overhead_fraction": 0.06723178137651822
+    },
+    {
+      "num_beams": 16,
+      "beam_width_deg": 22.5,
+      "target_mass": 0.975,
+      "selected_k": {
+        "count": 7410,
+        "mean": 1.08582995951417,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 2.0,
+        "p99": 2.0
+      },
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9996631578947369,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "mean_overhead_fraction": 0.06786437246963563
+    },
+    {
+      "num_beams": 16,
+      "beam_width_deg": 22.5,
+      "target_mass": 0.99,
+      "selected_k": {
+        "count": 7410,
+        "mean": 1.0991902834008098,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 2.0,
+        "p99": 2.0
+      },
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9998817813765182,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "mean_overhead_fraction": 0.06869939271255061
+    },
+    {
+      "num_beams": 32,
+      "beam_width_deg": 11.25,
+      "target_mass": 0.9,
+      "selected_k": {
+        "count": 7410,
+        "mean": 1.1137651821862349,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 2.0,
+        "p99": 2.0
+      },
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9969357624831309,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "mean_overhead_fraction": 0.03480516194331984
+    },
+    {
+      "num_beams": 32,
+      "beam_width_deg": 11.25,
+      "target_mass": 0.95,
+      "selected_k": {
+        "count": 7410,
+        "mean": 1.139676113360324,
+        "p50": 1.0,
+        "p90": 2.0,
+        "p95": 2.0,
+        "p99": 2.0
+      },
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9985948717948717,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "mean_overhead_fraction": 0.03561487854251012
+    },
+    {
+      "num_beams": 32,
+      "beam_width_deg": 11.25,
+      "target_mass": 0.975,
+      "selected_k": {
+        "count": 7410,
+        "mean": 1.1631578947368422,
+        "p50": 1.0,
+        "p90": 2.0,
+        "p95": 2.0,
+        "p99": 2.0
+      },
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9993605937921728,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "mean_overhead_fraction": 0.03634868421052632
+    },
+    {
+      "num_beams": 32,
+      "beam_width_deg": 11.25,
+      "target_mass": 0.99,
+      "selected_k": {
+        "count": 7410,
+        "mean": 1.189203778677463,
+        "p50": 1.0,
+        "p90": 2.0,
+        "p95": 2.0,
+        "p99": 2.0
+      },
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9997587044534414,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "mean_overhead_fraction": 0.03716261808367072
+    },
+    {
+      "num_beams": 64,
+      "beam_width_deg": 5.625,
+      "target_mass": 0.9,
+      "selected_k": {
+        "count": 7410,
+        "mean": 1.2182186234817813,
+        "p50": 1.0,
+        "p90": 2.0,
+        "p95": 2.0,
+        "p99": 3.0
+      },
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.994208636977058,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "mean_overhead_fraction": 0.019034665991902833
+    },
+    {
+      "num_beams": 64,
+      "beam_width_deg": 5.625,
+      "target_mass": 0.95,
+      "selected_k": {
+        "count": 7410,
+        "mean": 1.2697705802968962,
+        "p50": 1.0,
+        "p90": 2.0,
+        "p95": 2.0,
+        "p99": 3.0
+      },
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9973165991902834,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "mean_overhead_fraction": 0.019840165317139002
+    },
+    {
+      "num_beams": 64,
+      "beam_width_deg": 5.625,
+      "target_mass": 0.975,
+      "selected_k": {
+        "count": 7410,
+        "mean": 1.3194331983805667,
+        "p50": 1.0,
+        "p90": 2.0,
+        "p95": 2.0,
+        "p99": 4.0
+      },
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9988439946018892,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "mean_overhead_fraction": 0.020616143724696355
+    },
+    {
+      "num_beams": 64,
+      "beam_width_deg": 5.625,
+      "target_mass": 0.99,
+      "selected_k": {
+        "count": 7410,
+        "mean": 1.3680161943319837,
+        "p50": 1.0,
+        "p90": 2.0,
+        "p95": 2.0,
+        "p99": 4.0
+      },
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9995597840755736,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "mean_overhead_fraction": 0.021375253036437246
+    }
+  ],
+  "fixed_k_baselines": [
+    {
+      "num_beams": 16,
+      "beam_width_deg": 22.5,
+      "k": 1,
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9804504723346829,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "overhead_fraction": 0.0625
+    },
+    {
+      "num_beams": 16,
+      "beam_width_deg": 22.5,
+      "k": 3,
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9996612685560053,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "overhead_fraction": 0.1875
+    },
+    {
+      "num_beams": 16,
+      "beam_width_deg": 22.5,
+      "k": 5,
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9998091767881241,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "overhead_fraction": 0.3125
+    },
+    {
+      "num_beams": 32,
+      "beam_width_deg": 11.25,
+      "k": 1,
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.96698326585695,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "overhead_fraction": 0.03125
+    },
+    {
+      "num_beams": 32,
+      "beam_width_deg": 11.25,
+      "k": 3,
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9993309041835358,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "overhead_fraction": 0.09375
+    },
+    {
+      "num_beams": 32,
+      "beam_width_deg": 11.25,
+      "k": 5,
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9996205128205128,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "overhead_fraction": 0.15625
+    },
+    {
+      "num_beams": 64,
+      "beam_width_deg": 5.625,
+      "k": 1,
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.941344129554656,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "overhead_fraction": 0.015625
+    },
+    {
+      "num_beams": 64,
+      "beam_width_deg": 5.625,
+      "k": 3,
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9980731443994602,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "overhead_fraction": 0.046875
+    },
+    {
+      "num_beams": 64,
+      "beam_width_deg": 5.625,
+      "k": 5,
+      "covered_mass": {
+        "count": 7410,
+        "mean": 0.9992083670715249,
+        "p50": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "overhead_fraction": 0.078125
+    }
+  ],
+  "results_by_class": {
+    "CYCLIST": {
+      "adaptive_topk": [
+        {
+          "num_beams": 16,
+          "target_mass": 0.9,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.0635627530364373,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9978550607287451,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.06647267206477733
+        },
+        {
+          "num_beams": 16,
+          "target_mass": 0.95,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.080161943319838,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9990785425101215,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.06751012145748987
+        },
+        {
+          "num_beams": 16,
+          "target_mass": 0.975,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.091497975708502,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9995141700404859,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.06821862348178137
+        },
+        {
+          "num_beams": 16,
+          "target_mass": 0.99,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.1093117408906883,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9998331983805667,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.06933198380566802
+        },
+        {
+          "num_beams": 32,
+          "target_mass": 0.9,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.1263157894736842,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9955643724696356,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.03519736842105263
+        },
+        {
+          "num_beams": 32,
+          "target_mass": 0.95,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.1591093117408906,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.997944939271255,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.03622216599190283
+        },
+        {
+          "num_beams": 32,
+          "target_mass": 0.975,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.1902834008097165,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9991076923076923,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.03719635627530364
+        },
+        {
+          "num_beams": 32,
+          "target_mass": 0.99,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.2234817813765182,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 3.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9996801619433199,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.038233805668016194
+        },
+        {
+          "num_beams": 64,
+          "target_mass": 0.9,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.2574898785425102,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 3.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9916315789473684,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.01964827935222672
+        },
+        {
+          "num_beams": 64,
+          "target_mass": 0.95,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.3238866396761133,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 3.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9961449392712551,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.02068572874493927
+        },
+        {
+          "num_beams": 64,
+          "target_mass": 0.975,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.3870445344129554,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 4.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9983587044534412,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.021672570850202428
+        },
+        {
+          "num_beams": 64,
+          "target_mass": 0.99,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.4502024291497975,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.549999999999727,
+            "p99": 4.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9993943319838057,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.022659412955465585
+        }
+      ],
+      "fixed_k": [
+        {
+          "num_beams": 16,
+          "k": 1,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9800728744939272,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.0625
+        },
+        {
+          "num_beams": 16,
+          "k": 3,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9999975708502025,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.1875
+        },
+        {
+          "num_beams": 16,
+          "k": 5,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 1.0,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.3125
+        },
+        {
+          "num_beams": 32,
+          "k": 1,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.962072874493927,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.03125
+        },
+        {
+          "num_beams": 32,
+          "k": 3,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9998566801619432,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.09375
+        },
+        {
+          "num_beams": 32,
+          "k": 5,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9999975708502025,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.15625
+        },
+        {
+          "num_beams": 64,
+          "k": 1,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9248153846153846,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.015625
+        },
+        {
+          "num_beams": 64,
+          "k": 3,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9984145748987855,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.046875
+        },
+        {
+          "num_beams": 64,
+          "k": 5,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.999723076923077,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.078125
+        }
+      ]
+    },
+    "PEDESTRIAN": {
+      "adaptive_topk": [
+        {
+          "num_beams": 16,
+          "target_mass": 0.9,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.0214574898785425,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9989894736842105,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.0638410931174089
+        },
+        {
+          "num_beams": 16,
+          "target_mass": 0.95,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.028744939271255,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9995052631578948,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.06429655870445344
+        },
+        {
+          "num_beams": 16,
+          "target_mass": 0.975,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.0360323886639675,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.999778137651822,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.06475202429149797
+        },
+        {
+          "num_beams": 16,
+          "target_mass": 0.99,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.0445344129554657,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9999085020242915,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.0652834008097166
+        },
+        {
+          "num_beams": 32,
+          "target_mass": 0.9,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.051417004048583,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.5499999999997272,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9979441295546558,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.03285678137651822
+        },
+        {
+          "num_beams": 32,
+          "target_mass": 0.95,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.0643724696356276,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.998863967611336,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.03326163967611336
+        },
+        {
+          "num_beams": 32,
+          "target_mass": 0.975,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.0817813765182187,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9994793522267206,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.033805668016194335
+        },
+        {
+          "num_beams": 32,
+          "target_mass": 0.99,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.1,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9997765182186236,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.034375
+        },
+        {
+          "num_beams": 64,
+          "target_mass": 0.9,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.1267206477732794,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.995382995951417,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.01760501012145749
+        },
+        {
+          "num_beams": 64,
+          "target_mass": 0.95,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.1611336032388664,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9977781376518219,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.018142712550607287
+        },
+        {
+          "num_beams": 64,
+          "target_mass": 0.975,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.1963562753036436,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9990469635627529,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.018693066801619432
+        },
+        {
+          "num_beams": 64,
+          "target_mass": 0.99,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.2327935222672064,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9996137651821864,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.0192623987854251
+        }
+      ],
+      "fixed_k": [
+        {
+          "num_beams": 16,
+          "k": 1,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9927376518218624,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.0625
+        },
+        {
+          "num_beams": 16,
+          "k": 3,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9999967611336034,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.1875
+        },
+        {
+          "num_beams": 16,
+          "k": 5,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 1.0,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.3125
+        },
+        {
+          "num_beams": 32,
+          "k": 1,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9822825910931176,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.03125
+        },
+        {
+          "num_beams": 32,
+          "k": 3,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9999392712550609,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.09375
+        },
+        {
+          "num_beams": 32,
+          "k": 5,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9999991902834008,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.15625
+        },
+        {
+          "num_beams": 64,
+          "k": 1,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9603101214574901,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.015625
+        },
+        {
+          "num_beams": 64,
+          "k": 3,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9995068825910932,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.046875
+        },
+        {
+          "num_beams": 64,
+          "k": 5,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9999109311740889,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.078125
+        }
+      ]
+    },
+    "VEHICLE": {
+      "adaptive_topk": [
+        {
+          "num_beams": 16,
+          "target_mass": 0.9,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.105668016194332,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9987125506072874,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.06910425101214575
+        },
+        {
+          "num_beams": 16,
+          "target_mass": 0.95,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.1182186234817815,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9993635627530366,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.06988866396761134
+        },
+        {
+          "num_beams": 16,
+          "target_mass": 0.975,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.1299595141700405,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.999697165991903,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.07062246963562753
+        },
+        {
+          "num_beams": 16,
+          "target_mass": 0.99,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.1437246963562753,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9999036437246962,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.0714827935222672
+        },
+        {
+          "num_beams": 32,
+          "target_mass": 0.9,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.1635627530364372,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9972987854251012,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.03636133603238866
+        },
+        {
+          "num_beams": 32,
+          "target_mass": 0.95,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.1955465587044534,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 2.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9989757085020244,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.03736082995951417
+        },
+        {
+          "num_beams": 32,
+          "target_mass": 0.975,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.217408906882591,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 3.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9994947368421052,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.03804402834008097
+        },
+        {
+          "num_beams": 32,
+          "target_mass": 0.99,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.2441295546558704,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 3.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9998194331983806,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.03887904858299595
+        },
+        {
+          "num_beams": 64,
+          "target_mass": 0.9,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.2704453441295547,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 3.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9956113360323888,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.019850708502024292
+        },
+        {
+          "num_beams": 64,
+          "target_mass": 0.95,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.3242914979757086,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 4.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9980267206477733,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.020692054655870446
+        },
+        {
+          "num_beams": 64,
+          "target_mass": 0.975,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.3748987854251011,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 4.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9991263157894738,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.021482793522267205
+        },
+        {
+          "num_beams": 64,
+          "target_mass": 0.99,
+          "selected_k": {
+            "count": 2470,
+            "mean": 1.4210526315789473,
+            "p50": 1.0,
+            "p90": 2.0,
+            "p95": 2.0,
+            "p99": 5.0
+          },
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9996712550607287,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "mean_overhead_fraction": 0.022203947368421052
+        }
+      ],
+      "fixed_k": [
+        {
+          "num_beams": 16,
+          "k": 1,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.968540890688259,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.0625
+        },
+        {
+          "num_beams": 16,
+          "k": 3,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9989894736842105,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.1875
+        },
+        {
+          "num_beams": 16,
+          "k": 5,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9994275303643724,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.3125
+        },
+        {
+          "num_beams": 32,
+          "k": 1,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9565943319838055,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.03125
+        },
+        {
+          "num_beams": 32,
+          "k": 3,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9981967611336033,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.09375
+        },
+        {
+          "num_beams": 32,
+          "k": 5,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9988647773279352,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.15625
+        },
+        {
+          "num_beams": 64,
+          "k": 1,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9389068825910931,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.015625
+        },
+        {
+          "num_beams": 64,
+          "k": 3,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9962979757085021,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.046875
+        },
+        {
+          "num_beams": 64,
+          "k": 5,
+          "covered_mass": {
+            "count": 2470,
+            "mean": 0.9979910931174087,
+            "p50": 1.0,
+            "p90": 1.0,
+            "p95": 1.0,
+            "p99": 1.0
+          },
+          "overhead_fraction": 0.078125
+        }
+      ]
+    }
+  },
+  "scientific_scope": "Stage-5 Gaussian beam-probability and Top-K logic evaluated on the exact same 741-actor probabilistic cohort used by Stage-6 ADB."
+}

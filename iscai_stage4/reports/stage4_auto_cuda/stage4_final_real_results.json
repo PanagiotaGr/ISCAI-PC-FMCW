@@ -1,0 +1,215 @@
+{
+  "stage": 4,
+  "status": "COMPLETE",
+  "result_policy": "Only real WOMD trained/validation results. No heuristic or placeholder metrics.",
+  "causal_prediction": true,
+  "gaussian": {
+    "source": "reports/stage4_auto_cuda/gaussian_calibration_final_real.json",
+    "results": [
+      {
+        "label": "best_nll",
+        "name": "ALL_gaussian_h128_l1_d0.0_lr0.001_b32",
+        "checkpoint": "checkpoints/stage4_auto_cuda/ALL_gaussian_h128_l1_d0.0_lr0.001_b32.pt",
+        "real_validation_samples": 1217244,
+        "real_trajectory_points": 12172440,
+        "NLL": -2.1101187146097296,
+        "ADE": 0.480248438221332,
+        "FDE": 0.71274934789084,
+        "coverage": {
+          "50": 0.6025557735343119,
+          "80": 0.86991745286894,
+          "90": 0.9426907834419394,
+          "95": 0.9701535600093325,
+          "99": 0.9864819214553533
+        },
+        "ECE_coverage_levels": 0.047767129679834076,
+        "Brier_by_confidence_level": {
+          "50": 0.25,
+          "80": 0.11804952827863602,
+          "90": 0.05584737324644852,
+          "95": 0.02936179599160075,
+          "99": 0.013347716973753771
+        },
+        "mean_Brier": 0.0933212828980878,
+        "reliability_diagram_points": [
+          {
+            "nominal_probability": 0.5,
+            "empirical_coverage": 0.6025557735343119,
+            "calibration_error": 0.10255577353431189,
+            "absolute_error": 0.10255577353431189
+          },
+          {
+            "nominal_probability": 0.8,
+            "empirical_coverage": 0.86991745286894,
+            "calibration_error": 0.06991745286893991,
+            "absolute_error": 0.06991745286893991
+          },
+          {
+            "nominal_probability": 0.9,
+            "empirical_coverage": 0.9426907834419394,
+            "calibration_error": 0.04269078344193933,
+            "absolute_error": 0.04269078344193933
+          },
+          {
+            "nominal_probability": 0.95,
+            "empirical_coverage": 0.9701535600093325,
+            "calibration_error": 0.02015356000933255,
+            "absolute_error": 0.02015356000933255
+          },
+          {
+            "nominal_probability": 0.99,
+            "empirical_coverage": 0.9864819214553533,
+            "calibration_error": -0.0035180785446466967,
+            "absolute_error": 0.0035180785446466967
+          }
+        ],
+        "mean_std_x": 0.26537005031520294,
+        "mean_std_y": 0.35927989477575545,
+        "mean_abs_rho": 0.08240101964349991
+      },
+      {
+        "label": "best_ade",
+        "name": "ALL_gaussian_h128_l2_d0.0_lr0.001_b32",
+        "checkpoint": "checkpoints/stage4_auto_cuda/ALL_gaussian_h128_l2_d0.0_lr0.001_b32.pt",
+        "real_validation_samples": 1217244,
+        "real_trajectory_points": 12172440,
+        "NLL": -1.668498280964704,
+        "ADE": 0.27576754509092916,
+        "FDE": 0.43977687016546346,
+        "coverage": {
+          "50": 0.6400397948151726,
+          "80": 0.8894090256349589,
+          "90": 0.931992681828787,
+          "95": 0.9545178288001419,
+          "99": 0.9798816013880537
+        },
+        "ECE_coverage_levels": 0.05521554593820135,
+        "Brier_by_confidence_level": {
+          "50": 0.25,
+          "80": 0.10635458461902463,
+          "90": 0.06440585453697037,
+          "95": 0.043433954079872286,
+          "99": 0.019816030639707383
+        },
+        "mean_Brier": 0.09680208477511494,
+        "reliability_diagram_points": [
+          {
+            "nominal_probability": 0.5,
+            "empirical_coverage": 0.6400397948151726,
+            "calibration_error": 0.1400397948151726,
+            "absolute_error": 0.1400397948151726
+          },
+          {
+            "nominal_probability": 0.8,
+            "empirical_coverage": 0.8894090256349589,
+            "calibration_error": 0.0894090256349589,
+            "absolute_error": 0.0894090256349589
+          },
+          {
+            "nominal_probability": 0.9,
+            "empirical_coverage": 0.931992681828787,
+            "calibration_error": 0.031992681828787006,
+            "absolute_error": 0.031992681828787006
+          },
+          {
+            "nominal_probability": 0.95,
+            "empirical_coverage": 0.9545178288001419,
+            "calibration_error": 0.004517828800141954,
+            "absolute_error": 0.004517828800141954
+          },
+          {
+            "nominal_probability": 0.99,
+            "empirical_coverage": 0.9798816013880537,
+            "calibration_error": -0.0101183986119463,
+            "absolute_error": 0.0101183986119463
+          }
+        ],
+        "mean_std_x": 0.18405686945097138,
+        "mean_std_y": 0.2164079063155578,
+        "mean_abs_rho": 0.06788738017961879
+      },
+      {
+        "label": "best_fde",
+        "name": "ALL_gaussian_h128_l2_d0.0_lr0.001_b64",
+        "checkpoint": "checkpoints/stage4_auto_cuda/ALL_gaussian_h128_l2_d0.0_lr0.001_b64.pt",
+        "real_validation_samples": 1217244,
+        "real_trajectory_points": 12172440,
+        "NLL": -2.0529546758401764,
+        "ADE": 0.3019066134616954,
+        "FDE": 0.4228919115267128,
+        "coverage": {
+          "50": 0.6994918027938524,
+          "80": 0.9266896365888844,
+          "90": 0.9622626194912441,
+          "95": 0.9773061933351078,
+          "99": 0.9897486453003671
+        },
+        "ECE_coverage_levels": 0.08320032138174431,
+        "Brier_by_confidence_level": {
+          "50": 0.25,
+          "80": 0.08398621804666936,
+          "90": 0.040189904407004685,
+          "95": 0.022924425998402963,
+          "99": 0.010146327605640238
+        },
+        "mean_Brier": 0.08144937521154345,
+        "reliability_diagram_points": [
+          {
+            "nominal_probability": 0.5,
+            "empirical_coverage": 0.6994918027938524,
+            "calibration_error": 0.19949180279385237,
+            "absolute_error": 0.19949180279385237
+          },
+          {
+            "nominal_probability": 0.8,
+            "empirical_coverage": 0.9266896365888844,
+            "calibration_error": 0.12668963658888432,
+            "absolute_error": 0.12668963658888432
+          },
+          {
+            "nominal_probability": 0.9,
+            "empirical_coverage": 0.9622626194912441,
+            "calibration_error": 0.06226261949124412,
+            "absolute_error": 0.06226261949124412
+          },
+          {
+            "nominal_probability": 0.95,
+            "empirical_coverage": 0.9773061933351078,
+            "calibration_error": 0.027306193335107865,
+            "absolute_error": 0.027306193335107865
+          },
+          {
+            "nominal_probability": 0.99,
+            "empirical_coverage": 0.9897486453003671,
+            "calibration_error": -0.0002513546996328886,
+            "absolute_error": 0.0002513546996328886
+          }
+        ],
+        "mean_std_x": 0.1813329175255901,
+        "mean_std_y": 0.23063618337083167,
+        "mean_abs_rho": 0.0637544508096081
+      }
+    ],
+    "selection": {
+      "best_NLL": "ALL_gaussian_h128_l1_d0.0_lr0.001_b32",
+      "best_calibrated": "ALL_gaussian_h128_l1_d0.0_lr0.001_b32",
+      "best_Brier": "ALL_gaussian_h128_l2_d0.0_lr0.001_b64"
+    }
+  },
+  "gmm": {
+    "source": "reports/stage4_auto_cuda/gmm_real_training_result.json",
+    "name": "ALL_gmm_h128_l1_d0.0_lr0.001_b32_k5",
+    "data_source": "real_WOMD",
+    "modes": 5,
+    "best_epoch": 22,
+    "epochs_run": 72,
+    "metrics": {
+      "loss": -19.05726719856068,
+      "minADE": 0.49449088145338777,
+      "minFDE": 0.6394788801403989
+    },
+    "checkpoint": "checkpoints/stage4_auto_cuda/ALL_gmm_h128_l1_d0.0_lr0.001_b32_k5.pt",
+    "future_used_as_input": false
+  },
+  "generated_utc": "2026-08-19T15:31:59.797024+00:00"
+}

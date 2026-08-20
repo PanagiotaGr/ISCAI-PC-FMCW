@@ -1,0 +1,67 @@
+{
+  "block": "stage2_block3f1_deterministic_causal_multiclass_extension_discovery",
+  "found": {
+    "TYPE_CYCLIST": {
+      "actor_count_in_stage2_scene": 1,
+      "clean_valid_measurements": 8,
+      "manifest_record_index_1_based": 5,
+      "payload_length": 623593,
+      "qualifying_actor_count": 1,
+      "qualifying_tracks": {
+        "4355": 8
+      },
+      "raw_causal_actor_count": 1,
+      "record_offset": 3053612,
+      "resolved_motion_shard": "/home/agni/waymo/data/paired_womd_lidar_v1_3_0/validation/motion/paired-from-validation.tfrecord-00000-of-00150",
+      "scenario_id": "75ae707721eb23b4",
+      "selection_hash": "82916421e10cb17ff7299a6b2d1ba307eefa4ec5c18913deadaec11d964535e2",
+      "source_shard": "/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00000-of-00150"
+    },
+    "TYPE_PEDESTRIAN": {
+      "actor_count_in_stage2_scene": 4,
+      "clean_valid_measurements": 1,
+      "manifest_record_index_1_based": 9,
+      "payload_length": 1324773,
+      "qualifying_actor_count": 1,
+      "qualifying_tracks": {
+        "698": 1
+      },
+      "raw_causal_actor_count": 1,
+      "record_offset": 7300826,
+      "resolved_motion_shard": "/home/agni/waymo/data/paired_womd_lidar_v1_3_0/validation/motion/paired-from-validation.tfrecord-00000-of-00150",
+      "scenario_id": "52dafd686fe77b21",
+      "selection_hash": "7ac7593c088a8b8151f284275839c6221897995fa6a5a0cc0c959ca70685140e",
+      "source_shard": "/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00000-of-00150"
+    }
+  },
+  "last_record_index_1_based": 9,
+  "manifest": "/home/agni/waymo/iscai_data_prep/manifests/selected_validation.jsonl",
+  "manifest_selection_policy": "all_exact_matching_validation",
+  "manifest_sha256": "dc10609ef18a2ba881657eb3da3a3df7a81bdcc8345ecbc2227102ab16b8833c",
+  "measured_fmcw": false,
+  "missing": [],
+  "pipeline_candidate_scenarios_evaluated": {
+    "TYPE_CYCLIST": 1,
+    "TYPE_PEDESTRIAN": 1
+  },
+  "raw_candidate_scenarios_seen": {
+    "TYPE_CYCLIST": 1,
+    "TYPE_PEDESTRIAN": 1
+  },
+  "records_examined": 6,
+  "scan_start_record_1_based": 4,
+  "selection_semantics": {
+    "cherry_picking": false,
+    "first_qualifying_scenario_per_class": true,
+    "full_scenario_actor_presence": "not_sufficient",
+    "future_actor_states_used_for_selection": false,
+    "future_labels_used_for_selection": false,
+    "qualification": "at_least_one_stage2_clean_measurement_valid",
+    "raw_prefilter": "at_least_one_valid_state_at_or_before_anchor"
+  },
+  "status": "PASS",
+  "targets": [
+    "TYPE_PEDESTRIAN",
+    "TYPE_CYCLIST"
+  ]
+}

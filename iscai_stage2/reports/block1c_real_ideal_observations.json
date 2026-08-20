@@ -1,0 +1,56 @@
+{
+  "Ht_anchor_equals_H0": true,
+  "actor_velocity": {
+    "source": "stage1a_strict_adjacent_past_only",
+    "womd_annotated_velocity_used": false
+  },
+  "angle_source": "scene_perception_geometry",
+  "azimuth_rad": {
+    "max": 2.9589598212221473,
+    "min": -2.8255404063245595,
+    "positive_direction": "left"
+  },
+  "block": "stage2_block1c_real_ideal_observations",
+  "causal_frames": 11,
+  "class_actor_counts": {
+    "TYPE_VEHICLE": 13
+  },
+  "class_geometry_valid_records": {
+    "TYPE_VEHICLE": 97
+  },
+  "crlb_applied": false,
+  "elevation_rad": {
+    "max": 0.01347002828059734,
+    "min": -0.04829641057686441,
+    "positive_direction": "up"
+  },
+  "frame": "Ht",
+  "future_dependency": false,
+  "future_mutation_hash_identical": true,
+  "geometry_valid_records": 97,
+  "headlamp_velocity": {
+    "method": "strict_adjacent_backward_difference",
+    "t0_valid": false,
+    "valid_count": 10
+  },
+  "ideal_observation_sha256": "80013c6fd70aa84a7af9dad03cad7bc46acee291b2c95912308d2e7f3e509d86",
+  "measured_fmcw": false,
+  "radial_velocity_mps": {
+    "max": 20.145095875982314,
+    "min": -2.0673365004111552,
+    "sign_convention": "negative_approaching_positive_receding"
+  },
+  "radial_velocity_source": "geometry_derived_from_causal_womd_trajectory",
+  "radial_velocity_valid_records": 86,
+  "range_m": {
+    "max": 80.61515767940709,
+    "min": 8.890498108891725
+  },
+  "scenario_id": "b85e1bd6cc8e74c0",
+  "sensor_noise_applied": false,
+  "snr_model_applied": false,
+  "status": "PASS",
+  "target_actor_count": 13,
+  "target_policy": "all_non_sdc_actors_with_per_time_validity_masks",
+  "total_records": 143
+}

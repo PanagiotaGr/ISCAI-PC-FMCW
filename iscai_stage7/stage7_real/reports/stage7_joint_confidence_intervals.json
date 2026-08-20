@@ -1,0 +1,279 @@
+{
+  "status": "PASS",
+  "stage": 7,
+  "analysis": "actor_level_bootstrap_confidence_intervals",
+  "source": "stage7_real/data/stage7_joint_actor_metrics.npz",
+  "statistical_unit": "actor",
+  "actors": 167,
+  "bootstrap_replicates": 10000,
+  "seed": 42,
+  "confidence_level": 0.95,
+  "interval_method": "nonparametric_percentile_bootstrap",
+  "overall": {
+    "beam_mean_selected_k": {
+      "n": 167,
+      "estimate": 1.4359281427132156,
+      "bootstrap_mean": 1.435154849322042,
+      "bootstrap_std": 0.10796312446515131,
+      "ci95_low": 1.2580838353155614,
+      "ci95_high": 1.6718562855870425
+    },
+    "beam_mean_covered_mass": {
+      "n": 167,
+      "estimate": 0.9971748526224833,
+      "bootstrap_mean": 0.997172214787092,
+      "bootstrap_std": 0.00036159516140804533,
+      "ci95_low": 0.9964370963994614,
+      "ci95_high": 0.9978503007107151
+    },
+    "beam_mean_overhead_fraction": {
+      "n": 167,
+      "estimate": 0.022436377229893993,
+      "bootstrap_mean": 0.02242008606251106,
+      "bootstrap_std": 0.0016870388376547187,
+      "ci95_low": 0.01964820363659211,
+      "ci95_high": 0.026169769826741095
+    },
+    "adb_mean_iou": {
+      "n": 167,
+      "estimate": 0.8409571674412596,
+      "bootstrap_mean": 0.8409619605972737,
+      "bootstrap_std": 0.00761105656798016,
+      "ci95_low": 0.8257856555372298,
+      "ci95_high": 0.8555892659518534
+    },
+    "adb_mean_shadow_violation": {
+      "n": 167,
+      "estimate": 0.009447252115236128,
+      "bootstrap_mean": 0.009442343972692465,
+      "bootstrap_std": 0.0009144464064272899,
+      "ci95_low": 0.007718579479328337,
+      "ci95_high": 0.01126174755172433
+    },
+    "adb_mean_overmask": {
+      "n": 167,
+      "estimate": 0.005800855367503361,
+      "bootstrap_mean": 0.005802684527043646,
+      "bootstrap_std": 0.00029718784480541483,
+      "ci95_low": 0.005230318373913744,
+      "ci95_high": 0.006403111963692152
+    },
+    "adb_mean_road_retention": {
+      "n": 167,
+      "estimate": 0.9634244013689235,
+      "bootstrap_mean": 0.9634406610248687,
+      "bootstrap_std": 0.001528137660930883,
+      "ci95_low": 0.9603388840566852,
+      "ci95_high": 0.9663595653758077
+    },
+    "adb_mean_oracle_region_visibility": {
+      "n": 167,
+      "estimate": 0.24047331530935392,
+      "bootstrap_mean": 0.2404900739083211,
+      "bootstrap_std": 0.010010151643505804,
+      "ci95_low": 0.22077893171024449,
+      "ci95_high": 0.25995330025698477
+    }
+  },
+  "by_class": {
+    "CYCLIST": {
+      "beam_mean_selected_k": {
+        "n": 68,
+        "estimate": 1.3764705885859096,
+        "bootstrap_mean": 1.376837059196304,
+        "bootstrap_std": 0.05857484760671359,
+        "ci95_low": 1.2705882331904244,
+        "ci95_high": 1.4970588228281807
+      },
+      "beam_mean_covered_mass": {
+        "n": 68,
+        "estimate": 0.9963000031078563,
+        "bootstrap_mean": 0.9963066675467528,
+        "bootstrap_std": 0.0005895521603690932,
+        "ci95_low": 0.9950852980727659,
+        "ci95_high": 0.9974058840423823
+      },
+      "beam_mean_overhead_fraction": {
+        "n": 68,
+        "estimate": 0.02150735294665484,
+        "bootstrap_mean": 0.02149716452729669,
+        "bootstrap_std": 0.0009110010824305943,
+        "ci95_low": 0.019806985304389586,
+        "ci95_high": 0.023391544025199596
+      },
+      "adb_mean_iou": {
+        "n": 68,
+        "estimate": 0.7647558862672132,
+        "bootstrap_mean": 0.7647555608990437,
+        "bootstrap_std": 0.008284566779756369,
+        "ci95_low": 0.7483233825467965,
+        "ci95_high": 0.7807694427888182
+      },
+      "adb_mean_shadow_violation": {
+        "n": 68,
+        "estimate": 0.013955290508045651,
+        "bootstrap_mean": 0.013937140097715359,
+        "bootstrap_std": 0.0016844488614976534,
+        "ci95_low": 0.010737389229710542,
+        "ci95_high": 0.017341126432353016
+      },
+      "adb_mean_overmask": {
+        "n": 68,
+        "estimate": 0.008992004581480561,
+        "bootstrap_mean": 0.008990409482223913,
+        "bootstrap_std": 0.000328997648625342,
+        "ci95_low": 0.008343309681325028,
+        "ci95_high": 0.00963331908090314
+      },
+      "adb_mean_road_retention": {
+        "n": 68,
+        "estimate": 0.9659132878569996,
+        "bootstrap_mean": 0.9659313807045713,
+        "bootstrap_std": 0.001583683435797936,
+        "ci95_low": 0.9627462186576689,
+        "ci95_high": 0.96886522403973
+      },
+      "adb_mean_oracle_region_visibility": {
+        "n": 68,
+        "estimate": 0.2810284223626642,
+        "bootstrap_mean": 0.28101571459038294,
+        "bootstrap_std": 0.008120363863080385,
+        "ci95_low": 0.26929591350695664,
+        "ci95_high": 0.29993399198660076
+      }
+    },
+    "PEDESTRIAN": {
+      "beam_mean_selected_k": {
+        "n": 52,
+        "estimate": 1.1442307692307692,
+        "bootstrap_mean": 1.1437286538124085,
+        "bootstrap_std": 0.037601841360327945,
+        "ci95_low": 1.0768749956901258,
+        "ci95_high": 1.2230769235354204
+      },
+      "beam_mean_covered_mass": {
+        "n": 52,
+        "estimate": 0.9984576931366553,
+        "bootstrap_mean": 0.998457280041392,
+        "bootstrap_std": 0.0005363730954934169,
+        "ci95_low": 0.9972692337460243,
+        "ci95_high": 0.9993577906718621
+      },
+      "beam_mean_overhead_fraction": {
+        "n": 52,
+        "estimate": 0.017878605769230768,
+        "bootstrap_mean": 0.017873798076615023,
+        "bootstrap_std": 0.0005954231389099097,
+        "ci95_low": 0.016796875064476177,
+        "ci95_high": 0.019110576930240944
+      },
+      "adb_mean_iou": {
+        "n": 52,
+        "estimate": 0.8530113674127139,
+        "bootstrap_mean": 0.8529046266791913,
+        "bootstrap_std": 0.005321208479519559,
+        "ci95_low": 0.8419253929303242,
+        "ci95_high": 0.8627261661566221
+      },
+      "adb_mean_shadow_violation": {
+        "n": 52,
+        "estimate": 0.004654023276368837,
+        "bootstrap_mean": 0.0046658721022326335,
+        "bootstrap_std": 0.0005517731796941372,
+        "ci95_low": 0.0036391664142893907,
+        "ci95_high": 0.005795148250623382
+      },
+      "adb_mean_overmask": {
+        "n": 52,
+        "estimate": 0.004530444747965353,
+        "bootstrap_mean": 0.004533091031044695,
+        "bootstrap_std": 0.00015208477358218608,
+        "ci95_low": 0.004229032090706124,
+        "ci95_high": 0.004820792570815404
+      },
+      "adb_mean_road_retention": {
+        "n": 52,
+        "estimate": 0.9777766259816977,
+        "bootstrap_mean": 0.9777970633802506,
+        "bootstrap_std": 0.0008066911343133765,
+        "ci95_low": 0.9761208205268933,
+        "ci95_high": 0.979278896147242
+      },
+      "adb_mean_oracle_region_visibility": {
+        "n": 52,
+        "estimate": 0.3554983219275108,
+        "bootstrap_mean": 0.35549778242082547,
+        "bootstrap_std": 0.00036442791980683986,
+        "ci95_low": 0.3548061422430552,
+        "ci95_high": 0.3562314538571697
+      }
+    },
+    "VEHICLE": {
+      "beam_mean_selected_k": {
+        "n": 47,
+        "estimate": 1.8446808470056413,
+        "bootstrap_mean": 1.8427944641082845,
+        "bootstrap_std": 0.3656397974524391,
+        "ci95_low": 1.2553191488727609,
+        "ci95_high": 2.657446808003365
+      },
+      "beam_mean_covered_mass": {
+        "n": 47,
+        "estimate": 0.9970212794364767,
+        "bootstrap_mean": 0.997022588416617,
+        "bootstrap_std": 0.0007150070069251435,
+        "ci95_low": 0.9955021319871253,
+        "ci95_high": 0.9983191515854065
+      },
+      "beam_mean_overhead_fraction": {
+        "n": 47,
+        "estimate": 0.028823138234463145,
+        "bootstrap_mean": 0.02876971735694307,
+        "bootstrap_std": 0.005792372126762785,
+        "ci95_low": 0.01961436170113689,
+        "ci95_high": 0.04182263979529762
+      },
+      "adb_mean_iou": {
+        "n": 47,
+        "estimate": 0.9378692678948666,
+        "bootstrap_mean": 0.9379562586868063,
+        "bootstrap_std": 0.013432451009679661,
+        "ci95_low": 0.9086496600603803,
+        "ci95_high": 0.961140570012813
+      },
+      "adb_mean_shadow_violation": {
+        "n": 47,
+        "estimate": 0.008228130602684031,
+        "bootstrap_mean": 0.008206222567887124,
+        "bootstrap_std": 0.0016722630125861379,
+        "ci95_low": 0.005374534668381069,
+        "ci95_high": 0.011820039435127562
+      },
+      "adb_mean_overmask": {
+        "n": 47,
+        "estimate": 0.002589434211450738,
+        "bootstrap_mean": 0.0025910726791453778,
+        "bootstrap_std": 0.0005015040127030933,
+        "ci95_low": 0.0016882866606194628,
+        "ci95_high": 0.0036688755267490743
+      },
+      "adb_mean_road_retention": {
+        "n": 47,
+        "estimate": 0.943944402197574,
+        "bootstrap_mean": 0.9439192381097915,
+        "bootstrap_std": 0.003213011973051719,
+        "ci95_low": 0.9374081631924244,
+        "ci95_high": 0.949894742033583
+      },
+      "adb_mean_oracle_region_visibility": {
+        "n": 47,
+        "estimate": 0.054536131824901767,
+        "bootstrap_mean": 0.05460184052082452,
+        "bootstrap_std": 0.005943661194396134,
+        "ci95_low": 0.04424513713654844,
+        "ci95_high": 0.06759443423671133
+      }
+    }
+  },
+  "scientific_scope": "Confidence intervals are estimated by nonparametric actor-level bootstrap. All ten future horizons belonging to an actor are first aggregated into the actor metric, preventing individual future steps from being treated as independent samples."
+}

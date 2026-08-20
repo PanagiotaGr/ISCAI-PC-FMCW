@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "stage": 7,
+  "source": "/home/agni/waymo/iscai_stage6/stage6_real/data/real_stage6_predictions_balanced.npz",
+  "current_geometry_source": "/home/agni/waymo/iscai_stage6/stage6_real/data/real_stage6_oracle_future_boxes.npz",
+  "current_geometry_role": "Causal current actor center only; future oracle geometry is not used as predictor/controller input.",
+  "actors": 741,
+  "future_steps": 10,
+  "class_counts": {
+    "CYCLIST": 247,
+    "PEDESTRIAN": 247,
+    "VEHICLE": 247
+  },
+  "coordinate_frame": "Stage-6 H0 anchor headlamp frame",
+  "probabilistic_representation": {
+    "mean": "[actor, future_step, xy]",
+    "std": "[actor, future_step, xy]",
+    "rho": "[actor, future_step]"
+  },
+  "scientific_role": "Common actor-level probabilistic input for Stage-7 joint communication and illumination evaluation.",
+  "future_used_as_predictor_input": false,
+  "output": "stage7_real/data/stage7_common_probabilistic_input.npz"
+}

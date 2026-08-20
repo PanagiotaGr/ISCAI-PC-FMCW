@@ -1,0 +1,45 @@
+{
+  "status": "PASS_WITH_OPTICAL_PENDING",
+  "data_source": "real_WOMD_validation",
+  "checkpoint": "/home/agni/waymo/iscai_stage4/checkpoints/stage4_auto_cuda/ALL_gaussian_h128_l1_d0.0_lr0.001_b32.pt",
+  "future_used_as_input": false,
+  "processed_trajectories": 500,
+  "future_point_evaluations": 5000,
+  "latency": {
+    "dataset_loading_sec": 1.9074787959689274,
+    "predictor_inference_mean_ms_per_batch": 10.256088731694035,
+    "predictor_inference_p95_ms_per_batch": 51.9574845267925,
+    "beam_selection_mean_ms_per_future_point": 0.012981458730064333,
+    "beam_selection_p95_ms_per_future_point": 0.015662499936297536
+  },
+  "adaptive_topk": {
+    "target_mass": 0.95,
+    "mean_selected_K": 2.3952,
+    "median_selected_K": 1.0,
+    "mean_covered_mass": 0.9972840000000001
+  },
+  "fallback": {
+    "counts": {
+      "adaptive": 477,
+      "previous_beam_persistence": 4430,
+      "widened_fallback": 0,
+      "loss_of_lock_exhaustive": 93
+    },
+    "policy": {
+      "max_active_beams": 5,
+      "loss_of_lock_threshold": 0.95,
+      "previous_beam_persistence": true
+    }
+  },
+  "part_a_reference": {
+    "carrier_frequency_hz": 193400000000000.0,
+    "bandwidth_hz": 10000000000.0,
+    "data_rate_bps": 1000000000.0,
+    "wavelength_m": 1.5501161220268872e-06
+  },
+  "optical_evaluation": {
+    "semantics": "NON_FINAL PROXY ONLY. Not a physical optical link-budget result. Ptx, receiver responsivity and physical noise-density model are not currently documented.",
+    "mean_effective_rate_bps": 785027141.8749834,
+    "mean_effective_rate_fraction_of_1Gbps": 0.7850271418749835
+  }
+}

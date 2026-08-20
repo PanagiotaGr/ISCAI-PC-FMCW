@@ -1,0 +1,140 @@
+{
+  "status": "PASS",
+  "stage": 7,
+  "sweep": "stale_posterior_latency",
+  "source": "/home/agni/waymo/iscai_stage6/stage6_real/data/real_stage6_predictions_rolling.npz",
+  "controller_dt_s": 0.1,
+  "delay_frames": [
+    0,
+    1,
+    2,
+    3,
+    5
+  ],
+  "delay_ms": [
+    0,
+    100,
+    200,
+    300,
+    500
+  ],
+  "communication_policy": {
+    "num_beams": 64,
+    "target_mass": 0.95
+  },
+  "frame_transform": "Each stale posterior is transformed from its original headlamp frame via world coordinates into the current headlamp frame. Gaussian covariance is rotated consistently.",
+  "physical_actuator_latency_measured": false,
+  "scientific_scope": "This sweep measures algorithmic stale-posterior effects for controller delays. It is not a measurement of physical headlamp actuation latency.",
+  "results": [
+    {
+      "delay_frames": 0,
+      "delay_ms": 0.0,
+      "evaluated_states": 600,
+      "communication": {
+        "num_beams": 64,
+        "target_mass": 0.95,
+        "selected_k": {
+          "count": 600,
+          "mean": 1.1,
+          "p50": 1.0,
+          "p95": 2.0
+        },
+        "covered_mass": {
+          "count": 600,
+          "mean": 0.99903,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "mean_overhead_fraction": 0.0171875
+      }
+    },
+    {
+      "delay_frames": 1,
+      "delay_ms": 100.0,
+      "evaluated_states": 570,
+      "communication": {
+        "num_beams": 64,
+        "target_mass": 0.95,
+        "selected_k": {
+          "count": 570,
+          "mean": 1.0912280701754387,
+          "p50": 1.0,
+          "p95": 2.0
+        },
+        "covered_mass": {
+          "count": 570,
+          "mean": 0.9992771929824561,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "mean_overhead_fraction": 0.01705043859649123
+      }
+    },
+    {
+      "delay_frames": 2,
+      "delay_ms": 200.0,
+      "evaluated_states": 540,
+      "communication": {
+        "num_beams": 64,
+        "target_mass": 0.95,
+        "selected_k": {
+          "count": 540,
+          "mean": 1.0833333333333333,
+          "p50": 1.0,
+          "p95": 2.0
+        },
+        "covered_mass": {
+          "count": 540,
+          "mean": 0.9992037037037036,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "mean_overhead_fraction": 0.016927083333333332
+      }
+    },
+    {
+      "delay_frames": 3,
+      "delay_ms": 300.00000000000006,
+      "evaluated_states": 510,
+      "communication": {
+        "num_beams": 64,
+        "target_mass": 0.95,
+        "selected_k": {
+          "count": 510,
+          "mean": 1.0862745098039215,
+          "p50": 1.0,
+          "p95": 2.0
+        },
+        "covered_mass": {
+          "count": 510,
+          "mean": 0.9992509803921569,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "mean_overhead_fraction": 0.016973039215686273
+      }
+    },
+    {
+      "delay_frames": 5,
+      "delay_ms": 500.0,
+      "evaluated_states": 450,
+      "communication": {
+        "num_beams": 64,
+        "target_mass": 0.95,
+        "selected_k": {
+          "count": 450,
+          "mean": 1.068888888888889,
+          "p50": 1.0,
+          "p95": 2.0
+        },
+        "covered_mass": {
+          "count": 450,
+          "mean": 0.9992622222222223,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "mean_overhead_fraction": 0.01670138888888889
+      }
+    }
+  ]
+}

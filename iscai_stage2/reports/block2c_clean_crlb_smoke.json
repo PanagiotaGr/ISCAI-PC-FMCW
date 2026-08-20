@@ -1,0 +1,35 @@
+{
+  "angular_uncertainty": {
+    "azimuth_std_deg": 1.0,
+    "elevation_std_deg": 1.0,
+    "source": "explicit_stage2_assumption"
+  },
+  "block": "stage2_block2c_clean_crlb_conditioned",
+  "clean_scene_sha256": "54aae27e6b0834302e9c205b82b117e2c9e4a35689ad8715c4683bc1f6f4d930",
+  "crlb": {
+    "radial_velocity_std_mps": 2.9507338424929555e-06,
+    "range_std_m": 3.6523003208840815e-05,
+    "source": "frozen_part_a_eq7"
+  },
+  "false_alarms_applied": false,
+  "future_dependency": false,
+  "future_mutation_hash_identical": true,
+  "measured_fmcw": false,
+  "measurement_covariance_attached": true,
+  "missed_detections_applied": false,
+  "mode": "clean_crlb_conditioned",
+  "noise_applied": false,
+  "records": {
+    "invalid_geometry": 46,
+    "invalid_radial_velocity": 11,
+    "total": 143,
+    "valid_measurements": 86
+  },
+  "scenario_id": "b85e1bd6cc8e74c0",
+  "sensing_snr": {
+    "model": "fixed_snr",
+    "semantics": "explicit_experimental_baseline_not_physical_per_actor_snr_claim",
+    "snr_db": 20.0
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,49 @@
+{
+  "algorithm_detection_count": 57,
+  "algorithm_input": {
+    "object_class_present": false,
+    "track_id_present": false,
+    "truth_source_present": false,
+    "unlabeled": true
+  },
+  "algorithm_sha256": "c1d983bd8a143e51308078ddf4e09c60db8e1a08d008d22bf1b83dac7e70e58b",
+  "block": "stage2_block3d_real_degraded_scene",
+  "causal_frames": 11,
+  "clean_upstream_valid": 86,
+  "detection_model": {
+    "current_fixed_snr_pd": 0.5,
+    "enabled": true,
+    "model": "logistic_pd_from_sensing_snr",
+    "pd_ceiling": 0.95,
+    "pd_floor": 0.05,
+    "seed": 20260811,
+    "semantics": "controlled_stage2_degraded_smoke_not_calibrated_part_a_pd",
+    "snr_midpoint_db": 20.0,
+    "transition_width_db": 2.0
+  },
+  "false_alarm_model": {
+    "enabled": true,
+    "mean_per_frame": 2.0,
+    "model": "poisson_uniform_measurement_volume_v1",
+    "seed": 20260812,
+    "semantics": "configurable_stage2_degraded_assumption_not_part_a_cfar_calibration"
+  },
+  "false_alarms": 20,
+  "future_dependency": false,
+  "future_mutation_hash_identical": true,
+  "gaussian_noise": {
+    "enabled": true,
+    "seed": 20260810,
+    "source": "same_measurement_covariance_R"
+  },
+  "measured_fmcw": false,
+  "missed_detections": 49,
+  "reproducible": true,
+  "scenario_id": "b85e1bd6cc8e74c0",
+  "status": "PASS",
+  "true_detections": 37,
+  "truth_sha256": "14f0424820e0dc5da690d357d10ad117473c6c24052673265950a9294650c797",
+  "truth_sidecar": {
+    "evaluator_only": true
+  }
+}

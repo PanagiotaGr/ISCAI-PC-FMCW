@@ -1,0 +1,129 @@
+{
+  "status": "PASS",
+  "stage": 7,
+  "sweep": "predictive_uncertainty_scale",
+  "shared_posterior": true,
+  "joint_relevant_actors": 167,
+  "future_points": 1670,
+  "uncertainty_scales": [
+    0.5,
+    0.75,
+    1.0,
+    1.25,
+    1.5,
+    2.0
+  ],
+  "fixed_communication_policy": {
+    "num_beams": 64,
+    "target_mass": 0.95
+  },
+  "fixed_adb_policy": {
+    "type": "class_aware",
+    "gamma": 0.25
+  },
+  "results": [
+    {
+      "uncertainty_scale": 0.5,
+      "communication": {
+        "num_beams": 64,
+        "target_mass": 0.95,
+        "mean_selected_k": 1.2455089820359282,
+        "mean_covered_mass": 0.9981437125748504,
+        "mean_overhead_fraction": 0.019461077844311378
+      },
+      "illumination": {
+        "gamma": 0.25,
+        "mean_iou": 0.8525640655916672,
+        "mean_shadow_violation": 0.010282867986822772,
+        "mean_overmask": 0.005159720534381996,
+        "mean_road_retention": 0.9639666999528508
+      }
+    },
+    {
+      "uncertainty_scale": 0.75,
+      "communication": {
+        "num_beams": 64,
+        "target_mass": 0.95,
+        "mean_selected_k": 1.3497005988023951,
+        "mean_covered_mass": 0.9977461077844311,
+        "mean_overhead_fraction": 0.021089071856287424
+      },
+      "illumination": {
+        "gamma": 0.25,
+        "mean_iou": 0.8468091812690597,
+        "mean_shadow_violation": 0.009745300617376124,
+        "mean_overmask": 0.005478998378580804,
+        "mean_road_retention": 0.9636932742095993
+      }
+    },
+    {
+      "uncertainty_scale": 1.0,
+      "communication": {
+        "num_beams": 64,
+        "target_mass": 0.95,
+        "mean_selected_k": 1.441317365269461,
+        "mean_covered_mass": 0.9971688622754491,
+        "mean_overhead_fraction": 0.02252058383233533
+      },
+      "illumination": {
+        "gamma": 0.25,
+        "mean_iou": 0.841102515908293,
+        "mean_shadow_violation": 0.009382485825225181,
+        "mean_overmask": 0.00580010711901789,
+        "mean_road_retention": 0.9634220619401532
+      }
+    },
+    {
+      "uncertainty_scale": 1.25,
+      "communication": {
+        "num_beams": 64,
+        "target_mass": 0.95,
+        "mean_selected_k": 1.5233532934131737,
+        "mean_covered_mass": 0.9962706586826346,
+        "mean_overhead_fraction": 0.02380239520958084
+      },
+      "illumination": {
+        "gamma": 0.25,
+        "mean_iou": 0.8346231294869706,
+        "mean_shadow_violation": 0.00915424313097148,
+        "mean_overmask": 0.006127807748081392,
+        "mean_road_retention": 0.9631516933084248
+      }
+    },
+    {
+      "uncertainty_scale": 1.5,
+      "communication": {
+        "num_beams": 64,
+        "target_mass": 0.95,
+        "mean_selected_k": 1.6209580838323354,
+        "mean_covered_mass": 0.9958335329341317,
+        "mean_overhead_fraction": 0.02532747005988024
+      },
+      "illumination": {
+        "gamma": 0.25,
+        "mean_iou": 0.8290861285286883,
+        "mean_shadow_violation": 0.009042622423391546,
+        "mean_overmask": 0.0064451520599056,
+        "mean_road_retention": 0.9628939796350673
+      }
+    },
+    {
+      "uncertainty_scale": 2.0,
+      "communication": {
+        "num_beams": 64,
+        "target_mass": 0.95,
+        "mean_selected_k": 1.7898203592814372,
+        "mean_covered_mass": 0.9943005988023952,
+        "mean_overhead_fraction": 0.027965943113772457
+      },
+      "illumination": {
+        "gamma": 0.25,
+        "mean_iou": 0.8177158840550725,
+        "mean_shadow_violation": 0.008821856571514849,
+        "mean_overmask": 0.007075215435733273,
+        "mean_road_retention": 0.9623856460262915
+      }
+    }
+  ],
+  "scientific_scope": "Only predicted Gaussian standard deviations are scaled. Predicted means, correlations, actor cohort, communication policy and ADB gamma remain fixed."
+}

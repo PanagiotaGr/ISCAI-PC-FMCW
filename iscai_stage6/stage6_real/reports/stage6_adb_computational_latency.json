@@ -1,0 +1,86 @@
+{
+  "benchmark_semantics": "software_computational_latency_only",
+  "physical_actuator_latency_measured": false,
+  "model_inference_included": false,
+  "disk_io_included": false,
+  "timing_unit": "milliseconds",
+  "timer": "time.perf_counter_ns",
+  "actors_total": 741,
+  "actors_evaluated": 167,
+  "states_evaluated": 1670,
+  "future_horizons": 10,
+  "mc_samples": 200,
+  "grid_shape": [
+    501,
+    361
+  ],
+  "representative_gamma": 0.25,
+  "latency": {
+    "deterministic_future_box_to_adb": {
+      "n": 1670,
+      "mean_ms": 0.22657531017964072,
+      "median_ms": 0.2248425,
+      "p95_ms": 0.24380580000000002,
+      "p99_ms": 0.31189382999999987,
+      "min_ms": 0.085479,
+      "max_ms": 0.558615
+    },
+    "probabilistic_occupancy": {
+      "n": 1670,
+      "mean_ms": 14.874802105988024,
+      "median_ms": 14.485249499999998,
+      "p95_ms": 18.83088775,
+      "p99_ms": 21.381004519999998,
+      "min_ms": 6.44826,
+      "max_ms": 25.338691
+    },
+    "class_aware_policy": {
+      "n": 1670,
+      "mean_ms": 0.14487641616766467,
+      "median_ms": 0.142774,
+      "p95_ms": 0.1554473,
+      "p99_ms": 0.1953872699999999,
+      "min_ms": 0.099819,
+      "max_ms": 0.807887
+    },
+    "software_adb_generation": {
+      "n": 1670,
+      "mean_ms": 15.24625383233533,
+      "median_ms": 14.857976,
+      "p95_ms": 19.2189885,
+      "p99_ms": 21.773025060000002,
+      "min_ms": 6.635696,
+      "max_ms": 25.752726
+    }
+  },
+  "software_adb_generation_by_class": {
+    "VEHICLE": {
+      "n": 470,
+      "mean_ms": 16.67152416382979,
+      "median_ms": 16.0909755,
+      "p95_ms": 21.40869359999999,
+      "p99_ms": 23.0904151,
+      "min_ms": 7.06181,
+      "max_ms": 25.752726
+    },
+    "PEDESTRIAN": {
+      "n": 520,
+      "mean_ms": 14.045243632692308,
+      "median_ms": 14.0022485,
+      "p95_ms": 16.0712448,
+      "p99_ms": 18.183071249999973,
+      "min_ms": 10.002822,
+      "max_ms": 18.973277
+    },
+    "CYCLIST": {
+      "n": 680,
+      "mean_ms": 15.179560079411765,
+      "median_ms": 15.141186,
+      "p95_ms": 18.277601149999995,
+      "p99_ms": 20.43648743,
+      "min_ms": 6.635696,
+      "max_ms": 25.622253999999998
+    }
+  },
+  "interpretation": "Measured latency covers only the Stage-6 software ADB-map generation path from already available probabilistic predictions. It does not measure prediction-model inference, sensor latency, communication latency, headlamp ECU latency, LED/optical response, or any physical actuator latency."
+}

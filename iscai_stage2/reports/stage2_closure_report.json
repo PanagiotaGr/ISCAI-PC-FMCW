@@ -1,0 +1,183 @@
+{
+  "degraded_smoke": {
+    "algorithm_detections": 57,
+    "false_alarms": 20,
+    "missed_detections": 49,
+    "true_detections": 37
+  },
+  "frozen_extension": {
+    "TYPE_CYCLIST": {
+      "manifest_index_1_based": 5,
+      "scenario_id": "75ae707721eb23b4"
+    },
+    "TYPE_PEDESTRIAN": {
+      "manifest_index_1_based": 9,
+      "scenario_id": "52dafd686fe77b21"
+    }
+  },
+  "frozen_semantics": {
+    "angular_covariance": "explicit_stage2_angular_uncertainty_model",
+    "clean_mode": "no_noise_no_misses_no_false_alarms",
+    "degraded_mode": "gaussian_noise_plus_misses_plus_false_alarms",
+    "measured_fmcw": false,
+    "measurement_uncertainty_separate_from_predictive_uncertainty": true,
+    "radial_velocity_source": "geometry_derived_from_causal_womd_trajectory_not_measured_pointwise_lidar_doppler",
+    "range_velocity_covariance": "frozen_part_a_eq7_crlb_conditioned_on_stage2_sensing_snr",
+    "truth_sidecar": "evaluator_only_not_algorithm_input",
+    "womd_lidar_is_measured_fmcw": false
+  },
+  "gates": {
+    "algorithm_truth_leakage": false,
+    "cherry_picking": false,
+    "clean_crlb_conditioned_mode": true,
+    "crlb_snr_scaling": true,
+    "cyclist_pipeline_coverage": true,
+    "degraded_real_scene_smoke": true,
+    "deterministic_multiclass_extension": true,
+    "false_alarms_clutter": true,
+    "future_label_selection": false,
+    "future_state_selection": false,
+    "gaussian_measurement_corruption": true,
+    "measurement_covariance_mc_consistency": true,
+    "missed_detections": true,
+    "pedestrian_pipeline_coverage": true,
+    "real_womd_ideal_observations": true,
+    "snr_dependent_detection_probability": true,
+    "unlabeled_algorithm_detection_interface": true,
+    "vehicle_pipeline_coverage": true
+  },
+  "implementation_freeze": {
+    "file_count": 39,
+    "files": [
+      "README.md",
+      "pyproject.toml",
+      "scripts/discover_stage2_multiclass_extension.py",
+      "scripts/run_stage2_clean_crlb_smoke.py",
+      "scripts/run_stage2_closure.py",
+      "scripts/run_stage2_degraded_scene_smoke.py",
+      "scripts/run_stage2_final_multiclass_gate.py",
+      "scripts/run_stage2_measurement_mc_gate.py",
+      "scripts/run_stage2_multiclass_pilot_gate.py",
+      "scripts/run_stage2_real_ideal_observation_smoke.py",
+      "src/iscai_stage2/__init__.py",
+      "src/iscai_stage2/observations/__init__.py",
+      "src/iscai_stage2/observations/clean_measurement.py",
+      "src/iscai_stage2/observations/clean_scene.py",
+      "src/iscai_stage2/observations/contracts.py",
+      "src/iscai_stage2/observations/degraded_scene.py",
+      "src/iscai_stage2/observations/detection.py",
+      "src/iscai_stage2/observations/detection_set.py",
+      "src/iscai_stage2/observations/gaussian_corruption.py",
+      "src/iscai_stage2/observations/ideal.py",
+      "src/iscai_stage2/observations/womd_ideal_adapter.py",
+      "src/iscai_stage2/pc_fmcw/__init__.py",
+      "src/iscai_stage2/pc_fmcw/covariance.py",
+      "src/iscai_stage2/pc_fmcw/crlb.py",
+      "src/iscai_stage2/pc_fmcw/reference.py",
+      "src/iscai_stage2/pc_fmcw/sensing_snr.py",
+      "src/iscai_stage2/pc_fmcw/snr.py",
+      "src/iscai_stage2/validation/__init__.py",
+      "src/iscai_stage2/validation/measurement_mc.py",
+      "tests/test_clean_measurement.py",
+      "tests/test_degraded_scene.py",
+      "tests/test_detection.py",
+      "tests/test_detection_set.py",
+      "tests/test_gaussian_corruption.py",
+      "tests/test_ideal_observations.py",
+      "tests/test_measurement_mc.py",
+      "tests/test_observation_contracts.py",
+      "tests/test_part_a_pc_fmcw_physics.py",
+      "tests/test_sensing_snr.py"
+    ],
+    "sha256": "d1ab20da1154e376024efb0a7145b68b11087e2fc8b293a8c3a2f2caaca18b68"
+  },
+  "limitations": [
+    "Part-A CRLB range/velocity covariance is a lower-bound baseline, not a claim of calibrated real automotive optical-sensor measurement error.",
+    "The fixed-SNR, detection-probability and false-alarm parameters used in smoke gates are controlled explicit Stage-2 assumptions, not Part-A measurements or calibrated CFAR parameters.",
+    "The multiclass gate establishes pipeline/interface coverage only. In particular, TYPE_PEDESTRIAN has one clean-valid measurement in the deterministic extension and therefore does not constitute statistical pedestrian performance validation.",
+    "WOMD-LiDAR is not FMCW and supplies no measured point-wise Doppler/radial velocity."
+  ],
+  "measurement_mc": {
+    "crlb_snr_scaling_verified": true,
+    "samples_per_snr": 30000,
+    "snr_values_db": [
+      0.0,
+      10.0,
+      20.0
+    ]
+  },
+  "multiclass_coverage": {
+    "TYPE_CYCLIST": {
+      "causal_actors": 3,
+      "clean_valid_measurements": 17,
+      "degraded_true_measurements": 17,
+      "pass": true
+    },
+    "TYPE_PEDESTRIAN": {
+      "causal_actors": 1,
+      "clean_valid_measurements": 1,
+      "degraded_true_measurements": 1,
+      "pass": true
+    },
+    "TYPE_VEHICLE": {
+      "causal_actors": 171,
+      "clean_valid_measurements": 1434,
+      "degraded_true_measurements": 1434,
+      "pass": true
+    }
+  },
+  "next_stage": "Stage 3 classical forecasting baselines using the common Stage-2 observation interface",
+  "regression": {
+    "stage1_tests": {
+      "status": "PASS",
+      "tests": 52
+    },
+    "stage2_tests": {
+      "status": "PASS",
+      "tests": 83
+    }
+  },
+  "required_gate_reports": {
+    "block1c_real_ideal_observations": {
+      "path": "/home/agni/waymo/iscai_stage2/reports/block1c_real_ideal_observations.json",
+      "sha256": "6bc0b042eb9c61449e71283a4e19fd09d1b5ab89121c5d28412bdbf5037f3123",
+      "status": "PASS"
+    },
+    "block2c_clean_crlb_smoke": {
+      "path": "/home/agni/waymo/iscai_stage2/reports/block2c_clean_crlb_smoke.json",
+      "sha256": "2de3114e0f24c788634ca4fda3db573e6aa56e9dbbf037fa673e881674fc3a1b",
+      "status": "PASS"
+    },
+    "block3d_degraded_scene_smoke": {
+      "path": "/home/agni/waymo/iscai_stage2/reports/block3d_degraded_scene_smoke.json",
+      "sha256": "6b28c5637f7782e2a18192ff8fdc912cd51e682ecb010e4e344db472db877c0a",
+      "status": "PASS"
+    },
+    "block3e_measurement_mc_gate": {
+      "path": "/home/agni/waymo/iscai_stage2/reports/block3e_measurement_mc_gate.json",
+      "sha256": "1a6f42841661a6061f66955b6ecf83a65461211a0bc39f3e690306e02a050922",
+      "status": "PASS"
+    },
+    "block3f1_multiclass_extension_discovery": {
+      "path": "/home/agni/waymo/iscai_stage2/reports/block3f1_multiclass_extension_discovery.json",
+      "sha256": "5a69589f0b5766e6c114138bb93d2af5081d1b3704103878b09d200847c0087c",
+      "status": "PASS"
+    },
+    "block3f_final_multiclass_coverage": {
+      "path": "/home/agni/waymo/iscai_stage2/reports/block3f_final_multiclass_coverage_gate.json",
+      "sha256": "338f176d26d68865d036a5a1dce2807cef2e49d5ca2f1ae91b9296d3d93c1dcd",
+      "status": "PASS"
+    }
+  },
+  "scope": "PC-FMCW-like causal track observations, measurement covariance, configurable sensing SNR, Gaussian measurement corruption, SNR-dependent missed detections, unlabeled detection frames, false alarms/clutter, and Stage-2 measurement validation",
+  "stage": "Stage 2",
+  "status": "COMPLETE_FROZEN",
+  "upstream": {
+    "canonical_validation_manifest": "/home/agni/waymo/iscai_data_prep/manifests/selected_validation.jsonl",
+    "canonical_validation_manifest_sha256": "dc10609ef18a2ba881657eb3da3a3df7a81bdcc8345ecbc2227102ab16b8833c",
+    "canonical_validation_records": 44097,
+    "stage1_artifact_semantics": "causal_womd_annotation_upstream",
+    "stage1_sensor_realistic": false,
+    "stage1_status": "PASS_COMPLETE"
+  }
+}

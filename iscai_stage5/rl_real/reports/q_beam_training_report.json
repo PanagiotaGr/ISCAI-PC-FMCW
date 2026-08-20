@@ -1,0 +1,248 @@
+{
+  "status": "PASS",
+  "data_source": "real_WOMD_Gaussian_posteriors",
+  "future_used_as_input": false,
+  "train_split": {
+    "trajectory_level_split": true,
+    "train_fraction": 0.8,
+    "train_trajectories": 4000,
+    "validation_trajectories": 1000,
+    "train_states": 40000,
+    "validation_states": 10000
+  },
+  "rl": {
+    "algorithm": "tabular_Q_learning",
+    "actions": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "target_mass": 0.95,
+    "epochs": 25,
+    "alpha": 0.1,
+    "gamma": 0.95,
+    "epsilon_final": 0.05
+  },
+  "reward_definition": {
+    "coverage_term": "+covered_mass",
+    "beam_cost": "-0.15*(K/5)",
+    "switching_cost": "-0.10*switching_cost",
+    "outage_penalty": "-1.0 if covered_mass < 0.95"
+  },
+  "training": [
+    {
+      "epoch": 1,
+      "epsilon": 0.05,
+      "mean_reward": 0.8942842995874806,
+      "mean_K": 2.36955,
+      "mean_covered_mass": 0.9875457995874807,
+      "outage_rate": 0.022175
+    },
+    {
+      "epoch": 2,
+      "epsilon": 0.05,
+      "mean_reward": 0.8994663495927488,
+      "mean_K": 2.354875,
+      "mean_covered_mass": 0.9890375995927491,
+      "outage_rate": 0.018925
+    },
+    {
+      "epoch": 3,
+      "epsilon": 0.05,
+      "mean_reward": 0.9017643496661519,
+      "mean_K": 2.2661,
+      "mean_covered_mass": 0.9891473496661521,
+      "outage_rate": 0.0194
+    },
+    {
+      "epoch": 4,
+      "epsilon": 0.05,
+      "mean_reward": 0.9027134496893583,
+      "mean_K": 2.248425,
+      "mean_covered_mass": 0.9892161996893585,
+      "outage_rate": 0.01905
+    },
+    {
+      "epoch": 5,
+      "epsilon": 0.05,
+      "mean_reward": 0.90319479968838,
+      "mean_K": 2.232825,
+      "mean_covered_mass": 0.9894045496883802,
+      "outage_rate": 0.019225
+    },
+    {
+      "epoch": 6,
+      "epsilon": 0.05,
+      "mean_reward": 0.9038530997132992,
+      "mean_K": 2.22165,
+      "mean_covered_mass": 0.9896025997132994,
+      "outage_rate": 0.0191
+    },
+    {
+      "epoch": 7,
+      "epsilon": 0.05,
+      "mean_reward": 0.9034381996846345,
+      "mean_K": 2.23895,
+      "mean_covered_mass": 0.9895816996846348,
+      "outage_rate": 0.018975
+    },
+    {
+      "epoch": 8,
+      "epsilon": 0.05,
+      "mean_reward": 0.9040779496426432,
+      "mean_K": 2.2399,
+      "mean_covered_mass": 0.9897499496426433,
+      "outage_rate": 0.018475
+    },
+    {
+      "epoch": 9,
+      "epsilon": 0.05,
+      "mean_reward": 0.9040168497369586,
+      "mean_K": 2.2257,
+      "mean_covered_mass": 0.9895128497369587,
+      "outage_rate": 0.018725
+    },
+    {
+      "epoch": 10,
+      "epsilon": 0.05,
+      "mean_reward": 0.9040102497290669,
+      "mean_K": 2.2253,
+      "mean_covered_mass": 0.9896192497290671,
+      "outage_rate": 0.01885
+    },
+    {
+      "epoch": 11,
+      "epsilon": 0.05,
+      "mean_reward": 0.9036663997066131,
+      "mean_K": 2.23765,
+      "mean_covered_mass": 0.9896208997066133,
+      "outage_rate": 0.018825
+    },
+    {
+      "epoch": 12,
+      "epsilon": 0.05,
+      "mean_reward": 0.9036530497302822,
+      "mean_K": 2.232075,
+      "mean_covered_mass": 0.9895902997302822,
+      "outage_rate": 0.018975
+    },
+    {
+      "epoch": 13,
+      "epsilon": 0.05,
+      "mean_reward": 0.9041122997076251,
+      "mean_K": 2.231875,
+      "mean_covered_mass": 0.989693549707625,
+      "outage_rate": 0.018625
+    },
+    {
+      "epoch": 14,
+      "epsilon": 0.05,
+      "mean_reward": 0.9044847497280163,
+      "mean_K": 2.227925,
+      "mean_covered_mass": 0.9897474997280166,
+      "outage_rate": 0.018425
+    },
+    {
+      "epoch": 15,
+      "epsilon": 0.05,
+      "mean_reward": 0.9039480497203022,
+      "mean_K": 2.22775,
+      "mean_covered_mass": 0.9896805497203022,
+      "outage_rate": 0.0189
+    },
+    {
+      "epoch": 16,
+      "epsilon": 0.05,
+      "mean_reward": 0.9042507497302664,
+      "mean_K": 2.229175,
+      "mean_covered_mass": 0.9896509997302666,
+      "outage_rate": 0.018525
+    },
+    {
+      "epoch": 17,
+      "epsilon": 0.05,
+      "mean_reward": 0.9041801497173455,
+      "mean_K": 2.223825,
+      "mean_covered_mass": 0.9895448997173458,
+      "outage_rate": 0.01865
+    },
+    {
+      "epoch": 18,
+      "epsilon": 0.05,
+      "mean_reward": 0.9038664497131442,
+      "mean_K": 2.2282,
+      "mean_covered_mass": 0.9895874497131445,
+      "outage_rate": 0.018875
+    },
+    {
+      "epoch": 19,
+      "epsilon": 0.05,
+      "mean_reward": 0.9042946497285811,
+      "mean_K": 2.22235,
+      "mean_covered_mass": 0.9896901497285813,
+      "outage_rate": 0.018725
+    },
+    {
+      "epoch": 20,
+      "epsilon": 0.05,
+      "mean_reward": 0.9042054997239185,
+      "mean_K": 2.2214,
+      "mean_covered_mass": 0.9896474997239187,
+      "outage_rate": 0.0188
+    },
+    {
+      "epoch": 21,
+      "epsilon": 0.05,
+      "mean_reward": 0.9041416497334241,
+      "mean_K": 2.223075,
+      "mean_covered_mass": 0.9895838997334242,
+      "outage_rate": 0.01875
+    },
+    {
+      "epoch": 22,
+      "epsilon": 0.05,
+      "mean_reward": 0.9041311997281982,
+      "mean_K": 2.228175,
+      "mean_covered_mass": 0.9896764497281983,
+      "outage_rate": 0.0187
+    },
+    {
+      "epoch": 23,
+      "epsilon": 0.05,
+      "mean_reward": 0.9039805497106312,
+      "mean_K": 2.2272,
+      "mean_covered_mass": 0.9895715497106313,
+      "outage_rate": 0.018775
+    },
+    {
+      "epoch": 24,
+      "epsilon": 0.05,
+      "mean_reward": 0.9040127997070958,
+      "mean_K": 2.24105,
+      "mean_covered_mass": 0.9896442997070961,
+      "outage_rate": 0.0184
+    },
+    {
+      "epoch": 25,
+      "epsilon": 0.05,
+      "mean_reward": 0.9040225997151731,
+      "mean_K": 2.237025,
+      "mean_covered_mass": 0.9897083497151733,
+      "outage_rate": 0.018575
+    }
+  ],
+  "validation": {
+    "states": 10000,
+    "mean_reward": 0.9078407998223301,
+    "mean_K": 2.2141,
+    "median_K": 2.0,
+    "p95_K": 3.0,
+    "mean_covered_mass": 0.9905637998223304,
+    "outage_rate": 0.0163,
+    "fraction_K1": 0.0005
+  },
+  "training_time_seconds": 43.616634830017574,
+  "model_file": "rl_real/models/q_beam_policy.npz"
+}

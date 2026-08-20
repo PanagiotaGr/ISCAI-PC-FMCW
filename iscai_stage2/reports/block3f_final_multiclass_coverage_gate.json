@@ -1,0 +1,164 @@
+{
+  "aggregate_causal_actor_counts": {
+    "TYPE_CYCLIST": 3,
+    "TYPE_PEDESTRIAN": 1,
+    "TYPE_VEHICLE": 171
+  },
+  "aggregate_clean_valid_measurements": {
+    "TYPE_CYCLIST": 17,
+    "TYPE_PEDESTRIAN": 1,
+    "TYPE_VEHICLE": 1434
+  },
+  "aggregate_degraded_true_measurements": {
+    "TYPE_CYCLIST": 17,
+    "TYPE_PEDESTRIAN": 1,
+    "TYPE_VEHICLE": 1434
+  },
+  "algorithm_input_truth_free": true,
+  "block": "stage2_block3f_final_multiclass_coverage_gate",
+  "coverage": {
+    "TYPE_CYCLIST": {
+      "causal_actors": 3,
+      "clean_valid_measurements": 17,
+      "degraded_true_measurements": 17,
+      "pass": true
+    },
+    "TYPE_PEDESTRIAN": {
+      "causal_actors": 1,
+      "clean_valid_measurements": 1,
+      "degraded_true_measurements": 1,
+      "pass": true
+    },
+    "TYPE_VEHICLE": {
+      "causal_actors": 171,
+      "clean_valid_measurements": 1434,
+      "degraded_true_measurements": 1434,
+      "pass": true
+    }
+  },
+  "coverage_mode": {
+    "false_alarm_mean_per_frame": 0.0,
+    "gaussian_noise": true,
+    "pd": 1.0,
+    "purpose": "pipeline_class_coverage_only"
+  },
+  "coverage_scenario_count": 5,
+  "coverage_scenario_ids": [
+    "b85e1bd6cc8e74c0",
+    "4d82fec943ddaa44",
+    "bbc29ed5e271f29b",
+    "75ae707721eb23b4",
+    "52dafd686fe77b21"
+  ],
+  "coverage_semantics": {
+    "causal_actor_requirement": "at_least_one_valid_state_at_or_before_anchor",
+    "cherry_picking": false,
+    "full_scenario_actor_presence": "not_sufficient",
+    "future_actor_states_used_for_selection": false,
+    "future_labels_used_for_selection": false,
+    "stage2_qualification": "at_least_one_clean_measurement_valid"
+  },
+  "extension": {
+    "TYPE_CYCLIST": {
+      "manifest_index_1_based": 5,
+      "scenario_id": "75ae707721eb23b4"
+    },
+    "TYPE_PEDESTRIAN": {
+      "manifest_index_1_based": 9,
+      "scenario_id": "52dafd686fe77b21"
+    }
+  },
+  "extension_count": 2,
+  "frozen_validation_manifest": "/home/agni/waymo/iscai_data_prep/manifests/selected_validation.jsonl",
+  "frozen_validation_manifest_sha256": "dc10609ef18a2ba881657eb3da3a3df7a81bdcc8345ecbc2227102ab16b8833c",
+  "measured_fmcw": false,
+  "original_pilot_count": 3,
+  "required_classes": [
+    "TYPE_VEHICLE",
+    "TYPE_PEDESTRIAN",
+    "TYPE_CYCLIST"
+  ],
+  "scenarios": [
+    {
+      "causal_actor_counts": {
+        "TYPE_VEHICLE": 12
+      },
+      "clean_valid_measurements": {
+        "TYPE_VEHICLE": 86
+      },
+      "coverage_reason": "ORIGINAL_STAGE1_TINY_PILOT",
+      "degraded_true_measurements": {
+        "TYPE_VEHICLE": 86
+      },
+      "manifest_index_1_based": 1,
+      "scenario_id": "b85e1bd6cc8e74c0"
+    },
+    {
+      "causal_actor_counts": {
+        "TYPE_VEHICLE": 76
+      },
+      "clean_valid_measurements": {
+        "TYPE_VEHICLE": 634
+      },
+      "coverage_reason": "ORIGINAL_STAGE1_TINY_PILOT",
+      "degraded_true_measurements": {
+        "TYPE_VEHICLE": 634
+      },
+      "manifest_index_1_based": 2,
+      "scenario_id": "4d82fec943ddaa44"
+    },
+    {
+      "causal_actor_counts": {
+        "TYPE_VEHICLE": 20
+      },
+      "clean_valid_measurements": {
+        "TYPE_VEHICLE": 171
+      },
+      "coverage_reason": "ORIGINAL_STAGE1_TINY_PILOT",
+      "degraded_true_measurements": {
+        "TYPE_VEHICLE": 171
+      },
+      "manifest_index_1_based": 3,
+      "scenario_id": "bbc29ed5e271f29b"
+    },
+    {
+      "causal_actor_counts": {
+        "TYPE_CYCLIST": 1,
+        "TYPE_VEHICLE": 11
+      },
+      "clean_valid_measurements": {
+        "TYPE_CYCLIST": 8,
+        "TYPE_VEHICLE": 88
+      },
+      "coverage_reason": "TYPE_CYCLIST",
+      "degraded_true_measurements": {
+        "TYPE_CYCLIST": 8,
+        "TYPE_VEHICLE": 88
+      },
+      "manifest_index_1_based": 5,
+      "scenario_id": "75ae707721eb23b4"
+    },
+    {
+      "causal_actor_counts": {
+        "TYPE_CYCLIST": 2,
+        "TYPE_PEDESTRIAN": 1,
+        "TYPE_VEHICLE": 52
+      },
+      "clean_valid_measurements": {
+        "TYPE_CYCLIST": 9,
+        "TYPE_PEDESTRIAN": 1,
+        "TYPE_VEHICLE": 455
+      },
+      "coverage_reason": "TYPE_PEDESTRIAN",
+      "degraded_true_measurements": {
+        "TYPE_CYCLIST": 9,
+        "TYPE_PEDESTRIAN": 1,
+        "TYPE_VEHICLE": 455
+      },
+      "manifest_index_1_based": 9,
+      "scenario_id": "52dafd686fe77b21"
+    }
+  ],
+  "selection_policy": "first_3_frozen_pilots_plus_first_deterministically_qualifying_scenario_per_missing_class",
+  "status": "PASS"
+}

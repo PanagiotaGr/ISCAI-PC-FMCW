@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "stage": 7,
+  "evaluation": "joint_communication_illumination_tradeoff",
+  "shared_posterior": true,
+  "future_used_as_input": false,
+  "joint_cohort": {
+    "source_actors": 741,
+    "joint_relevant_actors": 167,
+    "current_fov_actors": 149,
+    "predicted_entry_actors": 18
+  },
+  "representative_operating_point": {
+    "communication": {
+      "policy": "adaptive_topk",
+      "num_beams": 64,
+      "target_mass": 0.95,
+      "mean_selected_k": 1.4359281437125748,
+      "p95_selected_k": 2.0,
+      "mean_covered_mass": 0.9971748502994013,
+      "mean_overhead_fraction": 0.02243637724550898
+    },
+    "illumination": {
+      "policy": "class_aware_gamma_0.25",
+      "mean_iou": 0.841125692431225,
+      "mean_shadow_violation": 0.009436515577613028,
+      "mean_overmask": 0.0057948197025757065,
+      "mean_road_retention": 0.9634275889325284,
+      "mean_oracle_region_visibility": 0.24045464730860588,
+      "mean_false_dimming": 0.1526212209930444
+    }
+  },
+  "sources": {
+    "beam_report": "stage7_real/reports/stage7_joint_beam_evaluation.json",
+    "adb_report": "/home/agni/waymo/iscai_stage6/stage6_real/reports/stage6_streaming_evaluation.json",
+    "cohort_report": "stage7_real/reports/stage7_joint_cohort_summary.json"
+  },
+  "scientific_scope": "Communication and illumination metrics are reported for the same Stage-7 actor cohort and originate from the same Stage-4 Gaussian posterior representation. The metrics remain domain-specific; no arbitrary scalar joint utility is introduced."
+}
