@@ -1,4 +1,4 @@
-# ISCAI-PC-FMCW Part B
+# Uncertainty-Aware Predictive ISCAI for Joint Beam Management and Adaptive Driving Beam Control
 
 Uncertainty-aware predictive extension of a phase-coded FMCW (PC-FMCW) automotive integrated sensing, communication, and illumination (ISCAI) framework.
 
