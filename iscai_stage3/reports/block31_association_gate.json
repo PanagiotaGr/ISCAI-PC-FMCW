@@ -1,0 +1,27 @@
+{
+  "actor_class_used": false,
+  "algorithm_truth_leakage": "NONE",
+  "azimuth_wrap": "IMPLEMENTED",
+  "block": "3.1",
+  "detection_key_used_for_matching": false,
+  "deterministic": true,
+  "false_alarm_handling": "PASS",
+  "formal_validation_tuning": false,
+  "future_information_used": false,
+  "implementation": {
+    "files": 90,
+    "sha256": "e80f7c593954bffdb2981232db9bd9f8b52ae92dfda5635083183a0ece737525"
+  },
+  "input_domain": "stage2_measurement_space",
+  "measurement_covariance_used": true,
+  "measurement_vector": [
+    "range",
+    "radial_velocity",
+    "azimuth",
+    "elevation"
+  ],
+  "method": "deterministic_gated_greedy_nearest_neighbor",
+  "missed_detection_lifecycle": "IMPLEMENTED",
+  "stage": 3,
+  "status": "PASS"
+}

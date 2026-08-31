@@ -1,0 +1,57 @@
+{
+  "algorithm": {
+    "and_logic_validation": true,
+    "peak_extraction": true,
+    "peak_nms": true,
+    "radial_velocity_consistency": true,
+    "sparse_4d_accumulator": true,
+    "uncertainty_weighted_voting": true,
+    "weighted_trajectory_refit": true
+  },
+  "block": "3.6",
+  "deterministic_repeat": true,
+  "estimated_association_used": false,
+  "formal_real_validation_metrics": "DEFERRED_TO_COMMON_STAGE3_EVALUATION_BLOCK",
+  "implementation": {
+    "files": 68,
+    "sha256": "b3c6322bc6f56ef752ed17e278cbe89d30f7a287e675bc29701ce74ee22c3e96"
+  },
+  "information_policy": {
+    "actor_class_used": false,
+    "actor_identity_used": false,
+    "detection_key_matching_used": false,
+    "estimated_association_used": false,
+    "future_information_used": false,
+    "truth_used": false
+  },
+  "measurement_uncertainty": {
+    "high_uncertainty_peak_score": 0.00015393790668039454,
+    "low_uncertainty_peak_score": 2.6980094874105736,
+    "stage2_R_t_affects_votes": true
+  },
+  "mht_meaning": "Multidimensional Hough Transform",
+  "parameter_space": [
+    "x_anchor",
+    "y_anchor",
+    "vx",
+    "vy"
+  ],
+  "part_a": {
+    "commit": "44d62e3478e3818d1757b00971890f844cb032f7",
+    "commit_gate": "PASS",
+    "observed_core": "rho/theta Hough voting, peak extraction, AND-logic trajectory validation"
+  },
+  "stage": 3,
+  "stage3_input": "raw unlabeled Stage2 detections",
+  "status": "PASS",
+  "synthetic_gate": {
+    "accumulator_cells": 24915,
+    "clutter_present": true,
+    "crossing_tracks": "PASS",
+    "miss_handling": "PASS",
+    "raw_peaks": 16,
+    "track_A_found": true,
+    "track_B_found": true,
+    "validated_tracks": 4
+  }
+}

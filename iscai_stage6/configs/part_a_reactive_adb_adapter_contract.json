@@ -1,0 +1,78 @@
+{
+  "Stage6_preservation_contract": {
+    "predictive_extension_changes_region_source": "current deterministic region -> future probabilistic region",
+    "predictive_extension_may_change_entire_ADB_model": false,
+    "preserve_actuation_rate_limit_concept": true,
+    "preserve_angular_shadow_zone_concept": true,
+    "preserve_basic_L_theta_r_semantics": true,
+    "preserve_minimum_illumination_floor_concept": true,
+    "preserve_radial_threshold_concept": true,
+    "preserve_raised_cosine_transition": true,
+    "preserve_temporal_smoothing_concept": true
+  },
+  "block": "6.0",
+  "fair_baseline_semantics": {
+    "deterministic_predictive_ADB": "same downstream illumination semantics driven by predictive mean geometry",
+    "oracle_future_ADB": "constructed future reference; not measured ADB ground truth",
+    "original_reactive_ADB": "current-state reactive Part-A-style masking",
+    "same_core_illumination_mapping_for_fairness": true,
+    "uncertainty_aware_predictive_ADB": "same downstream illumination semantics driven by future occupancy uncertainty"
+  },
+  "illumination_semantics": {
+    "arbitrary_new_photometric_model": false,
+    "full_illumination": 1.0,
+    "full_shadow_rule": "inside angular shadow region and before radial shadow end",
+    "multiple_actor_combination": "elementwise minimum of per-actor illumination maps",
+    "output": "normalized L(theta,r)",
+    "outside_shadow_or_beyond_transition": "full illumination",
+    "radial_transition": "raised-cosine",
+    "raised_cosine_normalized_formula": "0.5 * (1 - cos(pi*u))",
+    "strongest_shadow_reference": 0.0,
+    "u_definition": "(r-r_shadow_end) / (r_transition_end-r_shadow_end)"
+  },
+  "implementation_gate": {
+    "adapter_implementation": "BLOCK6.2",
+    "before_adapter_implementation": [
+      "Block6.1 illumination grid",
+      "full-box headlamp projection",
+      "causal actor geometry"
+    ],
+    "must_have_unit_tests": true,
+    "must_not_modify_Part_A": true,
+    "must_reproduce_frozen_reference_where_available": true
+  },
+  "input_contract": {
+    "actor_source": "current causal actor/track geometry available at controller decision time",
+    "class_aware_predictive_policy": false,
+    "coordinate_space": "headlamp angle-range",
+    "future_ground_truth": false,
+    "multiple_actors": true,
+    "predictive_covariance": false,
+    "predictive_mean": false,
+    "time": "anchor/current only"
+  },
+  "known_limitations": {
+    "Part_A_reactive_ADB_is_fully_calibrated_photometric_model": false,
+    "Part_A_report_semantics": "qualitative implementation of paper ADB/Fig.3 logic",
+    "WOMD_contains_measured_ADB_commands": false,
+    "WOMD_contains_windshield_mirror_driver_labels": false
+  },
+  "not_yet_implementation": true,
+  "project": "Agni",
+  "provenance_labels": {
+    "Part_A_extension": "MHT-driven reactive masking",
+    "Stage6_contribution": "probabilistic predictive class-aware masking",
+    "paper_ADB": "camera/geometry-informed reactive masking"
+  },
+  "role": "Stage6 original_reactive_ADB baseline adapter to frozen Part-A illumination semantics",
+  "source": {
+    "Part_A_git_commit": "44d62e3478e3818d1757b00971890f844cb032f7",
+    "Part_A_notebook": "/home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb",
+    "Part_A_notebook_sha256": "b5a80a6d3441de6d571db4f65b4a43ed4052cc2b3ccba935ad31b5dd51316ef3",
+    "Part_A_reference_sha256": "fcdfc0a7b9c14fa9447ceb8563a6f20ac277706223388dc9aa8a1edf416c5e2b",
+    "source_audit": "/home/agni/waymo/iscai_stage6/artifacts/block60/part_a_adb_source_audit.json",
+    "source_audit_sha256": "5b3b8aacaa6c8947c6d9d57264a908994a6a8d3193179a75bcd4f6b4697b0e64"
+  },
+  "stage": 6,
+  "status": "FROZEN_REACTIVE_ADB_ADAPTER_CONTRACT"
+}

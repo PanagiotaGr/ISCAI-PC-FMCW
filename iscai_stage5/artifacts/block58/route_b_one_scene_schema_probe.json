@@ -1,0 +1,153 @@
+{
+  "block": "5.8",
+  "causal_H0_position_preview": [
+    {
+      "latest_position_H0_m": [
+        2.9485546285184228,
+        33.791698926206664,
+        10.222605234404867
+      ],
+      "prediction_id": "s3trk-000000"
+    },
+    {
+      "latest_position_H0_m": [
+        42.61185010875772,
+        13.858290268980454,
+        -0.3531829757883571
+      ],
+      "prediction_id": "s3trk-000001"
+    },
+    {
+      "latest_position_H0_m": [
+        -6.520898480803794,
+        -30.017298910078352,
+        -0.5520050019318745
+      ],
+      "prediction_id": "s3trk-000002"
+    },
+    {
+      "latest_position_H0_m": [
+        20.85774141236925,
+        -25.641805715207965,
+        -0.2912516328714645
+      ],
+      "prediction_id": "s3trk-000003"
+    },
+    {
+      "latest_position_H0_m": [
+        35.177522570023484,
+        66.83948528188671,
+        -1.770933988352411
+      ],
+      "prediction_id": "s3trk-000004"
+    }
+  ],
+  "formal_manifest": {
+    "N": 120,
+    "path": "/home/agni/waymo/iscai_stage3/artifacts/block38e/formal_validation_120.jsonl",
+    "scenes_physically_loaded": 1,
+    "sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46"
+  },
+  "identity_bridge": {
+    "every_sample_prediction_id_in_histories": true,
+    "history_ids_unique": true,
+    "history_key": "prediction_id",
+    "overlap_count": 50,
+    "sample_ids_unique": true,
+    "sample_key": "prediction_id",
+    "truth_mapping_preview": [
+      {
+        "prediction_id": "s3trk-000001",
+        "source": "sample.truth_track_index",
+        "truth_track_index": 32
+      },
+      {
+        "prediction_id": "s3trk-000003",
+        "source": "sample.truth_track_index",
+        "truth_track_index": 71
+      },
+      {
+        "prediction_id": "s3trk-000005",
+        "source": "sample.truth_track_index",
+        "truth_track_index": 31
+      },
+      {
+        "prediction_id": "s3trk-000006",
+        "source": "sample.truth_track_index",
+        "truth_track_index": 42
+      },
+      {
+        "prediction_id": "s3trk-000007",
+        "source": "sample.truth_track_index",
+        "truth_track_index": 69
+      }
+    ],
+    "unmatched_sample_ids": []
+  },
+  "next": "write deterministic Route-B pre-TTP formal Gaussian materializer using the proven prediction_id bridge",
+  "phase": "route_B_one_scene_schema_probe",
+  "scenario": {
+    "causal_history_count": 79,
+    "current_time_index": 10,
+    "scenario_id": "cfd33c593d645bf5",
+    "supervised_sample_count": 50
+  },
+  "schema": {
+    "future_label_fields": [
+      "positions_H0_m",
+      "valid_mask"
+    ],
+    "future_label_type": "iscai_stage4.data.supervision.FutureTrajectoryLabel",
+    "history_fields": [
+      "prediction_id",
+      "steps",
+      "latest_observed_frame_index",
+      "latest_position_H0_m"
+    ],
+    "history_step_class_field_hints": [],
+    "history_step_fields": [
+      "frame_index",
+      "timestamp_s",
+      "position_H0_m",
+      "velocity_H0_mps",
+      "measurement_covariance_H0_m2",
+      "observed",
+      "velocity_valid"
+    ],
+    "history_step_geometry_field_hints": [
+      "frame_index",
+      "position_H0_m",
+      "observed",
+      "velocity_valid"
+    ],
+    "history_step_type": "iscai_stage4.data.neural_inputs.HistoryStep",
+    "history_type": "iscai_stage4.data.neural_inputs.CausalTrackHistory",
+    "sample_fields": [
+      "sample_id",
+      "prediction_id",
+      "model_input",
+      "actor_class",
+      "truth_track_index",
+      "historical_match_distance_m",
+      "historical_match_frame_index",
+      "future_label"
+    ],
+    "sample_type": "iscai_stage4.data.supervision.SupervisedTrajectorySample"
+  },
+  "scientific_execution": {
+    "Stage4_inference": false,
+    "Stage5_formal_metrics": false,
+    "eligible_formal_targets_called": false,
+    "future_supervision_attached_for_schema_mapping_only": true,
+    "future_truth_control_input": false,
+    "model_forward": false,
+    "model_selection": false,
+    "recalibration": false,
+    "receiver_selection_performed": false,
+    "threshold_tuning": false,
+    "tracks_to_predict_accessed": false,
+    "training": false
+  },
+  "stage": 5,
+  "status": "PASS_SCHEMA_PROBE"
+}

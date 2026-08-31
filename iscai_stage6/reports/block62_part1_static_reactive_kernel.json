@@ -1,0 +1,73 @@
+{
+  "block": "6.2",
+  "equation_validation": {
+    "maximum_absolute_error": 0.0,
+    "paper_floor": 0.0,
+    "pass": true,
+    "sample_ranges_m": [
+      0.0,
+      20.0,
+      25.0,
+      30.0,
+      35.0,
+      40.0,
+      60.0
+    ]
+  },
+  "execution": {
+    "dataset_access": false,
+    "formal_evaluation": false,
+    "parameter_tuning": false,
+    "training": false,
+    "trajectory_inference": false
+  },
+  "grid": {
+    "diagnostic_grid_used_for_smoke": true,
+    "final_freeze": "BLOCK6.8_PRE_FORMAL",
+    "final_scientific_grid_frozen": false
+  },
+  "implementation": {
+    "angular_shadow_zone": true,
+    "illumination_module": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/illumination.py",
+    "illumination_module_sha256": "daeb96029ff6e1720d17cd20d3e8f00155c566eeecec3b3726f4adcc8b05d832",
+    "minimum_floor_support": true,
+    "multi_actor_rule": "elementwise_minimum",
+    "normalized_intensity": true,
+    "radial_thresholds": true,
+    "raised_cosine": true,
+    "reactive_L_theta_r_kernel": true,
+    "static_ADB": true
+  },
+  "next": "Block6.2 Part2: exact frozen Part-A notebook parameter/source binding plus real causal reactive ADB smoke",
+  "part": "1/2",
+  "prerequisites": {
+    "Block6_1": "PASS_COMPLETE",
+    "Block6_1_closure_sha256": "1d0f8781d365efd09614c8fb5a06bdbda8f56c1c673b0ddab8b40810de270ac1",
+    "Part_A_adapter_contract": "FROZEN",
+    "Part_A_source_audit": "PASS"
+  },
+  "project": "Agni",
+  "regression": {
+    "Stage6": "PASS",
+    "full_log": "/home/agni/waymo/iscai_stage6/artifacts/block62/block62_part1_full_regression.log"
+  },
+  "scope": {
+    "actuation_rate_limits": false,
+    "class_aware_policy": false,
+    "communication_beam_reused": false,
+    "exact_Part_A_notebook_parameter_binding": "PENDING_BLOCK6.2_PART2",
+    "original_reactive_kernel": "IMPLEMENTED",
+    "predictive_ADB": false,
+    "probabilistic_occupancy": false,
+    "real_scene_reactive_execution": "PENDING_BLOCK6.2_PART2",
+    "temporal_smoothing": false
+  },
+  "stage": 6,
+  "status": "PASS_STATIC_REACTIVE_KERNEL",
+  "storage": {
+    "free_GiB": 1044.8518142700195,
+    "hard_reserve_GiB": 250.0,
+    "pass": true
+  },
+  "upstream_modified": false
+}

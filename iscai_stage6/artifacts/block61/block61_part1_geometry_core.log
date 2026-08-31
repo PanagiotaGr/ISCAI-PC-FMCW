@@ -1,0 +1,69 @@
+============================================================
+STAGE 6 — BLOCK 6.1 PART 1/2
+ILLUMINATION GEOMETRY CORE + FULL-BOX PROJECTION
+============================================================
+
+===== A. BLOCK6.0 / UPSTREAM SEAL =====
+Block6.0 closure          = EXACT PASS
+Stage6 strict contract    = EXACT PASS
+Part-A source audit       = EXACT PASS
+reactive adapter contract = EXACT PASS
+Stage5 closure            = UNCHANGED PASS
+
+===== B. BLOCK6.1 GEOMETRY CONTRACT =====
+geometry contract = WRITTEN
+numeric Stage6 grid frozen = NO (correctly deferred to Part2)
+
+===== C. FULL-BOX GEOMETRY KERNEL =====
+geometry.py = WRITTEN
+
+===== D. PARAMETERIZED ILLUMINATION GRID KERNEL =====
+grid.py = WRITTEN
+adb/__init__.py = WRITTEN
+
+===== E. SYNTHETIC GEOMETRY REGRESSION =====
+test file = WRITTEN
+
+===== F. CONTROLLED COMPILE =====
+geometry/grid/tests compile = PASS
+
+===== G. STAGE6 REGRESSION =====
+Ran 41 tests in 0.020s
+OK
+
+===== H. SCIENTIFIC INVARIANT SMOKE =====
+8 physical box corners       = PASS
+nonzero angular extent       = PASS
+nonzero range extent         = PASS
+height/elevation retained    = PASS
+3D relevant-region hook      = PASS
+centroid-only implementation = NO
+
+===== I. IMMUTABILITY / STORAGE =====
+Block6.0 artifacts = UNCHANGED
+Stage5 closure     = UNCHANGED
+free GiB           = 1054.834
+250-GiB reserve    = PASS
+
+===== J. BLOCK6.1 PART1 REPORT =====
+report SHA256 = d83d2f6baed18ea20dd6ba40ac085cb5dcf206e5c4624df23b3eaaf7073c3346
+
+============================================================
+BLOCK 6.1 PART 1/2 — FINAL
+============================================================
+Block6.0 prerequisite     = EXACT PASS
+illumination space        = PARAMETERIZED THETA-R
+full 3D box corners       = 8/8 PASS
+actor length/width/height = PRESERVED
+azimuth/elevation/range   = PASS
+relevant-region geometry  = PASS
+centroid-only ADB         = FORBIDDEN
+future GT controller use  = REJECTED
+communication codebook    = NOT REUSED
+scientific grid numbers   = DEFERRED CORRECTLY TO PART2
+Stage6 regression         = PASS
+upstream modified         = NO
+training/inference        = NO
+STATUS = PASS_GEOMETRY_CORE
+report = /home/agni/waymo/iscai_stage6/reports/block61_part1_geometry_core.json
+terminal remains open = YES

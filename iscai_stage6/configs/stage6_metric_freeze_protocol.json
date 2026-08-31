@@ -1,0 +1,162 @@
+{
+  "authority": {
+    "binding_path": "/home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json",
+    "binding_sha256": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e",
+    "binding_source": "Block6.6_preoutcome_preregistration",
+    "development_outcomes_seen": false,
+    "formal_outcomes_seen": false,
+    "reason": "Earliest explicit pre-outcome metric preregistration is authoritative.",
+    "silent_override": false
+  },
+  "auxiliary_preregistered_metric": {
+    "rate_limit_safety_override_fraction": {
+      "direction": "lower_is_better",
+      "formula": "override cells / total actuator-cell transitions",
+      "mandatory_PDF_metric": false
+    }
+  },
+  "block": "6.8",
+  "formal_evaluation_allowed": false,
+  "mask_semantics": {
+    "binary_dim_support": "D_tau = [I_final_tau < 1.0]",
+    "measured_ADB_ground_truth": false,
+    "oracle_controller_input": false,
+    "oracle_dim_support": "O_tau = union of constructed future actor shadow supports"
+  },
+  "metrics": {
+    "actuation_latency": {
+      "formula": "wall-clock runtime from loaded P_occ/current geometry to final four-horizon illumination schedule",
+      "summary": [
+        "mean_s",
+        "median_s",
+        "p95_s",
+        "max_s"
+      ],
+      "units": "seconds",
+      "used_for_policy_selection": false
+    },
+    "cyclist_visibility_proxy": {
+      "direction": "higher_is_better",
+      "empty_support_clarification": "NA",
+      "formula": "mean(I_final over future GT cyclist projected full-box footprint cells)"
+    },
+    "energy_consumption": {
+      "direction": "reported_not_primary_safety_target",
+      "formula": "mean over horizon/grid of I_final",
+      "reported_semantics": "normalized emitted-light energy proxy, not joules"
+    },
+    "false_dimming": {
+      "direction": "lower_is_better",
+      "formula": "|D \\ O| / |D|; 0 when |D|=0"
+    },
+    "flicker_change_rate": {
+      "added_threshold": false,
+      "direction": "lower_is_better",
+      "formula": "mean_h(count(I_h != I_prev)/grid_cell_count)"
+    },
+    "glare_risk_exposure": {
+      "direction": "lower_is_better",
+      "empty_support_clarification": "NA",
+      "formula": "mean final normalized intensity over vehicle constructed front-upper/rear-upper surrogate reference cells"
+    },
+    "mask_IoU_with_constructed_oracle_future_mask": {
+      "direction": "higher_is_better",
+      "empty_union": 1.0,
+      "formula": "|D\u2229O| / |D\u222aO|"
+    },
+    "over_masking_area": {
+      "direction": "lower_is_better",
+      "formula": "|D \\ O| / |full actuator grid|"
+    },
+    "pedestrian_visibility_proxy": {
+      "direction": "higher_is_better",
+      "empty_support_clarification": "NA",
+      "formula": "mean(I_final over future GT pedestrian projected full-box footprint cells)"
+    },
+    "road_illumination_retention": {
+      "direction": "higher_is_better",
+      "formula": "mean(I_final over frozen road ROI)"
+    },
+    "temporal_smoothness": {
+      "direction": "lower_is_better",
+      "formula": "mean_h(mean_grid(|I_h-I_prev|)/delta_t_h)",
+      "reported_metric": "mean_absolute_change_rate"
+    },
+    "vehicle_shadow_zone_violation": {
+      "direction": "lower_is_better",
+      "formula": "|O_vehicle \\ D| / |O_vehicle|",
+      "no_vehicle_cells": "NA"
+    }
+  },
+  "next": "development-only runtime metric evaluation and numeric non-inferiority bound freeze",
+  "part2_bound_freeze_rules": {
+    "all_numeric_deltas_must_be_finite": true,
+    "all_numeric_deltas_must_be_nonnegative": true,
+    "development_partition_only": true,
+    "formal_outcome_used_for_bound_selection": false,
+    "formal_partition_read_before_freeze": false,
+    "post_formal_adjustment_forbidden": true,
+    "single_freeze_before_formal": true
+  },
+  "primary_acceptance": {
+    "comparison": "class_aware_predictive_ADB_vs_original_reactive_ADB",
+    "cyclist_visibility_proxy": {
+      "delta_source": "development_only_Block6.8_Part2",
+      "formal_rule": "predictive_minus_reactive >= -frozen_delta",
+      "numeric_delta": null,
+      "requirement": "non_inferiority"
+    },
+    "over_masking_area": {
+      "delta_source": "development_only_Block6.8_Part2",
+      "formal_rule": "predictive_minus_reactive <= frozen_delta",
+      "numeric_delta": null,
+      "requirement": "non_inferiority"
+    },
+    "pedestrian_visibility_proxy": {
+      "delta_source": "development_only_Block6.8_Part2",
+      "formal_rule": "predictive_minus_reactive >= -frozen_delta",
+      "numeric_delta": null,
+      "requirement": "non_inferiority"
+    },
+    "vehicle_shadow_zone_violation": {
+      "formal_rule": "predictive_mean < reactive_mean",
+      "requirement": "strict_improvement"
+    }
+  },
+  "project": "Agni",
+  "roi_contract": {
+    "cyclist_full_box_region": {
+      "future_truth_controller_input": false,
+      "role": "evaluator_only"
+    },
+    "oracle_mask": {
+      "controller_input": false,
+      "measured_ground_truth": false,
+      "parameter_tuning_input": false,
+      "role": "constructed_evaluator_reference"
+    },
+    "pedestrian_full_box_region": {
+      "future_truth_controller_input": false,
+      "role": "evaluator_only"
+    },
+    "road_roi": {
+      "future_truth_used_for_controller": false,
+      "used_by": [
+        "road_illumination_retention"
+      ]
+    },
+    "vehicle_reference_region": {
+      "future_truth_controller_input": false,
+      "role": "evaluator_only"
+    }
+  },
+  "source_semantics": {
+    "earliest_internal_preregistration_is_binding": true,
+    "pdf_specifies_metric_names": true,
+    "pdf_specifies_unique_formula_for_every_metric": false,
+    "reconciliation_performed_before_development_outcome_read": true,
+    "reconciliation_performed_before_formal_outcome_read": true
+  },
+  "stage": 6,
+  "status": "FROZEN_METRIC_SEMANTICS_RECONCILED_TO_BLOCK66_PREREGISTRATION"
+}

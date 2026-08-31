@@ -1,0 +1,141 @@
+{
+  "artifact": "deterministic_predictive_binding",
+  "association_policy": {
+    "algorithm": {
+      "Hungarian_assignment": false,
+      "WOMD_track_id_equality": false,
+      "class_gate_before_association": false,
+      "covariance_gate": false,
+      "exact_distance_tie": "UNMATCHED",
+      "forced_assignment": false,
+      "free_numeric_hyperparameters": 0,
+      "hard_distance_threshold_m": null,
+      "prediction_id_equality": false,
+      "step_1": "compute all finite predictor-anchor to box-anchor Euclidean distances",
+      "step_2": "for every predictor require one unique nearest box",
+      "step_3": "for every box require one unique nearest predictor",
+      "step_4": "accept pair only when the two unique nearest relations are reciprocal"
+    },
+    "box_anchor": "CausalADBActorBox.stage1_anchor_center_H0_m",
+    "coordinate_frame": "H0",
+    "diagnostics_required": {
+      "anchor_distance_m": true,
+      "evaluator_truth_association_accuracy": "DEVELOPMENT_AND_FORMAL_REPORTING_ONLY_AFTER_CONTROLLER_DECISION",
+      "match_fraction": true,
+      "matched_pair_count": true,
+      "nearest_second_nearest_distances": true,
+      "reactive_fallback_fraction": true,
+      "unmatched_box_count": true,
+      "unmatched_predictor_count": true
+    },
+    "distance_metric": "Euclidean_3D_m",
+    "forbidden_controller_inputs": {
+      "future_GT": true,
+      "future_validity": true,
+      "objects_of_interest": true,
+      "perfect_WOMD_actor_identity": true,
+      "tracks_to_predict": true,
+      "truth_id": true,
+      "truth_track_index": true
+    },
+    "name": "reciprocal_unique_nearest_current_anchor_H0_3D",
+    "predictor_anchor": "CausalTrackHistory.latest_position_H0_m",
+    "scientific_role": "controller-safe association between Stage4 causal predictor tracks and current causal Stage6 ADB boxes",
+    "unmatched_policy": {
+      "causal_ADB_box": "ORIGINAL_REACTIVE_ADB_FALLBACK",
+      "predictor_track": "DO_NOT_APPLY_TO_ADB_BOX",
+      "silent_drop_of_ADB_actor": false
+    }
+  },
+  "block": "6.3",
+  "development_policy": {
+    "association_truth_metadata_role": "EVALUATOR_ONLY_AFTER_CONTROLLER_ASSOCIATION",
+    "development_only_validation_required": true,
+    "formal_N120_parameter_selection": false,
+    "formal_results_may_change_association_policy": false,
+    "if_development_validation_reveals_failure": "BLOCK_STAGE6_AND_CREATE_EXPLICIT_PRE_FORMAL_BINDING_AMENDMENT",
+    "policy_frozen_before_development_result": true,
+    "silent_posthoc_repair": false
+  },
+  "future_box_policy": {
+    "box_geometry_source": "matched_current_causal_ADB_box",
+    "center_source": "shared_Gaussian_mean_future_center_H0",
+    "current_geometry_provenance": "CAUSAL_CURRENT_ANNOTATION_ASSISTED_GEOMETRY_NOT_FUTURE_ORACLE",
+    "dimensions": {
+      "height_m": "current_causal_box_height_m",
+      "implementation_assumption": true,
+      "length_m": "current_causal_box_length_m",
+      "propagation": "HELD_CONSTANT_ACROSS_0_1_TO_1_0_S",
+      "reason": "frozen trajectory predictor does not output future physical dimensions",
+      "width_m": "current_causal_box_width_m"
+    },
+    "orientation": {
+      "annotated_future_heading": false,
+      "current_heading_role": "LOW_SPEED_CAUSAL_SEED_ONLY",
+      "current_heading_seed": "matched_current_causal_box_yaw_H0",
+      "future_GT_heading": false,
+      "future_rule": "Stage5 trajectory-tangent heading with low-speed previous-heading carry-forward",
+      "trajectory_input": "deterministic Gaussian mean treated as one trajectory sample"
+    },
+    "projection": {
+      "Box3D": true,
+      "api": "iscai_stage6.adb.geometry.project_box_to_headlamp",
+      "centroid_only": false,
+      "eight_physical_corners": true,
+      "elevation_extent": true,
+      "ground_range_extent": true,
+      "width_height_explicit": true
+    }
+  },
+  "project": "Agni",
+  "provenance": {
+    "association_policy_audit_sha256": "ecc25a7d3280354c1365bf6021b8230064461571da262eefb80dd35048fa741a",
+    "block62_closure_sha256": "23b299b4dc6a123ce64a6ab1350b3ed9cb149c8fed176b37e9715d9935704d92",
+    "exact_route_audit_sha256": "7fa674e6915c4d3ef49252f7def68807943fd5c0be6ea4f4aa260294c92d23ce",
+    "identity_audit_sha256": "526909d4f9a5c0f0d5fc8419df6b0f0fc624ce13fbac527d44c649c1e1703559",
+    "interface_audit_sha256": "14fb92076b40c73e378a2ca249b7ebb7f95b011a0d31ad5062ac75fde01e7e9d"
+  },
+  "scientific_classification": {
+    "PDF_literal_requirement": false,
+    "implementation_decision": true,
+    "reason": "No direct controller-safe actor key and no directly reusable frozen Stage3 association gate were proven."
+  },
+  "scope": {
+    "Stage6_completion_claim": false,
+    "communication_codebook_reused": false,
+    "formal_Stage6_grid_frozen": false,
+    "implemented_next_Block63_Part1": {
+      "causal_anchor_association": true,
+      "deterministic_future_box": true,
+      "future_box_projection": true
+    },
+    "not_in_Block63_deterministic_mask": {
+      "P_occ_threshold_gamma": true,
+      "actuation_rate_limit": true,
+      "class_specific_floor": true,
+      "class_specific_margin": true,
+      "predictive_covariance": true,
+      "probabilistic_occupancy": true,
+      "temporal_smoothing": true
+    }
+  },
+  "stage": 6,
+  "status": "FROZEN_READY_FOR_BLOCK63_PART1",
+  "trajectory_policy": {
+    "Stage4_prediction_semantics": "metric_H0_displacement",
+    "deterministic_ADB_signal": "Gaussian_mean_only",
+    "deterministic_GRU_role": "SEPARATE_STAGE4_MOTION_BASELINE",
+    "future_center_equation": "future_center_H0[h] = predictor_latest_position_H0 + Gaussian_mean_metric_H0_displacement[h]",
+    "future_ground_truth": false,
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "matched_box_center_used_to_recenter_prediction": false,
+    "predictive_covariance_used_for_deterministic_mask": false,
+    "predictor_anchor_semantics": "latest_causal_observed_target_position_H0",
+    "source_family": "calibrated_Gaussian_GRU"
+  }
+}

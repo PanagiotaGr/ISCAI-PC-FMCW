@@ -1,0 +1,46 @@
+{
+  "block": "3.3",
+  "common": {
+    "canonical_frame": "H0",
+    "input_regime": "same Stage2 noisy observation and estimated-association branch",
+    "prediction_horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ]
+  },
+  "constant_acceleration": {
+    "annotated_acceleration_used": false,
+    "annotated_velocity_used": false,
+    "causal": true,
+    "expected_acceleration_x_mps2": 4.0,
+    "expected_current_velocity_x_mps": 2.8,
+    "future_information_used": false,
+    "measurement_covariance_preserved": true,
+    "minimum_observations": 3,
+    "prediction_closed_form": "PASS",
+    "recovered_acceleration_x_mps2": 4.000000000000092,
+    "recovered_current_velocity_x_mps": 2.8000000000000114
+  },
+  "ctrv": {
+    "annotated_heading_used": false,
+    "annotated_velocity_used": false,
+    "causal": true,
+    "constant_turn_equation": "PASS",
+    "future_information_used": false,
+    "heading_wrap": "PASS",
+    "low_speed_fallback": "IMPLEMENTED",
+    "minimum_observations": 3,
+    "wrap_test_expected_radps": 0.03490658503988659,
+    "wrap_test_turn_rate_radps": 0.034906585039886195,
+    "zero_turn_limit": "PASS"
+  },
+  "formal_real_validation_metrics": "DEFERRED_TO_COMMON_STAGE3_EVALUATION_BLOCK",
+  "implementation": {
+    "files": 45,
+    "sha256": "d821d2c01dc9d47658c26b891f77c4c64f0dd8418a298c94ca7028397a472c3c"
+  },
+  "stage": 3,
+  "status": "PASS"
+}

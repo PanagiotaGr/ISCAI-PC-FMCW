@@ -1,0 +1,78 @@
+{
+  "array_sha256": "dd9ecfd5e1ee397c6b7ecce95f319385060a99d49576a31688a5a7959eb4321a",
+  "dtype": "float64",
+  "predictive_actor_count": 877,
+  "provenance": {
+    "actuator": {
+      "initial_state": "frozen current causal original-reactive t0 map",
+      "rho_bright_per_s": 1.0,
+      "rho_dim_per_s": 1.0,
+      "time_constant_ms": 200.0,
+      "vru_floor_guard": null
+    },
+    "controller_inputs": {
+      "MC_sampling": false,
+      "P_occ": false,
+      "future_GT": false,
+      "future_validity": false,
+      "objects_of_interest": false,
+      "predictive_covariance": false,
+      "tracks_to_predict": false,
+      "truth_id": false
+    },
+    "geometry": {
+      "centroid_only": false,
+      "full_Box3D": true,
+      "physical_corners": 8,
+      "rasterization": "convex_hull_of_all_eight_projected_physical_box_corners"
+    },
+    "illumination": {
+      "intensity_floor": 0.0,
+      "matched_plus_fallback_composition": "elementwise minimum",
+      "radial_margin_m": 4.0,
+      "raised_cosine": "exact frozen part_a_radial_profile",
+      "transition_length_m": 20.0
+    },
+    "input_sha256": {
+      "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_class_aware_development_cohort_120.jsonl": "57440e3d976e7aeff44811b5eeb075dc56e0e0e070a3832ec72d354253b998c9",
+      "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_identity_safe_gaussian_posterior.jsonl": "f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd",
+      "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_predictive_matches.jsonl": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6",
+      "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_decision_ledger.jsonl": "ac2b954571cdd0166bbcfa5bb8b2956785d1e132288dbe4af7fe2d55adeafcaa",
+      "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_t0_maps.npy": "7c5d63c76c3d9ef74adbbd7a68e3ce7483b1dd80fd262cba06f6ce1909994993"
+    },
+    "reactive_fallback": {
+      "controller": "exact frozen Block6.2 original-reactive",
+      "source": "ledger selector_route=reactive_fallback",
+      "vehicle_only": true
+    },
+    "schema": "EXPERIMENT5_EXACT_DETERMINISTIC_MEAN_FULL_BOX_V1",
+    "source_sha256": {
+      "class_aware_policy_shared_illumination_and_actuator": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b",
+      "deterministic_predictive": "a81834dee7203d37b045d070d6e448010dd9add88eb2d054ccfb56e207156d3e",
+      "part_a_reactive": "19f80f325aebc03b5257ca3c0408d1ddea1ac3a8ff4ad875914224584e2ef173",
+      "preregistration": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e",
+      "probabilistic_occupancy_rasterizer": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e",
+      "temporal_rate_preoutcome_freeze": "f8a0850610e4cee4984b668d5f7046c4ec6a5f873b28f645776d5f3a5ced2717",
+      "temporal_rate_report": "f2c952bb2c4029e5c142e1607c46dc784d195ed4e09f5780ac3d5472219aee7b",
+      "temporal_rate_selection_freeze": "780e134a66153c52783bc18d55f607c891b9a6983f8cfc8ac78e2e7367874885"
+    },
+    "trajectory": {
+      "absolute_center": "latest_position_H0_m + mean_displacement_H0_m",
+      "horizons_s": [
+        0.1,
+        0.3,
+        0.5,
+        1.0
+      ],
+      "source": "frozen calibrated Gaussian mean"
+    }
+  },
+  "reactive_fallback_actor_count": 247,
+  "reactive_fallback_vehicle_count": 171,
+  "shape": [
+    120,
+    4,
+    501,
+    301
+  ]
+}

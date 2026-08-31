@@ -1,0 +1,83 @@
+{
+  "association_policy_outcome": "STAGE3_POLICY_NOT_DIRECTLY_REUSABLE_WITHOUT_NEW_NUMERICS",
+  "audit": "CAUSAL_ASSOCIATION_POLICY",
+  "block": "6.3",
+  "formal_data_used": false,
+  "implementation_changed": false,
+  "new_numeric_association_parameter": false,
+  "parameter_tuning": false,
+  "project": "Agni",
+  "proposed_Block63_binding": {
+    "Stage4_mean_semantics": "metric_H0_displacement",
+    "association": "one-to-one current-anchor H0 causal association",
+    "association_gate_authority": "STAGE3_POLICY_NOT_DIRECTLY_REUSABLE_WITHOUT_NEW_NUMERICS",
+    "box_dimensions": "current causal l/w/h propagated unchanged across deterministic forecast horizons; explicit Stage6 implementation assumption because predictor does not output future dimensions",
+    "centroid_only_projection": false,
+    "class_aware_policy": false,
+    "deterministic_ADB_trajectory": "calibrated Gaussian mean only",
+    "formal_grid_freeze": false,
+    "full_box_corners": true,
+    "future_GT_heading": false,
+    "future_center": "causal_anchor_H0 + Gaussian_mean_displacement_H0",
+    "future_state_use": false,
+    "future_yaw": "same frozen Stage5 trajectory tangent rule with low-speed causal/predicted carry-forward",
+    "objects_of_interest_use": false,
+    "perfect_WOMD_track_id_use": false,
+    "predictive_covariance_used_in_Block63": false,
+    "probabilistic_mask": false,
+    "same_class_gate": "use symbolic causal actor class when causally available; never truth-side evaluator class",
+    "tracks_to_predict_use": false,
+    "truth_id_use": false,
+    "truth_track_index_use": false
+  },
+  "source_excerpt": "/home/agni/waymo/iscai_stage6/artifacts/block63/block63_causal_association_policy_exact_source.txt",
+  "stage": 6,
+  "stage3": {
+    "config_gate_defaults": [
+      {
+        "class": "_WorkingTrack",
+        "rows": [
+          {
+            "default": "0",
+            "field": "missed_frames"
+          }
+        ]
+      }
+    ],
+    "forbidden_truth_tokens": [],
+    "nearest_neighbor_path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/association/nearest_neighbor.py",
+    "nearest_neighbor_sha256": "968c19b8fb4b1c98c62e5a64e9b88a8dcf3b36d6bfecf6d63158c545e84e9a0b",
+    "relevant_definitions": [
+      {
+        "kind": "ClassDef",
+        "line": 30,
+        "name": "_WorkingTrack",
+        "sha256": "c09926ff9ab5e15a03c7c9cd3e80af1a230bbfad4a7b7652dd7031eacc2e3420"
+      },
+      {
+        "kind": "FunctionDef",
+        "line": 41,
+        "name": "_history_for_prediction",
+        "sha256": "d007dfc5e656e0e037a781f93f7be6a060858b700ec062bdd0fd0d76d01744fc"
+      },
+      {
+        "kind": "FunctionDef",
+        "line": 53,
+        "name": "associate_estimated_gnn",
+        "sha256": "f2cac99bad1b0d0bb3f087ced958daa1b923f6ef5f743426d3173454fd45b9c5"
+      }
+    ],
+    "tests": {
+      "covariance": true,
+      "identity_boundary": true,
+      "no_truth": true
+    },
+    "truth_used_false_evidence": true
+  },
+  "stage4": {
+    "causal_anchor_H0_available": true,
+    "prediction_id_available": true
+  },
+  "status": "BLOCKED_ASSOCIATION_POLICY_NEEDS_DEVELOPMENT_DESIGN",
+  "upstream_modified": false
+}

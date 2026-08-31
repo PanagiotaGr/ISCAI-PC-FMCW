@@ -1,0 +1,32 @@
+{
+  "block": "6.8_preformal_primary_acceptance_policy",
+  "formal_parameter_tuning_allowed": false,
+  "formal_rules": {
+    "cyclist_visibility_proxy": {
+      "direction": "higher_is_better",
+      "frozen_delta": 0.05,
+      "rule": "predictive_mean - reactive_mean >= -frozen_delta"
+    },
+    "over_masking_area": {
+      "direction": "lower_is_better",
+      "frozen_delta": 0.02,
+      "rule": "predictive_mean - reactive_mean <= frozen_delta"
+    },
+    "pedestrian_visibility_proxy": {
+      "direction": "higher_is_better",
+      "frozen_delta": 0.05,
+      "rule": "predictive_mean - reactive_mean >= -frozen_delta"
+    },
+    "vehicle_shadow_zone_violation": {
+      "direction": "lower_is_better",
+      "rule": "predictive_mean < reactive_mean",
+      "tolerance": null
+    }
+  },
+  "next_gate": "development-only class-aware predictive runtime evaluation against these already frozen acceptance bounds",
+  "policy_tuning_after_freeze_allowed": false,
+  "predictive_outcomes_seen_at_freeze": false,
+  "primary_comparison": "class_aware_predictive_ADB vs original_reactive_ADB",
+  "stage": 6,
+  "status": "FROZEN_BEFORE_PREDICTIVE_DEVELOPMENT_PERFORMANCE"
+}

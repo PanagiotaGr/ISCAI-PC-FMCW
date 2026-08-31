@@ -1,0 +1,100 @@
+{
+  "stage": 4,
+  "block": "4.6",
+  "status": "PRETRAIN_FROZEN",
+
+  "purpose": "three_mode_trajectory_level_GMM_ablation",
+
+  "role": {
+    "mandatory_probabilistic_core": "calibrated_Gaussian_Block4.5",
+    "GMM_role": "strong_multimodal_ablation_extension",
+    "GMM_always_implemented_and_evaluated": true,
+    "GMM_replaces_Gaussian_automatically": false,
+    "downstream_use_requires_calibration_if_GMM_is_selected": true
+  },
+
+  "upstream": {
+    "Block43_deterministic_checkpoint_sha256": "5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5",
+    "Block44_Gaussian_checkpoint_sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f",
+    "Block44_Gaussian_state_dict_sha256": "1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3",
+    "Block45_calibrator_file_sha256": "508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087",
+    "Block45_implementation_sha256": "482fa179b958f05526657d9970346b3ca699c649b77783f63d4c8de2fd7be7cf",
+    "reuse_Block43_fit_cache": true,
+    "reuse_Block43_development_cache": true,
+    "reuse_Block43_fit_only_normalization": true,
+    "Stage2_Stage3_cache_regeneration": false
+  },
+
+  "distribution": {
+    "family": "trajectory_level_Gaussian_mixture",
+    "components": 3,
+    "mixture_weight_scope": "one_weight_per_component_for_complete_trajectory",
+    "independent_horizon_mode_switching": false,
+    "horizons_s": [0.1, 0.3, 0.5, 1.0],
+    "component_mean_dimension": 3,
+    "component_covariance": "full_3D_SPD_Cholesky",
+    "component_covariance_floor": "reuse_Block4.4_Gaussian_parameterization"
+  },
+
+  "initialization": {
+    "shared_encoder_and_fusion": "exact_copy_from_frozen_Block4.4_Gaussian",
+    "component_covariance_heads": "exact_copy_of_frozen_Gaussian_head_to_all_3_components",
+    "component_mean_heads": "copy_frozen_Gaussian_mean_then_apply_small_deterministic_second_coordinate_bias",
+    "second_coordinate_normalized_bias": [-0.05, 0.0, 0.05],
+    "central_component_index": 1,
+    "central_component_mean_exactly_equals_frozen_Gaussian": true,
+    "mixture_logits": "uniform_zero_logits",
+    "maneuver_labels_used": false,
+    "purpose_of_offsets": "permutation_symmetry_break_only"
+  },
+
+  "objective": {
+    "training": "joint_trajectory_GMM_negative_log_likelihood",
+    "component_valid_horizon_log_likelihoods_are_summed": true,
+    "mixture_logsumexp_applied_once_per_trajectory": true,
+    "future_validity_used_only_as_loss_mask": true
+  },
+
+  "training": {
+    "seed": 20260823,
+    "device": "cuda:0",
+    "dtype": "float32",
+    "optimizer": "AdamW",
+    "learning_rate": 0.0002,
+    "weight_decay": 0.00001,
+    "batch_size": 512,
+    "max_epochs": 20,
+    "early_stopping_patience": 4,
+    "primary_metric": "development_joint_GMM_NLL_per_sample",
+    "tiebreaker": "development_mixture_mean_planar_ADE_m",
+    "gradient_clip_norm": 5.0,
+    "class_sampler": "reuse_Block4.3_equal_primary_class_mass",
+    "mixed_precision": false,
+    "num_workers": 0
+  },
+
+  "evaluation": {
+    "development_metrics": [
+      "joint_GMM_NLL_per_sample",
+      "mixture_mean_planar_ADE",
+      "MAP_component_planar_ADE",
+      "min_component_ADE",
+      "min_component_FDE",
+      "mixture_entropy",
+      "effective_mode_count"
+    ],
+    "formal_validation": "deferred_to_Block4.8",
+    "GMM_calibration": "required_only_before_any_downstream_use_if_GMM_is_selected"
+  },
+
+  "acceptance": {
+    "all_component_covariances_SPD": true,
+    "all_GMM_NLL_values_finite": true,
+    "central_initial_component_matches_frozen_Gaussian_mean": true,
+    "trajectory_level_mixture_weights": true,
+    "training_must_improve_initialized_GMM_development_joint_NLL": true,
+    "exact_checkpoint_inference_repeat": true,
+    "formal_validation_used": false,
+    "Gaussian_mandatory_baseline_remains_frozen": true
+  }
+}

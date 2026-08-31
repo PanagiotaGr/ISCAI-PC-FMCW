@@ -1,0 +1,67 @@
+{
+  "stage": 3,
+  "block": "3.4",
+
+  "baseline": "CV_EKF",
+
+  "state": {
+    "frame": "H0",
+    "order": [
+      "px",
+      "py",
+      "pz",
+      "vx",
+      "vy",
+      "vz"
+    ]
+  },
+
+  "initialization": {
+    "source": "first_two_causal_noisy_H0_positions",
+    "annotated_womd_velocity": false
+  },
+
+  "process_model": {
+    "type": "constant_velocity",
+    "noise_model": "continuous_white_acceleration",
+    "acceleration_spectral_density_m2_s3": 4.0,
+    "parameter_semantics": "declared_stage3_baseline_parameter_not_measured_sensor_fact"
+  },
+
+  "measurement_model": {
+    "domain": "dynamic_headlamp_Ht",
+    "vector_order": [
+      "range",
+      "radial_velocity",
+      "azimuth",
+      "elevation"
+    ],
+    "nonlinear": true,
+    "jacobian": "analytic",
+    "sensor_velocity": "strict_adjacent_pose_difference",
+    "azimuth_innovation_wrapped": true
+  },
+
+  "measurement_uncertainty": {
+    "uses_full_stage2_R_t": true,
+    "R_t_replaced_by_fixed_noise": false
+  },
+
+  "covariance_update": {
+    "method": "Joseph",
+    "innovation_jitter": 1e-9
+  },
+
+  "prediction_horizons_s": [
+    0.1,
+    0.3,
+    0.5,
+    1.0
+  ],
+
+  "truth_used": false,
+  "future_information_used": false,
+  "formal_validation_tuning": false,
+
+  "status": "FROZEN_BEFORE_FORMAL_VALIDATION"
+}

@@ -1,0 +1,98 @@
+{
+  "artifacts": {
+    "all_headlamp_eligible": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_actor_eligibility.jsonl",
+      "sha256": "943e6f4d13234488704034d443c09df6bfaae8a9b748d340d2a99b9bd86fa22d"
+    },
+    "eligible_predictive_matches": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_predictive_matches.jsonl",
+      "sha256": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6"
+    },
+    "eligible_reactive_fallbacks": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_reactive_fallbacks.jsonl",
+      "sha256": "7618c699c336b3ff283d96cad299a737124a3ddcdd51521289bb7531eec9c9aa"
+    },
+    "scene_summary": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_scene_summary.jsonl",
+      "sha256": "96fc593ccc1fabcb751b8ad1066c1bfd127267bda16fee640be87969f9b03bff"
+    }
+  },
+  "association_boundary": {
+    "association_recomputed": false,
+    "association_threshold_added": false,
+    "class_gate_added": false,
+    "current_headlamp_eligibility_applied_after_frozen_association": true,
+    "perfect_ID_used": false
+  },
+  "block": "6.6-Part2C/1",
+  "headlamp_eligible": {
+    "actor_count": 1124,
+    "by_class": {
+      "TYPE_CYCLIST": 56,
+      "TYPE_PEDESTRIAN": 178,
+      "TYPE_VEHICLE": 890
+    },
+    "scene_support_by_class": {
+      "TYPE_CYCLIST": 40,
+      "TYPE_PEDESTRIAN": 56,
+      "TYPE_VEHICLE": 116
+    }
+  },
+  "next": "BLOCK6.6_PART2C2_N8192_P_OCC_ONLY_FOR_HEADLAMP_ELIGIBLE_PREDICTIVE_MATCHES",
+  "original_reactive_fallback": {
+    "by_class": {
+      "TYPE_CYCLIST": 8,
+      "TYPE_PEDESTRIAN": 68,
+      "TYPE_VEHICLE": 171
+    },
+    "count": 247,
+    "scene_support_by_class": {
+      "TYPE_CYCLIST": 8,
+      "TYPE_PEDESTRIAN": 34,
+      "TYPE_VEHICLE": 74
+    }
+  },
+  "predictive_matches": {
+    "all_core_classes_supported": true,
+    "by_class": {
+      "TYPE_CYCLIST": 48,
+      "TYPE_PEDESTRIAN": 110,
+      "TYPE_VEHICLE": 719
+    },
+    "count": 877,
+    "coverage_fraction_of_eligible_by_class": {
+      "TYPE_CYCLIST": 0.8571428571428571,
+      "TYPE_PEDESTRIAN": 0.6179775280898876,
+      "TYPE_VEHICLE": 0.8078651685393259
+    },
+    "scene_support_by_class": {
+      "TYPE_CYCLIST": 37,
+      "TYPE_PEDESTRIAN": 46,
+      "TYPE_VEHICLE": 115
+    }
+  },
+  "scientific_execution": {
+    "P_occ_materialization": false,
+    "class_policy_parameter_selection": false,
+    "formal_evaluation": false,
+    "formal_outcomes_read": false,
+    "gamma_tuning": false,
+    "new_MC_sampling": false,
+    "new_model_forward": false,
+    "recalibration": false,
+    "training": false
+  },
+  "source": {
+    "Part1A_geometry": "continuous_current_full_box_ground_footprint_intersection_with_finite_forward_sector",
+    "Part1A_per_scenario_exact_parity": true,
+    "cohort_N": 120,
+    "maximum_range_m": 150.0,
+    "scenarios_verified": 120,
+    "theta_deg": [
+      -25.0,
+      25.0
+    ]
+  },
+  "stage": 6,
+  "status": "PASS_EXACT_CURRENT_HEADLAMP_ACTOR_ELIGIBILITY_JOIN"
+}

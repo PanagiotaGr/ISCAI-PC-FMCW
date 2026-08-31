@@ -1,0 +1,42 @@
+{
+  "P_occ_manifest": {
+    "actor_count": 877,
+    "by_class": {
+      "TYPE_CYCLIST": 48,
+      "TYPE_PEDESTRIAN": 110,
+      "TYPE_VEHICLE": 719
+    },
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c2b_eligible_actor_pocc_manifest.jsonl",
+    "sha256": "c361ed640b91850831d7e7177d89733fedd3e171f5f3111bcd93698c74a4a300"
+  },
+  "block": "6.6-Part2C/2B",
+  "immutable_inputs": {
+    "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_identity_safe_gaussian_posterior.jsonl": "f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd",
+    "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_predictive_matches.jsonl": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6",
+    "/home/agni/waymo/iscai_stage6/configs/block64_mc_grid_numeric_freeze.json": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73",
+    "/home/agni/waymo/iscai_stage6/reports/block66_part2c2a_probabilistic_kernel_binding_audit.json": "4c79d9ba8084aa3cfbfed03945bf989703769feb5303827844413c2ee71ac0dc",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_full_box.py": "51daeab95713d6e7d2738ced466be4844b73dce70a09138b2b769de880462995",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_occupancy.py": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e"
+  },
+  "persistence_contract": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block66_part2c2b_pocc_persistence_contract.json",
+    "sha256": "2777e25003a2c76d506609130e7927501f15a868fa6ec37dfd192bbb58ea79e5"
+  },
+  "report": {
+    "path": "/home/agni/waymo/iscai_stage6/reports/block66_part2c2b_eligible_n8192_pocc.json",
+    "sha256": "41257fbc43bcd6e0a01925c0f96648f3cb67850785e8f39d9787547ce1511348"
+  },
+  "scientific_lock": {
+    "N_MC": 8192,
+    "P_occ": "FROZEN_DEVELOPMENT_EVIDENCE",
+    "class_policy": "NOT_FROZEN",
+    "formal_tuning": "FORBIDDEN",
+    "grid_shape": [
+      501,
+      301
+    ],
+    "seed": 20260821
+  },
+  "stage": 6,
+  "status": "BLOCK66_DEVELOPMENT_P_OCC_FROZEN"
+}

@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block61_part2_stage1_integration.py", line 3554, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block61_part2_stage1_integration.py", line 821, in main
+    importlib.util.find_spec(
+    ^^^^^^^^^^^^^^
+AttributeError: module 'importlib' has no attribute 'util'
+============================================================
+STAGE 6 — BLOCK 6.1 PART 2/2
+FROZEN STAGE1 INTEGRATION + REAL FULL-BOX SMOKE
+============================================================
+
+===== 0. PROJECT SOURCE-PATH BOOTSTRAP =====
+
+============================================================
+BLOCK 6.1 PART 2/2 = BLOCKED
+============================================================
+exception = AttributeError module 'importlib' has no attribute 'util'
+
+
+Stage1 modified         = NO
+Stage5 modified         = NO
+corpus scan             = NO
+training                = NO
+trajectory inference    = NO
+formal evaluation       = NO
+parameter tuning        = NO
+terminal remains open   = YES

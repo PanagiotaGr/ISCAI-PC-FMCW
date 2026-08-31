@@ -1,0 +1,284 @@
+============================================================
+STAGE 6 — BLOCK 6.8
+PART3C NUMERIC-SELECTION STATUS DIAGNOSTIC
+READ ONLY / ZERO P_OCC / ZERO PERFORMANCE
+============================================================
+
+===== A. EXACT FROZEN INPUTS =====
+closure            = EXACT PASS
+freeze             = EXACT PASS
+replay             = EXACT PASS
+final_script       = EXACT PASS
+part3c1_report     = EXACT PASS
+part3c1_handoff    = EXACT PASS
+
+===== B. EXACT `numeric_policy_selected` VALUES =====
+
+Part3C1 report
+  key present = False
+  value       = '<MISSING>'
+  type        = str
+  `is False`  = False
+  `is True`   = False
+
+Part3C1 handoff
+  key present = True
+  value       = False
+  type        = bool
+  `is False`  = True
+  `is True`   = False
+
+Part3C final closure
+  key present = False
+  value       = '<MISSING>'
+  type        = str
+  `is False`  = False
+  `is True`   = False
+
+Part3C final freeze
+  key present = True
+  value       = False
+  type        = bool
+  `is False`  = True
+  `is True`   = False
+
+===== C. FINAL CLOSURE SELECTION-RELATED LEAVES =====
+
+----- PART3C FINAL CLOSURE -----
+PartA_continuity.generic_lateral_margin = 'PRESERVED' | type = str
+PartA_continuity.generic_radial_margin = 'PRESERVED' | type = str
+deterministic_replay.PRNG_deterministic_replay_executed = True | type = bool
+deterministic_replay.contract_path = '/home/agni/waymo/iscai_stage6/configs/block66_part3c_part2of2_deterministic_replay_contract.json' | type = str
+deterministic_replay.contract_sha256 = 'ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1' | type = str
+deterministic_replay.full_box_exact_parity = 'PASS_719_OF_719' | type = str
+deterministic_replay.new_random_seed = False | type = bool
+deterministic_replay.new_stochastic_realization = False | type = bool
+deterministic_replay.replayed_this_run = 719 | type = int
+deterministic_replay.reused_from_resumable_cache = 0 | type = int
+deterministic_replay.same_seed_per_actor = True | type = bool
+deterministic_replay.sample_count_per_actor = 8192 | type = int
+deterministic_replay.seed = 20260821 | type = int
+deterministic_replay.tolerance = None | type = NoneType
+deterministic_replay.vehicles = 719 | type = int
+geometry_binding.all_candidates[0].axis = 'X_LENGTH_Y_WIDTH' | type = str
+geometry_binding.all_candidates[0].rotation = 'CCW_STANDARD' | type = str
+geometry_binding.all_candidates[0].worst_error = 3.552713678800501e-15 | type = float
+geometry_binding.all_candidates[1].axis = 'X_WIDTH_Y_LENGTH' | type = str
+geometry_binding.all_candidates[1].rotation = 'CCW_STANDARD' | type = str
+geometry_binding.all_candidates[1].worst_error = 1.299596856365259 | type = float
+geometry_binding.all_candidates[2].axis = 'X_WIDTH_Y_LENGTH' | type = str
+geometry_binding.all_candidates[2].rotation = 'CLOCKWISE' | type = str
+geometry_binding.all_candidates[2].worst_error = 3.379833896808613 | type = float
+geometry_binding.all_candidates[3].axis = 'X_LENGTH_Y_WIDTH' | type = str
+geometry_binding.all_candidates[3].rotation = 'CLOCKWISE' | type = str
+geometry_binding.all_candidates[3].worst_error = 4.673613590063706 | type = float
+integration_smoke.development_objective_evaluated = False | type = bool
+integration_smoke.formal_outcomes_read = False | type = bool
+integration_smoke.future_GT_used = False | type = bool
+integration_smoke.numeric_policy_selected = False | type = bool
+integration_smoke.results[0].active_cells_after_margin = 29212 | type = int
+integration_smoke.results[0].active_cells_before_margin = 23029 | type = int
+integration_smoke.results[0].actor_class = 'TYPE_VEHICLE' | type = str
+integration_smoke.results[0].final_max = 1.0 | type = float
+integration_smoke.results[0].final_mean = 0.9078852668776621 | type = float
+integration_smoke.results[0].final_min = 2.0611536224388346e-09 | type = float
+integration_smoke.results[0].margin[0].additional_margin_m = 0.36685084841369864 | type = float
+integration_smoke.results[0].margin[0].dilation_cells = 29 | type = int
+integration_smoke.results[0].margin[0].horizon_s = 0.1 | type = float
+integration_smoke.results[0].margin[0].total_margin_m = 1.3668508484136987 | type = float
+integration_smoke.results[0].margin[1].additional_margin_m = 0.47324462842014725 | type = float
+integration_smoke.results[0].margin[1].dilation_cells = 29 | type = int
+integration_smoke.results[0].margin[1].horizon_s = 0.3 | type = float
+integration_smoke.results[0].margin[1].total_margin_m = 1.4732446284201473 | type = float
+integration_smoke.results[0].margin[2].additional_margin_m = 0.6003596645944657 | type = float
+integration_smoke.results[0].margin[2].dilation_cells = 29 | type = int
+integration_smoke.results[0].margin[2].horizon_s = 0.5 | type = float
+integration_smoke.results[0].margin[2].total_margin_m = 1.6003596645944658 | type = float
+integration_smoke.results[0].margin[3].additional_margin_m = 0.899633746530175 | type = float
+integration_smoke.results[0].margin[3].dilation_cells = 29 | type = int
+integration_smoke.results[0].margin[3].horizon_s = 1.0 | type = float
+integration_smoke.results[0].margin[3].total_margin_m = 1.8996337465301751 | type = float
+integration_smoke.results[0].objective_metric_evaluated = False | type = bool
+integration_smoke.results[0].prediction_id = 's3trk-000027' | type = str
+integration_smoke.results[0].rate_limit_safety_override_fraction = 0.0 | type = float
+integration_smoke.results[0].scenario_id = 'f72a05a05035feb8' | type = str
+integration_smoke.results[1].active_cells_after_margin = 2546 | type = int
+integration_smoke.results[1].active_cells_before_margin = 1648 | type = int
+integration_smoke.results[1].actor_class = 'TYPE_PEDESTRIAN' | type = str
+integration_smoke.results[1].final_max = 1.0 | type = float
+integration_smoke.results[1].final_mean = 0.9607129506832015 | type = float
+integration_smoke.results[1].final_min = 0.05000000195809594 | type = float
+integration_smoke.results[1].margin[0].additional_margin_m = 0.31185064284323866 | type = float
+integration_smoke.results[1].margin[0].dilation_cells = 11 | type = int
+integration_smoke.results[1].margin[0].horizon_s = 0.1 | type = float
+integration_smoke.results[1].margin[0].total_margin_m = 1.3118506428432386 | type = float
+integration_smoke.results[1].margin[1].additional_margin_m = 0.3453228854355918 | type = float
+integration_smoke.results[1].margin[1].dilation_cells = 11 | type = int
+integration_smoke.results[1].margin[1].horizon_s = 0.3 | type = float
+integration_smoke.results[1].margin[1].total_margin_m = 1.3453228854355919 | type = float
+integration_smoke.results[1].margin[2].additional_margin_m = 0.37969071663033543 | type = float
+integration_smoke.results[1].margin[2].dilation_cells = 12 | type = int
+integration_smoke.results[1].margin[2].horizon_s = 0.5 | type = float
+integration_smoke.results[1].margin[2].total_margin_m = 1.3796907166303354 | type = float
+integration_smoke.results[1].margin[3].additional_margin_m = 0.5058511451794291 | type = float
+integration_smoke.results[1].margin[3].dilation_cells = 13 | type = int
+integration_smoke.results[1].margin[3].horizon_s = 1.0 | type = float
+integration_smoke.results[1].margin[3].total_margin_m = 1.5058511451794292 | type = float
+integration_smoke.results[1].objective_metric_evaluated = False | type = bool
+integration_smoke.results[1].prediction_id = 's3trk-000022' | type = str
+integration_smoke.results[1].rate_limit_safety_override_fraction = 0.0 | type = float
+integration_smoke.results[1].scenario_id = '78249f8856cb2c57' | type = str
+integration_smoke.results[2].active_cells_after_margin = 14727 | type = int
+integration_smoke.results[2].active_cells_before_margin = 9581 | type = int
+integration_smoke.results[2].actor_class = 'TYPE_CYCLIST' | type = str
+integration_smoke.results[2].final_max = 1.0 | type = float
+integration_smoke.results[2].final_mean = 0.9288636349930395 | type = float
+integration_smoke.results[2].final_min = 0.05000000195809594 | type = float
+integration_smoke.results[2].margin[0].additional_margin_m = 0.45468369949315823 | type = float
+integration_smoke.results[2].margin[0].dilation_cells = 21 | type = int
+integration_smoke.results[2].margin[0].horizon_s = 0.1 | type = float
+integration_smoke.results[2].margin[0].total_margin_m = 1.4546836994931582 | type = float
+integration_smoke.results[2].margin[1].additional_margin_m = 0.5427117427524912 | type = float
+integration_smoke.results[2].margin[1].dilation_cells = 23 | type = int
+integration_smoke.results[2].margin[1].horizon_s = 0.3 | type = float
+integration_smoke.results[2].margin[1].total_margin_m = 1.5427117427524912 | type = float
+integration_smoke.results[2].margin[2].additional_margin_m = 0.6350353119889571 | type = float
+integration_smoke.results[2].margin[2].dilation_cells = 24 | type = int
+integration_smoke.results[2].margin[2].horizon_s = 0.5 | type = float
+integration_smoke.results[2].margin[2].total_margin_m = 1.6350353119889571 | type = float
+integration_smoke.results[2].margin[3].additional_margin_m = 0.8693834022671043 | type = float
+integration_smoke.results[2].margin[3].dilation_cells = 28 | type = int
+integration_smoke.results[2].margin[3].horizon_s = 1.0 | type = float
+integration_smoke.results[2].margin[3].total_margin_m = 1.8693834022671043 | type = float
+integration_smoke.results[2].objective_metric_evaluated = False | type = bool
+integration_smoke.results[2].prediction_id = 's3trk-000021' | type = str
+integration_smoke.results[2].rate_limit_safety_override_fraction = 0.0 | type = float
+integration_smoke.results[2].scenario_id = 'f72a05a05035feb8' | type = str
+integration_smoke.status = 'PASS_ALL_CORE_CLASSES' | type = str
+integration_smoke.tuple.base_margin_m = 0.0 | type = float
+integration_smoke.tuple.cyclist_floor = 0.05 | type = float
+integration_smoke.tuple.cyclist_motion_multiplier = 0.25 | type = float
+integration_smoke.tuple.gamma_k = 0 | type = int
+integration_smoke.tuple.pedestrian_floor = 0.05 | type = float
+integration_smoke.tuple.rho_bright_per_s = 1.0 | type = float
+integration_smoke.tuple.rho_dim_per_s = 1.0 | type = float
+integration_smoke.tuple.selection_status = 'NOT_SELECTED_STRUCTURAL_SMOKE_ONLY' | type = str
+integration_smoke.tuple.smoothing_time_constant_s = 0.05 | type = float
+integration_smoke.tuple.uncertainty_multiplier = 0.5 | type = float
+integration_smoke.tuple.vehicle_floor = 0.0 | type = float
+integration_smoke.tuple.vehicle_motion_multiplier = 0.05 | type = float
+scientific_boundary.formal_outcomes_read = False | type = bool
+scientific_boundary.formal_tuning = False | type = bool
+scientific_boundary.numeric_policy_selected = False | type = bool
+scientific_boundary.objects_of_interest_selection = False | type = bool
+scientific_boundary.policy_parameter_sweep_executed = False | type = bool
+scientific_boundary.tracks_to_predict_selection = False | type = bool
+
+===== D. FINAL FREEZE SELECTION-RELATED LEAVES =====
+
+----- PART3C FINAL FREEZE -----
+deterministic_replay_contract.path = '/home/agni/waymo/iscai_stage6/configs/block66_part3c_part2of2_deterministic_replay_contract.json' | type = str
+deterministic_replay_contract.sha256 = 'ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1' | type = str
+formal_outcomes_read = False | type = bool
+numeric_policy_selected = False | type = bool
+
+===== E. DETERMINISTIC REPLAY CONTRACT STATUS =====
+
+----- DETERMINISTIC REPLAY CONTRACT -----
+replay_population.all_classes_replayed = False | type = bool
+replay_population.eligible_predictive_vehicles = 719 | type = int
+replay_population.vehicle_only_reason = 'geometry-based front-upper/rear-upper surrogate requirement is vehicle-specific' | type = str
+scientific_boundaries.formal_outcomes_read = False | type = bool
+scientific_boundaries.numeric_policy_selection = False | type = bool
+scientific_boundaries.policy_sweep = False | type = bool
+upstream.numeric_freeze.path = '/home/agni/waymo/iscai_stage6/configs/block64_mc_grid_numeric_freeze.json' | type = str
+upstream.numeric_freeze.sha256 = '993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73' | type = str
+
+===== F. PART3C FINAL SOURCE SELECTION CONTEXT =====
+L01630:                 False,
+L01631: 
+L01632:             "new_stochastic_realization":
+L01633:                 False,
+L01634: 
+L01635:             "policy_sweep":
+L01636:                 False,
+L01637: 
+L01638:             "numeric_policy_selection":
+L01639:                 False,
+L01640: 
+L01641:             "formal_outcomes_read":
+L01642:                 False,
+L01643: 
+L03529:     print(
+L03530:         "vehicle/pedestrian/cyclist = PASS / PASS / PASS"
+L03531:     )
+L03532: 
+L03533:     print(
+L03534:         "smoke tuple numeric selection = NO"
+L03535:     )
+L03536: 
+L03537:     print(
+L03538:         "development objective evaluated = NO"
+L03539:     )
+L03775:                 smoke_tuple,
+L03776: 
+L03777:             "results":
+L03778:                 smoke_results,
+L03779: 
+L03780:             "numeric_policy_selected":
+L03781:                 False,
+L03782: 
+L03783:             "development_objective_evaluated":
+L03784:                 False,
+L03785: 
+L03806: 
+L03807:         "scientific_boundary": {
+L03808:             "policy_parameter_sweep_executed":
+L03809:                 False,
+L03810: 
+L03811:             "numeric_policy_selected":
+L03812:                 False,
+L03813: 
+L03814:             "formal_outcomes_read":
+L03815:                 False,
+L03816: 
+L03960:             "change surrogate geometry after seeing outcomes",
+L03961:             "formal outcome read",
+L03962:             "formal tuning",
+L03963:         ],
+L03964: 
+L03965:         "numeric_policy_selected":
+L03966:             False,
+L03967: 
+L03968:         "formal_outcomes_read":
+L03969:             False,
+L03970:     }
+
+===== G. STATUS CLASSIFICATION =====
+classification = CLOSURE_KEY_MISSING
+next action     = bind selection status from explicit scientific_boundary/freeze authority
+
+===== H. SCIENTIFIC BOUNDARY =====
+P_occ manifest values       = NOT OPENED
+P_occ arrays                = NOT OPENED
+gamma sweep                 = NOT EXECUTED
+predictive illumination     = NOT COMPUTED
+predictive performance      = NOT COMPUTED
+acceptance gate             = NOT TESTED
+policy numerics changed     = NO
+formal evaluation           = NO
+Stage6 regression           = 224 / 224 PASS
+
+============================================================
+BLOCK 6.8 PART3C NUMERIC-SELECTION STATUS — FINAL
+============================================================
+classification          = CLOSURE_KEY_MISSING
+P_occ arrays            = NOT OPENED
+gamma sweep             = NOT EXECUTED
+predictive performance  = NOT COMPUTED
+policy modification     = NO
+formal evaluation       = NO
+Stage6 regression       = 224 / 224 PASS
+STATUS = PASS_PART3C_NUMERIC_SELECTION_STATUS_DIAGNOSED
+report = /home/agni/waymo/iscai_stage6/reports/block68_part3c_numeric_selection_status.json
+terminal remains open = YES

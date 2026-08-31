@@ -1,0 +1,78 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b1_frozen_gaussian_forward.py", line 3408, in main
+    scientific_run()
+    ~~~~~~~~~~~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b1_frozen_gaussian_forward.py", line 2212, in scientific_run
+    ) = construct_normalizer(
+        ~~~~~~~~~~~~~~~~~~~~^
+        CalibrationNormalizer,
+        ^^^^^^^^^^^^^^^^^^^^^^
+        normalization_json,
+        ^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b1_frozen_gaussian_forward.py", line 903, in construct_normalizer
+    require(
+    ~~~~~~~^
+        not unresolved,
+        ^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b1_frozen_gaussian_forward.py", line 144, in require
+    raise ScientificBlock(message)
+ScientificBlock: BLOCKED_FROZEN_NORMALIZER_CONSTRUCTION_BINDING: required constructor arguments cannot be resolved from the frozen fit-only payload: ['statistics', 'device']; signature=(statistics, *, device); payload keys=['calibration_used', 'continuous_feature_mean', 'continuous_feature_std', 'development_used', 'label_displacement_mean', 'label_displacement_std', 'label_valid_count_per_horizon', 'map_mean', 'map_std', 'missing_history_rows_in_statistics', 'observed_history_row_count', 'padded_neighbor_slots_in_statistics', 'sample_count', 'sha256', 'source', 'validation_used']
+========================================================================
+BLOCK 6.3 PART 2B/1 — FROZEN GAUSSIAN CAUSAL FORWARD
+========================================================================
+
+===== A. FROZEN PREREQUISITE SEAL =====
+part2a           = PASS
+checkpoint       = PASS
+normalization    = PASS
+calibrator       = PASS
+
+===== B. SAME REAL CAUSAL DEVELOPMENT ROUTE =====
+scenario_id             = b85e1bd6cc8e74c0
+causal histories        = 27
+prediction_id unique    = PASS
+future access           = NO
+
+===== C. EXACT PER-TARGET MAP-CONTEXT BINDING =====
+static map frame        = H0
+H0 transform source     = AdaptedScenario.frames.T_H0_from_W
+map producer            = build_static_map_index_H0
+per-target summary      = map_context_summary
+target position source  = latest_position_H0_m
+map context matrix      = (27, 10)
+unique map rows         = 27
+shared scene vector     = NO
+future map state        = NO
+
+===== D. CAUSAL MODEL INPUT PAYLOADS =====
+payloads                = 27
+per-target map contexts = YES
+attach_supervision      = NOT CALLED
+future labels           = NOT READ
+tracks_to_predict       = NOT USED
+
+===== E. FIT-ONLY FROZEN NORMALIZER =====
+
+========================================================================
+CONTROLLED BLOCK — NO SCIENTIFIC STATE ADVANCE
+========================================================================
+exception type = ScientificBlock
+exception      = BLOCKED_FROZEN_NORMALIZER_CONSTRUCTION_BINDING: required constructor arguments cannot be resolved from the frozen fit-only payload: ['statistics', 'device']; signature=(statistics, *, device); payload keys=['calibration_used', 'continuous_feature_mean', 'continuous_feature_std', 'development_used', 'label_displacement_mean', 'label_displacement_std', 'label_valid_count_per_horizon', 'map_mean', 'map_std', 'missing_history_rows_in_statistics', 'observed_history_row_count', 'padded_neighbor_slots_in_statistics', 'sample_count', 'sha256', 'source', 'validation_used']
+
+report = /home/agni/waymo/iscai_stage6/reports/block63_part2b1_frozen_gaussian_forward.json
+report SHA256 = 25ea8010c77bf19966fae6f6ab7adc8c7d53f71e05dd4dc556fcea847b6fb1fe
+
+========================================================================
+BLOCK 6.3 PART 2B/1 — FINAL
+========================================================================
+status = BLOCKED_EXACT_FROZEN_GAUSSIAN_FORWARD_BOUNDARY
+diagnostic excerpt = /home/agni/waymo/iscai_stage6/artifacts/block63/block63_part2b1_runtime_boundary_excerpt.txt
+terminal remains open = YES
+========================================================================

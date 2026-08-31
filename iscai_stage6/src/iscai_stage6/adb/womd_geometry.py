@@ -1,0 +1,579 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+from hashlib import sha256
+import json
+import math
+from typing import Any
+
+import numpy as np
+
+from iscai_stage1.actors.womd_adapter import (
+    object_type_name,
+)
+
+from .geometry import (
+    Box3D,
+    project_box_to_headlamp,
+    wrap_angle,
+)
+
+
+SUPPORTED_ADB_CLASSES = frozenset(
+    {
+        "TYPE_VEHICLE",
+        "TYPE_PEDESTRIAN",
+        "TYPE_CYCLIST",
+    }
+)
+
+
+@dataclass(frozen=True)
+class CausalADBActorBox:
+    scenario_id: str
+    track_index: int
+    track_id: str
+    object_type: str
+
+    box: Box3D
+
+    stage1_anchor_center_H0_m: tuple[float, float, float] | None
+
+    stage1_anchor_bearing_H0_rad: float | None
+
+    center_consistency_error_m: float
+
+    source_time_index: int
+
+    state_source: str = "current_causal"
+    orientation_source: str = "current_causal"
+
+    tracks_to_predict_used: bool = False
+    objects_of_interest_used: bool = False
+    future_state_used: bool = False
+
+
+def _rotation_matrix(
+    transform: Any,
+) -> np.ndarray:
+
+    matrix = np.asarray(
+        transform.rotation,
+        dtype=np.float64,
+    )
+
+    if matrix.shape != (
+        3,
+        3,
+    ):
+        raise ValueError(
+            "T_H0_from_W.rotation must be 3x3"
+        )
+
+    if not np.all(
+        np.isfinite(matrix)
+    ):
+        raise ValueError(
+            "T_H0_from_W.rotation contains "
+            "non-finite values"
+        )
+
+    return matrix
+
+
+def world_heading_to_headlamp_yaw(
+    *,
+    heading_W_rad: float,
+    T_H0_from_W: Any,
+) -> float:
+    """
+    Transform an actor's world-frame forward direction into H0
+    and recover yaw from the projected horizontal direction.
+
+    No future heading is used.
+    """
+
+    heading = float(
+        heading_W_rad
+    )
+
+    if not math.isfinite(
+        heading
+    ):
+        raise ValueError(
+            "heading_W_rad must be finite"
+        )
+
+    forward_W = np.asarray(
+        [
+            math.cos(heading),
+            math.sin(heading),
+            0.0,
+        ],
+        dtype=np.float64,
+    )
+
+    forward_H0 = (
+        _rotation_matrix(
+            T_H0_from_W
+        )
+        @
+        forward_W
+    )
+
+    horizontal_norm = math.hypot(
+        float(
+            forward_H0[0]
+        ),
+        float(
+            forward_H0[1]
+        ),
+    )
+
+    if horizontal_norm <= 1.0e-12:
+        raise ValueError(
+            "Transformed actor forward vector "
+            "has zero horizontal norm"
+        )
+
+    return wrap_angle(
+        math.atan2(
+            float(
+                forward_H0[1]
+            ),
+            float(
+                forward_H0[0]
+            ),
+        )
+    )
+
+
+def build_causal_adb_actor_boxes(
+    *,
+    scenario: Any,
+    adapted: Any,
+    allowed_classes:
+        frozenset[str] = SUPPORTED_ADB_CLASSES,
+) -> tuple[CausalADBActorBox, ...]:
+    """
+    Build all anchor-valid, non-SDC vehicle/pedestrian/cyclist
+    boxes from current causal WOMD geometry.
+
+    Selection deliberately does NOT inspect:
+      - tracks_to_predict,
+      - objects_of_interest,
+      - any state after current_time_index.
+    """
+
+    anchor = int(
+        scenario.current_time_index
+    )
+
+    if int(
+        adapted.anchor_index
+    ) != anchor:
+        raise RuntimeError(
+            "Stage1 adapted anchor differs "
+            "from WOMD current_time_index"
+        )
+
+    T_H0_from_W = (
+        adapted.frames.T_H0_from_W
+    )
+
+    results = []
+
+    for adapted_actor in (
+        adapted.actors
+    ):
+        track_index = int(
+            adapted_actor.track_index
+        )
+
+        if (
+            track_index
+            ==
+            int(
+                scenario.sdc_track_index
+            )
+        ):
+            continue
+
+        if not (
+            0
+            <=
+            track_index
+            <
+            len(
+                scenario.tracks
+            )
+        ):
+            raise RuntimeError(
+                "Invalid Stage1 actor track index"
+            )
+
+        track = scenario.tracks[
+            track_index
+        ]
+
+        actor_class = (
+            object_type_name(
+                track
+            )
+        )
+
+        if (
+            actor_class
+            not in
+            allowed_classes
+        ):
+            continue
+
+        if anchor >= len(
+            track.states
+        ):
+            raise RuntimeError(
+                "Anchor index exceeds track states"
+            )
+
+        state = track.states[
+            anchor
+        ]
+
+        if not bool(
+            state.valid
+        ):
+            continue
+
+        dimensions = (
+            float(state.length),
+            float(state.width),
+            float(state.height),
+        )
+
+        if not all(
+            math.isfinite(v)
+            and
+            v > 0.0
+            for v in dimensions
+        ):
+            raise ValueError(
+                "Anchor-valid actor has invalid "
+                "length/width/height"
+            )
+
+        center_W = (
+            float(state.center_x),
+            float(state.center_y),
+            float(state.center_z),
+        )
+
+        center_H0_raw = (
+            T_H0_from_W.apply_point(
+                center_W
+            )
+        )
+
+        center_H0 = tuple(
+            float(v)
+            for v in center_H0_raw
+        )
+
+        if not all(
+            math.isfinite(v)
+            for v in center_H0
+        ):
+            raise ValueError(
+                "Transformed actor center "
+                "contains non-finite values"
+            )
+
+        yaw_H0 = (
+            world_heading_to_headlamp_yaw(
+                heading_W_rad=(
+                    float(
+                        state.heading
+                    )
+                ),
+                T_H0_from_W=(
+                    T_H0_from_W
+                ),
+            )
+        )
+
+        box = Box3D(
+            center_xyz=center_H0,
+            length_m=dimensions[0],
+            width_m=dimensions[1],
+            height_m=dimensions[2],
+            yaw_rad=yaw_H0,
+        )
+
+        stage1_center = (
+            adapted_actor
+            .anchor_center_H0_m
+        )
+
+        if stage1_center is None:
+            consistency_error = float(
+                "nan"
+            )
+        else:
+            consistency_error = math.sqrt(
+                sum(
+                    (
+                        float(
+                            center_H0[i]
+                        )
+                        -
+                        float(
+                            stage1_center[i]
+                        )
+                    )
+                    ** 2
+                    for i in range(3)
+                )
+            )
+
+        results.append(
+            CausalADBActorBox(
+                scenario_id=str(
+                    adapted.scenario_id
+                ),
+
+                track_index=track_index,
+
+                track_id=str(
+                    track.id
+                ),
+
+                object_type=actor_class,
+
+                box=box,
+
+                stage1_anchor_center_H0_m=(
+                    None
+                    if stage1_center is None
+                    else tuple(
+                        float(v)
+                        for v in stage1_center
+                    )
+                ),
+
+                stage1_anchor_bearing_H0_rad=(
+                    None
+                    if (
+                        adapted_actor
+                        .anchor_bearing_H0_rad
+                        is None
+                    )
+                    else float(
+                        adapted_actor
+                        .anchor_bearing_H0_rad
+                    )
+                ),
+
+                center_consistency_error_m=(
+                    float(
+                        consistency_error
+                    )
+                ),
+
+                source_time_index=anchor,
+            )
+        )
+
+    return tuple(
+        results
+    )
+
+
+def validate_stage1_projection_consistency(
+    actor: CausalADBActorBox,
+    *,
+    center_tolerance_m: float = 1.0e-8,
+    bearing_tolerance_rad: float = 1.0e-8,
+) -> dict[str, float | bool]:
+    """
+    Cross-check Stage6 centroid geometry against frozen Stage1
+    anchor-center and anchor-bearing outputs.
+    """
+
+    if (
+        actor.stage1_anchor_center_H0_m
+        is None
+    ):
+        raise RuntimeError(
+            "Stage1 anchor center is unavailable "
+            "for an anchor-valid ADB actor"
+        )
+
+    if not math.isfinite(
+        actor.center_consistency_error_m
+    ):
+        raise RuntimeError(
+            "Non-finite Stage1/Stage6 center "
+            "consistency error"
+        )
+
+    if (
+        actor.center_consistency_error_m
+        >
+        center_tolerance_m
+    ):
+        raise RuntimeError(
+            "Stage1/Stage6 center mismatch: "
+            f"{actor.center_consistency_error_m}"
+        )
+
+    projected = (
+        project_box_to_headlamp(
+            actor.box,
+            state_source="current_causal",
+            orientation_source="current_causal",
+            controller_path=True,
+        )
+    )
+
+    stage1_bearing = (
+        actor.stage1_anchor_bearing_H0_rad
+    )
+
+    bearing_error = float(
+        "nan"
+    )
+
+    if stage1_bearing is not None:
+        delta = wrap_angle(
+            float(
+                projected.centroid.theta_rad[
+                    0
+                ]
+            )
+            -
+            float(
+                stage1_bearing
+            )
+        )
+
+        bearing_error = abs(
+            float(delta)
+        )
+
+        if (
+            bearing_error
+            >
+            bearing_tolerance_rad
+        ):
+            raise RuntimeError(
+                "Stage1/Stage6 bearing mismatch: "
+                f"{bearing_error}"
+            )
+
+    return {
+        "center_error_m":
+            float(
+                actor.center_consistency_error_m
+            ),
+
+        "bearing_error_rad":
+            float(
+                bearing_error
+            ),
+
+        "eight_corners":
+            (
+                projected.corners.xyz.shape
+                ==
+                (8, 3)
+            ),
+
+        "theta_span_positive":
+            (
+                projected.theta_span_rad
+                >
+                0.0
+            ),
+
+        "range_extent_positive":
+            (
+                projected.range_3d_max_m
+                >
+                projected.range_3d_min_m
+            ),
+    }
+
+
+def causal_actor_boxes_sha256(
+    actors,
+) -> str:
+    """
+    Stable hash for causality/invariance tests.
+    """
+
+    payload = []
+
+    for actor in sorted(
+        actors,
+        key=lambda item:
+            (
+                item.track_index,
+                item.track_id,
+            ),
+    ):
+        payload.append({
+            "scenario_id":
+                actor.scenario_id,
+
+            "track_index":
+                actor.track_index,
+
+            "track_id":
+                actor.track_id,
+
+            "object_type":
+                actor.object_type,
+
+            "center_xyz":
+                list(
+                    actor.box.center_xyz
+                ),
+
+            "length_m":
+                actor.box.length_m,
+
+            "width_m":
+                actor.box.width_m,
+
+            "height_m":
+                actor.box.height_m,
+
+            "yaw_rad":
+                actor.box.yaw_rad,
+
+            "source_time_index":
+                actor.source_time_index,
+
+            "tracks_to_predict_used":
+                actor.tracks_to_predict_used,
+
+            "objects_of_interest_used":
+                actor.objects_of_interest_used,
+
+            "future_state_used":
+                actor.future_state_used,
+        })
+
+    encoded = (
+        json.dumps(
+            payload,
+            sort_keys=True,
+            separators=(",", ":"),
+            allow_nan=False,
+        )
+        .encode("utf-8")
+    )
+
+    return sha256(
+        encoded
+    ).hexdigest()

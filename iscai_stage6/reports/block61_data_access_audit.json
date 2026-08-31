@@ -1,0 +1,87 @@
+{
+  "audit": "data_access_semantics",
+  "binding_verdict": {
+    "canonical_runtime_motion_file": "/home/agni/waymo/data/paired_womd_lidar_v1_3_0/validation/motion/paired-from-validation.tfrecord-00000-of-00150",
+    "canonical_runtime_root": "/home/agni/waymo/data/paired_womd_lidar_v1_3_0",
+    "direct_WOMD_state_role": "GEOMETRY_INTEGRATION_VALIDATION_ONLY",
+    "final_Block61_reader_policy": "reuse discovered upstream validated motion reader/index API",
+    "historical_offset_must_equal_runtime_offset": false,
+    "historical_record_offset": "PROVENANCE_FOR_HISTORICAL_FILE",
+    "historical_source_shard": "PROVENANCE_ONLY",
+    "primary_Stage6_experimental_input": "remains frozen track-based PC-FMCW-like posterior pipeline",
+    "runtime_record_offset": 0,
+    "scenario_identity": "EXACT_MATCH"
+  },
+  "block": "6.1",
+  "canonical_runtime": {
+    "Stage1_closure_mentions_root": true,
+    "local_record": {
+      "current_time_index": 10,
+      "found": true,
+      "local_record_offset": 0,
+      "payload_length": 647785,
+      "payload_sha256": "dd0d633a6f44807c26a26acfb41bf98c3da44a98ea0b70a33d96a9970c0a2ff1",
+      "records_examined": 1,
+      "scenario_id": "b85e1bd6cc8e74c0",
+      "track_count": 14
+    },
+    "paired_root": "/home/agni/waymo/data/paired_womd_lidar_v1_3_0",
+    "paired_root_exists": true,
+    "payload_length_match_if_available": null,
+    "resolved_motion_exists": true,
+    "resolved_motion_path": "/home/agni/waymo/data/paired_womd_lidar_v1_3_0/validation/motion/paired-from-validation.tfrecord-00000-of-00150",
+    "shard_suffix": "00000-of-00150"
+  },
+  "frozen_pilot": {
+    "historical_record_offset": null,
+    "historical_source_exists": false,
+    "historical_source_shard": "/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00000-of-00150",
+    "manifest_motion_payload_length": null,
+    "scenario_id": "b85e1bd6cc8e74c0"
+  },
+  "project": "Agni",
+  "project_source_roots": [
+    "/home/agni/waymo/iscai_stage0/src",
+    "/home/agni/waymo/iscai_stage1/src",
+    "/home/agni/waymo/iscai_stage2/src",
+    "/home/agni/waymo/iscai_stage3/src",
+    "/home/agni/waymo/iscai_stage4/src",
+    "/home/agni/waymo/iscai_stage5/src",
+    "/home/agni/waymo/iscai_stage6/src"
+  ],
+  "scientific_contract": {
+    "Block61_generator_modified": false,
+    "Stage1_manifest_modified": false,
+    "Stage2_4_sources_modified": false,
+    "Stage5_modified": false,
+    "corpus_modified": false,
+    "formal_evaluation": false,
+    "parameter_tuning": false,
+    "training": false,
+    "trajectory_inference": false
+  },
+  "stage": 6,
+  "status": "PASS_READY_FOR_DATA_ACCESS_REPAIR",
+  "upstream_readers": [
+    {
+      "function": "build_compact_motion_offset_index",
+      "import_error": null,
+      "module": "iscai_stage3.validation.womd_access",
+      "signature": "(rows: 'Iterable[ValidationManifestRow]') -> 'dict[str, int]'",
+      "source_file": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/validation/womd_access.py",
+      "source_preview": "def build_compact_motion_offset_index(\n    rows: Iterable[\n        ValidationManifestRow\n    ],\n) -> dict[str, int]:\n    \"\"\"\n    Reconstruct canonical offsets inside the\n    compact paired-from-* motion shards.\n\n    The frozen manifest record_offset is an\n    offset in the ORIGINAL WOMD source shard.\n\n    During paired-corpus packaging, selected\n    rows from each source shard were sorted by\n    original record_offset and written\n    consecutively to the canonical compact\n    paired-from-* shard.\n\n    Therefore canonical compact offsets are\n    cumulative selected TFRecord byte lengths,\n    not the original source offsets.\n    \"\"\"\n\n    grouped: dict[\n        str,\n        list[ValidationManifestRow],\n    ] = {}\n\n    for row in rows:\n        grouped.setdefault(\n            row.source_shard,\n            [],\n        ).append(row)\n\n    offsets: dict[",
+      "source_sha256": "e17ea0b8c8d2a3027ad435a8af4bb8ba7ca11ec592e5e7a1fef205bc334c6715",
+      "stage_source_root": "/home/agni/waymo/iscai_stage3/src"
+    },
+    {
+      "function": "read_motion_scenario",
+      "import_error": null,
+      "module": "iscai_stage3.validation.womd_access",
+      "signature": "(row: 'ValidationManifestRow', *, paired_root: 'Path', compact_record_offset: 'int')",
+      "source_file": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/validation/womd_access.py",
+      "source_preview": "def read_motion_scenario(\n    row: ValidationManifestRow,\n    *,\n    paired_root: Path,\n    compact_record_offset: int,\n):\n    \"\"\"\n    Random-access one Scenario from the\n    canonical compact paired motion shard.\n\n    IMPORTANT:\n    compact_record_offset is reconstructed\n    from the frozen manifest ordering.\n\n    row.record_offset remains provenance for\n    the deleted/original WOMD source shard and\n    is deliberately NOT used against the\n    canonical paired-from-* shard.\n    \"\"\"\n\n    offset = int(\n        compact_record_offset\n    )\n\n    if offset < 0:\n        raise ValueError(\n            \"Negative compact record offset.\"\n        )\n\n    shard = resolve_motion_shard(\n        row,\n        paired_root=paired_root,\n    )\n\n    with shard.open(\"rb\") as stream:",
+      "source_sha256": "e17ea0b8c8d2a3027ad435a8af4bb8ba7ca11ec592e5e7a1fef205bc334c6715",
+      "stage_source_root": "/home/agni/waymo/iscai_stage3/src"
+    }
+  ]
+}

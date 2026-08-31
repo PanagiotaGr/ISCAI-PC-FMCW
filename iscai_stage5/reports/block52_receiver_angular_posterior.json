@@ -1,0 +1,98 @@
+{
+  "Part1": {
+    "historical_implementation_sha256": "9bd121ba2e98a265eb83a727af8d29da945cefc8ebe9eed9499ba5c011c3bc16",
+    "status": "PASS"
+  },
+  "angular_policy": {
+    "path": "/home/agni/waymo/iscai_stage5/configs/angular_posterior_policy.json",
+    "sha256": "846f6bf3d3419a2ea99fabc6293514726388bf60a31bb2a889aaf18b487fd82e",
+    "status": "FROZEN"
+  },
+  "block": "5.2",
+  "development_convergence": {
+    "Stage4_inference_performed_in_this_freeze_run": false,
+    "artifact": "/home/agni/waymo/iscai_stage5/artifacts/block52/mc_convergence.json",
+    "artifact_sha256": "2a66b9128b06250b90b61ed0cd3e0a089b86946bd34c0eac4483de150306fc5e",
+    "case_count": 24,
+    "formal_data_used": false,
+    "selected_sample_count": 2048,
+    "source_materialization_used_frozen_Stage4_inference": true,
+    "source_prediction_artifact": "/home/agni/waymo/iscai_stage5/artifacts/block52/development_gaussian_posterior.npz",
+    "source_prediction_sha256": "39dacd4a1dd83ac9951244328403384421731dcffc1cf01617bcc6c6395460b4",
+    "status": "PASS"
+  },
+  "exact_repeat": {
+    "status": "PASS",
+    "synthetic_receiver_posterior_SHA256": "921688c06b8717099de24d3d8b73de9f3ba23970b4e8d566022eaf4b96a5fcd9"
+  },
+  "implementation": {
+    "file_count": 41,
+    "sha256": "e6a6c3996a1c09b493ebfe61516f7a4619994dd1aed34c7ada7e17f3711f9878"
+  },
+  "next": "Block5.3 directional codebooks and posterior beam probabilities",
+  "primary_receiver_angular_posterior": {
+    "analytic_Jacobian_crosscheck": true,
+    "azimuth_circular_statistics": true,
+    "base_seed": 20260821,
+    "centroid_mode": true,
+    "cross_horizon_covariance_invented": false,
+    "future_GT_heading": false,
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "known_offset_mode": true,
+    "low_speed_threshold_mps": 0.25,
+    "method": "deterministic_monte_carlo",
+    "receiver_offset_shared_across_horizons": true,
+    "sample_count": 2048,
+    "samplewise_heading": true,
+    "trajectory_family": "calibrated_Gaussian_GRU",
+    "trajectory_joint_sampling": "product_of_frozen_calibrated_per_horizon_Gaussian_marginals",
+    "uncertain_offset_mode": true
+  },
+  "project": "Agni",
+  "remaining_development_fields": [
+    "codebook_angular_support",
+    "formal_empirical_coverage_tolerance",
+    "K_max",
+    "hysteresis_parameters",
+    "beam_switch_penalty",
+    "local_neighbour_sweep_width",
+    "fallback_parameters",
+    "reacquisition_parameters"
+  ],
+  "resolved_development_fields": {
+    "angular_monte_carlo_sample_count": {
+      "formal_data_used": false,
+      "selection": "development_numerical_convergence",
+      "value": 2048
+    },
+    "low_speed_heading_threshold": {
+      "formal_data_used": false,
+      "performance_tuned": false,
+      "value_mps": 0.25
+    }
+  },
+  "scientific_execution": {
+    "Stage4_model_inference_in_this_freeze_run": false,
+    "beam_codebook": false,
+    "beam_selection": false,
+    "development_source_used_frozen_Stage4_inference": true,
+    "formal_N120_read": false,
+    "formal_evaluation": false,
+    "recalibration": false,
+    "training": false
+  },
+  "stage": 5,
+  "status": "PASS",
+  "uncertainty_semantics": {
+    "Stage2_measurement_R_t": "SEPARATE",
+    "Stage4_predictive_covariance": "CALIBRATED",
+    "joint_receiver_propagation": "PASS",
+    "receiver_placement_covariance": "SEPARATE_INPUT"
+  },
+  "upstream_modified": false
+}

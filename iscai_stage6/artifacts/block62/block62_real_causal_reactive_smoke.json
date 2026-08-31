@@ -1,0 +1,63 @@
+{
+  "Part_A_binding": {
+    "TRZ_visual_transition_units": 8.0,
+    "TRZ_visual_transition_used_for_L": false,
+    "control_radial_margin_m": 4.0,
+    "control_transition_length_m": 20.0,
+    "dynamic_epsilon": "atan((1.9/2+1.0)/range)",
+    "fixed_epsilon_0_75_used": false,
+    "fixed_width_m": 1.9,
+    "lateral_margin_m": 1.0,
+    "multi_actor_rule": "elementwise_minimum"
+  },
+  "artifact": "real_causal_original_reactive_smoke",
+  "block": "6.2",
+  "causality": {
+    "future_gt_input": false,
+    "future_mutation_invariant": true,
+    "future_state_dependency": false,
+    "objects_of_interest_selector": false,
+    "selector_mutation_invariant": true,
+    "tracks_to_predict_selector": false
+  },
+  "geometry": {
+    "Part_A": "+y forward, +x right",
+    "Stage6_H0": "+x forward, +y left, +z up",
+    "angle_relation": "theta_A=-theta_H0",
+    "causal_actor_boxes": 9,
+    "conversion": "x_A=-y_H0; y_A=x_H0",
+    "original_reactive_vehicle_centers": 9
+  },
+  "map": {
+    "dimmed_cells": 23492,
+    "direct_source_parity_max_abs_error": 0.0,
+    "maximum_intensity": 1.0,
+    "minimum_intensity": 0.0,
+    "sha256": "2dc05eff8a9acd473d932b3c0b314c6925ed89998346e5dc90e07250231cbd01",
+    "shape": [
+      501,
+      361
+    ]
+  },
+  "project": "Agni",
+  "scenario": {
+    "compact_runtime_offset": 0,
+    "historical_record_offset": 0,
+    "historical_source_shard": "/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00000-of-00150",
+    "runtime_motion_shard": "/home/agni/waymo/data/paired_womd_lidar_v1_3_0/validation/motion/paired-from-validation.tfrecord-00000-of-00150",
+    "scenario_id": "b85e1bd6cc8e74c0",
+    "split": "validation"
+  },
+  "scope": {
+    "WOMD_annotation_role": "GEOMETRY_INTEGRATION_VALIDATION_ONLY",
+    "class_aware_ADB": false,
+    "communication_codebook_used": false,
+    "formal_mode_executed": false,
+    "formal_original_reactive_mode": "CAUSAL_TRACK_BASED_PC_FMCW_LIKE",
+    "formal_sensor_realistic": false,
+    "predictive_ADB": false,
+    "probabilistic_mask": false
+  },
+  "stage": 6,
+  "status": "PASS"
+}

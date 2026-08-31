@@ -1,0 +1,51 @@
+{
+  "capture": {
+    "captured_authoritative_replay": 120,
+    "dtype": "float64",
+    "selection": "last 120 rate-limiter outputs; historical engine authoritative winner replay is final controller evaluation before regression",
+    "shape": [
+      120,
+      4,
+      501,
+      301
+    ],
+    "total_rate_limiter_calls": 7320
+  },
+  "class_aware_output": {
+    "dtype": "float64",
+    "file_sha256": "723f29e1973e8267ee2c499b91355f77489d00523d43e9d8cf0726409ec9c53a",
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/experiment5_final_materialized/class_aware_predictive_ADB.npy",
+    "semantic": "frozen Stage6-V3 final class-aware post-smoothing/post-rate-limit causal budgeted-residual illumination",
+    "shape": [
+      120,
+      4,
+      501,
+      301
+    ]
+  },
+  "exact_historical_identity": {
+    "candidate_scores_byte_exact": true,
+    "candidate_scores_sha256": "fca8100e845137cde48a7f56cb919baaf7f09b6e7340536963a8ae761eed20fb",
+    "winner_authoritative_replay": "PASS_120_OF_120",
+    "winner_scenario_metrics_byte_exact": true,
+    "winner_scenario_metrics_sha256": "f4b6541c7df119105a81c1d07d5fe58fcb715bcba267b3698e91ecbf2eb411ce"
+  },
+  "frozen_V3_winner": {
+    "predictive_extra_budget": 0.01,
+    "rho_bright_per_s": 1,
+    "rho_dim_per_s": 1,
+    "time_constant_ms": 400,
+    "time_constant_s": 0.4
+  },
+  "recovery_log": "/home/agni/waymo/iscai_stage6/artifacts/experiment5_v3_recovery_runs/20260829T150302Z/recovery.log",
+  "scientific_boundary": {
+    "Stage4_recalibrated": false,
+    "V3_modified": false,
+    "V3_retuned": false,
+    "artifact_recovery_replay": true,
+    "future_GT_controller_input": false,
+    "oracle_controller_input": false,
+    "threshold_changed": false
+  },
+  "status": "PASS_FROZEN_V3_EXACT_RECOVERY"
+}

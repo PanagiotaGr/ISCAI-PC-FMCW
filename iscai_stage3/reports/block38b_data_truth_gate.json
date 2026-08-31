@@ -1,0 +1,78 @@
+{
+  "algorithm_truth_dependency": "NONE",
+  "block": "3.8B",
+  "canonical_motion_access": {
+    "all_shard_sizes_verified": true,
+    "canonical_offset": "CUMULATIVE_SELECTED_MOTION_RECORD_BYTES",
+    "compact_offsets": 44097,
+    "compact_shards": 150,
+    "original_record_offset": "PROVENANCE_ONLY",
+    "raw_waymo_runtime_dependency": false,
+    "real_random_access_probes": 9,
+    "second_materialization": false
+  },
+  "formal_validation": {
+    "N": null,
+    "scenario_ids": null,
+    "status": "NOT_YET_FROZEN"
+  },
+  "implementation": {
+    "files": 80,
+    "sha256": "2c947357298c0b545e8e85086853c4486a186b199862b3e08563b8f6e8500c94"
+  },
+  "pilot": {
+    "candidate_count": 12,
+    "formal": false,
+    "ordering": "ASCENDING_SHA256_SCENARIO_ID",
+    "scenario_ids": [
+      "ad5bac333d9d0393",
+      "519edc2ca7d94ecd",
+      "c042f73599c9d2c0",
+      "4b9d7c206b984c92",
+      "2b13a1b29484b722",
+      "6a2967f0489c3f84",
+      "d1157793bddfc351",
+      "1535f217b4ad8bb8",
+      "8908e26708c4634f",
+      "4166583f6c066f3c",
+      "897d46a8be22618c",
+      "95fcffded584a656"
+    ]
+  },
+  "real_scenario_probe": {
+    "current_time_index": 10,
+    "future_samples": 80,
+    "history_samples": 10,
+    "nominal_period_s": 0.1,
+    "paired_lidar": true,
+    "scenario_id": "b85e1bd6cc8e74c0",
+    "timestamps": 91
+  },
+  "regression": {
+    "full_stage3_tests": 106,
+    "targeted_tests": 11
+  },
+  "stage": 3,
+  "status": "PASS",
+  "truth_policy": {
+    "eligibility_source": "UPSTREAM_CURRENT_ANCHOR_SET",
+    "future_for_assignment": false,
+    "future_for_eligibility": false,
+    "future_for_scoring_only": true,
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "sidecar": "EVALUATOR_ONLY",
+    "temporal_interpolation": false
+  },
+  "validation_manifest": {
+    "scenarios": 44097,
+    "selection_hash_contract": "SHA256(scenario_id)",
+    "selection_policy": "all_exact_matching_validation",
+    "sha256": "dc10609ef18a2ba881657eb3da3a3df7a81bdcc8345ecbc2227102ab16b8833c",
+    "source_shard_groups": 150
+  }
+}

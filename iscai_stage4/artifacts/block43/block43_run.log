@@ -1,0 +1,139 @@
+============================================================
+BLOCK 4.3 — REAL CACHE GENERATION
+============================================================
+
+===== FIT 4096 SCENES =====
+fit: 100/4096 | samples=2675 | reused=0
+fit: 200/4096 | samples=5281 | reused=0
+fit: 300/4096 | samples=7976 | reused=0
+fit: 400/4096 | samples=10858 | reused=0
+fit: 500/4096 | samples=13439 | reused=0
+fit: 600/4096 | samples=16313 | reused=0
+fit: 700/4096 | samples=18894 | reused=0
+fit: 800/4096 | samples=21527 | reused=0
+fit: 900/4096 | samples=24377 | reused=0
+fit: 1000/4096 | samples=27123 | reused=0
+fit: 1100/4096 | samples=29735 | reused=0
+fit: 1200/4096 | samples=32671 | reused=0
+fit: 1300/4096 | samples=35546 | reused=0
+fit: 1400/4096 | samples=38438 | reused=0
+fit: 1500/4096 | samples=41345 | reused=0
+fit: 1600/4096 | samples=44182 | reused=0
+fit: 1700/4096 | samples=47038 | reused=0
+fit: 1800/4096 | samples=49915 | reused=0
+fit: 1900/4096 | samples=52820 | reused=0
+fit: 2000/4096 | samples=55341 | reused=0
+fit: 2100/4096 | samples=58257 | reused=0
+fit: 2200/4096 | samples=61065 | reused=0
+fit: 2300/4096 | samples=64217 | reused=0
+fit: 2400/4096 | samples=66999 | reused=0
+fit: 2500/4096 | samples=70081 | reused=0
+fit: 2600/4096 | samples=72601 | reused=0
+fit: 2700/4096 | samples=75260 | reused=0
+fit: 2800/4096 | samples=78147 | reused=0
+fit: 2900/4096 | samples=80821 | reused=0
+fit: 3000/4096 | samples=83755 | reused=0
+fit: 3100/4096 | samples=86737 | reused=0
+fit: 3200/4096 | samples=89584 | reused=0
+fit: 3300/4096 | samples=92288 | reused=0
+fit: 3400/4096 | samples=95354 | reused=0
+fit: 3500/4096 | samples=98169 | reused=0
+fit: 3600/4096 | samples=100730 | reused=0
+fit: 3700/4096 | samples=103719 | reused=0
+fit: 3800/4096 | samples=106634 | reused=0
+fit: 3900/4096 | samples=109712 | reused=0
+fit: 4000/4096 | samples=112412 | reused=0
+fit: 4096/4096 | samples=114906 | reused=0
+
+===== DEVELOPMENT 512 SCENES =====
+development: 100/512 | samples=2914 | reused=0
+development: 200/512 | samples=5421 | reused=0
+development: 300/512 | samples=8053 | reused=0
+development: 400/512 | samples=10544 | reused=0
+development: 500/512 | samples=13326 | reused=0
+development: 512/512 | samples=13682 | reused=0
+
+===== MERGING CACHE =====
+fit cache samples         = 114906
+development cache samples = 13682
+fit classes               = {'TYPE_VEHICLE': 105104, 'TYPE_PEDESTRIAN': 8865, 'TYPE_CYCLIST': 937}
+development classes       = {'TYPE_VEHICLE': 12607, 'TYPE_PEDESTRIAN': 954, 'TYPE_CYCLIST': 121}
+fit cache content SHA     = 7b64097cbf4ab85f1cfa58a9e63c0defdd11fadc68349ba6ef9a3024c837ad45
+development content SHA   = 2e2c0228b20a1efa0bc5a8ef68db42624a493d0321ba057ea218c7bf27063a11
+
+===== FIT-ONLY NORMALIZATION =====
+normalization source      = FIT ONLY
+normalization SHA256      = 3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6
+class-balanced fit sampler= PASS
+primary sampling mass     = {'TYPE_VEHICLE': 1.0, 'TYPE_PEDESTRIAN': 1.0000000000000004, 'TYPE_CYCLIST': 1.0000000000000002}
+
+===== DETERMINISTIC GRU TRAINING =====
+untrained dev ADE m       = 2.653416746703189
+epoch 01 | trainMSE=0.541169 | devADE=2.491911 m | dev1s=4.189769 m | best=2.491911 m | patience=0/4
+epoch 02 | trainMSE=0.415456 | devADE=2.306463 m | dev1s=3.821426 m | best=2.306463 m | patience=0/4
+epoch 03 | trainMSE=0.387953 | devADE=2.200026 m | dev1s=3.608048 m | best=2.200026 m | patience=0/4
+epoch 04 | trainMSE=0.359450 | devADE=2.163637 m | dev1s=3.547677 m | best=2.163637 m | patience=0/4
+epoch 05 | trainMSE=0.347835 | devADE=2.115882 m | dev1s=3.459199 m | best=2.115882 m | patience=0/4
+epoch 06 | trainMSE=0.314028 | devADE=2.047394 m | dev1s=3.316597 m | best=2.047394 m | patience=0/4
+epoch 07 | trainMSE=0.296480 | devADE=1.999824 m | dev1s=3.226733 m | best=1.999824 m | patience=0/4
+epoch 08 | trainMSE=0.266772 | devADE=1.954784 m | dev1s=3.134558 m | best=1.954784 m | patience=0/4
+epoch 09 | trainMSE=0.252930 | devADE=1.908048 m | dev1s=3.062193 m | best=1.908048 m | patience=0/4
+epoch 10 | trainMSE=0.237563 | devADE=1.808060 m | dev1s=2.868539 m | best=1.808060 m | patience=0/4
+epoch 11 | trainMSE=0.228148 | devADE=1.767885 m | dev1s=2.797513 m | best=1.767885 m | patience=0/4
+epoch 12 | trainMSE=0.208509 | devADE=1.749721 m | dev1s=2.753676 m | best=1.749721 m | patience=0/4
+epoch 13 | trainMSE=0.202784 | devADE=1.725920 m | dev1s=2.727734 m | best=1.725920 m | patience=0/4
+epoch 14 | trainMSE=0.197006 | devADE=1.677576 m | dev1s=2.622093 m | best=1.677576 m | patience=0/4
+epoch 15 | trainMSE=0.192944 | devADE=1.675547 m | dev1s=2.639435 m | best=1.675547 m | patience=0/4
+epoch 16 | trainMSE=0.186160 | devADE=1.638496 m | dev1s=2.551209 m | best=1.638496 m | patience=0/4
+epoch 17 | trainMSE=0.180455 | devADE=1.621819 m | dev1s=2.532645 m | best=1.621819 m | patience=0/4
+epoch 18 | trainMSE=0.179884 | devADE=1.605455 m | dev1s=2.497188 m | best=1.605455 m | patience=0/4
+epoch 19 | trainMSE=0.176309 | devADE=1.613276 m | dev1s=2.502676 m | best=1.605455 m | patience=1/4
+epoch 20 | trainMSE=0.169872 | devADE=1.618958 m | dev1s=2.525812 m | best=1.605455 m | patience=2/4
+
+exact checkpoint inference = PASS
+prediction SHA256          = 9f080ddb9cc55766e607b65d0bdef7ef0f924082b81e1afc2cce3c1799d02e67
+
+============================================================
+STAGE4 BLOCK 4.3 GATE
+============================================================
+fit scenes                 = 4096
+development scenes         = 512
+fit samples                = 114906
+development samples        = 13682
+fit classes                = {'TYPE_VEHICLE': 105104, 'TYPE_PEDESTRIAN': 8865, 'TYPE_CYCLIST': 937}
+development classes        = {'TYPE_VEHICLE': 12607, 'TYPE_PEDESTRIAN': 954, 'TYPE_CYCLIST': 121}
+normalization source       = FIT ONLY
+class-balanced sampler     = PASS
+measurement covariance     = INPUT
+multi-agent context        = PASS
+map context                = PASS
+future model input         = NO
+actor class model feature  = NO
+untrained dev ADE m        = 2.653417
+best dev ADE m             = 1.605455
+best dev 1.0s error m      = 2.497188
+best epoch                 = 18
+class dev ADE              = {'TYPE_CYCLIST': 1.6503467935441098, 'TYPE_PEDESTRIAN': 1.0323782335345042, 'TYPE_VEHICLE': 1.6462586414186342}
+checkpoint SHA256          = 5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5
+state_dict SHA256          = d2ffbc03c7cb2826fef2175c95f48725707ec6d791eaeffbd6f59bc507b8595a
+inference repeat SHA       = 9f080ddb9cc55766e607b65d0bdef7ef0f924082b81e1afc2cce3c1799d02e67
+exact inference repeat     = PASS
+formal validation used     = NO
+full Stage4 regression     = 44 / 44 PASS
+free GiB                   = 1055.168
+implementation files       = 31
+implementation SHA256      = 7f42e0cf534ed3ffb8d69e7230f5e04eecde8639428911017af771c7b2993def
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage4/reports/block43_deterministic_gru.json
+
+===== BLOCK 4.3 FINAL =====
+real deterministic GRU = PASS
+fit-only normalization  = PASS
+class-aware sampler     = PASS
+multi-agent/map context = PASS
+future leakage          = NONE
+checkpoint freeze       = PASS
+exact inference repeat  = PASS
+regression              = 44 / 44
+implementation SHA      = 7f42e0cf534ed3ffb8d69e7230f5e04eecde8639428911017af771c7b2993def
+log closure             = PASS

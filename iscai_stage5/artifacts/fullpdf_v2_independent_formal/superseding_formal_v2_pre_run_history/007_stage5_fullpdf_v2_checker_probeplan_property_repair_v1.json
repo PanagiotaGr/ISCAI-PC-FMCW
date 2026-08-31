@@ -1,0 +1,62 @@
+{
+  "Stage4_change": false,
+  "Stage6_allowed": false,
+  "amendment": {
+    "path": "/home/agni/waymo/iscai_stage5/configs/stage5_fullpdf_v2_checker_probeplan_property_amendment_v1.json",
+    "sha256": "d47ac985089af164ebca1499112e237784131db069b704ac31f5f84c13f52e77"
+  },
+  "checker": {
+    "changed_lines": [
+      1990
+    ],
+    "new_sha256": "342344902e6b00cb841036dcdc0e54f1e1ba396344fa602864521890f5eb5da5",
+    "old_sha256": "0e8bd2570453fdc4a92e3fab065f9726cb4d097b334e6b262959c54b0dd9d902",
+    "path": "/home/agni/waymo/iscai_stage5/scripts/run_stage5_fullpdf_v2_independent_formal_checker.py"
+  },
+  "failed_attempt_history": {
+    "manifest": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/probeplan_property_repair_v1/failed_superseding_v1_history/history_manifest.json",
+    "manifest_sha256": "07bd096dad3375d9b7ad32653aadc4ec7b62c1274347904d9a8478a5edf161e8"
+  },
+  "failure_observed": "TypeError: 'int' object is not callable at plan.probing_beam_count()",
+  "formal_rerun_executed": false,
+  "formal_scientific_outcome_used": false,
+  "pretruth_seal": {
+    "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/probeplan_property_repair_v1/stage5_fullpdf_v2_checker_probeplan_property_pretruth_seal_v1.json",
+    "sha256": "1da2f7f5731c5574c3c4fcb0ec2a216296f338fd1cc5adcfbd2125bde85b3548"
+  },
+  "previous_attempt": {
+    "checker2_report_sha256": "d71d9b4f94d4c1d615c8336c7511e1c6de61339c40c7c85128842955ee62a853",
+    "decision_ledger_sealed": false,
+    "decision_pass_1_completed": false,
+    "evaluator_truth_opened": false,
+    "frozen_checker_log_sha256": "38dea00263a74475a8903435a0d92deb33aceb1ce81055797302d9fcbcd584cb",
+    "invocation_marker_sha256": "768b68b2bafc7152b79e051d8fa08582877625b2d62482bb16e4c69bb5eabfe6",
+    "wrapper_log_sha256": "a28e060a5b2f54dbabe8b3453fb5c1b65ba5c18fd5c3fd89e9c3a7eff1031b9c"
+  },
+  "protocol_change": false,
+  "recalibration": false,
+  "receiver_binding_change": false,
+  "regression": {
+    "log": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/probeplan_property_repair_v1/stage5_regression_271.log",
+    "log_sha256": "58d3ed9cd65526ae4b51689529022d7a8ce50af83ef7da72e7496a92e61dc961",
+    "status": "PASS",
+    "tests": 271
+  },
+  "repair_scope": "formal-checker API access only",
+  "root_cause": {
+    "invalid_checker_expression": "plan.probing_beam_count()",
+    "repaired_checker_expression": "plan.probing_beam_count",
+    "runtime_member": "probing_beam_count",
+    "runtime_member_kind": "@property",
+    "runtime_semantics": "len(self.probes)",
+    "runtime_type": "iscai_stage5.fullpdf_v2.ProbePlan"
+  },
+  "runtime_change": false,
+  "scientific_parameter_change": false,
+  "semantic_change": false,
+  "stage": 5,
+  "status": "PASS_READY_FOR_NEW_SUPERSEDING_FORMAL_ATTEMPT",
+  "training": false,
+  "tuning": false,
+  "version": "fullpdf_v2"
+}

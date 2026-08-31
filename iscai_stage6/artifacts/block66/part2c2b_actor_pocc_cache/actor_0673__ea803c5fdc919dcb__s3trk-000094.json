@@ -1,0 +1,95 @@
+{
+  "actor_box_index": 67,
+  "actor_rank": 673,
+  "causality": {
+    "centroid_only": false,
+    "future_GT": false,
+    "objects_of_interest": false,
+    "tracks_to_predict": false,
+    "truth_ID": false
+  },
+  "cohort_index": 83,
+  "frozen_seals": {
+    "Part2C2A_report_sha256": "4c79d9ba8084aa3cfbfed03945bf989703769feb5303827844413c2ee71ac0dc",
+    "eligible_predictive_sha256": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6",
+    "fullbox_module_sha256": "51daeab95713d6e7d2738ced466be4844b73dce70a09138b2b769de880462995",
+    "numeric_freeze_sha256": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73",
+    "occupancy_module_sha256": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e",
+    "persistence_contract_sha256": "2777e25003a2c76d506609130e7927501f15a868fa6ec37dfd192bbb58ea79e5",
+    "posterior_sha256": "f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd"
+  },
+  "full_box_semantics": "all_eight_physical_box_corners_samplewise_predicted_tangent_heading",
+  "grid_shape": [
+    501,
+    301
+  ],
+  "horizons_s": [
+    0.1,
+    0.3,
+    0.5,
+    1.0
+  ],
+  "object_type": "TYPE_VEHICLE",
+  "occupancy_counts": {
+    "dtype": "uint32",
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0673__ea803c5fdc919dcb__s3trk-000094.counts.npy",
+    "sha256": "c191c6a8e2266f96292e7b25727413d97f9196e1acc725b50e0db57c7bbe16c1",
+    "shape": [
+      4,
+      501,
+      301
+    ]
+  },
+  "policy_boundary": {
+    "class_policy_applied": false,
+    "formal_evaluation": false,
+    "gamma_applied": false,
+    "reactive_fallback_changed": false
+  },
+  "posterior_family": "calibrated_Gaussian_GRU",
+  "prediction_id": "s3trk-000094",
+  "probability": {
+    "exact_reconstruction": "occupancy_counts / 8192",
+    "persisted_separately": false,
+    "public_probability_parity": "EXACT_PASS"
+  },
+  "rasterization_semantics": "convex_hull_of_all_eight_projected_physical_box_corners",
+  "same_seed_per_actor": true,
+  "sample_count": 8192,
+  "scenario_id": "ea803c5fdc919dcb",
+  "seed": 20260821,
+  "status": "PASS_ACTOR_N8192_P_OCC",
+  "summary": {
+    "has_any_support": true,
+    "maximum_count_by_horizon": [
+      7461,
+      3642,
+      2006,
+      819
+    ],
+    "maximum_probability_by_horizon": [
+      0.9107666015625,
+      0.444580078125,
+      0.244873046875,
+      0.0999755859375
+    ],
+    "nonzero_cells_by_horizon": [
+      2903,
+      5306,
+      8124,
+      18202
+    ],
+    "occupancy_count_mass_by_horizon": [
+      1896493,
+      1831779,
+      1773919,
+      1668173
+    ],
+    "occupancy_probability_mass_by_horizon": [
+      231.5054931640625,
+      223.6058349609375,
+      216.5428466796875,
+      203.6343994140625
+    ]
+  }
+}

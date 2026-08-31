@@ -1,0 +1,37 @@
+{
+  "block": "6.8_primary_gate_reactive_schema_repair",
+  "comparator_materialization": {
+    "augmented_comparator": "/home/agni/waymo/iscai_stage6/artifacts/block68/primary_development_gate/block68_reactive_primary_comparator_augmented.jsonl",
+    "augmented_comparator_sha256": "5925f1e02dc3cb9dbad42f40f200337f60ccb87f4c919c4dd7c628eb3725c2fa",
+    "path": "/home/agni/waymo/iscai_stage6/reports/block68_reactive_primary_comparator_materialization.json",
+    "sha256": "b8a99017d7502dd704ed646fc45925bba8a22e135c502cea91f871541168a9c4"
+  },
+  "diagnosis": {
+    "failed_artifact_role": "reactive-only NI delta materialization; did not include vehicle shadow-zone metric",
+    "failure_type": "reactive_comparator_schema_gap",
+    "repair": "use write-once augmented comparator whose vehicle metric is derived from the already-frozen causal t0 action and already-frozen oracle_vehicle evaluator support",
+    "scientific_gate_failure": false
+  },
+  "immutability": {
+    "NI_bounds": true,
+    "Stage1": true,
+    "Stage2": true,
+    "Stage3": true,
+    "Stage4": true,
+    "acceptance_rule": true,
+    "formal_evaluation": false,
+    "predictive_results": true
+  },
+  "next": "RERUN_FROZEN_PRIMARY_DEVELOPMENT_ACCEPTANCE_GATE",
+  "primary_acceptance_tested": false,
+  "regression": 224,
+  "runner": {
+    "backup_path": "/home/agni/waymo/iscai_stage6/artifacts/block68/primary_development_gate/schema_repair/run_block68_primary_development_acceptance_gate.pre_reactive_schema_fix.py",
+    "backup_sha256": "87d7dbe4f1ab713301538b7032fbcc776d7b5729444db522e76ccbdab002ebf7",
+    "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_primary_development_acceptance_gate.py",
+    "post_patch_sha256": "831c956bf344f6783328668dbfce1a38e1b5363e16d9de4d3bb3d355bc630e28",
+    "pre_patch_sha256": "87d7dbe4f1ab713301538b7032fbcc776d7b5729444db522e76ccbdab002ebf7"
+  },
+  "stage": 6,
+  "status": "PASS_PRIMARY_GATE_REACTIVE_SCHEMA_SOURCE_REPAIRED"
+}

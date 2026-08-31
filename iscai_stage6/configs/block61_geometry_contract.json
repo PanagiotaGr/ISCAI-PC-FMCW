@@ -1,0 +1,75 @@
+{
+  "block": "6.1",
+  "box_semantics": {
+    "centroid_is_allowed_as_diagnostic": true,
+    "centroid_is_sufficient_for_ADB": false,
+    "corner_count": 8,
+    "dimensions": [
+      "length",
+      "width",
+      "height"
+    ],
+    "local_height_axis": "+/-z",
+    "local_length_axis": "+/-x",
+    "local_width_axis": "+/-y",
+    "yaw_axis": "+z"
+  },
+  "causality": {
+    "allowed_controller_state_sources": [
+      "current_causal",
+      "predicted_sample",
+      "predicted_mean"
+    ],
+    "controller_future_GT": false,
+    "future_GT_dimensions_controller": false,
+    "future_GT_heading_controller": false,
+    "oracle_future_box": "EVALUATOR_ONLY"
+  },
+  "headlamp_coordinates": {
+    "axis_contract": {
+      "x": "forward",
+      "y": "left",
+      "z": "up"
+    },
+    "axis_contract_validation_against_frozen_Stage1": "BLOCK6.1_PART2",
+    "azimuth_theta": "atan2(y,x)",
+    "elevation_phi": "atan2(z,sqrt(x^2+y^2))",
+    "frame": "H0",
+    "ground_range": "sqrt(x^2+y^2)",
+    "range_3d": "sqrt(x^2+y^2+z^2)"
+  },
+  "illumination_grid": {
+    "parameterized_grid_kernel_in_Part1": true,
+    "reason": "do not invent numeric Stage6 headlamp-grid values before frozen Stage1 geometry audit",
+    "representation": "theta_range",
+    "scientific_FOV_numeric_bounds": "BLOCK6.1_PART2",
+    "scientific_range_numeric_bounds": "BLOCK6.1_PART2",
+    "scientific_resolution": "BLOCK6.1_PART2"
+  },
+  "part": "1/2",
+  "pdf_mapping": {
+    "actor_length_width_height": true,
+    "box_corners": true,
+    "centroid_only": false,
+    "class_margin_application": "BLOCK6.5",
+    "covariance_projection": "BLOCK6.4",
+    "future_probabilistic_occupancy": "BLOCK6.4",
+    "receiver_driver_relevant_region_support": true
+  },
+  "project": "Agni",
+  "relevant_region": {
+    "fraction_domain": "[-0.5,+0.5]",
+    "policy_specific_fraction_values": "NOT_FROZEN_IN_BLOCK6.1_PART1",
+    "representation": "fractional sub-region of full 3D actor box",
+    "windshield_or_face_region_defaults": "NOT_INVENTED"
+  },
+  "scope_boundary": {
+    "ADB_mask_generation": "NOT_YET",
+    "class_policy": "NOT_YET",
+    "communication_beam_codebook_reused": false,
+    "probabilistic_occupancy": "NOT_YET",
+    "reactive_L_theta_r": "BLOCK6.2"
+  },
+  "stage": 6,
+  "status": "PARAMETERIZED_GEOMETRY_CORE"
+}

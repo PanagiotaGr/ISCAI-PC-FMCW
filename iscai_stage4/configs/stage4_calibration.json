@@ -1,0 +1,79 @@
+{
+  "stage": 4,
+  "block": "4.5",
+  "status": "PRECALIBRATION_FROZEN",
+
+  "upstream": {
+    "block44_checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt",
+    "block44_checkpoint_sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f",
+    "block44_state_dict_sha256": "1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3",
+    "block44_implementation_sha256": "b9ea474443d3a54235f09cd4e2b616374b37456f2b9e080f5334f76f4dd7c432",
+    "block44_raw_prediction_sha256": "a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a"
+  },
+
+  "calibration_data": {
+    "source": "frozen_Block4.1_calibration_partition_only",
+    "manifest": "/home/agni/waymo/iscai_stage4/artifacts/block41/calibration.jsonl",
+    "manifest_sha256": "e003dd5c4d5a253729700b12c3754c47ffb99dadfa035b46627f01ec91eed4be",
+    "scenario_count": 7209,
+    "use_full_partition": true,
+    "max_supervised_samples_per_scene": 64,
+    "cache_generation": "resumable",
+    "development_used_to_fit_calibrator": false,
+    "fit_used_to_fit_calibrator": false,
+    "formal_validation_used_to_fit_calibrator": false
+  },
+
+  "method": {
+    "family": "per_horizon_scalar_covariance_scaling",
+    "mean_modified": false,
+    "measurement_covariance_R_t_modified": false,
+    "predictive_covariance_modified": true,
+    "variance_scale_bounds": [0.05, 20.0],
+    "identity_scale_always_candidate": true,
+
+    "primary_objective": {
+      "name": "coverage_ECE_macro",
+      "definition": "mean absolute empirical-minus-nominal coverage error over 4 horizons x 5 confidence levels",
+      "confidence_levels": [0.50, 0.80, 0.90, 0.95, 0.99],
+      "horizon_weighting": "equal",
+      "confidence_level_weighting": "equal"
+    },
+
+    "tie_breaker": {
+      "name": "Gaussian_NLL_scale_term",
+      "purpose": "choose among equal-coverage-error scale candidates"
+    },
+
+    "candidate_generation": [
+      "identity_alpha_1",
+      "closed_form_NLL_alpha_mean_mahalanobis_over_dimension",
+      "per_nominal_level_empirical_quantile_matching_alpha",
+      "median_of_quantile_matching_alphas",
+      "geometric_mean_of_quantile_matching_alphas",
+      "geometric_midpoints_of_sorted_principal_candidates"
+    ]
+  },
+
+  "reliability": {
+    "confidence_region": "full_3D_Gaussian_ellipsoid",
+    "reference_distribution": "chi_square_df_3",
+
+    "ECE_semantics": "macro_mean_absolute_coverage_error_across_horizon_and_nominal_level",
+
+    "Brier_semantics": "mean_over_valid_actor_horizon_level_events_of_(indicator_inside_nominal_ellipsoid_minus_nominal_probability)^2",
+
+    "reliability_diagram": "nominal_probability_vs_empirical_coverage",
+
+    "required_levels": [0.50, 0.80, 0.90, 0.95, 0.99]
+  },
+
+  "acceptance": {
+    "calibration_set_macro_ECE_must_not_exceed_raw": true,
+    "predictive_mean_must_remain_identical": true,
+    "all_calibrated_covariances_must_remain_SPD": true,
+    "all_calibration_metrics_must_be_finite": true,
+    "formal_validation_remains_untouched": true,
+    "formal_generalization_of_calibration": "deferred_to_Block4.8"
+  }
+}

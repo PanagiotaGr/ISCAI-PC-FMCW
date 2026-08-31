@@ -1,0 +1,40 @@
+==============================================================================
+STAGE5 FULLPDF V2 — FINAL FORMAL V4 POST-SEAL
+IMMUTABLE V3 DECISIONS | EXACT FROZEN EVALUATOR | NO CONTROLLER REEXECUTION
+==============================================================================
+PASS | protected SHA | run_stage5_fullpdf_v2_independent_formal_checker.py
+PASS | protected SHA | check_stage5_fullpdf_v2.py
+PASS | protected SHA | fullpdf_v2.py
+PASS | protected SHA | stage5_fullpdf_v2_protocol.json
+PASS | protected SHA | stage5_fullpdf_v2_preformal_addendum.json
+PASS | protected SHA | formal_prediction_ledger_run1.jsonl
+PASS | protected SHA | primary_receiver_binding_fullpdf_v2.jsonl
+PASS | protected SHA | decision_ledger_sealed.jsonl
+PASS | protected SHA | evaluator_truth_binding_fullpdf_v2.jsonl
+PASS | protected SHA | stage5_fullpdf_v2_evaluator_truth_binding_amendment_v1.json
+PASS | protected SHA | stage5_fullpdf_v2_evaluator_truth_binding_seal_v1.json
+PASS | protected SHA | stage5_fullpdf_v2_evaluator_truth_binding_materialization_v1.json
+PASS | protected SHA | truth_candidate_postseal_diagnostic_v1.json
+free_GiB = 1050.4897766113281
+PASS | >=250 GiB free-space reserve
+PASS | V3 exact-repeat run1/run2/sealed
+sealed_sha256 = 751703975b3fc837cc1cf660cf1321db5768323d6cf2fbef524d05a3dbb48af4
+sealed_rows = 17280
+receiver_keys = 120
+PASS | full Stage5 regression = 271/271
+PASS | unchanged truth resolver unique
+truth_sha256 = 1c9582cdf62dfc02cc36c6e0a56c6ce1a1b25eedc09e9fd10af00618d51a5961
+truth_map_hash = d27dda703e69f0d260747e608bbd47c03c619de92201e15bc716ca867d454763
+PASS | immutable V4 invocation marker
+marker_sha256 = b275d66e3e8695483c62e8a41777fdb983725d09f2a21f00185e1acea9792f8b
+
+==============================================================================
+EXECUTING EXACT FROZEN evaluate_sealed_decisions() ONCE
+==============================================================================
+
+==============================================================================
+FINAL FORMAL V4 = FAIL-CLOSED HARNESS/EXECUTION
+reason = FailClosed("Unable to extract scalar ('snr_linear', 'linear', 'snr') from <class 'tuple'>.")
+DO NOT RERUN AUTOMATICALLY
+Stage6_allowed = false
+==============================================================================

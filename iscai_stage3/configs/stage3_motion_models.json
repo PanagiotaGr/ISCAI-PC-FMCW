@@ -1,0 +1,49 @@
+{
+  "stage": 3,
+  "block": "3.3",
+
+  "common": {
+    "input": "stage2_noisy_associated_detections",
+    "canonical_frame": "H0",
+    "annotated_womd_velocity": false,
+    "annotated_womd_heading": false,
+    "future_information": false,
+    "prediction_horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ]
+  },
+
+  "constant_acceleration": {
+    "minimum_causal_observations": 3,
+    "acceleration_estimator": "difference_of_interval_velocities_over_interval_midpoint_separation",
+    "current_velocity_estimator": "latest_interval_velocity_plus_half_acceleration_dt",
+    "state_covariance": "linear_propagation_from_three_H0_position_covariances",
+    "prediction": "p_plus_v_tau_plus_half_a_tau_squared"
+  },
+
+  "ctrv": {
+    "minimum_causal_observations": 3,
+    "planar_model": true,
+    "vertical_model": "constant_vertical_velocity",
+    "heading_source": "past_only_H0_position_differences",
+    "heading_difference": "wrapped_to_minus_pi_plus_pi",
+    "heading_midpoint_compensation": true,
+    "chord_to_arc_speed_correction": true,
+    "min_heading_speed_mps": 0.2,
+    "turn_rate_epsilon_radps": 1e-6,
+    "zero_turn_limit": "straight_line"
+  },
+
+  "measurement_uncertainty": {
+    "input_R_t_already_propagated_to_H0": true,
+    "CA_state_covariance_uses_it": true,
+    "CTRV_is_deterministic_baseline": true
+  },
+
+  "formal_validation_tuning": false,
+
+  "status": "FROZEN_BEFORE_FORMAL_VALIDATION"
+}

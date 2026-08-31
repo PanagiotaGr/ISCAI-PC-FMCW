@@ -1,0 +1,141 @@
+{
+  "Stage4_final_implementation": {
+    "file_count": 87,
+    "sha256": "64526bcd8f64772a04183583b63facace2db45a7311ac96412cbd19114ac9f91"
+  },
+  "Stage4_role": "causal uncertainty-aware trajectory posterior",
+  "Stage5_must_not": [
+    "fit_or_recalibrate_the_Stage4_trajectory_posterior_on_formal_N120",
+    "reinterpret_tracks_to_predict_as_a_model_input",
+    "merge_measurement_R_t_and_predictive_covariance_semantics",
+    "silently_switch_to_GMM_based_on_formal_performance"
+  ],
+  "Stage5_scope_start": {
+    "DeepSense": "separate_later_mmWave_external_validation",
+    "adaptive_TopK_beam_policy": "Stage5_scope",
+    "communication_beam_and_ADB": "distinct_actuators",
+    "next_required_layer": "receiver_angular_posterior",
+    "optical_link_evaluation": "later_downstream_scope",
+    "trajectory_posterior_source": "calibrated_Gaussian_GRU"
+  },
+  "alternative_frozen_models": {
+    "GMM_GRU": {
+      "calibrated": false,
+      "checkpoint_path": "/home/agni/waymo/iscai_stage4/artifacts/block46/gmm_gru.pt",
+      "checkpoint_sha256": "5aebeaf40d522d58345d424ae2557d6f87e2c02bdc26c23635cc6e3a28cbe3ee",
+      "components": 3,
+      "role": "multimodal_ablation_diagnostic",
+      "selected_as_default_downstream": false,
+      "selection_policy": "do_not_select_post_hoc_without_new_preregistered_scientific_reason",
+      "trajectory_level_modes": true
+    },
+    "deterministic_GRU": {
+      "checkpoint_path": "/home/agni/waymo/iscai_stage4/artifacts/block43/deterministic_gru.pt",
+      "checkpoint_sha256": "5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5",
+      "role": "deterministic_baseline"
+    }
+  },
+  "causal_input_contract": {
+    "association": "frozen_Stage3_estimated_GNN",
+    "future_as_model_input": false,
+    "history_feature_dimension": 14,
+    "history_frames": 11,
+    "map_context_dimension": 10,
+    "maximum_neighbors": 8,
+    "measurement_covariance_feature_indices": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "observation_mode": "full_frozen_Stage2_degraded",
+    "perfect_track_ID_as_numeric_feature": false,
+    "tracks_to_predict_as_model_input": false
+  },
+  "default_downstream_posterior": {
+    "calibrator_path": "/home/agni/waymo/iscai_stage4/artifacts/block45/covariance_scaler.json",
+    "calibrator_sha256": "508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087",
+    "checkpoint_path": "/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt",
+    "checkpoint_sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f",
+    "covariance_family": "full_3D_SPD",
+    "covariance_parameterization": "Cholesky",
+    "family": "calibrated_Gaussian_GRU",
+    "formal_covariance_SPD": true,
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "mandatory_default": true,
+    "normalization_path": "/home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json",
+    "normalization_sha256": "3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6",
+    "predictive_covariance": "Sigma_cal,h = alpha_h * Sigma_raw,h",
+    "predictive_mean": "unchanged_by_calibration",
+    "standard_deviation_scale": [
+      1.1111734563206301,
+      1.1597952532754616,
+      1.1639682374225084,
+      1.1326826659448475
+    ],
+    "variance_scale_alpha_h": [
+      1.2347064500315355,
+      1.3451250295202921,
+      1.354822057728461,
+      1.2829700217319266
+    ]
+  },
+  "do_not_reopen_without_structural_defect": [
+    "Stage4_fit_dev_calibration_split",
+    "Stage4_normalization",
+    "Stage4_deterministic_checkpoint",
+    "Stage4_Gaussian_checkpoint",
+    "Stage4_covariance_calibrator",
+    "Stage4_GMM_checkpoint",
+    "Stage4_formal_N120_results",
+    "Stage4_association_contract"
+  ],
+  "formal_evidence": {
+    "Gaussian_FDE_1s_m": 3.3198138702547295,
+    "PDF_calibration_measured": true,
+    "PDF_performance_gate": true,
+    "calibrated_Gaussian_ADE_m": 1.9848952833749467,
+    "calibrated_Gaussian_NLL": 3.6848268203287406,
+    "calibrated_macro_ECE": 0.11165527003334381,
+    "classical_baselines_beaten": [
+      "CA",
+      "CTRV",
+      "CV",
+      "IMM_CV_CA_CTRV",
+      "Kalman_EKF"
+    ],
+    "eligible_targets": 547,
+    "formal_output_content_sha256": "fe5cf7e413b8142c0670d05727affd4fa573cf4607665e4a9bda951f1d9bd0d5",
+    "internal_Gaussian_less_than_CV": true,
+    "matched_target_recall": 0.903107861060329,
+    "matched_targets": 494,
+    "population": "immutable_Stage3_N120",
+    "raw_Gaussian_NLL": 4.15760466880646,
+    "raw_macro_ECE": 0.18362046536363294,
+    "scenario_count": 120
+  },
+  "from_stage": 4,
+  "measurement_predictive_uncertainty_separation": {
+    "calibration_applies_to": "predictive_covariance_only",
+    "measurement_R_t_modified_by_calibration": false,
+    "measurement_uncertainty": "Stage2_R_t_model_input",
+    "predictive_uncertainty": "Stage4_learned_Gaussian_covariance_output",
+    "separate": true
+  },
+  "project": "Agni",
+  "reproducibility": {
+    "fresh_process_exact_repeats": "4/4_PASS",
+    "full_Stage4_regression": "130/130_PASS",
+    "manifest_path": "/home/agni/waymo/iscai_stage4/artifacts/block49/stage4_reproducibility_manifest.json",
+    "manifest_sha256": "135a3c60e5a2c4419125fa0daa6d2d55452f923255a04698f0bc1aaca5f474b8"
+  },
+  "status": "FROZEN_HANDOFF",
+  "to_stage": 5
+}

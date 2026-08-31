@@ -1,0 +1,9 @@
+{
+  "block": "5.8",
+  "message": "incompatible existing cache: /home/agni/waymo/iscai_stage5/artifacts/block58/formal_clean_cache/001_cfd33c593d645bf5.json",
+  "recovery": "repair only the Block5.8 implementation; do not tune formal scientific parameters",
+  "stage": 5,
+  "status": "IMPLEMENTATION_FAILURE",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py\", line 2591, in guarded_main\n    main()\n    ~~~~^^\n  File \"/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py\", line 2199, in main\n    result, was_reused = process_scene(\n                         ~~~~~~~~~~~~~^\n        rank,\n        ^^^^^\n    ...<15 lines>...\n        runner_sha=runner_sha,\n        ^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py\", line 1245, in process_scene\n    raise RuntimeError(\n        f\"incompatible existing cache: {cache}\"\n    )\nRuntimeError: incompatible existing cache: /home/agni/waymo/iscai_stage5/artifacts/block58/formal_clean_cache/001_cfd33c593d645bf5.json\n",
+  "type": "RuntimeError"
+}

@@ -1,0 +1,54 @@
+{
+  "Part1_continuity": {
+    "historical_implementation_sha256": "feb6353ff320ac9c8f7839d546fe9df3a7a3a6baacab7fa978d5875caadb4997",
+    "status": "PASS"
+  },
+  "acceptance_preregistration": {
+    "empirical_future_containment": "reported separately; not controller input and not used for post-hoc tuning",
+    "outside_support": "unattainable coverage reported explicitly",
+    "posterior_probability_coverage": "selected_mass + 1/2048 must be >= requested q when q is attainable inside frozen support"
+  },
+  "block": "5.5",
+  "completion": "COMPLETE_FROZEN",
+  "controller": {
+    "Kmax": {
+      "16": 16,
+      "32": 32,
+      "64": 64
+    },
+    "coverage_targets": [
+      0.9,
+      0.95,
+      0.975,
+      0.99
+    ],
+    "hysteresis": "retain_previous_primary_if_it_remains_inside_current_mass_covering_set",
+    "loss_of_lock": "requested_coverage_not_achievable_with_available_in_support_posterior_mass",
+    "neighbor_sweep": "immediate_codebook_graph_neighbors_around_current_primary",
+    "nominal_coverage": 0.95,
+    "recovery": "widened_fallback_probe_then_exhaustive_current_codebook_sweep",
+    "switch_penalty": "unit_switch_event_indicator_no_tuned_weight",
+    "widened_fallback": "next_coarser_frozen_codebook_nearest_center_to_current_primary"
+  },
+  "implementation": {
+    "file_count": 70,
+    "sha256": "a4af90f7463e5ff93c3f6b316188a56bf25758bb1216d465020155fd6c0205ce"
+  },
+  "next": "Block5.6 optical pointing gain -> received power -> SNR -> DPSK BER -> effective rate",
+  "policy": {
+    "path": "/home/agni/waymo/iscai_stage5/configs/adaptive_topk_policy.json",
+    "sha256": "a520f67fd6f74d7c507852cbc4a14c9cd1e043604706ae4aed89f2775dcddf8f"
+  },
+  "project": "Agni",
+  "scope": {
+    "ADB_started": false,
+    "Stage4_inference": false,
+    "development_tuning": false,
+    "formal_N120_read": false,
+    "optical_link_started": false,
+    "recalibration": false,
+    "training": false
+  },
+  "stage": 5,
+  "status": "PASS"
+}

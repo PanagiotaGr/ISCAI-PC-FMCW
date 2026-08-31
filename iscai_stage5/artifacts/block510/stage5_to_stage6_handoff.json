@@ -1,0 +1,83 @@
+{
+  "Stage5_status": "COMPLETE_FROZEN",
+  "Stage6_required_next_layer": {
+    "Stage6_completion_goal": "reduce vehicle shadow violations without uncontrolled over-masking or loss of VRU visibility",
+    "communication_beam_actuator_reused_as_ADB": false,
+    "input": "the same frozen future trajectory/angular posterior",
+    "name": "predictive_class_aware_ADB",
+    "reason": "communication beam space and illumination beam/pixel space are separate downstream mappings",
+    "required_geometry": "future actor box/corner projection with uncertainty",
+    "required_output_space": "illumination pixels/angular cells and intensity/dimming masks"
+  },
+  "Stage6_started": false,
+  "communication_controller_frozen": {
+    "adaptive_probability_targets": [
+      0.9,
+      0.95,
+      0.975,
+      0.99
+    ],
+    "codebooks": [
+      16,
+      32,
+      64
+    ],
+    "empirical_probability_coverage": 0.9959473150962512,
+    "latency_fallback_controller": true,
+    "loss_of_lock_recovery": "widened fallback followed by exhaustive current-codebook sweep",
+    "nominal_q": 0.95,
+    "optical_chain": "pointing_error -> gain -> received_power -> SNR -> DPSK_BER -> effective_rate",
+    "overhead_reduction_vs_exhaustive": 0.865216565349544,
+    "primary_acceptance_geometry": "uncertain"
+  },
+  "deferred_beyond_Stage6": {
+    "DeepSense_measured_beam_power_validation": "Stage8",
+    "full_joint_end_to_end_latency": "Stage7",
+    "joint_communication_illumination_tradeoffs": "Stage7",
+    "joint_shared_vs_independent_evaluation": "Stage7",
+    "statistical_failure_case_analysis": "Stage7"
+  },
+  "from_stage": 5,
+  "project": "Agni",
+  "provenance": {
+    "Block5_10_acceptance": "/home/agni/waymo/iscai_stage5/reports/block510_part1_acceptance_audit.json",
+    "Block5_10_acceptance_sha256": "fb87dfb34584c01f64932e27b261d05fe9591ff0ee443444a2ad9a921e0cd9a6",
+    "Block5_8_closure": "/home/agni/waymo/iscai_stage5/artifacts/block58/block58_final_closure.json",
+    "Block5_8_closure_sha256": "23ba634c421d264af245d5aa0013e380fd62f7b1b2e96fa1434162c2dad5038a",
+    "Block5_8_formal_report": "/home/agni/waymo/iscai_stage5/reports/block58_formal_evaluation.json",
+    "Block5_8_formal_report_sha256": "76c23c21e667cf5acec1a6b1273256b915f8c12d0bba6417459e56c27203fc55",
+    "Block5_9_reproducibility": "/home/agni/waymo/iscai_stage5/reports/block59_reproducibility.json",
+    "Block5_9_reproducibility_sha256": "980bfbd2007ed798742bd7c36b5e8b6bcd0e808590c0dc5d9608db1ec6211845",
+    "Stage4_handoff_path": "/home/agni/waymo/iscai_stage4/artifacts/block410/stage4_to_stage5_handoff.json",
+    "Stage4_handoff_sha256": "491bce010d35c2a394f879ecf35ed26ef1de92f7fff1465dcbf46b072a87c6fd",
+    "formal_manifest_path": "/home/agni/waymo/iscai_stage3/artifacts/block38e/formal_validation_120.jsonl",
+    "formal_manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46"
+  },
+  "scientific_execution_at_handoff": {
+    "formal_inference": false,
+    "parameter_tuning": false,
+    "recalibration": false,
+    "training": false
+  },
+  "shared_posterior": {
+    "future_ground_truth_as_controller_input": false,
+    "measurement_uncertainty_R_t": "remains distinct from predictive covariance",
+    "prediction_horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "receiver_aware": true,
+    "receiver_geometry_modes": [
+      "centroid",
+      "known",
+      "uncertain"
+    ],
+    "semantics": "calibrated future trajectory posterior propagated analytically/deterministically to receiver-aware position and angular uncertainty",
+    "tracks_to_predict_as_receiver_selector": false,
+    "upstream_trajectory_family": "calibrated_Gaussian_GRU"
+  },
+  "status": "FROZEN_HANDOFF",
+  "to_stage": 6
+}

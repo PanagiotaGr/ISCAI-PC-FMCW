@@ -1,0 +1,77 @@
+============================================================
+STAGE 6 — BLOCK 6.0 PART 2/2
+PART-A ADB SOURCE AUDIT + REACTIVE ADAPTER CONTRACT
+============================================================
+
+===== A. BLOCK6.0 PART1 CONTINUITY =====
+Part1 status      = PASS_CONTRACT_FROZEN
+Stage6 contract   = FROZEN
+strict PDF audit  = 100% PASS
+
+===== B. FROZEN PART-A IDENTITY =====
+Part-A git HEAD       = EXACT PASS
+Part-A reference SHA  = EXACT PASS
+
+===== C. PART-A ADB SOURCE DISCOVERY =====
+canonical notebook = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+notebook SHA256    = b5a80a6d3441de6d571db4f65b4a43ed4052cc2b3ccba935ad31b5dd51316ef3
+notebook cells     = 77
+
+===== D. PART-A ADB SEMANTIC EVIDENCE =====
+ADB/module                  = PASS | cells=19
+angle-range illumination    = PASS | cells=54
+shadow region               = PASS | cells=31
+radial thresholds           = PASS | cells=12
+raised-cosine               = PASS | cells=11
+MHT-driven reactive input   = PASS | cells=22
+joint ADB/transition cells = [6, 52, 53, 59, 68, 69, 70, 71, 73]
+
+===== E. FROZEN PART-A REFERENCE ADB EVIDENCE =====
+frozen-reference semantic role = IDENTITY_PROVENANCE_FREEZE
+canonical notebook role        = AUTHORITATIVE_FROZEN_ADB_SOURCE
+canonical notebook SHA         = EXACT PASS
+ADB semantic notebook gates    = PASS
+ADB-related reference fields   = 0 (0 acceptable)
+
+===== F. PART-A ADB SOURCE AUDIT ARTIFACT =====
+source audit write = WRITTEN
+source audit SHA256 = 5b3b8aacaa6c8947c6d9d57264a908994a6a8d3193179a75bcd4f6b4697b0e64
+
+===== G. REACTIVE ADB ADAPTER CONTRACT =====
+adapter contract = WRITTEN
+adapter SHA256   = d552e9d766ec356fbf57079a647a7b3c5e882a6e153c8b9e5f06c8b207539e4c
+
+===== H. BLOCK6.0 PART2 CONTRACT TESTS =====
+test file = WRITTEN
+Ran 24 tests in 0.001s
+OK
+
+===== I. IMMUTABILITY / STORAGE =====
+Part-A frozen repo/reference = UNCHANGED
+Stage5 frozen artifacts       = UNCHANGED
+free GiB                      = 1054.835
+250-GiB reserve               = PASS
+
+===== J. BLOCK6.0 CLOSURE =====
+Block6.0 closure = WRITTEN
+closure SHA256   = 525cf827b217cc2806bfff6547c5e241b3c9db04d188f7957acea117b309c303
+
+============================================================
+BLOCK 6.0 PART 2/2 — FINAL
+============================================================
+Part-A git/reference       = EXACT PASS
+Part-A ADB source          = AUDITED PASS
+reactive L(theta,r)        = FROZEN CONTRACT
+raised-cosine transition   = FROZEN CONTRACT
+angular/radial shadow      = FROZEN CONTRACT
+multi-actor combination    = ELEMENTWISE MIN CONTRACT
+paper vs Part-A provenance = SEPARATE PASS
+Part-B scientific change   = CURRENT DETERMINISTIC -> FUTURE PROBABILISTIC REGION
+Part-A modified            = NO
+Stage5 modified            = NO
+reactive adapter implemented= NO
+predictive ADB implemented = NO
+Block6.0 regression        = PASS
+STATUS = PASS_COMPLETE
+closure = /home/agni/waymo/iscai_stage6/reports/block60_closure.json
+terminal remains open = YES

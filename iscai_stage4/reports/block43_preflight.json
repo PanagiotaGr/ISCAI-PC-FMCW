@@ -1,0 +1,28 @@
+{
+  "block": "4.3_preflight",
+  "cuda_GRU": {
+    "backward": true,
+    "deterministic_policy": true,
+    "finite": true,
+    "forward": true,
+    "masked_loss": true
+  },
+  "environment": {
+    "cuda_available": true,
+    "cuda_runtime": "13.2",
+    "gpu": "NVIDIA RTX A6000",
+    "torch": "2.13.0+cu132"
+  },
+  "regression": {
+    "tests_passed": 44,
+    "tests_total": 44
+  },
+  "stage": 4,
+  "status": "PASS",
+  "upstream": {
+    "block42": "PASS",
+    "block42_implementation_sha256": "4f6ef90bd3455bf55f100561d66ef93549d8472112b85fce45930ec169f89fd0",
+    "development_manifest_sha256": "e4689698bddd80e58add7267f791aea90ef4bef0309ca18d0d7a9e7e94fe7e5c",
+    "fit_manifest_sha256": "284a61c877d937deb07137345beaabf3165690138785f9cc41f81655066d5276"
+  }
+}

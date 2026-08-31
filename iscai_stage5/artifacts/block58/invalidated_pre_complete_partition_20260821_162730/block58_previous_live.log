@@ -1,0 +1,29 @@
+resolved geometry modes   = {'centroid': 'centroid_baseline', 'known': 'known_receiver_offset', 'uncertain': 'uncertain_receiver_offset'}
+============================================================
+STAGE 4 — BLOCK 4.4 GAUSSIAN PROBABILISTIC TRAINING
+============================================================
+Block4.4 already COMPLETE/FROZEN.
+checkpoint SHA256 = 49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f
+STATUS = PASS
+BLOCK 5.8 preflight       = PASS
+formal population          = 120 / SHA PASS
+receiver policy            = nearest causal vehicle ahead
+geometry modes             = centroid / known / uncertain
+codebooks                  = 16 / 32 / 64
+q levels                   = 0.90 / 0.95 / 0.975 / 0.99
+future truth               = evaluator-only after decision
+starting formal N=120...
+formal progress             = 20/120
+formal progress             = 40/120
+formal progress             = 60/120
+formal progress             = 80/120
+formal progress             = 100/120
+formal progress             = 120/120
+
+formal scenarios            = 120/120
+eligible receiver scenes    = 120
+prediction unavailable      = 37
+coverage acceptance         = BLOCKED
+overhead acceptance         = PASS
+BLOCK 5.8 STATUS            = BLOCKED
+report                      = /home/agni/waymo/iscai_stage5/reports/block58_formal_evaluation.json

@@ -1,0 +1,22 @@
+{
+  "Stage6_regression": 224,
+  "aggregation": "equal-weight macro mean of finite scenario-level authoritative metric values",
+  "block": "6.8_stage3_floor_scoring_semantics",
+  "candidate_floor_triplets": 3270,
+  "next": "execute the exact 3270-triplet development-only Stage-3 floor sweep under this immutable scoring contract",
+  "scoring_freeze": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/stage6_development_stage3_floor_scoring_semantics.json",
+    "sha256": "a8bf30b29056562eb303f287acfcca6d8aee011f26a353897f8d18b47325e1b3"
+  },
+  "selection_population": {
+    "class_counts": {
+      "TYPE_CYCLIST": 48,
+      "TYPE_PEDESTRIAN": 110,
+      "TYPE_VEHICLE": 719
+    },
+    "predictive_actors": 877,
+    "scenarios": 120
+  },
+  "stage": 6,
+  "status": "PASS_STAGE3_SCORING_SEMANTICS_FROZEN"
+}

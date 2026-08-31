@@ -1,0 +1,96 @@
+============================================================
+STAGE 6 — BLOCK 6.8 PART 2A/2
+ORIGINAL-REACTIVE FUTURE-SCORING SEMANTICS FREEZE
+PRE-DEVELOPMENT-OUTCOME / NO FORMAL CONTENT
+============================================================
+
+===== A. EXACT UPSTREAM SEALS =====
+Block6.7 closure        = EXACT PASS
+metric authority        = EXACT PASS
+I_final evaluator bind  = EXACT PASS
+oracle/ROI contract     = EXACT PASS
+NI bound rule           = EXACT PASS
+class-aware policy      = EXACT PASS
+
+===== B. PRE-OUTCOME SCIENTIFIC BOUNDARY =====
+development metric values = NOT READ
+reactive outcomes          = NOT READ
+predictive outcomes        = NOT READ
+numeric NI deltas          = NOT COMPUTED
+formal content             = NOT OPENED
+controller modification    = NO
+policy tuning              = NO
+
+===== C. PRE-FREEZE REGRESSION =====
+pre-freeze regression = 217 / 217 PASS
+
+===== D. BUILD REACTIVE SCORING CONTRACT =====
+contract JSON syntax = PASS
+helper Python syntax = PASS
+test Python syntax   = PASS
+reactive t0 action   = CURRENT CAUSAL ONLY
+future refresh       = PROHIBITED
+4-horizon binding    = HOLD CURRENT ACTION
+future GT            = EVALUATOR ONLY
+
+===== E. TRANSACTIONAL FREEZE =====
+reactive scoring contract = WRITTEN
+isolated helper module     = WRITTEN
+targeted tests             = WRITTEN
+
+===== F. TARGETED TESTS =====
+targeted regression = 7 / 7 PASS
+
+===== G. FULL STAGE6 REGRESSION =====
+full Stage6 regression = 224 / 224 PASS
+
+===== H. EXACT SEMANTIC READBACK =====
+t0 reactive action      = FROZEN
+future re-observation   = NO
+future controller update= NO
+held schedule horizons  = 4
+D_tau semantics         = I_final < 1.0
+future GT controller    = NO
+oracle controller       = NO
+
+===== I. UPSTREAM IMMUTABILITY =====
+metric runtime          = UNCHANGED
+metric protocol         = UNCHANGED
+NI rule                 = UNCHANGED
+evaluator reference     = UNCHANGED
+class-aware controller  = UNCHANGED
+Block6.7 closure        = UNCHANGED
+
+===== J. STORAGE =====
+free GiB        = 1052.773
+250-GiB reserve = PASS
+
+===== K. FREEZE REPORT =====
+contract SHA256 = 454d22a2f067025fd8dde877546b7305c4357000126585c860a4a2d9ef3535d5
+helper SHA256   = e3114093406da9e4f8088a70cfcf98843055634a6e45ef30e1f3f0420f586d7b
+freeze SHA256   = 0fc8089bdfbf20eb5e187e71a6a736fefea59b3aac6b34ff373237016d8473f9
+
+============================================================
+BLOCK 6.8 REACTIVE SCORING SEMANTICS — FINAL
+============================================================
+reactive decision source    = CURRENT CAUSAL t0
+future input                = NO
+future re-observation       = NO
+future controller refresh   = NO
+evaluation horizons         = 0.1 / 0.3 / 0.5 / 1.0 s
+future schedule semantics   = HOLD t0 ACTION
+binary dim support          = I_final < 1.0
+constructed oracle          = EVALUATOR ONLY
+measured ADB ground truth   = NO
+development metrics         = NOT READ
+reactive outcomes           = NOT READ
+predictive outcomes         = NOT READ
+exact NI deltas             = NOT COMPUTED
+formal content              = NOT OPENED
+controller/policy tuning    = NO
+targeted regression         = 7 / 7 PASS
+full Stage6 regression      = 224 / 224 PASS
+formal evaluation allowed   = NO
+STATUS = PASS_REACTIVE_SCORING_SEMANTICS_FROZEN
+report = /home/agni/waymo/iscai_stage6/reports/block68_reactive_development_scoring_freeze.json
+terminal remains open = YES

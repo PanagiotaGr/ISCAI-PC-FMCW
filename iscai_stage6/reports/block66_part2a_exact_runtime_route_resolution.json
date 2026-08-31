@@ -1,0 +1,147 @@
+{
+  "association_API": {
+    "PredictorAnchor": "(prediction_id: 'str', latest_position_H0_m: 'Vec3') -> None",
+    "ReciprocalAssociationMatch": "(predictor_index: 'int', box_index: 'int', prediction_id: 'str', anchor_distance_m: 'float', predictor_second_nearest_distance_m: 'float | None', box_second_nearest_distance_m: 'float | None') -> None",
+    "ReciprocalAssociationResult": "(matches: 'tuple[ReciprocalAssociationMatch, ...]', unmatched_predictor_indices: 'tuple[int, ...]', unmatched_box_indices: 'tuple[int, ...]', predictor_count: 'int', box_count: 'int') -> None",
+    "reciprocal_unique_nearest_anchor_association": "(predictor_anchors: 'Iterable[PredictorAnchor]', actor_boxes: 'Iterable') -> 'ReciprocalAssociationResult'"
+  },
+  "block": "6.6-Part2A-retry",
+  "causal_input_API": {
+    "adapt_causal_womd_scenario": "(scenario: 'Any', *, headlamp_config: 'HeadlampSurrogateConfig | None' = None, receiver_config: 'ReceiverGeometryConfig | None' = None) -> 'AdaptedScenario'",
+    "algorithm_sequence_from_degraded_scene": "(*, scenario_id: 'str', scene) -> 'AlgorithmObservationSequence'",
+    "build_causal_dynamic_headlamp_frames": "(adapted: 'AdaptedScenario', *, config: 'HeadlampSurrogateConfig | None' = None) -> 'tuple[tuple[DynamicHeadlampFrame | None, ...], tuple[Vec3 | None, ...]]'",
+    "build_causal_scene_inputs": "(associated_tracks, *, scenario_id: 'str', context, timestamps_s: 'tuple[float, ...]') -> 'CausalSceneInputs'",
+    "build_clean_observation_scene": "(*, ideal_scene: 'IdealObservationScene', config: 'CleanObservationConfig') -> 'CleanObservationScene'",
+    "build_degraded_observation_scene": "(*, clean_scene: 'CleanObservationScene', config: 'DegradedObservationConfig') -> 'DegradedObservationScene'",
+    "build_real_causal_inputs": "(scenario, *, clean_config, degraded_config)",
+    "build_real_ideal_observation_scene": "(*, raw_scenario: 'Any', adapted: 'AdaptedScenario', include_sdc: 'bool' = False) -> 'IdealObservationScene'",
+    "read_training_scenario": "(record: 'dict') -> 'scenario_pb2.Scenario'"
+  },
+  "exact_import_bindings": {
+    "CalibrationNormalizer": {
+      "callable": true,
+      "module": "iscai_stage4.ml.calibration_runtime",
+      "signature": "(statistics, *, device)",
+      "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+      "symbol": "CalibrationNormalizer"
+    },
+    "adapt_causal_womd_scenario": {
+      "callable": true,
+      "module": "iscai_stage1.actors.womd_adapter",
+      "signature": "(scenario: 'Any', *, headlamp_config: 'HeadlampSurrogateConfig | None' = None, receiver_config: 'ReceiverGeometryConfig | None' = None) -> 'AdaptedScenario'",
+      "source_file": "/home/agni/waymo/iscai_stage1/src/iscai_stage1/actors/womd_adapter.py",
+      "symbol": "adapt_causal_womd_scenario"
+    },
+    "build_gaussian_model": {
+      "callable": true,
+      "module": "iscai_stage4.ml.calibration_runtime",
+      "signature": "(configuration, *, device)",
+      "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+      "symbol": "build_gaussian_model"
+    },
+    "calibrate_stage4_horizon_covariances": {
+      "callable": true,
+      "module": "iscai_stage5.angular_monte_carlo",
+      "signature": "(raw_covariance_h0_m2, variance_scale_alpha_h=(1.2347064500315355, 1.3451250295202921, 1.354822057728461, 1.2829700217319266)) -> 'np.ndarray'",
+      "source_file": "/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_monte_carlo.py",
+      "symbol": "calibrate_stage4_horizon_covariances"
+    },
+    "covariance_from_scale_tril": {
+      "callable": true,
+      "module": "iscai_stage4.ml.gaussian_math",
+      "signature": "(scale_tril: 'torch.Tensor') -> 'torch.Tensor'",
+      "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py",
+      "symbol": "covariance_from_scale_tril"
+    },
+    "denormalize_gaussian": {
+      "callable": true,
+      "module": "iscai_stage4.ml.gaussian_math",
+      "signature": "(mean_normalized: 'torch.Tensor', scale_tril_normalized: 'torch.Tensor', label_mean: 'torch.Tensor', label_std: 'torch.Tensor')",
+      "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py",
+      "symbol": "denormalize_gaussian"
+    },
+    "prediction_sha256": {
+      "callable": true,
+      "module": "iscai_stage4.ml.calibration_runtime",
+      "signature": "(mean, scale_tril)",
+      "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+      "symbol": "prediction_sha256"
+    }
+  },
+  "formal_boundary": {
+    "formal_outcomes": false,
+    "formal_population": false,
+    "formal_tuning": false
+  },
+  "frozen_execution_semantics": {
+    "association": "frozen_reciprocal_unique_nearest_anchor",
+    "association_class_gate": false,
+    "association_threshold": null,
+    "checkpoint_sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f",
+    "covariance_calibration": "iscai_stage5.angular_monte_carlo.calibrate_stage4_horizon_covariances",
+    "denormalization": "iscai_stage4.ml.gaussian_math.denormalize_gaussian",
+    "model": "Stage4 calibrated Gaussian GRU",
+    "normalization": "frozen_fit_only",
+    "perfect_ID": false,
+    "unmatched_ADB_actor": "original_reactive_fallback"
+  },
+  "local_helper_presence": {
+    "arrays_subscript_keys": true,
+    "build_prepare_arrays": true,
+    "construct_normalizer": true,
+    "prediction_digest": true,
+    "recursively_find_alpha": true
+  },
+  "next_execution": {
+    "N8192_P_occ_in_same_step": false,
+    "cohort_N": 120,
+    "first_materialization": "identity_safe_calibrated_posterior",
+    "resumable": true,
+    "second_materialization": "classwise_causal_association_census"
+  },
+  "posterior_contract": {
+    "calibrated_covariance": true,
+    "causal_anchor": true,
+    "future_GT": false,
+    "mean_calibration": "UNCHANGED",
+    "prediction_id": true,
+    "raw_covariance": true,
+    "tracks_to_predict": false,
+    "truth_id": false
+  },
+  "previous_blocker": {
+    "classification": "audit_only_API_guess",
+    "failed_guess": "iscai_stage4.ml.gaussian_runtime",
+    "scientific_execution_occurred": false,
+    "upstream_source_changed": false
+  },
+  "route_tokens": {
+    "build_gaussian_model(": true,
+    "calibrate_stage4_horizon_covariances(": true,
+    "calibrated_predictive_covariance_H0_m2": true,
+    "construct_normalizer(": true,
+    "covariance_from_scale_tril(": true,
+    "denormalize_gaussian(": true,
+    "histories =": true,
+    "load_state_dict(": true,
+    "map_contexts =": true,
+    "model(": true,
+    "model_payloads =": true,
+    "normalizer.prepare": true,
+    "prediction_ids =": true,
+    "records = []": true,
+    "scene_inputs =": true
+  },
+  "scientific_execution_this_retry": {
+    "class_policy_freeze": false,
+    "model_forward": false,
+    "recalibration": false,
+    "training": false
+  },
+  "stage": 6,
+  "status": "PASS_EXACT_FROZEN_RUNTIME_ROUTE_RESOLVED",
+  "successful_reference_runner": {
+    "path": "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b1_frozen_gaussian_forward.py",
+    "sha256": "c7f294792f98932713527b010014108e1eb764e1f68e5050bbe73bc53565977b"
+  }
+}

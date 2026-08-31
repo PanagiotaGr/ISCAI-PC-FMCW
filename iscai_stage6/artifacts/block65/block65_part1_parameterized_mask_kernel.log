@@ -1,0 +1,79 @@
+========================================================================
+BLOCK 6.5 PART1 — PARAMETERIZED CLASS-AGNOSTIC MASK KERNEL
+========================================================================
+
+===== A. FROZEN BLOCK6.4 / BLOCK6.2 SEAL =====
+Block6.4 handoff     = EXACT PASS
+Block6.4 freeze      = EXACT PASS
+Block6.4 numerics    = EXACT PASS
+Block6.4 report      = EXACT PASS
+P_occ module         = EXACT PASS
+Block6.2 closure     = EXACT PASS
+MC N / seed        = 8192 / 20260821
+scientific grid    = 501 x 301
+illumination module SHA256 = daeb96029ff6e1720d17cd20d3e8f00155c566eeecec3b3726f4adcc8b05d832
+
+===== B. EXACT REACTIVE FALLBACK API GATE =====
+reactive_adb_map signature = (grid: 'IlluminationGridSpec', regions: 'Iterable[ReactiveShadowRegion]') -> 'np.ndarray'
+reactive predictive input  = NO
+reactive communication input = NO
+
+===== C. MATERIALIZE BLOCK6.5 PART1 =====
+module status = CREATED
+module = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/predictive_mask.py
+module SHA256 = 239611ddb1cc21b9ddd46962eb561e58e0d1474be58878f9c79c256ba1940575
+test status = CREATED
+test SHA256 = 71f56693bd16259f6037e2c1fb317fbeaeda2a3bf62a765f511cb3fc551e92cb
+compile = PASS
+
+===== D. BLOCK6.5 PART1 DEDICATED TESTS =====
+..................
+----------------------------------------------------------------------
+Ran 18 tests in 0.019s
+
+OK
+dedicated tests = PASS | 18
+
+===== E. FULL STAGE6 REGRESSION =====
+.................................................................................................................................................
+----------------------------------------------------------------------
+Ran 145 tests in 0.174s
+
+OK
+full regression = PASS | 145
+
+===== F. BLOCK6.5 PART1 CONTRACT =====
+contract = /home/agni/waymo/iscai_stage6/configs/block65_part1_parameterized_mask_contract.json
+contract SHA256 = 8b447f2ea141064a940eb098de3c0632ad4e960e89180bb9b0deab9547e13870
+
+===== G. BLOCK6.5 PART1 REPORT =====
+report = /home/agni/waymo/iscai_stage6/reports/block65_part1_parameterized_mask_kernel.json
+report SHA256 = a8bed7b90b25846cc3e3cbd72bc275c1b201f8e5e7ef0f32d456abe4314a0c8d
+
+========================================================================
+BLOCK 6.5 PART1 — FINAL
+========================================================================
+STATUS = PASS_BLOCK65_PART1_PARAMETERIZED_MASK_KERNEL
+per-actor mask             = 1[P_occ > gamma]
+comparison                 = STRICT >
+P_occ == gamma             = INACTIVE
+multi-actor aggregation    = 1 - product(1-M_i)
+binary OR equivalence      = PASS
+class-agnostic             = YES
+reactive fallback          = EXACT FROZEN BLOCK6.2
+reactive fallback binary   = NO
+raised cosine preserved    = YES
+final intensity composition= NOT YET
+gamma frozen               = NO
+class policy frozen        = NO
+formal evaluation          = NO
+model forward              = NO
+training/recalibration     = NO / NO
+dedicated tests            = PASS | 18
+full Stage6 regression     = PASS | 145
+module SHA256              = 239611ddb1cc21b9ddd46962eb561e58e0d1474be58878f9c79c256ba1940575
+contract SHA256            = 8b447f2ea141064a940eb098de3c0632ad4e960e89180bb9b0deab9547e13870
+report SHA256              = a8bed7b90b25846cc3e3cbd72bc275c1b201f8e5e7ef0f32d456abe4314a0c8d
+NEXT = BLOCK6.5 PART2 REAL DEVELOPMENT GAMMA CURVES + PREREGISTRATION
+terminal remains open = YES
+========================================================================

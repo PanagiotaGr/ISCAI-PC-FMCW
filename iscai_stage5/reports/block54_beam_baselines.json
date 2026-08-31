@@ -1,0 +1,64 @@
+{
+  "Part1_continuity": {
+    "historical_implementation_sha256": "1716f961014bf7e1069f1114112f0d79a0aea5bae7868c164928d0587f3b062f",
+    "status": "PASS"
+  },
+  "baseline_registry": {
+    "adaptive_TopK": false,
+    "controller": [
+      "exhaustive_sweep",
+      "previous_beam_persistence",
+      "geometry_nearest",
+      "fixed_top1_probability",
+      "fixed_top3_probability",
+      "fixed_top5_probability"
+    ],
+    "evaluation_only": [
+      "oracle_best_gain_eval_only"
+    ],
+    "fixed_K": [
+      1,
+      3,
+      5
+    ]
+  },
+  "block": "5.4",
+  "completion": "COMPLETE_FROZEN",
+  "implementation": {
+    "file_count": 61,
+    "sha256": "1fd8e9417ed64014e176c2536ebbce14db074eff94dea6e270d4d412e4a8daef"
+  },
+  "next": "Block5.5 adaptive Top-K probabilistic controller",
+  "oracle_contract": {
+    "WOMD_measured_beam_label": false,
+    "controller_access": false,
+    "evaluation_only": true,
+    "real_communication_measurement": false,
+    "realized_receiver_azimuth": "evaluator_only"
+  },
+  "policy": {
+    "path": "/home/agni/waymo/iscai_stage5/configs/beam_baseline_policy.json",
+    "sha256": "0eef4bb57955ea6cba011b5e9b3ff0a6506d7696d0691652a3256f03d2a4ca14"
+  },
+  "project": "Agni",
+  "scope": {
+    "ADB_started": false,
+    "Stage4_inference": false,
+    "adaptive_TopK_started": false,
+    "blockage_aware_started": false,
+    "development_tuning": false,
+    "formal_N120_read": false,
+    "optical_link_started": false,
+    "recalibration": false,
+    "training": false
+  },
+  "stage": 5,
+  "status": "PASS",
+  "temporal_contract": {
+    "causal": true,
+    "initialization": "geometry_nearest_using_current_causal_predicted_receiver_azimuth",
+    "persistence_state": "previous_selected_beam_from_same_causal_persistence_controller",
+    "reset": "clear_previous_beam_state",
+    "update": "selected_beam_becomes_previous_beam_for_next_controller_step"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "ablation_semantics": {
+    "LiDAR_BEV_raw_network": "not required for this repair",
+    "LiDAR_intensity": "relative proxy/learned feature only; never calibrated optical reflectivity",
+    "PC_FMCW_noisy_radial_velocity": "actual Stage2 noisy measurement radial-velocity component",
+    "actor_level_LiDAR": "required input ablation",
+    "annotated_velocity": "upper-bound/input ablation only; never primary realistic input",
+    "geometry_derived_radial_velocity": "causal geometry-derived reference; not measured FMCW"
+  },
+  "authority": "Joint uncertainty-aware trajectory-to-beam-and-ADB control \u03bc\u03b5 WOMD.pdf",
+  "comparison_rules": {
+    "LiDAR_ablation": "common outcome-independent LiDAR subset; same actors/scenarios for no-LiDAR and LiDAR variants",
+    "classical": "repaired Stage3 baselines",
+    "input_ablations": "common evaluation support wherever the compared inputs are available",
+    "neural_vs_classical": "exact common actor+horizon support"
+  },
+  "formal_acceptance": {
+    "all_PDF_input_ablations_materialized": true,
+    "confidence_regions_measured_calibration": true,
+    "probabilistic_beats_at_least_one_classical": true
+  },
+  "model_family": {
+    "calibration": "fresh held-out calibration for V2 predictive covariance only",
+    "deterministic": "GRU",
+    "multi_modal": "trajectory-level GMM baseline/ablation",
+    "predictive_covariance": "full 3D SPD",
+    "probabilistic_primary": "full-covariance Gaussian GRU"
+  },
+  "partition_rules": {
+    "calibration_fit": "frozen calibration partition only",
+    "fit": "frozen Block4.1 fit only",
+    "formal": "evaluation only after all V2 model/calibration/ablation choices are frozen",
+    "model_selection": "development only",
+    "no_overlap": true,
+    "normalization": "fit partition only"
+  },
+  "primary_experimental_mode": {
+    "Stage2_full_degraded_observations": true,
+    "direct_noisy_PC_FMCW_radial_velocity_input": true,
+    "future_information_input": false,
+    "measurement_covariance_input": true,
+    "measurement_vs_predictive_uncertainty_separate": true,
+    "name": "track_based_PC_FMCW_observation_mode",
+    "perfect_WOMD_state_input": false,
+    "perfect_track_ID_numeric_input": false,
+    "radial_velocity_source": "Stage2 measurement[1]; geometry-derived truth is not substituted for the noisy-vr primary feature"
+  },
+  "protocol": "stage4_full_pdf_compliance_v2",
+  "required_input_ablations": [
+    "position_only",
+    "position_plus_annotated_velocity",
+    "position_plus_past_only_estimated_velocity",
+    "position_plus_geometry_derived_radial_velocity",
+    "position_plus_PC_FMCW_noisy_radial_velocity",
+    "position_plus_measurement_covariance",
+    "position_plus_actor_level_LiDAR_features",
+    "actor_only_vs_multi_agent",
+    "no_map_vs_map",
+    "no_LiDAR_vs_LiDAR_context"
+  ],
+  "scientific_boundary": {
+    "calibration_fit_during_this_preflight": false,
+    "formal_outcomes_read_during_this_preflight": false,
+    "model_selection_during_this_preflight": false,
+    "training_run_during_this_preflight": false
+  },
+  "stage": 4,
+  "status": "FROZEN_BEFORE_V2_TRAINING_OR_V2_EVALUATION"
+}

@@ -1,0 +1,36 @@
+{
+  "performance_based_selection": false,
+  "plan_sha256": "ac16063f47979361391c013f418744c40c9f6b6d4e1caa94dff87b68b7609813",
+  "probes": [
+    {
+      "expected_prediction_sha256": "d92330d0e37e0c8d79f76f7bb166b5baf88570cc37f896713c72da4175aea204",
+      "expected_supervised_samples": 50,
+      "rank": 1,
+      "scenario_id": "cfd33c593d645bf5",
+      "truth_index_source": "sample.truth_track_index"
+    },
+    {
+      "expected_prediction_sha256": "a2970314b5d701f82330e09d79de952f4558728c17b6f05b9a04fc2e2c5a0d93",
+      "expected_supervised_samples": 24,
+      "rank": 2,
+      "scenario_id": "b90adbf772ab2317",
+      "truth_index_source": "sample.truth_track_index"
+    },
+    {
+      "expected_prediction_sha256": "41e01d0ea53ba2edfc3f3ed5de58a675c8dfc8628aad27c3c44e576ea7301c5e",
+      "expected_supervised_samples": 32,
+      "rank": 3,
+      "scenario_id": "b3078e2d1e2a6ed4",
+      "truth_index_source": "sample.truth_track_index"
+    },
+    {
+      "expected_prediction_sha256": "6bac4231f2ca41ced8ce31b0e153b9644cdeb0f6f8612d2a03958a5cc9a18846",
+      "expected_supervised_samples": 12,
+      "rank": 4,
+      "scenario_id": "765006a780597dad",
+      "truth_index_source": "sample.truth_track_index"
+    }
+  ],
+  "selection_rule": "first_four_nonempty_formal_scenes_in_frozen_manifest_order",
+  "tracks_to_predict_based_selection": false
+}

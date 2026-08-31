@@ -1,0 +1,566 @@
+{
+  "AST_routes": [
+    {
+      "calls": [
+        "ValueError",
+        "str"
+      ],
+      "constructor_keywords": [],
+      "line": 80,
+      "name": "_validate_actor_class",
+      "returns": [
+        "value"
+      ]
+    },
+    {
+      "calls": [
+        "MarginComputation",
+        "ValueError",
+        "_covariance_xy",
+        "_finite_scalar",
+        "_validate_actor_class",
+        "_xy",
+        "abs",
+        "asarray",
+        "float",
+        "max",
+        "norm",
+        "sqrt"
+      ],
+      "constructor_keywords": [
+        {
+          "call": "_xy",
+          "keywords": [
+            "name"
+          ]
+        },
+        {
+          "call": "_xy",
+          "keywords": [
+            "name"
+          ]
+        },
+        {
+          "call": "_finite_scalar",
+          "keywords": [
+            "name"
+          ]
+        },
+        {
+          "call": "_finite_scalar",
+          "keywords": [
+            "name"
+          ]
+        },
+        {
+          "call": "_finite_scalar",
+          "keywords": [
+            "name"
+          ]
+        },
+        {
+          "call": "_finite_scalar",
+          "keywords": [
+            "name"
+          ]
+        },
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "MarginComputation",
+          "keywords": [
+            "actor_class",
+            "predicted_center_H0_xy_m",
+            "predicted_range_m",
+            "lateral_predictive_sigma_m",
+            "closing_speed_mps",
+            "cyclist_lateral_rate_mps",
+            "part_a_generic_lateral_margin_m",
+            "additional_class_margin_m",
+            "total_lateral_margin_m"
+          ]
+        }
+      ],
+      "line": 248,
+      "name": "compute_class_aware_margin",
+      "returns": [
+        "call:MarginComputation"
+      ]
+    },
+    {
+      "calls": [
+        "ValueError",
+        "asarray",
+        "copy",
+        "int",
+        "range"
+      ],
+      "constructor_keywords": [
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        }
+      ],
+      "line": 579,
+      "name": "dilate_mask_theta",
+      "returns": [
+        "call:copy",
+        "result"
+      ]
+    },
+    {
+      "calls": [
+        "ValueError",
+        "_finite_scalar",
+        "all",
+        "any",
+        "asarray",
+        "diff",
+        "flatnonzero",
+        "float",
+        "int",
+        "isfinite",
+        "ones",
+        "part_a_radial_profile",
+        "range"
+      ],
+      "constructor_keywords": [
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "_finite_scalar",
+          "keywords": [
+            "name"
+          ]
+        },
+        {
+          "call": "ones",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "part_a_radial_profile",
+          "keywords": [
+            "r_shadow_end_m",
+            "r_transition_end_m",
+            "intensity_floor"
+          ]
+        }
+      ],
+      "line": 657,
+      "name": "predictive_mask_to_illumination",
+      "returns": [
+        "output"
+      ]
+    },
+    {
+      "calls": [
+        "ClassAwareComposition",
+        "ValueError",
+        "_finite_scalar",
+        "_validate_actor_class",
+        "all",
+        "any",
+        "asarray",
+        "isfinite",
+        "items",
+        "iter",
+        "keys",
+        "len",
+        "maximum",
+        "next",
+        "reduce",
+        "tuple",
+        "values",
+        "where",
+        "zeros"
+      ],
+      "constructor_keywords": [
+        {
+          "call": "zeros",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "ClassAwareComposition",
+          "keywords": [
+            "illumination_minimum",
+            "vru_floor_guard",
+            "raw_class_aware_illumination"
+          ]
+        },
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "_finite_scalar",
+          "keywords": [
+            "name"
+          ]
+        },
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        }
+      ],
+      "line": 807,
+      "name": "compose_class_aware_illumination",
+      "returns": [
+        "call:ClassAwareComposition"
+      ]
+    },
+    {
+      "calls": [
+        "ValueError",
+        "_finite_scalar",
+        "all",
+        "any",
+        "asarray",
+        "clip",
+        "copy",
+        "diff",
+        "empty_like",
+        "enumerate",
+        "exp",
+        "float",
+        "isfinite",
+        "tuple"
+      ],
+      "constructor_keywords": [
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "_finite_scalar",
+          "keywords": [
+            "name"
+          ]
+        },
+        {
+          "call": "empty_like",
+          "keywords": [
+            "dtype"
+          ]
+        }
+      ],
+      "line": 991,
+      "name": "temporal_smooth_schedule",
+      "returns": [
+        "call:clip"
+      ]
+    },
+    {
+      "calls": [
+        "RateLimitedSchedule",
+        "ValueError",
+        "_finite_scalar",
+        "any",
+        "asarray",
+        "copy",
+        "count_nonzero",
+        "diff",
+        "empty_like",
+        "enumerate",
+        "float",
+        "int",
+        "maximum",
+        "minimum",
+        "tuple",
+        "zeros",
+        "zeros_like"
+      ],
+      "constructor_keywords": [
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "_finite_scalar",
+          "keywords": [
+            "name"
+          ]
+        },
+        {
+          "call": "_finite_scalar",
+          "keywords": [
+            "name"
+          ]
+        },
+        {
+          "call": "empty_like",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "zeros",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "RateLimitedSchedule",
+          "keywords": [
+            "illumination",
+            "safety_override_mask",
+            "safety_override_count",
+            "safety_override_fraction"
+          ]
+        },
+        {
+          "call": "zeros_like",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        },
+        {
+          "call": "asarray",
+          "keywords": [
+            "dtype"
+          ]
+        }
+      ],
+      "line": 1157,
+      "name": "apply_actuation_rate_limit",
+      "returns": [
+        "call:RateLimitedSchedule"
+      ]
+    }
+  ],
+  "block": "6.8",
+  "dataclasses": {
+    "ClassAwareComposition": [
+      {
+        "name": "illumination_minimum",
+        "type": "np.ndarray"
+      },
+      {
+        "name": "vru_floor_guard",
+        "type": "np.ndarray"
+      },
+      {
+        "name": "raw_class_aware_illumination",
+        "type": "np.ndarray"
+      },
+      {
+        "name": "semantics",
+        "type": "str"
+      }
+    ],
+    "MarginComputation": [
+      {
+        "name": "actor_class",
+        "type": "str"
+      },
+      {
+        "name": "predicted_center_H0_xy_m",
+        "type": "tuple[float, float]"
+      },
+      {
+        "name": "predicted_range_m",
+        "type": "float"
+      },
+      {
+        "name": "lateral_predictive_sigma_m",
+        "type": "float"
+      },
+      {
+        "name": "closing_speed_mps",
+        "type": "float"
+      },
+      {
+        "name": "cyclist_lateral_rate_mps",
+        "type": "float"
+      },
+      {
+        "name": "part_a_generic_lateral_margin_m",
+        "type": "float"
+      },
+      {
+        "name": "additional_class_margin_m",
+        "type": "float"
+      },
+      {
+        "name": "total_lateral_margin_m",
+        "type": "float"
+      }
+    ],
+    "RateLimitedSchedule": [
+      {
+        "name": "illumination",
+        "type": "np.ndarray"
+      },
+      {
+        "name": "safety_override_mask",
+        "type": "np.ndarray"
+      },
+      {
+        "name": "safety_override_count",
+        "type": "int"
+      },
+      {
+        "name": "safety_override_fraction",
+        "type": "float"
+      },
+      {
+        "name": "semantics",
+        "type": "str"
+      }
+    ]
+  },
+  "diagnosis": {
+    "ClassAwareComposition_has_illumination": false,
+    "ClassAwareComposition_has_raw_class_aware_illumination": true,
+    "evidence_route_bug": true,
+    "previous_binder_error": "incorrectly required ClassAwareComposition.illumination",
+    "scientific_bug": false
+  },
+  "final_route_candidates": {
+    "dataclasses_with_exact_illumination_field": [
+      "RateLimitedSchedule"
+    ],
+    "schedule_ndarray_return_functions": [
+      "temporal_smooth_schedule"
+    ]
+  },
+  "functions": {
+    "apply_actuation_rate_limit": {
+      "return_annotation": "RateLimitedSchedule",
+      "signature": "(smoothed_schedule, *, current_illumination, horizons_s: 'Sequence[float]', rho_dim_per_s: 'float', rho_bright_per_s: 'float', vru_floor_guard=None) -> 'RateLimitedSchedule'"
+    },
+    "compose_class_aware_illumination": {
+      "return_annotation": "ClassAwareComposition",
+      "signature": "(*, class_illumination: 'Mapping[str, np.ndarray]', class_active_masks: 'Mapping[str, np.ndarray]', class_floors: 'Mapping[str, float]') -> 'ClassAwareComposition'"
+    },
+    "dilate_mask_theta": {
+      "return_annotation": "np.ndarray",
+      "signature": "(mask, *, dilation_cells: 'int') -> 'np.ndarray'"
+    },
+    "predictive_mask_to_illumination": {
+      "return_annotation": "np.ndarray",
+      "signature": "(mask, *, range_centers_m, intensity_floor: 'float') -> 'np.ndarray'"
+    },
+    "temporal_smooth_schedule": {
+      "return_annotation": "np.ndarray",
+      "signature": "(raw_schedule, *, current_illumination, horizons_s: 'Sequence[float]', time_constant_s: 'float') -> 'np.ndarray'"
+    }
+  },
+  "illumination_producers": [
+    {
+      "constructor": "RateLimitedSchedule",
+      "function": "apply_actuation_rate_limit",
+      "keywords": [
+        "illumination",
+        "safety_override_mask",
+        "safety_override_count",
+        "safety_override_fraction"
+      ],
+      "line": 1157
+    }
+  ],
+  "next": "Repair only the Block6.8 exact evaluator binder to use the evidence-supported post-composition final illumination route.",
+  "part": "final_illumination_route_extract",
+  "project": "Agni",
+  "regression": {
+    "status": "PASS",
+    "tests": 202
+  },
+  "scientific_execution": {
+    "development_metrics_computed": false,
+    "development_records_read": false,
+    "formal_content_opened": false,
+    "formal_outcomes_read": false,
+    "numeric_bounds_selected": false,
+    "policy_tuning": false,
+    "scientific_source_modified": false
+  },
+  "stage": 6,
+  "status": "PASS_FINAL_ILLUMINATION_ROUTE_EXTRACTED",
+  "storage": {
+    "free_GiB": 1052.775375366211,
+    "hard_reserve_GiB": 250.0,
+    "pass": true
+  }
+}

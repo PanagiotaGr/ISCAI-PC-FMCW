@@ -1,0 +1,165 @@
+{
+  "block": "5.8",
+  "completion": "COMPLETE",
+  "formal_execution": "COMPLETE_120_OF_120",
+  "formal_result": {
+    "causal_histories_semantic_class_unresolved": 1,
+    "coverage_acceptance": "BLOCKED",
+    "eligible_receiver_scenes": 120,
+    "overhead_acceptance": "PASS",
+    "selected_receiver_prediction_unavailable": 37
+  },
+  "formal_strata": [
+    {
+      "adaptive_coverage": 0.25301204819277107,
+      "adaptive_hits": 21,
+      "adaptive_minus_exhaustive_hits": 0,
+      "codebook": 16,
+      "exhaustive_coverage": 0.25301204819277107,
+      "exhaustive_hits": 21,
+      "horizon_s": 0.1,
+      "trials": 83
+    },
+    {
+      "adaptive_coverage": 0.2682926829268293,
+      "adaptive_hits": 22,
+      "adaptive_minus_exhaustive_hits": 0,
+      "codebook": 16,
+      "exhaustive_coverage": 0.2682926829268293,
+      "exhaustive_hits": 22,
+      "horizon_s": 0.3,
+      "trials": 82
+    },
+    {
+      "adaptive_coverage": 0.2682926829268293,
+      "adaptive_hits": 22,
+      "adaptive_minus_exhaustive_hits": 0,
+      "codebook": 16,
+      "exhaustive_coverage": 0.2682926829268293,
+      "exhaustive_hits": 22,
+      "horizon_s": 0.5,
+      "trials": 82
+    },
+    {
+      "adaptive_coverage": 0.23170731707317074,
+      "adaptive_hits": 19,
+      "adaptive_minus_exhaustive_hits": -1,
+      "codebook": 16,
+      "exhaustive_coverage": 0.24390243902439024,
+      "exhaustive_hits": 20,
+      "horizon_s": 1.0,
+      "trials": 82
+    },
+    {
+      "adaptive_coverage": 0.25301204819277107,
+      "adaptive_hits": 21,
+      "adaptive_minus_exhaustive_hits": 0,
+      "codebook": 32,
+      "exhaustive_coverage": 0.25301204819277107,
+      "exhaustive_hits": 21,
+      "horizon_s": 0.1,
+      "trials": 83
+    },
+    {
+      "adaptive_coverage": 0.2682926829268293,
+      "adaptive_hits": 22,
+      "adaptive_minus_exhaustive_hits": 0,
+      "codebook": 32,
+      "exhaustive_coverage": 0.2682926829268293,
+      "exhaustive_hits": 22,
+      "horizon_s": 0.3,
+      "trials": 82
+    },
+    {
+      "adaptive_coverage": 0.2682926829268293,
+      "adaptive_hits": 22,
+      "adaptive_minus_exhaustive_hits": 0,
+      "codebook": 32,
+      "exhaustive_coverage": 0.2682926829268293,
+      "exhaustive_hits": 22,
+      "horizon_s": 0.5,
+      "trials": 82
+    },
+    {
+      "adaptive_coverage": 0.23170731707317074,
+      "adaptive_hits": 19,
+      "adaptive_minus_exhaustive_hits": -1,
+      "codebook": 32,
+      "exhaustive_coverage": 0.24390243902439024,
+      "exhaustive_hits": 20,
+      "horizon_s": 1.0,
+      "trials": 82
+    },
+    {
+      "adaptive_coverage": 0.25301204819277107,
+      "adaptive_hits": 21,
+      "adaptive_minus_exhaustive_hits": 0,
+      "codebook": 64,
+      "exhaustive_coverage": 0.25301204819277107,
+      "exhaustive_hits": 21,
+      "horizon_s": 0.1,
+      "trials": 83
+    },
+    {
+      "adaptive_coverage": 0.2682926829268293,
+      "adaptive_hits": 22,
+      "adaptive_minus_exhaustive_hits": 0,
+      "codebook": 64,
+      "exhaustive_coverage": 0.2682926829268293,
+      "exhaustive_hits": 22,
+      "horizon_s": 0.3,
+      "trials": 82
+    },
+    {
+      "adaptive_coverage": 0.25609756097560976,
+      "adaptive_hits": 21,
+      "adaptive_minus_exhaustive_hits": -1,
+      "codebook": 64,
+      "exhaustive_coverage": 0.2682926829268293,
+      "exhaustive_hits": 22,
+      "horizon_s": 0.5,
+      "trials": 82
+    },
+    {
+      "adaptive_coverage": 0.23170731707317074,
+      "adaptive_hits": 19,
+      "adaptive_minus_exhaustive_hits": -1,
+      "codebook": 64,
+      "exhaustive_coverage": 0.24390243902439024,
+      "exhaustive_hits": 20,
+      "horizon_s": 1.0,
+      "trials": 82
+    }
+  ],
+  "next": "Block 5.9 may reproduce/freeze this BLOCKED formal outcome; Block 5.10 cannot issue a successful Stage5-to-Stage6 handoff under the frozen completion gate.",
+  "provenance": {
+    "formal_report": "/home/agni/waymo/iscai_stage5/reports/block58_formal_evaluation.json",
+    "formal_report_sha256": "71921b278d92ab37fd915c48cef132d94e5db38b6db1e02563d28c5e1fb81ad3"
+  },
+  "reason": "FROZEN_CODEBOOK_SUPPORT_LIMITS_FORMAL_RECEIVER_COVERAGE",
+  "root_cause": {
+    "adaptive_nearly_matches_exhaustive": true,
+    "exhaustive_is_same_support_upper_bound": true,
+    "interpretation": "Most evaluable realized receivers fall outside the frozen communication-beam azimuth support; adaptive Top-K cannot recover receivers for which no codebook decision cell exists.",
+    "not_interpreted_as": [
+      "evidence that increasing K within the same support fixes coverage",
+      "permission to renormalize outside-support posterior mass",
+      "permission to exclude out-of-support truth post hoc"
+    ],
+    "support_max_deg": 12.000000000000002,
+    "support_max_rad": 0.20943951023931956,
+    "support_min_deg": -12.000000000000002,
+    "support_min_rad": -0.20943951023931956
+  },
+  "scientific_integrity": {
+    "alpha_changed_posthoc": false,
+    "codebook_support_changed_posthoc": false,
+    "denominator_changed_posthoc": false,
+    "formal_rerun_for_tuning": false,
+    "posterior_recalibrated_posthoc": false,
+    "q_changed_posthoc": false,
+    "receiver_policy_changed_posthoc": false
+  },
+  "stage": 5,
+  "status": "BLOCKED"
+}

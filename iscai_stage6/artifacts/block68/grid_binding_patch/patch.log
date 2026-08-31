@@ -1,0 +1,69 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/repair_block68_part2b_part1_grid_binding.py", line 1688, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/repair_block68_part2b_part1_grid_binding.py", line 1221, in main
+    ) = build_patched_source(
+        ~~~~~~~~~~~~~~~~~~~~^
+        original.decode(
+        ^^^^^^^^^^^^^^^^
+            "utf-8"
+            ^^^^^^^
+        )
+        ^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/repair_block68_part2b_part1_grid_binding.py", line 787, in build_patched_source
+    require(
+    ~~~~~~~^
+        (
+        ^
+    ...<8 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/repair_block68_part2b_part1_grid_binding.py", line 584, in require
+    raise RuntimeError(
+        message
+    )
+RuntimeError: Target resolve_grid() no longer matches the known failed heuristic resolver.
+============================================================
+BLOCK 6.8 PART2B PART1 — GRID-BINDING PATCH
+RUNNER-ONLY REPAIR / NO SCIENTIFIC CHANGE
+============================================================
+
+===== A. FROZEN GRID-BINDING AUTHORITY =====
+binding SHA256         = EXACT PASS
+binding status         = FROZEN
+scientific grid change = NO
+performance outcomes   = NOT READ
+future truth           = NOT READ
+
+===== B. PRIOR FAILED-RUN OUTPUT BOUNDARY =====
+t0 map artifact       = ABSENT
+decision ledger       = ABSENT
+decision freeze report= ABSENT
+previous failure point= PRE-SCIENTIFIC-OUTPUT PASS
+
+===== C. VERIFIED RUNNER BACKUP =====
+pre-patch runner SHA256 = fb9c62a46f2ad238fbbbf9ddb4ce791c02e74b65c66f316e2f586ddbd2bd13d6
+backup verification       = PASS
+
+===== D. BUILD MINIMAL resolve_grid() PATCH =====
+
+============================================================
+BLOCK 6.8 PART2B PART1 GRID PATCH = BLOCKED
+============================================================
+exception = RuntimeError Target resolve_grid() no longer matches the known failed heuristic resolver.
+
+
+scientific parameter edit = NO
+reactive performance      = NOT READ
+predictive performance    = NOT READ
+future truth              = NOT READ
+P_occ content             = NOT OPENED
+exact NI deltas           = NOT COMPUTED
+formal evaluation         = NO
+Do not manually edit scientific modules.
+terminal remains open = YES

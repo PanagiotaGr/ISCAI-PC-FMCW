@@ -1,0 +1,50 @@
+{
+  "formal_boundary": {
+    "formal_outcomes_read": false,
+    "formal_population_used": false,
+    "formal_tuning_allowed": false
+  },
+  "from_block": "6.4",
+  "frozen_MC": {
+    "reference_N_not_runtime": 32768,
+    "sample_count": 8192,
+    "seed": 20260821
+  },
+  "frozen_grid": {
+    "range_m": [
+      0.0,
+      150.0,
+      0.5
+    ],
+    "shape": [
+      501,
+      301
+    ],
+    "theta_deg": [
+      -25.0,
+      25.0,
+      0.1
+    ]
+  },
+  "occupancy_kernel": {
+    "P_occ": "MC_full_box_coverage_fraction",
+    "corners_per_box": 8,
+    "gamma": "NOT_YET_FROZEN",
+    "multi_actor_aggregation": "NOT_YET_IMPLEMENTED"
+  },
+  "required_next_development_work": [
+    "occupancy_gamma_preregistration",
+    "binary_per_actor_mask_M_i_tau",
+    "exact_multi_actor_aggregation",
+    "class_agnostic_predictive_mask_baseline",
+    "preserve_original_reactive_fallback_for_unmatched_ADB_actors"
+  ],
+  "stage": 6,
+  "status": "PASS_READY_FOR_BLOCK65_DEVELOPMENT_MASK_POLICY",
+  "to_block": "6.5",
+  "upstream_numeric_freeze": {
+    "config_sha256": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73",
+    "freeze_manifest_sha256": "bf0e7ee51cd9aadfced923f769dccf6dc2ff374179d6ba01428e0c891bbe1ad5",
+    "report_sha256": "06cb2487cc097a5df5b7f4966dded8509fa4771b70755146180cc13d1e64333f"
+  }
+}

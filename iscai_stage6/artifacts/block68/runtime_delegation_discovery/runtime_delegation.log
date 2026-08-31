@@ -1,0 +1,1437 @@
+============================================================
+STAGE 6 — BLOCK 6.8
+CLASS-AWARE RUNTIME DELEGATION DISCOVERY
+SOURCE + SCHEMA ONLY
+NO P_OCC / NO PREDICTIVE PERFORMANCE / NO FORMAL
+============================================================
+
+===== A. EXACT CURRENT BOUNDARY =====
+binding runner          = EXACT PASS
+Block6.6 prereg         = EXACT PASS
+NI bounds               = EXACT PASS
+acceptance policy       = EXACT PASS
+timestamp alignment     = EXACT PASS
+P_occ values            = NOT OPENED
+predictive performance  = NOT COMPUTED
+formal content          = NOT OPENED
+
+===== B. PART3C1 SOURCE / IMPORT STRUCTURE =====
+Part3C1 path   = /home/agni/waymo/iscai_stage6/scripts/run_block66_part3c1_class_aware_runtime.py
+Part3C1 SHA256 = 8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c
+
+imports:
+  {"asname": null, "kind": "from", "level": 0, "line": 1, "module": "__future__", "name": "annotations"}
+  {"asname": null, "kind": "import", "line": 3, "module": "hashlib", "name": null}
+  {"asname": null, "kind": "import", "line": 4, "module": "json", "name": null}
+  {"asname": null, "kind": "from", "level": 0, "line": 5, "module": "pathlib", "name": "Path"}
+  {"asname": null, "kind": "import", "line": 6, "module": "re", "name": null}
+  {"asname": null, "kind": "import", "line": 7, "module": "subprocess", "name": null}
+  {"asname": null, "kind": "import", "line": 8, "module": "sys", "name": null}
+  {"asname": null, "kind": "import", "line": 9, "module": "textwrap", "name": null}
+  {"asname": null, "kind": "import", "line": 10, "module": "traceback", "name": null}
+  {"asname": null, "kind": "from", "level": 0, "line": 2915, "module": "iscai_stage6.adb.class_aware_policy", "name": "angular_margin_cells"}
+  {"asname": null, "kind": "from", "level": 0, "line": 2915, "module": "iscai_stage6.adb.class_aware_policy", "name": "apply_actuation_rate_limit"}
+  {"asname": null, "kind": "from", "level": 0, "line": 2915, "module": "iscai_stage6.adb.class_aware_policy", "name": "compose_class_aware_illumination"}
+  {"asname": null, "kind": "from", "level": 0, "line": 2915, "module": "iscai_stage6.adb.class_aware_policy", "name": "compute_class_aware_margin"}
+  {"asname": null, "kind": "from", "level": 0, "line": 2915, "module": "iscai_stage6.adb.class_aware_policy", "name": "dilate_mask_theta"}
+  {"asname": null, "kind": "from", "level": 0, "line": 2915, "module": "iscai_stage6.adb.class_aware_policy", "name": "predictive_mask_to_illumination"}
+  {"asname": null, "kind": "from", "level": 0, "line": 2915, "module": "iscai_stage6.adb.class_aware_policy", "name": "temporal_smooth_schedule"}
+  {"asname": null, "kind": "from", "level": 0, "line": 2915, "module": "iscai_stage6.adb.class_aware_policy", "name": "threshold_occupancy_counts_strict_k"}
+
+all call expressions:
+  L00013 Path
+  L02447 bool
+  L02448 ControlledBlock
+  L02449 str
+  L02456 hashlib.sha256
+  L02458 path.open
+  L02462 handle.read
+  L02469 digest.update
+  L02473 digest.hexdigest
+  L02481 require
+  L02482 path.is_file
+  L02486 sha256_file
+  L02490 require
+  L02498 print
+  L02509 textwrap.dedent(text).lstrip().encode
+  L02509 textwrap.dedent(text).lstrip
+  L02509 textwrap.dedent
+  L02515 path.parent.mkdir
+  L02520 path.exists
+  L02521 require
+  L02522 path.read_bytes
+  L02532 path.with_suffix
+  L02536 temporary.write_bytes
+  L02540 temporary.replace
+  L02544 sha256_file
+  L02553 (json.dumps(payload, sort_keys=True, indent=2, ensure_ascii=False, allow_nan=False) + '\n').encode
+  L02554 json.dumps
+  L02567 path.parent.mkdir
+  L02572 path.exists
+  L02573 require
+  L02574 path.read_bytes
+  L02584 path.with_suffix
+  L02588 temporary.write_bytes
+  L02592 temporary.replace
+  L02596 sha256_file
+  L02604 subprocess.run
+  L02606 str
+  L02616 int
+  L02626 print
+  L02627 print
+  L02631 print
+  L02637 print
+  L02638 print
+  L02642 exact_seal
+  L02650 exact_seal
+  L02658 exact_seal
+  L02666 exact_seal
+  L02675 exact_seal
+  L02683 exact_seal
+  L02691 exact_seal
+  L02699 json.loads
+  L02700 PART3B_PREREG.read_text
+  L02705 require
+  L02718 require
+  L02730 print
+  L02734 print
+  L02742 print
+  L02743 print
+  L02747 write_new_exact
+  L02752 print
+  L02757 print
+  L02762 print
+  L02770 print
+  L02771 print
+  L02775 write_new_exact
+  L02780 print
+  L02785 print
+  L02794 print
+  L02795 print
+  L02799 run
+  L02804 str
+  L02807 str
+  L02813 print
+  L02819 require
+  L02828 print
+  L02836 print
+  L02837 print
+  L02841 run
+  L02854 print
+  L02860 require
+  L02871 re.search
+  L02878 require
+  L02887 int
+  L02888 focused_match.group
+  L02891 require
+  L02901 print
+  L02910 print
+  L02911 print
+  L02938 print
+  L02944 print
+  L02948 print
+  L02952 print
+  L02956 print
+  L02960 print
+  L02964 print
+  L02972 print
+  L02973 print
+  L02977 exact_seal
+  L02985 exact_seal
+  L02993 exact_seal
+  L03001 print
+  L03009 print
+  L03010 print
+  L03014 run
+  L03021 str
+  L03030 print
+  L03031 '\n'.join
+  L03032 regression['output'].splitlines
+  L03040 require
+  L03049 re.search
+  L03056 require
+  L03065 int
+  L03066 regression_match.group
+  L03069 require
+  L03080 print
+  L03089 print
+  L03090 print
+  L03109 str
+  L03121 str
+  L03137 str
+  L03238 write_json_once
+  L03261 str
+  L03308 write_json_once
+  L03313 print
+  L03318 print
+  L03323 print
+  L03328 print
+  L03337 print
+  L03338 print
+  L03339 print
+  L03342 print
+  L03344 print
+  L03349 print
+  L03353 print
+  L03357 print
+  L03361 print
+  L03365 print
+  L03369 print
+  L03373 print
+  L03377 print
+  L03381 print
+  L03385 print
+  L03389 print
+  L03393 print
+  L03398 print
+  L03403 print
+  L03407 print
+  L03411 print
+  L03415 print
+  L03419 print
+  L03423 print
+  L03428 print
+  L03433 print
+  L03438 print
+  L03443 print
+  L03448 print
+  L03452 print
+  L03456 print
+  L03457 print
+  L03458 print
+  L03461 print
+  L03463 print
+  L03465 type
+  L03466 str
+  L03469 print
+  L03470 traceback.print_exc
+  L03474 print
+  L03475 print
+  L03479 print
+  L03483 print
+  L03487 print
+  L03491 print
+  L03495 print
+
+===== C. PART3C1 POLICY/SELECTION SOURCE CONTEXT =====
+L00017:     S6
+L00018:     / "src/iscai_stage6/adb/"
+L00019:       "class_aware_policy.py"
+L00020: )
+L00021: 
+L00023:     S6
+L00024:     / "tests/"
+L00025:       "test_block66_part3c1_class_aware_policy.py"
+L00026: )
+L00027: 
+L00029:     S6
+L00030:     / "reports/"
+L00031:       "block66_part3c1_class_aware_runtime.json"
+L00032: )
+L00033: 
+L00035:     S6
+L00036:     / "artifacts/block66/"
+L00037:       "block66_part3c1_to_part3c2_handoff.json"
+L00038: )
+L00039: 
+L00041:     S6
+L00042:     / "configs/"
+L00043:       "block66_part3b_class_aware_policy_preregistration.json"
+L00044: )
+L00045: 
+L00047:     S6
+L00048:     / "reports/"
+L00049:       "block66_part3b_class_aware_policy_preregistration.json"
+L00050: )
+L00051: 
+L00059:     S6
+L00060:     / "artifacts/block66/"
+L00061:       "block66_part3b_to_part3c_handoff.json"
+L00062: )
+L00063: 
+L00141:     PART_A_CONTROL_TRANSITION_LENGTH_M,
+L00142:     PART_A_EPS,
+L00143:     PART_A_LATERAL_SAFETY_MARGIN_M,
+L00144:     PART_A_RADIAL_SAFETY_MARGIN_M,
+L00145: )
+L00146: 
+L00158: 
+L00159: @dataclass(frozen=True)
+L00160: class MarginComputation:
+L00161:     actor_class: str
+L00162:     predicted_center_H0_xy_m: tuple[float, float]
+L00165:     closing_speed_mps: float
+L00166:     cyclist_lateral_rate_mps: float
+L00167:     part_a_generic_lateral_margin_m: float
+L00168:     additional_class_margin_m: float
+L00169:     total_lateral_margin_m: float
+L00170: 
+L00171: 
+L00173: class ClassAwareComposition:
+L00174:     illumination_minimum: np.ndarray
+L00175:     vru_floor_guard: np.ndarray
+L00176:     raw_class_aware_illumination: np.ndarray
+L00177:     semantics: str = (
+L00178:         "minimum_actor_intensity_then_spatial_VRU_floor_guard"
+L00179:     )
+L00180: 
+L00187:     safety_override_fraction: float
+L00188:     semantics: str = (
+L00189:         "finite_dim_bright_rate_limit_then_VRU_floor_projection"
+L00190:     )
+L00191: 
+L00302: 
+L00303: 
+L00304: def threshold_occupancy_counts_strict_k(
+L00305:     occupancy_counts,
+L00306:     *,
+L00309: ) -> np.ndarray:
+L00310:     """
+L00311:     Exact preregistered occupancy threshold:
+L00312: 
+L00313:         M = 1[count > k]
+L00314: 
+L00315:     This avoids any float threshold ambiguity.
+L00316:     """
+L00317: 
+L00374: 
+L00375: 
+L00376: def compute_class_aware_margin(
+L00377:     actor_class: str,
+L00378:     *,
+L00381:     covariance_H0_m2,
+L00382:     horizon_s: float,
+L00383:     base_margin_m: float,
+L00384:     uncertainty_multiplier: float,
+L00385:     motion_multiplier: float = 0.0,
+L00386: ) -> MarginComputation:
+L00387:     """
+L00388:     Preregistered class-aware predictive margin.
+L00389: 
+L00390:     The frozen Part-A generic 1 m lateral safety margin is
+L00391:     preserved and the class-aware term is ADDITIONAL.
+L00392: 
+L00425: 
+L00426:     base = _finite_scalar(
+L00427:         base_margin_m,
+L00428:         name="base_margin_m",
+L00429:     )
+L00430: 
+L00446:     if base < 0.0:
+L00447:         raise ValueError(
+L00448:             "base_margin_m must be >= 0"
+L00449:         )
+L00450: 
+L00595:         )
+L00596: 
+L00597:     generic_margin = float(
+L00598:         PART_A_LATERAL_SAFETY_MARGIN_M
+L00599:     )
+L00600: 
+L00601:     total_margin = (
+L00602:         generic_margin
+L00603:         +
+L00604:         additional
+L00605:     )
+L00606: 
+L00607:     return MarginComputation(
+L00608:         actor_class=cls,
+L00609: 
+L00633:         ),
+L00634: 
+L00635:         part_a_generic_lateral_margin_m=float(
+L00636:             generic_margin
+L00637:         ),
+L00638: 
+L00639:         additional_class_margin_m=float(
+L00640:             additional
+L00641:         ),
+L00642: 
+L00643:         total_lateral_margin_m=float(
+L00644:             total_margin
+L00645:         ),
+L00646:     )
+L00647: 
+L00648: 
+L00649: def angular_margin_cells(
+L00650:     *,
+L00651:     total_margin_m: float,
+L00652:     predicted_range_m: float,
+L00653:     theta_step_rad: float,
+L00658:     """
+L00659: 
+L00660:     margin = _finite_scalar(
+L00661:         total_margin_m,
+L00662:         name="total_margin_m",
+L00663:     )
+L00664: 
+L00673:     )
+L00674: 
+L00675:     if margin < 0.0:
+L00676:         raise ValueError(
+L00677:             "total_margin_m must be >= 0"
+L00678:         )
+L00679: 
+L00689: 
+L00690:     delta_theta = math.atan2(
+L00691:         margin,
+L00692:         max(
+L00693:             actor_range,
+L00787:     *,
+L00788:     range_centers_m,
+L00789:     intensity_floor: float,
+L00790: ) -> np.ndarray:
+L00791:     """
+L00844:         )
+L00845: 
+L00846:     floor = _finite_scalar(
+L00847:         intensity_floor,
+L00848:         name="intensity_floor",
+L00849:     )
+L00850: 
+L00851:     if not (
+L00852:         0.0 <= floor <= 1.0
+L00853:     ):
+L00854:         raise ValueError(
+L00855:             "intensity_floor must lie in [0,1]"
+L00856:         )
+L00857: 
+L00861:     )
+L00862: 
+L00863:     radial_margin = float(
+L00864:         PART_A_RADIAL_SAFETY_MARGIN_M
+L00865:     )
+L00866: 
+L00905:                 r_far
+L00906:                 +
+L00907:                 radial_margin
+L00908:             )
+L00909: 
+L00925:                     r_transition_end_m=
+L00926:                         r_transition_end,
+L00927:                     intensity_floor=
+L00928:                         floor,
+L00929:                 )
+L00930:             )
+L00933: 
+L00934: 
+L00935: def compose_class_aware_illumination(
+L00936:     *,
+L00937:     class_illumination: Mapping[
+L00943:         np.ndarray,
+L00944:     ],
+L00945:     class_floors: Mapping[
+L00946:         str,
+L00947:         float,
+L00955:       F_vru(cell) =
+L00956:           max(
+L00957:               pedestrian floor if pedestrian active,
+L00958:               cyclist floor if cyclist active,
+L00959:               0
+L00960:           )
+L00963: 
+L00964:     Thus a vehicle cannot force an overlapping VRU cell below
+L00965:     the active VRU's non-blackout floor.
+L00966:     """
+L00967: 
+L01051:             )
+L01052: 
+L01053:         if vru_class not in class_floors:
+L01054:             raise ValueError(
+L01055:                 f"missing floor for {vru_class}"
+L01056:             )
+L01057: 
+L01068:             )
+L01069: 
+L01070:         floor = _finite_scalar(
+L01071:             class_floors[
+L01072:                 vru_class
+L01073:             ],
+L01074:             name=f"{vru_class}_floor",
+L01075:         )
+L01076: 
+L01077:         if not (
+L01078:             0.0 < floor <= 1.0
+L01079:         ):
+L01080:             raise ValueError(
+L01081:                 "VRU floors must satisfy 0 < floor <= 1"
+L01082:             )
+L01083: 
+L01086:             np.where(
+L01087:                 active,
+L01088:                 floor,
+L01089:                 0.0,
+L01090:             ),
+L01103:             ),
+L01104: 
+L01105:         vru_floor_guard=
+L01106:             np.asarray(
+L01107:                 vru_guard,
+L01109:             ),
+L01110: 
+L01111:         raw_class_aware_illumination=
+L01112:             np.asarray(
+L01113:                 raw,
+L01122:     current_illumination,
+L01123:     horizons_s: Sequence[float],
+L01124:     time_constant_s: float,
+L01125: ) -> np.ndarray:
+L01126:     """
+L01127:     Frozen causal smoothing equation:
+L01128: 
+L01129:         alpha_h = 1-exp(-dt_h/T)
+L01152: 
+L01153:     T = _finite_scalar(
+L01154:         time_constant_s,
+L01155:         name="time_constant_s",
+L01156:     )
+L01157: 
+L01203:     if T <= 0.0:
+L01204:         raise ValueError(
+L01205:             "time_constant_s must be > 0"
+L01206:         )
+L01207: 
+L01283: 
+L01284: 
+L01285: def apply_actuation_rate_limit(
+L01286:     smoothed_schedule,
+L01287:     *,
+L01288:     current_illumination,
+L01289:     horizons_s: Sequence[float],
+L01290:     rho_dim_per_s: float,
+L01291:     rho_bright_per_s: float,
+L01292:     vru_floor_guard=None,
+L01293: ) -> RateLimitedSchedule:
+L01294:     """
+L01297:         I_rate = clip(
+L01298:             I_smooth,
+L01299:             I_prev-rho_dim*dt,
+L01300:             I_prev+rho_bright*dt
+L01301:         )
+L01302: 
+L01303:     Then the active VRU floor is re-applied and every cell
+L01304:     changed by this safety projection is counted.
+L01305:     """
+L01323:     )
+L01324: 
+L01325:     rho_dim = _finite_scalar(
+L01326:         rho_dim_per_s,
+L01327:         name="rho_dim_per_s",
+L01328:     )
+L01329: 
+L01330:     rho_bright = _finite_scalar(
+L01331:         rho_bright_per_s,
+L01332:         name="rho_bright_per_s",
+L01333:     )
+L01334: 
+L01352: 
+L01353:     if (
+L01354:         rho_dim <= 0.0
+L01355:         or
+L01356:         rho_bright <= 0.0
+L01357:     ):
+L01358:         raise ValueError(
+L01360:         )
+L01361: 
+L01362:     if rho_dim < rho_bright:
+L01363:         raise ValueError(
+L01364:             "rho_dim_per_s must be >= rho_bright_per_s"
+L01365:         )
+L01366: 
+L01383:         )
+L01384: 
+L01385:     if vru_floor_guard is None:
+L01386:         guard = np.zeros_like(
+L01387:             smooth,
+L01391:     else:
+L01392:         guard = np.asarray(
+L01393:             vru_floor_guard,
+L01394:             dtype=np.float64,
+L01395:         )
+L01397:         if guard.shape != smooth.shape:
+L01398:             raise ValueError(
+L01399:                 "vru_floor_guard shape mismatch"
+L01400:             )
+L01401: 
+L01406:         ):
+L01407:             raise ValueError(
+L01408:                 "vru_floor_guard must lie in [0,1]"
+L01409:             )
+L01410: 
+L01435:             previous
+L01436:             -
+L01437:             rho_dim
+L01438:             *
+L01439:             dt,
+L01444:             previous
+L01445:             +
+L01446:             rho_bright
+L01447:             *
+L01448:             dt,
+L01528: import numpy as np
+L01529: 
+L01530: from iscai_stage6.adb.class_aware_policy import (
+L01531:     TYPE_CYCLIST,
+L01532:     TYPE_PEDESTRIAN,
+L01533:     TYPE_VEHICLE,
+L01534:     angular_margin_cells,
+L01535:     apply_actuation_rate_limit,
+L01536:     compose_class_aware_illumination,
+L01537:     compute_class_aware_margin,
+L01538:     dilate_mask_theta,
+L01539:     predictive_mask_to_illumination,
+L01540:     temporal_smooth_schedule,
+L01541:     threshold_occupancy_counts_strict_k,
+L01542: )
+L01543: from iscai_stage6.adb.part_a_reactive import (
+L01544:     PART_A_LATERAL_SAFETY_MARGIN_M,
+L01545: )
+L01546: 
+L01547: 
+L01548: class StrictThresholdTests(unittest.TestCase):
+L01549: 
+L01550:     def test_strict_k_boundary(self):
+L01555: 
+L01556:         result = (
+L01557:             threshold_occupancy_counts_strict_k(
+L01558:                 counts,
+L01559:                 k=1,
+L01582: 
+L01583:         result = (
+L01584:             threshold_occupancy_counts_strict_k(
+L01585:                 counts,
+L01586:                 k=0,
+L01601:             ValueError
+L01602:         ):
+L01603:             threshold_occupancy_counts_strict_k(
+L01604:                 np.zeros(
+L01605:                     3,
+L01610: 
+L01611: 
+L01612: class MarginTests(unittest.TestCase):
+L01613: 
+L01614:     def test_vehicle_uncertainty_and_closing(self):
+L01615:         result = compute_class_aware_margin(
+L01616:             TYPE_VEHICLE,
+L01617:             current_position_H0_m=(
+L01633:             ),
+L01634:             horizon_s=0.5,
+L01635:             base_margin_m=0.5,
+L01636:             uncertainty_multiplier=1.0,
+L01637:             motion_multiplier=0.1,
+L01651: 
+L01652:         self.assertAlmostEqual(
+L01653:             result.additional_class_margin_m,
+L01654:             2.7,
+L01655:             places=12,
+L01657: 
+L01658:         self.assertAlmostEqual(
+L01659:             result.total_lateral_margin_m,
+L01660:             (
+L01661:                 float(
+L01662:                     PART_A_LATERAL_SAFETY_MARGIN_M
+L01663:                 )
+L01664:                 +
+L01669: 
+L01670:     def test_pedestrian_has_no_motion_term(self):
+L01671:         first = compute_class_aware_margin(
+L01672:             TYPE_PEDESTRIAN,
+L01673:             current_position_H0_m=(
+L01683:             ),
+L01684:             horizon_s=0.5,
+L01685:             base_margin_m=0.25,
+L01686:             uncertainty_multiplier=2.0,
+L01687:             motion_multiplier=0.0,
+L01688:         )
+L01689: 
+L01690:         second = compute_class_aware_margin(
+L01691:             TYPE_PEDESTRIAN,
+L01692:             current_position_H0_m=(
+L01702:             ),
+L01703:             horizon_s=0.5,
+L01704:             base_margin_m=0.25,
+L01705:             uncertainty_multiplier=2.0,
+L01706:             motion_multiplier=99.0,
+L01708: 
+L01709:         self.assertAlmostEqual(
+L01710:             first.additional_class_margin_m,
+L01711:             second.additional_class_margin_m,
+L01712:             places=12,
+L01713:         )
+L01714: 
+L01715:     def test_cyclist_lateral_response(self):
+L01716:         result = compute_class_aware_margin(
+L01717:             TYPE_CYCLIST,
+L01718:             current_position_H0_m=(
+L01728:             ),
+L01729:             horizon_s=0.5,
+L01730:             base_margin_m=0.0,
+L01731:             uncertainty_multiplier=1.0,
+L01732:             motion_multiplier=0.5,
+L01740: 
+L01741:         self.assertAlmostEqual(
+L01742:             result.additional_class_margin_m,
+L01743:             2.0,
+L01744:             places=12,
+L01749:             ValueError
+L01750:         ):
+L01751:             compute_class_aware_margin(
+L01752:                 "TYPE_UNKNOWN",
+L01753:                 current_position_H0_m=(
+L01763:                 ),
+L01764:                 horizon_s=0.1,
+L01765:                 base_margin_m=0.0,
+L01766:                 uncertainty_multiplier=1.0,
+L01767:             )
+L01768: 
+L01769:     def test_angular_margin_uses_ceil(self):
+L01770:         cells = angular_margin_cells(
+L01771:             total_margin_m=1.0,
+L01772:             predicted_range_m=10.0,
+L01773:             theta_step_rad=0.01,
+L01899:             mask,
+L01900:             range_centers_m=ranges,
+L01901:             intensity_floor=0.2,
+L01902:         )
+L01903: 
+L01929:         )
+L01930: 
+L01931:     def test_predictive_illumination_uses_nonzero_floor(self):
+L01932:         mask = np.zeros(
+L01933:             (
+L01957:             mask,
+L01958:             range_centers_m=ranges,
+L01959:             intensity_floor=0.4,
+L01960:         )
+L01961: 
+L01985:         )
+L01986: 
+L01987:         result = compose_class_aware_illumination(
+L01988:             class_illumination={
+L01989:                 TYPE_VEHICLE:
+L01991:             },
+L01992:             class_active_masks={},
+L01993:             class_floors={},
+L01994:         )
+L01995: 
+L01996:         np.testing.assert_allclose(
+L01997:             result.raw_class_aware_illumination,
+L01998:             vehicle,
+L01999:             rtol=0.0,
+L02001:         )
+L02002: 
+L02003:     def test_pedestrian_floor_overrides_vehicle_blackout(self):
+L02004:         vehicle = np.zeros(
+L02005:             (
+L02031:         )
+L02032: 
+L02033:         result = compose_class_aware_illumination(
+L02034:             class_illumination={
+L02035:                 TYPE_VEHICLE:
+L02045:             },
+L02046: 
+L02047:             class_floors={
+L02048:                 TYPE_PEDESTRIAN:
+L02049:                     0.4,
+L02053:         self.assertAlmostEqual(
+L02054:             float(
+L02055:                 result.raw_class_aware_illumination[
+L02056:                     0,
+L02057:                     0,
+L02065:         self.assertAlmostEqual(
+L02066:             float(
+L02067:                 result.raw_class_aware_illumination[
+L02068:                     0,
+L02069:                     0,
+L02075:         )
+L02076: 
+L02077:     def test_maximum_active_vru_floor_wins(self):
+L02078:         shape = (
+L02079:             1,
+L02087:         )
+L02088: 
+L02089:         result = compose_class_aware_illumination(
+L02090:             class_illumination={
+L02091:                 TYPE_VEHICLE:
+L02113:             },
+L02114: 
+L02115:             class_floors={
+L02116:                 TYPE_PEDESTRIAN:
+L02117:                     0.3,
+L02124:         self.assertAlmostEqual(
+L02125:             float(
+L02126:                 result.raw_class_aware_illumination[
+L02127:                     0,
+L02128:                     0,
+L02137: class TemporalTests(unittest.TestCase):
+L02138: 
+L02139:     def test_temporal_smoothing_exact_first_step(self):
+L02140:         raw = np.ones(
+L02141:             (
+L02159:                 0.1,
+L02160:             ),
+L02161:             time_constant_s=0.1,
+L02162:         )
+L02163: 
+L02182:         )
+L02183: 
+L02184:     def test_temporal_smoothing_is_recursive(self):
+L02185:         raw = np.asarray(
+L02186:             [
+L02212:                 0.3,
+L02213:             ),
+L02214:             time_constant_s=0.2,
+L02215:         )
+L02216: 
+L02284:         )
+L02285: 
+L02286:         result = apply_actuation_rate_limit(
+L02287:             smooth,
+L02288:             current_illumination=current,
+L02290:                 0.1,
+L02291:             ),
+L02292:             rho_dim_per_s=2.0,
+L02293:             rho_bright_per_s=1.0,
+L02294:         )
+L02295: 
+L02322:         )
+L02323: 
+L02324:         result = apply_actuation_rate_limit(
+L02325:             smooth,
+L02326:             current_illumination=current,
+L02328:                 0.1,
+L02329:             ),
+L02330:             rho_dim_per_s=2.0,
+L02331:             rho_bright_per_s=1.0,
+L02332:         )
+L02333: 
+L02344:         )
+L02345: 
+L02346:     def test_vru_floor_safety_override_is_counted(self):
+L02347:         smooth = np.zeros(
+L02348:             (
+L02371:         )
+L02372: 
+L02373:         result = apply_actuation_rate_limit(
+L02374:             smooth,
+L02375:             current_illumination=current,
+L02377:                 0.1,
+L02378:             ),
+L02379:             rho_dim_per_s=2.0,
+L02380:             rho_bright_per_s=1.0,
+L02381:             vru_floor_guard=guard,
+L02382:         )
+L02383: 
+L02409:             ValueError
+L02410:         ):
+L02411:             apply_actuation_rate_limit(
+L02412:                 np.zeros(
+L02413:                     (
+L02427:                     0.1,
+L02428:                 ),
+L02429:                 rho_dim_per_s=1.0,
+L02430:                 rho_bright_per_s=2.0,
+L02431:             )
+L02432: 
+L02524:             data,
+L02525:             (
+L02526:                 "Existing Part3C/1 implementation "
+L02527:                 f"differs and will not be overwritten: {path}"
+L02528:             ),
+L02626:     print("=" * 78)
+L02627:     print(
+L02628:         "BLOCK 6.6 PART3C/1 — "
+L02629:         "PREREGISTERED CLASS-AWARE RUNTIME OPERATORS"
+L02630:     )
+L02669:             "part3b_handoff"
+L02670:         ],
+L02671:         "Part3B -> Part3C handoff",
+L02672:     )
+L02673: 
+L02707:             "scientific_boundary"
+L02708:         ][
+L02709:             "numeric_policy_selected"
+L02710:         ]
+L02711:         is False,
+L02712:         (
+L02713:             "Part3B unexpectedly selected "
+L02714:             "numeric policy."
+L02715:         ),
+L02716:     )
+L02729: 
+L02730:     print(
+L02731:         "numeric policy selection = FORBIDDEN"
+L02732:     )
+L02733: 
+L02770:     print()
+L02771:     print(
+L02772:         "===== C. WRITE PART3C/1 OPERATOR TESTS ====="
+L02773:     )
+L02774: 
+L02823:         ==
+L02824:         0,
+L02825:         "Part3C/1 compile failed.",
+L02826:     )
+L02827: 
+L02836:     print()
+L02837:     print(
+L02838:         "===== E. FOCUSED PART3C/1 UNIT TESTS ====="
+L02839:     )
+L02840: 
+L02847:             (
+L02848:                 "tests."
+L02849:                 "test_block66_part3c1_class_aware_policy"
+L02850:             ),
+L02851:         ]
+L02865:         0,
+L02866:         (
+L02867:             "Focused Part3C/1 tests failed."
+L02868:         ),
+L02869:     )
+L02895:         (
+L02896:             "Expected exactly 21 new "
+L02897:             f"Part3C/1 tests, got {focused_count}."
+L02898:         ),
+L02899:     )
+L02913:     )
+L02914: 
+L02915:     from iscai_stage6.adb.class_aware_policy import (
+L02916:         angular_margin_cells,
+L02917:         apply_actuation_rate_limit,
+L02918:         compose_class_aware_illumination,
+L02919:         compute_class_aware_margin,
+L02920:         dilate_mask_theta,
+L02921:         predictive_mask_to_illumination,
+L02922:         temporal_smooth_schedule,
+L02923:         threshold_occupancy_counts_strict_k,
+L02924:     )
+L02925: 
+L02926:     callables = (
+L02927:         threshold_occupancy_counts_strict_k,
+L02928:         compute_class_aware_margin,
+L02929:         angular_margin_cells,
+L02930:         dilate_mask_theta,
+L02931:         predictive_mask_to_illumination,
+L02932:         compose_class_aware_illumination,
+L02933:         temporal_smooth_schedule,
+L02934:         apply_actuation_rate_limit,
+L02935:     )
+L02936: 
+L02947: 
+L02948:     print(
+L02949:         "predictive margin       = IMPLEMENTED"
+L02950:     )
+L02951: 
+L02959: 
+L02960:     print(
+L02961:         "temporal smoothing      = IMPLEMENTED"
+L02962:     )
+L02963: 
+L03089:     print()
+L03090:     print(
+L03091:         "===== I. PART3C/1 REPORT + HANDOFF ====="
+L03092:     )
+L03093: 
+L03097: 
+L03098:         "block":
+L03099:             "6.6-Part3C/1",
+L03100: 
+L03101:         "status":
+L03102:             (
+L03103:                 "PASS_PREREGISTERED_CLASS_AWARE_"
+L03104:                 "RUNTIME_OPERATORS_IMPLEMENTED"
+L03105:             ),
+L03150: 
+L03151:         "implemented_runtime_components": [
+L03152:             "exact_strict_integer_k_threshold",
+L03153:             "class_aware_predictive_margin_operator",
+L03154:             "theta_only_predictive_mask_dilation",
+L03155:             (
+L03157:                 "PartA_raised_cosine_illumination"
+L03158:             ),
+L03159:             "class_aware_policy_composition",
+L03160:             "spatial_VRU_floor_guard",
+L03161:             "class_overlap_priority_rule",
+L03162:             "temporal_smoothing_operator",
+L03163:             "actuation_rate_limit_operator",
+L03164:             "rate_limit_safety_override_accounting",
+L03165:         ],
+L03166: 
+L03169:                 True,
+L03170: 
+L03171:             "generic_lateral_margin_preserved":
+L03172:                 True,
+L03173: 
+L03174:             "generic_radial_margin_preserved":
+L03175:                 True,
+L03176: 
+L03194: 
+L03195:         "scientific_boundary": {
+L03196:             "policy_sweep_executed":
+L03197:                 False,
+L03198: 
+L03199:             "numeric_gamma_selected":
+L03200:                 False,
+L03201: 
+L03202:             "numeric_margin_selected":
+L03203:                 False,
+L03204: 
+L03205:             "numeric_floor_selected":
+L03206:                 False,
+L03207: 
+L03208:             "numeric_smoothing_selected":
+L03209:                 False,
+L03210: 
+L03211:             "numeric_rate_selected":
+L03212:                 False,
+L03213: 
+L03230:         "next":
+L03231:             (
+L03232:                 "BLOCK6.6_PART3C2_MATERIALIZE_"
+L03233:                 "VEHICLE_GEOMETRY_SURROGATE_EVIDENCE_"
+L03234:                 "AND_INTEGRATION_SMOKE_WITHOUT_SWEEP"
+L03246: 
+L03247:         "from":
+L03248:             "6.6-Part3C/1",
+L03249: 
+L03250:         "to":
+L03251:             "6.6-Part3C/2",
+L03252: 
+L03253:         "status":
+L03267:         },
+L03268: 
+L03269:         "Part3C2_allowed": [
+L03270:             (
+L03271:                 "use the frozen N8192 development "
+L03285:         ],
+L03286: 
+L03287:         "Part3C2_forbidden": [
+L03288:             "class-policy parameter sweep",
+L03289:             "numeric policy selection",
+L03290:             "formal outcome read",
+L03291:             "formal tuning",
+L03299:         ],
+L03300: 
+L03301:         "numeric_policy_selected":
+L03302:             False,
+L03303: 
+L03338:     print("=" * 78)
+L03339:     print(
+L03340:         "BLOCK 6.6 PART3C/1 — FINAL"
+L03341:     )
+L03342:     print("=" * 78)
+L03344:     print(
+L03345:         "STATUS = "
+L03346:         "PASS_PREREGISTERED_CLASS_AWARE_RUNTIME_OPERATORS_IMPLEMENTED"
+L03347:     )
+L03348: 
+L03349:     print(
+L03350:         "strict integer-k threshold = IMPLEMENTED"
+L03351:     )
+L03352: 
+L03353:     print(
+L03354:         "predictive class margin    = IMPLEMENTED"
+L03355:     )
+L03356: 
+L03357:     print(
+L03358:         "Part-A generic margin      = PRESERVED"
+L03359:     )
+L03360: 
+L03372: 
+L03373:     print(
+L03374:         "VRU overlap floor guard    = IMPLEMENTED"
+L03375:     )
+L03376: 
+L03377:     print(
+L03378:         "temporal smoothing         = IMPLEMENTED"
+L03379:     )
+L03380: 
+L03402: 
+L03403:     print(
+L03404:         "policy sweep executed      = NO"
+L03405:     )
+L03406: 
+L03407:     print(
+L03408:         "numeric policy selected    = NO"
+L03409:     )
+L03410: 
+L03442: 
+L03443:     print(
+L03444:         "NEXT = BLOCK6.6 PART3C/2 "
+L03445:         "VEHICLE SURROGATE EVIDENCE + INTEGRATION"
+L03446:     )
+L03457:     print("=" * 78)
+L03458:     print(
+L03459:         "BLOCK6.6 PART3C/1 — CONTROLLED BLOCK"
+L03460:     )
+L03461:     print("=" * 78)
+L03482: 
+L03483:     print(
+L03484:         "policy sweep executed          = NO"
+L03485:     )
+L03486: 
+L03487:     print(
+L03488:         "numeric policy selected        = NO"
+L03489:     )
+L03490: 
+
+===== D. HANDOFF + FINAL-FREEZE SCHEMA =====
+
+PART3C1 HANDOFF key paths:
+  Part3C2_allowed
+  Part3C2_allowed[]
+  Part3C2_forbidden
+  Part3C2_forbidden[]
+  formal_outcomes_read
+  from
+  numeric_policy_selected
+  runtime_module
+  runtime_module.path
+  runtime_module.sha256
+  stage
+  status
+  to
+
+PART3C FINAL FREEZE key paths:
+  Part3B_preregistration
+  Part3B_preregistration.path
+  Part3B_preregistration.sha256
+  Stage6_regression
+  block
+  class_aware_runtime
+  class_aware_runtime.path
+  class_aware_runtime.sha256
+  closure
+  closure.path
+  closure.sha256
+  deterministic_replay_contract
+  deterministic_replay_contract.path
+  deterministic_replay_contract.sha256
+  formal_outcomes_read
+  full_box_parity
+  numeric_policy_selected
+  prohibited_after_freeze_before_Block6_7
+  prohibited_after_freeze_before_Block6_7[]
+  stage
+  status
+  vehicle_surrogate_evidence
+  vehicle_surrogate_evidence.path
+  vehicle_surrogate_evidence.sha256
+
+===== E. REFERENCED FILE PATHS FROM FREEZES =====
+
+handoff path-like values:
+  runtime_module.path = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/class_aware_policy.py
+
+final-freeze path-like values:
+  Part3B_preregistration.path = /home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json
+  class_aware_runtime.path = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/class_aware_policy.py
+  closure.path = /home/agni/waymo/iscai_stage6/reports/block66_part3c_final_closure.json
+  deterministic_replay_contract.path = /home/agni/waymo/iscai_stage6/configs/block66_part3c_part2of2_deterministic_replay_contract.json
+  vehicle_surrogate_evidence.path = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3c_vehicle_surrogate_evidence.jsonl
+
+===== F. RUNTIME SYMBOL LOCATIONS =====
+
+scripts/run_block65_part1_parameterized_mask_kernel.py SHA256= 648356c04007e280794f77541e04f3437bc535fa44a35c14c77b293a93bcfa9c
+  L00370 threshold_actor_occupancy :: def threshold_actor_occupancy(
+  L00654 threshold_actor_occupancy :: threshold_actor_occupancy(
+  L00760 threshold_actor_occupancy :: threshold_actor_occupancy,
+  L00856 threshold_actor_occupancy :: result = threshold_actor_occupancy(
+  L00891 threshold_actor_occupancy :: result = threshold_actor_occupancy(
+  L00918 threshold_actor_occupancy :: result = threshold_actor_occupancy(
+  L00947 threshold_actor_occupancy :: result = threshold_actor_occupancy(
+  L00978 threshold_actor_occupancy :: threshold_actor_occupancy(
+  L00986 threshold_actor_occupancy :: result = threshold_actor_occupancy(
+  L01170 threshold_actor_occupancy :: m1 = threshold_actor_occupancy(
+  L01178 threshold_actor_occupancy :: m2 = threshold_actor_occupancy(
+  L01421 threshold_actor_occupancy :: threshold_actor_occupancy
+  L01437 threshold_actor_occupancy :: threshold_actor_occupancy,
+
+scripts/run_block65_part2a_gamma_preregistration_curve.py SHA256= ffb6ddc5fb4146454bce7feda69c51b51098046193ecf8f2cdcc1526bf0b96cf
+  L01253 threshold_actor_occupancy :: threshold_actor_occupancy,
+  L01301 threshold_actor_occupancy :: threshold_actor_occupancy(
+  L01625 threshold_actor_occupancy :: "threshold_actor_occupancy":
+
+scripts/run_block66_part3b_preregistration.py SHA256= fe31d519019fd24445cf39fd7a8fc0dcc37f240f181fbb726c2bb207825e789d
+  L00598 threshold_actor_occupancy :: threshold_actor_occupancy,
+  L00623 threshold_actor_occupancy :: "threshold_actor_occupancy =",
+  L00625 threshold_actor_occupancy :: threshold_actor_occupancy
+
+scripts/run_block66_part3c1_class_aware_runtime.py SHA256= 8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c
+  L00304 threshold_occupancy_counts_strict_k :: def threshold_occupancy_counts_strict_k(
+  L01541 threshold_occupancy_counts_strict_k :: threshold_occupancy_counts_strict_k,
+  L01557 threshold_occupancy_counts_strict_k :: threshold_occupancy_counts_strict_k(
+  L01584 threshold_occupancy_counts_strict_k :: threshold_occupancy_counts_strict_k(
+  L01603 threshold_occupancy_counts_strict_k :: threshold_occupancy_counts_strict_k(
+  L02923 threshold_occupancy_counts_strict_k :: threshold_occupancy_counts_strict_k,
+  L02927 threshold_occupancy_counts_strict_k :: threshold_occupancy_counts_strict_k,
+  L00376 compute_class_aware_margin :: def compute_class_aware_margin(
+  L01537 compute_class_aware_margin :: compute_class_aware_margin,
+  L01615 compute_class_aware_margin :: result = compute_class_aware_margin(
+  L01671 compute_class_aware_margin :: first = compute_class_aware_margin(
+  L01690 compute_class_aware_margin :: second = compute_class_aware_margin(
+  L01716 compute_class_aware_margin :: result = compute_class_aware_margin(
+  L01751 compute_class_aware_margin :: compute_class_aware_margin(
+  L02919 compute_class_aware_margin :: compute_class_aware_margin,
+  L02928 compute_class_aware_margin :: compute_class_aware_margin,
+  L00649 angular_margin_cells :: def angular_margin_cells(
+  L01534 angular_margin_cells :: angular_margin_cells,
+  L01770 angular_margin_cells :: cells = angular_margin_cells(
+  L02916 angular_margin_cells :: angular_margin_cells,
+  L02929 angular_margin_cells :: angular_margin_cells,
+  L00707 dilate_mask_theta :: def dilate_mask_theta(
+  L01538 dilate_mask_theta :: dilate_mask_theta,
+  L01811 dilate_mask_theta :: result = dilate_mask_theta(
+  L01847 dilate_mask_theta :: result = dilate_mask_theta(
+  L02920 dilate_mask_theta :: dilate_mask_theta,
+  L02930 dilate_mask_theta :: dilate_mask_theta,
+  L00785 predictive_mask_to_illumination :: def predictive_mask_to_illumination(
+  L01539 predictive_mask_to_illumination :: predictive_mask_to_illumination,
+  L01898 predictive_mask_to_illumination :: output = predictive_mask_to_illumination(
+  L01956 predictive_mask_to_illumination :: output = predictive_mask_to_illumination(
+  L02921 predictive_mask_to_illumination :: predictive_mask_to_illumination,
+  L02931 predictive_mask_to_illumination :: predictive_mask_to_illumination,
+  L00935 compose_class_aware_illumination :: def compose_class_aware_illumination(
+  L01536 compose_class_aware_illumination :: compose_class_aware_illumination,
+  L01987 compose_class_aware_illumination :: result = compose_class_aware_illumination(
+  L02033 compose_class_aware_illumination :: result = compose_class_aware_illumination(
+  L02089 compose_class_aware_illumination :: result = compose_class_aware_illumination(
+  L02918 compose_class_aware_illumination :: compose_class_aware_illumination,
+  L02932 compose_class_aware_illumination :: compose_class_aware_illumination,
+  L01119 temporal_smooth_schedule :: def temporal_smooth_schedule(
+  L01540 temporal_smooth_schedule :: temporal_smooth_schedule,
+  L02155 temporal_smooth_schedule :: output = temporal_smooth_schedule(
+  L02207 temporal_smooth_schedule :: output = temporal_smooth_schedule(
+  L02922 temporal_smooth_schedule :: temporal_smooth_schedule,
+  L02933 temporal_smooth_schedule :: temporal_smooth_schedule,
+  L01285 apply_actuation_rate_limit :: def apply_actuation_rate_limit(
+  L01535 apply_actuation_rate_limit :: apply_actuation_rate_limit,
+  L02286 apply_actuation_rate_limit :: result = apply_actuation_rate_limit(
+  L02324 apply_actuation_rate_limit :: result = apply_actuation_rate_limit(
+  L02373 apply_actuation_rate_limit :: result = apply_actuation_rate_limit(
+  L02411 apply_actuation_rate_limit :: apply_actuation_rate_limit(
+  L02917 apply_actuation_rate_limit :: apply_actuation_rate_limit,
+  L02934 apply_actuation_rate_limit :: apply_actuation_rate_limit,
+
+scripts/run_block66_part3c_part2of2_final.py SHA256= c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93
+  L01704 threshold_occupancy_counts_strict_k :: threshold_occupancy_counts_strict_k,
+  L03056 threshold_occupancy_counts_strict_k :: threshold_occupancy_counts_strict_k(
+  L01700 compute_class_aware_margin :: compute_class_aware_margin,
+  L03109 compute_class_aware_margin :: margin = compute_class_aware_margin(
+  L01697 angular_margin_cells :: angular_margin_cells,
+  L03138 angular_margin_cells :: cells = angular_margin_cells(
+  L01701 dilate_mask_theta :: dilate_mask_theta,
+  L03208 dilate_mask_theta :: dilate_mask_theta(
+  L01702 predictive_mask_to_illumination :: predictive_mask_to_illumination,
+  L03226 predictive_mask_to_illumination :: predictive_mask_to_illumination(
+  L01699 compose_class_aware_illumination :: compose_class_aware_illumination,
+  L03263 compose_class_aware_illumination :: compose_class_aware_illumination(
+  L01703 temporal_smooth_schedule :: temporal_smooth_schedule,
+  L03310 temporal_smooth_schedule :: smoothed = temporal_smooth_schedule(
+  L01698 apply_actuation_rate_limit :: apply_actuation_rate_limit,
+  L03327 apply_actuation_rate_limit :: apply_actuation_rate_limit(
+
+scripts/run_block67_part1_margin_binding_gate.py SHA256= 5aba29d21ef51036c233630388533f54f0590bdd281af7d2e7e9b8c5a481baa9
+  L00338 bind_predictive_class_margin :: bind_predictive_class_margin,
+  L00418 bind_predictive_class_margin :: bind_predictive_class_margin(
+  L00334 angular_margin_cells :: angular_margin_cells,
+  L00425 angular_margin_cells :: angular_margin_cells(
+  L00435 angular_margin_cells :: angular_margin_cells(
+
+scripts/run_block67_part1of2_binding_preflight.py SHA256= d09a607f12b039ab1a0e79de0847b4fdcf87a65333d0e08fab8c274efb76eada
+  L00672 threshold_occupancy_counts_strict_k :: "threshold_occupancy_counts_strict_k",
+  L00673 compute_class_aware_margin :: "compute_class_aware_margin",
+  L00674 angular_margin_cells :: "angular_margin_cells",
+  L00675 dilate_mask_theta :: "dilate_mask_theta",
+
+scripts/run_block68_class_aware_frozen_policy_binding.py SHA256= 41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822
+  L00289 threshold_occupancy_counts_strict_k :: "threshold_occupancy_counts_strict_k",
+  L01008 threshold_occupancy_counts_strict_k :: "threshold_occupancy_counts_strict_k"
+  L01080 threshold_occupancy_counts_strict_k :: threshold_occupancy_counts_strict_k,
+  L01083 threshold_occupancy_counts_strict_k :: threshold_occupancy_counts_strict_k = None
+  L01094 threshold_occupancy_counts_strict_k :: threshold_occupancy_counts_strict_k
+  L01099 threshold_occupancy_counts_strict_k :: threshold_occupancy_counts_strict_k,
+  L00290 threshold_actor_occupancy :: "threshold_actor_occupancy",
+  L01011 threshold_actor_occupancy :: "threshold_actor_occupancy"
+  L00291 compute_class_aware_margin :: "compute_class_aware_margin",
+  L01073 compute_class_aware_margin :: compute_class_aware_margin,
+  L01086 compute_class_aware_margin :: compute_class_aware_margin,
+  L00292 bind_predictive_class_margin :: "bind_predictive_class_margin",
+  L00293 angular_margin_cells :: "angular_margin_cells",
+  L00294 dilate_mask_theta :: "dilate_mask_theta",
+  L00295 predictive_mask_to_illumination :: "predictive_mask_to_illumination",
+  L01074 predictive_mask_to_illumination :: predictive_mask_to_illumination,
+  L01087 predictive_mask_to_illumination :: predictive_mask_to_illumination,
+  L01308 predictive_mask_to_illumination :: "predictive_mask_to_illumination",
+  L00296 compose_class_aware_illumination :: "compose_class_aware_illumination",
+  L00991 compose_class_aware_illumination :: "compose_class_aware_illumination",
+  L01072 compose_class_aware_illumination :: compose_class_aware_illumination,
+  L01088 compose_class_aware_illumination :: compose_class_aware_illumination,
+  L01309 compose_class_aware_illumination :: "compose_class_aware_illumination",
+  L00297 temporal_smooth_schedule :: "temporal_smooth_schedule",
+  L00992 temporal_smooth_schedule :: "temporal_smooth_schedule",
+  L01075 temporal_smooth_schedule :: temporal_smooth_schedule,
+  L01089 temporal_smooth_schedule :: temporal_smooth_schedule,
+  L01311 temporal_smooth_schedule :: "temporal_smooth_schedule",
+  L00298 apply_actuation_rate_limit :: "apply_actuation_rate_limit",
+  L00993 apply_actuation_rate_limit :: "apply_actuation_rate_limit",
+  L01071 apply_actuation_rate_limit :: apply_actuation_rate_limit,
+  L01090 apply_actuation_rate_limit :: apply_actuation_rate_limit,
+  L01312 apply_actuation_rate_limit :: "apply_actuation_rate_limit",
+
+scripts/run_block68_class_aware_runtime_delegation_discovery.py SHA256= ac1b605a8ddf5645fb48243d753d73c370689243cca94fd0b026d0478e1e2c95
+  L00100 threshold_occupancy_counts_strict_k :: "threshold_occupancy_counts_strict_k",
+  L00101 threshold_actor_occupancy :: "threshold_actor_occupancy",
+  L00102 compute_class_aware_margin :: "compute_class_aware_margin",
+  L00103 bind_predictive_class_margin :: "bind_predictive_class_margin",
+  L00104 angular_margin_cells :: "angular_margin_cells",
+  L00105 dilate_mask_theta :: "dilate_mask_theta",
+  L00106 predictive_mask_to_illumination :: "predictive_mask_to_illumination",
+  L00107 compose_class_aware_illumination :: "compose_class_aware_illumination",
+  L00108 temporal_smooth_schedule :: "temporal_smooth_schedule",
+  L00109 apply_actuation_rate_limit :: "apply_actuation_rate_limit",
+
+scripts/run_block68_exact_evaluator_binding_repair.py SHA256= b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6
+  L00454 compose_class_aware_illumination :: compose_class_aware_illumination,
+  L00538 compose_class_aware_illumination :: compose_class_aware_illumination
+  L00680 compose_class_aware_illumination :: compose_class_aware_illumination(
+  L00455 temporal_smooth_schedule :: temporal_smooth_schedule,
+  L00544 temporal_smooth_schedule :: temporal_smooth_schedule
+  L00559 temporal_smooth_schedule :: "temporal_smooth_schedule "
+  L00626 temporal_smooth_schedule :: "    -> temporal_smooth_schedule"
+  L00731 temporal_smooth_schedule :: temporal_smooth_schedule(
+  L00895 temporal_smooth_schedule :: "temporal_smooth_schedule",
+  L01341 temporal_smooth_schedule :: "temporal_smooth_schedule"
+  L00453 apply_actuation_rate_limit :: apply_actuation_rate_limit,
+  L00550 apply_actuation_rate_limit :: apply_actuation_rate_limit
+  L00569 apply_actuation_rate_limit :: "apply_actuation_rate_limit "
+  L00579 apply_actuation_rate_limit :: apply_actuation_rate_limit
+  L00630 apply_actuation_rate_limit :: "    -> apply_actuation_rate_limit"
+  L00768 apply_actuation_rate_limit :: apply_actuation_rate_limit(
+  L00898 apply_actuation_rate_limit :: "apply_actuation_rate_limit",
+  L01346 apply_actuation_rate_limit :: "apply_actuation_rate_limit"
+
+scripts/run_block68_final_illumination_route_extract.py SHA256= 1688967f65eb0782be2b6bb68d621166aef5e2f36fff616fc3d527fba3bb9fda
+  L00813 compose_class_aware_illumination :: "compose_class_aware_illumination"
+  L00817 compose_class_aware_illumination :: "compose_class_aware_illumination "
+  L00841 compose_class_aware_illumination :: "compose_class_aware_illumination",
+  L00823 temporal_smooth_schedule :: "temporal_smooth_schedule"
+  L00827 temporal_smooth_schedule :: "temporal_smooth_schedule missing."
+  L00842 temporal_smooth_schedule :: "temporal_smooth_schedule",
+
+scripts/run_block68_part2_exact_evaluator_runtime_bind.py SHA256= 4034afa93c47ca2efa74460cc6f5404788c6b77aaa2a4b40f0c26083635ce97a
+  L00829 threshold_actor_occupancy :: threshold_actor_occupancy,
+  L00862 threshold_actor_occupancy :: "threshold_actor_occupancy":
+  L00864 threshold_actor_occupancy :: threshold_actor_occupancy
+  L00821 predictive_mask_to_illumination :: predictive_mask_to_illumination,
+  L00852 predictive_mask_to_illumination :: "predictive_mask_to_illumination":
+  L00854 predictive_mask_to_illumination :: predictive_mask_to_illumination
+  L01433 predictive_mask_to_illumination :: "predictive_mask_to_illumination"
+  L01871 predictive_mask_to_illumination :: "predictive_mask_to_illumination":
+  L00820 compose_class_aware_illumination :: compose_class_aware_illumination,
+  L00857 compose_class_aware_illumination :: "compose_class_aware_illumination":
+  L00859 compose_class_aware_illumination :: compose_class_aware_illumination
+  L01443 compose_class_aware_illumination :: "compose_class_aware_illumination"
+  L01874 compose_class_aware_illumination :: "compose_class_aware_illumination":
+
+src/iscai_stage6/adb/class_aware_policy.py SHA256= b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b
+  L00176 threshold_occupancy_counts_strict_k :: def threshold_occupancy_counts_strict_k(
+  L00248 compute_class_aware_margin :: def compute_class_aware_margin(
+  L00521 angular_margin_cells :: def angular_margin_cells(
+  L00579 dilate_mask_theta :: def dilate_mask_theta(
+  L00657 predictive_mask_to_illumination :: def predictive_mask_to_illumination(
+  L00807 compose_class_aware_illumination :: def compose_class_aware_illumination(
+  L00991 temporal_smooth_schedule :: def temporal_smooth_schedule(
+  L01157 apply_actuation_rate_limit :: def apply_actuation_rate_limit(
+
+src/iscai_stage6/adb/class_margin_binding.py SHA256= 8e6c12d5ff00903e0572b14494d665cc379e912a76d80b28c517233c834e4dd5
+  L00078 bind_predictive_class_margin :: def bind_predictive_class_margin(
+  L00008 angular_margin_cells :: angular_margin_cells,
+  L00087 angular_margin_cells :: The argument name of `angular_margin_cells` is
+  L00186 angular_margin_cells :: predictive_cells = angular_margin_cells(
+  L00193 angular_margin_cells :: total_reference_cells = angular_margin_cells(
+
+src/iscai_stage6/adb/predictive_mask.py SHA256= 239611ddb1cc21b9ddd46962eb561e58e0d1474be58878f9c79c256ba1940575
+  L00240 threshold_actor_occupancy :: def threshold_actor_occupancy(
+  L00524 threshold_actor_occupancy :: threshold_actor_occupancy(
+
+===== G. BLOCK66 POLICY/FREEZE CANDIDATE FILES =====
+configs/block64_mc_grid_numeric_freeze.json | bytes= 3331 | sha256= 993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73
+configs/block65_class_agnostic_gamma_freeze.json | bytes= 1099 | sha256= e307a217d45c044588f6fd32257291c6ae95ef8c86bf305de69ebab7a45a5992
+configs/block65_class_agnostic_gamma_preregistration.json | bytes= 1236 | sha256= bec7749511d37b01a39967864cfb3259f0c506d16f3b825d3d33d06b8819f02d
+configs/block66_development_cohort_selection_preregistration.json | bytes= 1097 | sha256= 498888381e5ab9dd2f14db59cec6661beac22368e31088d6326fe76190bd4081
+configs/block66_part3b_class_aware_policy_preregistration.json | bytes= 23474 | sha256= 5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e
+configs/block66_part3c_part2of2_deterministic_replay_contract.json | bytes= 6390 | sha256= ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1
+configs/stage6_metric_freeze_protocol.json | bytes= 5875 | sha256= 409fbb2785e4ff13f29fdff96c91d608c245e009fcbb86ce57099d6a4e1815c9
+configs/stage6_noninferiority_bound_selection_rule.json | bytes= 2758 | sha256= b5c0f40725e26578a4739f0582e4467ec48b72db8bb077d13862cc83dee98d24
+configs/stage6_preformal_primary_acceptance_policy.json | bytes= 1170 | sha256= e103466b1a6eb62be4e6746029147cbda9671b05130acba5210a3ab7328e6b81
+artifacts/block66/block66_development_cohort_freeze_manifest.json | bytes= 1516 | sha256= 42b8238388af96de950b9dfa8ec62ef51acea9f192160c40b93922e9acca1854
+artifacts/block66/block66_part1b_development_cohort_freeze.log | bytes= 4158 | sha256= 3bffdf31e37a06ef6d16e4b61d9e661969c03a604fdca889098afd4eea9e33d1
+artifacts/block66/block66_part1b_to_part2_handoff.json | bytes= 1725 | sha256= 9b97ced36cd892850edf0adc52886255bf38e70c25290fe095ce0171deb40c95
+artifacts/block66/block66_part2c1_headlamp_eligibility_freeze_manifest.json | bytes= 2284 | sha256= 2d9dcd668b6b07824793a4773430edf98ce4e96311f7cf756b2947520468efc0
+artifacts/block66/block66_part2c1_to_part2c2_handoff.json | bytes= 1710 | sha256= 9610565cadb8a21622ffc82557e5d0e9ce0279b4796ecfba158eb5e808d3f175
+artifacts/block66/block66_part2c2b_pocc_freeze_manifest.json | bytes= 2100 | sha256= b0df9df17c6008f9bdf3a993d08b103dc694607be90abe3307bc8d4877f9f6a7
+artifacts/block66/block66_part2c2b_to_part3_handoff.json | bytes= 2178 | sha256= c727fa4a9aef6b782e229dc9bb6c64f850716cff637472c4493827711314d6ab
+artifacts/block66/block66_part3a3_to_part3b_handoff.json | bytes= 1734 | sha256= 0067239bf65d32d7bd40fdd33c02b74aff509265e8a86070a3d2a0ed404cb1ee
+artifacts/block66/block66_part3b_preregistration_freeze_manifest.json | bytes= 4014 | sha256= a1d13bced062c2f2303b7166ab4f8b24f1ff17a236950dc569dcf16c580108c1
+artifacts/block66/block66_part3b_to_part3c_handoff.json | bytes= 1618 | sha256= 60874c8a4d9c8feae5e800f89168e2807a9c859c37dab0577186055e82ad5163
+artifacts/block66/block66_part3c1_class_aware_runtime.log | bytes= 7740 | sha256= ad280956e0e21666881b6320debaa3bfe5fb930759d987dc6efa133e5c36f58c
+artifacts/block66/block66_part3c1_to_part3c2_handoff.json | bytes= 1092 | sha256= 5dccff7f48403bffcb3eab2f787bb09f96a4cce41a5e8c286050026fea58f813
+artifacts/block66/block66_part3c2a_surrogate_route_audit.log | bytes= 20053 | sha256= e05497778980a07f426ab9143617643e6748518a91193437ec709b81b8c18c10
+artifacts/block66/block66_part3c2a_to_part3c2b_handoff.json | bytes= 716 | sha256= 620d8d13b4f0ee04fdde627a698efe24c42d43b362c19a227eea4d7e0e35cc5e
+artifacts/block66/block66_part3c2b0_persistence_sufficiency_audit.log | bytes= 6411 | sha256= 6a90afe2786c0756cdd929c2998569263b32ade5bb4c7d5254bab6a010f6b940
+artifacts/block66/block66_part3c2b0_to_part3c2b1_handoff.json | bytes= 619 | sha256= 1eeb2ca77dfd8068465a3d0d5f88843dec528c76c3729f8f690b6ca377d89e64
+artifacts/block66/block66_part3c_final_freeze_manifest.json | bytes= 1596 | sha256= 880c2efb0895f463aaf3350eed7730389a5871651d7ad6091cef052d95434738
+artifacts/block66/block66_part3c_part2of2_final.log | bytes= 11578 | sha256= 6c3b22d4f3d41dfdb100f03f65b329e0d8f271c44bbf1308bd54e4e9bd6a2814
+artifacts/block66/block66_part3c_to_block67_handoff.json | bytes= 1353 | sha256= 859e4d936c9e0eb04f35925382c7fa3aa86c91e1d2ff85beb86bb27e77ca4b5d
+artifacts/block66/block66_part3c_vehicle_surrogate_evidence.jsonl | bytes= 2421780 | sha256= bfe8eb6d8b605d58f9b99d8097744b71b99ecb9ed9fd169191222375f31bc826
+reports/block60_part1_handoff_contract.json | bytes= 1764 | sha256= 4a1adbc757d39fdf1e25d76fe3ec48cda49fcebe37c2d257814671d9633339bd
+reports/block63_binding_freeze.json | bytes= 1191 | sha256= 6e73e58eb4a28390360e965b33582b6b430dff149f97696494e9d504d1e0d84a
+reports/block63_causal_association_policy_audit.json | bytes= 3145 | sha256= ecc25a7d3280354c1365bf6021b8230064461571da262eefb80dd35048fa741a
+reports/block64_part2b2_development_numeric_freeze.json | bytes= 3458 | sha256= 06cb2487cc097a5df5b7f4966dded8509fa4771b70755146180cc13d1e64333f
+reports/block65_part2a_gamma_curve.json | bytes= 2320 | sha256= 93948ca4c0c14f2503b503426432d3bddf9a201de2e5a51b9db2f441c2e5ba3f
+reports/block65_part2b_gamma_freeze_real_mask_smoke.json | bytes= 2540 | sha256= 2473921ce335057599b1235c9dcbc6f0495cf7736de4fbfad202c9493c45b179
+reports/block66_part1b_development_cohort_freeze.json | bytes= 2562 | sha256= 3a965b4ef3c451e7526608f2b5ceb5a151eb08caf922a25f1b25a1ec5a12f5f0
+reports/block66_part3a2_executable_policy_capability_resolution.json | bytes= 4540 | sha256= 4dc5f7dfb27c8cc2b448a3a861a0805b7ae5ec3e5347a513e9612dd47a6b1327
+reports/block66_part3a_class_policy_surface_audit.json | bytes= 258427 | sha256= da71343ed7744e15ce2335f59f2eaa1db6a47cb1b24af22993239f731c40a9c7
+reports/block66_part3b_class_aware_policy_preregistration.json | bytes= 1728 | sha256= 1bf01b44a1cd842a1e1bf78f094da9dbb50c622ff895161851e901e1d36a53ac
+reports/block66_part3c1_class_aware_runtime.json | bytes= 2181 | sha256= ef4c18367dfe26ceac3a7f55f725f5450c7a3a0fd28811aa565472d9b06073a2
+reports/block66_part3c2a_vehicle_surrogate_route_binding_audit.json | bytes= 18047 | sha256= e2372c70d353f7122a91e514853ac1e823245e5ca1cfbf6d9eac5673ad550026
+reports/block66_part3c2b0_persistence_sufficiency_audit.json | bytes= 4810 | sha256= 2f4fedacaf306b936e96448ea19fb315f9e6db7a95afb3607618099153c38b8d
+reports/block66_part3c_final_closure.json | bytes= 8122 | sha256= 8413fd646a1bf18e15c12bf0441d1ddb1ea72ed142703020ac0d2c77dba0bb29
+reports/block67_part1_margin_binding_gate.json | bytes= 2327 | sha256= 80c35d2aa5cd7fea1e54f7a6cb52b8bb0f28f36632ca66e6500f992dcff6d5cf
+reports/block68_evaluator_reference_contract_freeze.json | bytes= 3128 | sha256= 5885424d164a058a151c50dd663acec4da7aeba66a56d5e0191c777682e113a8
+reports/block68_noninferiority_bound_rule_freeze.json | bytes= 3189 | sha256= 289f9369735566daa2344a90cb312d4c06ede76b73827f07e408855c4e06ce6b
+reports/block68_part1_metric_freeze_gate.json | bytes= 1539 | sha256= 84240cb7699cb279668eeb959e3f313352e0bf294adb6d53fe62bb828884b3a1
+reports/block68_reactive_decision_ledger_freeze.json | bytes= 4526 | sha256= 6ca868dbdf13e8a675813d4af2d3c814ce5297155126e5124ac452131670903b
+reports/block68_reactive_development_scoring_freeze.json | bytes= 3931 | sha256= 0fc8089bdfbf20eb5e187e71a6a736fefea59b3aac6b34ff373237016d8473f9
+reports/block68_reactive_only_ni_delta_freeze.json | bytes= 4319 | sha256= 821c845c5be2a60722d09d3a58160dafd08cb7cba6626e238a37a58eca661c9c
+
+===== H. SCIENTIFIC BOUNDARY =====
+JSON numeric selection artifacts newly opened = NO
+P_occ manifest content      = NOT OPENED
+P_occ arrays                = NOT OPENED
+predictive illumination     = NOT COMPUTED
+predictive performance      = NOT COMPUTED
+acceptance gate             = NOT TESTED
+policy numerics changed     = NO
+formal evaluation           = NO
+Stage6 regression           = 224 / 224 PASS
+
+============================================================
+BLOCK 6.8 CLASS-AWARE RUNTIME DELEGATION — FINAL
+============================================================
+Part3C1 direct runtime calls = NOT REQUIRED
+Part3C1 import graph         = EXTRACTED
+handoff/freeze schemas       = EXTRACTED
+runtime symbol locations     = EXTRACTED
+candidate policy files       = FILENAMES ONLY
+P_occ values                 = NOT OPENED
+predictive outcomes           = NOT COMPUTED
+acceptance gate               = NOT TESTED
+policy tuning                 = NO
+formal evaluation             = NO
+Stage6 regression             = 224 / 224 PASS
+STATUS = PASS_CLASS_AWARE_RUNTIME_DELEGATION_DISCOVERY_ONLY
+report = /home/agni/waymo/iscai_stage6/reports/block68_class_aware_runtime_delegation_discovery.json
+terminal remains open = YES

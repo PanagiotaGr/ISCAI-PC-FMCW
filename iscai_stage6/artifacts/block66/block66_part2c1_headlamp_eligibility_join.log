@@ -1,0 +1,100 @@
+============================================================================
+BLOCK 6.6 PART2C/1 — EXACT CURRENT-HEADLAMP ACTOR ELIGIBILITY JOIN
+============================================================================
+
+===== A. IMMUTABLE UPSTREAM SEAL =====
+development cohort           = EXACT PASS
+Part1A headlamp census       = EXACT PASS
+Part1B cohort freeze         = EXACT PASS
+Part2B association report    = EXACT PASS
+identity-safe posterior      = EXACT PASS
+association matches          = EXACT PASS
+reactive fallbacks           = EXACT PASS
+Part2B regression = EXACT PASS | 145
+
+===== B. FROZEN JOIN INPUT CENSUS =====
+posterior records    = 6925
+association matches  = 3937
+reactive fallbacks   = 1034
+new model forward    = NO
+new MC sampling      = NO
+
+===== C. EXACT PART1A HEADLAMP GEOMETRY REPLAY =====
+[001/120] f72a05a05035feb8 | eligible=  5 | predictive=  4 | fallback=  1
+[010/120] 6daa131b25b411e1 | eligible=  9 | predictive=  9 | fallback=  0
+[020/120] e697a3e91804731f | eligible= 21 | predictive= 17 | fallback=  4
+[030/120] 1d879936662232aa | eligible=  9 | predictive=  9 | fallback=  0
+[040/120] 1b0c763aeef8ba69 | eligible=  6 | predictive=  5 | fallback=  1
+[050/120] 91b9bd56c1084d03 | eligible=  3 | predictive=  2 | fallback=  1
+[060/120] 74ca33b01f8adc34 | eligible=  6 | predictive=  5 | fallback=  1
+[070/120] 9b55dd4a2eb55f33 | eligible=  9 | predictive=  7 | fallback=  2
+[080/120] c9d6f61d94824305 | eligible=  7 | predictive=  6 | fallback=  1
+[090/120] 28e0ea7a2ca646d6 | eligible= 13 | predictive=  8 | fallback=  5
+[100/120] 5d27f514c439978d | eligible=  4 | predictive=  3 | fallback=  1
+[110/120] 43cb883b388c851e | eligible=  5 | predictive=  4 | fallback=  1
+[120/120] 89bda4c79cb0ead4 | eligible=  6 | predictive=  6 | fallback=  0
+
+Part1A per-scenario geometry parity = PASS | 120/120
+
+===== D. AGGREGATE HEADLAMP ELIGIBILITY CENSUS =====
+headlamp eligible actors by class = {'TYPE_VEHICLE': 890, 'TYPE_PEDESTRIAN': 178, 'TYPE_CYCLIST': 56}
+eligible predictive matches by class = {'TYPE_VEHICLE': 719, 'TYPE_PEDESTRIAN': 110, 'TYPE_CYCLIST': 48}
+eligible reactive fallbacks by class = {'TYPE_VEHICLE': 171, 'TYPE_PEDESTRIAN': 68, 'TYPE_CYCLIST': 8}
+headlamp scenes by class = {'TYPE_VEHICLE': 116, 'TYPE_PEDESTRIAN': 56, 'TYPE_CYCLIST': 40}
+scenes with predictive match by class = {'TYPE_VEHICLE': 115, 'TYPE_PEDESTRIAN': 46, 'TYPE_CYCLIST': 37}
+scenes with reactive fallback by class = {'TYPE_VEHICLE': 74, 'TYPE_PEDESTRIAN': 34, 'TYPE_CYCLIST': 8}
+all core classes have eligible predictive support = PASS
+
+===== E. MATERIALIZE HEADLAMP JOIN =====
+eligibility manifest = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_actor_eligibility.jsonl
+eligibility SHA256 = 943e6f4d13234488704034d443c09df6bfaae8a9b748d340d2a99b9bd86fa22d
+eligible predictive matches = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_predictive_matches.jsonl
+eligible predictive SHA256 = d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6
+eligible reactive fallbacks = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_reactive_fallbacks.jsonl
+eligible fallback SHA256 = 7618c699c336b3ff283d96cad299a737124a3ddcdd51521289bb7531eec9c9aa
+
+===== F. FRESH STAGE6 REGRESSION =====
+.................................................................................................................................................
+----------------------------------------------------------------------
+Ran 145 tests in 0.176s
+
+OK
+fresh regression = PASS | 145
+
+===== G. BLOCK6.6 PART2C/1 REPORT =====
+report = /home/agni/waymo/iscai_stage6/reports/block66_part2c1_headlamp_eligibility_join.json
+report SHA256 = d5f70216ab629b132307fa510c4a475f7e8c0a32a414877d51fef5c0cd654200
+
+===== H. FREEZE MANIFEST + PART2C/2 HANDOFF =====
+freeze manifest = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligibility_freeze_manifest.json
+freeze SHA256 = 2d9dcd668b6b07824793a4773430edf98ce4e96311f7cf756b2947520468efc0
+handoff = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_to_part2c2_handoff.json
+handoff SHA256 = 9610565cadb8a21622ffc82557e5d0e9ce0279b4796ecfba158eb5e808d3f175
+
+============================================================================
+BLOCK 6.6 PART2C/1 — FINAL
+============================================================================
+STATUS = PASS_EXACT_CURRENT_HEADLAMP_ACTOR_ELIGIBILITY_JOIN
+Part1A per-scenario parity  = PASS | 120/120
+headlamp eligible total     = 1124
+headlamp eligible by class  = {'TYPE_VEHICLE': 890, 'TYPE_PEDESTRIAN': 178, 'TYPE_CYCLIST': 56}
+eligible predictive by class= {'TYPE_VEHICLE': 719, 'TYPE_PEDESTRIAN': 110, 'TYPE_CYCLIST': 48}
+eligible fallback by class  = {'TYPE_VEHICLE': 171, 'TYPE_PEDESTRIAN': 68, 'TYPE_CYCLIST': 8}
+predictive coverage/class   = {'TYPE_VEHICLE': 0.8078651685393259, 'TYPE_PEDESTRIAN': 0.6179775280898876, 'TYPE_CYCLIST': 0.8571428571428571}
+association recomputed      = NO
+new association threshold   = NO
+class gate                  = NO
+new model forward           = NO
+N_MC=8192 executed          = NO
+P_occ materialized          = NO
+class policy frozen         = NO
+formal outcomes read        = NO
+Stage6 regression           = PASS | 145
+eligible predictive SHA256 = d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6
+eligible fallback SHA256   = 7618c699c336b3ff283d96cad299a737124a3ddcdd51521289bb7531eec9c9aa
+report SHA256              = d5f70216ab629b132307fa510c4a475f7e8c0a32a414877d51fef5c0cd654200
+freeze SHA256              = 2d9dcd668b6b07824793a4773430edf98ce4e96311f7cf756b2947520468efc0
+handoff SHA256             = 9610565cadb8a21622ffc82557e5d0e9ce0279b4796ecfba158eb5e808d3f175
+NEXT = BLOCK6.6 PART2C/2 N8192 P_OCC FOR ELIGIBLE PREDICTIVE MATCHES ONLY
+terminal remains open = YES
+============================================================================

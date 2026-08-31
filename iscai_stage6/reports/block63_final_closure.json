@@ -1,0 +1,87 @@
+{
+  "block": "6.3",
+  "causal_association": {
+    "ADB_boxes": 9,
+    "class_gate": null,
+    "covariance_gate": null,
+    "fallback_policy": "ORIGINAL_REACTIVE_ADB_FALLBACK",
+    "hard_distance_threshold": null,
+    "matched": 6,
+    "perfect_actor_identity": false,
+    "policy": "reciprocal_unique_nearest_current_anchor_H0",
+    "reactive_fallback": 3,
+    "unmatched_predictions": 21
+  },
+  "frozen_evidence": {
+    "binding_sha256": "03903018109e7d5037643381ff71141a5c57f003b8bdc6b9be13bb4304468f67",
+    "part1_sha256": "871c8a81e43048ff2ccf7ef1844ad5433a859ff15b944749e13be9160b08256a",
+    "part2a_sha256": "71c9d03cc9c1b33dbb371dccd7140d5226494554b6b21df7fbfa19e9f43ba71a",
+    "part2b1_sha256": "54a4c99394d0fe29e4e7e480deacaefd07682b4fa1f1f8d8555a051a5efdabaf",
+    "part2b2_artifact_sha256": "48118f193628937bf2daa94208ca801408aa76dfb360465064884356d52e2c62",
+    "part2b2_runner_sha256": "8ae81ac788de1e7880e15b620bc159f03de806e58906d5789ec06fbb285d9dbc",
+    "part2b2_scientific_digest": "dfb3e474e2eaebebd6f8d9b8f5292c12551de17c29dbd2c2820f4a5b06e6b86e",
+    "part2b2_sha256": "e747c4b75f89c1ac362a57eecebb54a970419ac99a8eb101fb106b4927675c64"
+  },
+  "future_geometry": {
+    "centroid_only": false,
+    "corners_per_box": 8,
+    "dimensions": "current_causal_LWH_held_over_deterministic_horizons",
+    "future_boxes": 24,
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "orientation_source": "predicted_tangent",
+    "state_source": "predicted_sample",
+    "total_projected_corners": 192
+  },
+  "implementation_sha256": {
+    "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b2_real_future_full_box.py": "8ae81ac788de1e7880e15b620bc159f03de806e58906d5789ec06fbb285d9dbc",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/deterministic_association.py": "5a4cc1803f9e45a8af23a57d89f47d9df6cc06af57823b2ce00063afa0a110a8",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/deterministic_predictive.py": "a81834dee7203d37b045d070d6e448010dd9add88eb2d054ccfb56e207156d3e",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/geometry.py": "f6e6cc0dd362338eeeaae9d8e25947434a3e7c64b350f0baf81a79a46159f94e",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/womd_geometry.py": "b90f47289bd091474658e3864c4b1ccc8c2fc841aaa38160f38f0b95ece7187c",
+    "/home/agni/waymo/iscai_stage6/tests/test_block63_part1_deterministic_future_box.py": "f31c526a97574f8fe54df73c5aebfc5326173a79032578e9c3a4fe75ad72c014"
+  },
+  "next": "BLOCK6.4_PROBABILISTIC_FULL_BOX_OCCUPANCY",
+  "regression": {
+    "status": "PASS",
+    "tests": 98
+  },
+  "scenario": {
+    "development_pilot": "b85e1bd6cc8e74c0",
+    "formal_population_used": false
+  },
+  "scope": {
+    "actuation_rate_limits": false,
+    "class_aware_policy": false,
+    "communication_codebook_reused": false,
+    "formal_evaluation": false,
+    "formal_grid_frozen": false,
+    "future_GT": false,
+    "objects_of_interest_controller_input": false,
+    "predictive_covariance_used": false,
+    "probabilistic_occupancy": false,
+    "recalibration": false,
+    "temporal_smoothing": false,
+    "tracks_to_predict_controller_input": false,
+    "training": false,
+    "truth_identity_controller_input": false
+  },
+  "stage": 6,
+  "status": "PASS_BLOCK63_DETERMINISTIC_PREDICTIVE_BASELINE_COMPLETE",
+  "trajectory_source": {
+    "deterministic_signal": "Gaussian_mean_only",
+    "family": "calibrated_Gaussian_GRU",
+    "identity_safe": true,
+    "jsonl_path": "/home/agni/waymo/iscai_stage6/artifacts/block63/identity_safe_development_gaussian_posterior.jsonl",
+    "jsonl_sha256": "318b22dfc3788195a1432169075d1c8654f0d183337711918db2303b5668f5ea",
+    "npz_path": "/home/agni/waymo/iscai_stage6/artifacts/block63/identity_safe_development_gaussian_posterior.npz",
+    "npz_sha256": "2d35613bfb0bdc7133c5b3e96b4ab28e9cca64340442f9a2ab1bcf9db3aad914",
+    "posterior_records": 27,
+    "predictive_covariance_available": true,
+    "predictive_covariance_used": false
+  }
+}

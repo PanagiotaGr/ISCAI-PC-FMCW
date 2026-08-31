@@ -1,0 +1,150 @@
+==============================================================================
+STAGE 6 — BLOCK 6.8
+DEVELOPMENT STAGE-4 TEMPORAL/RATE SELECTION
+EXACT 60-CANDIDATE AUTHORITATIVE SWEEP
+STAGE1+2+3 IMMUTABLE / NO PRIMARY ACCEPTANCE / NO FORMAL
+==============================================================================
+existing Stage-4 temporal/rate freeze = EXACT PASS
+STATUS = PASS_STAGE4_TEMPORAL_RATE_SELECTED_FROZEN
+==============================================================================
+STAGE 6 — BLOCK 6.8
+DEVELOPMENT STAGE-4 TEMPORAL/RATE SELECTION
+EXACT 60-CANDIDATE AUTHORITATIVE SWEEP
+STAGE1+2+3 IMMUTABLE / NO PRIMARY ACCEPTANCE / NO FORMAL
+==============================================================================
+
+===== A. EXACT FROZEN SELECTION BOUNDARY =====
+stage4_prefreeze         = EXACT PASS
+stage4_prefreeze_report  = EXACT PASS
+current_binding          = EXACT PASS
+t0_maps                  = EXACT PASS
+stage3_freeze            = EXACT PASS
+cache_manifest           = EXACT PASS
+cache_freeze             = EXACT PASS
+class_runtime            = EXACT PASS
+metric_runtime           = EXACT PASS
+evaluator_runtime        = EXACT PASS
+road_roi                 = EXACT PASS
+Stage-1 gamma         = IMMUTABLE
+Stage-2 margins       = IMMUTABLE
+Stage-3 floors        = IMMUTABLE
+primary acceptance    = NOT TESTED
+formal evaluation     = NO
+Stage6 pre regression = 224 / 224 PASS
+
+===== B. EXACT FROZEN 60-CANDIDATE SPACE =====
+candidate count = 60 EXACT
+time constants  = [50, 100, 200, 400] ms
+rate pairs      = 15 EXACT
+selection key   = FROZEN / UNCHANGED
+
+===== C. EXACT 120-SCENARIO JOIN =====
+scenario join     = 120 / 120 EXACT
+I_prev maps       = 120 / 120
+road ROI schedule = EXACT 4-horizon replication
+P_occ reopened    = NO
+WOMD reopened     = NO
+
+===== D. STAGE-3 RAW HANDOFF REPLAY =====
+vehicle_shadow_zone_violation | delta= 1.3877787807814457e-17 | PASS
+glare_risk_exposure | delta= 2.7755575615628914e-17 | PASS
+pedestrian_visibility_proxy | delta= 2.220446049250313e-16 | PASS
+cyclist_visibility_proxy | delta= 2.220446049250313e-16 | PASS
+road_illumination_retention | delta= 4.440892098500626e-16 | PASS
+over_masking_area | delta= 8.326672684688674e-17 | PASS
+false_dimming | delta= 1.1102230246251565e-16 | PASS
+Stage-3 max replay delta = 4.440892098500626e-16
+Stage-3 raw handoff      = EXACT PASS
+
+===== E. EXACT 60-CANDIDATE DEVELOPMENT SWEEP =====
+scenario 001/120 f72a05a05035feb8 60/60=PASS
+scenario 010/120 6daa131b25b411e1 60/60=PASS
+scenario 020/120 e697a3e91804731f 60/60=PASS
+scenario 030/120 1d879936662232aa 60/60=PASS
+scenario 040/120 1b0c763aeef8ba69 60/60=PASS
+scenario 050/120 91b9bd56c1084d03 60/60=PASS
+scenario 060/120 74ca33b01f8adc34 60/60=PASS
+scenario 070/120 9b55dd4a2eb55f33 60/60=PASS
+scenario 080/120 c9d6f61d94824305 60/60=PASS
+scenario 090/120 28e0ea7a2ca646d6 60/60=PASS
+scenario 100/120 5d27f514c439978d 60/60=PASS
+scenario 110/120 43cb883b388c851e 60/60=PASS
+scenario 120/120 89bda4c79cb0ead4 60/60=PASS
+
+===== F. EXACT MACRO AGGREGATION / SELECTION =====
+candidate scores = 60 / 60
+winner provisional = (400, 1, 1)
+winner risk max = 0.3851340891974695
+winner risk mean = 0.196306850208173
+runner-up = (400, 2, 1)
+
+===== G. AUTHORITATIVE WINNER REPLAY — 120/120 =====
+winner replay 001/120 f72a05a05035feb8 PASS
+winner replay 020/120 e697a3e91804731f PASS
+winner replay 040/120 1b0c763aeef8ba69 PASS
+winner replay 060/120 74ca33b01f8adc34 PASS
+winner replay 080/120 c9d6f61d94824305 PASS
+winner replay 100/120 5d27f514c439978d PASS
+winner replay 120/120 89bda4c79cb0ead4 PASS
+winner authoritative replay = 120 / 120 PASS
+winner max aggregate delta  = 4.440892098500626e-16
+winner authoritative key    = (0.3851340891974694, 0.196306850208173, 0.01599199729475096, 0.01854854797603022, 0.0, 0.210464397893029, 400, 1, 1)
+
+===== H. POST-SELECTION REGRESSION =====
+Stage6 regression = 224 / 224 PASS
+
+===== I. WRITE-ONCE STAGE-4 NUMERIC FREEZE =====
+candidate scores SHA = f2a80844f2960ccfee381e2fab075270250af1e413fba3aabdf9082b97f8b43a
+winner replay SHA    = a6b49c22f69850dfdefa40d3f1cc454adcee05469593f0702d9045049353d373
+Stage-4 freeze SHA   = e6b7e488c7ff5ddb1f03169677c74bba78c6f17d348d6bcfa421629c30ef3d03
+
+==============================================================================
+BLOCK 6.8 STAGE-4 TEMPORAL/RATE SELECTION — FINAL
+==============================================================================
+development scenarios        = 120 / 120
+Stage-4 candidates           = 60 / 60
+Stage-1 gamma                = IMMUTABLE
+Stage-2 margins              = IMMUTABLE
+Stage-3 floors               = IMMUTABLE
+selected time constant ms    = 400
+selected rho_dim / s         = 1
+selected rho_bright / s      = 1
+risk max                     = 0.3851340891974694
+risk mean                    = 0.196306850208173
+temporal change rate         = 0.01599199729475096
+flicker change rate          = 0.01854854797603022
+safety override fraction     = 0.0
+over-masking area            = 0.210464397893029
+vehicle violation            = 0.05763895873027997
+pedestrian visibility        = 0.6148659108025306
+cyclist visibility           = 0.7351157167893618
+road illumination retention  = 0.8135483809119194
+Stage-3 raw replay           = PASS
+winner authoritative replay  = 120 / 120 PASS
+Stage-4 temporal/rate        = FROZEN
+further parameter tuning     = FORBIDDEN
+primary acceptance gate      = NOT TESTED
+NI bounds                    = IMMUTABLE / UNCHANGED
+formal evaluation            = NO
+Stage6 regression            = 224 / 224 PASS
+candidate scores SHA         = f2a80844f2960ccfee381e2fab075270250af1e413fba3aabdf9082b97f8b43a
+winner replay SHA            = a6b49c22f69850dfdefa40d3f1cc454adcee05469593f0702d9045049353d373
+Stage-4 freeze SHA           = e6b7e488c7ff5ddb1f03169677c74bba78c6f17d348d6bcfa421629c30ef3d03
+report SHA                   = 9a2677ee04d3c4722a682e34e318136474be944b499c2589ec1d5b32dd59b352
+free GiB                     = 1050.475
+STATUS = PASS_STAGE4_TEMPORAL_RATE_SELECTED_FROZEN
+report = /home/agni/waymo/iscai_stage6/reports/stage6_v2_budgeted_temporal_rate_selection.json
+NEXT = FROZEN PRIMARY DEVELOPMENT ACCEPTANCE GATE
+terminal remains open = YES
+==============================================================================
+STAGE6-V2 DEVELOPMENT = FAIL-CLOSED
+==============================================================================
+vehicle_strict_improvement = True
+overmask_noninferiority = False
+pedestrian_visibility_noninferiority = True
+cyclist_visibility_noninferiority = True
+V2 overmask = 0.210464397893029
+V2 overmask delta = 0.021839792176444467
+threshold_changed = false
+V1_negative_preserved = true
+Stage7_allowed = false

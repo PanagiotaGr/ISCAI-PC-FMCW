@@ -1,0 +1,777 @@
+{
+  "artifacts": {
+    "Stage4_formal_npz_id_schema": {
+      "eligible_class_id": {
+        "dtype": "int64",
+        "head": [
+          1,
+          1,
+          2,
+          0,
+          0,
+          0,
+          2,
+          2
+        ],
+        "shape": [
+          547
+        ]
+      },
+      "eligible_validity": {
+        "dtype": "bool",
+        "shape": [
+          547,
+          4
+        ]
+      },
+      "selected_class_id": {
+        "dtype": "int64",
+        "head": [
+          2,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          2
+        ],
+        "shape": [
+          494
+        ]
+      },
+      "validity": {
+        "dtype": "bool",
+        "shape": [
+          494,
+          4
+        ]
+      }
+    },
+    "Stage5_dev_json_identity": [
+      [
+        "coordinate_semantics.Stage4_prediction",
+        "metric_H0_displacement"
+      ],
+      [
+        "coordinate_semantics.causal_anchor",
+        "latest_causal_observed_target_position_H0"
+      ],
+      [
+        "posterior.full_normalized_prediction_sha256",
+        "8f8e9714fb16d2fc9ffc0a2421e5c5849b4f2239fd7691597ec9dee3eb505549"
+      ]
+    ],
+    "Stage5_dev_npz_id_schema": {},
+    "formal_clean_record_identity_paths": [
+      "scenario_id"
+    ]
+  },
+  "audit": "ACTOR_IDENTITY_BOUNDARY",
+  "block": "6.3",
+  "forbidden_controller_identity": {
+    "future_GT_assignment": true,
+    "perfect_WOMD_actor_ID_if_not_causally_available": true,
+    "tracks_to_predict_join": true,
+    "truth_id": true,
+    "truth_track_index": true
+  },
+  "identity": {
+    "causal_anchor_association_inputs_available": true,
+    "causal_box_anchor_H0_available": true,
+    "causal_predictor_anchor_H0_available": true,
+    "direct_controller_safe_box_key_proven": false,
+    "next_binding": "FREEZE_DEVELOPMENT_ONLY_CAUSAL_ANCHOR_ASSOCIATION_BEFORE_BLOCK63",
+    "outcome": "NO_DIRECT_SAFE_KEY_CAUSAL_ANCHOR_ASSOCIATION_REQUIRED",
+    "predictor_internal_prediction_id": true,
+    "truth_oracle_metadata_exists": true
+  },
+  "project": "Agni",
+  "scope": {
+    "dataset_access": false,
+    "formal_evaluation": false,
+    "model_inference": false,
+    "parameter_tuning": false,
+    "scientific_implementation_changed": false,
+    "upstream_modified": false
+  },
+  "source_excerpt": "/home/agni/waymo/iscai_stage6/artifacts/block63/block63_actor_identity_exact_source.txt",
+  "stage": 6,
+  "stage3_identity_classes": [
+    {
+      "class": "AssociatedDetection",
+      "fields": [
+        "track_id",
+        "frame_index",
+        "timestamp_s",
+        "detection"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/association/contracts.py"
+    },
+    {
+      "class": "AssociatedTrack",
+      "fields": [
+        "track_id",
+        "detections",
+        "terminated"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/association/contracts.py"
+    },
+    {
+      "class": "_WorkingTrack",
+      "fields": [
+        "track_id",
+        "history",
+        "missed_frames",
+        "terminated"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/association/nearest_neighbor.py"
+    },
+    {
+      "class": "CAPrediction",
+      "fields": [
+        "track_id",
+        "anchor_timestamp_s",
+        "points",
+        "model",
+        "annotated_velocity_used",
+        "annotated_acceleration_used",
+        "future_information_used"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/baselines/ca.py"
+    },
+    {
+      "class": "CTRVPrediction",
+      "fields": [
+        "track_id",
+        "anchor_timestamp_s",
+        "points",
+        "model",
+        "annotated_velocity_used",
+        "annotated_heading_used",
+        "future_information_used"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/baselines/ctrv.py"
+    },
+    {
+      "class": "CVPrediction",
+      "fields": [
+        "track_id",
+        "anchor_timestamp_s",
+        "points",
+        "model",
+        "annotated_velocity_used",
+        "future_information_used"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/baselines/cv.py"
+    },
+    {
+      "class": "HoughPrediction",
+      "fields": [
+        "track_id",
+        "anchor_timestamp_s",
+        "points",
+        "model",
+        "truth_used",
+        "estimated_association_used",
+        "actor_identity_used",
+        "future_information_used"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/baselines/hough.py"
+    },
+    {
+      "class": "IMMPrediction",
+      "fields": [
+        "track_id",
+        "anchor_timestamp_s",
+        "points",
+        "model",
+        "truth_used",
+        "annotated_velocity_used",
+        "annotated_heading_used",
+        "future_information_used"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/baselines/imm.py"
+    },
+    {
+      "class": "KalmanPrediction",
+      "fields": [
+        "track_id",
+        "anchor_timestamp_s",
+        "points",
+        "model",
+        "truth_used",
+        "annotated_velocity_used",
+        "future_information_used"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/baselines/kalman.py"
+    },
+    {
+      "class": "EvaluationMatch",
+      "fields": [
+        "prediction_id",
+        "truth_id",
+        "anchor_distance_m"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "class": "EvaluationTruthTrack",
+      "fields": [
+        "truth_id",
+        "actor_class",
+        "anchor_position_H0_m",
+        "points"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py"
+    },
+    {
+      "class": "EvaluationPredictionTrack",
+      "fields": [
+        "prediction_id",
+        "anchor_position_H0_m",
+        "points"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py"
+    },
+    {
+      "class": "TrackEvaluation",
+      "fields": [
+        "prediction_id",
+        "truth_id",
+        "actor_class",
+        "anchor_assignment_error_m",
+        "horizon_errors",
+        "ade_m",
+        "fde_m",
+        "ade_3d_m",
+        "fde_3d_m"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "class": "IMMTrackResult",
+      "fields": [
+        "track_id",
+        "initial_mode_states",
+        "initial_mode_probabilities",
+        "updates",
+        "current_mode_states",
+        "current_mode_probabilities",
+        "combined_current_state",
+        "truth_used",
+        "annotated_velocity_used",
+        "annotated_heading_used",
+        "future_information_used"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/filters/imm.py"
+    },
+    {
+      "class": "KalmanTrackResult",
+      "fields": [
+        "track_id",
+        "initial_state",
+        "updates",
+        "current_state",
+        "process_model",
+        "measurement_model",
+        "truth_used",
+        "annotated_velocity_used",
+        "future_information_used"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/filters/kalman_ekf.py"
+    },
+    {
+      "class": "CartesianObservation",
+      "fields": [
+        "track_id",
+        "frame_index",
+        "timestamp_s",
+        "detection_key",
+        "position_H0_m",
+        "position_covariance_H0_m2",
+        "measurement"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/geometry/headlamp.py"
+    },
+    {
+      "class": "HoughTrack",
+      "fields": [
+        "track_id",
+        "anchor_frame_index",
+        "anchor_timestamp_s",
+        "anchor_position_H0_m",
+        "velocity_H0_mps",
+        "support_refs",
+        "coverage",
+        "time_span_s",
+        "mean_residual_m",
+        "accumulator_score",
+        "source_peak",
+        "truth_used",
+        "actor_identity_used",
+        "detection_key_matching_used",
+        "actor_class_used",
+        "future_information_used"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/hough/multidimensional.py"
+    },
+    {
+      "class": "CausalCAState",
+      "fields": [
+        "track_id",
+        "timestamp_s",
+        "position_H0_m",
+        "velocity_H0_mps",
+        "acceleration_H0_mps2",
+        "covariance_9x9",
+        "source_frame_indices",
+        "annotated_velocity_used",
+        "annotated_acceleration_used",
+        "future_information_used"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/state/ca.py"
+    },
+    {
+      "class": "CausalCVState",
+      "fields": [
+        "track_id",
+        "timestamp_s",
+        "position_H0_m",
+        "velocity_H0_mps",
+        "covariance_6x6",
+        "source_frame_indices",
+        "annotated_velocity_used",
+        "future_information_used"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/state/causal.py"
+    },
+    {
+      "class": "CausalCTRVState",
+      "fields": [
+        "track_id",
+        "timestamp_s",
+        "position_H0_m",
+        "planar_speed_mps",
+        "heading_rad",
+        "turn_rate_radps",
+        "vertical_velocity_mps",
+        "source_frame_indices",
+        "annotated_velocity_used",
+        "annotated_heading_used",
+        "future_information_used"
+      ],
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/state/ctrv.py"
+    }
+  ],
+  "stage3_prediction_contexts": [
+    {
+      "context": "0254:                 detection_index\n0255:                 in matched_detection_indices\n0256:             ):\n0257:                 continue\n0258: \n0259:             track_id = (\n0260:                 f\"s3trk-\"\n0261:                 f\"{next_track_number:06d}\"\n0262:             )\n0263: \n0264:             next_track_number += 1\n0265: \n0266:             associated = AssociatedDetection(",
+      "line": 260,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/association/nearest_neighbor.py"
+    },
+    {
+      "context": "0077:                     )\n0078:                 ),\n0079:             )\n0080:         )\n0081: \n0082:     return EvaluationPredictionTrack(\n0083:         prediction_id=str(\n0084:             prediction.track_id\n0085:         ),\n0086:         anchor_position_H0_m=tuple(\n0087:             float(x)\n0088:             for x in anchor_position_H0_m\n0089:         ),",
+      "line": 83,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/adapters.py"
+    },
+    {
+      "context": "0012:     EvaluationTruth,\n0013: )\n0014: \n0015: \n0016: @dataclass(frozen=True)\n0017: class EvaluationMatch:\n0018:     prediction_id: str\n0019:     truth_id: str\n0020: \n0021:     anchor_distance_m: float\n0022: \n0023: \n0024: @dataclass(frozen=True)",
+      "line": 18,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0013: )\n0014: \n0015: \n0016: @dataclass(frozen=True)\n0017: class EvaluationMatch:\n0018:     prediction_id: str\n0019:     truth_id: str\n0020: \n0021:     anchor_distance_m: float\n0022: \n0023: \n0024: @dataclass(frozen=True)\n0025: class AssignmentResult:",
+      "line": 19,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0025: class AssignmentResult:\n0026:     matches: tuple[\n0027:         EvaluationMatch,\n0028:         ...\n0029:     ]\n0030: \n0031:     unmatched_prediction_ids: tuple[\n0032:         str,\n0033:         ...\n0034:     ]\n0035: \n0036:     unmatched_truth_ids: tuple[\n0037:         str,",
+      "line": 31,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0030: \n0031:     unmatched_prediction_ids: tuple[\n0032:         str,\n0033:         ...\n0034:     ]\n0035: \n0036:     unmatched_truth_ids: tuple[\n0037:         str,\n0038:         ...\n0039:     ]\n0040: \n0041:     assignment_information: str = (\n0042:         \"anchor_truth_only\"",
+      "line": 36,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0242:     \"\"\"\n0243: \n0244:     prediction_tracks = tuple(\n0245:         sorted(\n0246:             predictions.tracks,\n0247:             key=lambda track:\n0248:             track.prediction_id,\n0249:         )\n0250:     )\n0251: \n0252:     truth_tracks = tuple(\n0253:         sorted(\n0254:             truth.tracks,",
+      "line": 248,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0250:     )\n0251: \n0252:     truth_tracks = tuple(\n0253:         sorted(\n0254:             truth.tracks,\n0255:             key=lambda track:\n0256:             track.truth_id,\n0257:         )\n0258:     )\n0259: \n0260:     prediction_count = len(\n0261:         prediction_tracks\n0262:     )",
+      "line": 256,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0269:         prediction_count == 0\n0270:         and\n0271:         truth_count == 0\n0272:     ):\n0273:         return AssignmentResult(\n0274:             matches=(),\n0275:             unmatched_prediction_ids=(),\n0276:             unmatched_truth_ids=(),\n0277:         )\n0278: \n0279:     size = max(\n0280:         prediction_count,\n0281:         truth_count,",
+      "line": 275,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0270:         and\n0271:         truth_count == 0\n0272:     ):\n0273:         return AssignmentResult(\n0274:             matches=(),\n0275:             unmatched_prediction_ids=(),\n0276:             unmatched_truth_ids=(),\n0277:         )\n0278: \n0279:     size = max(\n0280:         prediction_count,\n0281:         truth_count,\n0282:     )",
+      "line": 276,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0348:             matrix\n0349:         )\n0350:     )\n0351: \n0352:     matches = []\n0353: \n0354:     matched_prediction_ids = set()\n0355:     matched_truth_ids = set()\n0356: \n0357:     for row, column in enumerate(\n0358:         assignment\n0359:     ):\n0360:         if (",
+      "line": 354,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0349:         )\n0350:     )\n0351: \n0352:     matches = []\n0353: \n0354:     matched_prediction_ids = set()\n0355:     matched_truth_ids = set()\n0356: \n0357:     for row, column in enumerate(\n0358:         assignment\n0359:     ):\n0360:         if (\n0361:             row >= prediction_count",
+      "line": 355,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0383:             config.anchor_assignment_gate_m\n0384:         ):\n0385:             continue\n0386: \n0387:         matches.append(\n0388:             EvaluationMatch(\n0389:                 prediction_id=(\n0390:                     prediction\n0391:                     .prediction_id\n0392:                 ),\n0393:                 truth_id=(\n0394:                     target.truth_id\n0395:                 ),",
+      "line": 389,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0385:             continue\n0386: \n0387:         matches.append(\n0388:             EvaluationMatch(\n0389:                 prediction_id=(\n0390:                     prediction\n0391:                     .prediction_id\n0392:                 ),\n0393:                 truth_id=(\n0394:                     target.truth_id\n0395:                 ),\n0396:                 anchor_distance_m=(\n0397:                     distance",
+      "line": 391,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0387:         matches.append(\n0388:             EvaluationMatch(\n0389:                 prediction_id=(\n0390:                     prediction\n0391:                     .prediction_id\n0392:                 ),\n0393:                 truth_id=(\n0394:                     target.truth_id\n0395:                 ),\n0396:                 anchor_distance_m=(\n0397:                     distance\n0398:                 ),\n0399:             )",
+      "line": 393,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0388:             EvaluationMatch(\n0389:                 prediction_id=(\n0390:                     prediction\n0391:                     .prediction_id\n0392:                 ),\n0393:                 truth_id=(\n0394:                     target.truth_id\n0395:                 ),\n0396:                 anchor_distance_m=(\n0397:                     distance\n0398:                 ),\n0399:             )\n0400:         )",
+      "line": 394,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0396:                 anchor_distance_m=(\n0397:                     distance\n0398:                 ),\n0399:             )\n0400:         )\n0401: \n0402:         matched_prediction_ids.add(\n0403:             prediction.prediction_id\n0404:         )\n0405: \n0406:         matched_truth_ids.add(\n0407:             target.truth_id\n0408:         )",
+      "line": 402,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0397:                     distance\n0398:                 ),\n0399:             )\n0400:         )\n0401: \n0402:         matched_prediction_ids.add(\n0403:             prediction.prediction_id\n0404:         )\n0405: \n0406:         matched_truth_ids.add(\n0407:             target.truth_id\n0408:         )\n0409: ",
+      "line": 403,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0400:         )\n0401: \n0402:         matched_prediction_ids.add(\n0403:             prediction.prediction_id\n0404:         )\n0405: \n0406:         matched_truth_ids.add(\n0407:             target.truth_id\n0408:         )\n0409: \n0410:     matches.sort(\n0411:         key=lambda item: (\n0412:             item.truth_id,",
+      "line": 406,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0401: \n0402:         matched_prediction_ids.add(\n0403:             prediction.prediction_id\n0404:         )\n0405: \n0406:         matched_truth_ids.add(\n0407:             target.truth_id\n0408:         )\n0409: \n0410:     matches.sort(\n0411:         key=lambda item: (\n0412:             item.truth_id,\n0413:             item.prediction_id,",
+      "line": 407,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0406:         matched_truth_ids.add(\n0407:             target.truth_id\n0408:         )\n0409: \n0410:     matches.sort(\n0411:         key=lambda item: (\n0412:             item.truth_id,\n0413:             item.prediction_id,\n0414:         )\n0415:     )\n0416: \n0417:     unmatched_predictions = tuple(\n0418:         sorted(",
+      "line": 412,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0407:             target.truth_id\n0408:         )\n0409: \n0410:     matches.sort(\n0411:         key=lambda item: (\n0412:             item.truth_id,\n0413:             item.prediction_id,\n0414:         )\n0415:     )\n0416: \n0417:     unmatched_predictions = tuple(\n0418:         sorted(\n0419:             track.prediction_id",
+      "line": 413,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0413:             item.prediction_id,\n0414:         )\n0415:     )\n0416: \n0417:     unmatched_predictions = tuple(\n0418:         sorted(\n0419:             track.prediction_id\n0420:             for track in (\n0421:                 prediction_tracks\n0422:             )\n0423:             if (\n0424:                 track.prediction_id\n0425:                 not in",
+      "line": 419,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0418:         sorted(\n0419:             track.prediction_id\n0420:             for track in (\n0421:                 prediction_tracks\n0422:             )\n0423:             if (\n0424:                 track.prediction_id\n0425:                 not in\n0426:                 matched_prediction_ids\n0427:             )\n0428:         )\n0429:     )\n0430: ",
+      "line": 424,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0420:             for track in (\n0421:                 prediction_tracks\n0422:             )\n0423:             if (\n0424:                 track.prediction_id\n0425:                 not in\n0426:                 matched_prediction_ids\n0427:             )\n0428:         )\n0429:     )\n0430: \n0431:     unmatched_truth = tuple(\n0432:         sorted(",
+      "line": 426,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0427:             )\n0428:         )\n0429:     )\n0430: \n0431:     unmatched_truth = tuple(\n0432:         sorted(\n0433:             track.truth_id\n0434:             for track in truth_tracks\n0435:             if (\n0436:                 track.truth_id\n0437:                 not in\n0438:                 matched_truth_ids\n0439:             )",
+      "line": 433,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0430: \n0431:     unmatched_truth = tuple(\n0432:         sorted(\n0433:             track.truth_id\n0434:             for track in truth_tracks\n0435:             if (\n0436:                 track.truth_id\n0437:                 not in\n0438:                 matched_truth_ids\n0439:             )\n0440:         )\n0441:     )\n0442: ",
+      "line": 436,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0432:         sorted(\n0433:             track.truth_id\n0434:             for track in truth_tracks\n0435:             if (\n0436:                 track.truth_id\n0437:                 not in\n0438:                 matched_truth_ids\n0439:             )\n0440:         )\n0441:     )\n0442: \n0443:     return AssignmentResult(\n0444:         matches=tuple(matches),",
+      "line": 438,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0439:             )\n0440:         )\n0441:     )\n0442: \n0443:     return AssignmentResult(\n0444:         matches=tuple(matches),\n0445:         unmatched_prediction_ids=(\n0446:             unmatched_predictions\n0447:         ),\n0448:         unmatched_truth_ids=(\n0449:             unmatched_truth\n0450:         ),\n0451:         assignment_information=(",
+      "line": 445,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0442: \n0443:     return AssignmentResult(\n0444:         matches=tuple(matches),\n0445:         unmatched_prediction_ids=(\n0446:             unmatched_predictions\n0447:         ),\n0448:         unmatched_truth_ids=(\n0449:             unmatched_truth\n0450:         ),\n0451:         assignment_information=(\n0452:             \"anchor_truth_only\"\n0453:         ),\n0454:         future_truth_used_for_assignment=False,",
+      "line": 448,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py"
+    },
+    {
+      "context": "0159:     evaluator sidecar.\n0160: \n0161:     It must never be supplied to a Stage3\n0162:     algorithm.\n0163:     \"\"\"\n0164: \n0165:     truth_id: str\n0166: \n0167:     actor_class: str\n0168: \n0169:     anchor_position_H0_m: Vec3\n0170: \n0171:     points: tuple[",
+      "line": 165,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py"
+    },
+    {
+      "context": "0171:     points: tuple[\n0172:         TruthTrajectoryPoint,\n0173:         ...\n0174:     ]\n0175: \n0176:     def __post_init__(self) -> None:\n0177:         if not self.truth_id:\n0178:             raise ValueError(\n0179:                 \"Truth ID cannot be empty.\"\n0180:             )\n0181: \n0182:         if not self.actor_class:\n0183:             raise ValueError(",
+      "line": 177,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py"
+    },
+    {
+      "context": "0232:             raise ValueError(\n0233:                 \"Truth anchor timestamp must \"\n0234:                 \"be finite.\"\n0235:             )\n0236: \n0237:         ids = [\n0238:             track.truth_id\n0239:             for track in self.tracks\n0240:         ]\n0241: \n0242:         if len(ids) != len(set(ids)):\n0243:             raise ValueError(\n0244:                 \"Truth IDs must be unique.\"",
+      "line": 238,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py"
+    },
+    {
+      "context": "0280: \n0281: @dataclass(frozen=True)\n0282: class EvaluationPredictionTrack:\n0283:     \"\"\"\n0284:     Algorithm output packaged for evaluation.\n0285: \n0286:     prediction_id is an algorithm-generated\n0287:     identifier. It is not WOMD truth identity.\n0288:     \"\"\"\n0289: \n0290:     prediction_id: str\n0291: \n0292:     anchor_position_H0_m: Vec3",
+      "line": 286,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py"
+    },
+    {
+      "context": "0284:     Algorithm output packaged for evaluation.\n0285: \n0286:     prediction_id is an algorithm-generated\n0287:     identifier. It is not WOMD truth identity.\n0288:     \"\"\"\n0289: \n0290:     prediction_id: str\n0291: \n0292:     anchor_position_H0_m: Vec3\n0293: \n0294:     points: tuple[\n0295:         PredictionTrajectoryPoint,\n0296:         ...",
+      "line": 290,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py"
+    },
+    {
+      "context": "0294:     points: tuple[\n0295:         PredictionTrajectoryPoint,\n0296:         ...\n0297:     ]\n0298: \n0299:     def __post_init__(self) -> None:\n0300:         if not self.prediction_id:\n0301:             raise ValueError(\n0302:                 \"Prediction ID cannot \"\n0303:                 \"be empty.\"\n0304:             )\n0305: \n0306:         _validate_vec3(",
+      "line": 300,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py"
+    },
+    {
+      "context": "0355:             raise ValueError(\n0356:                 \"Prediction anchor timestamp \"\n0357:                 \"must be finite.\"\n0358:             )\n0359: \n0360:         ids = [\n0361:             track.prediction_id\n0362:             for track in self.tracks\n0363:         ]\n0364: \n0365:         if len(ids) != len(set(ids)):\n0366:             raise ValueError(\n0367:                 \"Prediction IDs must \"",
+      "line": 361,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py"
+    },
+    {
+      "context": "0025: \n0026:     error_3d_m: float\n0027: \n0028: \n0029: @dataclass(frozen=True)\n0030: class TrackEvaluation:\n0031:     prediction_id: str\n0032:     truth_id: str\n0033: \n0034:     actor_class: str\n0035: \n0036:     anchor_assignment_error_m: float\n0037: ",
+      "line": 31,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0026:     error_3d_m: float\n0027: \n0028: \n0029: @dataclass(frozen=True)\n0030: class TrackEvaluation:\n0031:     prediction_id: str\n0032:     truth_id: str\n0033: \n0034:     actor_class: str\n0035: \n0036:     anchor_assignment_error_m: float\n0037: \n0038:     horizon_errors: tuple[",
+      "line": 32,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0275:             truth,\n0276:             config=config,\n0277:         )\n0278:     )\n0279: \n0280:     prediction_by_id = {\n0281:         track.prediction_id: track\n0282:         for track in predictions.tracks\n0283:     }\n0284: \n0285:     truth_by_id = {\n0286:         track.truth_id: track\n0287:         for track in truth.tracks",
+      "line": 281,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0280:     prediction_by_id = {\n0281:         track.prediction_id: track\n0282:         for track in predictions.tracks\n0283:     }\n0284: \n0285:     truth_by_id = {\n0286:         track.truth_id: track\n0287:         for track in truth.tracks\n0288:     }\n0289: \n0290:     track_evaluations = []\n0291: \n0292:     match_by_truth_id = {",
+      "line": 286,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0286:         track.truth_id: track\n0287:         for track in truth.tracks\n0288:     }\n0289: \n0290:     track_evaluations = []\n0291: \n0292:     match_by_truth_id = {\n0293:         match.truth_id: match\n0294:         for match in assignment.matches\n0295:     }\n0296: \n0297:     for match in assignment.matches:\n0298:         prediction = prediction_by_id[",
+      "line": 292,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0287:         for track in truth.tracks\n0288:     }\n0289: \n0290:     track_evaluations = []\n0291: \n0292:     match_by_truth_id = {\n0293:         match.truth_id: match\n0294:         for match in assignment.matches\n0295:     }\n0296: \n0297:     for match in assignment.matches:\n0298:         prediction = prediction_by_id[\n0299:             match.prediction_id",
+      "line": 293,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0293:         match.truth_id: match\n0294:         for match in assignment.matches\n0295:     }\n0296: \n0297:     for match in assignment.matches:\n0298:         prediction = prediction_by_id[\n0299:             match.prediction_id\n0300:         ]\n0301: \n0302:         target = truth_by_id[\n0303:             match.truth_id\n0304:         ]\n0305: ",
+      "line": 299,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0297:     for match in assignment.matches:\n0298:         prediction = prediction_by_id[\n0299:             match.prediction_id\n0300:         ]\n0301: \n0302:         target = truth_by_id[\n0303:             match.truth_id\n0304:         ]\n0305: \n0306:         horizon_errors = []\n0307: \n0308:         for horizon in config.horizons_s:\n0309:             prediction_point = _find_point(",
+      "line": 303,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0382:             ),\n0383:             None,\n0384:         )\n0385: \n0386:         track_evaluations.append(\n0387:             TrackEvaluation(\n0388:                 prediction_id=(\n0389:                     match.prediction_id\n0390:                 ),\n0391:                 truth_id=(\n0392:                     match.truth_id\n0393:                 ),\n0394:                 actor_class=(",
+      "line": 388,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0383:             None,\n0384:         )\n0385: \n0386:         track_evaluations.append(\n0387:             TrackEvaluation(\n0388:                 prediction_id=(\n0389:                     match.prediction_id\n0390:                 ),\n0391:                 truth_id=(\n0392:                     match.truth_id\n0393:                 ),\n0394:                 actor_class=(\n0395:                     target.actor_class",
+      "line": 389,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0385: \n0386:         track_evaluations.append(\n0387:             TrackEvaluation(\n0388:                 prediction_id=(\n0389:                     match.prediction_id\n0390:                 ),\n0391:                 truth_id=(\n0392:                     match.truth_id\n0393:                 ),\n0394:                 actor_class=(\n0395:                     target.actor_class\n0396:                 ),\n0397:                 anchor_assignment_error_m=(",
+      "line": 391,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0386:         track_evaluations.append(\n0387:             TrackEvaluation(\n0388:                 prediction_id=(\n0389:                     match.prediction_id\n0390:                 ),\n0391:                 truth_id=(\n0392:                     match.truth_id\n0393:                 ),\n0394:                 actor_class=(\n0395:                     target.actor_class\n0396:                 ),\n0397:                 anchor_assignment_error_m=(\n0398:                     match.anchor_distance_m",
+      "line": 392,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0422:                 ),\n0423:             )\n0424:         )\n0425: \n0426:     track_evaluations.sort(\n0427:         key=lambda item: (\n0428:             item.truth_id,\n0429:             item.prediction_id,\n0430:         )\n0431:     )\n0432: \n0433:     horizon_aggregates = []\n0434: ",
+      "line": 428,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0423:             )\n0424:         )\n0425: \n0426:     track_evaluations.sort(\n0427:         key=lambda item: (\n0428:             item.truth_id,\n0429:             item.prediction_id,\n0430:         )\n0431:     )\n0432: \n0433:     horizon_aggregates = []\n0434: \n0435:     for horizon in config.horizons_s:",
+      "line": 429,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0459: \n0460:         for (\n0461:             target,\n0462:             truth_point,\n0463:         ) in eligible_truth:\n0464:             match = (\n0465:                 match_by_truth_id.get(\n0466:                     target.truth_id\n0467:                 )\n0468:             )\n0469: \n0470:             if match is None:\n0471:                 misses += 1",
+      "line": 465,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0460:         for (\n0461:             target,\n0462:             truth_point,\n0463:         ) in eligible_truth:\n0464:             match = (\n0465:                 match_by_truth_id.get(\n0466:                     target.truth_id\n0467:                 )\n0468:             )\n0469: \n0470:             if match is None:\n0471:                 misses += 1\n0472:                 continue",
+      "line": 466,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0470:             if match is None:\n0471:                 misses += 1\n0472:                 continue\n0473: \n0474:             prediction = (\n0475:                 prediction_by_id[\n0476:                     match.prediction_id\n0477:                 ]\n0478:             )\n0479: \n0480:             prediction_point = (\n0481:                 _find_point(\n0482:                     prediction.points,",
+      "line": 476,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0655:         ),\n0656:         matched_track_count=(\n0657:             match_count\n0658:         ),\n0659:         unmatched_truth_count=len(\n0660:             assignment\n0661:             .unmatched_truth_ids\n0662:         ),\n0663:         false_prediction_count=len(\n0664:             assignment\n0665:             .unmatched_prediction_ids\n0666:         ),\n0667:         reconstruction_recall=(",
+      "line": 661,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0659:         unmatched_truth_count=len(\n0660:             assignment\n0661:             .unmatched_truth_ids\n0662:         ),\n0663:         false_prediction_count=len(\n0664:             assignment\n0665:             .unmatched_prediction_ids\n0666:         ),\n0667:         reconstruction_recall=(\n0668:             recall\n0669:         ),\n0670:         reconstruction_precision=(\n0671:             precision",
+      "line": 665,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py"
+    },
+    {
+      "context": "0032: \n0033: def _resolve_eligible_indices(\n0034:     scenario,\n0035:     *,\n0036:     eligible_track_indices:\n0037:         Iterable[int] | None,\n0038:     eligible_truth_ids:\n0039:         Iterable[str] | None,\n0040: ) -> tuple[int, ...]:\n0041:     if (\n0042:         eligible_track_indices is None\n0043:     ) == (\n0044:         eligible_truth_ids is None",
+      "line": 38,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/womd_truth.py"
+    },
+    {
+      "context": "0038:     eligible_truth_ids:\n0039:         Iterable[str] | None,\n0040: ) -> tuple[int, ...]:\n0041:     if (\n0042:         eligible_track_indices is None\n0043:     ) == (\n0044:         eligible_truth_ids is None\n0045:     ):\n0046:         raise ValueError(\n0047:             \"Provide exactly one of \"\n0048:             \"eligible_track_indices or \"\n0049:             \"eligible_truth_ids.\"\n0050:         )",
+      "line": 44,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/womd_truth.py"
+    },
+    {
+      "context": "0043:     ) == (\n0044:         eligible_truth_ids is None\n0045:     ):\n0046:         raise ValueError(\n0047:             \"Provide exactly one of \"\n0048:             \"eligible_track_indices or \"\n0049:             \"eligible_truth_ids.\"\n0050:         )\n0051: \n0052:     if eligible_track_indices is not None:\n0053:         indices = tuple(\n0054:             sorted(\n0055:                 set(",
+      "line": 49,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/womd_truth.py"
+    },
+    {
+      "context": "0062:         )\n0063: \n0064:     else:\n0065:         requested = set(\n0066:             str(value)\n0067:             for value in (\n0068:                 eligible_truth_ids\n0069:                 or ()\n0070:             )\n0071:         )\n0072: \n0073:         by_id = {\n0074:             str(track.id): index",
+      "line": 68,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/womd_truth.py"
+    },
+    {
+      "context": "0194:         0.3,\n0195:         0.5,\n0196:         1.0,\n0197:     ),\n0198:     eligible_track_indices:\n0199:         Iterable[int] | None = None,\n0200:     eligible_truth_ids:\n0201:         Iterable[str] | None = None,\n0202:     timestamp_tolerance_s: float = 2e-3,\n0203: ) -> EvaluationTruth:\n0204:     \"\"\"\n0205:     Build evaluator-only WOMD future truth.\n0206: ",
+      "line": 200,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/womd_truth.py"
+    },
+    {
+      "context": "0238: \n0239:     indices = _resolve_eligible_indices(\n0240:         scenario,\n0241:         eligible_track_indices=(\n0242:             eligible_track_indices\n0243:         ),\n0244:         eligible_truth_ids=(\n0245:             eligible_truth_ids\n0246:         ),\n0247:     )\n0248: \n0249:     tracks = []\n0250: ",
+      "line": 244,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/womd_truth.py"
+    },
+    {
+      "context": "0239:     indices = _resolve_eligible_indices(\n0240:         scenario,\n0241:         eligible_track_indices=(\n0242:             eligible_track_indices\n0243:         ),\n0244:         eligible_truth_ids=(\n0245:             eligible_truth_ids\n0246:         ),\n0247:     )\n0248: \n0249:     tracks = []\n0250: \n0251:     for index in indices:",
+      "line": 245,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/womd_truth.py"
+    },
+    {
+      "context": "0278: \n0279:         if not bool(\n0280:             current_state.valid\n0281:         ):\n0282:             continue\n0283: \n0284:         truth_id = str(\n0285:             track.id\n0286:         )\n0287: \n0288:         if not truth_id:\n0289:             raise ValueError(\n0290:                 \"Eligible WOMD track has \"",
+      "line": 284,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/womd_truth.py"
+    },
+    {
+      "context": "0282:             continue\n0283: \n0284:         truth_id = str(\n0285:             track.id\n0286:         )\n0287: \n0288:         if not truth_id:\n0289:             raise ValueError(\n0290:                 \"Eligible WOMD track has \"\n0291:                 \"empty truth ID.\"\n0292:             )\n0293: \n0294:         anchor_position = (",
+      "line": 288,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/womd_truth.py"
+    },
+    {
+      "context": "0366:                     ),\n0367:                 )\n0368:             )\n0369: \n0370:         tracks.append(\n0371:             EvaluationTruthTrack(\n0372:                 truth_id=truth_id,\n0373:                 actor_class=(\n0374:                     _object_type_name(\n0375:                         track.object_type\n0376:                     )\n0377:                 ),\n0378:                 anchor_position_H0_m=(",
+      "line": 372,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/womd_truth.py"
+    },
+    {
+      "context": "0381:                 points=tuple(points),\n0382:             )\n0383:         )\n0384: \n0385:     tracks.sort(\n0386:         key=lambda item:\n0387:         item.truth_id\n0388:     )\n0389: \n0390:     return EvaluationTruth(\n0391:         scenario_id=str(\n0392:             scenario.scenario_id\n0393:         ),",
+      "line": 387,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/womd_truth.py"
+    },
+    {
+      "context": "0402: \n0403: def anchor_class_inventory(\n0404:     scenario,\n0405:     *,\n0406:     eligible_track_indices:\n0407:         Iterable[int] | None = None,\n0408:     eligible_truth_ids:\n0409:         Iterable[str] | None = None,\n0410: ) -> dict[str, int]:\n0411:     \"\"\"\n0412:     Current/anchor-only class inventory.\n0413: \n0414:     Future states are never inspected.",
+      "line": 408,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/womd_truth.py"
+    },
+    {
+      "context": "0416: \n0417:     indices = _resolve_eligible_indices(\n0418:         scenario,\n0419:         eligible_track_indices=(\n0420:             eligible_track_indices\n0421:         ),\n0422:         eligible_truth_ids=(\n0423:             eligible_truth_ids\n0424:         ),\n0425:     )\n0426: \n0427:     current_index = int(\n0428:         scenario.current_time_index",
+      "line": 422,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/womd_truth.py"
+    },
+    {
+      "context": "0417:     indices = _resolve_eligible_indices(\n0418:         scenario,\n0419:         eligible_track_indices=(\n0420:             eligible_track_indices\n0421:         ),\n0422:         eligible_truth_ids=(\n0423:             eligible_truth_ids\n0424:         ),\n0425:     )\n0426: \n0427:     current_index = int(\n0428:         scenario.current_time_index\n0429:     )",
+      "line": 423,
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/womd_truth.py"
+    }
+  ],
+  "stage4": {
+    "CausalTrackHistory_fields": [
+      "prediction_id",
+      "steps",
+      "latest_observed_frame_index",
+      "latest_position_H0_m"
+    ],
+    "build_history_source": [
+      {
+        "line": 796,
+        "path": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py",
+        "sha256": "e373b82c49b821f13a13225f079d70ccc7180cb50a693813a5f86add0c7a863d",
+        "source": "def build_causal_track_history(\n    associated_track,\n    *,\n    context,\n    timestamps_s: tuple[\n        float,\n        ...,\n    ],\n) -> CausalTrackHistory:\n    if len(\n        timestamps_s\n    ) != HISTORY_STEPS:\n        raise ValueError(\n            \"Stage4 requires 11 \"\n            \"causal timestamps.\"\n        )\n\n    observations = tuple(\n        cartesianize_associated_track(\n            associated_track,\n            context=context,\n        )\n    )\n\n    if not observations:\n        raise ValueError(\n            \"Associated track has no \"\n            \"Cartesian observations.\"\n        )\n\n    by_frame = {}\n\n    for observation in observations:\n        frame_index = (\n            _extract_frame_index(\n                observation,\n                timestamps_s=(\n                    timestamps_s\n                ),\n            )\n        )\n\n        by_frame[\n            frame_index\n        ] = (\n            _extract_position(\n                observation\n            ),\n            _extract_covariance(\n                observation\n            ),\n        )\n\n    steps = []\n\n    previous_position = None\n    previous_timestamp = None\n\n    for frame_index, timestamp in (\n        enumerate(\n            timestamps_s\n        )\n    ):\n        if frame_index not in by_frame:\n            steps.append(\n                HistoryStep(\n                    frame_index=frame_index,\n                    timestamp_s=(\n                        float(timestamp)\n                    ),\n                    position_H0_m=(\n                        0.0,\n                        0.0,\n                        0.0,\n                    ),\n                    velocity_H0_mps=(\n                        0.0,\n                        0.0,\n                        0.0,\n                    ),\n                    measurement_covariance_H0_m2=(\n                        _zero_covariance()\n                    ),\n                    observed=False,\n                    velocity_valid=False,\n                )\n            )\n\n            continue\n\n        (\n            position,\n            covariance,\n        ) = by_frame[\n            frame_index\n        ]\n\n        velocity = (\n            0.0,\n            0.0,\n            0.0,\n        )\n\n        velocity_valid = False\n\n        if (\n            previous_position\n            is not None\n            and\n            previous_timestamp\n            is not None\n        ):\n            dt = (\n                float(timestamp)\n                -\n                previous_timestamp\n            )\n\n            if dt <= 0.0:\n                raise RuntimeError(\n                    \"Non-positive causal \"\n                    \"velocity interval.\"\n                )\n\n            velocity = tuple(\n                (\n                    position[axis]\n                    -\n                    previous_position[axis]\n                )\n                /\n                dt\n                for axis in range(3)\n            )\n\n            velocity_valid = True\n\n        steps.append(\n            HistoryStep(\n                frame_index=frame_index,\n                timestamp_s=(\n                    float(timestamp)\n                ),\n                position_H0_m=(\n                    position\n                ),\n                velocity_H0_mps=(\n                    velocity\n                ),\n                measurement_covariance_H0_m2=(\n                    covariance\n                ),\n                observed=True,\n                velocity_valid=(\n                    velocity_valid\n                ),\n            )\n        )\n\n        previous_position = position\n        previous_timestamp = float(\n            timestamp\n        )\n\n    observed = [\n        step\n        for step in steps\n        if step.observed\n    ]\n\n    latest = observed[-1]\n\n    return CausalTrackHistory(\n        prediction_id=(\n            _extract_prediction_id(\n                associated_track\n            )\n        ),\n        steps=tuple(\n            steps\n        ),\n        latest_observed_frame_index=(\n            latest.frame_index\n        ),\n        latest_position_H0_m=(\n            latest.position_H0_m\n        ),\n    )"
+      }
+    ],
+    "build_scene_source": [
+      {
+        "line": 986,
+        "path": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py",
+        "sha256": "f2d98461eeaa5ba4a53bc3bcd6480444e758d7a9318c1bfcf52b520bb1889e16",
+        "source": "def build_causal_scene_inputs(\n    associated_tracks,\n    *,\n    scenario_id: str,\n    context,\n    timestamps_s: tuple[\n        float,\n        ...,\n    ],\n) -> CausalSceneInputs:\n    histories = []\n\n    for associated_track in (\n        associated_tracks\n    ):\n        try:\n            history = (\n                build_causal_track_history(\n                    associated_track,\n                    context=context,\n                    timestamps_s=(\n                        timestamps_s\n                    ),\n                )\n            )\n\n        except ValueError:\n            continue\n\n        histories.append(\n            history\n        )\n\n    histories.sort(\n        key=lambda history:\n            history.prediction_id\n    )\n\n    return CausalSceneInputs(\n        scenario_id=scenario_id,\n        timestamps_s=(\n            timestamps_s\n        ),\n        histories=tuple(\n            histories\n        ),\n    )"
+      }
+    ],
+    "prediction_id_source": [
+      {
+        "line": 624,
+        "path": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py",
+        "sha256": "df577d4e91a3f32c8d975e1fed2b3eb6b823ac61f03e787faf6e105a7584aa0e",
+        "source": "def _extract_prediction_id(\n    associated_track,\n) -> str:\n    for name in (\n        \"track_id\",\n        \"prediction_id\",\n        \"associated_track_id\",\n    ):\n        if hasattr(\n            associated_track,\n            name,\n        ):\n            value = getattr(\n                associated_track,\n                name,\n            )\n\n            if value is not None:\n                value = str(value)\n\n                if value:\n                    return value\n\n    raise RuntimeError(\n        \"Cannot resolve associated \"\n        \"track identifier.\"\n    )"
+      }
+    ]
+  },
+  "stage6": {
+    "CausalADBActorBox_fields": [
+      "scenario_id",
+      "track_index",
+      "track_id",
+      "object_type",
+      "box",
+      "stage1_anchor_center_H0_m",
+      "stage1_anchor_bearing_H0_rad",
+      "center_consistency_error_m",
+      "source_time_index",
+      "state_source",
+      "orientation_source",
+      "tracks_to_predict_used",
+      "objects_of_interest_used",
+      "future_state_used"
+    ],
+    "direct_actor_field_overlap": []
+  },
+  "status": "PASS_IDENTITY_BOUNDARY_RESOLVED_ASSOCIATION_REQUIRED",
+  "yaw": {
+    "binding_frozen_here": false,
+    "deterministic_mean_application": "mean_as_single_trajectory_sample",
+    "frozen_Stage5_rule": "trajectory_tangent_heading_with_low_speed_previous_heading_carry_forward",
+    "future_GT_heading": false
+  }
+}

@@ -1,0 +1,1090 @@
+============================================================
+BLOCK 6.3 — PROVENANCE VOCABULARY AUDIT
+READ ONLY
+============================================================
+
+===== A. FROZEN BINDING SEAL =====
+binding = EXACT PASS
+freeze  = EXACT PASS
+
+===== B. EXACT validate_controller_provenance SOURCE =====
+geometry.py SHA256 = f6e6cc0dd362338eeeaae9d8e25947434a3e7c64b350f0baf81a79a46159f94e
+
+def validate_controller_provenance(
+    *,
+    state_source: str,
+    orientation_source: str,
+    controller_path: bool,
+) -> None:
+
+    state_source = str(
+        state_source
+    )
+
+    orientation_source = str(
+        orientation_source
+    )
+
+    if (
+        orientation_source
+        not in
+        _ALLOWED_ORIENTATION_SOURCES
+    ):
+        raise ValueError(
+            "Unknown orientation source: "
+            f"{orientation_source}"
+        )
+
+    if not controller_path:
+        return
+
+    if (
+        state_source
+        in
+        _FORBIDDEN_CONTROLLER_STATE_SOURCES
+    ):
+        raise ValueError(
+            "Future/oracle annotation is forbidden "
+            "on the Stage6 controller path: "
+            f"{state_source}"
+        )
+
+    if (
+        state_source
+        not in
+        _ALLOWED_CONTROLLER_STATE_SOURCES
+    ):
+        raise ValueError(
+            "Unapproved controller state source: "
+            f"{state_source}"
+        )
+
+    if (
+        orientation_source
+        ==
+        "oracle_evaluator_only"
+    ):
+        raise ValueError(
+            "Oracle orientation is forbidden "
+            "on the controller path"
+        )
+
+validator string literals =
+'Future/oracle annotation is forbidden on the Stage6 controller path: '
+'Oracle orientation is forbidden on the controller path'
+'Unapproved controller state source: '
+'Unknown orientation source: '
+'oracle_evaluator_only'
+
+===== C. MODULE-LEVEL PROVENANCE SYMBOLS =====
+_ALLOWED_CONTROLLER_STATE_SOURCES = frozenset({'current_causal', 'predicted_sample', 'predicted_mean'})
+_FORBIDDEN_CONTROLLER_STATE_SOURCES = frozenset({'future_gt', 'oracle_future', 'future_annotation'})
+_ALLOWED_ORIENTATION_SOURCES = frozenset({'current_causal', 'predicted_tangent', 'predicted_orientation', 'frozen_low_speed_fallback', 'oracle_evaluator_only'})
+
+===== D. GEOMETRY PROVENANCE CONTEXTS =====
+contexts = 41
+
+--- geometry context 1 ---
+0006: 
+0007: import numpy as np
+0008: 
+0009: 
+0010: _EPS = 1.0e-12
+0011: 
+0012: _ALLOWED_CONTROLLER_STATE_SOURCES = frozenset(
+0013:     {
+0014:         "current_causal",
+0015:         "predicted_sample",
+0016:         "predicted_mean",
+0017:     }
+0018: )
+
+--- geometry context 2 ---
+0008: 
+0009: 
+0010: _EPS = 1.0e-12
+0011: 
+0012: _ALLOWED_CONTROLLER_STATE_SOURCES = frozenset(
+0013:     {
+0014:         "current_causal",
+0015:         "predicted_sample",
+0016:         "predicted_mean",
+0017:     }
+0018: )
+0019: 
+0020: _FORBIDDEN_CONTROLLER_STATE_SOURCES = frozenset(
+
+--- geometry context 3 ---
+0009: 
+0010: _EPS = 1.0e-12
+0011: 
+0012: _ALLOWED_CONTROLLER_STATE_SOURCES = frozenset(
+0013:     {
+0014:         "current_causal",
+0015:         "predicted_sample",
+0016:         "predicted_mean",
+0017:     }
+0018: )
+0019: 
+0020: _FORBIDDEN_CONTROLLER_STATE_SOURCES = frozenset(
+0021:     {
+
+--- geometry context 4 ---
+0010: _EPS = 1.0e-12
+0011: 
+0012: _ALLOWED_CONTROLLER_STATE_SOURCES = frozenset(
+0013:     {
+0014:         "current_causal",
+0015:         "predicted_sample",
+0016:         "predicted_mean",
+0017:     }
+0018: )
+0019: 
+0020: _FORBIDDEN_CONTROLLER_STATE_SOURCES = frozenset(
+0021:     {
+0022:         "future_gt",
+
+--- geometry context 5 ---
+0014:         "current_causal",
+0015:         "predicted_sample",
+0016:         "predicted_mean",
+0017:     }
+0018: )
+0019: 
+0020: _FORBIDDEN_CONTROLLER_STATE_SOURCES = frozenset(
+0021:     {
+0022:         "future_gt",
+0023:         "oracle_future",
+0024:         "future_annotation",
+0025:     }
+0026: )
+
+--- geometry context 6 ---
+0017:     }
+0018: )
+0019: 
+0020: _FORBIDDEN_CONTROLLER_STATE_SOURCES = frozenset(
+0021:     {
+0022:         "future_gt",
+0023:         "oracle_future",
+0024:         "future_annotation",
+0025:     }
+0026: )
+0027: 
+0028: _ALLOWED_ORIENTATION_SOURCES = frozenset(
+0029:     {
+
+--- geometry context 7 ---
+0022:         "future_gt",
+0023:         "oracle_future",
+0024:         "future_annotation",
+0025:     }
+0026: )
+0027: 
+0028: _ALLOWED_ORIENTATION_SOURCES = frozenset(
+0029:     {
+0030:         "current_causal",
+0031:         "predicted_tangent",
+0032:         "predicted_orientation",
+0033:         "frozen_low_speed_fallback",
+0034:         "oracle_evaluator_only",
+
+--- geometry context 8 ---
+0024:         "future_annotation",
+0025:     }
+0026: )
+0027: 
+0028: _ALLOWED_ORIENTATION_SOURCES = frozenset(
+0029:     {
+0030:         "current_causal",
+0031:         "predicted_tangent",
+0032:         "predicted_orientation",
+0033:         "frozen_low_speed_fallback",
+0034:         "oracle_evaluator_only",
+0035:     }
+0036: )
+
+--- geometry context 9 ---
+0025:     }
+0026: )
+0027: 
+0028: _ALLOWED_ORIENTATION_SOURCES = frozenset(
+0029:     {
+0030:         "current_causal",
+0031:         "predicted_tangent",
+0032:         "predicted_orientation",
+0033:         "frozen_low_speed_fallback",
+0034:         "oracle_evaluator_only",
+0035:     }
+0036: )
+0037: 
+
+--- geometry context 10 ---
+0026: )
+0027: 
+0028: _ALLOWED_ORIENTATION_SOURCES = frozenset(
+0029:     {
+0030:         "current_causal",
+0031:         "predicted_tangent",
+0032:         "predicted_orientation",
+0033:         "frozen_low_speed_fallback",
+0034:         "oracle_evaluator_only",
+0035:     }
+0036: )
+0037: 
+0038: 
+
+--- geometry context 11 ---
+0028: _ALLOWED_ORIENTATION_SOURCES = frozenset(
+0029:     {
+0030:         "current_causal",
+0031:         "predicted_tangent",
+0032:         "predicted_orientation",
+0033:         "frozen_low_speed_fallback",
+0034:         "oracle_evaluator_only",
+0035:     }
+0036: )
+0037: 
+0038: 
+0039: def _finite_array(
+0040:     values,
+
+--- geometry context 12 ---
+0093: 
+0094:     return wrapped
+0095: 
+0096: 
+0097: def validate_controller_provenance(
+0098:     *,
+0099:     state_source: str,
+0100:     orientation_source: str,
+0101:     controller_path: bool,
+0102: ) -> None:
+0103: 
+0104:     state_source = str(
+0105:         state_source
+
+--- geometry context 13 ---
+0094:     return wrapped
+0095: 
+0096: 
+0097: def validate_controller_provenance(
+0098:     *,
+0099:     state_source: str,
+0100:     orientation_source: str,
+0101:     controller_path: bool,
+0102: ) -> None:
+0103: 
+0104:     state_source = str(
+0105:         state_source
+0106:     )
+
+--- geometry context 14 ---
+0098:     *,
+0099:     state_source: str,
+0100:     orientation_source: str,
+0101:     controller_path: bool,
+0102: ) -> None:
+0103: 
+0104:     state_source = str(
+0105:         state_source
+0106:     )
+0107: 
+0108:     orientation_source = str(
+0109:         orientation_source
+0110:     )
+
+--- geometry context 15 ---
+0099:     state_source: str,
+0100:     orientation_source: str,
+0101:     controller_path: bool,
+0102: ) -> None:
+0103: 
+0104:     state_source = str(
+0105:         state_source
+0106:     )
+0107: 
+0108:     orientation_source = str(
+0109:         orientation_source
+0110:     )
+0111: 
+
+--- geometry context 16 ---
+0102: ) -> None:
+0103: 
+0104:     state_source = str(
+0105:         state_source
+0106:     )
+0107: 
+0108:     orientation_source = str(
+0109:         orientation_source
+0110:     )
+0111: 
+0112:     if (
+0113:         orientation_source
+0114:         not in
+
+--- geometry context 17 ---
+0103: 
+0104:     state_source = str(
+0105:         state_source
+0106:     )
+0107: 
+0108:     orientation_source = str(
+0109:         orientation_source
+0110:     )
+0111: 
+0112:     if (
+0113:         orientation_source
+0114:         not in
+0115:         _ALLOWED_ORIENTATION_SOURCES
+
+--- geometry context 18 ---
+0107: 
+0108:     orientation_source = str(
+0109:         orientation_source
+0110:     )
+0111: 
+0112:     if (
+0113:         orientation_source
+0114:         not in
+0115:         _ALLOWED_ORIENTATION_SOURCES
+0116:     ):
+0117:         raise ValueError(
+0118:             "Unknown orientation source: "
+0119:             f"{orientation_source}"
+
+--- geometry context 19 ---
+0109:         orientation_source
+0110:     )
+0111: 
+0112:     if (
+0113:         orientation_source
+0114:         not in
+0115:         _ALLOWED_ORIENTATION_SOURCES
+0116:     ):
+0117:         raise ValueError(
+0118:             "Unknown orientation source: "
+0119:             f"{orientation_source}"
+0120:         )
+0121: 
+
+--- geometry context 20 ---
+0112:     if (
+0113:         orientation_source
+0114:         not in
+0115:         _ALLOWED_ORIENTATION_SOURCES
+0116:     ):
+0117:         raise ValueError(
+0118:             "Unknown orientation source: "
+0119:             f"{orientation_source}"
+0120:         )
+0121: 
+0122:     if not controller_path:
+0123:         return
+0124: 
+
+--- geometry context 21 ---
+0113:         orientation_source
+0114:         not in
+0115:         _ALLOWED_ORIENTATION_SOURCES
+0116:     ):
+0117:         raise ValueError(
+0118:             "Unknown orientation source: "
+0119:             f"{orientation_source}"
+0120:         )
+0121: 
+0122:     if not controller_path:
+0123:         return
+0124: 
+0125:     if (
+
+--- geometry context 22 ---
+0120:         )
+0121: 
+0122:     if not controller_path:
+0123:         return
+0124: 
+0125:     if (
+0126:         state_source
+0127:         in
+0128:         _FORBIDDEN_CONTROLLER_STATE_SOURCES
+0129:     ):
+0130:         raise ValueError(
+0131:             "Future/oracle annotation is forbidden "
+0132:             "on the Stage6 controller path: "
+
+--- geometry context 23 ---
+0122:     if not controller_path:
+0123:         return
+0124: 
+0125:     if (
+0126:         state_source
+0127:         in
+0128:         _FORBIDDEN_CONTROLLER_STATE_SOURCES
+0129:     ):
+0130:         raise ValueError(
+0131:             "Future/oracle annotation is forbidden "
+0132:             "on the Stage6 controller path: "
+0133:             f"{state_source}"
+0134:         )
+
+--- geometry context 24 ---
+0125:     if (
+0126:         state_source
+0127:         in
+0128:         _FORBIDDEN_CONTROLLER_STATE_SOURCES
+0129:     ):
+0130:         raise ValueError(
+0131:             "Future/oracle annotation is forbidden "
+0132:             "on the Stage6 controller path: "
+0133:             f"{state_source}"
+0134:         )
+0135: 
+0136:     if (
+0137:         state_source
+
+--- geometry context 25 ---
+0127:         in
+0128:         _FORBIDDEN_CONTROLLER_STATE_SOURCES
+0129:     ):
+0130:         raise ValueError(
+0131:             "Future/oracle annotation is forbidden "
+0132:             "on the Stage6 controller path: "
+0133:             f"{state_source}"
+0134:         )
+0135: 
+0136:     if (
+0137:         state_source
+0138:         not in
+0139:         _ALLOWED_CONTROLLER_STATE_SOURCES
+
+--- geometry context 26 ---
+0131:             "Future/oracle annotation is forbidden "
+0132:             "on the Stage6 controller path: "
+0133:             f"{state_source}"
+0134:         )
+0135: 
+0136:     if (
+0137:         state_source
+0138:         not in
+0139:         _ALLOWED_CONTROLLER_STATE_SOURCES
+0140:     ):
+0141:         raise ValueError(
+0142:             "Unapproved controller state source: "
+0143:             f"{state_source}"
+
+--- geometry context 27 ---
+0133:             f"{state_source}"
+0134:         )
+0135: 
+0136:     if (
+0137:         state_source
+0138:         not in
+0139:         _ALLOWED_CONTROLLER_STATE_SOURCES
+0140:     ):
+0141:         raise ValueError(
+0142:             "Unapproved controller state source: "
+0143:             f"{state_source}"
+0144:         )
+0145: 
+
+--- geometry context 28 ---
+0137:         state_source
+0138:         not in
+0139:         _ALLOWED_CONTROLLER_STATE_SOURCES
+0140:     ):
+0141:         raise ValueError(
+0142:             "Unapproved controller state source: "
+0143:             f"{state_source}"
+0144:         )
+0145: 
+0146:     if (
+0147:         orientation_source
+0148:         ==
+0149:         "oracle_evaluator_only"
+
+--- geometry context 29 ---
+0141:         raise ValueError(
+0142:             "Unapproved controller state source: "
+0143:             f"{state_source}"
+0144:         )
+0145: 
+0146:     if (
+0147:         orientation_source
+0148:         ==
+0149:         "oracle_evaluator_only"
+0150:     ):
+0151:         raise ValueError(
+0152:             "Oracle orientation is forbidden "
+0153:             "on the controller path"
+
+--- geometry context 30 ---
+0143:             f"{state_source}"
+0144:         )
+0145: 
+0146:     if (
+0147:         orientation_source
+0148:         ==
+0149:         "oracle_evaluator_only"
+0150:     ):
+0151:         raise ValueError(
+0152:             "Oracle orientation is forbidden "
+0153:             "on the controller path"
+0154:         )
+0155: 
+
+--- geometry context 31 ---
+0146:     if (
+0147:         orientation_source
+0148:         ==
+0149:         "oracle_evaluator_only"
+0150:     ):
+0151:         raise ValueError(
+0152:             "Oracle orientation is forbidden "
+0153:             "on the controller path"
+0154:         )
+0155: 
+0156: 
+0157: @dataclass(frozen=True)
+0158: class Box3D:
+
+--- geometry context 32 ---
+0414:     range_3d_min_m: float
+0415:     range_3d_max_m: float
+0416: 
+0417:     phi_min_rad: float
+0418:     phi_max_rad: float
+0419: 
+0420:     state_source: str
+0421:     orientation_source: str
+0422:     controller_path: bool
+0423: 
+0424:     @property
+0425:     def uses_full_box(
+0426:         self,
+
+--- geometry context 33 ---
+0415:     range_3d_max_m: float
+0416: 
+0417:     phi_min_rad: float
+0418:     phi_max_rad: float
+0419: 
+0420:     state_source: str
+0421:     orientation_source: str
+0422:     controller_path: bool
+0423: 
+0424:     @property
+0425:     def uses_full_box(
+0426:         self,
+0427:     ) -> bool:
+
+--- geometry context 34 ---
+0817:     )
+0818: 
+0819: 
+0820: def project_box_to_headlamp(
+0821:     box: Box3D,
+0822:     *,
+0823:     state_source: str,
+0824:     orientation_source: str,
+0825:     controller_path: bool = True,
+0826: ) -> ProjectedBox:
+0827:     """
+0828:     Full 3D actor-box projection.
+0829: 
+
+--- geometry context 35 ---
+0818: 
+0819: 
+0820: def project_box_to_headlamp(
+0821:     box: Box3D,
+0822:     *,
+0823:     state_source: str,
+0824:     orientation_source: str,
+0825:     controller_path: bool = True,
+0826: ) -> ProjectedBox:
+0827:     """
+0828:     Full 3D actor-box projection.
+0829: 
+0830:     Centroid projection is retained only as diagnostic metadata;
+
+--- geometry context 36 ---
+0829: 
+0830:     Centroid projection is retained only as diagnostic metadata;
+0831:     all extent fields are derived from all 8 physical corners.
+0832:     """
+0833: 
+0834:     validate_controller_provenance(
+0835:         state_source=state_source,
+0836:         orientation_source=orientation_source,
+0837:         controller_path=controller_path,
+0838:     )
+0839: 
+0840:     corners_xyz = box_corners_headlamp(
+0841:         box
+
+--- geometry context 37 ---
+0830:     Centroid projection is retained only as diagnostic metadata;
+0831:     all extent fields are derived from all 8 physical corners.
+0832:     """
+0833: 
+0834:     validate_controller_provenance(
+0835:         state_source=state_source,
+0836:         orientation_source=orientation_source,
+0837:         controller_path=controller_path,
+0838:     )
+0839: 
+0840:     corners_xyz = box_corners_headlamp(
+0841:         box
+0842:     )
+
+--- geometry context 38 ---
+0904:         phi_max_rad=float(
+0905:             np.max(
+0906:                 corners.phi_rad
+0907:             )
+0908:         ),
+0909: 
+0910:         state_source=str(
+0911:             state_source
+0912:         ),
+0913: 
+0914:         orientation_source=str(
+0915:             orientation_source
+0916:         ),
+
+--- geometry context 39 ---
+0905:             np.max(
+0906:                 corners.phi_rad
+0907:             )
+0908:         ),
+0909: 
+0910:         state_source=str(
+0911:             state_source
+0912:         ),
+0913: 
+0914:         orientation_source=str(
+0915:             orientation_source
+0916:         ),
+0917: 
+
+--- geometry context 40 ---
+0908:         ),
+0909: 
+0910:         state_source=str(
+0911:             state_source
+0912:         ),
+0913: 
+0914:         orientation_source=str(
+0915:             orientation_source
+0916:         ),
+0917: 
+0918:         controller_path=bool(
+0919:             controller_path
+0920:         ),
+
+--- geometry context 41 ---
+0909: 
+0910:         state_source=str(
+0911:             state_source
+0912:         ),
+0913: 
+0914:         orientation_source=str(
+0915:             orientation_source
+0916:         ),
+0917: 
+0918:         controller_path=bool(
+0919:             controller_path
+0920:         ),
+0921:     )
+
+===== E. STAGE6 PROVENANCE TEST CONTEXTS =====
+test files with provenance evidence = 3
+
+------------------------------------------------------------
+/home/agni/waymo/iscai_stage6/tests/test_block60_contract.py
+------------------------------------------------------------
+
+0253:             "original_reactive_ADB",
+0254:             "deterministic_predictive_ADB",
+0255:             "uncertainty_aware_predictive_ADB",
+0256:             "class_agnostic_predictive_ADB",
+0257:             "class_aware_predictive_ADB",
+0258:             "oracle_future_ADB",
+0259:         }
+0260: 
+0261:         self.assertEqual(
+0262:             actual,
+0263:             expected,
+
+0272:                 "required"
+0273:             ]
+0274:         )
+0275: 
+0276:         expected = {
+0277:             "mask_IoU_with_constructed_oracle_future_mask",
+0278:             "vehicle_shadow_zone_violation",
+0279:             "glare_risk_exposure",
+0280:             "over_masking_area",
+0281:             "road_illumination_retention",
+0282:             "pedestrian_visibility_proxy",
+
+0291:         self.assertEqual(
+0292:             actual,
+0293:             expected,
+0294:         )
+0295: 
+0296:     def test_oracle_is_constructed(self):
+0297: 
+0298:         self.assertEqual(
+0299:             self.contract[
+0300:                 "adb_metrics"
+0301:             ][
+
+0297: 
+0298:         self.assertEqual(
+0299:             self.contract[
+0300:                 "adb_metrics"
+0301:             ][
+0302:                 "oracle_semantics"
+0303:             ],
+0304:             "CONSTRUCTED_REFERENCE_NOT_MEASURED_GT",
+0305:         )
+0306: 
+0307:     def test_stage6_acceptance(self):
+
+------------------------------------------------------------
+/home/agni/waymo/iscai_stage6/tests/test_block60_part_a_adb_contract.py
+------------------------------------------------------------
+
+0075:         inputs = self.adapter[
+0076:             "input_contract"
+0077:         ]
+0078: 
+0079:         self.assertFalse(
+0080:             inputs["future_ground_truth"]
+0081:         )
+0082: 
+0083:         self.assertFalse(
+0084:             inputs["predictive_mean"]
+0085:         )
+
+0161:         self.assertIn(
+0162:             "future probabilistic region",
+0163:             change,
+0164:         )
+0165: 
+0166:     def test_oracle_not_measured_gt(self):
+0167:         oracle = self.adapter[
+0168:             "fair_baseline_semantics"
+0169:         ][
+0170:             "oracle_future_ADB"
+0171:         ]
+
+0162:             "future probabilistic region",
+0163:             change,
+0164:         )
+0165: 
+0166:     def test_oracle_not_measured_gt(self):
+0167:         oracle = self.adapter[
+0168:             "fair_baseline_semantics"
+0169:         ][
+0170:             "oracle_future_ADB"
+0171:         ]
+0172: 
+
+0165: 
+0166:     def test_oracle_not_measured_gt(self):
+0167:         oracle = self.adapter[
+0168:             "fair_baseline_semantics"
+0169:         ][
+0170:             "oracle_future_ADB"
+0171:         ]
+0172: 
+0173:         self.assertIn(
+0174:             "constructed",
+0175:             oracle,
+
+0170:             "oracle_future_ADB"
+0171:         ]
+0172: 
+0173:         self.assertIn(
+0174:             "constructed",
+0175:             oracle,
+0176:         )
+0177: 
+0178:         self.assertIn(
+0179:             "not measured",
+0180:             oracle,
+
+0175:             oracle,
+0176:         )
+0177: 
+0178:         self.assertIn(
+0179:             "not measured",
+0180:             oracle,
+0181:         )
+0182: 
+0183:     def test_part_a_not_modified(self):
+0184:         gate = self.adapter[
+0185:             "implementation_gate"
+
+------------------------------------------------------------
+/home/agni/waymo/iscai_stage6/tests/test_block61_geometry_core.py
+------------------------------------------------------------
+
+0008: from iscai_stage6.adb.geometry import (
+0009:     Box3D,
+0010:     FractionalBoxRegion,
+0011:     box_corners_headlamp,
+0012:     centroid_only_projection,
+0013:     project_box_to_headlamp,
+0014:     project_points_to_headlamp,
+0015:     project_region_to_headlamp,
+0016:     region_corners_headlamp,
+0017:     validate_controller_provenance,
+0018:     wrap_angle,
+
+0012:     centroid_only_projection,
+0013:     project_box_to_headlamp,
+0014:     project_points_to_headlamp,
+0015:     project_region_to_headlamp,
+0016:     region_corners_headlamp,
+0017:     validate_controller_provenance,
+0018:     wrap_angle,
+0019: )
+0020: 
+0021: from iscai_stage6.adb.grid import (
+0022:     IlluminationGridSpec,
+
+0198:             height_m=1.5,
+0199:             yaw_rad=0.0,
+0200:         )
+0201: 
+0202:         projection = (
+0203:             project_box_to_headlamp(
+0204:                 box,
+0205:                 state_source="current_causal",
+0206:                 orientation_source="current_causal",
+0207:             )
+0208:         )
+
+0200:         )
+0201: 
+0202:         projection = (
+0203:             project_box_to_headlamp(
+0204:                 box,
+0205:                 state_source="current_causal",
+0206:                 orientation_source="current_causal",
+0207:             )
+0208:         )
+0209: 
+0210:         self.assertTrue(
+
+0201: 
+0202:         projection = (
+0203:             project_box_to_headlamp(
+0204:                 box,
+0205:                 state_source="current_causal",
+0206:                 orientation_source="current_causal",
+0207:             )
+0208:         )
+0209: 
+0210:         self.assertTrue(
+0211:             projection.uses_full_box
+
+0245:                 box
+0246:             )
+0247:         )
+0248: 
+0249:         full = (
+0250:             project_box_to_headlamp(
+0251:                 box,
+0252:                 state_source="current_causal",
+0253:                 orientation_source="current_causal",
+0254:             )
+0255:         )
+
+0247:         )
+0248: 
+0249:         full = (
+0250:             project_box_to_headlamp(
+0251:                 box,
+0252:                 state_source="current_causal",
+0253:                 orientation_source="current_causal",
+0254:             )
+0255:         )
+0256: 
+0257:         self.assertEqual(
+
+0248: 
+0249:         full = (
+0250:             project_box_to_headlamp(
+0251:                 box,
+0252:                 state_source="current_causal",
+0253:                 orientation_source="current_causal",
+0254:             )
+0255:         )
+0256: 
+0257:         self.assertEqual(
+0258:             centroid.theta_rad.shape,
+
+0364:         )
+0365: 
+0366:         with self.assertRaises(
+0367:             ValueError
+0368:         ):
+0369:             project_box_to_headlamp(
+0370:                 box,
+0371:                 state_source="future_gt",
+0372:                 orientation_source="oracle_evaluator_only",
+0373:                 controller_path=True,
+0374:             )
+
+0366:         with self.assertRaises(
+0367:             ValueError
+0368:         ):
+0369:             project_box_to_headlamp(
+0370:                 box,
+0371:                 state_source="future_gt",
+0372:                 orientation_source="oracle_evaluator_only",
+0373:                 controller_path=True,
+0374:             )
+0375: 
+0376:     def test_oracle_allowed_only_off_controller_path(self):
+
+0367:             ValueError
+0368:         ):
+0369:             project_box_to_headlamp(
+0370:                 box,
+0371:                 state_source="future_gt",
+0372:                 orientation_source="oracle_evaluator_only",
+0373:                 controller_path=True,
+0374:             )
+0375: 
+0376:     def test_oracle_allowed_only_off_controller_path(self):
+0377: 
+
+0371:                 state_source="future_gt",
+0372:                 orientation_source="oracle_evaluator_only",
+0373:                 controller_path=True,
+0374:             )
+0375: 
+0376:     def test_oracle_allowed_only_off_controller_path(self):
+0377: 
+0378:         validate_controller_provenance(
+0379:             state_source="oracle_future",
+0380:             orientation_source="oracle_evaluator_only",
+0381:             controller_path=False,
+
+0373:                 controller_path=True,
+0374:             )
+0375: 
+0376:     def test_oracle_allowed_only_off_controller_path(self):
+0377: 
+0378:         validate_controller_provenance(
+0379:             state_source="oracle_future",
+0380:             orientation_source="oracle_evaluator_only",
+0381:             controller_path=False,
+0382:         )
+0383: 
+
+0374:             )
+0375: 
+0376:     def test_oracle_allowed_only_off_controller_path(self):
+0377: 
+0378:         validate_controller_provenance(
+0379:             state_source="oracle_future",
+0380:             orientation_source="oracle_evaluator_only",
+0381:             controller_path=False,
+0382:         )
+0383: 
+0384:         box = Box3D(
+
+0375: 
+0376:     def test_oracle_allowed_only_off_controller_path(self):
+0377: 
+0378:         validate_controller_provenance(
+0379:             state_source="oracle_future",
+0380:             orientation_source="oracle_evaluator_only",
+0381:             controller_path=False,
+0382:         )
+0383: 
+0384:         box = Box3D(
+0385:             center_xyz=(
+
+0392:             height_m=1.5,
+0393:             yaw_rad=0.0,
+0394:         )
+0395: 
+0396:         projection = (
+0397:             project_box_to_headlamp(
+0398:                 box,
+0399:                 state_source="oracle_future",
+0400:                 orientation_source="oracle_evaluator_only",
+0401:                 controller_path=False,
+0402:             )
+
+0394:         )
+0395: 
+0396:         projection = (
+0397:             project_box_to_headlamp(
+0398:                 box,
+0399:                 state_source="oracle_future",
+0400:                 orientation_source="oracle_evaluator_only",
+0401:                 controller_path=False,
+0402:             )
+0403:         )
+0404: 
+
+0395: 
+0396:         projection = (
+0397:             project_box_to_headlamp(
+0398:                 box,
+0399:                 state_source="oracle_future",
+0400:                 orientation_source="oracle_evaluator_only",
+0401:                 controller_path=False,
+0402:             )
+0403:         )
+0404: 
+0405:         self.assertFalse(
+
+0404: 
+0405:         self.assertFalse(
+0406:             projection.controller_path
+0407:         )
+0408: 
+0409:     def test_predicted_sample_is_controller_safe(self):
+0410: 
+0411:         box = Box3D(
+0412:             center_xyz=(
+0413:                 30.0,
+0414:                 2.0,
+
+0419:             height_m=1.5,
+0420:             yaw_rad=0.1,
+0421:         )
+0422: 
+0423:         projection = (
+0424:             project_box_to_headlamp(
+0425:                 box,
+0426:                 state_source="predicted_sample",
+0427:                 orientation_source="predicted_tangent",
+0428:                 controller_path=True,
+0429:             )
+
+===== F. RUNTIME FUNCTION IDENTITY =====
+signature = (*, state_source: 'str', orientation_source: 'str', controller_path: 'bool') -> 'None'
+runtime source file = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/geometry.py
+
+============================================================
+PROVENANCE VOCABULARY AUDIT — FINAL
+============================================================
+binding modified       = NO
+geometry modified      = NO
+tests modified         = NO
+controller_path bypass = NO
+dataset access         = NO
+training/inference     = NO
+STATUS = PASS_SOURCE_EXTRACTED

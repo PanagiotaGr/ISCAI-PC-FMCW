@@ -1,0 +1,58 @@
+{
+  "class_policy_status": {
+    "actuation_rate": "NOT_FROZEN",
+    "class_agnostic_gamma_0p5": "already_frozen_as_separate_Block6.5_baseline",
+    "class_aware_gamma": "NOT_FROZEN",
+    "cyclist_policy": "NOT_FROZEN",
+    "dimming_floors": "NOT_FROZEN",
+    "margins": "NOT_FROZEN",
+    "pedestrian_policy": "NOT_FROZEN",
+    "temporal_smoothing": "NOT_FROZEN",
+    "vehicle_policy": "NOT_FROZEN"
+  },
+  "development_P_occ": {
+    "actor_count": 877,
+    "by_class": {
+      "TYPE_CYCLIST": 48,
+      "TYPE_PEDESTRIAN": 110,
+      "TYPE_VEHICLE": 719
+    },
+    "grid_shape": [
+      501,
+      301
+    ],
+    "manifest_path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c2b_eligible_actor_pocc_manifest.jsonl",
+    "manifest_sha256": "c361ed640b91850831d7e7177d89733fedd3e171f5f3111bcd93698c74a4a300",
+    "sample_count": 8192,
+    "seed": 20260821
+  },
+  "forbidden_next": [
+    "formal_outcome_read_before_policy_freeze",
+    "future_GT_controller_input",
+    "perfect_ID_association",
+    "posthoc_formal_tuning",
+    "reuse_communication_beam_actuator_as_ADB"
+  ],
+  "from": "6.6-Part2C/2B",
+  "reactive_fallback": {
+    "eligible_fallback_actors": 247,
+    "modified": false,
+    "semantics": "original_frozen_Block6.2_L_theta_r"
+  },
+  "required_next": [
+    "define_development_only_class_policy_objectives_and_metrics_before_numeric_parameter_selection",
+    "vehicle_policy_must_go_beyond_margin_only_and_prioritize_glare_protection",
+    "pedestrian_policy_must_preserve_VRU_visibility_and_avoid_full_blackout",
+    "cyclist_policy_must_preserve_body_vehicle_visibility_and_lateral_margin",
+    "freeze_class_specific_policy_numerics_before_formal_evaluation",
+    "preserve_PartA_raised_cosine_reactive_L_theta_r_and_reactive_fallback"
+  ],
+  "stage": 6,
+  "status": "PASS_READY_FOR_CLASS_AWARE_POLICY_DEVELOPMENT",
+  "to": "6.6-Part3",
+  "upstream_freeze": {
+    "freeze_sha256": "b0df9df17c6008f9bdf3a993d08b103dc694607be90abe3307bc8d4877f9f6a7",
+    "persistence_contract_sha256": "2777e25003a2c76d506609130e7927501f15a868fa6ec37dfd192bbb58ea79e5",
+    "report_sha256": "41257fbc43bcd6e0a01925c0f96648f3cb67850785e8f39d9787547ce1511348"
+  }
+}

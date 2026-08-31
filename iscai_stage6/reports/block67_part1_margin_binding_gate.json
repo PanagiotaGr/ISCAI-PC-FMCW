@@ -1,0 +1,72 @@
+{
+  "block": "6.7",
+  "causality": {
+    "development_outcomes_read": false,
+    "formal_outcomes_read": false,
+    "future_GT_read": false,
+    "parameter_tuning": false,
+    "policy_sweep": false
+  },
+  "class_smoke": [
+    {
+      "actor_class": "TYPE_VEHICLE",
+      "additional_class_margin_m": 0.25,
+      "double_count_reference_cells": 7,
+      "part_a_generic_margin_m": 1.0,
+      "predictive_dilation_cells": 2,
+      "total_margin_m": 1.25
+    },
+    {
+      "actor_class": "TYPE_PEDESTRIAN",
+      "additional_class_margin_m": 0.5,
+      "double_count_reference_cells": 8,
+      "part_a_generic_margin_m": 1.0,
+      "predictive_dilation_cells": 3,
+      "total_margin_m": 1.5
+    },
+    {
+      "actor_class": "TYPE_CYCLIST",
+      "additional_class_margin_m": 0.75,
+      "double_count_reference_cells": 9,
+      "part_a_generic_margin_m": 1.0,
+      "predictive_dilation_cells": 4,
+      "total_margin_m": 1.75
+    }
+  ],
+  "frozen_policy": {
+    "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/class_aware_policy.py",
+    "sha256": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b",
+    "unchanged": true
+  },
+  "immutability": {
+    "blocks60_66_evidence_unchanged": true,
+    "class_aware_policy_unchanged": true,
+    "stage5_frozen_evidence_unchanged": true
+  },
+  "next": "Block6.7 Part2: frozen ADB baseline matrix + constructed-oracle/metric runtime preflight; no formal tuning",
+  "part": "1/2",
+  "project": "Agni",
+  "regression": {
+    "full_stage6_pass": true,
+    "full_stage6_tests": 171,
+    "targeted_pass": true,
+    "targeted_tests": 5
+  },
+  "runtime_binding": {
+    "part_a_generic_margin_reapplied": false,
+    "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/class_margin_binding.py",
+    "predictive_angular_dilation_input": "additional_class_margin_m",
+    "semantic_source": "frozen source extraction PASS_MARGIN_BINDING_SOURCE_EXTRACTED",
+    "sha256": "8e6c12d5ff00903e0572b14494d665cc379e912a76d80b28c517233c834e4dd5",
+    "symbolic_semantics": "m_extra_only",
+    "total_lateral_margin_role": "diagnostic_reference_only",
+    "total_lateral_margin_used_for_actuation": false
+  },
+  "stage": 6,
+  "status": "PASS_RUNTIME_BINDING_FROZEN",
+  "storage": {
+    "free_GiB": 1052.7767448425293,
+    "hard_reserve_GiB": 250.0,
+    "pass": true
+  }
+}

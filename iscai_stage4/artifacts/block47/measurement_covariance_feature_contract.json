@@ -1,0 +1,41 @@
+{
+  "ablation_semantics": "zero_after_fit_only_normalization_equals_fit_mean_imputation",
+  "feature_dim": 14,
+  "feature_names": [
+    "x_H0_m",
+    "y_H0_m",
+    "z_H0_m",
+    "vx_H0_mps",
+    "vy_H0_mps",
+    "vz_H0_mps",
+    "meas_cov_xx_H0_m2",
+    "meas_cov_xy_H0_m2",
+    "meas_cov_xz_H0_m2",
+    "meas_cov_yy_H0_m2",
+    "meas_cov_yz_H0_m2",
+    "meas_cov_zz_H0_m2",
+    "observed_mask",
+    "velocity_valid_mask"
+  ],
+  "mapping_origins": [
+    "runtime:FEATURE_NAMES",
+    "source:FEATURE_NAMES"
+  ],
+  "measurement_covariance_indices": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "measurement_covariance_names": [
+    "meas_cov_xx_H0_m2",
+    "meas_cov_xy_H0_m2",
+    "meas_cov_xz_H0_m2",
+    "meas_cov_yy_H0_m2",
+    "meas_cov_yz_H0_m2",
+    "meas_cov_zz_H0_m2"
+  ],
+  "neural_inputs_source": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py"
+}

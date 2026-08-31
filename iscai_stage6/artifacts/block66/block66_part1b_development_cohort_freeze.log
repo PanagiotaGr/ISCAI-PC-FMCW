@@ -1,0 +1,80 @@
+========================================================================
+BLOCK 6.6 PART1B — DETERMINISTIC CLASS-COVERED DEVELOPMENT COHORT FREEZE
+========================================================================
+
+===== A. IMMUTABLE HEADLAMP-CENSUS SEAL =====
+Block6.5 handoff               = EXACT PASS
+Part0B report                  = EXACT PASS
+Part1A report                  = EXACT PASS
+full headlamp census           = EXACT PASS
+eligible development manifest  = EXACT PASS
+available strata = {'cyclist': 504, 'none': 286, 'pedestrian_no_cyclist': 1502, 'vehicle_only': 4916}
+
+===== B. COHORT-SELECTION PREREGISTRATION =====
+preregistration = /home/agni/waymo/iscai_stage6/configs/block66_development_cohort_selection_preregistration.json
+preregistration SHA256 = 498888381e5ab9dd2f14db59cec6661beac22368e31088d6326fe76190bd4081
+cohort size = 120
+strata = 40 / 40 / 40
+member ordering = ASCENDING FROZEN SELECTION HASH
+model/policy outcomes used = NO
+
+===== C. DETERMINISTIC MEMBER SELECTION =====
+selected scenarios = 120
+selected strata = {'cyclist': 40, 'pedestrian_no_cyclist': 40, 'vehicle_only': 40}
+
+===== D. INPUT-ORDER INVARIANCE =====
+shuffled-source selection = EXACT PASS
+input-order invariant      = YES
+
+===== E. SELECTED COHORT CLASS SUPPORT =====
+headlamp scenes/class = {'TYPE_VEHICLE': 116, 'TYPE_PEDESTRIAN': 56, 'TYPE_CYCLIST': 40}
+headlamp actors/class = {'TYPE_VEHICLE': 890, 'TYPE_PEDESTRIAN': 178, 'TYPE_CYCLIST': 56}
+stratum semantic checks = PASS
+
+===== F. MATERIALIZE DEVELOPMENT COHORT =====
+cohort = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_class_aware_development_cohort_120.jsonl
+cohort SHA256 = 57440e3d976e7aeff44811b5eeb075dc56e0e0e070a3832ec72d354253b998c9
+
+===== G. FRESH STAGE6 REGRESSION =====
+.................................................................................................................................................
+----------------------------------------------------------------------
+Ran 145 tests in 0.175s
+
+OK
+fresh regression = PASS | 145
+
+===== H. BLOCK6.6 PART1B FREEZE REPORT =====
+report = /home/agni/waymo/iscai_stage6/reports/block66_part1b_development_cohort_freeze.json
+report SHA256 = 3a965b4ef3c451e7526608f2b5ceb5a151eb08caf922a25f1b25a1ec5a12f5f0
+
+===== I. FREEZE MANIFEST + HANDOFF =====
+freeze manifest = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_cohort_freeze_manifest.json
+freeze SHA256 = 42b8238388af96de950b9dfa8ec62ef51acea9f192160c40b93922e9acca1854
+handoff = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part1b_to_part2_handoff.json
+handoff SHA256 = 9b97ced36cd892850edf0adc52886255bf38e70c25290fe095ce0171deb40c95
+
+========================================================================
+BLOCK 6.6 PART1B — FINAL
+========================================================================
+STATUS = PASS_BLOCK66_CLASS_COVERED_DEVELOPMENT_COHORT_FROZEN
+development cohort N      = 120
+scenario strata           = 40 cyclist / 40 pedestrian-no-cyclist / 40 vehicle-only
+member ranking            = ASCENDING SHA256(scenario_id)
+input-order invariant     = YES
+headlamp scenes/class     = {'TYPE_VEHICLE': 116, 'TYPE_PEDESTRIAN': 56, 'TYPE_CYCLIST': 40}
+headlamp actors/class     = {'TYPE_VEHICLE': 890, 'TYPE_PEDESTRIAN': 178, 'TYPE_CYCLIST': 56}
+future selection          = NO
+model/performance selection = NO
+formal outcomes read      = NO
+class policy frozen       = NO
+new model forward         = NO
+new MC sampling           = NO
+fresh Stage6 regression   = PASS | 145
+prereg SHA256             = 498888381e5ab9dd2f14db59cec6661beac22368e31088d6326fe76190bd4081
+cohort SHA256             = 57440e3d976e7aeff44811b5eeb075dc56e0e0e070a3832ec72d354253b998c9
+report SHA256             = 3a965b4ef3c451e7526608f2b5ceb5a151eb08caf922a25f1b25a1ec5a12f5f0
+freeze SHA256             = 42b8238388af96de950b9dfa8ec62ef51acea9f192160c40b93922e9acca1854
+handoff SHA256            = 9b97ced36cd892850edf0adc52886255bf38e70c25290fe095ce0171deb40c95
+NEXT = BLOCK6.6 PART2 FROZEN MODEL POSTERIOR + CAUSAL ASSOCIATION
+terminal remains open = YES
+========================================================================

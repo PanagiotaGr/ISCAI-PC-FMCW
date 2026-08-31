@@ -1,0 +1,50 @@
+{
+  "PDF_requirements": {
+    "angular_shadow_zones": true,
+    "arbitrary_replacement_of_ADB_model": false,
+    "minimum_illumination_floor_support": true,
+    "original_reactive_ADB_baseline": true,
+    "preserve_Part_A_L_theta_r": true,
+    "radial_thresholds": true,
+    "raised_cosine_transition": true,
+    "static_ADB_baseline": true
+  },
+  "block": "6.2",
+  "future_extensions": {
+    "actuation_rate_limits": "BLOCK6.6",
+    "class_aware_floors_and_dimming": "BLOCK6.5",
+    "full_box_predictive_region": "BLOCK6.3",
+    "probabilistic_occupancy": "BLOCK6.4",
+    "temporal_smoothing": "BLOCK6.6"
+  },
+  "mathematical_kernel": {
+    "multiple_actor_combination": "elementwise minimum",
+    "normalized_output_range": "[0,1]",
+    "outside_rule": "full illumination = 1",
+    "paper_equivalent_floor": 0.0,
+    "shadow_rule": "theta in shadow and r <= r_min -> floor",
+    "transition_rule": "floor + (1-floor) * 0.5*(1-cos(pi*u))",
+    "u": "(r-r_min)/(r_max-r_min)"
+  },
+  "numerical_freeze": {
+    "Part_A_source_parameters_frozen": false,
+    "final_ADB_grid_freeze": "BLOCK6.8_PRE_FORMAL",
+    "final_ADB_grid_frozen": false
+  },
+  "part": "1/2",
+  "project": "Agni",
+  "reactive_baseline": {
+    "communication_codebook_input": false,
+    "exact_Part_A_numeric_parameter_binding": "BLOCK6.2_PART2",
+    "future_trajectory_input": false,
+    "posterior_input": false,
+    "predictive_covariance_input": false,
+    "state_semantics": "current_deterministic_region"
+  },
+  "stage": 6,
+  "static_baseline": {
+    "adaptive_dimming": false,
+    "normalized_intensity": 1.0
+  },
+  "status": "STATIC_AND_REACTIVE_KERNEL_CONTRACT"
+}

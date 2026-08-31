@@ -1,0 +1,986 @@
+{
+  "block": "6.8_Part3C_numeric_selection_status",
+  "classification": "CLOSURE_KEY_MISSING",
+  "closure_relevant_leaves": [
+    {
+      "path": "PartA_continuity.generic_lateral_margin",
+      "python_type": "str",
+      "value": "PRESERVED"
+    },
+    {
+      "path": "PartA_continuity.generic_radial_margin",
+      "python_type": "str",
+      "value": "PRESERVED"
+    },
+    {
+      "path": "deterministic_replay.PRNG_deterministic_replay_executed",
+      "python_type": "bool",
+      "value": true
+    },
+    {
+      "path": "deterministic_replay.contract_path",
+      "python_type": "str",
+      "value": "/home/agni/waymo/iscai_stage6/configs/block66_part3c_part2of2_deterministic_replay_contract.json"
+    },
+    {
+      "path": "deterministic_replay.contract_sha256",
+      "python_type": "str",
+      "value": "ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1"
+    },
+    {
+      "path": "deterministic_replay.full_box_exact_parity",
+      "python_type": "str",
+      "value": "PASS_719_OF_719"
+    },
+    {
+      "path": "deterministic_replay.new_random_seed",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "deterministic_replay.new_stochastic_realization",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "deterministic_replay.replayed_this_run",
+      "python_type": "int",
+      "value": 719
+    },
+    {
+      "path": "deterministic_replay.reused_from_resumable_cache",
+      "python_type": "int",
+      "value": 0
+    },
+    {
+      "path": "deterministic_replay.same_seed_per_actor",
+      "python_type": "bool",
+      "value": true
+    },
+    {
+      "path": "deterministic_replay.sample_count_per_actor",
+      "python_type": "int",
+      "value": 8192
+    },
+    {
+      "path": "deterministic_replay.seed",
+      "python_type": "int",
+      "value": 20260821
+    },
+    {
+      "path": "deterministic_replay.tolerance",
+      "python_type": "NoneType",
+      "value": null
+    },
+    {
+      "path": "deterministic_replay.vehicles",
+      "python_type": "int",
+      "value": 719
+    },
+    {
+      "path": "geometry_binding.all_candidates[0].axis",
+      "python_type": "str",
+      "value": "X_LENGTH_Y_WIDTH"
+    },
+    {
+      "path": "geometry_binding.all_candidates[0].rotation",
+      "python_type": "str",
+      "value": "CCW_STANDARD"
+    },
+    {
+      "path": "geometry_binding.all_candidates[0].worst_error",
+      "python_type": "float",
+      "value": 3.552713678800501e-15
+    },
+    {
+      "path": "geometry_binding.all_candidates[1].axis",
+      "python_type": "str",
+      "value": "X_WIDTH_Y_LENGTH"
+    },
+    {
+      "path": "geometry_binding.all_candidates[1].rotation",
+      "python_type": "str",
+      "value": "CCW_STANDARD"
+    },
+    {
+      "path": "geometry_binding.all_candidates[1].worst_error",
+      "python_type": "float",
+      "value": 1.299596856365259
+    },
+    {
+      "path": "geometry_binding.all_candidates[2].axis",
+      "python_type": "str",
+      "value": "X_WIDTH_Y_LENGTH"
+    },
+    {
+      "path": "geometry_binding.all_candidates[2].rotation",
+      "python_type": "str",
+      "value": "CLOCKWISE"
+    },
+    {
+      "path": "geometry_binding.all_candidates[2].worst_error",
+      "python_type": "float",
+      "value": 3.379833896808613
+    },
+    {
+      "path": "geometry_binding.all_candidates[3].axis",
+      "python_type": "str",
+      "value": "X_LENGTH_Y_WIDTH"
+    },
+    {
+      "path": "geometry_binding.all_candidates[3].rotation",
+      "python_type": "str",
+      "value": "CLOCKWISE"
+    },
+    {
+      "path": "geometry_binding.all_candidates[3].worst_error",
+      "python_type": "float",
+      "value": 4.673613590063706
+    },
+    {
+      "path": "integration_smoke.development_objective_evaluated",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "integration_smoke.formal_outcomes_read",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "integration_smoke.future_GT_used",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "integration_smoke.numeric_policy_selected",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "integration_smoke.results[0].active_cells_after_margin",
+      "python_type": "int",
+      "value": 29212
+    },
+    {
+      "path": "integration_smoke.results[0].active_cells_before_margin",
+      "python_type": "int",
+      "value": 23029
+    },
+    {
+      "path": "integration_smoke.results[0].actor_class",
+      "python_type": "str",
+      "value": "TYPE_VEHICLE"
+    },
+    {
+      "path": "integration_smoke.results[0].final_max",
+      "python_type": "float",
+      "value": 1.0
+    },
+    {
+      "path": "integration_smoke.results[0].final_mean",
+      "python_type": "float",
+      "value": 0.9078852668776621
+    },
+    {
+      "path": "integration_smoke.results[0].final_min",
+      "python_type": "float",
+      "value": 2.0611536224388346e-09
+    },
+    {
+      "path": "integration_smoke.results[0].margin[0].additional_margin_m",
+      "python_type": "float",
+      "value": 0.36685084841369864
+    },
+    {
+      "path": "integration_smoke.results[0].margin[0].dilation_cells",
+      "python_type": "int",
+      "value": 29
+    },
+    {
+      "path": "integration_smoke.results[0].margin[0].horizon_s",
+      "python_type": "float",
+      "value": 0.1
+    },
+    {
+      "path": "integration_smoke.results[0].margin[0].total_margin_m",
+      "python_type": "float",
+      "value": 1.3668508484136987
+    },
+    {
+      "path": "integration_smoke.results[0].margin[1].additional_margin_m",
+      "python_type": "float",
+      "value": 0.47324462842014725
+    },
+    {
+      "path": "integration_smoke.results[0].margin[1].dilation_cells",
+      "python_type": "int",
+      "value": 29
+    },
+    {
+      "path": "integration_smoke.results[0].margin[1].horizon_s",
+      "python_type": "float",
+      "value": 0.3
+    },
+    {
+      "path": "integration_smoke.results[0].margin[1].total_margin_m",
+      "python_type": "float",
+      "value": 1.4732446284201473
+    },
+    {
+      "path": "integration_smoke.results[0].margin[2].additional_margin_m",
+      "python_type": "float",
+      "value": 0.6003596645944657
+    },
+    {
+      "path": "integration_smoke.results[0].margin[2].dilation_cells",
+      "python_type": "int",
+      "value": 29
+    },
+    {
+      "path": "integration_smoke.results[0].margin[2].horizon_s",
+      "python_type": "float",
+      "value": 0.5
+    },
+    {
+      "path": "integration_smoke.results[0].margin[2].total_margin_m",
+      "python_type": "float",
+      "value": 1.6003596645944658
+    },
+    {
+      "path": "integration_smoke.results[0].margin[3].additional_margin_m",
+      "python_type": "float",
+      "value": 0.899633746530175
+    },
+    {
+      "path": "integration_smoke.results[0].margin[3].dilation_cells",
+      "python_type": "int",
+      "value": 29
+    },
+    {
+      "path": "integration_smoke.results[0].margin[3].horizon_s",
+      "python_type": "float",
+      "value": 1.0
+    },
+    {
+      "path": "integration_smoke.results[0].margin[3].total_margin_m",
+      "python_type": "float",
+      "value": 1.8996337465301751
+    },
+    {
+      "path": "integration_smoke.results[0].objective_metric_evaluated",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "integration_smoke.results[0].prediction_id",
+      "python_type": "str",
+      "value": "s3trk-000027"
+    },
+    {
+      "path": "integration_smoke.results[0].rate_limit_safety_override_fraction",
+      "python_type": "float",
+      "value": 0.0
+    },
+    {
+      "path": "integration_smoke.results[0].scenario_id",
+      "python_type": "str",
+      "value": "f72a05a05035feb8"
+    },
+    {
+      "path": "integration_smoke.results[1].active_cells_after_margin",
+      "python_type": "int",
+      "value": 2546
+    },
+    {
+      "path": "integration_smoke.results[1].active_cells_before_margin",
+      "python_type": "int",
+      "value": 1648
+    },
+    {
+      "path": "integration_smoke.results[1].actor_class",
+      "python_type": "str",
+      "value": "TYPE_PEDESTRIAN"
+    },
+    {
+      "path": "integration_smoke.results[1].final_max",
+      "python_type": "float",
+      "value": 1.0
+    },
+    {
+      "path": "integration_smoke.results[1].final_mean",
+      "python_type": "float",
+      "value": 0.9607129506832015
+    },
+    {
+      "path": "integration_smoke.results[1].final_min",
+      "python_type": "float",
+      "value": 0.05000000195809594
+    },
+    {
+      "path": "integration_smoke.results[1].margin[0].additional_margin_m",
+      "python_type": "float",
+      "value": 0.31185064284323866
+    },
+    {
+      "path": "integration_smoke.results[1].margin[0].dilation_cells",
+      "python_type": "int",
+      "value": 11
+    },
+    {
+      "path": "integration_smoke.results[1].margin[0].horizon_s",
+      "python_type": "float",
+      "value": 0.1
+    },
+    {
+      "path": "integration_smoke.results[1].margin[0].total_margin_m",
+      "python_type": "float",
+      "value": 1.3118506428432386
+    },
+    {
+      "path": "integration_smoke.results[1].margin[1].additional_margin_m",
+      "python_type": "float",
+      "value": 0.3453228854355918
+    },
+    {
+      "path": "integration_smoke.results[1].margin[1].dilation_cells",
+      "python_type": "int",
+      "value": 11
+    },
+    {
+      "path": "integration_smoke.results[1].margin[1].horizon_s",
+      "python_type": "float",
+      "value": 0.3
+    },
+    {
+      "path": "integration_smoke.results[1].margin[1].total_margin_m",
+      "python_type": "float",
+      "value": 1.3453228854355919
+    },
+    {
+      "path": "integration_smoke.results[1].margin[2].additional_margin_m",
+      "python_type": "float",
+      "value": 0.37969071663033543
+    },
+    {
+      "path": "integration_smoke.results[1].margin[2].dilation_cells",
+      "python_type": "int",
+      "value": 12
+    },
+    {
+      "path": "integration_smoke.results[1].margin[2].horizon_s",
+      "python_type": "float",
+      "value": 0.5
+    },
+    {
+      "path": "integration_smoke.results[1].margin[2].total_margin_m",
+      "python_type": "float",
+      "value": 1.3796907166303354
+    },
+    {
+      "path": "integration_smoke.results[1].margin[3].additional_margin_m",
+      "python_type": "float",
+      "value": 0.5058511451794291
+    },
+    {
+      "path": "integration_smoke.results[1].margin[3].dilation_cells",
+      "python_type": "int",
+      "value": 13
+    },
+    {
+      "path": "integration_smoke.results[1].margin[3].horizon_s",
+      "python_type": "float",
+      "value": 1.0
+    },
+    {
+      "path": "integration_smoke.results[1].margin[3].total_margin_m",
+      "python_type": "float",
+      "value": 1.5058511451794292
+    },
+    {
+      "path": "integration_smoke.results[1].objective_metric_evaluated",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "integration_smoke.results[1].prediction_id",
+      "python_type": "str",
+      "value": "s3trk-000022"
+    },
+    {
+      "path": "integration_smoke.results[1].rate_limit_safety_override_fraction",
+      "python_type": "float",
+      "value": 0.0
+    },
+    {
+      "path": "integration_smoke.results[1].scenario_id",
+      "python_type": "str",
+      "value": "78249f8856cb2c57"
+    },
+    {
+      "path": "integration_smoke.results[2].active_cells_after_margin",
+      "python_type": "int",
+      "value": 14727
+    },
+    {
+      "path": "integration_smoke.results[2].active_cells_before_margin",
+      "python_type": "int",
+      "value": 9581
+    },
+    {
+      "path": "integration_smoke.results[2].actor_class",
+      "python_type": "str",
+      "value": "TYPE_CYCLIST"
+    },
+    {
+      "path": "integration_smoke.results[2].final_max",
+      "python_type": "float",
+      "value": 1.0
+    },
+    {
+      "path": "integration_smoke.results[2].final_mean",
+      "python_type": "float",
+      "value": 0.9288636349930395
+    },
+    {
+      "path": "integration_smoke.results[2].final_min",
+      "python_type": "float",
+      "value": 0.05000000195809594
+    },
+    {
+      "path": "integration_smoke.results[2].margin[0].additional_margin_m",
+      "python_type": "float",
+      "value": 0.45468369949315823
+    },
+    {
+      "path": "integration_smoke.results[2].margin[0].dilation_cells",
+      "python_type": "int",
+      "value": 21
+    },
+    {
+      "path": "integration_smoke.results[2].margin[0].horizon_s",
+      "python_type": "float",
+      "value": 0.1
+    },
+    {
+      "path": "integration_smoke.results[2].margin[0].total_margin_m",
+      "python_type": "float",
+      "value": 1.4546836994931582
+    },
+    {
+      "path": "integration_smoke.results[2].margin[1].additional_margin_m",
+      "python_type": "float",
+      "value": 0.5427117427524912
+    },
+    {
+      "path": "integration_smoke.results[2].margin[1].dilation_cells",
+      "python_type": "int",
+      "value": 23
+    },
+    {
+      "path": "integration_smoke.results[2].margin[1].horizon_s",
+      "python_type": "float",
+      "value": 0.3
+    },
+    {
+      "path": "integration_smoke.results[2].margin[1].total_margin_m",
+      "python_type": "float",
+      "value": 1.5427117427524912
+    },
+    {
+      "path": "integration_smoke.results[2].margin[2].additional_margin_m",
+      "python_type": "float",
+      "value": 0.6350353119889571
+    },
+    {
+      "path": "integration_smoke.results[2].margin[2].dilation_cells",
+      "python_type": "int",
+      "value": 24
+    },
+    {
+      "path": "integration_smoke.results[2].margin[2].horizon_s",
+      "python_type": "float",
+      "value": 0.5
+    },
+    {
+      "path": "integration_smoke.results[2].margin[2].total_margin_m",
+      "python_type": "float",
+      "value": 1.6350353119889571
+    },
+    {
+      "path": "integration_smoke.results[2].margin[3].additional_margin_m",
+      "python_type": "float",
+      "value": 0.8693834022671043
+    },
+    {
+      "path": "integration_smoke.results[2].margin[3].dilation_cells",
+      "python_type": "int",
+      "value": 28
+    },
+    {
+      "path": "integration_smoke.results[2].margin[3].horizon_s",
+      "python_type": "float",
+      "value": 1.0
+    },
+    {
+      "path": "integration_smoke.results[2].margin[3].total_margin_m",
+      "python_type": "float",
+      "value": 1.8693834022671043
+    },
+    {
+      "path": "integration_smoke.results[2].objective_metric_evaluated",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "integration_smoke.results[2].prediction_id",
+      "python_type": "str",
+      "value": "s3trk-000021"
+    },
+    {
+      "path": "integration_smoke.results[2].rate_limit_safety_override_fraction",
+      "python_type": "float",
+      "value": 0.0
+    },
+    {
+      "path": "integration_smoke.results[2].scenario_id",
+      "python_type": "str",
+      "value": "f72a05a05035feb8"
+    },
+    {
+      "path": "integration_smoke.status",
+      "python_type": "str",
+      "value": "PASS_ALL_CORE_CLASSES"
+    },
+    {
+      "path": "integration_smoke.tuple.base_margin_m",
+      "python_type": "float",
+      "value": 0.0
+    },
+    {
+      "path": "integration_smoke.tuple.cyclist_floor",
+      "python_type": "float",
+      "value": 0.05
+    },
+    {
+      "path": "integration_smoke.tuple.cyclist_motion_multiplier",
+      "python_type": "float",
+      "value": 0.25
+    },
+    {
+      "path": "integration_smoke.tuple.gamma_k",
+      "python_type": "int",
+      "value": 0
+    },
+    {
+      "path": "integration_smoke.tuple.pedestrian_floor",
+      "python_type": "float",
+      "value": 0.05
+    },
+    {
+      "path": "integration_smoke.tuple.rho_bright_per_s",
+      "python_type": "float",
+      "value": 1.0
+    },
+    {
+      "path": "integration_smoke.tuple.rho_dim_per_s",
+      "python_type": "float",
+      "value": 1.0
+    },
+    {
+      "path": "integration_smoke.tuple.selection_status",
+      "python_type": "str",
+      "value": "NOT_SELECTED_STRUCTURAL_SMOKE_ONLY"
+    },
+    {
+      "path": "integration_smoke.tuple.smoothing_time_constant_s",
+      "python_type": "float",
+      "value": 0.05
+    },
+    {
+      "path": "integration_smoke.tuple.uncertainty_multiplier",
+      "python_type": "float",
+      "value": 0.5
+    },
+    {
+      "path": "integration_smoke.tuple.vehicle_floor",
+      "python_type": "float",
+      "value": 0.0
+    },
+    {
+      "path": "integration_smoke.tuple.vehicle_motion_multiplier",
+      "python_type": "float",
+      "value": 0.05
+    },
+    {
+      "path": "scientific_boundary.formal_outcomes_read",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "scientific_boundary.formal_tuning",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "scientific_boundary.numeric_policy_selected",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "scientific_boundary.objects_of_interest_selection",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "scientific_boundary.policy_parameter_sweep_executed",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "scientific_boundary.tracks_to_predict_selection",
+      "python_type": "bool",
+      "value": false
+    }
+  ],
+  "exact_values": {
+    "Part3C1_handoff": {
+      "present": true,
+      "type": "bool",
+      "value": false
+    },
+    "Part3C1_report": {
+      "present": false,
+      "type": "NoneType",
+      "value": null
+    },
+    "Part3C_final_closure": {
+      "present": false,
+      "type": "NoneType",
+      "value": null
+    },
+    "Part3C_final_freeze": {
+      "present": true,
+      "type": "bool",
+      "value": false
+    }
+  },
+  "final_script_selection_context": [
+    {
+      "line": 1630,
+      "text": "                False,"
+    },
+    {
+      "line": 1631,
+      "text": ""
+    },
+    {
+      "line": 1632,
+      "text": "            \"new_stochastic_realization\":"
+    },
+    {
+      "line": 1633,
+      "text": "                False,"
+    },
+    {
+      "line": 1634,
+      "text": ""
+    },
+    {
+      "line": 1635,
+      "text": "            \"policy_sweep\":"
+    },
+    {
+      "line": 1636,
+      "text": "                False,"
+    },
+    {
+      "line": 1637,
+      "text": ""
+    },
+    {
+      "line": 1638,
+      "text": "            \"numeric_policy_selection\":"
+    },
+    {
+      "line": 1639,
+      "text": "                False,"
+    },
+    {
+      "line": 1640,
+      "text": ""
+    },
+    {
+      "line": 1641,
+      "text": "            \"formal_outcomes_read\":"
+    },
+    {
+      "line": 1642,
+      "text": "                False,"
+    },
+    {
+      "line": 1643,
+      "text": ""
+    },
+    {
+      "line": 3529,
+      "text": "    print("
+    },
+    {
+      "line": 3530,
+      "text": "        \"vehicle/pedestrian/cyclist = PASS / PASS / PASS\""
+    },
+    {
+      "line": 3531,
+      "text": "    )"
+    },
+    {
+      "line": 3532,
+      "text": ""
+    },
+    {
+      "line": 3533,
+      "text": "    print("
+    },
+    {
+      "line": 3534,
+      "text": "        \"smoke tuple numeric selection = NO\""
+    },
+    {
+      "line": 3535,
+      "text": "    )"
+    },
+    {
+      "line": 3536,
+      "text": ""
+    },
+    {
+      "line": 3537,
+      "text": "    print("
+    },
+    {
+      "line": 3538,
+      "text": "        \"development objective evaluated = NO\""
+    },
+    {
+      "line": 3539,
+      "text": "    )"
+    },
+    {
+      "line": 3775,
+      "text": "                smoke_tuple,"
+    },
+    {
+      "line": 3776,
+      "text": ""
+    },
+    {
+      "line": 3777,
+      "text": "            \"results\":"
+    },
+    {
+      "line": 3778,
+      "text": "                smoke_results,"
+    },
+    {
+      "line": 3779,
+      "text": ""
+    },
+    {
+      "line": 3780,
+      "text": "            \"numeric_policy_selected\":"
+    },
+    {
+      "line": 3781,
+      "text": "                False,"
+    },
+    {
+      "line": 3782,
+      "text": ""
+    },
+    {
+      "line": 3783,
+      "text": "            \"development_objective_evaluated\":"
+    },
+    {
+      "line": 3784,
+      "text": "                False,"
+    },
+    {
+      "line": 3785,
+      "text": ""
+    },
+    {
+      "line": 3806,
+      "text": ""
+    },
+    {
+      "line": 3807,
+      "text": "        \"scientific_boundary\": {"
+    },
+    {
+      "line": 3808,
+      "text": "            \"policy_parameter_sweep_executed\":"
+    },
+    {
+      "line": 3809,
+      "text": "                False,"
+    },
+    {
+      "line": 3810,
+      "text": ""
+    },
+    {
+      "line": 3811,
+      "text": "            \"numeric_policy_selected\":"
+    },
+    {
+      "line": 3812,
+      "text": "                False,"
+    },
+    {
+      "line": 3813,
+      "text": ""
+    },
+    {
+      "line": 3814,
+      "text": "            \"formal_outcomes_read\":"
+    },
+    {
+      "line": 3815,
+      "text": "                False,"
+    },
+    {
+      "line": 3816,
+      "text": ""
+    },
+    {
+      "line": 3960,
+      "text": "            \"change surrogate geometry after seeing outcomes\","
+    },
+    {
+      "line": 3961,
+      "text": "            \"formal outcome read\","
+    },
+    {
+      "line": 3962,
+      "text": "            \"formal tuning\","
+    },
+    {
+      "line": 3963,
+      "text": "        ],"
+    },
+    {
+      "line": 3964,
+      "text": ""
+    },
+    {
+      "line": 3965,
+      "text": "        \"numeric_policy_selected\":"
+    },
+    {
+      "line": 3966,
+      "text": "            False,"
+    },
+    {
+      "line": 3967,
+      "text": ""
+    },
+    {
+      "line": 3968,
+      "text": "        \"formal_outcomes_read\":"
+    },
+    {
+      "line": 3969,
+      "text": "            False,"
+    },
+    {
+      "line": 3970,
+      "text": "    }"
+    }
+  ],
+  "freeze_relevant_leaves": [
+    {
+      "path": "deterministic_replay_contract.path",
+      "python_type": "str",
+      "value": "/home/agni/waymo/iscai_stage6/configs/block66_part3c_part2of2_deterministic_replay_contract.json"
+    },
+    {
+      "path": "deterministic_replay_contract.sha256",
+      "python_type": "str",
+      "value": "ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1"
+    },
+    {
+      "path": "formal_outcomes_read",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "numeric_policy_selected",
+      "python_type": "bool",
+      "value": false
+    }
+  ],
+  "next_action": "bind selection status from explicit scientific_boundary/freeze authority",
+  "regression": 224,
+  "replay_relevant_leaves": [
+    {
+      "path": "replay_population.all_classes_replayed",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "replay_population.eligible_predictive_vehicles",
+      "python_type": "int",
+      "value": 719
+    },
+    {
+      "path": "replay_population.vehicle_only_reason",
+      "python_type": "str",
+      "value": "geometry-based front-upper/rear-upper surrogate requirement is vehicle-specific"
+    },
+    {
+      "path": "scientific_boundaries.formal_outcomes_read",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "scientific_boundaries.numeric_policy_selection",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "scientific_boundaries.policy_sweep",
+      "python_type": "bool",
+      "value": false
+    },
+    {
+      "path": "upstream.numeric_freeze.path",
+      "python_type": "str",
+      "value": "/home/agni/waymo/iscai_stage6/configs/block64_mc_grid_numeric_freeze.json"
+    },
+    {
+      "path": "upstream.numeric_freeze.sha256",
+      "python_type": "str",
+      "value": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73"
+    }
+  ],
+  "scientific_boundary": {
+    "P_occ_opened": false,
+    "acceptance_tested": false,
+    "formal_evaluation": false,
+    "gamma_sweep_executed": false,
+    "policy_modified": false,
+    "predictive_performance_computed": false
+  },
+  "seals": {
+    "closure": "8413fd646a1bf18e15c12bf0441d1ddb1ea72ed142703020ac0d2c77dba0bb29",
+    "final_script": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+    "freeze": "880c2efb0895f463aaf3350eed7730389a5871651d7ad6091cef052d95434738",
+    "part3c1_handoff": "5dccff7f48403bffcb3eab2f787bb09f96a4cce41a5e8c286050026fea58f813",
+    "part3c1_report": "ef4c18367dfe26ceac3a7f55f725f5450c7a3a0fd28811aa565472d9b06073a2",
+    "replay": "ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1"
+  },
+  "stage": 6,
+  "status": "PASS_PART3C_NUMERIC_SELECTION_STATUS_DIAGNOSED"
+}

@@ -1,0 +1,76 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block66_part2b_cohort_posterior_association.py", line 4027, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block66_part2b_cohort_posterior_association.py", line 1989, in main
+    output = model(
+        **model_kwargs
+    )
+  File "/home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+TypeError: GaussianTrajectoryGRU.forward() got an unexpected keyword argument 'target'
+============================================================================
+BLOCK 6.6 PART2B — RESUMABLE DEVELOPMENT POSTERIOR + ASSOCIATION CENSUS
+============================================================================
+
+===== A. IMMUTABLE FROZEN SEAL =====
+cohort                       = EXACT PASS
+part2a                       = EXACT PASS
+gaussian_checkpoint          = EXACT PASS
+architecture_checkpoint      = EXACT PASS
+normalization                = EXACT PASS
+calibrator                   = EXACT PASS
+association_module           = EXACT PASS
+womd_geometry_module         = EXACT PASS
+storage reserve             = PASS
+
+===== B. FROZEN DEVELOPMENT COHORT =====
+cohort scenarios            = 120
+unique scenario IDs         = PASS
+partition                   = DEVELOPMENT
+formal outcomes             = NOT READ
+
+===== C. EXACT FROZEN RUNTIME IMPORTS =====
+CalibrationNormalizer       = calibration_runtime
+Gaussian model builder      = calibration_runtime
+Gaussian metric math        = gaussian_math
+covariance calibration      = angular_monte_carlo
+association                 = reciprocal unique nearest anchor
+association threshold       = NONE
+association class gate      = NONE
+
+===== D. FROZEN GAUSSIAN RUNTIME =====
+device                      = cuda:0
+GPU                         = NVIDIA RTX A6000
+Gaussian parameters         = 48484
+Gaussian predictive weights = Block4.4 FROZEN
+architecture metadata       = Block4.3 FROZEN
+normalization               = FIT-ONLY FROZEN
+mean calibration            = UNCHANGED
+covariance alpha            = [1.2347064500315355, 1.3451250295202921, 1.354822057728461, 1.2829700217319266]
+
+===== E. FROZEN CAUSAL INPUT CONFIG =====
+Stage2 configs              = LOADED FROZEN
+future labels               = NOT REQUESTED
+truth/perfect ID            = NOT USED
+tracks_to_predict           = NOT USED
+
+===== F. RESUMABLE 120-SCENARIO EXECUTION =====
+
+============================================================================
+BLOCK 6.6 PART2B — CONTROLLED BLOCK
+============================================================================
+exception = TypeError GaussianTrajectoryGRU.forward() got an unexpected keyword argument 'target'
+
+
+resumable per-scene cache = PRESERVED
+cohort membership modified = NO
+training/recalibration     = NO / NO
+N_MC=8192 executed         = NO
+class policy frozen        = NO
+formal outcomes read       = NO
+terminal remains open      = YES
+============================================================================

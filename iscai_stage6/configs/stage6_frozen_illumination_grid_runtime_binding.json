@@ -1,0 +1,126 @@
+{
+  "anti_invention": {
+    "constructor_values_selected_from_outcomes": false,
+    "formal_content_read": false,
+    "future_truth_read": false,
+    "predictive_performance_read": false,
+    "range_min_defaulted_to_zero": false,
+    "reactive_performance_read": false
+  },
+  "block": "6.8_Part2B_grid_binding_repair",
+  "constructor": {
+    "n_range": 301,
+    "n_theta": 501,
+    "range_max_m": 150.0,
+    "range_min_m": 0.0,
+    "theta_max_rad": 0.4363323129985824,
+    "theta_min_rad": -0.4363323129985824
+  },
+  "expected_map_shape": [
+    501,
+    301
+  ],
+  "next": "Part2B Part1 decision-ledger runner must load exactly these six frozen constructor values instead of attempting heuristic key discovery.",
+  "project": "Agni",
+  "provenance": {
+    "Block64_config_path": "/home/agni/waymo/iscai_stage6/configs/block64_mc_grid_numeric_freeze.json",
+    "Block64_config_sha256": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73",
+    "blank_PartA_map_shape": [
+      501,
+      301
+    ],
+    "constructor_signature": "(theta_min_rad: 'float', theta_max_rad: 'float', range_min_m: 'float', range_max_m: 'float', n_theta: 'int', n_range: 'int') -> None",
+    "expected_runtime_grid_shape": [
+      501,
+      301
+    ],
+    "flattened_grid_evidence": [
+      {
+        "path": "coordinate_frame",
+        "value": "Stage6_H0_headlamp"
+      },
+      {
+        "path": "formal_tuning",
+        "value": false
+      },
+      {
+        "path": "provenance",
+        "value": "frozen_PartA_ADB_actuator_domain_mapped_to_Stage6_H0_headlamp_theta"
+      },
+      {
+        "path": "range_centers_m.count",
+        "value": 301
+      },
+      {
+        "path": "range_centers_m.maximum",
+        "value": 150.0
+      },
+      {
+        "path": "range_centers_m.minimum",
+        "value": 0.0
+      },
+      {
+        "path": "range_centers_m.step",
+        "value": 0.5
+      },
+      {
+        "path": "shape",
+        "value": [
+          501,
+          301
+        ]
+      },
+      {
+        "path": "theta_centers_deg.count",
+        "value": 501
+      },
+      {
+        "path": "theta_centers_deg.maximum",
+        "value": 25.0
+      },
+      {
+        "path": "theta_centers_deg.minimum",
+        "value": -25.0
+      },
+      {
+        "path": "theta_centers_deg.step",
+        "value": 0.1
+      }
+    ],
+    "range_min_was_assumed_zero": false,
+    "scientific_illumination_grid": {
+      "coordinate_frame": "Stage6_H0_headlamp",
+      "formal_tuning": false,
+      "provenance": "frozen_PartA_ADB_actuator_domain_mapped_to_Stage6_H0_headlamp_theta",
+      "range_centers_m": {
+        "count": 301,
+        "maximum": 150.0,
+        "minimum": 0.0,
+        "step": 0.5
+      },
+      "shape": [
+        501,
+        301
+      ],
+      "theta_centers_deg": {
+        "count": 501,
+        "maximum": 25.0,
+        "minimum": -25.0,
+        "step": 0.1
+      }
+    },
+    "scientific_illumination_grid_path": "scientific_illumination_grid",
+    "selector_evidence": {
+      "maximum_range_m": 150.0,
+      "record_count": 1124,
+      "theta_domain_deg": [
+        -25.0,
+        25.0
+      ]
+    }
+  },
+  "repair_type": "semantic_key_binding_only",
+  "scientific_parameter_change": false,
+  "stage": 6,
+  "status": "FROZEN_STAGE6_ILLUMINATION_GRID_RUNTIME_BINDING"
+}

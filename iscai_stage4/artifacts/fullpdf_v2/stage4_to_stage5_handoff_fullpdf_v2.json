@@ -1,0 +1,72 @@
+{
+  "Stage5_allowed": true,
+  "Stage5_status": "READY_FOR_REPAIRED_FULLPDF_INPUT",
+  "calibrator": {
+    "Stage5_must_not_reapply": true,
+    "already_applied_to_predictive_covariance": true,
+    "path": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/covariance_calibrator_v2.json",
+    "sha256": "d40cdcc0b0fbf5dc1a04667d19785e3bf9b0b77b2289464077fad3220f04319e",
+    "variance_scale": [
+      1.120492160320282,
+      1.2385359406471255,
+      1.3089813590049744,
+      1.2945917248725893
+    ]
+  },
+  "formal_evidence": {
+    "Gaussian_exact_common_support_vs_CV": {
+      "CV_ADE_m": 5.840948954946172,
+      "Gaussian_ADE_m": 1.2852425176409317,
+      "Gaussian_beats_classical": true,
+      "Gaussian_minus_classical_m": -4.55570643730524,
+      "actor_count": 332,
+      "by_horizon": {
+        "0.1": {
+          "CV_ADE_m": 1.6499414557161531,
+          "Gaussian_ADE_m": 0.6137522115944872,
+          "n": 331
+        },
+        "0.3": {
+          "CV_ADE_m": 3.86349598979145,
+          "Gaussian_ADE_m": 0.9378515329628548,
+          "n": 323
+        },
+        "0.5": {
+          "CV_ADE_m": 6.215799207536684,
+          "Gaussian_ADE_m": 1.3068572252550683,
+          "n": 320
+        },
+        "1.0": {
+          "CV_ADE_m": 11.94988712533446,
+          "Gaussian_ADE_m": 2.335094674422561,
+          "n": 312
+        }
+      },
+      "event_count": 1286,
+      "scenario_count": 110
+    },
+    "prediction_ledger_sha256": "2dd3c396d5c365677c41b3a0df6344a7c28d423daaa368dbe466bd4b17b4c2a8",
+    "report": "/home/agni/waymo/iscai_stage4/reports/stage4_fullpdf_v2_formal_evaluation.json",
+    "sha256": "926a473dfb381e1ed60183863dff8fd3e7c85267ff789ff4364846e04340ccc6"
+  },
+  "input_contract": {
+    "actual_Stage2_noisy_vr": true,
+    "annotated_velocity_primary_input": false,
+    "future_truth_input": false,
+    "measurement_R": true,
+    "measurement_R_is_predictive_covariance": false,
+    "tracks_to_predict_input": false
+  },
+  "model": {
+    "path": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/models/gaussian_primary.pt",
+    "runtime_definition": "/home/agni/waymo/iscai_stage4/scripts/run_stage4_fullpdf_v2_repair.py",
+    "runtime_definition_sha256": "af3fbc457323326125a86acfe85aa8f90391bd70c618ec1332fa49abf819cbec",
+    "sha256": "ca36dabf0f10e085f8983ef256f23966f726d3a559f4917d10879a094ee2b44d"
+  },
+  "normalization": {
+    "path": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/fit_normalization_v2.json",
+    "sha256": "6f7115443c1e6d5e50e3cad7207bbf7c28a51df561f6f760506cdcc213c4ace2"
+  },
+  "primary_posterior": "calibrated_full_3D_Gaussian_GRU",
+  "stage4_status": "COMPLETE_FROZEN_FULLPDF_V2"
+}

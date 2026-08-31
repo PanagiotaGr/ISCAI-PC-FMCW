@@ -1,0 +1,63 @@
+{
+  "block": "5.4",
+  "blockage_aware": {
+    "status": "OPTIONAL_NOT_IMPLEMENTED_IN_BLOCK5.4"
+  },
+  "controller_baselines": [
+    "exhaustive_sweep",
+    "previous_beam_persistence",
+    "geometry_nearest",
+    "fixed_top1_probability",
+    "fixed_top3_probability",
+    "fixed_top5_probability"
+  ],
+  "evaluation_only_baselines": [
+    "oracle_best_gain_eval_only"
+  ],
+  "exhaustive_sweep": {
+    "beam_set": "all_codebook_beams",
+    "probing_count": "beam_count"
+  },
+  "fixed_probability_baselines": {
+    "K": [
+      1,
+      3,
+      5
+    ],
+    "adaptive": false,
+    "ranking": "descending_posterior_decision_cell_mass_P_b",
+    "tie_break": "lower_beam_index"
+  },
+  "geometry_nearest": {
+    "future_truth": false,
+    "input": "causal_predicted_receiver_azimuth",
+    "outside_support": "nearest_edge_beam_plus_explicit_outside_support_flag"
+  },
+  "oracle_best_gain": {
+    "WOMD_measured_beam_label": false,
+    "access": "evaluator_only_after_controller_decision",
+    "beam_label_type": "geometry_gain_derived",
+    "controller_access": false,
+    "evaluation_only": true,
+    "real_communication_measurement": false,
+    "realized_receiver_azimuth": "evaluation_only_never_controller_input"
+  },
+  "previous_beam_persistence": {
+    "future_truth": false,
+    "initialization": "geometry_nearest_using_current_causal_predicted_receiver_azimuth",
+    "reset": "clear_previous_beam_state",
+    "state": "previous_selected_beam_from_same_causal_persistence_controller",
+    "update": "selected_beam_becomes_previous_beam_for_next_controller_step"
+  },
+  "project": "Agni",
+  "scope": {
+    "ADB_started": false,
+    "Stage4_inference": false,
+    "adaptive_TopK_started": false,
+    "development_tuning": false,
+    "formal_N120_read": false,
+    "optical_link_started": false
+  },
+  "stage": 5,
+  "status": "FROZEN"
+}

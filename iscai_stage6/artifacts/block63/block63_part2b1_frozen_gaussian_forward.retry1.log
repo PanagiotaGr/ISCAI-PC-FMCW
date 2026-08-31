@@ -1,0 +1,61 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b1_frozen_gaussian_forward.py", line 3192, in main
+    scientific_run()
+    ~~~~~~~~~~~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b1_frozen_gaussian_forward.py", line 1855, in scientific_run
+    ) = resolve_map_context(
+        ~~~~~~~~~~~~~~~~~~~^
+        causal_result,
+        ^^^^^^^^^^^^^^
+    ...<5 lines>...
+        scenario=scenario,
+        ^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b1_frozen_gaussian_forward.py", line 721, in resolve_map_context
+    require(
+    ~~~~~~~^
+        len(accepted) == 1,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b1_frozen_gaussian_forward.py", line 144, in require
+    raise ScientificBlock(message)
+ScientificBlock: BLOCKED_EXACT_MODEL_INPUT_CONTEXT_BINDING: no unique exact map_context route was discoverable without guessing.
+========================================================================
+BLOCK 6.3 PART 2B/1 — FROZEN GAUSSIAN CAUSAL FORWARD
+========================================================================
+
+===== A. FROZEN PREREQUISITE SEAL =====
+part2a           = PASS
+checkpoint       = PASS
+normalization    = PASS
+calibrator       = PASS
+
+===== B. SAME REAL CAUSAL DEVELOPMENT ROUTE =====
+scenario_id             = b85e1bd6cc8e74c0
+causal histories        = 27
+prediction_id unique    = PASS
+future access           = NO
+
+===== C. EXACT MODEL MAP-CONTEXT BINDING =====
+
+========================================================================
+CONTROLLED BLOCK — NO SCIENTIFIC STATE ADVANCE
+========================================================================
+exception type = ScientificBlock
+exception      = BLOCKED_EXACT_MODEL_INPUT_CONTEXT_BINDING: no unique exact map_context route was discoverable without guessing.
+
+report = /home/agni/waymo/iscai_stage6/reports/block63_part2b1_frozen_gaussian_forward.json
+report SHA256 = fd72d2b2bbadca66251f2026948ff62faad7fc84f1201d45ea66f2f0861b6557
+
+========================================================================
+BLOCK 6.3 PART 2B/1 — FINAL
+========================================================================
+status = BLOCKED_EXACT_FROZEN_GAUSSIAN_FORWARD_BOUNDARY
+diagnostic excerpt = /home/agni/waymo/iscai_stage6/artifacts/block63/block63_part2b1_runtime_boundary_excerpt.txt
+terminal remains open = YES
+========================================================================

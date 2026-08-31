@@ -1,0 +1,309 @@
+
+============================================================
+ClassDef _WorkingTrack
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/association/nearest_neighbor.py:30
+sha256=c09926ff9ab5e15a03c7c9cd3e80af1a230bbfad4a7b7652dd7031eacc2e3420
+============================================================
+class _WorkingTrack:
+    track_id: str
+
+    history: list[
+        AssociatedDetection
+    ]
+
+    missed_frames: int = 0
+    terminated: bool = False
+
+============================================================
+FunctionDef _history_for_prediction
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/association/nearest_neighbor.py:41
+sha256=d007dfc5e656e0e037a781f93f7be6a060858b700ec062bdd0fd0d76d01744fc
+============================================================
+def _history_for_prediction(
+    track: _WorkingTrack,
+):
+    return tuple(
+        (
+            item.timestamp_s,
+            item.detection,
+        )
+        for item in track.history
+    )
+
+============================================================
+FunctionDef associate_estimated_gnn
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/association/nearest_neighbor.py:53
+sha256=f2cac99bad1b0d0bb3f087ced958daa1b923f6ef5f743426d3173454fd45b9c5
+============================================================
+def associate_estimated_gnn(
+    sequence: AlgorithmObservationSequence,
+    *,
+    config: AssociationConfig | None = None,
+) -> EstimatedAssociationResult:
+    """
+    Deterministic gated global nearest-neighbor
+    association.
+
+    IMPORTANT:
+    - uses Stage2 algorithm-facing frames only;
+    - does not read evaluator truth;
+    - detection_key is carried through but is
+      never used in association cost;
+    - Stage3 track IDs are newly generated.
+    """
+
+    if config is None:
+        config = AssociationConfig()
+
+    working_tracks: list[
+        _WorkingTrack
+    ] = []
+
+    frame_outputs = []
+
+    next_track_number = 0
+
+    previous_timestamp = None
+
+    for frame_index, frame in enumerate(
+        sequence.frames
+    ):
+        timestamp = frame_timestamp_s(
+            frame
+        )
+
+        if (
+            previous_timestamp is not None
+            and timestamp <= previous_timestamp
+        ):
+            raise ValueError(
+                "Observation frame timestamps "
+                "must be strictly increasing."
+            )
+
+        previous_timestamp = timestamp
+
+        detections = tuple(
+            snapshot_from_detection(d)
+            for d in frame_detections(
+                frame
+            )
+        )
+
+        active_tracks = [
+            track
+            for track in working_tracks
+            if not track.terminated
+        ]
+
+        candidates = []
+
+        for track_index, track in enumerate(
+            active_tracks
+        ):
+            if not track.history:
+                continue
+
+            last = track.history[-1]
+
+            dt_s = (
+                timestamp
+                -
+                last.timestamp_s
+            )
+
+            if dt_s <= 0.0:
+                raise ValueError(
+                    "Association timestamps "
+                    "must increase."
+                )
+
+            predicted = predict_measurement(
+                history=(
+                    _history_for_prediction(
+                        track
+                    )
+                ),
+                target_timestamp_s=timestamp,
+            )
+
+            for detection_index, detection in enumerate(
+                detections
+            ):
+                score = association_cost(
+                    predicted=predicted,
+                    previous=last.detection,
+                    current=detection,
+                    dt_s=dt_s,
+                    config=config,
+                )
+
+                if not score.feasible:
+                    continue
+
+                candidates.append(
+                    (
+                        score.cost,
+                        track.track_id,
+                        detection_index,
+                        track_index,
+                    )
+                )
+
+        candidates.sort(
+            key=lambda x: (
+                x[0],
+                x[1],
+                x[2],
+            )
+        )
+
+        matched_track_indices = set()
+        matched_detection_indices = set()
+
+        assignments = []
+
+        for (
+            _cost,
+            _track_id,
+            detection_index,
+            track_index,
+        ) in candidates:
+            if (
+                track_index
+                in matched_track_indices
+            ):
+                continue
+
+            if (
+                detection_index
+                in matched_detection_indices
+            ):
+                continue
+
+            track = active_tracks[
+                track_index
+            ]
+
+            associated = AssociatedDetection(
+                track_id=track.track_id,
+                frame_index=frame_index,
+                timestamp_s=timestamp,
+                detection=(
+                    detections[
+                        detection_index
+                    ]
+                ),
+            )
+
+            track.history.append(
+                associated
+            )
+
+            track.missed_frames = 0
+
+            matched_track_indices.add(
+                track_index
+            )
+
+            matched_detection_indices.add(
+                detection_index
+            )
+
+            assignments.append(
+                associated
+            )
+
+        for track_index, track in enumerate(
+            active_tracks
+        ):
+            if (
+                track_index
+                in matched_track_indices
+            ):
+                continue
+
+            track.missed_frames += 1
+
+            if (
+                track.missed_frames
+                >
+                config.max_missed_frames
+            ):
+                track.terminated = True
+
+        for detection_index, detection in enumerate(
+            detections
+        ):
+            if (
+                detection_index
+                in matched_detection_indices
+            ):
+                continue
+
+            track_id = (
+                f"s3trk-"
+                f"{next_track_number:06d}"
+            )
+
+            next_track_number += 1
+
+            associated = AssociatedDetection(
+                track_id=track_id,
+                frame_index=frame_index,
+                timestamp_s=timestamp,
+                detection=detection,
+            )
+
+            new_track = _WorkingTrack(
+                track_id=track_id,
+                history=[associated],
+            )
+
+            working_tracks.append(
+                new_track
+            )
+
+            assignments.append(
+                associated
+            )
+
+        assignments.sort(
+            key=lambda x: x.track_id
+        )
+
+        frame_outputs.append(
+            AssociatedFrame(
+                frame_index=frame_index,
+                timestamp_s=timestamp,
+                detections=tuple(
+                    assignments
+                ),
+            )
+        )
+
+    track_outputs = []
+
+    for track in working_tracks:
+        track_outputs.append(
+            AssociatedTrack(
+                track_id=track.track_id,
+                detections=tuple(
+                    track.history
+                ),
+                terminated=(
+                    track.terminated
+                ),
+            )
+        )
+
+    track_outputs.sort(
+        key=lambda x: x.track_id
+    )
+
+    return EstimatedAssociationResult(
+        scenario_id=sequence.scenario_id,
+        frames=tuple(frame_outputs),
+        tracks=tuple(track_outputs),
+        truth_used=False,
+    )

@@ -1,0 +1,61 @@
+{
+  "authoritative_runtime_rule": {
+    "comparison": "abs(dt_adjacent - 0.1) < 1e-3",
+    "cumulative_absolute_1ms_gate": false,
+    "cumulative_elapsed_time": "DIAGNOSTIC_ONLY",
+    "future_index_offsets": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "interpolation": false,
+    "monotonic_required": true,
+    "nearest_timestamp_search": false,
+    "nominal_adjacent_step_s": 0.1,
+    "nominal_horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "per_adjacent_step_tolerance_s": 0.001,
+    "strict_less_than": true
+  },
+  "authority": {
+    "nominal_adjacent_step_s": 0.1,
+    "path": "/home/agni/waymo/iscai_stage0/tests/test_womd_schema_and_causality.py",
+    "per_adjacent_step_absolute_tolerance_s": 0.001,
+    "semantics": "for every adjacent WOMD timestamp pair: timestamps strictly increase and abs(dt-0.1) < 1e-3",
+    "sha256": "4d1b478bf181c55035bffc358a62992c55327db4906117247c595155f42f0877",
+    "strict_inequality": true
+  },
+  "block": "6.8_Part2C_timestamp_alignment_repair",
+  "original_preoutcome_contract": {
+    "modified": false,
+    "path": "/home/agni/waymo/iscai_stage6/configs/stage6_reactive_future_truth_scoring_contract.json",
+    "sha256": "8364c7cdfa4b66d820823c804d45905a207f77f66b53f06a6383e7722b8a9970"
+  },
+  "outcome_boundary": {
+    "NI_deltas_seen": false,
+    "formal_evaluation": false,
+    "future_GT_already_opened": true,
+    "future_GT_role": "evaluator_only",
+    "metric_values_computed_before_amendment": false,
+    "predictive_performance_seen": false,
+    "reactive_metric_artifact_written": false
+  },
+  "reason": "Part2C incorrectly interpreted the existing 1e-3 Stage0 adjacent-step tolerance as an absolute cumulative-horizon tolerance.",
+  "scientific_change": {
+    "NI_rule": false,
+    "controller": false,
+    "future_index_selection": false,
+    "future_state_selection": false,
+    "metric_formula": false,
+    "policy": false,
+    "rasterization": false,
+    "trajectory_geometry": false
+  },
+  "stage": 6,
+  "status": "FROZEN_PREMETRIC_TIMESTAMP_ALIGNMENT_AMENDMENT"
+}

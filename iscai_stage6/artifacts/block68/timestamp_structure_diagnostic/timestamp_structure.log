@@ -1,0 +1,252 @@
+============================================================
+STAGE 6 — BLOCK 6.8
+DEVELOPMENT TIMESTAMP STRUCTURE DIAGNOSTIC
+TIMESTAMPS ONLY / ZERO PERFORMANCE METRICS
+============================================================
+
+===== A. EXACT PRE-METRIC BOUNDARY =====
+preoutcome contract          = EXACT PASS
+provenance binding           = EXACT PASS
+failed timing amendment      = PRESERVED EXACT
+reactive metric artifacts    = ABSENT
+predictive performance       = NOT COMPUTED
+P_occ content                = NOT OPENED
+NI deltas                    = NOT COMPUTED
+formal evaluation            = NO
+
+===== B. STAGE0 TIMING ASSERTION CONTEXT =====
+Stage0 timing test SHA256 = 4d1b478bf181c55035bffc358a62992c55327db4906117247c595155f42f0877
+
+context around line 42
+  L0034:     assert future_count == 80
+  L0035: 
+  L0036: 
+  L0037: def test_timestamp_monotonicity_and_rate(scenario):
+  L0038:     timestamps = list(scenario.timestamps_seconds)
+  L0039: 
+  L0040:     assert all(
+  L0041:         t1 > t0
+  L0042:         for t0, t1 in zip(timestamps[:-1], timestamps[1:])
+  L0043:     )
+  L0044: 
+  L0045:     deltas = [
+  L0046:         t1 - t0
+  L0047:         for t0, t1 in zip(timestamps[:-1], timestamps[1:])
+  L0048:     ]
+  L0049: 
+  L0050:     assert all(abs(dt - 0.1) < 1e-3 for dt in deltas)
+
+context around line 47
+  L0039: 
+  L0040:     assert all(
+  L0041:         t1 > t0
+  L0042:         for t0, t1 in zip(timestamps[:-1], timestamps[1:])
+  L0043:     )
+  L0044: 
+  L0045:     deltas = [
+  L0046:         t1 - t0
+  L0047:         for t0, t1 in zip(timestamps[:-1], timestamps[1:])
+  L0048:     ]
+  L0049: 
+  L0050:     assert all(abs(dt - 0.1) < 1e-3 for dt in deltas)
+  L0051: 
+  L0052: 
+  L0053: def test_track_state_alignment(scenario):
+  L0054:     num_timestamps = len(scenario.timestamps_seconds)
+  L0055: 
+
+context around line 50
+  L0042:         for t0, t1 in zip(timestamps[:-1], timestamps[1:])
+  L0043:     )
+  L0044: 
+  L0045:     deltas = [
+  L0046:         t1 - t0
+  L0047:         for t0, t1 in zip(timestamps[:-1], timestamps[1:])
+  L0048:     ]
+  L0049: 
+  L0050:     assert all(abs(dt - 0.1) < 1e-3 for dt in deltas)
+  L0051: 
+  L0052: 
+  L0053: def test_track_state_alignment(scenario):
+  L0054:     num_timestamps = len(scenario.timestamps_seconds)
+  L0055: 
+  L0056:     assert len(scenario.tracks) > 0
+  L0057: 
+  L0058:     for track in scenario.tracks:
+
+===== C. 120-SCENARIO TIMESTAMP STRUCTURE =====
+development scenarios        = 120 / 120
+timestamp arrays monotonic   = PASS
+scenarios with >=1ms adjacent-step deviation      = 2
+scenarios where nearest offset differs from nominal = 2
+scenarios with nearest error >10ms (diagnostic only)      = 0
+
+worst adjacent interval:
+{
+  "abs_error_from_0p1_s": 0.1000099999999998,
+  "absolute_index_after": 18,
+  "absolute_index_before": 17,
+  "anchor_index": 10,
+  "dt_s": 0.2000099999999998,
+  "scenario_id": "b66168b7cf95bf84"
+}
+
+===== D. NOMINAL-HORIZON TIMESTAMP RESOLUTION =====
+
+horizon = 0.1s
+  nearest offset distribution = {'1': 120}
+  nearest abs error median = 1.9999999999992246e-05
+  nearest abs error p95    = 0.0001599999999999685
+  nearest abs error max    = 0.0008399999999999797
+  fixed-offset error max   = 0.0008399999999999797
+  worst nearest case       = {"absolute_error_s": 0.0008399999999999797, "anchor_index": 10, "bracket_width_s": 0.09912999999999994, "bracketed": true, "lower_index": 11, "nearest_elapsed_s": 0.09916000000000003, "nearest_offset": 1, "nominal_horizon_s": 0.1, "nominal_offset": 1, "nominal_offset_elapsed_s": 0.09916000000000003, "nominal_offset_error_s": 0.0008399999999999797, "scenario_id": "6fe5e19d4a29c9a7", "upper_index": 12}
+
+horizon = 0.3s
+  nearest offset distribution = {'3': 120}
+  nearest abs error median = 3.999999999998449e-05
+  nearest abs error p95    = 0.0004584999999999057
+  nearest abs error max    = 0.0026299999999999657
+  fixed-offset error max   = 0.0026299999999999657
+  worst nearest case       = {"absolute_error_s": 0.0026299999999999657, "anchor_index": 10, "bracket_width_s": 0.09908000000000006, "bracketed": true, "lower_index": 13, "nearest_elapsed_s": 0.29737, "nearest_offset": 3, "nominal_horizon_s": 0.3, "nominal_offset": 3, "nominal_offset_elapsed_s": 0.29737, "nominal_offset_error_s": 0.0026299999999999657, "scenario_id": "6fe5e19d4a29c9a7", "upper_index": 14}
+
+horizon = 0.5s
+  nearest offset distribution = {'5': 120}
+  nearest abs error median = 6.999999999995898e-05
+  nearest abs error p95    = 0.0008570000000000567
+  nearest abs error max    = 0.004510000000000125
+  fixed-offset error max   = 0.004510000000000125
+  worst nearest case       = {"absolute_error_s": 0.004510000000000125, "anchor_index": 10, "bracket_width_s": 0.09904000000000002, "bracketed": true, "lower_index": 15, "nearest_elapsed_s": 0.4954899999999999, "nearest_offset": 5, "nominal_horizon_s": 0.5, "nominal_offset": 5, "nominal_offset_elapsed_s": 0.4954899999999999, "nominal_offset_error_s": 0.004510000000000125, "scenario_id": "6fe5e19d4a29c9a7", "upper_index": 16}
+
+horizon = 1.0s
+  nearest offset distribution = {'9': 2, '10': 118}
+  nearest abs error median = 9.999999999976694e-05
+  nearest abs error p95    = 0.001986999999999973
+  nearest abs error max    = 0.009210000000000051
+  fixed-offset error max   = 0.10009000000000001
+  worst nearest case       = {"absolute_error_s": 0.009210000000000051, "anchor_index": 10, "bracket_width_s": 0.09907000000000021, "bracketed": true, "lower_index": 20, "nearest_elapsed_s": 0.99079, "nearest_offset": 10, "nominal_horizon_s": 1.0, "nominal_offset": 10, "nominal_offset_elapsed_s": 0.99079, "nominal_offset_error_s": 0.009210000000000051, "scenario_id": "6fe5e19d4a29c9a7", "upper_index": 21}
+
+===== E. PREVIOUS FAILING SCENARIO b66168b7cf95bf84 =====
+{
+  "anchor_index": 10,
+  "anchor_timestamp_s": 1.00024,
+  "cohort_index": 85,
+  "horizons": [
+    {
+      "bracket_width_s": 0.10003000000000006,
+      "lower_index": 10,
+      "nearest_absolute_error_s": 3.0000000000057758e-05,
+      "nearest_absolute_index": 11,
+      "nearest_elapsed_s": 0.10003000000000006,
+      "nearest_offset": 1,
+      "nominal_horizon_s": 0.1,
+      "nominal_offset": 1,
+      "nominal_offset_absolute_error_s": 3.0000000000057758e-05,
+      "nominal_offset_elapsed_s": 0.10003000000000006,
+      "target_absolute_time_s": 1.10024,
+      "target_bracketed": true,
+      "upper_index": 11
+    },
+    {
+      "bracket_width_s": 0.10002,
+      "lower_index": 12,
+      "nearest_absolute_error_s": 7.000000000007e-05,
+      "nearest_absolute_index": 13,
+      "nearest_elapsed_s": 0.30007000000000006,
+      "nearest_offset": 3,
+      "nominal_horizon_s": 0.3,
+      "nominal_offset": 3,
+      "nominal_offset_absolute_error_s": 7.000000000007e-05,
+      "nominal_offset_elapsed_s": 0.30007000000000006,
+      "target_absolute_time_s": 1.30024,
+      "target_bracketed": true,
+      "upper_index": 13
+    },
+    {
+      "bracket_width_s": 0.10002,
+      "lower_index": 14,
+      "nearest_absolute_error_s": 8.000000000008001e-05,
+      "nearest_absolute_index": 15,
+      "nearest_elapsed_s": 0.5000800000000001,
+      "nearest_offset": 5,
+      "nominal_horizon_s": 0.5,
+      "nominal_offset": 5,
+      "nominal_offset_absolute_error_s": 8.000000000008001e-05,
+      "nominal_offset_elapsed_s": 0.5000800000000001,
+      "target_absolute_time_s": 1.50024,
+      "target_bracketed": true,
+      "upper_index": 15
+    },
+    {
+      "bracket_width_s": 0.09998000000000018,
+      "lower_index": 18,
+      "nearest_absolute_error_s": 0.0001100000000000545,
+      "nearest_absolute_index": 19,
+      "nearest_elapsed_s": 1.00011,
+      "nearest_offset": 9,
+      "nominal_horizon_s": 1.0,
+      "nominal_offset": 10,
+      "nominal_offset_absolute_error_s": 0.10009000000000001,
+      "nominal_offset_elapsed_s": 1.10009,
+      "target_absolute_time_s": 2.00024,
+      "target_bracketed": true,
+      "upper_index": 19
+    }
+  ],
+  "inspection_adjacent_dts_s": [
+    0.10003000000000006,
+    0.10002,
+    0.10002,
+    0.09999000000000002,
+    0.10002,
+    0.10002,
+    0.10002,
+    0.2000099999999998,
+    0.09998000000000018,
+    0.09997999999999996,
+    0.09999000000000002
+  ],
+  "inspection_timestamps_s": [
+    1.00024,
+    1.10027,
+    1.20029,
+    1.30031,
+    1.4003,
+    1.50032,
+    1.60034,
+    1.70036,
+    1.90037,
+    2.00035,
+    2.10033,
+    2.20032
+  ],
+  "scenario_id": "b66168b7cf95bf84"
+}
+
+===== F. SCIENTIFIC BOUNDARY =====
+actor future states          = NOT READ
+future box geometry          = NOT READ
+reactive illumination values = NOT READ
+performance metrics          = NOT COMPUTED
+predictive performance       = NOT COMPUTED
+P_occ content                = NOT OPENED
+NI deltas                    = NOT COMPUTED
+formal evaluation            = NO
+timestamp policy changed     = NO
+Stage6 regression            = 224 / 224 PASS
+
+============================================================
+BLOCK 6.8 TIMESTAMP STRUCTURE DIAGNOSTIC — FINAL
+============================================================
+development scenarios     = 120 / 120
+timestamp-only access     = YES
+actor future states       = NOT READ
+performance metrics       = NOT COMPUTED
+predictive performance    = NOT COMPUTED
+P_occ content             = NOT OPENED
+NI deltas                 = NOT COMPUTED
+formal evaluation         = NO
+alignment policy selected = NO
+Stage6 regression         = 224 / 224 PASS
+STATUS = PASS_TIMESTAMP_STRUCTURE_DIAGNOSTIC_ONLY
+report = /home/agni/waymo/iscai_stage6/reports/block68_timestamp_structure_diagnostic.json
+terminal remains open = YES

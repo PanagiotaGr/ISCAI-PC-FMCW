@@ -1,0 +1,45 @@
+{
+  "block": "6.6-Part2C/1",
+  "eligible_predictive": {
+    "by_class": {
+      "TYPE_CYCLIST": 48,
+      "TYPE_PEDESTRIAN": 110,
+      "TYPE_VEHICLE": 719
+    },
+    "count": 877,
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_predictive_matches.jsonl",
+    "sha256": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6"
+  },
+  "eligible_reactive_fallback": {
+    "by_class": {
+      "TYPE_CYCLIST": 8,
+      "TYPE_PEDESTRIAN": 68,
+      "TYPE_VEHICLE": 171
+    },
+    "count": 247,
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_reactive_fallbacks.jsonl",
+    "sha256": "7618c699c336b3ff283d96cad299a737124a3ddcdd51521289bb7531eec9c9aa"
+  },
+  "immutable_inputs": {
+    "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_class_aware_development_cohort_120.jsonl": "57440e3d976e7aeff44811b5eeb075dc56e0e0e070a3832ec72d354253b998c9",
+    "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_association_matches.jsonl": "1011d443998e7b33600911954d67c4377aefc63ec4455fb3d67b24e281661848",
+    "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_identity_safe_gaussian_posterior.jsonl": "f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd",
+    "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_reactive_fallback_boxes.jsonl": "32af5397b3ae4a3311dcf401a36bd247cfbca5fbdb9bf7e883b0a9a4e34bbb3b",
+    "/home/agni/waymo/iscai_stage6/reports/block66_part1a_forward_headlamp_census.json": "553188a6d01a890e9a6c2f11e9bbfd2d8426665065c4abcc770fa7e30ca84228",
+    "/home/agni/waymo/iscai_stage6/reports/block66_part2b_cohort_posterior_association_census.json": "96dfccd808fd06d77b6f9d4b1c100f6a59db7d090a405f41b88d4fa6854c9705"
+  },
+  "report": {
+    "path": "/home/agni/waymo/iscai_stage6/reports/block66_part2c1_headlamp_eligibility_join.json",
+    "sha256": "d5f70216ab629b132307fa510c4a475f7e8c0a32a414877d51fef5c0cd654200"
+  },
+  "scientific_lock": {
+    "N_MC": 8192,
+    "N_MC_executed": false,
+    "association": "UNCHANGED",
+    "class_policy": "NOT_FROZEN",
+    "formal_tuning": "FORBIDDEN",
+    "headlamp_eligibility": "FROZEN"
+  },
+  "stage": 6,
+  "status": "HEADLAMP_ACTOR_ELIGIBILITY_JOIN_FROZEN"
+}

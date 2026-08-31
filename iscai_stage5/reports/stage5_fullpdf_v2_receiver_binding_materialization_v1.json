@@ -1,0 +1,53 @@
+{
+  "Stage6_allowed": false,
+  "amendment": {
+    "path": "/home/agni/waymo/iscai_stage5/configs/stage5_fullpdf_v2_receiver_binding_amendment_v1.json",
+    "sha256": "3654fd3334076eb1649b74db46ffeb8c2065ed1bc9a70d6e011939edfebe6355"
+  },
+  "attach_supervision_called": false,
+  "binding": {
+    "no_receiver_scenes": 0,
+    "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_repair/primary_receiver_binding_fullpdf_v2.jsonl",
+    "represented_scenes": 120,
+    "selected_receiver_prediction_unavailable": 0,
+    "sha256": "5a5516ee050d2fd1c0a571193007650e75f23836b2734ee3df1950cc04f2e1c8"
+  },
+  "candidate_semantics": "exact historical causal_actor_bridge -> ReceiverCandidate -> select_primary_receiver replay",
+  "failed_attempt_history": {
+    "manifest": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/receiver_binding_failed_attempt_history/before_receiver_binding_20260826T200905Z/history_manifest.json",
+    "manifest_sha256": "e4aba2c7133ee3c9868b4ae78cf5063c15ec56ee6fd1ee28702301d2f855e2dc",
+    "previous_checker2_pretruth_seal_sha256": "44b1ba5bd702f8081f4e7e8c07a9139ccaa9e588ec938851b652d05c82693803"
+  },
+  "formal_metrics_read": false,
+  "formal_parameter_tuning": false,
+  "formal_rerun_executed": false,
+  "historical_materializer": {
+    "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py",
+    "sha256": "b1276eefd51444e0e648794d8bbb61ef829cc49bd1a09ba68ff79d9b61c8a9a5"
+  },
+  "recalibration": false,
+  "receiver_policy": "nearest_causal_vehicle_ahead",
+  "regression": {
+    "log": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_repair/receiver_binding_regression_v1.log",
+    "log_sha256": "5623989ca6680c417d0ae5f03bbf7d4f8afa418f20789f0921e9570c9847d3d9",
+    "status": "PASS",
+    "tests": 271
+  },
+  "repair_scope": "materialize already-frozen primary causal receiver selection as explicit checker-readable artifact",
+  "retraining": false,
+  "scientific_policy_change": false,
+  "selector": "iscai_stage5.receiver_selection.select_primary_receiver",
+  "selector_config": "ReceiverSelectionConfig()",
+  "stage": 5,
+  "status": "PASS_READY_FOR_SUPERSEDING_FORMAL_RERUN",
+  "superseding_pretruth_seal": {
+    "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/stage5_fullpdf_v2_receiver_binding_superseding_pretruth_seal_v1.json",
+    "sha256": "b2c2035ee7839ceef3d8bf6039d5d181c993b5fac32113eca3df2723ef6c7c65"
+  },
+  "unchanged_frozen_checker": {
+    "path": "/home/agni/waymo/iscai_stage5/scripts/run_stage5_fullpdf_v2_independent_formal_checker.py",
+    "resolves_binding_uniquely": true,
+    "sha256": "0e8bd2570453fdc4a92e3fab065f9726cb4d097b334e6b262959c54b0dd9d902"
+  },
+  "version": "fullpdf_v2"
+}

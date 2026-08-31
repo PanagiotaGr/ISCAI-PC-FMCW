@@ -1,0 +1,850 @@
+PART-A DYNAMIC ADB TRANSITIVE DEPENDENCY AUDIT
+notebook_sha256=b5a80a6d3441de6d571db4f65b4a43ed4052cc2b3ccba935ad31b5dd51316ef3
+notebook_executed=false
+
+
+============================================================
+FUNCTION: adb_trz_shadow_geometry_from_xy
+CELL: 70
+SHA256: f968d50f08bdbda613ebc792c2d439736a0fe963142e4ea9bccd1a5b90926a83
+============================================================
+def adb_trz_shadow_geometry_from_xy(x_track, y_track):
+    """
+    Dynamic ADB geometry from reconstructed x(t), y(t).
+
+    Coordinate convention:
+        ego at (0, 0)
+        +y forward
+        +x right
+        theta = atan2(x, y), in degrees
+    """
+    return adb_shadow_geometry_from_xy(x_track, y_track, include_radial_zone=True)
+
+============================================================
+FUNCTION: adb_shadow_geometry_from_xy
+CELL: 69
+SHA256: 72330d8d79ee4bd3cb8abba8d1073d2210984bef7230936d37e1c1ee278314fc
+============================================================
+def adb_shadow_geometry_from_xy(x_track, y_track, include_radial_zone=False):
+    """
+    Convert reconstructed x(t), y(t) into dynamic ADB shadow geometry.
+
+    Coordinate convention:
+        ego vehicle at (0, 0)
+        +y = forward
+        +x = right
+        theta = atan2(x, y), in degrees
+
+    Dynamic quantities:
+        r(t)
+        theta_c(t)
+        theta_center(t) = theta_c(t) - Delta theta
+        epsilon(t)
+        theta_min(t)
+        theta_max(t)
+    """
+    target_range = np.sqrt(x_track**2 + y_track**2)
+    theta_c = np.rad2deg(np.arctan2(x_track, y_track))
+    shadow_center = theta_c - delta_theta_deg
+    effective_half_width = target_width_m / 2.0 + lateral_safety_margin_m
+    epsilon = np.rad2deg(np.arctan(effective_half_width / np.maximum(target_range, EPS)))
+
+    geometry = {
+        "range": target_range,
+        "range_target": target_range,
+        "theta_c": theta_c,
+        "shadow_center": shadow_center,
+        "epsilon": epsilon,
+        "theta_min": shadow_center - epsilon,
+        "theta_max": shadow_center + epsilon,
+    }
+
+    if include_radial_zone:
+        geometry["r_min"] = target_range + adb_trz_front_margin_units
+        geometry["r_max"] = geometry["r_min"] + adb_trz_transition_length_units
+
+    return geometry
+
+============================================================
+FUNCTION: adb_intensity_map
+CELL: 59
+SHA256: 000407148d5120db7326f95ed42e12342ce5144054184b613ee1f5678837c350
+============================================================
+def adb_intensity_map(theta_min_deg, theta_max_deg, x_m, y_m):
+    # Current distance from ego vehicle to target center
+    target_range_m = np.hypot(x_m, y_m)
+    # Same logic as the simulation 1's example intensity map
+    r_min_m = target_range_m + radial_safety_margin_m
+    r_max_m = r_min_m + transition_length_m
+
+    intensity = np.ones_like(adb_range_grid_m, dtype=float)
+
+    inside_shadow = (
+        (adb_angle_grid_deg >= theta_min_deg)
+        & (adb_angle_grid_deg <= theta_max_deg)
+    )
+
+    full_shadow = inside_shadow & (adb_range_grid_m <= r_min_m)
+    transition = (
+        inside_shadow
+        & (adb_range_grid_m > r_min_m)
+        & (adb_range_grid_m < r_max_m)
+    )
+    intensity[full_shadow] = 0.0
+
+    u = (adb_range_grid_m[transition] - r_min_m) / (r_max_m - r_min_m)
+    intensity[transition] = 0.5 * (1.0 - np.cos(np.pi * u))
+
+    return intensity
+
+============================================================
+FUNCTION: adb_combine_intensity_maps
+CELL: 59
+SHA256: e5517dc82a865658f014f38e82e2b283aeda1f498f2a0000435b66d6aa3ab33f
+============================================================
+def adb_combine_intensity_maps(theta_min_values, theta_max_values, x_values, y_values):
+    """Combine ADB intensity maps from multiple vehicles."""
+
+    combined = np.ones_like(adb_range_grid_m, dtype=float)
+
+    for theta_min_deg, theta_max_deg, x_m, y_m in zip(
+        theta_min_values,
+        theta_max_values,
+        x_values,
+        y_values
+    ):
+        vehicle_map = adb_intensity_map(theta_min_deg, theta_max_deg, x_m, y_m)
+        combined = np.minimum(combined, vehicle_map)
+
+    return combined
+
+============================================================
+MHT / CALL-SITE CONTEXTS
+============================================================
+
+CELL 70 MATCH LINE 20
+0008:     raise ValueError("m2_final_tracks is empty. Run Module 2 first.")
+0009: 
+0010: # ------------------------------------------------------------
+0011: # Helpers
+0012: # ------------------------------------------------------------
+0013: def adb_trz_track_arrays(track):
+0014:     """
+0015:     Convert one reconstructed Module 2 track into ordered frame, x, y arrays.
+0016:     """
+0017:     return adb_track_arrays(track)
+0018: 
+0019: 
+0020: def adb_trz_shadow_geometry_from_xy(x_track, y_track):
+0021:     """
+0022:     Dynamic ADB geometry from reconstructed x(t), y(t).
+0023: 
+0024:     Coordinate convention:
+0025:         ego at (0, 0)
+0026:         +y forward
+0027:         +x right
+0028:         theta = atan2(x, y), in degrees
+0029:     """
+0030:     return adb_shadow_geometry_from_xy(x_track, y_track, include_radial_zone=True)
+0031: 
+0032: 
+
+CELL 70 MATCH LINE 274
+0262:     adb_trz_cols,
+0263:     figsize=(5.0 * adb_trz_cols, 4.9 * adb_trz_num_tracks),
+0264:     constrained_layout=True
+0265: )
+0266: 
+0267: if adb_trz_num_tracks == 1:
+0268:     axes = np.array([axes])
+0269: 
+0270: adb_trz_colors = ["tab:blue", "tab:orange", "tab:green", "tab:red"]
+0271: 
+0272: for adb_trz_track_idx, adb_trz_track in enumerate(m2_final_tracks):
+0273:     adb_trz_frames, adb_trz_x_track, adb_trz_y_track = adb_trz_track_arrays(adb_trz_track)
+0274:     adb_trz_geom = adb_trz_shadow_geometry_from_xy(adb_trz_x_track, adb_trz_y_track)
+0275:     adb_trz_snapshot_indices = adb_trz_select_snapshot_indices(
+0276:         adb_trz_frames,
+0277:         n_snapshots=adb_trz_num_snapshots
+0278:     )
+0279: 
+0280:     adb_trz_track_label = f"Reconstructed track {adb_trz_track_idx + 1}"
+0281:     adb_trz_track_color = adb_trz_colors[adb_trz_track_idx % len(adb_trz_colors)]
+0282: 
+0283:     for adb_trz_col_idx in range(adb_trz_cols):
+0284:         adb_trz_ax = axes[adb_trz_track_idx, adb_trz_col_idx]
+0285: 
+0286:         if adb_trz_col_idx < len(adb_trz_snapshot_indices):
+
+CELL 71 MATCH LINE 189
+0177: # ------------------------------------------------------------
+0178: 
+0179: adb_rc_frame0_items = []
+0180: 
+0181: for adb_rc_track_idx, adb_rc_track in enumerate(m2_final_tracks):
+0182:     adb_rc_frames, adb_rc_x_track, adb_rc_y_track = adb_trz_track_arrays(adb_rc_track)
+0183: 
+0184:     if adb_rc_requested_frame not in adb_rc_frames:
+0185:         continue
+0186: 
+0187:     adb_rc_array_idx = int(np.where(adb_rc_frames == adb_rc_requested_frame)[0][0])
+0188: 
+0189:     adb_rc_geom = adb_trz_shadow_geometry_from_xy(
+0190:         adb_rc_x_track,
+0191:         adb_rc_y_track
+0192:     )
+0193: 
+0194:     adb_rc_frame0_items.append(
+0195:         {
+0196:             "track_idx": adb_rc_track_idx,
+0197:             "frames": adb_rc_frames,
+0198:             "geom": adb_rc_geom,
+0199:             "array_idx": adb_rc_array_idx,
+0200:         }
+0201:     )
+
+CELL 72 MATCH LINE 426
+0414:     ax.grid(True, axis="x", alpha=0.18)
+0415: 
+0416:     for adb_angmap_spine in ax.spines.values():
+0417:         adb_angmap_spine.set_linewidth(0.8)
+0418: 
+0419: 
+0420: # ------------------------------------------------------------
+0421: # Build one educational figure per reconstructed track
+0422: # ------------------------------------------------------------
+0423: for adb_angmap_track_idx, adb_angmap_track in enumerate(m2_final_tracks):
+0424:     adb_angmap_frames, adb_angmap_x_track, adb_angmap_y_track = adb_trz_track_arrays(adb_angmap_track)
+0425: 
+0426:     adb_angmap_geom = adb_trz_shadow_geometry_from_xy(
+0427:         adb_angmap_x_track,
+0428:         adb_angmap_y_track
+0429:     )
+0430: 
+0431:     adb_angmap_snapshot_indices = adb_trz_select_snapshot_indices(
+0432:         adb_angmap_frames,
+0433:         n_snapshots=adb_angmap_num_snapshots
+0434:     )
+0435: 
+0436:     adb_angmap_track_label = f"Reconstructed track {adb_angmap_track_idx + 1}"
+0437:     adb_angmap_track_color = adb_angmap_track_colors[
+0438:         adb_angmap_track_idx % len(adb_angmap_track_colors)
+
+CELL 73 MATCH LINE 14
+0002: # Module 3 - TODO Cell 1N (clean labels version)
+0003: # Dynamic intensity / top-down ADB plot
+0004: # Only for reconstructed track 2 (curved track)
+0005: #
+0006: # Design change requested:
+0007: # - no legend
+0008: # - no labels placed on top of the shaded cone/line
+0009: # - only small labels / boxes away from the geometry
+0010: # - no arrows in the first plot
+0011: #
+0012: # Uses helpers from previous cells:
+0013: # - adb_trz_track_arrays()
+0014: # - adb_trz_shadow_geometry_from_xy()
+0015: # - adb_trz_select_snapshot_indices()
+0016: # - ray_xy_from_yaxis()
+0017: # - add_ego_vehicle(), add_target_vehicle()
+0018: # - add_label_box()
+0019: # - COLOR_THETA_C, COLOR_CENTER, COLOR_THETA_BOUNDS, COLOR_FORWARD
+0020: # - m2_final_tracks, m2_x_range, m2_y_range
+0021: #
+0022: # Does NOT redefine the older static Module 3 variables.
+0023: # ============================================================
+0024: 
+0025: if len(m2_final_tracks) < 2:
+0026:     raise ValueError(
+
+CELL 73 MATCH LINE 39
+0027:         "This cell expects at least 2 reconstructed tracks. "
+0028:         "Reconstructed track 2 was not found."
+0029:     )
+0030: 
+0031: # ------------------------------------------------------------
+0032: # Select only reconstructed track 2
+0033: # ------------------------------------------------------------
+0034: adb_int2_track = m2_final_tracks[1]
+0035: adb_int2_track_label = "Reconstructed track 2"
+0036: adb_int2_track_color = "tab:orange"
+0037: 
+0038: adb_int2_frames, adb_int2_x_track, adb_int2_y_track = adb_trz_track_arrays(adb_int2_track)
+0039: adb_int2_geom = adb_trz_shadow_geometry_from_xy(adb_int2_x_track, adb_int2_y_track)
+0040: 
+0041: adb_int2_num_snapshots = globals().get("adb_trz_num_snapshots", 4)
+0042: adb_int2_snapshot_indices = adb_trz_select_snapshot_indices(
+0043:     adb_int2_frames,
+0044:     n_snapshots=adb_int2_num_snapshots
+0045: )
+0046: 
+0047: # ------------------------------------------------------------
+0048: # Helpers
+0049: # ------------------------------------------------------------
+0050: def adb_int2_sector_polygon_xy(angle_min_deg, angle_max_deg, r_inner, r_outer, n_points=90):
+0051:     """
+
+CELL 74 MATCH LINE 15
+0003: # Consolidated helpers for the clean final Fig. 3 / ADB-style plots
+0004: # ============================================================
+0005: 
+0006: # ------------------------------------------------------------
+0007: # Helper: extract dynamic shadow-angle series from one GT track
+0008: # ------------------------------------------------------------
+0009: def adb_fig3_clean_track_series_from_gt(x_track, y_track):
+0010:     """
+0011:     Return frame-wise dynamic shadow-angle quantities for one GT track.
+0012:     """
+0013:     adb_fig3_clean_frames = np.arange(len(x_track))
+0014: 
+0015:     adb_fig3_clean_geom = adb_trz_shadow_geometry_from_xy(
+0016:         x_track,
+0017:         y_track
+0018:     )
+0019: 
+0020:     return {
+0021:         "frames": adb_fig3_clean_frames,
+0022:         "theta_c": adb_fig3_clean_geom["theta_c"],
+0023:         "shadow_center": adb_fig3_clean_geom["shadow_center"],
+0024:         "theta_min": adb_fig3_clean_geom["theta_min"],
+0025:         "theta_max": adb_fig3_clean_geom["theta_max"],
+0026:         "epsilon": adb_fig3_clean_geom["epsilon"],
+0027:     }
+
+CELL 74 MATCH LINE 39
+0027:     }
+0028: 
+0029: 
+0030: # ------------------------------------------------------------
+0031: # Helper: extract dynamic shadow-angle series from one track
+0032: # ------------------------------------------------------------
+0033: def adb_fig3_clean_track_series(track):
+0034:     """
+0035:     Return frame-wise dynamic shadow-angle quantities for one reconstructed track.
+0036:     """
+0037:     adb_fig3_clean_frames, adb_fig3_clean_x, adb_fig3_clean_y = adb_trz_track_arrays(track)
+0038: 
+0039:     adb_fig3_clean_geom = adb_trz_shadow_geometry_from_xy(
+0040:         adb_fig3_clean_x,
+0041:         adb_fig3_clean_y
+0042:     )
+0043: 
+0044:     return {
+0045:         "frames": adb_fig3_clean_frames,
+0046:         "theta_c": adb_fig3_clean_geom["theta_c"],
+0047:         "shadow_center": adb_fig3_clean_geom["shadow_center"],
+0048:         "theta_min": adb_fig3_clean_geom["theta_min"],
+0049:         "theta_max": adb_fig3_clean_geom["theta_max"],
+0050:         "epsilon": adb_fig3_clean_geom["epsilon"],
+0051:     }
+
+CELL 49 MHT MATCH LINE 89
+0079:             deviations.append(float(np.linalg.norm(position - gt_positions[frame])))
+0080: 
+0081:     return {
+0082:         "matched_label": matched_label,
+0083:         "label_counts": label_counts,
+0084:         "mean_deviation": float(np.mean(deviations)) if deviations else np.inf,
+0085:         "max_deviation": float(np.max(deviations)) if deviations else np.inf,
+0086:         "num_eval_frames": len(deviations),
+0087:     }
+0088: 
+0089: m2_final_tracks = []
+0090: m2_filter_table = []
+0091: 
+0092: for track in m2_tracks:
+0093:     passes, filter_info = m2_track_passes_final_filters(track)
+0094:     evaluation = m2_evaluate_track_against_gt(track)
+0095: 
+0096:     m2_filter_table.append({
+0097:         "track_id": track["track_id"],
+0098:         "passes": passes,
+0099:         **filter_info,
+
+CELL 49 MHT MATCH LINE 104
+0094:     evaluation = m2_evaluate_track_against_gt(track)
+0095: 
+0096:     m2_filter_table.append({
+0097:         "track_id": track["track_id"],
+0098:         "passes": passes,
+0099:         **filter_info,
+0100:         **evaluation,
+0101:     })
+0102: 
+0103:     if passes:
+0104:         m2_final_tracks.append(track)
+0105: 
+0106: m2_final_evaluations = [m2_evaluate_track_against_gt(track) for track in m2_final_tracks]
+0107: 
+0108: # ------------------------------------------------------------
+0109: # Paper scenario 1 reference: linear-track error proxy
+0110: # ------------------------------------------------------------
+0111: 
+0112: def m2_gt_line_rho_theta(label):
+0113:     if label == 1:
+0114:         x = m2_gt1_x
+
+CELL 49 MHT MATCH LINE 106
+0096:     m2_filter_table.append({
+0097:         "track_id": track["track_id"],
+0098:         "passes": passes,
+0099:         **filter_info,
+0100:         **evaluation,
+0101:     })
+0102: 
+0103:     if passes:
+0104:         m2_final_tracks.append(track)
+0105: 
+0106: m2_final_evaluations = [m2_evaluate_track_against_gt(track) for track in m2_final_tracks]
+0107: 
+0108: # ------------------------------------------------------------
+0109: # Paper scenario 1 reference: linear-track error proxy
+0110: # ------------------------------------------------------------
+0111: 
+0112: def m2_gt_line_rho_theta(label):
+0113:     if label == 1:
+0114:         x = m2_gt1_x
+0115:         y = m2_gt1_y
+0116:     elif label == 2:
+
+CELL 49 MHT MATCH LINE 151
+0141: 
+0142:     x = xy[:, 0]
+0143:     y = xy[:, 1]
+0144: 
+0145:     distances = np.abs(x * np.cos(theta) + y * np.sin(theta) - rho)
+0146:     return float(np.mean(distances))
+0147: 
+0148: m2_linear_error_table = []
+0149: 
+0150: if m2_gt_mode == "two_linear":
+0151:     for track, evaluation in zip(m2_final_tracks, m2_final_evaluations):
+0152:         label = evaluation["matched_label"]
+0153: 
+0154:         if label in [1, 2]:
+0155:             m2_linear_error_table.append({
+0156:                 "track_id": track["track_id"],
+0157:                 "matched_label": label,
+0158:                 "mean_perpendicular_line_error": m2_mean_perpendicular_error_to_gt_line(track, label),
+0159:             })
+0160: 
+0161:     m2_paper_first_scenario_reference_errors = list(PAPER_REPORTED_MHT_LINEAR_ERRORS_UNITS)
+
+CELL 49 MHT MATCH LINE 163
+0153: 
+0154:         if label in [1, 2]:
+0155:             m2_linear_error_table.append({
+0156:                 "track_id": track["track_id"],
+0157:                 "matched_label": label,
+0158:                 "mean_perpendicular_line_error": m2_mean_perpendicular_error_to_gt_line(track, label),
+0159:             })
+0160: 
+0161:     m2_paper_first_scenario_reference_errors = list(PAPER_REPORTED_MHT_LINEAR_ERRORS_UNITS)
+0162: 
+0163: m2_num_final_tracks = len(m2_final_tracks)
+0164: m2_matched_labels = [ev["matched_label"] for ev in m2_final_evaluations]
+0165: m2_false_final_tracks = int(np.sum([label == 0 for label in m2_matched_labels]))
+0166: m2_both_gt_matched = set(m2_matched_labels) == {1, 2}
+0167: m2_max_mean_deviation = max([ev["mean_deviation"] for ev in m2_final_evaluations], default=np.inf)
+0168: 
+0169: m2_accepted = (
+0170:     m2_num_final_tracks == 2
+0171:     and m2_false_final_tracks == 0
+0172:     and m2_both_gt_matched
+0173:     and m2_max_mean_deviation <= m2_deviation_threshold
+
+CELL 50 MHT MATCH LINE 34
+0024:     s=10,
+0025:     alpha=0.35,
+0026:     label="noisy GT2 detections"
+0027: )
+0028: 
+0029: # Clean ground truth
+0030: ax.plot(m2_gt1_x, m2_gt1_y, linewidth=2.5, label=m2_gt1_label_text)
+0031: ax.plot(m2_gt2_x, m2_gt2_y, linewidth=2.5, label=m2_gt2_label_text)
+0032: 
+0033: # Reconstructed tracks
+0034: for idx, track in enumerate(m2_final_tracks, start=1):
+0035:     points_by_frame = m2_track_points_by_frame(track)
+0036:     frames = sorted(points_by_frame.keys())
+0037:     xy = np.array([points_by_frame[frame] for frame in frames])
+0038: 
+0039:     coverage = len(frames) / m2_num_frames
+0040: 
+0041:     ax.plot(
+0042:         xy[:, 0],
+0043:         xy[:, 1],
+0044:         linewidth=3.0,
+
+CELL 50 MHT MATCH LINE 75
+0065: ax.set_xlabel("x [synthetic units]")
+0066: ax.set_ylabel("y [synthetic units]")
+0067: ax.set_xlim(*m2_x_range)
+0068: ax.set_ylim(*m2_y_range)
+0069: ax.grid(True, alpha=0.3)
+0070: ax.legend(loc="best")
+0071: plt.show()
+0072: 
+0073: print("Final reconstructed frame coverage")
+0074: print("----------------------------------")
+0075: for idx, track in enumerate(m2_final_tracks, start=1):
+0076:     points_by_frame = m2_track_points_by_frame(track)
+0077:     frames = sorted(points_by_frame.keys())
+0078:     coverage = len(frames) / m2_num_frames
+0079: 
+0080:     print(
+0081:         f"track {idx}: frames {frames[0]}–{frames[-1]}, "
+0082:         f"num_frames={len(frames)}, coverage={coverage:.3f}"
+0083:         f", mean_deviation={m2_final_evaluations[idx-1]['mean_deviation']:.3f}"
+0084:     )
+0085: 
+
+CELL 66 MHT MATCH LINE 8
+0001: # ============================================================
+0002: # Module 2 - Cell 4.11B
+0003: # Validated Hough candidates after AND-logic / final track validation
+0004: # ============================================================
+0005: 
+0006: validated_hough_rows = []
+0007: 
+0008: for track in m2_final_tracks:
+0009:     points_by_frame = m2_track_points_by_frame(track)
+0010:     frames = sorted(points_by_frame.keys())
+0011:     xy = np.array([points_by_frame[frame] for frame in frames])
+0012: 
+0013:     center = xy.mean(axis=0)
+0014:     _, _, vh = np.linalg.svd(xy - center)
+0015: 
+0016:     normal = vh[-1]
+0017:     rho = float(normal[0] * center[0] + normal[1] * center[1])
+0018:     theta_deg = float(np.rad2deg(np.arctan2(normal[1], normal[0])))
+
+CELL 69 MHT MATCH LINE 264
+0254:     ax.set_xlim(m2_x_range[0] - 5.0, m2_x_range[1] + 5.0)
+0255:     ax.set_ylim(-7.0, m2_y_range[1] + 8.0)
+0256: 
+0257:     for spine in ax.spines.values():
+0258:         spine.set_linewidth(0.8)
+0259: 
+0260: 
+0261: # ------------------------------------------------------------
+0262: # Figure: dynamic ADB shadow intervals from reconstructed tracks
+0263: # ------------------------------------------------------------
+0264: adb_rec_num_tracks = len(m2_final_tracks)
+0265: 
+0266: fig, axes = plt.subplots(
+0267:     1,
+0268:     adb_rec_num_tracks,
+0269:     figsize=(7.4 * adb_rec_num_tracks, 6.3),
+0270:     constrained_layout=True
+0271: )
+0272: 
+0273: if adb_rec_num_tracks == 1:
+0274:     axes = np.array([axes])
+
+CELL 69 MHT MATCH LINE 285
+0275: else:
+0276:     axes = np.ravel(axes)
+0277: 
+0278: adb_rec_colors = [
+0279:     "tab:blue",
+0280:     "tab:orange",
+0281:     "tab:green",
+0282:     "tab:red",
+0283: ]
+0284: 
+0285: for idx, track in enumerate(m2_final_tracks, start=1):
+0286:     adb_rec_add_track_panel(
+0287:         axes[idx - 1],
+0288:         track,
+0289:         track_index=idx,
+0290:         track_color=adb_rec_colors[(idx - 1) % len(adb_rec_colors)]
+0291:     )
+0292: 
+0293:     axes[idx - 1].set_title(
+0294:         f"Dynamic ADB shadow interval from reconstructed track {idx}",
+0295:         fontsize=11
+
+CELL 70 MHT MATCH LINE 7
+0001: # ============================================================
+0002: # Module 3 - TODO Cell 1K
+0003: # Dynamic transition zone snapshots in top-down view
+0004: # Driven by Module 2 reconstructed tracks
+0005: # ============================================================
+0006: 
+0007: if len(m2_final_tracks) == 0:
+0008:     raise ValueError("m2_final_tracks is empty. Run Module 2 first.")
+0009: 
+0010: # ------------------------------------------------------------
+0011: # Helpers
+0012: # ------------------------------------------------------------
+0013: def adb_trz_track_arrays(track):
+0014:     """
+0015:     Convert one reconstructed Module 2 track into ordered frame, x, y arrays.
+0016:     """
+0017:     return adb_track_arrays(track)
+
+CELL 70 MHT MATCH LINE 8
+0001: # ============================================================
+0002: # Module 3 - TODO Cell 1K
+0003: # Dynamic transition zone snapshots in top-down view
+0004: # Driven by Module 2 reconstructed tracks
+0005: # ============================================================
+0006: 
+0007: if len(m2_final_tracks) == 0:
+0008:     raise ValueError("m2_final_tracks is empty. Run Module 2 first.")
+0009: 
+0010: # ------------------------------------------------------------
+0011: # Helpers
+0012: # ------------------------------------------------------------
+0013: def adb_trz_track_arrays(track):
+0014:     """
+0015:     Convert one reconstructed Module 2 track into ordered frame, x, y arrays.
+0016:     """
+0017:     return adb_track_arrays(track)
+0018: 
+
+CELL 70 MHT MATCH LINE 257
+0247:     )
+0248: 
+0249:     ax.set_title(f"{track_label} | snapshot {adb_trz_frame_value}", fontsize=10)
+0250:     ax.set_xlim(m2_x_range[0] - 5.0, m2_x_range[1] + 5.0)
+0251:     ax.set_ylim(-7.0, m2_y_range[1] + 8.0)
+0252: 
+0253: 
+0254: # ------------------------------------------------------------
+0255: # Build one row per reconstructed track, one column per snapshot
+0256: # ------------------------------------------------------------
+0257: adb_trz_num_tracks = len(m2_final_tracks)
+0258: adb_trz_cols = adb_trz_num_snapshots
+0259: 
+0260: fig, axes = plt.subplots(
+0261:     adb_trz_num_tracks,
+0262:     adb_trz_cols,
+0263:     figsize=(5.0 * adb_trz_cols, 4.9 * adb_trz_num_tracks),
+0264:     constrained_layout=True
+0265: )
+0266: 
+0267: if adb_trz_num_tracks == 1:
+
+CELL 70 MHT MATCH LINE 272
+0262:     adb_trz_cols,
+0263:     figsize=(5.0 * adb_trz_cols, 4.9 * adb_trz_num_tracks),
+0264:     constrained_layout=True
+0265: )
+0266: 
+0267: if adb_trz_num_tracks == 1:
+0268:     axes = np.array([axes])
+0269: 
+0270: adb_trz_colors = ["tab:blue", "tab:orange", "tab:green", "tab:red"]
+0271: 
+0272: for adb_trz_track_idx, adb_trz_track in enumerate(m2_final_tracks):
+0273:     adb_trz_frames, adb_trz_x_track, adb_trz_y_track = adb_trz_track_arrays(adb_trz_track)
+0274:     adb_trz_geom = adb_trz_shadow_geometry_from_xy(adb_trz_x_track, adb_trz_y_track)
+0275:     adb_trz_snapshot_indices = adb_trz_select_snapshot_indices(
+0276:         adb_trz_frames,
+0277:         n_snapshots=adb_trz_num_snapshots
+0278:     )
+0279: 
+0280:     adb_trz_track_label = f"Reconstructed track {adb_trz_track_idx + 1}"
+0281:     adb_trz_track_color = adb_trz_colors[adb_trz_track_idx % len(adb_trz_colors)]
+0282: 
+
+CELL 71 MHT MATCH LINE 181
+0171:     for spine in ax.spines.values():
+0172:         spine.set_linewidth(0.8)
+0173: 
+0174: 
+0175: # ------------------------------------------------------------
+0176: # Plot only exact frame 0
+0177: # ------------------------------------------------------------
+0178: 
+0179: adb_rc_frame0_items = []
+0180: 
+0181: for adb_rc_track_idx, adb_rc_track in enumerate(m2_final_tracks):
+0182:     adb_rc_frames, adb_rc_x_track, adb_rc_y_track = adb_trz_track_arrays(adb_rc_track)
+0183: 
+0184:     if adb_rc_requested_frame not in adb_rc_frames:
+0185:         continue
+0186: 
+0187:     adb_rc_array_idx = int(np.where(adb_rc_frames == adb_rc_requested_frame)[0][0])
+0188: 
+0189:     adb_rc_geom = adb_trz_shadow_geometry_from_xy(
+0190:         adb_rc_x_track,
+0191:         adb_rc_y_track
+
+CELL 72 MHT MATCH LINE 7
+0001: # ============================================================
+0002: # Module 3 - TODO Cell 1M (educational version)
+0003: # Dynamic angle mapping:
+0004: # top-down geometry  ->  1D shadow-angle axis
+0005: # ============================================================
+0006: 
+0007: if len(m2_final_tracks) == 0:
+0008:     raise ValueError("m2_final_tracks is empty. Run Module 2 first.")
+0009: 
+0010: 
+0011: # ------------------------------------------------------------
+0012: # Small plotting helpers
+0013: # ------------------------------------------------------------
+0014: adb_angmap_num_snapshots = globals().get("adb_trz_num_snapshots", 4)
+0015: adb_angmap_track_colors = ["tab:blue", "tab:orange", "tab:green", "tab:red"]
+0016: 
+0017: 
+
+CELL 72 MHT MATCH LINE 8
+0001: # ============================================================
+0002: # Module 3 - TODO Cell 1M (educational version)
+0003: # Dynamic angle mapping:
+0004: # top-down geometry  ->  1D shadow-angle axis
+0005: # ============================================================
+0006: 
+0007: if len(m2_final_tracks) == 0:
+0008:     raise ValueError("m2_final_tracks is empty. Run Module 2 first.")
+0009: 
+0010: 
+0011: # ------------------------------------------------------------
+0012: # Small plotting helpers
+0013: # ------------------------------------------------------------
+0014: adb_angmap_num_snapshots = globals().get("adb_trz_num_snapshots", 4)
+0015: adb_angmap_track_colors = ["tab:blue", "tab:orange", "tab:green", "tab:red"]
+0016: 
+0017: 
+0018: def adb_angmap_add_arc(ax, angle_start_deg, angle_end_deg, radius_value, label_text, color_value, lw=2.2):
+
+CELL 72 MHT MATCH LINE 423
+0413:     ax.set_title("Same snapshot on a 1D angle axis", fontsize=10)
+0414:     ax.grid(True, axis="x", alpha=0.18)
+0415: 
+0416:     for adb_angmap_spine in ax.spines.values():
+0417:         adb_angmap_spine.set_linewidth(0.8)
+0418: 
+0419: 
+0420: # ------------------------------------------------------------
+0421: # Build one educational figure per reconstructed track
+0422: # ------------------------------------------------------------
+0423: for adb_angmap_track_idx, adb_angmap_track in enumerate(m2_final_tracks):
+0424:     adb_angmap_frames, adb_angmap_x_track, adb_angmap_y_track = adb_trz_track_arrays(adb_angmap_track)
+0425: 
+0426:     adb_angmap_geom = adb_trz_shadow_geometry_from_xy(
+0427:         adb_angmap_x_track,
+0428:         adb_angmap_y_track
+0429:     )
+0430: 
+0431:     adb_angmap_snapshot_indices = adb_trz_select_snapshot_indices(
+0432:         adb_angmap_frames,
+0433:         n_snapshots=adb_angmap_num_snapshots
+
+CELL 73 MHT MATCH LINE 20
+0010: # - no arrows in the first plot
+0011: #
+0012: # Uses helpers from previous cells:
+0013: # - adb_trz_track_arrays()
+0014: # - adb_trz_shadow_geometry_from_xy()
+0015: # - adb_trz_select_snapshot_indices()
+0016: # - ray_xy_from_yaxis()
+0017: # - add_ego_vehicle(), add_target_vehicle()
+0018: # - add_label_box()
+0019: # - COLOR_THETA_C, COLOR_CENTER, COLOR_THETA_BOUNDS, COLOR_FORWARD
+0020: # - m2_final_tracks, m2_x_range, m2_y_range
+0021: #
+0022: # Does NOT redefine the older static Module 3 variables.
+0023: # ============================================================
+0024: 
+0025: if len(m2_final_tracks) < 2:
+0026:     raise ValueError(
+0027:         "This cell expects at least 2 reconstructed tracks. "
+0028:         "Reconstructed track 2 was not found."
+0029:     )
+0030: 
+
+CELL 73 MHT MATCH LINE 25
+0015: # - adb_trz_select_snapshot_indices()
+0016: # - ray_xy_from_yaxis()
+0017: # - add_ego_vehicle(), add_target_vehicle()
+0018: # - add_label_box()
+0019: # - COLOR_THETA_C, COLOR_CENTER, COLOR_THETA_BOUNDS, COLOR_FORWARD
+0020: # - m2_final_tracks, m2_x_range, m2_y_range
+0021: #
+0022: # Does NOT redefine the older static Module 3 variables.
+0023: # ============================================================
+0024: 
+0025: if len(m2_final_tracks) < 2:
+0026:     raise ValueError(
+0027:         "This cell expects at least 2 reconstructed tracks. "
+0028:         "Reconstructed track 2 was not found."
+0029:     )
+0030: 
+0031: # ------------------------------------------------------------
+0032: # Select only reconstructed track 2
+0033: # ------------------------------------------------------------
+0034: adb_int2_track = m2_final_tracks[1]
+0035: adb_int2_track_label = "Reconstructed track 2"
+
+CELL 73 MHT MATCH LINE 34
+0024: 
+0025: if len(m2_final_tracks) < 2:
+0026:     raise ValueError(
+0027:         "This cell expects at least 2 reconstructed tracks. "
+0028:         "Reconstructed track 2 was not found."
+0029:     )
+0030: 
+0031: # ------------------------------------------------------------
+0032: # Select only reconstructed track 2
+0033: # ------------------------------------------------------------
+0034: adb_int2_track = m2_final_tracks[1]
+0035: adb_int2_track_label = "Reconstructed track 2"
+0036: adb_int2_track_color = "tab:orange"
+0037: 
+0038: adb_int2_frames, adb_int2_x_track, adb_int2_y_track = adb_trz_track_arrays(adb_int2_track)
+0039: adb_int2_geom = adb_trz_shadow_geometry_from_xy(adb_int2_x_track, adb_int2_y_track)
+0040: 
+0041: adb_int2_num_snapshots = globals().get("adb_trz_num_snapshots", 4)
+0042: adb_int2_snapshot_indices = adb_trz_select_snapshot_indices(
+0043:     adb_int2_frames,
+0044:     n_snapshots=adb_int2_num_snapshots
+
+CELL 76 MHT MATCH LINE 10
+0001: # ============================================================
+0002: # Module 3 - TODO Cell 1O (clean annotation version)
+0003: # Final Fig. 3 / ADB-style result
+0004: # Based on dynamic shadow-angle boundaries from reconstructed tracks
+0005: # ============================================================
+0006: 
+0007: # ------------------------------------------------------------
+0008: # Extract reconstructed tracks
+0009: # ------------------------------------------------------------
+0010: adb_fig3_clean_track1 = adb_fig3_clean_track_series(m2_final_tracks[0])
+0011: adb_fig3_clean_track2 = adb_fig3_clean_track_series(m2_final_tracks[1])
+0012: 
+0013: adb_fig3_clean_layout_values = adb_fig3_clean_plot(
+0014:     adb_fig3_clean_track1,
+0015:     adb_fig3_clean_track2,
+0016:     source_label="reconstructed"
+0017: )
+0018: 
+0019: adb_fig3_clean_all_theta = adb_fig3_clean_layout_values["all_theta"]
+0020: adb_fig3_clean_data_ymin = adb_fig3_clean_layout_values["data_ymin"]
+
+CELL 76 MHT MATCH LINE 11
+0001: # ============================================================
+0002: # Module 3 - TODO Cell 1O (clean annotation version)
+0003: # Final Fig. 3 / ADB-style result
+0004: # Based on dynamic shadow-angle boundaries from reconstructed tracks
+0005: # ============================================================
+0006: 
+0007: # ------------------------------------------------------------
+0008: # Extract reconstructed tracks
+0009: # ------------------------------------------------------------
+0010: adb_fig3_clean_track1 = adb_fig3_clean_track_series(m2_final_tracks[0])
+0011: adb_fig3_clean_track2 = adb_fig3_clean_track_series(m2_final_tracks[1])
+0012: 
+0013: adb_fig3_clean_layout_values = adb_fig3_clean_plot(
+0014:     adb_fig3_clean_track1,
+0015:     adb_fig3_clean_track2,
+0016:     source_label="reconstructed"
+0017: )
+0018: 
+0019: adb_fig3_clean_all_theta = adb_fig3_clean_layout_values["all_theta"]
+0020: adb_fig3_clean_data_ymin = adb_fig3_clean_layout_values["data_ymin"]
+0021: adb_fig3_clean_data_ymax = adb_fig3_clean_layout_values["data_ymax"]

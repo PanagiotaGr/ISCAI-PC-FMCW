@@ -1,0 +1,244 @@
+============================================================
+BLOCK 6.1 — UPSTREAM WOMD READER API AUDIT
+============================================================
+
+===== A. MODULE IDENTITY =====
+module = iscai_stage3.validation.womd_access
+source = /home/agni/waymo/iscai_stage3/src/iscai_stage3/validation/womd_access.py
+read signature = (row: 'ValidationManifestRow', *, paired_root: 'Path', compact_record_offset: 'int')
+index signature = (rows: 'Iterable[ValidationManifestRow]') -> 'dict[str, int]'
+
+===== B. VALIDATION MANIFEST ROW =====
+class = <class 'iscai_stage3.validation.womd_access.ValidationManifestRow'>
+signature = (scenario_id: 'str', split: 'str', source_shard: 'str', record_offset: 'int', payload_length: 'int', motion_record_bytes: 'int', lidar_uri: 'str', lidar_bytes: 'int', pair_bytes: 'int', selection_hash: 'str', selection_policy: 'str') -> None
+is_dataclass = True
+dataclass fields:
+  scenario_id | type = str | default = <MISSING> | default_factory = <NONE>
+  split | type = str | default = <MISSING> | default_factory = <NONE>
+  source_shard | type = str | default = <MISSING> | default_factory = <NONE>
+  record_offset | type = int | default = <MISSING> | default_factory = <NONE>
+  payload_length | type = int | default = <MISSING> | default_factory = <NONE>
+  motion_record_bytes | type = int | default = <MISSING> | default_factory = <NONE>
+  lidar_uri | type = str | default = <MISSING> | default_factory = <NONE>
+  lidar_bytes | type = int | default = <MISSING> | default_factory = <NONE>
+  pair_bytes | type = int | default = <MISSING> | default_factory = <NONE>
+  selection_hash | type = str | default = <MISSING> | default_factory = <NONE>
+  selection_policy | type = str | default = <MISSING> | default_factory = <NONE>
+
+===== C. read_motion_scenario SOURCE =====
+def read_motion_scenario(
+    row: ValidationManifestRow,
+    *,
+    paired_root: Path,
+    compact_record_offset: int,
+):
+    """
+    Random-access one Scenario from the
+    canonical compact paired motion shard.
+
+    IMPORTANT:
+    compact_record_offset is reconstructed
+    from the frozen manifest ordering.
+
+    row.record_offset remains provenance for
+    the deleted/original WOMD source shard and
+    is deliberately NOT used against the
+    canonical paired-from-* shard.
+    """
+
+    offset = int(
+        compact_record_offset
+    )
+
+    if offset < 0:
+        raise ValueError(
+            "Negative compact record offset."
+        )
+
+    shard = resolve_motion_shard(
+        row,
+        paired_root=paired_root,
+    )
+
+    with shard.open("rb") as stream:
+        stream.seek(offset)
+
+        header = stream.read(12)
+
+        if len(header) != 12:
+            raise IOError(
+                "Short canonical TFRecord "
+                "header read."
+            )
+
+        payload_length = struct.unpack(
+            "<Q",
+            header[:8],
+        )[0]
+
+        if (
+            payload_length
+            !=
+            row.payload_length
+        ):
+            raise ValueError(
+                "Canonical payload length "
+                "differs from frozen manifest: "
+                f"{payload_length} != "
+                f"{row.payload_length}"
+            )
+
+        payload = stream.read(
+            payload_length
+        )
+
+        if (
+            len(payload)
+            !=
+            payload_length
+        ):
+            raise IOError(
+                "Short canonical motion "
+                "payload read."
+            )
+
+        data_crc = stream.read(4)
+
+        if len(data_crc) != 4:
+            raise IOError(
+                "Short canonical TFRecord "
+                "data CRC read."
+            )
+
+    scenario = scenario_pb2.Scenario()
+
+    scenario.ParseFromString(
+        payload
+    )
+
+    if (
+        scenario.scenario_id
+        !=
+        row.scenario_id
+    ):
+        raise ValueError(
+            "Canonical Scenario ID mismatch: "
+            f"{scenario.scenario_id!r} != "
+            f"{row.scenario_id!r}"
+        )
+
+    return scenario
+
+row attributes used = ['payload_length', 'scenario_id']
+
+===== D. build_compact_motion_offset_index SOURCE =====
+def build_compact_motion_offset_index(
+    rows: Iterable[
+        ValidationManifestRow
+    ],
+) -> dict[str, int]:
+    """
+    Reconstruct canonical offsets inside the
+    compact paired-from-* motion shards.
+
+    The frozen manifest record_offset is an
+    offset in the ORIGINAL WOMD source shard.
+
+    During paired-corpus packaging, selected
+    rows from each source shard were sorted by
+    original record_offset and written
+    consecutively to the canonical compact
+    paired-from-* shard.
+
+    Therefore canonical compact offsets are
+    cumulative selected TFRecord byte lengths,
+    not the original source offsets.
+    """
+
+    grouped: dict[
+        str,
+        list[ValidationManifestRow],
+    ] = {}
+
+    for row in rows:
+        grouped.setdefault(
+            row.source_shard,
+            [],
+        ).append(row)
+
+    offsets: dict[
+        str,
+        int,
+    ] = {}
+
+    for source_shard, source_rows in (
+        grouped.items()
+    ):
+        ordered = sorted(
+            source_rows,
+            key=lambda row: (
+                row.record_offset,
+                row.scenario_id,
+            ),
+        )
+
+        compact_offset = 0
+        previous_original_end = None
+
+        for row in ordered:
+            if (
+                previous_original_end
+                is not None
+                and
+                row.record_offset
+                <
+                previous_original_end
+            ):
+                raise ValueError(
+                    "Overlapping original "
+                    "TFRecord intervals in "
+                    f"{source_shard}."
+                )
+
+            if row.scenario_id in offsets:
+                raise ValueError(
+                    "Duplicate scenario_id while "
+                    "building compact offsets: "
+                    f"{row.scenario_id}"
+                )
+
+            offsets[
+                row.scenario_id
+            ] = compact_offset
+
+            compact_offset += (
+                row.motion_record_bytes
+            )
+
+            previous_original_end = (
+                row.record_offset
+                +
+                row.motion_record_bytes
+            )
+
+    return offsets
+
+row attributes used = ['motion_record_bytes', 'record_offset', 'scenario_id', 'source_shard']
+
+===== E. MODULE HELPERS / LOADERS =====
+ValidationManifestRow (scenario_id: 'str', split: 'str', source_shard: 'str', record_offset: 'int', payload_length: 'int', motion_record_bytes: 'int', lidar_uri: 'str', lidar_bytes: 'int', pair_bytes: 'int', selection_hash: 'str', selection_policy: 'str') -> None
+build_compact_motion_offset_index (rows: 'Iterable[ValidationManifestRow]') -> 'dict[str, int]'
+deterministic_manifest_order (rows: 'Iterable[ValidationManifestRow]') -> 'tuple[ValidationManifestRow, ...]'
+read_motion_scenario (row: 'ValidationManifestRow', *, paired_root: 'Path', compact_record_offset: 'int')
+read_validation_manifest (path: 'Path') -> 'tuple[ValidationManifestRow, ...]'
+resolve_motion_shard (row: 'ValidationManifestRow', *, paired_root: 'Path') -> 'Path'
+
+============================================================
+BLOCK 6.1 UPSTREAM READER API AUDIT — FINAL
+============================================================
+ValidationManifestRow = RESOLVED
+read_motion_scenario  = SOURCE INSPECTED
+offset-index API      = SOURCE INSPECTED
+Stage1–5 modified     = NO
+Block6.1 generator    = UNCHANGED
+STATUS = PASS_API_INSPECTED

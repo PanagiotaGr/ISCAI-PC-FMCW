@@ -1,0 +1,38 @@
+{
+  "acceptance_rule_change": false,
+  "formal_outcome_change": false,
+  "original_Stage6_contract": {
+    "original_Stage5_fields": {
+      "Part_A_git_commit": "44d62e3478e3818d1757b00971890f844cb032f7",
+      "Part_A_reference_sha256": "fcdfc0a7b9c14fa9447ceb8563a6f20ac277706223388dc9aa8a1edf416c5e2b",
+      "Stage4_status": "COMPLETE_FROZEN",
+      "Stage5_closure_sha256": "c83731948749f3ca20742aaac6b7474f53c755cbc8209dd31db969d229f60610",
+      "Stage5_freeze_sha256": "af9612205f190a04d9da565a98a0449f4ed98f53027b6f971b8457f73bd70913",
+      "Stage5_handoff_sha256": "c900ccbd63e7c680af28ed5cd8046f408463eceb7ce943b324b266dda73500eb",
+      "Stage5_status": "COMPLETE_FROZEN",
+      "formal_N_semantics": "implementation continuity choice; not a literal Stage6 PDF N requirement",
+      "formal_manifest_N": 120,
+      "formal_manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+      "trajectory_posterior": "calibrated_Gaussian_GRU"
+    },
+    "path": "/home/agni/waymo/iscai_stage6/configs/stage6_contract.json",
+    "sha256": "6b2ee6454f876c3658d4d308b827202cd31dd7c77bf96c38e6c6da70e6573675"
+  },
+  "parameter_change": false,
+  "post_outcome_tuning": false,
+  "purpose": "Bind Stage6 to the final reconciled/certified Stage5 authority created after the original Stage6 preimplementation contract. No Stage6 scientific parameter or result changes.",
+  "runtime_change": false,
+  "scientific_change": false,
+  "stage": 6,
+  "status": "FROZEN_PROVENANCE_SUPERSESSION_ONLY",
+  "superseding_final_Stage5_authority": {
+    "Stage5_PDF_scope": "PASS_100_PERCENT",
+    "Stage6_allowed": true,
+    "certificate": "/home/agni/waymo/audits/stage5_pre_stage6_final_v2/stage5_pre_stage6_final_certificate.json",
+    "certificate_sha256": "f91a0d21ed752b1e1e67096ca8af1ea061145869605525b232f6bccf1c26efe1",
+    "closure": "/home/agni/waymo/iscai_stage5/reports/stage5_fullpdf_v2_final_closure_reconciled_v1.json",
+    "closure_sha256": "e376a9274826f80b7ffcf6d031c0f44c792cb025a44a4675e95ded467e526e34",
+    "handoff": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/final_reconciliation_v1/stage5_to_stage6_handoff_reconciled_v1.json",
+    "handoff_sha256": "ac6564dbfe537f39fe70e7f2e92a7b2a5509aa3285d1037983924714bca36124"
+  }
+}

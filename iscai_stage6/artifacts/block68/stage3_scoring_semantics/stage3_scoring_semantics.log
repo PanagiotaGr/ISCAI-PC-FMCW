@@ -1,0 +1,94 @@
+========================================================================
+STAGE 6 — BLOCK 6.8
+STAGE-3 FLOOR SCORING SEMANTICS FREEZE
+PRE-OUTCOME / NO FLOOR SWEEP / NO FORMAL
+========================================================================
+
+===== A. EXACT PRE-OUTCOME BOUNDARY =====
+prereg                 = EXACT PASS
+stage1                 = EXACT PASS
+stage2                 = EXACT PASS
+stage3_execution       = EXACT PASS
+pocc_manifest          = EXACT PASS
+predictive_matches     = EXACT PASS
+metric_runtime         = EXACT PASS
+Stage-1 gamma            = IMMUTABLE
+Stage-2 margins          = IMMUTABLE
+Stage-3 floor outcomes   = NOT COMPUTED
+formal evaluation        = NO
+
+===== B. PREREGISTERED STAGE-3 OBJECTIVE =====
+risk[1] = vehicle_shadow_zone_violation
+risk[2] = glare_risk_exposure
+risk[3] = 1-pedestrian_visibility_proxy
+risk[4] = 1-cyclist_visibility_proxy
+risk[5] = 1-road_illumination_retention
+weighted sum = FORBIDDEN
+observed min-max normalization = FORBIDDEN
+
+===== C. STAGE-3 PARAMETER-SELECTION POPULATION =====
+development scenarios     = 120 EXACT
+predictive actors          = 877 EXACT
+  TYPE_VEHICLE             = 719
+  TYPE_PEDESTRIAN          = 110
+  TYPE_CYCLIST             = 48
+future used as selector    = NO
+
+===== D. REACTIVE-FALLBACK FLOOR ROLE =====
+Stage-3 selection population = PREDICTIVE DEVELOPMENT ACTORS ONLY
+reactive fallback in floor objective = NO
+selected class floor applied to fallback downstream = YES
+reason = Part3B development_population defines the staged predictive policy-selection population; fallback is a separate integrated-controller branch
+
+===== E. PRE-OUTCOME METRIC AGGREGATION FREEZE =====
+evaluation_unit = development scenario
+controller_schedule = one raw class-aware illumination schedule of shape [4,501,301] per scenario and candidate floor triplet
+terminal_illumination = ClassAwareComposition.raw_class_aware_illumination
+temporal_smoothing = False
+actuation_rate_limit = False
+metric_evaluation = call the authoritative frozen metric semantics on the complete four-horizon scenario schedule; do not manually reweight horizons
+scenario_aggregation = arithmetic macro mean over finite scenario-level metric values
+scenario_weighting = equal scenario weight
+actor_count_weighting = False
+horizon_reweighting = False
+future_validity_as_selection_filter = False
+empty_support = inherit authoritative metric runtime exactly; if it returns NaN/NA, exclude that scenario only from that metric aggregate; do not impute
+normalization = no outcome-dependent normalization; all five risk components are already frozen in [0,1]
+risk_vector_after_scenario_macro = ['vehicle_shadow_zone_violation', 'glare_risk_exposure', '1-pedestrian_visibility_proxy', '1-cyclist_visibility_proxy', '1-road_illumination_retention']
+secondary_metrics_after_scenario_macro = ['over_masking_area', 'false_dimming']
+
+===== F. EXACT LEXICOGRAPHIC COMPARATOR =====
+selection key = (max(risk_vector), mean(risk_vector), over_masking_area, false_dimming, j_vehicle, j_pedestrian, j_cyclist)
+epsilon tolerance = NONE
+rounding           = NONE
+posthoc tie choice = FORBIDDEN
+
+===== G. WRITE-ONCE SCORING SEMANTICS FREEZE =====
+scoring freeze SHA256 = a8bf30b29056562eb303f287acfcca6d8aee011f26a353897f8d18b47325e1b3
+
+===== H. POST-FREEZE REGRESSION =====
+Stage6 regression = 224 / 224 PASS
+
+========================================================================
+BLOCK 6.8 STAGE-3 SCORING SEMANTICS — FINAL
+========================================================================
+Stage-1 gamma             = IMMUTABLE
+Stage-2 margins           = IMMUTABLE
+selection scenarios       = 120
+selection actors          = 877
+reactive fallback scoring = EXCLUDED
+fallback floor downstream = YES
+aggregation               = SCENARIO MACRO
+actor weighting           = NO
+horizon reweighting       = NO
+outcome normalization     = NO
+epsilon tie tolerance     = NONE
+candidate triplets        = 3270
+Stage-3 outcomes          = NOT COMPUTED
+Stage-4 temporal/rate     = NOT SELECTED
+primary acceptance        = NOT TESTED
+formal evaluation         = NO
+Stage6 regression         = 224 / 224 PASS
+STATUS = PASS_STAGE3_SCORING_SEMANTICS_FROZEN
+report = /home/agni/waymo/iscai_stage6/reports/block68_stage3_floor_scoring_semantics_freeze.json
+terminal remains open = YES

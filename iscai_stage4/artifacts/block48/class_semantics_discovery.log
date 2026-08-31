@@ -1,0 +1,65 @@
+============================================================
+BLOCK 4.8 — CLASS SEMANTICS DISCOVERY
+READ ONLY / NO NEURAL INFERENCE
+============================================================
+
+===== A. INTERNAL STAGE4 CLASS MAPPING =====
+Stage4 class_id 0 => 'TYPE_VEHICLE'
+Stage4 class_id 1 => 'TYPE_PEDESTRIAN'
+Stage4 class_id 2 => 'TYPE_CYCLIST'
+Stage4 class_id 3 => 'OTHER'
+
+===== B. NUMERIC ENCODING PAIRS =====
+Stage4 0 => WOMD 1 | count = 96
+Stage4 1 => WOMD 2 | count = 6
+Stage4 2 => WOMD 3 | count = 4
+
+===== C. SEMANTIC CLASS PAIRS =====
+CYCLIST => CYCLIST | count = 4
+PEDESTRIAN => PEDESTRIAN | count = 6
+VEHICLE => VEHICLE | count = 96
+
+===== D. FIRST 25 SAMPLE COMPARISONS =====
+scenario= cfd33c593d645bf5 | truth= 32 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 71 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 31 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 42 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 69 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 30 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 45 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 67 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 34 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 63 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 55 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 59 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 18 | source= sample.truth_track_index | Stage4= 2:TYPE_CYCLIST | WOMD= 3:TYPE_CYCLIST | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 60 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 77 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 44 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 14 | source= sample.truth_track_index | Stage4= 1:TYPE_PEDESTRIAN | WOMD= 2:TYPE_PEDESTRIAN | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 53 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 37 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 66 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 20 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 73 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 24 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 25 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+scenario= cfd33c593d645bf5 | truth= 58 | source= sample.truth_track_index | Stage4= 0:TYPE_VEHICLE | WOMD= 1:TYPE_VEHICLE | numeric= False | semantic= True
+
+============================================================
+BLOCK 4.8 CLASS SEMANTICS DIAGNOSIS
+============================================================
+scenarios examined        = 3
+supervised samples        = 106
+truth-index sources       = {'sample.truth_track_index': 106}
+numeric mismatch count    = 106
+semantic mismatch count   = 0
+all semantic classes match= PASS
+diagnosis                 = NUMERIC_ENCODING_DIFFERENCE_ONLY
+
+discovery report          = /home/agni/waymo/iscai_stage4/reports/block48_class_semantics_discovery.json
+tracks_to_predict accessed= NO
+neural inference started  = NO
+upstream modified         = NO
+DISCOVERY STATUS = PASS
+terminal remains open     = YES

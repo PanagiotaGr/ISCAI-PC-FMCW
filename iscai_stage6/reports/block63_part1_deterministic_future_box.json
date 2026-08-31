@@ -1,0 +1,54 @@
+{
+  "binding": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block63_deterministic_predictive_binding.json",
+    "sha256": "03903018109e7d5037643381ff71141a5c57f003b8bdc6b9be13bb4304468f67"
+  },
+  "block": "6.3",
+  "execution": {
+    "dataset_access": false,
+    "formal_evaluation": false,
+    "model_inference": false,
+    "parameter_tuning": false,
+    "training": false
+  },
+  "implementation": {
+    "annotation_recenter": false,
+    "association": "RECIPROCAL_UNIQUE_NEAREST_CURRENT_H0",
+    "association_module": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/deterministic_association.py",
+    "association_module_sha256": "5a4cc1803f9e45a8af23a57d89f47d9df6cc06af57823b2ce00063afa0a110a8",
+    "association_threshold": null,
+    "class_gate": false,
+    "controller_path": true,
+    "coordinate_semantics": "PREDICTOR_CAUSAL_ANCHOR_H0_PLUS_METRIC_H0_DISPLACEMENT",
+    "deterministic_trajectory": "SHARED_CALIBRATED_GAUSSIAN_MEAN_ONLY",
+    "forced_assignment": false,
+    "future_dimensions": "CURRENT_CAUSAL_LWH_HELD",
+    "future_projection": "FULL_8_CORNER_BOX",
+    "future_yaw": "STAGE5_TRAJECTORY_TANGENT_LOW_SPEED_CAUSAL_CARRY_FORWARD",
+    "orientation_source": "predicted_tangent",
+    "perfect_actor_identity": false,
+    "predictive_module": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/deterministic_predictive.py",
+    "predictive_module_sha256": "a81834dee7203d37b045d070d6e448010dd9add88eb2d054ccfb56e207156d3e",
+    "state_source": "predicted_sample",
+    "unmatched_box_policy": "EXPLICIT_ORIGINAL_REACTIVE_FALLBACK_INDEX"
+  },
+  "next": "Block6.3 Part2 connect frozen Stage4 Gaussian runtime on development-only causal records, validate association, then construct deterministic predictive illumination.",
+  "part": "1/2",
+  "project": "Agni",
+  "regression": {
+    "Stage6": "PASS",
+    "log": "/home/agni/waymo/iscai_stage6/artifacts/block63/block63_part1_stage6_regression.log"
+  },
+  "scope": {
+    "actuation_rate_limit": false,
+    "class_aware_policy": false,
+    "communication_codebook": false,
+    "formal_grid_frozen": false,
+    "predictive_covariance": false,
+    "probabilistic_occupancy": false,
+    "temporal_smoothing": false
+  },
+  "stage": 6,
+  "status": "PASS_DETERMINISTIC_FUTURE_FULL_BOX",
+  "upstream_modified": false
+}

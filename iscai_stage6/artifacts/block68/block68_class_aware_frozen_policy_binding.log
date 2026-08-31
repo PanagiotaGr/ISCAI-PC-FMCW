@@ -1,0 +1,329 @@
+============================================================
+STAGE 6 — BLOCK 6.8
+CLASS-AWARE FROZEN POLICY RUNTIME BINDING
+NO P_OCC VALUES / NO PREDICTIVE METRICS / NO FORMAL
+============================================================
+
+===== A. POST-NI EXACT BOUNDARY =====
+Block6.6 preregistration = EXACT PASS
+class-aware source       = EXACT PASS
+NI delta freeze          = EXACT PASS
+acceptance policy        = EXACT PASS
+timestamp alignment      = EXACT PASS
+predictive performance   = NOT OPENED
+P_occ values             = NOT OPENED
+formal content           = NOT OPENED
+
+===== B. FROZEN ACCEPTANCE READBACK =====
+NI delta file SHA = a77e548e060c314dd98a7220b0f9ed3aebd5d1978eb70f456b82920e792a29d4
+acceptance SHA    = e103466b1a6eb62be4e6746029147cbda9671b05130acba5210a3ab7328e6b81
+reactive-only report SHA = 821c845c5be2a60722d09d3a58160dafd08cb7cba6626e238a37a58eca661c9c
+
+NI delta content:
+  NI_runtime_sha256 = 3c67a7f152359710cb24db1a6e01c4b580728e6480b7c5d8f9c40a41349cf1cd
+  block = 6.8_reactive_only_NI_delta_freeze
+  confidence_interval_claim = False
+  derivation = reactive comparator variability only; SE=sample_std(ddof=1)/sqrt(n); raw_delta=1.96*SE; delta=clip(raw_delta,0.02,0.05)
+  development_population = 120
+  fixed_variability_scale = 1.96
+  metrics.cyclist_visibility_proxy.clip_lower = 0.02
+  metrics.cyclist_visibility_proxy.clip_upper = 0.05
+  metrics.cyclist_visibility_proxy.delta_uses_predictive_values = False
+  metrics.cyclist_visibility_proxy.fixed_variability_scale = 1.96
+  metrics.cyclist_visibility_proxy.frozen_delta = 0.05
+  metrics.cyclist_visibility_proxy.n = 40
+  metrics.cyclist_visibility_proxy.raw_delta = 0.10894235094138646
+  metrics.cyclist_visibility_proxy.reactive_mean = 0.7388137207027012
+  metrics.cyclist_visibility_proxy.reactive_sample_std_ddof1 = 0.3515366965593572
+  metrics.cyclist_visibility_proxy.reactive_standard_error = 0.05558283211295228
+  metrics.over_masking_area.clip_lower = 0.02
+  metrics.over_masking_area.clip_upper = 0.05
+  metrics.over_masking_area.delta_uses_predictive_values = False
+  metrics.over_masking_area.fixed_variability_scale = 1.96
+  metrics.over_masking_area.frozen_delta = 0.02
+  metrics.over_masking_area.n = 120
+  metrics.over_masking_area.raw_delta = 0.015373617294697004
+  metrics.over_masking_area.reactive_mean = 0.1886246057165846
+  metrics.over_masking_area.reactive_sample_std_ddof1 = 0.08592323451792956
+  metrics.over_masking_area.reactive_standard_error = 0.007843682293212757
+  metrics.pedestrian_visibility_proxy.clip_lower = 0.02
+  metrics.pedestrian_visibility_proxy.clip_upper = 0.05
+  metrics.pedestrian_visibility_proxy.delta_uses_predictive_values = False
+  metrics.pedestrian_visibility_proxy.fixed_variability_scale = 1.96
+  metrics.pedestrian_visibility_proxy.frozen_delta = 0.05
+  metrics.pedestrian_visibility_proxy.n = 54
+  metrics.pedestrian_visibility_proxy.raw_delta = 0.11015308032177311
+  metrics.pedestrian_visibility_proxy.reactive_mean = 0.5699538664317829
+  metrics.pedestrian_visibility_proxy.reactive_sample_std_ddof1 = 0.4129880209961553
+  metrics.pedestrian_visibility_proxy.reactive_standard_error = 0.05620055118457812
+  predictive_values_seen = False
+  preoutcome_scoring_contract_sha256 = 8364c7cdfa4b66d820823c804d45905a207f77f66b53f06a6383e7722b8a9970
+  stage = 6
+  status = FROZEN_BEFORE_PREDICTIVE_DEVELOPMENT_PERFORMANCE
+  vehicle_shadow_zone_violation.formal_rule = predictive_mean < reactive_mean
+
+primary acceptance content:
+  formal_parameter_tuning_allowed = False
+  formal_rules.cyclist_visibility_proxy.direction = higher_is_better
+  formal_rules.cyclist_visibility_proxy.frozen_delta = 0.05
+  formal_rules.cyclist_visibility_proxy.rule = predictive_mean - reactive_mean >= -frozen_delta
+  formal_rules.over_masking_area.direction = lower_is_better
+  formal_rules.over_masking_area.frozen_delta = 0.02
+  formal_rules.over_masking_area.rule = predictive_mean - reactive_mean <= frozen_delta
+  formal_rules.pedestrian_visibility_proxy.direction = higher_is_better
+  formal_rules.pedestrian_visibility_proxy.frozen_delta = 0.05
+  formal_rules.pedestrian_visibility_proxy.rule = predictive_mean - reactive_mean >= -frozen_delta
+  formal_rules.vehicle_shadow_zone_violation.direction = lower_is_better
+  formal_rules.vehicle_shadow_zone_violation.rule = predictive_mean < reactive_mean
+  formal_rules.vehicle_shadow_zone_violation.tolerance = None
+  primary_comparison = class_aware_predictive_ADB vs original_reactive_ADB
+
+===== C. BLOCK6.6 PREREGISTERED POLICY VALUES =====
+
+----- PREREGISTRATION -----
+ADB_metric_formulas.actuation_latency.formula = 'wall-clock runtime from loaded P_occ/current geometry to final four-horizon illumination schedule'
+ADB_metric_formulas.actuation_latency.units = 'seconds'
+ADB_metric_formulas.actuation_latency.used_for_policy_selection = False
+ADB_metric_formulas.cyclist_visibility_proxy.direction = 'higher_is_better'
+ADB_metric_formulas.cyclist_visibility_proxy.formula = 'mean(I_final over future GT cyclist projected full-box footprint cells)'
+ADB_metric_formulas.false_dimming.direction = 'lower_is_better'
+ADB_metric_formulas.false_dimming.formula = '|D \\ O| / |D|; 0 when |D|=0'
+ADB_metric_formulas.flicker_change_rate.direction = 'lower_is_better'
+ADB_metric_formulas.flicker_change_rate.formula = 'mean_h(count(I_h != I_prev)/grid_cell_count)'
+ADB_metric_formulas.pedestrian_visibility_proxy.direction = 'higher_is_better'
+ADB_metric_formulas.pedestrian_visibility_proxy.formula = 'mean(I_final over future GT pedestrian projected full-box footprint cells)'
+ADB_metric_formulas.rate_limit_safety_override_fraction.direction = 'lower_is_better'
+ADB_metric_formulas.rate_limit_safety_override_fraction.formula = 'override cells / total actuator-cell transitions'
+ADB_metric_formulas.temporal_smoothness.direction = 'lower_is_better'
+ADB_metric_formulas.temporal_smoothness.formula = 'mean_h(mean_grid(|I_h-I_prev|)/delta_t_h)'
+ADB_metric_formulas.temporal_smoothness.reported_metric = 'mean_absolute_change_rate'
+ADB_metric_formulas.vehicle_shadow_zone_violation.direction = 'lower_is_better'
+ADB_metric_formulas.vehicle_shadow_zone_violation.formula = '|O_vehicle \\ D| / |O_vehicle|'
+ADB_metric_formulas.vehicle_shadow_zone_violation.no_vehicle_cells = 'NA'
+actuation_rate_limit.applied_after = 'temporal smoothing'
+actuation_rate_limit.candidate_rates_per_s[0] = 1
+actuation_rate_limit.candidate_rates_per_s[1] = 2
+actuation_rate_limit.candidate_rates_per_s[2] = 4
+actuation_rate_limit.candidate_rates_per_s[3] = 8
+actuation_rate_limit.candidate_rates_per_s[4] = 16
+actuation_rate_limit.constraint = 'rho_dim >= rho_bright; dimming is never slower than brightening'
+actuation_rate_limit.equation = 'I_rate = clip(I_smooth, I_prev-rho_dim*delta_t, I_prev+rho_bright*delta_t)'
+actuation_rate_limit.finite_rate_required = True
+actuation_rate_limit.normalized_intensity_units = '[0,1]'
+actuation_rate_limit.rate_pair_count = 15
+actuation_rate_limit.safety_override_metric = 'fraction of actuator cells/time steps where hard VRU floor overrides I_rate'
+actuation_rate_limit.safety_projection_after_rate_limit = 're-apply active VRU hard floor; record every rate-limit safety override'
+additional_class_margin_parameterization.angular_expansion = 'delta_theta = atan2(m_extra, max(r_tau, PartA_EPS))'
+additional_class_margin_parameterization.candidate_counts.TYPE_CYCLIST = 432
+additional_class_margin_parameterization.candidate_counts.TYPE_PEDESTRIAN = 54
+additional_class_margin_parameterization.candidate_counts.TYPE_VEHICLE = 324
+additional_class_margin_parameterization.candidate_rules.base_margin_m.candidate_count = 9
+additional_class_margin_parameterization.candidate_rules.base_margin_m.j_max = 8
+additional_class_margin_parameterization.candidate_rules.base_margin_m.j_min = 0
+additional_class_margin_parameterization.candidate_rules.base_margin_m.representation = 'j/4 metres'
+additional_class_margin_parameterization.candidate_rules.cyclist_lateral_multiplier.candidate_count = 8
+additional_class_margin_parameterization.candidate_rules.cyclist_lateral_multiplier.j_max = 8
+additional_class_margin_parameterization.candidate_rules.cyclist_lateral_multiplier.j_min = 1
+additional_class_margin_parameterization.candidate_rules.cyclist_lateral_multiplier.representation = 'j/4'
+additional_class_margin_parameterization.candidate_rules.cyclist_lateral_multiplier.zero_permitted = False
+additional_class_margin_parameterization.candidate_rules.uncertainty_multiplier.candidate_count = 6
+additional_class_margin_parameterization.candidate_rules.uncertainty_multiplier.j_max = 6
+additional_class_margin_parameterization.candidate_rules.uncertainty_multiplier.j_min = 1
+additional_class_margin_parameterization.candidate_rules.uncertainty_multiplier.representation = 'j/2'
+additional_class_margin_parameterization.candidate_rules.uncertainty_multiplier.zero_permitted = False
+additional_class_margin_parameterization.candidate_rules.vehicle_closing_multiplier.candidate_count = 6
+additional_class_margin_parameterization.candidate_rules.vehicle_closing_multiplier.j_max = 6
+additional_class_margin_parameterization.candidate_rules.vehicle_closing_multiplier.j_min = 1
+additional_class_margin_parameterization.candidate_rules.vehicle_closing_multiplier.representation = 'j/20'
+additional_class_margin_parameterization.candidate_rules.vehicle_closing_multiplier.zero_permitted = False
+additional_class_margin_parameterization.closing_speed_mps = 'v_close = max(0, (r_current-r_tau)/tau)'
+additional_class_margin_parameterization.coordinate_frame = 'H0 theta/r actuator plane'
+additional_class_margin_parameterization.cyclist_formula = 'm_extra = b_cyclist + u_cyclist*sigma_lat + q_cyclist*tau*v_lat'
+additional_class_margin_parameterization.cyclist_lateral_rate_mps = 'v_lat = abs(ell_current^T mean_displacement_xy_tau)/tau'
+additional_class_margin_parameterization.grid_dilation = 'ceil(delta_theta / frozen_theta_step); clip at actuator theta boundaries'
+additional_class_margin_parameterization.lateral_LOS_unit = 'ell_tau = [-p_tau_y/r_tau, p_tau_x/r_tau]'
+additional_class_margin_parameterization.lateral_predictive_sigma_m = 'sigma_lat = sqrt(ell_tau^T Sigma_xy,tau ell_tau)'
+additional_class_margin_parameterization.meaning = 'additional predictive dilation; does not replace Part-A generic margin'
+additional_class_margin_parameterization.pedestrian_formula = 'm_extra = b_pedestrian + u_pedestrian*sigma_lat'
+additional_class_margin_parameterization.predicted_absolute_center = 'p_tau_xy = causal_anchor_xy + calibrated_Gaussian_mean_displacement_xy'
+additional_class_margin_parameterization.predicted_range = 'r_tau = hypot(p_tau_x, p_tau_y)'
+additional_class_margin_parameterization.vehicle_formula = 'm_extra = b_vehicle + u_vehicle*sigma_lat + q_vehicle*tau*v_close'
+class_intensity_floor_parameterization.candidate_triplets = 3270
+class_intensity_floor_parameterization.cyclist.j_max = 20
+class_intensity_floor_parameterization.cyclist.j_min = 1
+class_intensity_floor_parameterization.cyclist.zero_permitted = False
+class_intensity_floor_parameterization.cyclist_full_blackout_permitted = False
+class_intensity_floor_parameterization.pedestrian.j_max = 20
+class_intensity_floor_parameterization.pedestrian.j_min = 1
+class_intensity_floor_parameterization.pedestrian.zero_permitted = False
+class_intensity_floor_parameterization.pedestrian_full_blackout_permitted = False
+class_intensity_floor_parameterization.representation = 'f_c = j_c / 20'
+class_intensity_floor_parameterization.structural_constraints[0] = 'f_vehicle <= f_pedestrian'
+class_intensity_floor_parameterization.structural_constraints[1] = 'f_vehicle <= f_cyclist'
+class_intensity_floor_parameterization.structural_constraints[2] = 'f_pedestrian > 0'
+class_intensity_floor_parameterization.structural_constraints[3] = 'f_cyclist > 0'
+class_intensity_floor_parameterization.vehicle.j_max = 20
+class_intensity_floor_parameterization.vehicle.j_min = 0
+class_overlap_policy.VRU_floor_guard = 'F_vru = max(active pedestrian floor, active cyclist floor, 0)'
+class_overlap_policy.pre_floor_guard_command = 'I_min = minimum over all active actor illumination maps'
+class_threshold_parameterization.candidate_rule.candidates_per_class = 8192
+class_threshold_parameterization.candidate_rule.k_max = 8191
+class_threshold_parameterization.candidate_rule.k_min = 0
+class_threshold_parameterization.candidate_rule.representation = 'exact integer occupancy quantum'
+class_threshold_parameterization.candidate_rule.step = 1
+class_threshold_parameterization.equation = 'M_i,tau(theta,r) = 1[count_i,tau(theta,r) > k_c]'
+class_threshold_parameterization.equivalent_gamma = 'gamma_c = k_c / 8192'
+class_threshold_parameterization.independent_classes[0] = 'TYPE_VEHICLE'
+class_threshold_parameterization.independent_classes[1] = 'TYPE_PEDESTRIAN'
+class_threshold_parameterization.independent_classes[2] = 'TYPE_CYCLIST'
+class_threshold_parameterization.no_float_grid_search = True
+class_threshold_parameterization.strict_comparison = '>'
+constructed_oracle_reference.vehicle_glare_reference = 'heading-dependent geometry-based front-upper/rear-upper surrogate'
+development_population.class_counts.TYPE_CYCLIST = 48
+development_population.class_counts.TYPE_PEDESTRIAN = 110
+development_population.class_counts.TYPE_VEHICLE = 719
+development_selection_protocol.acceptance_thresholds = 'NOT selected in Part3B; after the development-only winning policy is frozen, a separate pre-formal gate must freeze formal acceptance/non-inferiority thresholds before any formal outcome is read'
+development_selection_protocol.stage_1_class_gamma.held_fixed = 'no additional class margin; floor not yet selected; no temporal/rate tuning'
+development_selection_protocol.stage_1_class_gamma.objective = 'maximize macro mean per-actor/per-horizon full-box mask IoU against constructed development future reference'
+development_selection_protocol.stage_1_class_gamma.tie_break.TYPE_CYCLIST = 'larger k first (less unnecessary dimming)'
+development_selection_protocol.stage_1_class_gamma.tie_break.TYPE_PEDESTRIAN = 'larger k first (less unnecessary dimming)'
+development_selection_protocol.stage_1_class_gamma.tie_break.TYPE_VEHICLE = 'smaller k first (more protective threshold)'
+development_selection_protocol.stage_1_class_gamma.vary = 'k_c only'
+development_selection_protocol.stage_2_class_margin.classwise_primary_objective = 'maximize macro actor-horizon IoU after dilation'
+development_selection_protocol.stage_2_class_margin.cyclist_lateral_response_required = True
+development_selection_protocol.stage_2_class_margin.gamma = 'frozen Stage-1 development selection'
+development_selection_protocol.stage_2_class_margin.mandatory_nonzero_uncertainty_response = True
+development_selection_protocol.stage_2_class_margin.tie_break_order[0] = 'lower over-masking area'
+development_selection_protocol.stage_2_class_margin.tie_break_order[1] = 'smaller base margin'
+development_selection_protocol.stage_2_class_margin.tie_break_order[2] = 'smaller uncertainty multiplier'
+development_selection_protocol.stage_2_class_margin.tie_break_order[3] = 'smaller closing/lateral multiplier'
+development_selection_protocol.stage_2_class_margin.tie_break_order[4] = 'canonical numeric tuple'
+development_selection_protocol.stage_2_class_margin.vary = 'class base / uncertainty / vehicle-closing / cyclist-lateral coefficients'
+development_selection_protocol.stage_2_class_margin.vehicle_closing_response_required = True
+development_selection_protocol.stage_3_class_floors.arbitrary_weighted_sum = False
+development_selection_protocol.stage_3_class_floors.gamma_and_margin = 'fixed from stages 1 and 2'
+development_selection_protocol.stage_3_class_floors.lexicographic_selection[0] = 'minimize maximum element of normalized risk vector'
+development_selection_protocol.stage_3_class_floors.lexicographic_selection[1] = 'minimize arithmetic mean of normalized risk vector'
+development_selection_protocol.stage_3_class_floors.lexicographic_selection[2] = 'minimize over_masking_area'
+development_selection_protocol.stage_3_class_floors.lexicographic_selection[3] = 'minimize false_dimming'
+development_selection_protocol.stage_3_class_floors.lexicographic_selection[4] = 'canonical floor tuple (f_vehicle,f_pedestrian,f_cyclist)'
+development_selection_protocol.stage_3_class_floors.normalized_risk_vector[0] = 'vehicle_shadow_zone_violation'
+development_selection_protocol.stage_3_class_floors.normalized_risk_vector[1] = 'glare_risk_exposure'Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block68_class_aware_frozen_policy_binding.py", line 1431, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block68_class_aware_frozen_policy_binding.py", line 948, in main
+    require(
+    ~~~~~~~^
+        calls,
+        ^^^^^^
+    ...<3 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block68_class_aware_frozen_policy_binding.py", line 114, in require
+    raise RuntimeError(message)
+RuntimeError: No relevant class-aware runtime calls found in frozen Part3C1 runner.
+
+development_selection_protocol.stage_3_class_floors.normalized_risk_vector[2] = '1-pedestrian_visibility_proxy'
+development_selection_protocol.stage_3_class_floors.normalized_risk_vector[3] = '1-cyclist_visibility_proxy'
+development_selection_protocol.stage_3_class_floors.normalized_risk_vector[4] = '1-road_illumination_retention'
+development_selection_protocol.stage_3_class_floors.risk_vector_all_components_unit_interval = True
+development_selection_protocol.stage_3_class_floors.vary = 'class floor triplets only'
+development_selection_protocol.stage_4_temporal_and_rate.all_class_parameters = 'fixed from stages 1-3'
+development_selection_protocol.stage_4_temporal_and_rate.lexicographic_selection[0] = 'minimize maximum normalized safety-risk component'
+development_selection_protocol.stage_4_temporal_and_rate.lexicographic_selection[1] = 'minimize mean normalized safety-risk component'
+development_selection_protocol.stage_4_temporal_and_rate.lexicographic_selection[2] = 'minimize temporal mean_absolute_change_rate'
+development_selection_protocol.stage_4_temporal_and_rate.lexicographic_selection[3] = 'minimize flicker_change_rate'
+development_selection_protocol.stage_4_temporal_and_rate.lexicographic_selection[4] = 'minimize rate-limit safety-override fraction'
+development_selection_protocol.stage_4_temporal_and_rate.lexicographic_selection[5] = 'minimize over_masking_area'
+development_selection_protocol.stage_4_temporal_and_rate.lexicographic_selection[6] = 'canonical temporal/rate tuple'
+development_selection_protocol.stage_4_temporal_and_rate.vary = 'smoothing time constant and finite dim/bright rate pair'
+frozen_probabilistic_runtime.horizons_s[0] = 0.1
+frozen_probabilistic_runtime.horizons_s[1] = 0.3
+frozen_probabilistic_runtime.horizons_s[2] = 0.5
+frozen_probabilistic_runtime.horizons_s[3] = 1.0
+frozen_probabilistic_runtime.threshold_semantics = 'STRICT_GREATER_THAN'
+preserved_PartA_semantics.class_aware_predictive_margin = 'additional expansion above the frozen Part-A generic safety semantics'
+preserved_PartA_semantics.generic_lateral_margin_m = 1.0
+preserved_PartA_semantics.generic_radial_margin_m = 4.0
+preserved_PartA_semantics.generic_reactive_safety_margin = 'preserved, not replaced'
+reactive_fallback_inside_class_aware_controller.class_floor_applied = True
+seven_ADB_baseline_factorization.1_static_ADB.uncertainty = False
+seven_ADB_baseline_factorization.2_original_reactive_ADB.uncertainty = False
+seven_ADB_baseline_factorization.3_deterministic_predictive_ADB.uncertainty = False
+seven_ADB_baseline_factorization.4_uncertainty_aware_predictive_ADB.class_labels_collapsed = True
+seven_ADB_baseline_factorization.4_uncertainty_aware_predictive_ADB.class_policy = False
+seven_ADB_baseline_factorization.4_uncertainty_aware_predictive_ADB.future_prediction = 'frozen calibrated P_occ'
+seven_ADB_baseline_factorization.4_uncertainty_aware_predictive_ADB.margin = 'single shared sigma_lat-responsive margin family; no class terms'
+seven_ADB_baseline_factorization.4_uncertainty_aware_predictive_ADB.purpose = 'isolate uncertainty-responsive control from class awareness'
+seven_ADB_baseline_factorization.4_uncertainty_aware_predictive_ADB.uncertainty = True
+seven_ADB_baseline_factorization.5_class_agnostic_predictive_ADB.additional_uncertainty_margin = False
+seven_ADB_baseline_factorization.5_class_agnostic_predictive_ADB.class_specific_floor = False
+seven_ADB_baseline_factorization.5_class_agnostic_predictive_ADB.gamma = 0.5
+seven_ADB_baseline_factorization.5_class_agnostic_predictive_ADB.uncertainty_in_P_occ = True
+seven_ADB_baseline_factorization.6_class_aware_predictive_ADB.actuation_rate_limit = True
+seven_ADB_baseline_factorization.6_class_aware_predictive_ADB.class_floor = True
+seven_ADB_baseline_factorization.6_class_aware_predictive_ADB.class_gamma = True
+seven_ADB_baseline_factorization.6_class_aware_predictive_ADB.class_margin = True
+seven_ADB_baseline_factorization.6_class_aware_predictive_ADB.temporal_smoothing = True
+seven_ADB_baseline_factorization.6_class_aware_predictive_ADB.uncertainty = True
+temporal_smoothing.candidate_time_constants_ms[0] = 50
+temporal_smoothing.candidate_time_constants_ms[1] = 100
+temporal_smoothing.candidate_time_constants_ms[2] = 200
+temporal_smoothing.candidate_time_constants_ms[3] = 400
+temporal_smoothing.candidate_values_are_PDF_values = False
+temporal_smoothing.domain = 'planned actuation time sequence at tau=[0.1,0.3,0.5,1.0] s'
+temporal_smoothing.equation = 'alpha_h = 1-exp(-delta_t_h/T); I_smooth_h = alpha_h*I_raw_h + (1-alpha_h)*I_prev'
+temporal_smoothing.initial_state = 'current causal class-aware reactive illumination generated from exact Part-A geometry; no future information'
+temporal_smoothing.zero_smoothing_candidate = False
+vehicle_relevant_region_surrogates.controller_side_heading_source = 'predicted/samplewise heading only; no future GT heading'
+vehicle_relevant_region_surrogates.evaluator_side_heading_source = 'future GT heading permitted only after controller decision for constructed oracle/safety-reference evaluation'
+vehicle_relevant_region_surrogates.local_box_fraction_convention = 'FractionalBoxRegion bounds relative to actor-local length/width/height axes'
+vehicle_relevant_region_surrogates.oncoming_front_upper_surrogate.x_bounds[0] = 0.0
+vehicle_relevant_region_surrogates.oncoming_front_upper_surrogate.x_bounds[1] = 0.5
+vehicle_relevant_region_surrogates.oncoming_front_upper_surrogate.y_bounds[0] = -0.5
+vehicle_relevant_region_surrogates.oncoming_front_upper_surrogate.y_bounds[1] = 0.5
+vehicle_relevant_region_surrogates.oncoming_front_upper_surrogate.z_bounds[0] = 0.0
+vehicle_relevant_region_surrogates.oncoming_front_upper_surrogate.z_bounds[1] = 0.5
+vehicle_relevant_region_surrogates.oncoming_rule = 'cos(actor_heading_H0_rad) < 0'
+vehicle_relevant_region_surrogates.physical_ground_truth_claim = False
+vehicle_relevant_region_surrogates.preceding_rear_upper_surrogate.x_bounds[0] = -0.5
+vehicle_relevant_region_surrogates.preceding_rear_upper_surrogate.x_bounds[1] = 0.0
+vehicle_relevant_region_surrogates.preceding_rear_upper_surrogate.y_bounds[0] = -0.5
+vehicle_relevant_region_surrogates.preceding_rear_upper_surrogate.y_bounds[1] = 0.5
+vehicle_relevant_region_surrogates.preceding_rear_upper_surrogate.z_bounds[0] = 0.0
+vehicle_relevant_region_surrogates.preceding_rear_upper_surrogate.z_bounds[1] = 0.5
+vehicle_relevant_region_surrogates.preceding_rule = 'cos(actor_heading_H0_rad) >= 0'
+vehicle_relevant_region_surrogates.required_before_parameter_sweep = 'materialize/project these surrogate regions from the same frozen N8192 trajectory samples for vehicle compliance evidence; full-box P_occ remains the primary controller occupancy'
+vehicle_relevant_region_surrogates.semantics = 'geometry-based heading-dependent surrogate only; WOMD does not provide actual windshield, mirror or driver locations'
+
+===== D. PART3C1 HANDOFF / FINAL FREEZE =====
+
+----- PART3C1 HANDOFF -----
+(no relevant scalar paths)
+
+----- PART3C FINAL FREEZE -----
+vehicle_surrogate_evidence.path = '/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3c_vehicle_surrogate_evidence.jsonl'
+vehicle_surrogate_evidence.sha256 = 'bfe8eb6d8b605d58f9b99d8097744b71b99ecb9ed9fd169191222375f31bc826'
+
+numeric policy selected from outcomes = NO
+formal outcomes read in Block66       = NO
+
+===== E. EXACT PART3C1 CALL BINDINGS =====
+
+============================================================
+BLOCK 6.8 CLASS-AWARE POLICY BINDING = BLOCKED
+============================================================
+exception = RuntimeError No relevant class-aware runtime calls found in frozen Part3C1 runner.
+
+
+P_occ content          = NOT OPENED BY THIS RUNNER
+predictive performance = NOT COMPUTED
+acceptance gate        = NOT TESTED
+policy tuning          = NO
+formal evaluation      = NO
+Do not invent missing policy numerics.
+Do not run formal Stage6 evaluation.
+terminal remains open = YES

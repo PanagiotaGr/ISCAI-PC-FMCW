@@ -1,0 +1,91 @@
+{
+  "Stage6_allowed": false,
+  "decision_ledger": {
+    "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/decision_ledger_sealed.jsonl",
+    "read_only": true,
+    "rows": 17280,
+    "sha256": "751703975b3fc837cc1cf660cf1321db5768323d6cf2fbef524d05a3dbb48af4",
+    "unique_receiver_keys": 120
+  },
+  "population": {
+    "canonical_validation_manifest_sha256": "dc10609ef18a2ba881657eb3da3a3df7a81bdcc8345ecbc2227102ab16b8833c",
+    "formal_manifest": "/home/agni/waymo/iscai_stage3/artifacts/block38e/formal_validation_120.jsonl",
+    "formal_manifest_report_sha256": "4992e4c2971f4452a65cbde8515f3aa2738cd193ff4cbd76158f78e13edae090",
+    "formal_manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "scene_count": 120,
+    "valid_future_counts": {
+      "0.1": 120,
+      "0.3": 119,
+      "0.5": 119,
+      "1.0": 119
+    }
+  },
+  "schema_probe": {
+    "report": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/evaluator_truth_binding_materialization_v1/schema_probe_report.json",
+    "report_sha256": "f887e4b12e28af4da070b2d8e6b879d84d0821e094fd34b49f07c9f805a16f25",
+    "scientific_metric_used": false
+  },
+  "scientific_boundary": {
+    "BER_read": false,
+    "V3_decisions_already_sealed": true,
+    "coverage_read": false,
+    "effective_rate_read": false,
+    "evaluator_truth_opened": true,
+    "formal_metrics_computed": false,
+    "parameter_tuning": false,
+    "post_outcome_tuning": false,
+    "recalibration": false,
+    "retraining": false,
+    "training": false,
+    "truth_opened_only_postseal": true
+  },
+  "scope": "evaluator truth only",
+  "stage": 5,
+  "status": "FROZEN_POSTSEAL_EVALUATOR_TRUTH_BINDING",
+  "truth_binding": {
+    "interface_spec": {
+      "aliases": {
+        "centroid": "centroid",
+        "known": "known",
+        "uncertain": "uncertain"
+      },
+      "explicit_invalid": false,
+      "horizon_wrapper": null,
+      "kind": "nested",
+      "wrapper": null
+    },
+    "normal_resolver_unique": true,
+    "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_repair/evaluator_truth_binding_fullpdf_v2.jsonl",
+    "rows": 120,
+    "sha256": "1c9582cdf62dfc02cc36c6e0a56c6ce1a1b25eedc09e9fd10af00618d51a5961",
+    "truth_map_hash": "d27dda703e69f0d260747e608bbd47c03c619de92201e15bc716ca867d454763"
+  },
+  "truth_construction": {
+    "future_offsets": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "geometries": [
+      "centroid",
+      "known",
+      "uncertain"
+    ],
+    "historical_config_assignment_line": 2499,
+    "historical_runner": "/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py",
+    "historical_runner_sha256": "b1276eefd51444e0e648794d8bbb61ef829cc49bd1a09ba68ff79d9b61c8a9a5",
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "receiver_offset_source": "/home/agni/waymo/iscai_stage5/configs/stage5_contract.json:receiver_geometry_upstream.default_config:offset_mean_body_m/offset_covariance_body_m2",
+    "receiver_selection_reexecuted": false,
+    "selected_receiver_source": "frozen primary_receiver_binding_fullpdf_v2",
+    "tracks_to_predict_receiver_selection": false,
+    "uncertain_truth_seed": "stable_seed(scenario_id, \"constructed_receiver_truth\")"
+  },
+  "version": "fullpdf_v2"
+}

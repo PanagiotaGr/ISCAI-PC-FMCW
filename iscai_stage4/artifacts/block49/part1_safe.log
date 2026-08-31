@@ -1,0 +1,88 @@
+============================================================
+STAGE4 BLOCK 4.9 PART 1/2 REPRODUCIBILITY AUDIT
+============================================================
+
+===== A. CONTROLLED COMPILE =====
+reproducibility_runtime.py = PASS
+test_block49_reproducibility.py = PASS
+run_block49_part1_safe.py = PASS
+
+===== B. FROZEN STAGE4 REPORT CHAIN =====
+Block4.3   = PASS
+Block4.4   = PASS
+Block4.5   = PASS
+Block4.6   = PASS
+Block4.7   = PASS
+Block4.8   = PASS
+formal leakage contract = PASS
+
+===== C. CHECKPOINT / ARTIFACT HASHES =====
+formal manifest           = PASS
+validation manifest       = PASS
+deterministic checkpoint  = PASS
+Gaussian checkpoint       = PASS
+calibrator                = PASS
+GMM checkpoint            = PASS
+deterministic state       = PASS
+Gaussian state            = PASS
+GMM state                 = PASS
+
+===== D. FORMAL CACHE CONTENT RECONSTRUCTION =====
+formal shards             = 120
+per-scene prediction SHAs = 120
+matched targets           = 494
+eligible targets          = 547
+cache-contract SHA        = fa18255195eccca9a5f339c07ab0e3817e89ca8d8a9fa5eb63e8bd2cca5226dc
+reconstructed content SHA = fe5cf7e413b8142c0670d05727affd4fa573cf4607665e4a9bda951f1d9bd0d5
+formal content SHA        = PASS
+
+===== E. FORMAL EVIDENCE CROSS-CHECK =====
+formal Gaussian ADE m     = 1.9848952833749467
+classical baselines beaten= ['CA', 'CTRV', 'CV', 'IMM_CV_CA_CTRV', 'Kalman_EKF']
+raw formal macro ECE      = 0.18362046536363294
+calibrated formal ECE     = 0.11165527003334381
+PDF performance evidence  = PASS
+PDF calibration evidence  = PASS
+internal CV gate          = PASS
+
+===== F. BLOCK4.9 UNIT TESTS =====
+
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.007s
+
+OK
+
+
+===== G. FULL STAGE4 REGRESSION =====
+
+........................................................................................................................
+----------------------------------------------------------------------
+Ran 120 tests in 0.403s
+
+OK
+
+
+============================================================
+STAGE4 BLOCK 4.9 PART 1/2 SAFE GATE
+============================================================
+frozen report chain       = PASS
+checkpoint file hashes    = PASS
+checkpoint state hashes   = PASS
+formal/validation manifests= PASS
+formal shards             = 120 / 120 PASS
+formal matched/eligible   = 494 / 547 PASS
+formal content SHA        = PASS
+formal leakage contract   = PASS
+PDF performance evidence  = PASS
+PDF calibration evidence  = PASS
+internal CV gate          = PASS
+training performed        = NO
+formal inference performed= NO
+recalibration performed   = NO
+full Stage4 regression    = 120 / 120 PASS
+implementation files      = 77
+implementation SHA256     = 6984cf29a42c6fa8bd66f1105f09c3f19a185d96979b89b277fd1436dee56a4a
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage4/reports/block49_part1_reproducibility_audit.json
+terminal remains open     = YES

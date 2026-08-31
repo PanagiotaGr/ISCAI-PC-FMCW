@@ -1,0 +1,71 @@
+============================================================
+STAGE4 BLOCK 4.7 PART 1/2 PREFLIGHT
+============================================================
+
+===== CONTROLLED COMPILE =====
+ablation_runtime.py = PASS
+test_block47_ablation.py = PASS
+
+===== FROZEN 14-D INPUT CONTRACT =====
+[00] x_H0_m 
+[01] y_H0_m 
+[02] z_H0_m 
+[03] vx_H0_mps 
+[04] vy_H0_mps 
+[05] vz_H0_mps 
+[06] meas_cov_xx_H0_m2 <-- R_t
+[07] meas_cov_xy_H0_m2 <-- R_t
+[08] meas_cov_xz_H0_m2 <-- R_t
+[09] meas_cov_yy_H0_m2 <-- R_t
+[10] meas_cov_yz_H0_m2 <-- R_t
+[11] meas_cov_zz_H0_m2 <-- R_t
+[12] observed_mask 
+[13] velocity_valid_mask 
+
+R_t feature indices       = (6, 7, 8, 9, 10, 11)
+R_t feature names         = ('meas_cov_xx_H0_m2', 'meas_cov_xy_H0_m2', 'meas_cov_xz_H0_m2', 'meas_cov_yy_H0_m2', 'meas_cov_yz_H0_m2', 'meas_cov_zz_H0_m2')
+R_t mapping               = PASS
+
+===== FROZEN GAUSSIAN INTERVENTION SMOKE =====
+probe samples             = 256
+no-R_t mean max delta     = 1.9125218391418457
+actor-only mean max delta = 1.9047813415527344
+no-map mean max delta     = 2.193382501602173
+all intervention SPD      = PASS
+
+===== BLOCK4.7 UNIT TESTS =====
+
+........
+----------------------------------------------------------------------
+Ran 8 tests in 0.001s
+
+OK
+
+
+===== FULL STAGE4 REGRESSION =====
+
+....................................................................................................
+----------------------------------------------------------------------
+Ran 100 tests in 0.279s
+
+OK
+
+
+============================================================
+STAGE4 BLOCK 4.7 PART 1/2 SAFE GATE
+============================================================
+Block4.6 frozen upstream  = PASS
+Gaussian baseline         = FROZEN
+history feature dimension = 14 PASS
+R_t mapping               = PASS
+R_t indices               = (6, 7, 8, 9, 10, 11)
+R_t names                 = ('meas_cov_xx_H0_m2', 'meas_cov_xy_H0_m2', 'meas_cov_xz_H0_m2', 'meas_cov_yy_H0_m2', 'meas_cov_yz_H0_m2', 'meas_cov_zz_H0_m2')
+no-R_t semantics          = FIT-MEAN IMPUTATION
+actor-only intervention   = PASS
+no-map intervention       = PASS
+all intervention SPD      = PASS
+training started          = NO
+formal validation used    = NO
+full Stage4 regression    = 100 / 100 PASS
+STATUS = PASS
+terminal remains open     = YES

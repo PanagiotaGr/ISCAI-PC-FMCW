@@ -1,0 +1,599 @@
+========================================================================
+BLOCK 6.3 PART 2B/1 — EXACT RUNTIME BOUNDARY DIAGNOSTICS
+========================================================================
+
+exception type = KeyError
+exception      = 'model'
+
+===== CalibrationNormalizer signature =====
+(statistics, *, device)
+
+===== CalibrationNormalizer source =====
+class CalibrationNormalizer:
+    """
+    Frozen Block4.3 fit-only normalization.
+
+    Calibration data never contributes
+    normalization statistics.
+    """
+
+    def __init__(
+        self,
+        statistics,
+        *,
+        device,
+    ):
+        self.feature_mean = torch.tensor(
+            statistics[
+                "continuous_feature_mean"
+            ],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        self.feature_std = torch.tensor(
+            statistics[
+                "continuous_feature_std"
+            ],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        self.map_mean = torch.tensor(
+            statistics[
+                "map_mean"
+            ],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        self.map_std = torch.tensor(
+            statistics[
+                "map_std"
+            ],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        self.label_mean = torch.tensor(
+            statistics[
+                "label_displacement_mean"
+            ],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        self.label_std = torch.tensor(
+            statistics[
+                "label_displacement_std"
+            ],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        for name, value in (
+            (
+                "feature_std",
+                self.feature_std,
+            ),
+            (
+                "map_std",
+                self.map_std,
+            ),
+            (
+                "label_std",
+                self.label_std,
+            ),
+        ):
+            if bool(
+                torch.any(
+                    value <= 0.0
+                )
+            ):
+                raise ValueError(
+                    f"{name} must be positive."
+                )
+
+    @staticmethod
+    def _latest_position(
+        target,
+    ):
+        observed = (
+            target[:, :, 12]
+            >
+            0.5
+        )
+
+        if not bool(
+            observed.any(
+                dim=1
+            ).all()
+        ):
+            raise ValueError(
+                "Target without causal "
+                "observation."
+            )
+
+        grid = torch.arange(
+            target.shape[1],
+            device=target.device,
+            dtype=torch.long,
+        )
+
+        grid = (
+            grid[None, :]
+            .expand_as(
+                observed
+            )
+        )
+
+        indices = torch.where(
+            observed,
+            grid,
+            torch.full_like(
+                grid,
+                -1,
+            ),
+        ).max(
+            dim=1
+        ).values
+
+        batch = torch.arange(
+            target.shape[0],
+            device=target.device,
+        )
+
+        return target[
+            batch,
+            indices,
+            :3,
+        ]
+
+    def prepare(
+        self,
+        arrays,
+        *,
+        device,
+    ):
+        target = torch.from_numpy(
+            np.asarray(
+                arrays["target"],
+                dtype=np.float32,
+            )
+        ).to(device)
+
+        neighbors = torch.from_numpy(
+            np.asarray(
+                arrays["neighbors"],
+                dtype=np.float32,
+            )
+        ).to(device)
+
+        neighbor_mask = torch.from_numpy(
+            np.asarray(
+                arrays["neighbor_mask"],
+                dtype=np.float32,
+            )
+        ).to(device)
+
+        map_context = torch.from_numpy(
+            np.asarray(
+                arrays["map_context"],
+                dtype=np.float32,
+            )
+        ).to(device)
+
+        future = torch.from_numpy(
+            np.asarray(
+                arrays["future"],
+                dtype=np.float32,
+            )
+        ).to(device)
+
+        future_mask = torch.from_numpy(
+            np.asarray(
+                arrays["future_mask"],
+                dtype=np.float32,
+            )
+        ).to(device)
+
+        class_id = torch.from_numpy(
+            np.asarray(
+                arrays["class_id"],
+                dtype=np.int64,
+            )
+        ).to(device)
+
+        target_observed = (
+            target[
+                :,
+                :,
+                12:13
+            ]
+        )
+
+        target_cont = (
+            (
+                target[
+                    :,
+                    :,
+                    :12
+                ]
+                -
+                self.feature_mean
+            )
+            /
+            self.feature_std
+        )
+
+        target_cont = (
+            target_cont
+            *
+            target_observed
+        )
+
+        target_normalized = torch.cat(
+            (
+                target_cont,
+                target[
+                    :,
+                    :,
+                    12:
+                ],
+            ),
+            dim=-1,
+        )
+
+        neighbor_observed = (
+            neighbors[
+                :,
+                :,
+                :,
+                12:13
+            ]
+            *
+            neighbor_mask[
+                :,
+                :,
+                None,
+                None
+            ]
+        )
+
+        neighbor_cont = (
+            (
+                neighbors[
+                    :,
+                    :,
+                    :,
+                    :12
+                ]
+                -
+                self.feature_mean
+            )
+            /
+            self.feature_std
+        )
+
+        neighbor_cont = (
+            neighbor_cont
+            *
+            neighbor_observed
+        )
+
+        neighbors_normalized = torch.cat(
+            (
+                neighbor_cont,
+
+                neighbors[
+                    :,
+                    :,
+                    :,
+                    12:
+                ]
+                *
+                neighbor_mask[
+                    :,
+                    :,
+                    None,
+                    None
+                ],
+            ),
+            dim=-1,
+        )
+
+        map_normalized = (
+            (
+                map_context
+                -
+                self.map_mean
+            )
+            /
+            self.map_std
+        )
+
+        origin = self._latest_position(
+            target
+        )
+
+        displacement = (
+            future
+            -
+            origin[
+                :,
+                None,
+                :
+            ]
+        )
+
+        return {
+            "target":
+                target_normalized,
+
+            "neighbors":
+                neighbors_normalized,
+
+            "neighbor_mask":
+                neighbor_mask,
+
+            "map_context":
+                map_normalized,
+
+            "true_displacement":
+                displacement,
+
+            "future_mask":
+                future_mask,
+
+            "class_id":
+                class_id,
+        }
+
+
+===== build_real_causal_inputs source =====
+def build_real_causal_inputs(
+    scenario,
+    *,
+    clean_config,
+    degraded_config,
+):
+    adapted = (
+        adapt_causal_womd_scenario(
+            scenario
+        )
+    )
+
+    ideal = (
+        build_real_ideal_observation_scene(
+            raw_scenario=scenario,
+            adapted=adapted,
+            include_sdc=False,
+        )
+    )
+
+    clean = (
+        build_clean_observation_scene(
+            ideal_scene=ideal,
+            config=clean_config,
+        )
+    )
+
+    degraded = (
+        build_degraded_observation_scene(
+            clean_scene=clean,
+            config=degraded_config,
+        )
+    )
+
+    algorithm_hash = (
+        degraded_algorithm_sha256(
+            degraded
+        )
+    )
+
+    sequence = (
+        algorithm_sequence_from_degraded_scene(
+            scenario_id=(
+                scenario.scenario_id
+            ),
+            scene=degraded,
+        )
+    )
+
+    associated = (
+        associate_estimated_gnn(
+            sequence
+        )
+    )
+
+    dynamic_frames, _ = (
+        build_causal_dynamic_headlamp_frames(
+            adapted
+        )
+    )
+
+    expected = (
+        int(
+            scenario.current_time_index
+        )
+        +
+        1
+    )
+
+    if (
+        len(dynamic_frames)
+        !=
+        expected
+        or
+        any(
+            frame is None
+            for frame
+            in dynamic_frames
+        )
+    ):
+        raise RuntimeError(
+            "Invalid causal dynamic "
+            "headlamp frames."
+        )
+
+    timestamps = tuple(
+        float(x)
+        for x in (
+            scenario
+            .timestamps_seconds[
+                :expected
+            ]
+        )
+    )
+
+    context = (
+        FrameTransformContext(
+            T_H0_from_W=(
+                adapted.frames
+                .T_H0_from_W
+            ),
+            T_Ht_from_W_by_frame=tuple(
+                frame.T_Ht_from_W
+                for frame
+                in dynamic_frames
+            ),
+        )
+    )
+
+    scene_inputs = (
+        build_causal_scene_inputs(
+            associated.tracks,
+            scenario_id=(
+                scenario.scenario_id
+            ),
+            context=context,
+            timestamps_s=(
+                timestamps
+            ),
+        )
+    )
+
+    return {
+        "adapted":
+            adapted,
+
+        "degraded":
+            degraded,
+
+        "stage2_algorithm_sha256":
+            algorithm_hash,
+
+        "association_track_count":
+            len(
+                associated.tracks
+            ),
+
+        "scene_inputs":
+            scene_inputs,
+    }
+
+
+===== build_model_input_payload source =====
+def build_model_input_payload(
+    scene_inputs: CausalSceneInputs,
+    *,
+    prediction_id: str,
+    map_context: tuple[
+        float,
+        ...,
+    ],
+) -> ModelInputPayload:
+    target = (
+        scene_inputs
+        .history_by_id(
+            prediction_id
+        )
+    )
+
+    tx, ty, _ = (
+        target
+        .latest_position_H0_m
+    )
+
+    candidates = []
+
+    for history in (
+        scene_inputs.histories
+    ):
+        if (
+            history.prediction_id
+            ==
+            prediction_id
+        ):
+            continue
+
+        x, y, _ = (
+            history
+            .latest_position_H0_m
+        )
+
+        distance = hypot(
+            x - tx,
+            y - ty,
+        )
+
+        candidates.append(
+            (
+                distance,
+                history.prediction_id,
+                history,
+            )
+        )
+
+    candidates.sort(
+        key=lambda item: (
+            item[0],
+            item[1],
+        )
+    )
+
+    selected = [
+        item[2]
+        for item in candidates[
+            :MAX_NEIGHBORS
+        ]
+    ]
+
+    neighbor_histories = [
+        history.feature_rows()
+        for history in selected
+    ]
+
+    neighbor_mask = [
+        1.0
+        for _ in selected
+    ]
+
+    while len(
+        neighbor_histories
+    ) < MAX_NEIGHBORS:
+        neighbor_histories.append(
+            zero_history_rows()
+        )
+
+        neighbor_mask.append(
+            0.0
+        )
+
+    return ModelInputPayload(
+        target_history=(
+            target.feature_rows()
+        ),
+        neighbor_histories=tuple(
+            neighbor_histories
+        ),
+        neighbor_mask=tuple(
+            neighbor_mask
+        ),
+        map_context=tuple(
+            float(x)
+            for x in map_context
+        ),
+    )
+
+

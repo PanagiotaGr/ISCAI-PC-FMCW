@@ -1,0 +1,51 @@
+{
+  "block": "6.8_stage3_road_roi_schedule_shape_repair",
+  "diagnosis": {
+    "failure_type": "spatial_roi_vs_schedule_shape_mismatch",
+    "frozen_road_roi_native_domain": [
+      "theta",
+      "range"
+    ],
+    "frozen_spatial_shape": [
+      501,
+      301
+    ],
+    "repair": "materialize frozen 2-D spatial ROI then replicate exactly across the four frozen horizons",
+    "schedule_shape": [
+      4,
+      501,
+      301
+    ],
+    "scientific_failure": false
+  },
+  "immutability": {
+    "Stage1_gamma_modified": false,
+    "Stage2_margins_modified": false,
+    "Stage3_candidate_space_modified": false,
+    "Stage3_scoring_comparator_modified": false,
+    "Stage4_parameters_selected": false,
+    "evaluator_reference_modified": false,
+    "formal_evaluation": false,
+    "metric_semantics_modified": false,
+    "primary_acceptance_tested": false,
+    "spatial_road_roi_modified": false
+  },
+  "mathematical_equivalence": {
+    "equal_horizon_weighting_preserved": true,
+    "horizon_count": 4,
+    "same_spatial_ROI_every_horizon": true,
+    "schedule_ROI_mean_equivalent_to": "equal mean of the four per-horizon frozen spatial-ROI means"
+  },
+  "next": "rerun the identical Stage3 Part2/2; fixed-cache readback must complete before the exact 3270 floor sweep",
+  "regression": 224,
+  "runner": {
+    "backup_path": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage3_floor_selection/road_roi_shape_repair/run_block68_stage3_floor_selection_part2of2.pre_road_roi_shape_fix.py",
+    "backup_sha256": "0b351f8cd7f4d51ff259b5a9132f012ffe3b58ea3fdc420d912d2db76dd459e4",
+    "patch_scope": "road ROI materialization / schedule-shape adapter only",
+    "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_stage3_floor_selection_part2of2.py",
+    "post_patch_sha256": "83da4be5cade13a6fee574d6e1d1afad76dde931e8facff5d40c447d478bc831",
+    "pre_patch_sha256": "0b351f8cd7f4d51ff259b5a9132f012ffe3b58ea3fdc420d912d2db76dd459e4"
+  },
+  "stage": 6,
+  "status": "PASS_STAGE3_ROAD_ROI_SCHEDULE_SHAPE_REPAIRED"
+}

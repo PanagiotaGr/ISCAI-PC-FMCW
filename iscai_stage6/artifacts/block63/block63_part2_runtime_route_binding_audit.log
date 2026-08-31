@@ -1,0 +1,3820 @@
+============================================================
+STAGE 6 — BLOCK 6.3 PART 2/2
+IDENTITY-PRESERVING STAGE4 RUNTIME ROUTE AUDIT
+============================================================
+
+===== A. BLOCK6.3 FROZEN SEAL =====
+Part1 = EXACT PASS
+batch audit = EXACT PASS
+anonymous batch row selector = NONE
+
+===== B. CONTROLLER ROUTE DECISION =====
+decision = USE_IDENTITY_PRESERVING_FROZEN_STAGE4_RUNTIME
+anonymous batch controller use = NO
+arbitrary row use = NO
+runtime identity preservation = REQUIRED
+formal N120 = FORBIDDEN
+decision artifact = WRITTEN
+decision SHA256 = f695e1d91ce3b6fb198b3841bb9a50f1ad2174964c2874839097eb588a61500f
+
+===== C. EXACT STAGE4 CALIBRATED RUNTIME DEFINITIONS =====
+
+------------------------------------------------------------
+build_gaussian_model | definitions = 1
+------------------------------------------------------------
+path = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py
+line = 374
+sha256 = 5ca10326848286fe4475907d6e8ae13bbf708d4263f6122d47f2ebfa2038419a
+def build_gaussian_model(
+    configuration,
+    *,
+    device,
+):
+    model_config = (
+        configuration[
+            "model"
+        ]
+    )
+
+    return GaussianTrajectoryGRU(
+        target_hidden_dim=int(
+            model_config[
+                "target_hidden_dim"
+            ]
+        ),
+        neighbor_hidden_dim=int(
+            model_config[
+                "neighbor_hidden_dim"
+            ]
+        ),
+        map_hidden_dim=int(
+            model_config[
+                "map_hidden_dim"
+            ]
+        ),
+        fusion_hidden_dim=int(
+            model_config[
+                "fusion_hidden_dim"
+            ]
+        ),
+        use_neighbors=True,
+        use_map=True,
+    ).to(device)
+
+------------------------------------------------------------
+probe_calibrated_output | definitions = 1
+------------------------------------------------------------
+path = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py
+line = 1121
+sha256 = 8ecf1e33de66dffdb9df5da47affdd101b8f1b1f8b9af75e4f744442813a3e74
+def probe_calibrated_output(
+    model,
+    samples,
+    normalizer,
+    variance_scale,
+    *,
+    device,
+):
+    arrays = samples_to_arrays(
+        samples
+    )
+
+    if (
+        arrays[
+            "target"
+        ].shape[0]
+        ==
+        0
+    ):
+        raise ValueError(
+            "Probe requires "
+            "non-empty samples."
+        )
+
+    batch = normalizer.prepare(
+        arrays,
+        device=device,
+    )
+
+    model.eval()
+
+    with torch.inference_mode():
+        output = model(
+            batch["target"],
+            batch["neighbors"],
+            batch[
+                "neighbor_mask"
+            ],
+            batch[
+                "map_context"
+            ],
+        )
+
+        raw_mean = output.mean.clone()
+
+        calibrated_scale = (
+            apply_variance_scale(
+                output.scale_tril,
+                variance_scale,
+            )
+        )
+
+        # Calibration has no mean operation.
+        calibrated_mean = (
+            output.mean
+        )
+
+        mean_exact = torch.equal(
+            raw_mean,
+            calibrated_mean,
+        )
+
+        (
+            _,
+            calibrated_scale_metric,
+        ) = denormalize_gaussian(
+            calibrated_mean,
+            calibrated_scale,
+            normalizer.label_mean,
+            normalizer.label_std,
+        )
+
+        covariance = (
+            covariance_from_scale_tril(
+                calibrated_scale_metric
+            )
+        )
+
+        (
+            _,
+            info,
+        ) = torch.linalg.cholesky_ex(
+            covariance
+        )
+
+        spd = bool(
+            torch.all(
+                info == 0
+            )
+        )
+
+    return {
+        "mean_exactly_unchanged":
+            mean_exact,
+
+        "calibrated_covariance_SPD":
+            spd,
+    }
+
+------------------------------------------------------------
+infer_scene_statistics | definitions = 1
+------------------------------------------------------------
+path = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py
+line = 593
+sha256 = 05821db2dcc30570966f50382a14d09cb06dc72a3647daa380e828b359e3aa22
+def infer_scene_statistics(
+    model,
+    samples,
+    normalizer,
+    *,
+    device,
+):
+    arrays = samples_to_arrays(
+        samples
+    )
+
+    count = int(
+        arrays[
+            "target"
+        ].shape[0]
+    )
+
+    if count == 0:
+        return {
+            "mahalanobis_squared":
+                np.zeros(
+                    (
+                        0,
+                        4,
+                    ),
+                    dtype=np.float32,
+                ),
+
+            "validity":
+                np.zeros(
+                    (
+                        0,
+                        4,
+                    ),
+                    dtype=np.float32,
+                ),
+
+            "raw_metric_nll":
+                np.zeros(
+                    (
+                        0,
+                        4,
+                    ),
+                    dtype=np.float32,
+                ),
+
+            "planar_error_m":
+                np.zeros(
+                    (
+                        0,
+                        4,
+                    ),
+                    dtype=np.float32,
+                ),
+
+            "class_id":
+                np.zeros(
+                    (0,),
+                    dtype=np.int64,
+                ),
+
+            "prediction_sha256":
+                sha256(
+                    b""
+                ).hexdigest(),
+        }
+
+    batch = normalizer.prepare(
+        arrays,
+        device=device,
+    )
+
+    model.eval()
+
+    with torch.inference_mode():
+        output = model(
+            batch["target"],
+            batch["neighbors"],
+            batch[
+                "neighbor_mask"
+            ],
+            batch[
+                "map_context"
+            ],
+        )
+
+        (
+            mean_metric,
+            scale_metric,
+        ) = denormalize_gaussian(
+            output.mean,
+            output.scale_tril,
+            normalizer.label_mean,
+            normalizer.label_std,
+        )
+
+        truth = batch[
+            "true_displacement"
+        ]
+
+        q = mahalanobis_squared(
+            mean_metric,
+            scale_metric,
+            truth,
+        )
+
+        raw_nll = (
+            gaussian_nll_per_horizon(
+                mean_metric,
+                scale_metric,
+                truth,
+            )
+        )
+
+        planar = torch.sqrt(
+            (
+                mean_metric[
+                    :,
+                    :,
+                    0
+                ]
+                -
+                truth[
+                    :,
+                    :,
+                    0
+                ]
+            ).square()
+            +
+            (
+                mean_metric[
+                    :,
+                    :,
+                    1
+                ]
+                -
+                truth[
+                    :,
+                    :,
+                    1
+                ]
+            ).square()
+        )
+
+        valid = batch[
+            "future_mask"
+        ]
+
+        valid_bool = (
+            valid
+            >
+            0.5
+        )
+
+        if not bool(
+            torch.isfinite(
+                q[
+                    valid_bool
+                ]
+            ).all()
+        ):
+            raise RuntimeError(
+                "Non-finite calibration "
+                "Mahalanobis values."
+            )
+
+        if not bool(
+            torch.isfinite(
+                raw_nll[
+                    valid_bool
+                ]
+            ).all()
+        ):
+            raise RuntimeError(
+                "Non-finite calibration "
+                "raw NLL values."
+            )
+
+        covariance = (
+            covariance_from_scale_tril(
+                scale_metric
+            )
+        )
+
+        (
+            _,
+            info,
+        ) = torch.linalg.cholesky_ex(
+            covariance
+        )
+
+        if bool(
+            torch.any(
+                info != 0
+            )
+        ):
+            raise RuntimeError(
+                "Raw Gaussian calibration "
+                "inference produced "
+                "non-SPD covariance."
+            )
+
+        prediction_hash = (
+            prediction_sha256(
+                output.mean,
+                output.scale_tril,
+            )
+        )
+
+    return {
+        "mahalanobis_squared":
+            q.detach()
+            .cpu()
+            .numpy()
+            .astype(
+                np.float32,
+                copy=False,
+            ),
+
+        "validity":
+            valid.detach()
+            .cpu()
+            .numpy()
+            .astype(
+                np.float32,
+                copy=False,
+            ),
+
+        "raw_metric_nll":
+            raw_nll.detach()
+            .cpu()
+            .numpy()
+            .astype(
+                np.float32,
+                copy=False,
+            ),
+
+        "planar_error_m":
+            planar.detach()
+            .cpu()
+            .numpy()
+            .astype(
+                np.float32,
+                copy=False,
+            ),
+
+        "class_id":
+            batch[
+                "class_id"
+            ].detach()
+            .cpu()
+            .numpy()
+            .astype(
+                np.int64,
+                copy=False,
+            ),
+
+        "prediction_sha256":
+            prediction_hash,
+    }
+
+------------------------------------------------------------
+prediction_sha256 | definitions = 1
+------------------------------------------------------------
+path = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py
+line = 563
+sha256 = c16df220da97cdf503df12973f56151046809f0bd358204fb29bdb820075a1fb
+def prediction_sha256(
+    mean,
+    scale_tril,
+):
+    digest = sha256()
+
+    for tensor in (
+        mean,
+        scale_tril,
+    ):
+        value = (
+            tensor.detach()
+            .cpu()
+            .contiguous()
+            .numpy()
+            .astype(
+                np.float32,
+                copy=False,
+            )
+        )
+
+        digest.update(
+            value.tobytes(
+                order="C"
+            )
+        )
+
+    return digest.hexdigest()
+
+------------------------------------------------------------
+extract_deterministic_prediction | definitions = 1
+------------------------------------------------------------
+path = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/formal_runtime.py
+line = 525
+sha256 = 687a9c7bc73e4cd6b7be82ae4f421a9e76acbdd29a9a8d6147d18bc6652f140f
+def extract_deterministic_prediction(
+    output,
+):
+    if isinstance(
+        output,
+        torch.Tensor,
+    ):
+        candidate = output
+
+    else:
+        candidate = None
+
+        for name in (
+            "prediction",
+            "mean",
+            "trajectory",
+            "positions",
+        ):
+            value = getattr(
+                output,
+                name,
+                None,
+            )
+
+            if isinstance(
+                value,
+                torch.Tensor,
+            ):
+                candidate = value
+                break
+
+        if (
+            candidate is None
+            and
+            isinstance(
+                output,
+                (
+                    tuple,
+                    list,
+                ),
+            )
+            and
+            output
+            and
+            isinstance(
+                output[
+                    0
+                ],
+                torch.Tensor,
+            )
+        ):
+            candidate = output[
+                0
+            ]
+
+    if candidate is None:
+        raise RuntimeError(
+            "Could not extract deterministic "
+            "trajectory tensor from model output."
+        )
+
+    if (
+        candidate.ndim != 3
+        or
+        tuple(
+            candidate.shape[
+                1:
+            ]
+        )
+        !=
+        (
+            4,
+            3,
+        )
+    ):
+        raise RuntimeError(
+            "Deterministic prediction shape "
+            f"changed: {tuple(candidate.shape)}"
+        )
+
+    return candidate
+
+------------------------------------------------------------
+build_causal_track_history | definitions = 1
+------------------------------------------------------------
+path = /home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py
+line = 796
+sha256 = e373b82c49b821f13a13225f079d70ccc7180cb50a693813a5f86add0c7a863d
+def build_causal_track_history(
+    associated_track,
+    *,
+    context,
+    timestamps_s: tuple[
+        float,
+        ...,
+    ],
+) -> CausalTrackHistory:
+    if len(
+        timestamps_s
+    ) != HISTORY_STEPS:
+        raise ValueError(
+            "Stage4 requires 11 "
+            "causal timestamps."
+        )
+
+    observations = tuple(
+        cartesianize_associated_track(
+            associated_track,
+            context=context,
+        )
+    )
+
+    if not observations:
+        raise ValueError(
+            "Associated track has no "
+            "Cartesian observations."
+        )
+
+    by_frame = {}
+
+    for observation in observations:
+        frame_index = (
+            _extract_frame_index(
+                observation,
+                timestamps_s=(
+                    timestamps_s
+                ),
+            )
+        )
+
+        by_frame[
+            frame_index
+        ] = (
+            _extract_position(
+                observation
+            ),
+            _extract_covariance(
+                observation
+            ),
+        )
+
+    steps = []
+
+    previous_position = None
+    previous_timestamp = None
+
+    for frame_index, timestamp in (
+        enumerate(
+            timestamps_s
+        )
+    ):
+        if frame_index not in by_frame:
+            steps.append(
+                HistoryStep(
+                    frame_index=frame_index,
+                    timestamp_s=(
+                        float(timestamp)
+                    ),
+                    position_H0_m=(
+                        0.0,
+                        0.0,
+                        0.0,
+                    ),
+                    velocity_H0_mps=(
+                        0.0,
+                        0.0,
+                        0.0,
+                    ),
+                    measurement_covariance_H0_m2=(
+                        _zero_covariance()
+                    ),
+                    observed=False,
+                    velocity_valid=False,
+                )
+            )
+
+            continue
+
+        (
+            position,
+            covariance,
+        ) = by_frame[
+            frame_index
+        ]
+
+        velocity = (
+            0.0,
+            0.0,
+            0.0,
+        )
+
+        velocity_valid = False
+
+        if (
+            previous_position
+            is not None
+            and
+            previous_timestamp
+            is not None
+        ):
+            dt = (
+                float(timestamp)
+                -
+                previous_timestamp
+            )
+
+            if dt <= 0.0:
+                raise RuntimeError(
+                    "Non-positive causal "
+                    "velocity interval."
+                )
+
+            velocity = tuple(
+                (
+                    position[axis]
+                    -
+                    previous_position[axis]
+                )
+                /
+                dt
+                for axis in range(3)
+            )
+
+            velocity_valid = True
+
+        steps.append(
+            HistoryStep(
+                frame_index=frame_index,
+                timestamp_s=(
+                    float(timestamp)
+                ),
+                position_H0_m=(
+                    position
+                ),
+                velocity_H0_mps=(
+                    velocity
+                ),
+                measurement_covariance_H0_m2=(
+                    covariance
+                ),
+                observed=True,
+                velocity_valid=(
+                    velocity_valid
+                ),
+            )
+        )
+
+        previous_position = position
+        previous_timestamp = float(
+            timestamp
+        )
+
+    observed = [
+        step
+        for step in steps
+        if step.observed
+    ]
+
+    latest = observed[-1]
+
+    return CausalTrackHistory(
+        prediction_id=(
+            _extract_prediction_id(
+                associated_track
+            )
+        ),
+        steps=tuple(
+            steps
+        ),
+        latest_observed_frame_index=(
+            latest.frame_index
+        ),
+        latest_position_H0_m=(
+            latest.position_H0_m
+        ),
+    )
+
+------------------------------------------------------------
+build_causal_scene_inputs | definitions = 1
+------------------------------------------------------------
+path = /home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py
+line = 986
+sha256 = f2d98461eeaa5ba4a53bc3bcd6480444e758d7a9318c1bfcf52b520bb1889e16
+def build_causal_scene_inputs(
+    associated_tracks,
+    *,
+    scenario_id: str,
+    context,
+    timestamps_s: tuple[
+        float,
+        ...,
+    ],
+) -> CausalSceneInputs:
+    histories = []
+
+    for associated_track in (
+        associated_tracks
+    ):
+        try:
+            history = (
+                build_causal_track_history(
+                    associated_track,
+                    context=context,
+                    timestamps_s=(
+                        timestamps_s
+                    ),
+                )
+            )
+
+        except ValueError:
+            continue
+
+        histories.append(
+            history
+        )
+
+    histories.sort(
+        key=lambda history:
+            history.prediction_id
+    )
+
+    return CausalSceneInputs(
+        scenario_id=scenario_id,
+        timestamps_s=(
+            timestamps_s
+        ),
+        histories=tuple(
+            histories
+        ),
+    )
+
+===== D. IMPORTED FROZEN RUNTIME SIGNATURES =====
+build_gaussian_model                   (configuration, *, device)
+probe_calibrated_output                (model, samples, normalizer, variance_scale, *, device)
+infer_scene_statistics                 (model, samples, normalizer, *, device)
+prediction_sha256                      (mean, scale_tril)
+extract_deterministic_prediction       (output)
+build_causal_track_history             (associated_track, *, context, timestamps_s: 'tuple[float, ...]') -> 'CausalTrackHistory'
+build_causal_scene_inputs              (associated_tracks, *, scenario_id: 'str', context, timestamps_s: 'tuple[float, ...]') -> 'CausalSceneInputs'
+
+===== E. BLOCK5.2 PRODUCER / CALL-SITE EVIDENCE =====
+producer contexts = 120
+
+--- producer context 1 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_calibrated_runtime_api.py:34
+0025: HANDOFF = (
+0026:     STAGE4
+0027:     / "artifacts/block410/"
+0028:       "stage4_to_stage5_handoff.json"
+0029: )
+0030: 
+0031: RUNTIME_SOURCE = (
+0032:     STAGE4
+0033:     / "src/iscai_stage4/ml/"
+0034:       "calibration_runtime.py"
+0035: )
+0036: 
+0037: REPORT = (
+0038:     STAGE5
+0039:     / "artifacts/block52/"
+0040:       "calibrated_runtime_api_audit.json"
+0041: )
+0042: 
+0043: MODULE_NAME = (
+
+--- producer context 2 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_calibrated_runtime_api.py:44
+0035: )
+0036: 
+0037: REPORT = (
+0038:     STAGE5
+0039:     / "artifacts/block52/"
+0040:       "calibrated_runtime_api_audit.json"
+0041: )
+0042: 
+0043: MODULE_NAME = (
+0044:     "iscai_stage4.ml.calibration_runtime"
+0045: )
+0046: 
+0047: KEYWORDS = (
+0048:     "calibr",
+0049:     "runtime",
+0050:     "predict",
+0051:     "gaussian",
+0052:     "load",
+0053:     "checkpoint",
+
+--- producer context 3 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_calibrated_runtime_api.py:53
+0044:     "iscai_stage4.ml.calibration_runtime"
+0045: )
+0046: 
+0047: KEYWORDS = (
+0048:     "calibr",
+0049:     "runtime",
+0050:     "predict",
+0051:     "gaussian",
+0052:     "load",
+0053:     "checkpoint",
+0054:     "normal",
+0055:     "covariance",
+0056:     "displacement",
+0057:     "origin",
+0058:     "anchor",
+0059:     "mean",
+0060: )
+0061: 
+0062: 
+
+--- producer context 4 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_calibrated_runtime_api.py:380
+0371:     print(
+0372:         "formal N=120 read     = NO"
+0373:     )
+0374: 
+0375:     print(
+0376:         "dataset scan          = NO"
+0377:     )
+0378: 
+0379:     print(
+0380:         "training/recalibration= NO"
+0381:     )
+0382: 
+0383:     print(
+0384:         "upstream modification = NO"
+0385:     )
+0386: 
+0387:     # ========================================================
+0388:     # A. Stage4→Stage5 handoff semantics
+0389:     # ========================================================
+
+--- producer context 5 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_calibrated_runtime_api.py:428
+0419:     ):
+0420:         lower = key.lower()
+0421: 
+0422:         if any(
+0423:             token in lower
+0424:             for token in (
+0425:                 "default",
+0426:                 "gaussian",
+0427:                 "calibr",
+0428:                 "checkpoint",
+0429:                 "normal",
+0430:                 "covariance",
+0431:                 "runtime",
+0432:                 "posterior",
+0433:                 "horizon",
+0434:             )
+0435:         ):
+0436:             interesting_handoff.append({
+0437:                 "key":
+
+--- producer context 6 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_calibrated_runtime_api.py:466
+0457:     # ========================================================
+0458:     # B. Runtime module import / public API
+0459:     # ========================================================
+0460: 
+0461:     print()
+0462:     print(
+0463:         "============================================================"
+0464:     )
+0465:     print(
+0466:         "B. CALIBRATION_RUNTIME PUBLIC API"
+0467:     )
+0468:     print(
+0469:         "============================================================"
+0470:     )
+0471: 
+0472:     module = importlib.import_module(
+0473:         MODULE_NAME
+0474:     )
+0475: 
+
+--- producer context 7 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_calibrated_runtime_api.py:485
+0476:     module_path = Path(
+0477:         module.__file__
+0478:     ).resolve()
+0479: 
+0480:     require(
+0481:         module_path
+0482:         ==
+0483:         RUNTIME_SOURCE.resolve(),
+0484:         (
+0485:             "Imported calibration_runtime "
+0486:             "does not match frozen Stage4 source."
+0487:         ),
+0488:     )
+0489: 
+0490:     print(
+0491:         "module =",
+0492:         MODULE_NAME,
+0493:     )
+0494: 
+
+--- producer context 8 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_calibrated_runtime_api.py:655
+0646:     # ========================================================
+0647:     # D. Raw source hits
+0648:     # ========================================================
+0649: 
+0650:     print()
+0651:     print(
+0652:         "============================================================"
+0653:     )
+0654:     print(
+0655:         "D. CALIBRATION_RUNTIME CRITICAL SOURCE HITS"
+0656:     )
+0657:     print(
+0658:         "============================================================"
+0659:     )
+0660: 
+0661:     hits = source_hits()
+0662: 
+0663:     for hit in hits[
+0664:         :160
+
+--- producer context 9 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_calibrated_runtime_api.py:748
+0739:             "formal_N120_read":
+0740:                 False,
+0741: 
+0742:             "dataset_scan":
+0743:                 False,
+0744: 
+0745:             "training":
+0746:                 False,
+0747: 
+0748:             "recalibration":
+0749:                 False,
+0750: 
+0751:             "upstream_modified":
+0752:                 False,
+0753:         },
+0754: 
+0755:         "handoff": {
+0756:             "path":
+0757:                 str(
+
+--- producer context 10 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_calibrated_runtime_api.py:885
+0876:     print(
+0877:         "model forward executed = NO"
+0878:     )
+0879: 
+0880:     print(
+0881:         "formal N=120 used      = NO"
+0882:     )
+0883: 
+0884:     print(
+0885:         "training/recalibration = NO"
+0886:     )
+0887: 
+0888:     print(
+0889:         "upstream modified      = NO"
+0890:     )
+0891: 
+0892:     print(
+0893:         "terminal remains open  = YES"
+0894:     )
+
+--- producer context 11 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_dev_posterior_resolver.py:452
+0443:         tokens = (
+0444:             "dev",
+0445:             "prediction",
+0446:             "predictions",
+0447:             "gaussian",
+0448:             "covariance",
+0449:             "cov",
+0450:             "mean",
+0451:             "mu",
+0452:             "checkpoint",
+0453:             "cache",
+0454:             "posterior",
+0455:             "block44",
+0456:         )
+0457: 
+0458:         for key, value in flatten_json(
+0459:             payload
+0460:         ):
+0461:             lower = key.lower()
+
+--- producer context 12 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_dev_posterior_resolver.py:568
+0559:     patterns = (
+0560:         r"np\.savez",
+0561:         r"np\.save",
+0562:         r"torch\.save",
+0563:         r"dev",
+0564:         r"gaussian",
+0565:         r"prediction",
+0566:         r"covariance",
+0567:         r"block44",
+0568:         r"checkpoint",
+0569:         r"cache",
+0570:         r"posterior",
+0571:     )
+0572: 
+0573:     lines = text.splitlines()
+0574: 
+0575:     hits = []
+0576: 
+0577:     for line_number, line in enumerate(
+
+--- producer context 13 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_dev_posterior_resolver.py:994
+0985:             "Stage4_inference":
+0986:                 False,
+0987: 
+0988:             "formal_N120_read":
+0989:                 False,
+0990: 
+0991:             "training":
+0992:                 False,
+0993: 
+0994:             "recalibration":
+0995:                 False,
+0996: 
+0997:             "upstream_modified":
+0998:                 False,
+0999:         },
+1000: 
+1001:         "search_roots":
+1002:             [
+1003:                 relative(
+
+--- producer context 14 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_dev_posterior_resolver.py:1037
+1028:             text_source_evidence,
+1029: 
+1030:         "excluded_formal_or_postformal":
+1031:             excluded_formal,
+1032: 
+1033:         "next_decision":
+1034:             (
+1035:                 "resolve_actual_frozen_nonformal_"
+1036:                 "development_posterior_or_confirm_"
+1037:                 "that_only_checkpoint_plus_dev_cache_exists"
+1038:             ),
+1039:     }
+1040: 
+1041:     write_json(
+1042:         REPORT,
+1043:         report,
+1044:     )
+1045: 
+1046:     print()
+
+--- producer context 15 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_block44_hash_route.py:40
+0031:     STAGE5
+0032:     / "artifacts/block52/"
+0033:       "exact_block44_hash_route_audit.json"
+0034: )
+0035: 
+0036: 
+0037: TARGET_FUNCTIONS = (
+0038:     "probabilistic_prediction_sha256",
+0039:     "evaluate_development",
+0040:     "build_gaussian_model",
+0041: )
+0042: 
+0043: TARGET_NAME_TOKENS = (
+0044:     "normal",
+0045:     "dataset",
+0046:     "batch",
+0047:     "development",
+0048: )
+0049: 
+
+--- producer context 16 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_block44_hash_route.py:166
+0157:     require(
+0158:         not missing,
+0159:         "Missing frozen prerequisite(s): "
+0160:         + ", ".join(missing),
+0161:     )
+0162: 
+0163:     print("model forward executed = NO")
+0164:     print("formal N=120 used      = NO")
+0165:     print("dataset scan           = NO")
+0166:     print("training/recalibration = NO")
+0167:     print("Stage4 modified        = NO")
+0168: 
+0169:     text = TRAINING.read_text(
+0170:         encoding="utf-8"
+0171:     )
+0172: 
+0173:     lines = text.splitlines()
+0174: 
+0175:     tree = ast.parse(text)
+
+--- producer context 17 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_block44_hash_route.py:381
+0372:     # --------------------------------------------------------
+0373:     # C. Exact development evaluation route around model()
+0374:     # --------------------------------------------------------
+0375: 
+0376:     print()
+0377:     print(
+0378:         "============================================================"
+0379:     )
+0380:     print(
+0381:         "C. DEVELOPMENT FORWARD / DENORMALIZATION ROUTE"
+0382:     )
+0383:     print(
+0384:         "============================================================"
+0385:     )
+0386: 
+0387:     route_tokens = (
+0388:         "model(",
+0389:         "denormalize_gaussian",
+0390:         "covariance_from_scale_tril",
+
+--- producer context 18 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_block44_hash_route.py:519
+0510: 
+0511:     report44 = json.loads(
+0512:         REPORT44.read_text(
+0513:             encoding="utf-8"
+0514:         )
+0515:     )
+0516: 
+0517:     expected_hash = (
+0518:         report44[
+0519:             "checkpoint"
+0520:         ][
+0521:             "prediction_sha256"
+0522:         ]
+0523:     )
+0524: 
+0525:     print(
+0526:         "training script SHA256 =",
+0527:         file_sha256(TRAINING),
+0528:     )
+
+--- producer context 19 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_block44_hash_route.py:644
+0635:             "formal_N120_read":
+0636:                 False,
+0637: 
+0638:             "dataset_scan":
+0639:                 False,
+0640: 
+0641:             "training":
+0642:                 False,
+0643: 
+0644:             "recalibration":
+0645:                 False,
+0646: 
+0647:             "Stage4_modified":
+0648:                 False,
+0649:         },
+0650: 
+0651:         "training_script": {
+0652:             "path":
+0653:                 str(TRAINING),
+
+--- producer context 20 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_block44_hash_route.py:755
+0746:     print(
+0747:         "model forward executed = NO"
+0748:     )
+0749: 
+0750:     print(
+0751:         "formal N=120 used = NO"
+0752:     )
+0753: 
+0754:     print(
+0755:         "training/recalibration = NO"
+0756:     )
+0757: 
+0758:     print(
+0759:         "Stage4 modified = NO"
+0760:     )
+0761: 
+0762:     print(
+0763:         "terminal remains open = YES"
+0764:     )
+
+--- producer context 21 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:32
+0023:     / "iscai_stage5"
+0024: )
+0025: 
+0026: DEV_CACHE = (
+0027:     STAGE4
+0028:     / "artifacts/block43/"
+0029:       "development_cache.npz"
+0030: )
+0031: 
+0032: CHECKPOINT = (
+0033:     STAGE4
+0034:     / "artifacts/block44/"
+0035:       "gaussian_gru.pt"
+0036: )
+0037: 
+0038: GAUSSIAN_CONFIG = (
+0039:     STAGE4
+0040:     / "configs/"
+0041:       "stage4_gaussian_gru.json"
+
+--- producer context 22 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:285
+0276:             ] = float(
+0277:                 np.max(
+0278:                     values
+0279:                 )
+0280:             )
+0281: 
+0282:     return result
+0283: 
+0284: 
+0285: def checkpoint_value_summary(
+0286:     value,
+0287: ):
+0288:     if isinstance(
+0289:         value,
+0290:         torch.Tensor,
+0291:     ):
+0292:         return {
+0293:             "type":
+0294:                 "Tensor",
+
+--- producer context 23 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:654
+0645:     print(
+0646:         "BLOCK 5.2 — EXACT FROZEN DEV-INFERENCE BRIDGE AUDIT"
+0647:     )
+0648:     print(
+0649:         "============================================================"
+0650:     )
+0651: 
+0652:     required = (
+0653:         DEV_CACHE,
+0654:         CHECKPOINT,
+0655:         GAUSSIAN_CONFIG,
+0656:         BLOCK44_REPORT,
+0657:         TRAINING_SCRIPT,
+0658:         GAUSSIAN_MODEL_SOURCE,
+0659:         GAUSSIAN_MATH_SOURCE,
+0660:     )
+0661: 
+0662:     missing = [
+0663:         str(
+
+--- producer context 24 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:698
+0689:     print(
+0690:         "model forward pass    = NO"
+0691:     )
+0692: 
+0693:     print(
+0694:         "training              = NO"
+0695:     )
+0696: 
+0697:     print(
+0698:         "recalibration         = NO"
+0699:     )
+0700: 
+0701:     print(
+0702:         "upstream modification = NO"
+0703:     )
+0704: 
+0705:     # ========================================================
+0706:     # A. Exact cache inventory
+0707:     # ========================================================
+
+--- producer context 25 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:889
+0880:             indent=2,
+0881:             sort_keys=True,
+0882:             default=str,
+0883:         )[
+0884:             :12000
+0885:         ]
+0886:     )
+0887: 
+0888:     # ========================================================
+0889:     # D. Checkpoint metadata only — no model execution
+0890:     # ========================================================
+0891: 
+0892:     print()
+0893:     print(
+0894:         "============================================================"
+0895:     )
+0896:     print(
+0897:         "D. FROZEN GAUSSIAN CHECKPOINT STRUCTURE"
+0898:     )
+
+--- producer context 26 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:897
+0888:     # ========================================================
+0889:     # D. Checkpoint metadata only — no model execution
+0890:     # ========================================================
+0891: 
+0892:     print()
+0893:     print(
+0894:         "============================================================"
+0895:     )
+0896:     print(
+0897:         "D. FROZEN GAUSSIAN CHECKPOINT STRUCTURE"
+0898:     )
+0899:     print(
+0900:         "============================================================"
+0901:     )
+0902: 
+0903:     checkpoint_sha = file_sha256(
+0904:         CHECKPOINT
+0905:     )
+0906: 
+
+--- producer context 27 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:903
+0894:         "============================================================"
+0895:     )
+0896:     print(
+0897:         "D. FROZEN GAUSSIAN CHECKPOINT STRUCTURE"
+0898:     )
+0899:     print(
+0900:         "============================================================"
+0901:     )
+0902: 
+0903:     checkpoint_sha = file_sha256(
+0904:         CHECKPOINT
+0905:     )
+0906: 
+0907:     print(
+0908:         "checkpoint SHA256 =",
+0909:         checkpoint_sha,
+0910:     )
+0911: 
+0912:     checkpoint_summary = {
+
+--- producer context 28 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:904
+0895:     )
+0896:     print(
+0897:         "D. FROZEN GAUSSIAN CHECKPOINT STRUCTURE"
+0898:     )
+0899:     print(
+0900:         "============================================================"
+0901:     )
+0902: 
+0903:     checkpoint_sha = file_sha256(
+0904:         CHECKPOINT
+0905:     )
+0906: 
+0907:     print(
+0908:         "checkpoint SHA256 =",
+0909:         checkpoint_sha,
+0910:     )
+0911: 
+0912:     checkpoint_summary = {
+0913:         "sha256":
+
+--- producer context 29 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:908
+0899:     print(
+0900:         "============================================================"
+0901:     )
+0902: 
+0903:     checkpoint_sha = file_sha256(
+0904:         CHECKPOINT
+0905:     )
+0906: 
+0907:     print(
+0908:         "checkpoint SHA256 =",
+0909:         checkpoint_sha,
+0910:     )
+0911: 
+0912:     checkpoint_summary = {
+0913:         "sha256":
+0914:             checkpoint_sha,
+0915: 
+0916:         "load_status":
+0917:             None,
+
+--- producer context 30 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:909
+0900:         "============================================================"
+0901:     )
+0902: 
+0903:     checkpoint_sha = file_sha256(
+0904:         CHECKPOINT
+0905:     )
+0906: 
+0907:     print(
+0908:         "checkpoint SHA256 =",
+0909:         checkpoint_sha,
+0910:     )
+0911: 
+0912:     checkpoint_summary = {
+0913:         "sha256":
+0914:             checkpoint_sha,
+0915: 
+0916:         "load_status":
+0917:             None,
+0918: 
+
+--- producer context 31 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:912
+0903:     checkpoint_sha = file_sha256(
+0904:         CHECKPOINT
+0905:     )
+0906: 
+0907:     print(
+0908:         "checkpoint SHA256 =",
+0909:         checkpoint_sha,
+0910:     )
+0911: 
+0912:     checkpoint_summary = {
+0913:         "sha256":
+0914:             checkpoint_sha,
+0915: 
+0916:         "load_status":
+0917:             None,
+0918: 
+0919:         "top_level":
+0920:             {},
+0921:     }
+
+--- producer context 32 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:914
+0905:     )
+0906: 
+0907:     print(
+0908:         "checkpoint SHA256 =",
+0909:         checkpoint_sha,
+0910:     )
+0911: 
+0912:     checkpoint_summary = {
+0913:         "sha256":
+0914:             checkpoint_sha,
+0915: 
+0916:         "load_status":
+0917:             None,
+0918: 
+0919:         "top_level":
+0920:             {},
+0921:     }
+0922: 
+0923:     try:
+
+--- producer context 33 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:924
+0915: 
+0916:         "load_status":
+0917:             None,
+0918: 
+0919:         "top_level":
+0920:             {},
+0921:     }
+0922: 
+0923:     try:
+0924:         checkpoint = torch.load(
+0925:             CHECKPOINT,
+0926:             map_location="cpu",
+0927:             weights_only=True,
+0928:         )
+0929: 
+0930:         checkpoint_summary[
+0931:             "load_status"
+0932:         ] = (
+0933:             "PASS_WEIGHTS_ONLY"
+
+--- producer context 34 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:925
+0916:         "load_status":
+0917:             None,
+0918: 
+0919:         "top_level":
+0920:             {},
+0921:     }
+0922: 
+0923:     try:
+0924:         checkpoint = torch.load(
+0925:             CHECKPOINT,
+0926:             map_location="cpu",
+0927:             weights_only=True,
+0928:         )
+0929: 
+0930:         checkpoint_summary[
+0931:             "load_status"
+0932:         ] = (
+0933:             "PASS_WEIGHTS_ONLY"
+0934:         )
+
+--- producer context 35 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:930
+0921:     }
+0922: 
+0923:     try:
+0924:         checkpoint = torch.load(
+0925:             CHECKPOINT,
+0926:             map_location="cpu",
+0927:             weights_only=True,
+0928:         )
+0929: 
+0930:         checkpoint_summary[
+0931:             "load_status"
+0932:         ] = (
+0933:             "PASS_WEIGHTS_ONLY"
+0934:         )
+0935: 
+0936:         print(
+0937:             "weights_only load = PASS"
+0938:         )
+0939: 
+
+--- producer context 36 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:943
+0934:         )
+0935: 
+0936:         print(
+0937:             "weights_only load = PASS"
+0938:         )
+0939: 
+0940:         print(
+0941:             "top-level type =",
+0942:             type(
+0943:                 checkpoint
+0944:             ).__name__,
+0945:         )
+0946: 
+0947:         if isinstance(
+0948:             checkpoint,
+0949:             dict,
+0950:         ):
+0951:             print(
+0952:                 "top-level keys =",
+
+--- producer context 37 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:948
+0939: 
+0940:         print(
+0941:             "top-level type =",
+0942:             type(
+0943:                 checkpoint
+0944:             ).__name__,
+0945:         )
+0946: 
+0947:         if isinstance(
+0948:             checkpoint,
+0949:             dict,
+0950:         ):
+0951:             print(
+0952:                 "top-level keys =",
+0953:                 list(
+0954:                     checkpoint.keys()
+0955:                 ),
+0956:             )
+0957: 
+
+--- producer context 38 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:954
+0945:         )
+0946: 
+0947:         if isinstance(
+0948:             checkpoint,
+0949:             dict,
+0950:         ):
+0951:             print(
+0952:                 "top-level keys =",
+0953:                 list(
+0954:                     checkpoint.keys()
+0955:                 ),
+0956:             )
+0957: 
+0958:             for key, value in (
+0959:                 checkpoint.items()
+0960:             ):
+0961:                 summary = (
+0962:                     checkpoint_value_summary(
+0963:                         value
+
+--- producer context 39 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:959
+0950:         ):
+0951:             print(
+0952:                 "top-level keys =",
+0953:                 list(
+0954:                     checkpoint.keys()
+0955:                 ),
+0956:             )
+0957: 
+0958:             for key, value in (
+0959:                 checkpoint.items()
+0960:             ):
+0961:                 summary = (
+0962:                     checkpoint_value_summary(
+0963:                         value
+0964:                     )
+0965:                 )
+0966: 
+0967:                 checkpoint_summary[
+0968:                     "top_level"
+
+--- producer context 40 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:962
+0953:                 list(
+0954:                     checkpoint.keys()
+0955:                 ),
+0956:             )
+0957: 
+0958:             for key, value in (
+0959:                 checkpoint.items()
+0960:             ):
+0961:                 summary = (
+0962:                     checkpoint_value_summary(
+0963:                         value
+0964:                     )
+0965:                 )
+0966: 
+0967:                 checkpoint_summary[
+0968:                     "top_level"
+0969:                 ][
+0970:                     str(
+0971:                         key
+
+--- producer context 41 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:967
+0958:             for key, value in (
+0959:                 checkpoint.items()
+0960:             ):
+0961:                 summary = (
+0962:                     checkpoint_value_summary(
+0963:                         value
+0964:                     )
+0965:                 )
+0966: 
+0967:                 checkpoint_summary[
+0968:                     "top_level"
+0969:                 ][
+0970:                     str(
+0971:                         key
+0972:                     )
+0973:                 ] = summary
+0974: 
+0975:                 print()
+0976:                 print(
+
+--- producer context 42 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:989
+0980:                         indent=2,
+0981:                         default=str,
+0982:                     )[
+0983:                         :3000
+0984:                     ],
+0985:                 )
+0986: 
+0987:     except Exception as exc:
+0988: 
+0989:         checkpoint_summary[
+0990:             "load_status"
+0991:         ] = (
+0992:             "WEIGHTS_ONLY_LOAD_UNRESOLVED"
+0993:         )
+0994: 
+0995:         checkpoint_summary[
+0996:             "load_error"
+0997:         ] = (
+0998:             f"{type(exc).__name__}: "
+
+--- producer context 43 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:995
+0986: 
+0987:     except Exception as exc:
+0988: 
+0989:         checkpoint_summary[
+0990:             "load_status"
+0991:         ] = (
+0992:             "WEIGHTS_ONLY_LOAD_UNRESOLVED"
+0993:         )
+0994: 
+0995:         checkpoint_summary[
+0996:             "load_error"
+0997:         ] = (
+0998:             f"{type(exc).__name__}: "
+0999:             f"{exc}"
+1000:         )
+1001: 
+1002:         print(
+1003:             "weights_only load = UNRESOLVED"
+1004:         )
+
+--- producer context 44 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1008
+0999:             f"{exc}"
+1000:         )
+1001: 
+1002:         print(
+1003:             "weights_only load = UNRESOLVED"
+1004:         )
+1005: 
+1006:         print(
+1007:             "reason =",
+1008:             checkpoint_summary[
+1009:                 "load_error"
+1010:             ],
+1011:         )
+1012: 
+1013:         print(
+1014:             "unsafe fallback load performed = NO"
+1015:         )
+1016: 
+1017:     # ========================================================
+
+--- producer context 45 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1026
+1017:     # ========================================================
+1018:     # E. Block4.4 report exact inference evidence
+1019:     # ========================================================
+1020: 
+1021:     print()
+1022:     print(
+1023:         "============================================================"
+1024:     )
+1025:     print(
+1026:         "E. BLOCK4.4 REPORT — DEVELOPMENT/CHECKPOINT EVIDENCE"
+1027:     )
+1028:     print(
+1029:         "============================================================"
+1030:     )
+1031: 
+1032:     block44 = load_json(
+1033:         BLOCK44_REPORT
+1034:     )
+1035: 
+
+--- producer context 46 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1039
+1030:     )
+1031: 
+1032:     block44 = load_json(
+1033:         BLOCK44_REPORT
+1034:     )
+1035: 
+1036:     interesting_report_fields = []
+1037: 
+1038:     tokens = (
+1039:         "checkpoint",
+1040:         "development",
+1041:         "prediction",
+1042:         "covariance",
+1043:         "normal",
+1044:         "cache",
+1045:         "nll",
+1046:         "ade",
+1047:     )
+1048: 
+
+--- producer context 47 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1146
+1137:             "def denormalize_gaussian",
+1138:             "def gaussian_nll",
+1139:             "def masked_gaussian_nll",
+1140:         ),
+1141:         radius=8,
+1142:         max_windows=8,
+1143:     )
+1144: 
+1145:     print_windows(
+1146:         "G2. GAUSSIAN MATH / DENORMALIZATION API",
+1147:         GAUSSIAN_MATH_SOURCE,
+1148:         math_windows,
+1149:     )
+1150: 
+1151:     # ========================================================
+1152:     # H. Decision evidence
+1153:     # ========================================================
+1154: 
+1155:     print()
+
+--- producer context 48 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1174
+1165: 
+1166:     has_nonempty_cache = (
+1167:         len(
+1168:             cache_inventory
+1169:         )
+1170:         >
+1171:         0
+1172:     )
+1173: 
+1174:     has_checkpoint = (
+1175:         checkpoint_sha
+1176:         ==
+1177:         (
+1178:             "49ff64d145eaa633f295c16f660df380"
+1179:             "c35383e7e3b61279a5aad7cd700d619f"
+1180:         )
+1181:     )
+1182: 
+1183:     require(
+
+--- producer context 49 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1175
+1166:     has_nonempty_cache = (
+1167:         len(
+1168:             cache_inventory
+1169:         )
+1170:         >
+1171:         0
+1172:     )
+1173: 
+1174:     has_checkpoint = (
+1175:         checkpoint_sha
+1176:         ==
+1177:         (
+1178:             "49ff64d145eaa633f295c16f660df380"
+1179:             "c35383e7e3b61279a5aad7cd700d619f"
+1180:         )
+1181:     )
+1182: 
+1183:     require(
+1184:         has_nonempty_cache,
+
+--- producer context 50 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1191
+1182: 
+1183:     require(
+1184:         has_nonempty_cache,
+1185:         (
+1186:             "Development cache is empty."
+1187:         ),
+1188:     )
+1189: 
+1190:     require(
+1191:         has_checkpoint,
+1192:         (
+1193:             "Frozen Gaussian checkpoint SHA "
+1194:             "does not match Block4.4."
+1195:         ),
+1196:     )
+1197: 
+1198:     print(
+1199:         "development cache exists       = PASS"
+1200:     )
+
+--- producer context 51 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1193
+1184:         has_nonempty_cache,
+1185:         (
+1186:             "Development cache is empty."
+1187:         ),
+1188:     )
+1189: 
+1190:     require(
+1191:         has_checkpoint,
+1192:         (
+1193:             "Frozen Gaussian checkpoint SHA "
+1194:             "does not match Block4.4."
+1195:         ),
+1196:     )
+1197: 
+1198:     print(
+1199:         "development cache exists       = PASS"
+1200:     )
+1201: 
+1202:     print(
+
+--- producer context 52 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1207
+1198:     print(
+1199:         "development cache exists       = PASS"
+1200:     )
+1201: 
+1202:     print(
+1203:         "development cache non-empty    = PASS"
+1204:     )
+1205: 
+1206:     print(
+1207:         "Gaussian checkpoint SHA        = PASS"
+1208:     )
+1209: 
+1210:     print(
+1211:         "Block4.4 inference source      = FOUND"
+1212:     )
+1213: 
+1214:     print(
+1215:         "Block4.4 denormalization route = FOUND"
+1216:     )
+
+--- producer context 53 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1215
+1206:     print(
+1207:         "Gaussian checkpoint SHA        = PASS"
+1208:     )
+1209: 
+1210:     print(
+1211:         "Block4.4 inference source      = FOUND"
+1212:     )
+1213: 
+1214:     print(
+1215:         "Block4.4 denormalization route = FOUND"
+1216:     )
+1217: 
+1218:     print(
+1219:         "materialized dev posterior     = NO"
+1220:     )
+1221: 
+1222:     print(
+1223:         "dev-only frozen inference may be required = YES"
+1224:     )
+
+--- producer context 54 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1247
+1238:             "formal_N120_read":
+1239:                 False,
+1240: 
+1241:             "Stage4_model_forward":
+1242:                 False,
+1243: 
+1244:             "training":
+1245:                 False,
+1246: 
+1247:             "recalibration":
+1248:                 False,
+1249: 
+1250:             "upstream_modified":
+1251:                 False,
+1252:         },
+1253: 
+1254:         "development_cache": {
+1255:             "path":
+1256:                 str(
+
+--- producer context 55 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1273
+1264:                 DEV_CACHE.stat().st_size,
+1265: 
+1266:             "arrays":
+1267:                 cache_inventory,
+1268: 
+1269:             "frozen_provenance":
+1270:                 cache_provenance,
+1271:         },
+1272: 
+1273:         "Gaussian_checkpoint":
+1274:             {
+1275:                 "path":
+1276:                     str(
+1277:                         CHECKPOINT
+1278:                     ),
+1279: 
+1280:                 **checkpoint_summary,
+1281:             },
+1282: 
+
+--- producer context 56 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1277
+1268: 
+1269:             "frozen_provenance":
+1270:                 cache_provenance,
+1271:         },
+1272: 
+1273:         "Gaussian_checkpoint":
+1274:             {
+1275:                 "path":
+1276:                     str(
+1277:                         CHECKPOINT
+1278:                     ),
+1279: 
+1280:                 **checkpoint_summary,
+1281:             },
+1282: 
+1283:         "Gaussian_config": {
+1284:             "path":
+1285:                 str(
+1286:                     GAUSSIAN_CONFIG
+
+--- producer context 57 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1280
+1271:         },
+1272: 
+1273:         "Gaussian_checkpoint":
+1274:             {
+1275:                 "path":
+1276:                     str(
+1277:                         CHECKPOINT
+1278:                     ),
+1279: 
+1280:                 **checkpoint_summary,
+1281:             },
+1282: 
+1283:         "Gaussian_config": {
+1284:             "path":
+1285:                 str(
+1286:                     GAUSSIAN_CONFIG
+1287:                 ),
+1288: 
+1289:             "sha256":
+
+--- producer context 58 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1370
+1361:         },
+1362: 
+1363:         "conclusion": {
+1364:             "materialized_Block44_dev_posterior":
+1365:                 False,
+1366: 
+1367:             "frozen_development_cache":
+1368:                 True,
+1369: 
+1370:             "frozen_Gaussian_checkpoint":
+1371:                 True,
+1372: 
+1373:             "exact_inference_route_source_available":
+1374:                 True,
+1375: 
+1376:             "next_permitted_action":
+1377:                 (
+1378:                     "construct_exact_frozen_checkpoint_"
+1379:                     "dev_cache_inference_reproduction_"
+
+--- producer context 59 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1378
+1369: 
+1370:             "frozen_Gaussian_checkpoint":
+1371:                 True,
+1372: 
+1373:             "exact_inference_route_source_available":
+1374:                 True,
+1375: 
+1376:             "next_permitted_action":
+1377:                 (
+1378:                     "construct_exact_frozen_checkpoint_"
+1379:                     "dev_cache_inference_reproduction_"
+1380:                     "without_training_or_recalibration"
+1381:                 ),
+1382:         },
+1383:     }
+1384: 
+1385:     write_json(
+1386:         REPORT,
+1387:         payload,
+
+--- producer context 60 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1380
+1371:                 True,
+1372: 
+1373:             "exact_inference_route_source_available":
+1374:                 True,
+1375: 
+1376:             "next_permitted_action":
+1377:                 (
+1378:                     "construct_exact_frozen_checkpoint_"
+1379:                     "dev_cache_inference_reproduction_"
+1380:                     "without_training_or_recalibration"
+1381:                 ),
+1382:         },
+1383:     }
+1384: 
+1385:     write_json(
+1386:         REPORT,
+1387:         payload,
+1388:     )
+1389: 
+
+--- producer context 61 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py:1451
+1442:     print(
+1443:         "formal N=120 used      = NO"
+1444:     )
+1445: 
+1446:     print(
+1447:         "model forward executed = NO"
+1448:     )
+1449: 
+1450:     print(
+1451:         "training/recalibration = NO"
+1452:     )
+1453: 
+1454:     print(
+1455:         "upstream modified      = NO"
+1456:     )
+1457: 
+1458:     print(
+1459:         "terminal remains open  = YES"
+1460:     )
+
+--- producer context 62 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:41
+0032:       "run_block44_gaussian_training.py"
+0033: )
+0034: 
+0035: DEV_CACHE = (
+0036:     STAGE4
+0037:     / "artifacts/block43/"
+0038:       "development_cache.npz"
+0039: )
+0040: 
+0041: CHECKPOINT = (
+0042:     STAGE4
+0043:     / "artifacts/block44/"
+0044:       "gaussian_gru.pt"
+0045: )
+0046: 
+0047: GAUSSIAN_CONFIG = (
+0048:     STAGE4
+0049:     / "configs/"
+0050:       "stage4_gaussian_gru.json"
+
+--- producer context 63 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:452
+0443:                 )
+0444: 
+0445:             inventory[
+0446:                 key
+0447:             ] = item
+0448: 
+0449:     return inventory
+0450: 
+0451: 
+0452: def inspect_checkpoint():
+0453:     result = {
+0454:         "sha256":
+0455:             file_sha256(
+0456:                 CHECKPOINT
+0457:             ),
+0458: 
+0459:         "load_status":
+0460:             None,
+0461: 
+
+--- producer context 64 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:456
+0447:             ] = item
+0448: 
+0449:     return inventory
+0450: 
+0451: 
+0452: def inspect_checkpoint():
+0453:     result = {
+0454:         "sha256":
+0455:             file_sha256(
+0456:                 CHECKPOINT
+0457:             ),
+0458: 
+0459:         "load_status":
+0460:             None,
+0461: 
+0462:         "top_level_keys":
+0463:             [],
+0464: 
+0465:         "top_level_summary":
+
+--- producer context 65 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:471
+0462:         "top_level_keys":
+0463:             [],
+0464: 
+0465:         "top_level_summary":
+0466:             {},
+0467:     }
+0468: 
+0469:     try:
+0470:         payload = torch.load(
+0471:             CHECKPOINT,
+0472:             map_location="cpu",
+0473:             weights_only=True,
+0474:         )
+0475: 
+0476:     except Exception as exc:
+0477: 
+0478:         result[
+0479:             "load_status"
+0480:         ] = (
+
+--- producer context 66 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:625
+0616:     )
+0617: 
+0618:     lines = text.splitlines()
+0619: 
+0620:     tokens = (
+0621:         "DEV_CACHE",
+0622:         "development_cache",
+0623:         "np.load",
+0624:         "load_state_dict",
+0625:         "CHECKPOINT",
+0626:         "GaussianTrajectoryGRU",
+0627:         "covariance_from_scale_tril",
+0628:         "denormalize_gaussian",
+0629:         "model(",
+0630:         "prediction_sha256",
+0631:         "best_raw_uncalibrated",
+0632:         "development",
+0633:     )
+0634: 
+
+--- producer context 67 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:675
+0666:         "BLOCK 5.2 — ACTUAL STAGE4 GAUSSIAN SOURCE-ROUTE AUDIT"
+0667:     )
+0668:     print(
+0669:         "============================================================"
+0670:     )
+0671: 
+0672:     required = (
+0673:         TRAINING_SCRIPT,
+0674:         DEV_CACHE,
+0675:         CHECKPOINT,
+0676:         GAUSSIAN_CONFIG,
+0677:         BLOCK44_REPORT,
+0678:     )
+0679: 
+0680:     missing = [
+0681:         str(
+0682:             path
+0683:         )
+0684:         for path in required
+
+--- producer context 68 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:712
+0703:     print(
+0704:         "model forward pass    = NO"
+0705:     )
+0706: 
+0707:     print(
+0708:         "dataset scan          = NO"
+0709:     )
+0710: 
+0711:     print(
+0712:         "training/recalibration= NO"
+0713:     )
+0714: 
+0715:     print(
+0716:         "upstream modification = NO"
+0717:     )
+0718: 
+0719:     # ========================================================
+0720:     # A. Parse actual imports
+0721:     # ========================================================
+
+--- producer context 69 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:929
+0920:                 "shape"
+0921:             ],
+0922:             "| dtype =",
+0923:             item[
+0924:                 "dtype"
+0925:             ],
+0926:         )
+0927: 
+0928:     # ========================================================
+0929:     # D. Checkpoint structure
+0930:     # ========================================================
+0931: 
+0932:     print()
+0933:     print(
+0934:         "============================================================"
+0935:     )
+0936:     print(
+0937:         "D. FROZEN BLOCK4.4 CHECKPOINT"
+0938:     )
+
+--- producer context 70 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:937
+0928:     # ========================================================
+0929:     # D. Checkpoint structure
+0930:     # ========================================================
+0931: 
+0932:     print()
+0933:     print(
+0934:         "============================================================"
+0935:     )
+0936:     print(
+0937:         "D. FROZEN BLOCK4.4 CHECKPOINT"
+0938:     )
+0939:     print(
+0940:         "============================================================"
+0941:     )
+0942: 
+0943:     checkpoint = (
+0944:         inspect_checkpoint()
+0945:     )
+0946: 
+
+--- producer context 71 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:943
+0934:         "============================================================"
+0935:     )
+0936:     print(
+0937:         "D. FROZEN BLOCK4.4 CHECKPOINT"
+0938:     )
+0939:     print(
+0940:         "============================================================"
+0941:     )
+0942: 
+0943:     checkpoint = (
+0944:         inspect_checkpoint()
+0945:     )
+0946: 
+0947:     print(
+0948:         "SHA256 =",
+0949:         checkpoint[
+0950:             "sha256"
+0951:         ],
+0952:     )
+
+--- producer context 72 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:944
+0935:     )
+0936:     print(
+0937:         "D. FROZEN BLOCK4.4 CHECKPOINT"
+0938:     )
+0939:     print(
+0940:         "============================================================"
+0941:     )
+0942: 
+0943:     checkpoint = (
+0944:         inspect_checkpoint()
+0945:     )
+0946: 
+0947:     print(
+0948:         "SHA256 =",
+0949:         checkpoint[
+0950:             "sha256"
+0951:         ],
+0952:     )
+0953: 
+
+--- producer context 73 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:949
+0940:         "============================================================"
+0941:     )
+0942: 
+0943:     checkpoint = (
+0944:         inspect_checkpoint()
+0945:     )
+0946: 
+0947:     print(
+0948:         "SHA256 =",
+0949:         checkpoint[
+0950:             "sha256"
+0951:         ],
+0952:     )
+0953: 
+0954:     print(
+0955:         "weights_only load =",
+0956:         checkpoint[
+0957:             "load_status"
+0958:         ],
+
+--- producer context 74 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:956
+0947:     print(
+0948:         "SHA256 =",
+0949:         checkpoint[
+0950:             "sha256"
+0951:         ],
+0952:     )
+0953: 
+0954:     print(
+0955:         "weights_only load =",
+0956:         checkpoint[
+0957:             "load_status"
+0958:         ],
+0959:     )
+0960: 
+0961:     print(
+0962:         "top-level keys =",
+0963:         checkpoint.get(
+0964:             "top_level_keys"
+0965:         ),
+
+--- producer context 75 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:963
+0954:     print(
+0955:         "weights_only load =",
+0956:         checkpoint[
+0957:             "load_status"
+0958:         ],
+0959:     )
+0960: 
+0961:     print(
+0962:         "top-level keys =",
+0963:         checkpoint.get(
+0964:             "top_level_keys"
+0965:         ),
+0966:     )
+0967: 
+0968:     for key, value in (
+0969:         checkpoint.get(
+0970:             "top_level_summary",
+0971:             {}
+0972:         ).items()
+
+--- producer context 76 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:969
+0960: 
+0961:     print(
+0962:         "top-level keys =",
+0963:         checkpoint.get(
+0964:             "top_level_keys"
+0965:         ),
+0966:     )
+0967: 
+0968:     for key, value in (
+0969:         checkpoint.get(
+0970:             "top_level_summary",
+0971:             {}
+0972:         ).items()
+0973:     ):
+0974:         print(
+0975:             key,
+0976:             "=",
+0977:             json.dumps(
+0978:                 value,
+
+--- producer context 77 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:986
+0977:             json.dumps(
+0978:                 value,
+0979:                 default=str,
+0980:             )[
+0981:                 :2000
+0982:             ],
+0983:         )
+0984: 
+0985:     require(
+0986:         checkpoint[
+0987:             "sha256"
+0988:         ]
+0989:         ==
+0990:         (
+0991:             "49ff64d145eaa633f295c16f660df380"
+0992:             "c35383e7e3b61279a5aad7cd700d619f"
+0993:         ),
+0994:         (
+0995:             "Frozen Gaussian checkpoint "
+
+--- producer context 78 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:995
+0986:         checkpoint[
+0987:             "sha256"
+0988:         ]
+0989:         ==
+0990:         (
+0991:             "49ff64d145eaa633f295c16f660df380"
+0992:             "c35383e7e3b61279a5aad7cd700d619f"
+0993:         ),
+0994:         (
+0995:             "Frozen Gaussian checkpoint "
+0996:             "SHA mismatch."
+0997:         ),
+0998:     )
+0999: 
+1000:     # ========================================================
+1001:     # E. Exact training/development inference route
+1002:     # ========================================================
+1003: 
+1004:     print()
+
+--- producer context 79 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:1111
+1102:             "not resolved."
+1103:         ),
+1104:     )
+1105: 
+1106:     require(
+1107:         "denormalize_gaussian"
+1108:         in
+1109:         symbol_routes,
+1110:         (
+1111:             "Denormalization source route "
+1112:             "not resolved."
+1113:         ),
+1114:     )
+1115: 
+1116:     print(
+1117:         "actual Gaussian model source = RESOLVED PASS"
+1118:     )
+1119: 
+1120:     print(
+
+--- producer context 80 ---
+/home/agni/waymo/iscai_stage5/scripts/audit_block52_resolve_actual_stage4_gaussian_route.py:1125
+1116:     print(
+1117:         "actual Gaussian model source = RESOLVED PASS"
+1118:     )
+1119: 
+1120:     print(
+1121:         "actual covariance API source = RESOLVED PASS"
+1122:     )
+1123: 
+1124:     print(
+1125:         "actual denormalization source= RESOLVED PASS"
+1126:     )
+1127: 
+1128:     print(
+1129:         "development cache schema     = RESOLVED PASS"
+1130:     )
+1131: 
+1132:     print(
+1133:         "checkpoint structure         = RESOLVED PASS"
+1134:     )
+... 40 additional producer contexts stored in report
+
+===== F. CHECKPOINT / CALIBRATION / DEVELOPMENT METADATA =====
+
+--- development_gaussian_posterior.json ---
+calibration.Stage2_measurement_R_t = SEPARATE_UNCHANGED
+calibration.max_numeric_equivalence_error = 9.1552734375e-05
+calibration.predictive_mean_changed = False
+calibration.rule = Sigma_cal_h=alpha_h*Sigma_raw_h
+calibration.variance_scale_alpha_h[0] = 1.2347064500315355
+calibration.variance_scale_alpha_h[1] = 1.3451250295202921
+calibration.variance_scale_alpha_h[2] = 1.354822057728461
+calibration.variance_scale_alpha_h[3] = 1.2829700217319266
+coordinate_semantics.Stage4_prediction = metric_H0_displacement
+frozen_inputs.Gaussian_checkpoint.path = /home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt
+frozen_inputs.Gaussian_checkpoint.sha256 = 49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f
+frozen_inputs.Gaussian_checkpoint.state_dict_sha256 = 1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3
+frozen_inputs.deterministic_checkpoint.path = /home/agni/waymo/iscai_stage4/artifacts/block43/deterministic_gru.pt
+frozen_inputs.deterministic_checkpoint.sha256 = 5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5
+frozen_inputs.development_cache.path = /home/agni/waymo/iscai_stage4/artifacts/block43/development_cache.npz
+frozen_inputs.development_cache.sha256 = bc0e5b508df38f6e33d9cb1a6d21d7eaa86d20c91ba09ede6f500d46b87fbcaa
+frozen_inputs.normalization.path = /home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json
+frozen_inputs.normalization.sha256 = 3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6
+frozen_inputs.training_script.path = /home/agni/waymo/iscai_stage4/scripts/run_block44_gaussian_training.py
+frozen_inputs.training_script.sha256 = 6b4be296fb9d93f81d10b353a37b3427b63e437e6f123b10950db07697457218
+posterior.development_N = 13682
+posterior.full_normalized_prediction_sha256 = 8f8e9714fb16d2fc9ffc0a2421e5c5849b4f2239fd7691597ec9dee3eb505549
+scientific_execution.Stage4_frozen_model_inference = True
+scientific_execution.development_only = True
+scientific_execution.model_selection = False
+scientific_execution.recalibration = False
+scientific_execution.training = False
+
+--- dev_posterior_resolver_summary.json ---
+scientific_execution.recalibration = False
+scientific_execution.training = False
+top_candidates[2].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[3].inspection.arrays.scenario_id.dtype = <U15
+top_candidates[4].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[5].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[6].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[7].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[8].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[9].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[10].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[11].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[12].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[13].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[14].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[15].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[16].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[17].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[18].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[19].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[20].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[21].inspection.arrays.scenario_id.dtype = <U15
+top_candidates[22].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[23].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[24].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[25].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[26].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[27].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[28].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[29].inspection.arrays.scenario_id.dtype = <U16
+
+--- actual_stage4_gaussian_route_audit.json ---
+checkpoint.load_status = PASS_WEIGHTS_ONLY
+checkpoint.sha256 = 49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f
+checkpoint.top_level_keys[0] = stage
+checkpoint.top_level_keys[1] = block
+checkpoint.top_level_keys[2] = model_type
+checkpoint.top_level_keys[3] = state_dict
+checkpoint.top_level_keys[4] = state_dict_sha256
+checkpoint.top_level_keys[5] = best_epoch
+checkpoint.top_level_keys[6] = development_metrics
+checkpoint.top_level_keys[7] = fingerprints
+checkpoint.top_level_keys[8] = configuration
+checkpoint.top_level_keys[9] = calibrated
+checkpoint.top_level_summary.best_epoch.repr = 12
+checkpoint.top_level_summary.best_epoch.type = int
+checkpoint.top_level_summary.block.repr = '4.4'
+checkpoint.top_level_summary.block.type = str
+checkpoint.top_level_summary.calibrated.repr = False
+checkpoint.top_level_summary.calibrated.type = bool
+checkpoint.top_level_summary.configuration.keys_preview[0] = stage
+checkpoint.top_level_summary.configuration.keys_preview[1] = block
+checkpoint.top_level_summary.configuration.keys_preview[2] = status
+checkpoint.top_level_summary.configuration.keys_preview[3] = purpose
+checkpoint.top_level_summary.configuration.keys_preview[4] = upstream
+checkpoint.top_level_summary.configuration.keys_preview[5] = input
+checkpoint.top_level_summary.configuration.keys_preview[6] = predictive_distribution
+checkpoint.top_level_summary.configuration.keys_preview[7] = initialization
+checkpoint.top_level_summary.configuration.keys_preview[8] = normalization
+checkpoint.top_level_summary.configuration.keys_preview[9] = training
+checkpoint.top_level_summary.configuration.keys_preview[10] = raw_evaluation_before_calibration
+checkpoint.top_level_summary.configuration.keys_preview[11] = acceptance
+checkpoint.top_level_summary.configuration.keys_preview[12] = next_block
+checkpoint.top_level_summary.configuration.length = 13
+checkpoint.top_level_summary.configuration.type = dict
+checkpoint.top_level_summary.development_metrics.keys_preview[0] = metric_Gaussian_NLL
+checkpoint.top_level_summary.development_metrics.keys_preview[1] = planar_ADE_m
+checkpoint.top_level_summary.development_metrics.keys_preview[2] = horizon_metric_NLL
+checkpoint.top_level_summary.development_metrics.keys_preview[3] = horizon_planar_error_m
+checkpoint.top_level_summary.development_metrics.keys_preview[4] = one_second_planar_error_m
+checkpoint.top_level_summary.development_metrics.keys_preview[5] = class_planar_ADE_m
+checkpoint.top_level_summary.development_metrics.keys_preview[6] = raw_empirical_coverage
+checkpoint.top_level_summary.development_metrics.keys_preview[7] = mean_predictive_std_m
+checkpoint.top_level_summary.development_metrics.keys_preview[8] = valid_actor_horizon_points
+checkpoint.top_level_summary.development_metrics.keys_preview[9] = predictive_covariance_SPD_failures
+checkpoint.top_level_summary.development_metrics.length = 10
+checkpoint.top_level_summary.development_metrics.type = dict
+checkpoint.top_level_summary.fingerprints.keys_preview[0] = configuration_sha256
+checkpoint.top_level_summary.fingerprints.keys_preview[1] = deterministic_checkpoint_sha256
+checkpoint.top_level_summary.fingerprints.keys_preview[2] = deterministic_state_dict_sha256
+checkpoint.top_level_summary.fingerprints.keys_preview[3] = fit_cache_sha256
+checkpoint.top_level_summary.fingerprints.keys_preview[4] = development_cache_sha256
+checkpoint.top_level_summary.fingerprints.keys_preview[5] = normalization_sha256
+checkpoint.top_level_summary.fingerprints.length = 6
+checkpoint.top_level_summary.fingerprints.type = dict
+checkpoint.top_level_summary.model_type.repr = 'GaussianTrajectoryGRU'
+checkpoint.top_level_summary.model_type.type = str
+checkpoint.top_level_summary.stage.repr = 4
+checkpoint.top_level_summary.stage.type = int
+checkpoint.top_level_summary.state_dict.keys_preview[0] = target_gru.weight_ih_l0
+checkpoint.top_level_summary.state_dict.keys_preview[1] = target_gru.weight_hh_l0
+checkpoint.top_level_summary.state_dict.keys_preview[2] = target_gru.bias_ih_l0
+checkpoint.top_level_summary.state_dict.keys_preview[3] = target_gru.bias_hh_l0
+checkpoint.top_level_summary.state_dict.keys_preview[4] = neighbor_gru.weight_ih_l0
+checkpoint.top_level_summary.state_dict.keys_preview[5] = neighbor_gru.weight_hh_l0
+checkpoint.top_level_summary.state_dict.keys_preview[6] = neighbor_gru.bias_ih_l0
+checkpoint.top_level_summary.state_dict.keys_preview[7] = neighbor_gru.bias_hh_l0
+checkpoint.top_level_summary.state_dict.keys_preview[8] = map_encoder.0.weight
+checkpoint.top_level_summary.state_dict.keys_preview[9] = map_encoder.0.bias
+checkpoint.top_level_summary.state_dict.keys_preview[10] = map_encoder.2.weight
+checkpoint.top_level_summary.state_dict.keys_preview[11] = map_encoder.2.bias
+checkpoint.top_level_summary.state_dict.keys_preview[12] = fusion.0.weight
+checkpoint.top_level_summary.state_dict.keys_preview[13] = fusion.0.bias
+checkpoint.top_level_summary.state_dict.keys_preview[14] = fusion.2.weight
+checkpoint.top_level_summary.state_dict.keys_preview[15] = fusion.2.bias
+checkpoint.top_level_summary.state_dict.keys_preview[16] = mean_head.weight
+checkpoint.top_level_summary.state_dict.keys_preview[17] = mean_head.bias
+checkpoint.top_level_summary.state_dict.keys_preview[18] = cholesky_head.weight
+checkpoint.top_level_summary.state_dict.keys_preview[19] = cholesky_head.bias
+checkpoint.top_level_summary.state_dict.length = 20
+checkpoint.top_level_summary.state_dict.type = dict
+checkpoint.top_level_summary.state_dict_sha256.repr = '1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3'
+checkpoint.top_level_summary.state_dict_sha256.type = str
+conclusion.actual_denormalization_source_resolved = True
+conclusion.actual_model_source_resolved = True
+conclusion.frozen_checkpoint = True
+conclusion.frozen_development_cache = True
+development_cache.arrays.class_id.dtype = int64
+development_cache.arrays.class_id.finite_fraction = 1.0
+development_cache.arrays.class_id.shape[0] = 13682
+development_cache.arrays.class_id.size = 13682
+development_cache.arrays.future.dtype = float32
+development_cache.arrays.future.finite_fraction = 1.0
+development_cache.arrays.future.shape[0] = 13682
+development_cache.arrays.future.shape[1] = 4
+development_cache.arrays.future.shape[2] = 3
+development_cache.arrays.future.size = 164184
+development_cache.arrays.future_mask.dtype = float32
+development_cache.arrays.future_mask.finite_fraction = 1.0
+development_cache.arrays.future_mask.shape[0] = 13682
+development_cache.arrays.future_mask.shape[1] = 4
+development_cache.arrays.future_mask.size = 54728
+
+--- calibrated_runtime_api_audit.json ---
+coordinate_semantics.Stage4_prediction = H0_displacement
+runtime.module = iscai_stage4.ml.calibration_runtime
+runtime.public_callables[0].definition_line = 33
+runtime.public_callables[0].kind = class
+runtime.public_callables[0].module = iscai_stage4.ml.calibration_runtime
+runtime.public_callables[0].name = CalibrationNormalizer
+runtime.public_callables[0].signature = (statistics, *, device)
+runtime.public_callables[0].source_file = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py
+runtime.public_callables[0].source_preview = class CalibrationNormalizer:
+    """
+    Frozen Block4.3 fit-only normalization.
+
+    Calibration data never contributes
+    normalization statistics.
+    """
+
+    def __init__(
+        self,
+        statistics,
+        *,
+        device,
+    ):
+        self.feature_mean = torch.tensor(
+            statistics[
+                "continuous_feature_mean"
+            ],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        self.feature_std = torch.tensor(
+            statistics[
+                "continuous_feature_std"
+            ],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        self.map_mean = torch.tensor(
+            statistics[
+                "map_mean"
+            ],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        self.map_std = torch.tensor(
+            statistics[
+                "map_std"
+            ],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        self.label_mean = torch.tensor(
+            statistics[
+                "label_displacement_mean"
+            ],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        self.label_std = torch.tensor(
+            statistics[
+                "label_displacement_std"
+            ],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        for name, value in (
+            (
+                "feature_std",
+                self.feature_std,
+            ),
+            (
+                "map_std",
+                self.map_std,
+            ),
+            (
+                "label_std",
+                self.label_std,
+            ),
+        ):
+            if bool(
+                torch.any(
+                    value <= 0.0
+                )
+
+runtime.public_callables[1].definition_line = 189
+runtime.public_callables[1].kind = class
+runtime.public_callables[1].module = iscai_stage4.ml.gaussian_gru
+runtime.public_callables[1].name = GaussianTrajectoryGRU
+runtime.public_callables[1].signature = (*, target_hidden_dim: 'int' = 64, neighbor_hidden_dim: 'int' = 32, map_hidden_dim: 'int' = 32, fusion_hidden_dim: 'int' = 128, use_neighbors: 'bool' = True, use_map: 'bool' = True)
+runtime.public_callables[1].source_file = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_gru.py
+runtime.public_callables[1].source_preview = class GaussianTrajectoryGRU(
+    nn.Module
+):
+    """
+    Probabilistic extension of the frozen
+    Block4.3 deterministic architecture.
+
+    Input:
+        same causal target history,
+        same Stage2 R_t conditioning,
+        same neighbours,
+        same map context.
+
+    Output per horizon:
+        predictive mean in R^3
+        full 3x3 SPD predictive covariance.
+    """
+
+    def __init__(
+        self,
+        *,
+        target_hidden_dim: int = 64,
+        neighbor_hidden_dim: int = 32,
+        map_hidden_dim: int = 32,
+        fusion_hidden_dim: int = 128,
+        use_neighbors: bool = True,
+        use_map: bool = True,
+    ):
+        super().__init__()
+
+        if min(
+            target_hidden_dim,
+            neighbor_hidden_dim,
+            map_hidden_dim,
+            fusion_hidden_dim,
+        ) <= 0:
+            raise ValueError(
+                "Hidden dimensions "
+                "must be positive."
+            )
+
+        self.use_neighbors = bool(
+            use_neighbors
+        )
+
+        self.use_map = bool(
+            use_map
+        )
+
+        self.target_gru = nn.GRU(
+            input_size=FEATURE_DIM,
+            hidden_size=(
+                target_hidden_dim
+            ),
+            num_layers=1,
+            batch_first=True,
+        )
+
+        self.neighbor_gru = nn.GRU(
+            input_size=FEATURE_DIM,
+            hidden_size=(
+                neighbor_hidden_dim
+            ),
+            num_layers=1,
+            batch_first=True,
+        )
+
+        self.map_encoder = (
+            nn.Sequential(
+                nn.Linear(
+                    MAP_CONTEXT_DIM,
+                    map_hidden_dim,
+                ),
+                nn.ReLU(),
+
+                nn.Linear(
+                    map_hidden_dim,
+                    map_hidden_dim,
+                ),
+                nn.ReLU(),
+
+runtime.public_callables[2].definition_line = 30
+runtime.public_callables[2].kind = function
+runtime.public_callables[2].module = iscai_stage4.ml.training_utils
+runtime.public_callables[2].name = actor_class_id
+runtime.public_callables[2].signature = (actor_class: 'str') -> 'int'
+runtime.public_callables[2].source_file = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/training_utils.py
+runtime.public_callables[2].source_preview = def actor_class_id(
+    actor_class: str,
+) -> int:
+    if actor_class == (
+        "TYPE_VEHICLE"
+    ):
+        return CLASS_VEHICLE
+
+    if actor_class == (
+        "TYPE_PEDESTRIAN"
+    ):
+        return CLASS_PEDESTRIAN
+
+    if actor_class == (
+        "TYPE_CYCLIST"
+    ):
+        return CLASS_CYCLIST
+
+    return CLASS_OTHER
+
+runtime.public_callables[3].definition_line = 131
+runtime.public_callables[3].kind = function
+runtime.public_callables[3].module = iscai_stage4.ml.calibration
+runtime.public_callables[3].name = apply_variance_scale
+runtime.public_callables[3].signature = (scale_tril: 'torch.Tensor', variance_scale) -> 'torch.Tensor'
+runtime.public_callables[3].source_file = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration.py
+runtime.public_callables[3].source_preview = def apply_variance_scale(
+    scale_tril: torch.Tensor,
+    variance_scale,
+) -> torch.Tensor:
+    """
+    Apply alpha_h to predictive covariance by
+    multiplying Cholesky factor by sqrt(alpha_h).
+    """
+
+    if scale_tril.ndim != 4:
+        raise ValueError(
+            "scale_tril must be "
+            "[B,H,3,3]."
+        )
+
+    if scale_tril.shape[1:] != (
+        HORIZON_COUNT,
+        POSITION_DIM,
+        POSITION_DIM,
+    ):
+        raise ValueError(
+            "Predictive Cholesky "
+            "shape changed."
+        )
+
+    scale = torch.as_tensor(
+        variance_scale,
+        dtype=scale_tril.dtype,
+        device=scale_tril.device,
+    )
+
+    if scale.shape != (
+        HORIZON_COUNT,
+    ):
+        raise ValueError(
+            "variance_scale must "
+            "have shape [4]."
+        )
+
+    if not bool(
+        torch.isfinite(
+            scale
+        ).all()
+    ):
+        raise ValueError(
+            "Variance scale contains "
+            "non-finite values."
+        )
+
+    if bool(
+        torch.any(
+            scale
+            <
+            MIN_VARIANCE_SCALE
+        )
+    ):
+        raise ValueError(
+            "Variance scale below "
+            "frozen lower bound."
+        )
+
+    if bool(
+        torch.any(
+            scale
+            >
+            MAX_VARIANCE_SCALE
+        )
+    ):
+        raise ValueError(
+            "Variance scale above "
+            "frozen upper bound."
+        )
+
+    return (
+        scale_tril
+        *
+        torch.sqrt(
+            scale
+        )[
+            None,
+
+runtime.public_callables[4].definition_line = 374
+runtime.public_callables[4].kind = function
+runtime.public_callables[4].module = iscai_stage4.ml.calibration_runtime
+runtime.public_callables[4].name = build_gaussian_model
+runtime.public_callables[4].signature = (configuration, *, device)
+runtime.public_callables[4].source_file = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py
+runtime.public_callables[4].source_preview = def build_gaussian_model(
+    configuration,
+    *,
+    device,
+):
+    model_config = (
+        configuration[
+            "model"
+        ]
+    )
+
+    return GaussianTrajectoryGRU(
+        target_hidden_dim=int(
+            model_config[
+                "target_hidden_dim"
+            ]
+        ),
+        neighbor_hidden_dim=int(
+            model_config[
+                "neighbor_hidden_dim"
+            ]
+        ),
+        map_hidden_dim=int(
+            model_config[
+                "map_hidden_dim"
+            ]
+        ),
+        fusion_hidden_dim=int(
+            model_config[
+                "fusion_hidden_dim"
+            ]
+        ),
+        use_neighbors=True,
+        use_map=True,
+    ).to(device)
+
+runtime.public_callables[5].definition_line = 855
+runtime.public_callables[5].kind = function
+runtime.public_callables[5].module = iscai_stage4.ml.calibration_runtime
+runtime.public_callables[5].name = calibrated_nll_per_horizon
+runtime.public_callables[5].signature = (raw_metric_nll, mahalanobis_squared_raw, variance_scale)
+runtime.public_callables[5].source_file = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py
+runtime.public_callables[5].source_preview = def calibrated_nll_per_horizon(
+    raw_metric_nll,
+    mahalanobis_squared_raw,
+    variance_scale,
+):
+    """
+    Exact NLL adjustment for:
+
+        Sigma_cal = alpha * Sigma_raw
+
+    in d=3:
+
+      NLL_cal =
+        NLL_raw
+        + 0.5 * [
+            3 log(alpha)
+            + q_raw * (1/alpha - 1)
+          ]
+    """
+
+    raw = np.asarray(
+        raw_metric_nll,
+        dtype=np.float64,
+    )
+
+    q = np.asarray(
+        mahalanobis_squared_raw,
+        dtype=np.float64,
+    )
+
+    alpha = np.asarray(
+        variance_scale,
+        dtype=np.float64,
+    )
+
+    if raw.shape != q.shape:
+        raise ValueError(
+            "raw NLL/q shape mismatch."
+        )
+
+    if raw.ndim != 2:
+        raise ValueError(
+            "Expected [N,H]."
+        )
+
+    if raw.shape[1] != 4:
+        raise ValueError(
+            "Expected four horizons."
+        )
+
+    if alpha.shape != (4,):
+        raise ValueError(
+            "Expected four "
+            "variance scales."
+        )
+
+    if np.any(
+        alpha <= 0.0
+    ):
+        raise ValueError(
+            "Variance scales "
+            "must be positive."
+        )
+
+    adjustment = (
+        0.5
+        *
+        (
+            POSITION_DIM
+            *
+            np.log(
+                alpha
+            )[
+                None,
+                :
+            ]
+            +
+            q
+            *
+            (
+
+runtime.public_callables[6].definition_line = 40
+runtime.public_callables[6].kind = function
+runtime.public_callables[6].module = iscai_stage4.ml.gaussian_math
+runtime.public_callables[6].name = covariance_from_scale_tril
+runtime.public_callables[6].signature = (scale_tril: 'torch.Tensor') -> 'torch.Tensor'
+runtime.public_callables[6].source_file = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py
+runtime.public_callables[6].source_preview = def covariance_from_scale_tril(
+    scale_tril: torch.Tensor,
+) -> torch.Tensor:
+    if scale_tril.shape[-2:] != (
+        POSITION_DIM,
+        POSITION_DIM,
+    ):
+        raise ValueError(
+            "scale_tril must end "
+            "in [3,3]."
+        )
+
+    return (
+        scale_tril
+        @
+        scale_tril.transpose(
+            -1,
+            -2,
+        )
+    )
+
+runtime.public_callables[7].definition_line = 279
+runtime.public_callables[7].kind = function
+runtime.public_callables[7].module = iscai_stage4.ml.gaussian_math
+runtime.public_callables[7].name = denormalize_gaussian
+runtime.public_callables[7].signature = (mean_normalized: 'torch.Tensor', scale_tril_normalized: 'torch.Tensor', label_mean: 'torch.Tensor', label_std: 'torch.Tensor')
+runtime.public_callables[7].source_file = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py
+runtime.public_callables[7].source_preview = def denormalize_gaussian(
+    mean_normalized: torch.Tensor,
+    scale_tril_normalized:
+        torch.Tensor,
+    label_mean: torch.Tensor,
+    label_std: torch.Tensor,
+):
+    """
+    Transform normalized Gaussian output
+    into metric H0-displacement coordinates.
+
+    If:
+        y_metric = D y_norm + b
+
+    then:
+        mu_metric = D mu_norm + b
+        L_metric  = D L_norm
+        Sigma_metric =
+            D Sigma_norm D^T
+    """
+
+    if label_mean.shape != (
+        mean_normalized.shape[1],
+        POSITION_DIM,
+    ):
+        raise ValueError(
+            "label_mean shape mismatch."
+        )
+
+    if label_std.shape != (
+        mean_normalized.shape[1],
+        POSITION_DIM,
+    ):
+        raise ValueError(
+            "label_std shape mismatch."
+        )
+
+    if bool(
+        torch.any(
+            label_std
+            <=
+            0.0
+        )
+    ):
+        raise ValueError(
+            "label_std must be positive."
+        )
+
+    mean_metric = (
+        mean_normalized
+        *
+        label_std.unsqueeze(
+            0
+        )
+        +
+        label_mean.unsqueeze(
+            0
+        )
+    )
+
+    scale_metric = (
+        scale_tril_normalized
+        *
+        label_std[
+            None,
+            :,
+            :,
+            None,
+        ]
+    )
+
+    return (
+        mean_metric,
+        scale_metric,
+    )
+
+runtime.public_callables[8].definition_line = 62
+runtime.public_callables[8].kind = function
+runtime.public_callables[8].module = iscai_stage4.ml.gaussian_math
+runtime.public_callables[8].name = gaussian_nll_per_horizon
+runtime.public_callables[8].signature = (mean: 'torch.Tensor', scale_tril: 'torch.Tensor', target: 'torch.Tensor') -> 'torch.Tensor'
+runtime.public_callables[8].source_file = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py
+runtime.public_callables[8].source_preview = def gaussian_nll_per_horizon(
+    mean: torch.Tensor,
+    scale_tril: torch.Tensor,
+    target: torch.Tensor,
+) -> torch.Tensor:
+    """
+    Full 3-D Gaussian negative log likelihood.
+
+    Returns:
+        [B,H]
+    """
+
+    if mean.shape != target.shape:
+        raise ValueError(
+            "Gaussian mean/target "
+            "shape mismatch."
+        )
+
+    if mean.ndim != 3:
+        raise ValueError(
+            "mean and target must "
+            "be [B,H,3]."
+        )
+
+    if mean.shape[-1] != (
+        POSITION_DIM
+    ):
+        raise ValueError(
+            "Expected 3-D trajectory."
+        )
+
+    if scale_tril.shape != (
+        mean.shape[0],
+        mean.shape[1],
+        POSITION_DIM,
+        POSITION_DIM,
+    ):
+        raise ValueError(
+            "scale_tril shape mismatch."
+        )
+
+    diagonal = torch.diagonal(
+        scale_tril,
+        dim1=-2,
+        dim2=-1,
+    )
+
+    if bool(
+        torch.any(
+            diagonal
+            <=
+            0.0
+        )
+    ):
+        raise ValueError(
+            "Cholesky diagonal must "
+            "be strictly positive."
+        )
+
+    residual = (
+        target
+        -
+        mean
+    )
+
+    solved = (
+        torch.linalg
+        .solve_triangular(
+            scale_tril,
+            residual.unsqueeze(
+                -1
+            ),
+            upper=False,
+        )
+        .squeeze(
+            -1
+        )
+    )
+
+    mahalanobis = (
+
+runtime.public_callables[9].definition_line = 593
+runtime.public_callables[9].kind = function
+runtime.public_callables[9].module = iscai_stage4.ml.calibration_runtime
+runtime.public_callables[9].name = infer_scene_statistics
+runtime.public_callables[9].signature = (model, samples, normalizer, *, device)
+runtime.public_callables[9].source_file = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py
+runtime.public_callables[9].source_preview = def infer_scene_statistics(
+    model,
+    samples,
+    normalizer,
+    *,
+    device,
+):
+    arrays = samples_to_arrays(
+        samples
+    )
+
+    count = int(
+        arrays[
+            "target"
+        ].shape[0]
+    )
+
+    if count == 0:
+        return {
+            "mahalanobis_squared":
+                np.zeros(
+                    (
+                        0,
+                        4,
+                    ),
+                    dtype=np.float32,
+                ),
+
+            "validity":
+                np.zeros(
+                    (
+                        0,
+                        4,
+                    ),
+                    dtype=np.float32,
+                ),
+
+            "raw_metric_nll":
+                np.zeros(
+                    (
+                        0,
+                        4,
+                    ),
+                    dtype=np.float32,
+                ),
+
+            "planar_error_m":
+                np.zeros(
+                    (
+                        0,
+                        4,
+                    ),
+                    dtype=np.float32,
+                ),
+
+            "class_id":
+                np.zeros(
+                    (0,),
+                    dtype=np.int64,
+                ),
+
+            "prediction_sha256":
+                sha256(
+                    b""
+                ).hexdigest(),
+        }
+
+    batch = normalizer.prepare(
+        arrays,
+        device=device,
+    )
+
+    model.eval()
+
+    with torch.inference_mode():
+        output = model(
+            batch["target"],
+            batch["neighbors"],
+            batch[
+                "neighbor_mask"
+
+runtime.public_callables[10].definition_line = 230
+runtime.public_callables[10].kind = function
+runtime.public_callables[10].module = iscai_stage4.ml.gaussian_math
+runtime.public_callables[10].name = mahalanobis_squared
+runtime.public_callables[10].signature = (mean: 'torch.Tensor', scale_tril: 'torch.Tensor', target: 'torch.Tensor') -> 'torch.Tensor'
+runtime.public_callables[10].source_file = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py
+runtime.public_callables[10].source_preview = def mahalanobis_squared(
+    mean: torch.Tensor,
+    scale_tril: torch.Tensor,
+    target: torch.Tensor,
+) -> torch.Tensor:
+    if mean.shape != target.shape:
+        raise ValueError(
+            "Mean/target shape mismatch."
+        )
+
+    if scale_tril.shape != (
+        mean.shape[0],
+        mean.shape[1],
+        POSITION_DIM,
+        POSITION_DIM,
+    ):
+        raise ValueError(
+            "scale_tril shape mismatch."
+        )
+
+    residual = (
+        target
+        -
+        mean
+    )
+
+    solved = (
+        torch.linalg
+        .solve_triangular(
+            scale_tril,
+            residual.unsqueeze(
+                -1
+            ),
+            upper=False,
+        )
+        .squeeze(
+            -1
+        )
+    )
+
+    return (
+        solved
+        .square()
+        .sum(
+            dim=-1
+        )
+    )
+
+runtime.public_callables[11].definition_line = 954
+runtime.public_callables[11].kind = function
+runtime.public_callables[11].module = iscai_stage4.ml.calibration_runtime
+runtime.public_callables[11].name = masked_nll_metrics
+runtime.public_callables[11].signature = (nll, validity)
+runtime.public_callables[11].source_file = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py
+runtime.public_callables[11].source_preview = def masked_nll_metrics(
+    nll,
+    validity,
+):
+    value = np.asarray(
+        nll,
+        dtype=np.float64,
+    )
+
+    mask = (
+        np.asarray(
+            validity
+        )
+        >
+        0.5
+    )
+
+    if value.shape != mask.shape:
+        raise ValueError(
+            "NLL/mask shape mismatch."
+        )
+
+    if (
+        value.ndim != 2
+        or
+        value.shape[1] != 4
+    ):
+        raise ValueError(
+            "Expected NLL [N,4]."
+        )
+
+    if not np.all(
+        np.isfinite(
+            value[
+                mask
+            ]
+        )
+    ):
+        raise ValueError(
+            "Valid NLL values "
+            "must be finite."
+        )
+
+    horizon_names = (
+        "0.1",
+        "0.3",
+        "0.5",
+        "1.0",
+    )
+
+    by_horizon = {}
+
+    for horizon, name in enumerate(
+        horizon_names
+    ):
+        hmask = mask[
+            :,
+            horizon
+        ]
+
+        if not np.any(
+            hmask
+        ):
+            raise ValueError(
+                f"No valid labels "
+                f"at horizon {name}."
+            )
+
+        by_horizon[
+            name
+        ] = float(
+            np.mean(
+                value[
+                    hmask,
+                    horizon
+                ]
+            )
+        )
+
+    return {
+
+runtime.public_callables[12].definition_line = 1053
+runtime.public_callables[12].kind = function
+runtime.public_callables[12].module = iscai_stage4.ml.calibration_runtime
+runtime.public_callables[12].name = masked_planar_ade
+runtime.public_callables[12].signature = (planar_error, validity)
+runtime.public_callables[12].source_file = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py
+runtime.public_callables[12].source_preview = def masked_planar_ade(
+    planar_error,
+    validity,
+):
+    error = np.asarray(
+        planar_error,
+        dtype=np.float64,
+    )
+
+    mask = (
+        np.asarray(
+            validity
+        )
+        >
+        0.5
+    )
+
+    if error.shape != mask.shape:
+        raise ValueError(
+            "Planar-error/mask "
+            "shape mismatch."
+        )
+
+    if not np.any(
+        mask
+    ):
+        raise ValueError(
+            "No valid planar errors."
+        )
+
+    horizon_names = (
+        "0.1",
+        "0.3",
+        "0.5",
+        "1.0",
+    )
+
+    return {
+        "planar_ADE_m":
+            float(
+                np.mean(
+                    error[
+                        mask
+                    ]
+                )
+            ),
+
+        "horizon_planar_error_m": {
+            name:
+                float(
+                    np.mean(
+                        error[
+                            mask[
+                                :,
+                                horizon
+                            ],
+                            horizon
+                        ]
+                    )
+                )
+            for horizon, name
+            in enumerate(
+                horizon_names
+            )
+        },
+    }
+
+runtime.public_callables[13].definition_line = 563
+runtime.public_callables[13].kind = function
+runtime.public_callables[13].module = iscai_stage4.ml.calibration_runtime
+runtime.public_callables[13].name = prediction_sha256
+runtime.public_callables[13].signature = (mean, scale_tril)
+runtime.public_callables[13].source_file = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py
+runtime.public_callables[13].source_preview = def prediction_sha256(
+    mean,
+    scale_tril,
+):
+    digest = sha256()
+
+    for tensor in (
+        mean,
+        scale_tril,
+    ):
+        value = (
+            tensor.detach()
+            .cpu()
+            .contiguous()
+            .numpy()
+            .astype(
+                np.float32,
+                copy=False,
+            )
+        )
+
+        digest.update(
+            value.tobytes(
+                order="C"
+            )
+        )
+
+    return digest.hexdigest()
+
+
+--- stage4_prediction_coordinate_semantics.json ---
+development_cache.path = /home/agni/waymo/iscai_stage4/artifacts/block43/development_cache.npz
+development_cache.sha256 = bc0e5b508df38f6e33d9cb1a6d21d7eaa86d20c91ba09ede6f500d46b87fbcaa
+normalization.path = /home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json
+normalization.payload.calibration_used = False
+normalization.payload.continuous_feature_mean[0] = -0.4892875943158473
+normalization.payload.continuous_feature_mean[1] = 1.6509485615199415
+normalization.payload.continuous_feature_mean[2] = -0.2966244902042905
+normalization.payload.continuous_feature_mean[3] = 0.837157244279352
+normalization.payload.continuous_feature_mean[4] = -0.039076888601007144
+normalization.payload.continuous_feature_mean[5] = -0.0033103295693422186
+normalization.payload.continuous_feature_mean[6] = 0.6699312829489187
+normalization.payload.continuous_feature_mean[7] = -0.0031701553213251054
+normalization.payload.continuous_feature_mean[8] = 7.0476648252687865e-06
+normalization.payload.continuous_feature_mean[9] = 0.8388677714738461
+normalization.payload.continuous_feature_mean[10] = -1.9899908831105273e-05
+normalization.payload.continuous_feature_mean[11] = 1.423362226694129
+normalization.payload.continuous_feature_std[0] = 32.95467400300616
+normalization.payload.continuous_feature_std[1] = 28.232856905864434
+normalization.payload.continuous_feature_std[2] = 2.092118871268435
+normalization.payload.continuous_feature_std[3] = 32.77884439232807
+normalization.payload.continuous_feature_std[4] = 33.02806448288359
+normalization.payload.continuous_feature_std[5] = 12.953189350576718
+normalization.payload.continuous_feature_std[6] = 3.078435466749296
+normalization.payload.continuous_feature_std[7] = 1.7695341317061122
+normalization.payload.continuous_feature_std[8] = 0.6827917993801238
+normalization.payload.continuous_feature_std[9] = 3.5440528033651892
+normalization.payload.continuous_feature_std[10] = 0.6069358070484366
+normalization.payload.continuous_feature_std[11] = 5.226704468878048
+normalization.payload.development_used = False
+normalization.payload.label_displacement_mean[0][0] = 0.13007088691299454
+normalization.payload.label_displacement_mean[0][1] = -0.009454513690765774
+normalization.payload.label_displacement_mean[0][2] = -0.00595621884818416
+normalization.payload.label_displacement_mean[1][0] = 0.25189157920308564
+normalization.payload.label_displacement_mean[1][1] = -0.018269621280981006
+normalization.payload.label_displacement_mean[1][2] = -0.006957900924953559
+normalization.payload.label_displacement_mean[2][0] = 0.3840395248758152
+normalization.payload.label_displacement_mean[2][1] = -0.025380008056422685
+normalization.payload.label_displacement_mean[2][2] = -0.006908590412966617
+normalization.payload.label_displacement_mean[3][0] = 0.764490583785491
+normalization.payload.label_displacement_mean[3][1] = -0.05333015817784657
+normalization.payload.label_displacement_mean[3][2] = -0.005716003541891749
+normalization.payload.label_displacement_std[0][0] = 2.108129758471249
+normalization.payload.label_displacement_std[0][1] = 1.1766709642960933
+normalization.payload.label_displacement_std[0][2] = 1.0521182396038433
+normalization.payload.label_displacement_std[1][0] = 2.946966166360802
+normalization.payload.label_displacement_std[1][1] = 1.5178348778080983
+normalization.payload.label_displacement_std[1][2] = 1.0457358748923975
+normalization.payload.label_displacement_std[2][0] = 3.8658635164507253
+normalization.payload.label_displacement_std[2][1] = 1.9127738858677783
+normalization.payload.label_displacement_std[2][2] = 1.0431715804152502
+normalization.payload.label_displacement_std[3][0] = 6.287019686024694
+normalization.payload.label_displacement_std[3][1] = 3.0053620147764994
+normalization.payload.label_displacement_std[3][2] = 1.0333035957932626
+normalization.payload.label_valid_count_per_horizon[0] = 112831
+normalization.payload.label_valid_count_per_horizon[1] = 110346
+normalization.payload.label_valid_count_per_horizon[2] = 108416
+normalization.payload.label_valid_count_per_horizon[3] = 103886
+normalization.payload.map_mean[0] = 5.324304655891342
+normalization.payload.map_mean[1] = 2292.8533671000646
+normalization.payload.map_mean[2] = 26.639824675634244
+normalization.payload.map_mean[3] = 910.2583416009608
+normalization.payload.map_mean[4] = 6.589249199198382
+normalization.payload.map_mean[5] = 852.650122708997
+normalization.payload.map_mean[6] = 71.1632610286267
+normalization.payload.map_mean[7] = 8.355838685534263
+normalization.payload.map_mean[8] = 271.9592346084822
+normalization.payload.map_mean[9] = 0.524942126607836
+normalization.payload.map_std[0] = 8.248965696695901
+normalization.payload.map_std[1] = 1215.5631521569821
+normalization.payload.map_std[2] = 111.6788265399522
+normalization.payload.map_std[3] = 612.667750179903
+normalization.payload.map_std[4] = 7.239576547186826
+normalization.payload.map_std[5] = 319.5408453983796
+normalization.payload.map_std[6] = 185.77684649770194
+normalization.payload.map_std[7] = 7.6010361927712
+normalization.payload.map_std[8] = 380.61011018789054
+normalization.payload.map_std[9] = 1.0891741110788282
+normalization.payload.missing_history_rows_in_statistics = False
+normalization.payload.observed_history_row_count = 4425389
+normalization.payload.padded_neighbor_slots_in_statistics = False
+normalization.payload.sample_count = 114906
+normalization.payload.sha256 = 70b2f5c194167423996ec5b4d3c05c1d0e3eaf98b5e96feb509feaca8f172487
+normalization.payload.source = fit_only
+normalization.payload.validation_used = False
+normalization.sha256 = 3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6
+scientific_execution.model_forward = False
+scientific_execution.recalibration = False
+scientific_execution.training = False
+
+===== G. IDENTITY-PRESERVING RUNTIME READINESS =====
+exact calibrated runtime definitions = PASS
+Block5.2 Gaussian producer route = NOT PROVEN
+causal prediction_id retained pre-runtime = PASS
+anonymous NPZ row needed = NO
+truth ID needed = NO
+
+===== H. IMMUTABILITY =====
+Block6.3 Part1 = UNCHANGED
+Stage4 runtime code = UNCHANGED
+Stage5 Block5.2 evidence = UNCHANGED
+dataset access = NO
+model inference = NO
+formal evaluation = NO
+
+report = /home/agni/waymo/iscai_stage6/reports/block63_part2_runtime_route_binding_audit.json
+report SHA256 = 00121eebc007b016865fb5b17448fbda591dd3d00b1606b24fdb279b11a81e57
+
+============================================================
+BLOCK 6.3 PART 2/2 RUNTIME-ROUTE AUDIT — FINAL
+============================================================
+anonymous batched posterior as controller input = NO
+runtime route = FROZEN STAGE4 CALIBRATED GAUSSIAN
+identity preservation = IN-MEMORY CAUSAL PREDICTION_ID
+causal anchor preservation = latest_position_H0_m
+deterministic output = GAUSSIAN MEAN ONLY
+predictive covariance use in Block6.3 = NO
+truth/perfect ID = NO
+formal N120 = NO
+dataset access = NO
+model inference = NO
+STATUS = BLOCKED_RUNTIME_ROUTE_EVIDENCE_INCOMPLETE
+terminal remains open = YES

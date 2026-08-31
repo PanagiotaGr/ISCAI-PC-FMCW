@@ -1,0 +1,52 @@
+{
+  "Part3B_forbidden": [
+    "numeric_parameter_selection",
+    "formal_outcome_read",
+    "formal_tuning",
+    "future_GT_controller_input",
+    "perfect_ID_association",
+    "vertical_face_height_pixel_claim"
+  ],
+  "Part3B_must_freeze_before_any_sweep": [
+    "controller_parameterization",
+    "metric_formulas",
+    "candidate_generation_rules",
+    "development_only_selection_rule",
+    "class_overlap_precedence",
+    "temporal_smoothing_semantics",
+    "actuation_rate_limit_semantics"
+  ],
+  "actuator_boundary": {
+    "pedestrian_branch": "PARTIAL_DIMMING_NONZERO_FLOOR",
+    "vertical_DOF": false
+  },
+  "authoritative_capability_report": {
+    "path": "/home/agni/waymo/iscai_stage6/reports/block66_part3a3_operator_capability_correction.json",
+    "sha256": "d76474b09f88b6809e30f4a59615feb3d0e5687b93e0b7083816028d40704fe3"
+  },
+  "critical_margin_boundary": {
+    "PartA_margin": "GENERIC_REACTIVE_SAFETY_MARGIN",
+    "PartA_margin_counts_as_class_aware": false,
+    "PartA_margin_preserved": true,
+    "PartB_required_margin": "ADDITIONAL_CLASS_AWARE_PREDICTIVE_UNCERTAINTY_RESPONSIVE_EXPANSION"
+  },
+  "existing_runtime_components": [
+    "PartA_raised_cosine_radial_profile",
+    "PartA_generic_safety_margin_geometry",
+    "normalized_intensity_floor",
+    "predictive_gamma_threshold",
+    "full_3D_box_geometry",
+    "theta_range_actuator_grid"
+  ],
+  "from": "6.6-Part3A3",
+  "required_new_runtime_components": [
+    "class_aware_policy_composition",
+    "class_aware_predictive_margin_operator",
+    "class_overlap_priority_rule",
+    "temporal_smoothing_operator",
+    "actuation_rate_limit_operator"
+  ],
+  "stage": 6,
+  "status": "PASS_READY_FOR_CLASS_AWARE_POLICY_PREREGISTRATION",
+  "to": "6.6-Part3B"
+}

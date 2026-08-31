@@ -1,0 +1,71 @@
+{
+  "block": "6.8_Part2C_future_GT_evaluator_provenance_repair",
+  "failure_type": "orientation_source_label_not_in_geometry_whitelist",
+  "future_truth_status_at_repair": "opened evaluator-only before first projection; no metric computed",
+  "preoutcome_scoring_contract": {
+    "modified": false,
+    "path": "/home/agni/waymo/iscai_stage6/configs/stage6_reactive_future_truth_scoring_contract.json",
+    "sha256": "8364c7cdfa4b66d820823c804d45905a207f77f66b53f06a6383e7722b8a9970"
+  },
+  "projection": {
+    "controller_path": false,
+    "orientation_source": "oracle_evaluator_only",
+    "state_source": "WOMD_future_GT_evaluator_only"
+  },
+  "scientific_boundary": {
+    "NI_deltas_computed": false,
+    "P_occ_opened": false,
+    "controller_or_policy_modified": false,
+    "formal_evaluation": false,
+    "predictive_performance_computed": false,
+    "reactive_metric_values_computed_before_freeze": false
+  },
+  "scientific_geometry_change": false,
+  "selection_evidence": {
+    "accepted_orientation_candidates": [
+      "current_causal",
+      "frozen_low_speed_fallback",
+      "oracle_evaluator_only",
+      "predicted_orientation",
+      "predicted_tangent"
+    ],
+    "existing_nonformal_call_sites": [],
+    "geometry_module": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/geometry.py",
+    "geometry_module_sha256": "f6e6cc0dd362338eeeaae9d8e25947434a3e7c64b350f0baf81a79a46159f94e",
+    "ranking": [
+      {
+        "candidate": "oracle_evaluator_only",
+        "reasons": [
+          "semantic_token:evaluator"
+        ],
+        "score": 30
+      },
+      {
+        "candidate": "predicted_orientation",
+        "reasons": [
+          "semantic_token:orientation"
+        ],
+        "score": 10
+      },
+      {
+        "candidate": "current_causal",
+        "reasons": [],
+        "score": 0
+      },
+      {
+        "candidate": "frozen_low_speed_fallback",
+        "reasons": [],
+        "score": 0
+      },
+      {
+        "candidate": "predicted_tangent",
+        "reasons": [],
+        "score": 0
+      }
+    ],
+    "unique_choice": true,
+    "validator_source_sha256": "4f11e0df9c637c82cbb06669651964a7a8cf7a4c22109fcf2b0b2779674bfa60"
+  },
+  "stage": 6,
+  "status": "FROZEN_EVALUATOR_ONLY_FUTURE_GT_PROVENANCE_BINDING"
+}

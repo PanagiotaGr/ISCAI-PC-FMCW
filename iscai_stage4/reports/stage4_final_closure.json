@@ -1,0 +1,154 @@
+{
+  "Stage5_handoff_sha256": "491bce010d35c2a394f879ecf35ed26ef1de92f7fff1465dcbf46b072a87c6fd",
+  "Stage5_started": false,
+  "closure_block": "4.10",
+  "critical_artifacts": {
+    "GMM_checkpoint": {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block46/gmm_gru.pt",
+      "sha256": "5aebeaf40d522d58345d424ae2557d6f87e2c02bdc26c23635cc6e3a28cbe3ee"
+    },
+    "Gaussian_checkpoint": {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt",
+      "sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f"
+    },
+    "Stage5_handoff": {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block410/stage4_to_stage5_handoff.json",
+      "sha256": "491bce010d35c2a394f879ecf35ed26ef1de92f7fff1465dcbf46b072a87c6fd"
+    },
+    "covariance_calibrator": {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block45/covariance_scaler.json",
+      "sha256": "508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087"
+    },
+    "deterministic_checkpoint": {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block43/deterministic_gru.pt",
+      "sha256": "5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5"
+    },
+    "fit_only_normalization": {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json",
+      "sha256": "3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6"
+    },
+    "formal_manifest": {
+      "path": "/home/agni/waymo/iscai_stage3/artifacts/block38e/formal_validation_120.jsonl",
+      "sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46"
+    },
+    "reproducibility_manifest": {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block49/stage4_reproducibility_manifest.json",
+      "sha256": "135a3c60e5a2c4419125fa0daa6d2d55452f923255a04698f0bc1aaca5f474b8"
+    },
+    "validation_manifest": {
+      "path": "/home/agni/waymo/iscai_data_prep/manifests/selected_validation.jsonl",
+      "sha256": "dc10609ef18a2ba881657eb3da3a3df7a81bdcc8345ecbc2227102ab16b8833c"
+    }
+  },
+  "final_implementation": {
+    "file_count": 87,
+    "sha256": "64526bcd8f64772a04183583b63facace2db45a7311ac96412cbd19114ac9f91"
+  },
+  "formal_N120": {
+    "calibrated_Gaussian_ADE_m": 1.9848952833749467,
+    "calibrated_coverage_event_Brier": 0.19413178861788616,
+    "calibrated_macro_ECE": 0.11165527003334381,
+    "calibrated_metric_Gaussian_NLL": 3.6848268203287406,
+    "classical_baselines_beaten": [
+      "CA",
+      "CTRV",
+      "CV",
+      "IMM_CV_CA_CTRV",
+      "Kalman_EKF"
+    ],
+    "eligible_targets": 547,
+    "formal_content_sha256": "fe5cf7e413b8142c0670d05727affd4fa573cf4607665e4a9bda951f1d9bd0d5",
+    "frozen_CV_ADE_m": 9.538706032921292,
+    "matched_target_recall": 0.903107861060329,
+    "matched_targets": 494,
+    "raw_coverage_event_Brier": 0.2397821951219512,
+    "raw_macro_ECE": 0.18362046536363294,
+    "raw_metric_Gaussian_NLL": 4.15760466880646,
+    "scenarios": 120
+  },
+  "formal_inference_performed_in_Block410": false,
+  "formal_leakage": {
+    "calibrator_fit_on_formal": false,
+    "future_model_input": false,
+    "model_selection_on_formal": false,
+    "normalization_fit_on_formal": false,
+    "tracks_to_predict_accessed_after_prediction": true,
+    "tracks_to_predict_model_input": false,
+    "training_on_formal": false
+  },
+  "mandatory_acceptance": {
+    "closure_ready": true,
+    "criteria": 14,
+    "failures": [],
+    "passed": 14
+  },
+  "primary_downstream_posterior": {
+    "family": "calibrated_Gaussian_GRU",
+    "full_3D_SPD_covariance": true,
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "mean_preserved": true,
+    "measurement_R_t_remains_separate": true,
+    "variance_scale_alpha_h": [
+      1.2347064500315355,
+      1.3451250295202921,
+      1.354822057728461,
+      1.2829700217319266
+    ]
+  },
+  "project": "Agni",
+  "recalibration_performed_in_Block410": false,
+  "reproducibility": {
+    "environment": {
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "CUDA_available": true,
+      "GPU": "NVIDIA RTX A6000",
+      "numpy": "2.5.1",
+      "python": "3.13.5",
+      "torch": "2.13.0+cu132",
+      "torch_cuda": "13.2"
+    },
+    "formal_cache_content_verified": true,
+    "fresh_process_exact_repeats": 4,
+    "full_regression_tests": 130
+  },
+  "scientific_acceptance": {
+    "GMM_extension_evaluated": true,
+    "GMM_selected_downstream": false,
+    "causal_leakage_free": true,
+    "exact_reproducibility": true,
+    "formal_calibration_ECE_improved": true,
+    "formal_calibration_measured": true,
+    "internal_Gaussian_less_than_frozen_CV": true,
+    "measurement_predictive_uncertainty_separated": true,
+    "probabilistic_beats_at_least_one_classical": true
+  },
+  "scientific_scope_completed": [
+    "causal_real_trajectory_PC_FMCW_observation_interface",
+    "measurement_covariance_R_t_conditioning",
+    "deterministic_multi_agent_GRU",
+    "full_3D_Gaussian_predictive_posterior",
+    "trajectory_uncertainty_calibration",
+    "trajectory_level_GMM_extension",
+    "measurement_to_predictive_uncertainty_analysis",
+    "multi_agent_and_map_ablations",
+    "frozen_formal_N120_evaluation",
+    "exact_reproducibility_freeze"
+  ],
+  "scope_boundary": {
+    "DeepSense_done": false,
+    "Stage4_ends_at": "calibrated_probabilistic_trajectory_posterior",
+    "Stage5_begins_with": "receiver_angular_posterior",
+    "adaptive_TopK_beam_done": false,
+    "deferred_items_are_missing_Stage4_requirements": false,
+    "optical_ADB_done": false,
+    "receiver_angular_posterior_done": false
+  },
+  "stage": 4,
+  "status": "COMPLETE_FROZEN",
+  "training_performed_in_Block410": false
+}

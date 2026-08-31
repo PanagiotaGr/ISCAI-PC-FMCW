@@ -1,0 +1,116 @@
+{
+  "PDF_completion_reason": "Predictive ADB reduces vehicle shadow-zone violations and preserves pedestrian/cyclist visibility, but violates the pre-outcome frozen over-masking non-inferiority criterion.",
+  "PDF_implementation_scope": "PASS",
+  "PDF_requirement_matrix": [
+    {
+      "pass": true,
+      "requirement": "future box projection"
+    },
+    {
+      "pass": true,
+      "requirement": "probabilistic masks / occupancy"
+    },
+    {
+      "pass": true,
+      "requirement": "predictive covariance"
+    },
+    {
+      "pass": true,
+      "requirement": "vehicle/pedestrian/cyclist class-aware policies"
+    },
+    {
+      "pass": true,
+      "requirement": "Part-A reactive illumination continuity"
+    },
+    {
+      "pass": true,
+      "requirement": "temporal smoothing / actuation handling"
+    },
+    {
+      "pass": true,
+      "requirement": "predictive ADB reduces vehicle shadow violations"
+    },
+    {
+      "pass": true,
+      "requirement": "no uncontrolled VRU visibility loss"
+    },
+    {
+      "pass": false,
+      "requirement": "no uncontrolled increase in over-masking"
+    }
+  ],
+  "PDF_stage6_completion_gate": "FAIL",
+  "Stage5_upstream_supersession": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/stage6_stage5_final_upstream_addendum_v1.json",
+    "sha256": "37d5c6723c57cb427ba1ce23cc4e87a4bdca07b4d35153a18ada017ccb6ce5d8"
+  },
+  "Stage7_allowed": false,
+  "Stage7_block_reason": "Stage6 PDF completion gate not satisfied. A new scientific Stage6 protocol/method version would be required before Stage7.",
+  "acceptance_authority": {
+    "NI_rule": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_noninferiority_bound_selection_rule.json",
+      "sha256": "b5c0f40725e26578a4739f0582e4467ec48b72db8bb077d13862cc83dee98d24"
+    },
+    "contract": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_contract.json",
+      "sha256": "6b2ee6454f876c3658d4d308b827202cd31dd7c77bf96c38e6c6da70e6573675"
+    },
+    "exact_deltas": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_exact_noninferiority_deltas.json",
+      "sha256": "a77e548e060c314dd98a7220b0f9ed3aebd5d1978eb70f456b82920e792a29d4"
+    },
+    "primary_failure": {
+      "path": "/home/agni/waymo/iscai_stage6/reports/block68_development_failure_closure.json",
+      "sha256": "a233b1765455a6f3467c395bf79b278843004e7d601637bf5dbe92c680fd9410"
+    },
+    "primary_policy": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_preformal_primary_acceptance_policy.json",
+      "sha256": "e103466b1a6eb62be4e6746029147cbda9671b05130acba5210a3ab7328e6b81"
+    }
+  },
+  "current_protocol_may_be_retuned": false,
+  "formal_execution_resolution": {
+    "Stage1_broad_boolean_scan": true,
+    "authoritative_failure_closure_formal_evaluation_run": false,
+    "classification": "NO_CURRENT_PROTOCOL_FORMAL_EVALUATION; Stage1 signal was broad metadata scan, not evaluator-execution proof"
+  },
+  "implementation_status": "COMPLETE",
+  "metric_semantics": {
+    "path": "/home/agni/waymo/iscai_stage6/reports/block68_preoutcome_metric_reconciliation.json",
+    "reconciled_preoutcome": true,
+    "sha256": "077a89fa5163f8862a3a5b7489d98929d9ae3e160ed9e030eb75f42a91d48f9f",
+    "status": "PASS_PREOUTCOME_METRIC_RECONCILED"
+  },
+  "new_protocol_required_for_future_PASS": true,
+  "regression": {
+    "status": "PASS",
+    "tests": 224
+  },
+  "scientific_boundary": {
+    "acceptance_threshold_modified": false,
+    "controller_rerun_during_finalization": false,
+    "current_protocol_retuned": false,
+    "development_evaluator_rerun_during_finalization": false,
+    "failure_reinterpreted_as_pass": false,
+    "formal_evaluation_run_for_current_failed_protocol": false,
+    "formal_evaluator_rerun_during_finalization": false,
+    "formal_outcomes_used_for_tuning": false,
+    "negative_result_preserved": true,
+    "post_outcome_retuning": false
+  },
+  "scientific_result": {
+    "cyclist_visibility": "PASS_NONINFERIOR",
+    "over_masking_area": {
+      "excess_beyond_allowed_delta": 0.056592882894233684,
+      "predictive": 0.26521748861081823,
+      "predictive_minus_reactive": 0.07659288289423369,
+      "preoutcome_frozen_allowed_delta": 0.02,
+      "reactive": 0.18862460571658454,
+      "status": "FAIL_NONINFERIORITY"
+    },
+    "pedestrian_visibility": "PASS_NONINFERIOR",
+    "vehicle_shadow_zone_violation": "PASS_STRICT_IMPROVEMENT"
+  },
+  "stage": 6,
+  "status": "STAGE6_SCIENTIFIC_NEGATIVE_RESULT_FROZEN_FINAL"
+}

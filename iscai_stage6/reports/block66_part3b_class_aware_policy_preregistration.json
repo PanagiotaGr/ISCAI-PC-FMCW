@@ -1,0 +1,56 @@
+{
+  "authoritative_capability_boundary": {
+    "existing": [
+      "PartA raised cosine",
+      "PartA generic safety margin",
+      "runtime intensity floor",
+      "predictive strict gamma threshold",
+      "full 3D geometry",
+      "theta/r actuator"
+    ],
+    "new_required": [
+      "class-aware composition",
+      "class-aware predictive margin",
+      "class overlap priority",
+      "temporal smoothing",
+      "actuation rate limiter"
+    ],
+    "vertical_actuator_DOF": false
+  },
+  "block": "6.6-Part3B",
+  "development_evidence": {
+    "N_MC": 8192,
+    "TYPE_CYCLIST": 48,
+    "TYPE_PEDESTRIAN": 110,
+    "TYPE_VEHICLE": 719,
+    "eligible_predictive_actors": 877,
+    "scenes": 120,
+    "seed": 20260821
+  },
+  "next": "BLOCK6.6_PART3C_IMPLEMENT_PREREGISTERED_CLASS_AWARE_RUNTIME",
+  "preregistration": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json",
+    "sha256": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e"
+  },
+  "regression": {
+    "status": "PASS",
+    "tests": 145
+  },
+  "scope": {
+    "actuation_rate_limit_semantics_frozen": true,
+    "candidate_generation_rules_frozen": true,
+    "class_overlap_semantics_frozen": true,
+    "formal_outcomes_read": false,
+    "metric_formulas_frozen": true,
+    "numeric_policy_selected": false,
+    "parameterization_frozen": true,
+    "policy_sweep_executed": false,
+    "road_ROI_definition_frozen": true,
+    "scientific_source_modified": false,
+    "seven_baseline_factorization_frozen": true,
+    "staged_development_selection_rule_frozen": true,
+    "temporal_smoothing_semantics_frozen": true
+  },
+  "stage": 6,
+  "status": "PASS_CLASS_AWARE_POLICY_PREREGISTRATION_FROZEN"
+}

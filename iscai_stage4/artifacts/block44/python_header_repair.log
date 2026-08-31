@@ -1,0 +1,248 @@
+========================================
+BLOCK 4.4 — PYTHON HEADER REPAIR
+========================================
+
+Python = 3.13.5
+torch  = 2.13.0+cu132
+CUDA   = 13.2
+GPU    = NVIDIA RTX A6000
+
+Python include dir = /usr/include/python3.13
+Python.h expected  = /usr/include/python3.13/Python.h
+Python.h exists    = False
+
+Python.h is missing.
+Installing development headers only.
+
+$ /usr/bin/apt-get update
+Hit:1 https://deb.debian.org/debian trixie InRelease
+Get:2 https://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+Get:3 https://security.debian.org/debian-security trixie-security InRelease [43.4 kB]
+Get:4 https://download.docker.com/linux/debian trixie InRelease [32.5 kB]
+Get:5 https://nvidia.github.io/libnvidia-container/stable/deb/amd64  InRelease [1,477 B]
+Get:6 https://security.debian.org/debian-security trixie-security/main amd64 Packages [246 kB]
+Get:7 https://download.docker.com/linux/debian trixie/stable amd64 Packages [43.9 kB]
+Get:8 https://security.debian.org/debian-security trixie-security/main Translation-en [150 kB]
+Get:9 https://security.debian.org/debian-security trixie-security/contrib amd64 Packages [696 B]
+Get:10 https://security.debian.org/debian-security trixie-security/contrib Translation-en [648 B]
+Get:11 https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64  InRelease [1,578 B]
+Get:12 https://packages.cloud.google.com/apt cloud-sdk InRelease [1,620 B]
+Get:13 https://packages.cloud.google.com/apt cloud-sdk/main all Packages [2,095 kB]
+Get:14 https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64  Packages [412 kB]
+Get:15 https://packages.cloud.google.com/apt cloud-sdk/main amd64 Packages [5,005 kB]
+Fetched 8,082 kB in 3s (3,177 kB/s)
+Reading package lists...
+[return code = 0]
+
+$ /usr/bin/apt-get -s install --no-install-recommends python3.13-dev
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages were automatically installed and are no longer required:
+  glx-alternative-mesa glx-alternative-nvidia glx-diversions
+  libnvidia-egl-wayland1 update-glx
+Use 'apt autoremove' to remove them.
+The following additional packages will be installed:
+  libexpat1 libexpat1-dev libpython3.13-dev zlib1g-dev
+The following NEW packages will be installed:
+  libexpat1-dev libpython3.13-dev python3.13-dev zlib1g-dev
+The following packages will be upgraded:
+  libexpat1
+1 upgraded, 4 newly installed, 0 to remove and 56 not upgraded.
+Inst libexpat1 [2.7.1-2] (2.8.3-1~deb13u1 Debian-Security:13/stable-security [amd64])
+Inst libexpat1-dev (2.8.3-1~deb13u1 Debian-Security:13/stable-security [amd64])
+Inst zlib1g-dev (1:1.3.dfsg+really1.3.1-1+b1 Debian:13.6/stable [amd64])
+Inst libpython3.13-dev (3.13.5-2+deb13u4 Debian:13-updates/stable-updates [amd64])
+Inst python3.13-dev (3.13.5-2+deb13u4 Debian:13-updates/stable-updates [amd64])
+Conf libexpat1 (2.8.3-1~deb13u1 Debian-Security:13/stable-security [amd64])
+Conf libexpat1-dev (2.8.3-1~deb13u1 Debian-Security:13/stable-security [amd64])
+Conf zlib1g-dev (1:1.3.dfsg+really1.3.1-1+b1 Debian:13.6/stable [amd64])
+Conf libpython3.13-dev (3.13.5-2+deb13u4 Debian:13-updates/stable-updates [amd64])
+Conf python3.13-dev (3.13.5-2+deb13u4 Debian:13-updates/stable-updates [amd64])
+[return code = 0]
+
+$ /usr/bin/apt-get install -y --no-install-recommends python3.13-dev
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages were automatically installed and are no longer required:
+  glx-alternative-mesa glx-alternative-nvidia glx-diversions
+  libnvidia-egl-wayland1 update-glx
+Use 'apt autoremove' to remove them.
+The following additional packages will be installed:
+  libexpat1 libexpat1-dev libpython3.13-dev zlib1g-dev
+The following NEW packages will be installed:
+  libexpat1-dev libpython3.13-dev python3.13-dev zlib1g-dev
+The following packages will be upgraded:
+  libexpat1
+1 upgraded, 4 newly installed, 0 to remove and 56 not upgraded.
+Need to get 7,001 kB of archives.
+After this operation, 30.3 MB of additional disk space will be used.
+Get:1 https://deb.debian.org/debian trixie/main amd64 zlib1g-dev amd64 1:1.3.dfsg+really1.3.1-1+b1 [920 kB]
+Get:2 https://security.debian.org/debian-security trixie-security/main amd64 libexpat1 amd64 2.8.3-1~deb13u1 [123 kB]
+Get:3 https://security.debian.org/debian-security trixie-security/main amd64 libexpat1-dev amd64 2.8.3-1~deb13u1 [179 kB]
+Get:4 https://deb.debian.org/debian trixie-updates/main amd64 libpython3.13-dev amd64 3.13.5-2+deb13u4 [5,276 kB]
+Get:5 https://deb.debian.org/debian trixie-updates/main amd64 python3.13-dev amd64 3.13.5-2+deb13u4 [504 kB]
+apt-listchanges: Reading changelogs...
+Fetched 7,001 kB in 0s (17.5 MB/s)
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 177789 files and directories currently installed.)
+Preparing to unpack .../libexpat1_2.8.3-1~deb13u1_amd64.deb ...
+Unpacking libexpat1:amd64 (2.8.3-1~deb13u1) over (2.7.1-2) ...
+Selecting previously unselected package libexpat1-dev:amd64.
+Preparing to unpack .../libexpat1-dev_2.8.3-1~deb13u1_amd64.deb ...
+Unpacking libexpat1-dev:amd64 (2.8.3-1~deb13u1) ...
+Selecting previously unselected package zlib1g-dev:amd64.
+Preparing to unpack .../zlib1g-dev_1%3a1.3.dfsg+really1.3.1-1+b1_amd64.deb ...
+Unpacking zlib1g-dev:amd64 (1:1.3.dfsg+really1.3.1-1+b1) ...
+Selecting previously unselected package libpython3.13-dev:amd64.
+Preparing to unpack .../libpython3.13-dev_3.13.5-2+deb13u4_amd64.deb ...
+Unpacking libpython3.13-dev:amd64 (3.13.5-2+deb13u4) ...
+Selecting previously unselected package python3.13-dev.
+Preparing to unpack .../python3.13-dev_3.13.5-2+deb13u4_amd64.deb ...
+Unpacking python3.13-dev (3.13.5-2+deb13u4) ...
+Setting up libexpat1:amd64 (2.8.3-1~deb13u1) ...
+Setting up libexpat1-dev:amd64 (2.8.3-1~deb13u1) ...
+Setting up zlib1g-dev:amd64 (1:1.3.dfsg+really1.3.1-1+b1) ...
+Setting up libpython3.13-dev:amd64 (3.13.5-2+deb13u4) ...
+Setting up python3.13-dev (3.13.5-2+deb13u4) ...
+Processing triggers for man-db (2.13.1-1) ...
+Processing triggers for libc-bin (2.41-12+deb13u3) ...
+[return code = 0]
+
+Python.h             = PASS
+installed package    = python3.13-dev
+PyTorch unchanged    = PASS
+CUDA unchanged       = PASS
+
+========================================
+TRITON NATIVE DRIVER SMOKE
+========================================
+
+$ /home/agni/waymo/iscai_stage1/.venv_lidar/bin/python -c from triton.runtime.driver import driver; d=driver.active; print('active driver =', type(d).__name__); print('device =', d.get_current_device())
+active driver = CudaDriver
+device = 0
+[return code = 0]
+Triton native driver = PASS
+
+========================================
+CUDA AUTOGRAD / TRITON SMOKE
+========================================
+
+$ /home/agni/waymo/iscai_stage1/.venv_lidar/bin/python -c import torch; x=torch.randn(32,4,3,device='cuda',requires_grad=True); A=torch.randn(32,4,3,3,device='cuda',requires_grad=True); y=(A @ x.unsqueeze(-1)).square().mean(); y.backward(); torch.cuda.synchronize(); assert x.grad is not None; assert A.grad is not None; assert torch.isfinite(x.grad).all(); assert torch.isfinite(A.grad).all(); print('CUDA backward = PASS')
+CUDA backward = PASS
+[return code = 0]
+CUDA/Triton backward = PASS
+
+========================================
+FULL BLOCK 4.4 PART 1/2 RECHECK
+========================================
+
+$ /home/agni/waymo/iscai_stage1/.venv_lidar/bin/python /home/agni/waymo/iscai_stage4/scripts/run_block44_part1_safe.py
+===== A. REQUIRED FILES =====
+Block4.4 files present = PASS
+
+===== B. CONTROLLED COMPILE =====
+gaussian_gru.py = PASS
+gaussian_math.py = PASS
+__init__.py = PASS
+test_block44_gaussian_gru.py = PASS
+run_block44_preflight.py = PASS
+controlled compile = PASS
+
+===== C. IMPORT SMOKE =====
+Gaussian imports = PASS
+
+===== D. BLOCK4.4 UNIT TEST =====
+
+................
+----------------------------------------------------------------------
+Ran 16 tests in 0.228s
+
+OK
+
+Block4.4 unit tests = PASS
+
+===== E. FULL STAGE4 REGRESSION =====
+
+............................................................
+----------------------------------------------------------------------
+Ran 60 tests in 0.233s
+
+OK
+
+full Stage4 regression = 60 / 60 PASS
+
+===== F. SCIENTIFIC GPU PREFLIGHT =====
+============================================================
+STAGE4 BLOCK 4.4 PART 1/2 PREFLIGHT
+============================================================
+Block4.3 frozen upstream    = PASS
+deterministic checkpoint    = PASS
+fit/dev cache reuse         = PASS
+fit-only normalization      = PASS
+Gaussian family             = FULL 3D
+covariance parameterization = CHOLESKY
+predictive covariance SPD   = PASS
+initial deterministic mean  = EXACT MATCH
+initial predictive std      = 0.5 normalized
+measurement R_t             = INPUT
+predictive covariance       = MODEL OUTPUT
+uncertainty separation      = PASS
+CUDA Gaussian forward       = PASS
+CUDA Gaussian NLL           = PASS
+CUDA Gaussian backward      = PASS
+metric covariance transform = PASS
+raw coverage 50/80/90/95/99= PASS
+full Stage4 regression      = 60 / 60 PASS
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage4/reports/block44_preflight.json
+
+
+
+============================================================
+STAGE4 BLOCK 4.4 PART 1/2 SAFE GATE
+============================================================
+compile                   = PASS
+Gaussian imports          = PASS
+Block4.4 unit tests       = PASS
+full Stage4 regression    = 60 / 60 PASS
+GPU/math preflight        = PASS
+Block4.3 modified         = NO
+probabilistic training    = NOT STARTED
+STATUS = PASS
+shell process status      = SAFE / EXIT 0
+report = /home/agni/waymo/iscai_stage4/reports/block44_part1_safe_gate.json
+[return code = 0]
+
+========================================
+BLOCK 4.4 PART 1/2 FINAL STATUS
+========================================
+Python.h               = PASS
+Triton native driver   = PASS
+CUDA/Triton backward   = PASS
+Block4.3 modified      = NO
+cache regeneration     = NO
+Gaussian training      = NOT STARTED
+scientific STATUS      = PASS
+terminal remains open  = YES

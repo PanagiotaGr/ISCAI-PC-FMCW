@@ -1,0 +1,58 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block60_part2_part_a_adb_audit.py", line 1872, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block60_part2_part_a_adb_audit.py", line 843, in main
+    require(
+    ~~~~~~~^
+        ref_hits,
+        ^^^^^^^^^
+    ...<4 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block60_part2_part_a_adb_audit.py", line 216, in require
+    raise RuntimeError(message)
+RuntimeError: Frozen Part-A reference contains no discoverable ADB/illumination evidence.
+============================================================
+STAGE 6 — BLOCK 6.0 PART 2/2
+PART-A ADB SOURCE AUDIT + REACTIVE ADAPTER CONTRACT
+============================================================
+
+===== A. BLOCK6.0 PART1 CONTINUITY =====
+Part1 status      = PASS_CONTRACT_FROZEN
+Stage6 contract   = FROZEN
+strict PDF audit  = 100% PASS
+
+===== B. FROZEN PART-A IDENTITY =====
+Part-A git HEAD       = EXACT PASS
+Part-A reference SHA  = EXACT PASS
+
+===== C. PART-A ADB SOURCE DISCOVERY =====
+canonical notebook = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+notebook SHA256    = b5a80a6d3441de6d571db4f65b4a43ed4052cc2b3ccba935ad31b5dd51316ef3
+notebook cells     = 77
+
+===== D. PART-A ADB SEMANTIC EVIDENCE =====
+ADB/module                  = PASS | cells=19
+angle-range illumination    = PASS | cells=54
+shadow region               = PASS | cells=31
+radial thresholds           = PASS | cells=12
+raised-cosine               = PASS | cells=11
+MHT-driven reactive input   = PASS | cells=22
+joint ADB/transition cells = [6, 52, 53, 59, 68, 69, 70, 71, 73]
+
+===== E. FROZEN PART-A REFERENCE ADB EVIDENCE =====
+
+============================================================
+BLOCK 6.0 PART 2/2 = BLOCKED
+============================================================
+exception = RuntimeError Frozen Part-A reference contains no discoverable ADB/illumination evidence.
+
+Part-A modified          = NO
+Stage5 modified          = NO
+training/inference       = NO
+formal evaluation        = NO
+parameter tuning         = NO
+terminal remains open    = YES

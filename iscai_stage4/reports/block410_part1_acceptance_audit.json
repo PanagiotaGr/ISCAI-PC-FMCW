@@ -1,0 +1,235 @@
+{
+  "Stage5_started": false,
+  "acceptance_matrix": {
+    "closure_ready": true,
+    "mandatory_count": 14,
+    "mandatory_failures": [],
+    "mandatory_pass_count": 14,
+    "rows": [
+      {
+        "evidence": "Frozen Stage2 degraded observations + Stage3 GNN",
+        "id": "causal_real_PC_FMCW_observation_interface",
+        "mandatory": true,
+        "pass": true
+      },
+      {
+        "evidence": "Block4.2 / Block4.7",
+        "id": "measurement_covariance_R_t_is_input",
+        "mandatory": true,
+        "pass": true
+      },
+      {
+        "evidence": "Block4.3 + formal Block4.8",
+        "id": "deterministic_GRU_baseline",
+        "mandatory": true,
+        "pass": true
+      },
+      {
+        "evidence": "Full 3D Cholesky Gaussian / SPD",
+        "id": "Gaussian_probabilistic_predictor",
+        "mandatory": true,
+        "pass": true
+      },
+      {
+        "evidence": "Calibration partition fit; formal generalization measured",
+        "id": "trajectory_uncertainty_calibration",
+        "mandatory": true,
+        "pass": true
+      },
+      {
+        "evidence": "3-component trajectory-level GMM evaluated formally",
+        "id": "GMM_multimodal_extension",
+        "mandatory": true,
+        "pass": true
+      },
+      {
+        "evidence": "Calibrated Gaussian remains mandatory/default posterior",
+        "id": "GMM_not_selected_post_hoc",
+        "mandatory": true,
+        "pass": true
+      },
+      {
+        "evidence": "R_t analysis + physical sensitivity + retrained ablations",
+        "id": "measurement_to_predictive_uncertainty_analysis",
+        "mandatory": true,
+        "pass": true
+      },
+      {
+        "evidence": "actor-only and no-map retraining",
+        "id": "multi_agent_and_map_ablation",
+        "mandatory": true,
+        "pass": true
+      },
+      {
+        "evidence": "Immutable Stage3 N=120",
+        "id": "frozen_formal_N120_evaluation",
+        "mandatory": true,
+        "pass": true
+      },
+      {
+        "evidence": [
+          "CA",
+          "CTRV",
+          "CV",
+          "IMM_CV_CA_CTRV",
+          "Kalman_EKF"
+        ],
+        "id": "probabilistic_beats_classical",
+        "mandatory": true,
+        "pass": true
+      },
+      {
+        "evidence": {
+          "CV_ADE_m": 9.538706032921292,
+          "Gaussian_ADE_m": 1.9848952833749467
+        },
+        "id": "internal_Gaussian_beats_CV",
+        "mandatory": true,
+        "pass": true
+      },
+      {
+        "evidence": "4/4 independent fresh processes",
+        "id": "reproducibility_exact",
+        "mandatory": true,
+        "pass": true
+      },
+      {
+        "evidence": "Block4.8 + Block4.9 leakage contracts",
+        "id": "causal_leakage_free",
+        "mandatory": true,
+        "pass": true
+      },
+      {
+        "evidence": "Deferred to Stage5 by frozen scope",
+        "id": "receiver_angular_posterior",
+        "mandatory": false,
+        "pass": false
+      },
+      {
+        "evidence": "Deferred to Stage5 by frozen scope",
+        "id": "adaptive_TopK_beam_control",
+        "mandatory": false,
+        "pass": false
+      },
+      {
+        "evidence": "Deferred beyond Stage4",
+        "id": "optical_link_and_ADB",
+        "mandatory": false,
+        "pass": false
+      },
+      {
+        "evidence": "Later separate mmWave validation",
+        "id": "DeepSense_external_validation",
+        "mandatory": false,
+        "pass": false
+      }
+    ]
+  },
+  "block": "4.10_part_1",
+  "causal_leakage_contract": "PASS",
+  "critical_artifact_hashes": {
+    "GMM checkpoint": "5aebeaf40d522d58345d424ae2557d6f87e2c02bdc26c23635cc6e3a28cbe3ee",
+    "Gaussian checkpoint": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f",
+    "Stage4 reproducibility manifest": "135a3c60e5a2c4419125fa0daa6d2d55452f923255a04698f0bc1aaca5f474b8",
+    "covariance calibrator": "508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087",
+    "deterministic checkpoint": "5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5",
+    "fit-only normalization": "3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6",
+    "formal manifest": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "validation manifest": "dc10609ef18a2ba881657eb3da3a3df7a81bdcc8345ecbc2227102ab16b8833c"
+  },
+  "final_Stage4_freeze_written": false,
+  "formal_inference": false,
+  "formal_summary": {
+    "calibrated_Gaussian_ADE_m": 1.9848952833749467,
+    "calibrated_macro_ECE": 0.11165527003334381,
+    "classical_baselines_beaten": [
+      "CA",
+      "CTRV",
+      "CV",
+      "IMM_CV_CA_CTRV",
+      "Kalman_EKF"
+    ],
+    "eligible_targets": 547,
+    "formal_content_sha256": "fe5cf7e413b8142c0670d05727affd4fa573cf4607665e4a9bda951f1d9bd0d5",
+    "frozen_CV_ADE_m": 9.538706032921292,
+    "matched_target_recall": 0.903107861060329,
+    "matched_targets": 494,
+    "raw_macro_ECE": 0.18362046536363294,
+    "scenarios": 120
+  },
+  "frozen_blocks": {
+    "4.0": {
+      "implementation_sha256": "22f27101f5c6e57a1bc66a1299c05be911ea6af26a18a0fe36807cfa4e944a4f",
+      "report_file_sha256": "d9bd4f73e55caaf771bf40fe44e4a1155deaf3cf38fff304d2e4ffb34d0bbdb4",
+      "report_path": "/home/agni/waymo/iscai_stage4/reports/block40_bootstrap_gate.json"
+    },
+    "4.1": {
+      "implementation_sha256": "2021ef79a5f875239e132e404805f4c512e45926d0fdac9d2d6c7a5b51eab7eb",
+      "report_file_sha256": "428063912d90cc480d0ddaa61c82007a63e05fc0e918b0fe7da4c30ed103ff53",
+      "report_path": "/home/agni/waymo/iscai_stage4/reports/block41_training_split_gate.json"
+    },
+    "4.2": {
+      "implementation_sha256": "4f6ef90bd3455bf55f100561d66ef93549d8472112b85fce45930ec169f89fd0",
+      "report_file_sha256": "ddaed87a09e65033ce5fc762793988efe2c8bbb98f5b8320672f79b32c41dd38",
+      "report_path": "/home/agni/waymo/iscai_stage4/reports/block42_neural_sample_gate.json"
+    },
+    "4.3": {
+      "implementation_sha256": "7f42e0cf534ed3ffb8d69e7230f5e04eecde8639428911017af771c7b2993def",
+      "report_file_sha256": "93b00aa6c1aa857e7e019f9f00d7b936560e09b26e7f2f8f7d95acae08fd1c3d",
+      "report_path": "/home/agni/waymo/iscai_stage4/reports/block43_deterministic_gru.json"
+    },
+    "4.4": {
+      "implementation_sha256": "b9ea474443d3a54235f09cd4e2b616374b37456f2b9e080f5334f76f4dd7c432",
+      "report_file_sha256": "78ccc780a9d753e9619e215fee0e83a706f1607445741b032983e526efd97a54",
+      "report_path": "/home/agni/waymo/iscai_stage4/reports/block44_gaussian_gru.json"
+    },
+    "4.5": {
+      "implementation_sha256": "482fa179b958f05526657d9970346b3ca699c649b77783f63d4c8de2fd7be7cf",
+      "report_file_sha256": "b59a542d35a9733ef2ae70a51c39a66f44421957950d22786a29848e0e72b3c8",
+      "report_path": "/home/agni/waymo/iscai_stage4/reports/block45_calibration.json"
+    },
+    "4.6": {
+      "implementation_sha256": "bf7ba0ef8c83d0b6a8d5ef2acd62419035f4367b17d4d6844f7a99c288f1c961",
+      "report_file_sha256": "7b87a27ad3fd6e36d0e97486765d1db9b12c9fdeea996e5958e8f236bc535827",
+      "report_path": "/home/agni/waymo/iscai_stage4/reports/block46_gmm_gru.json"
+    },
+    "4.7": {
+      "implementation_sha256": "4b32edff0c08f23de4ec5109b46b64a8eccc5357da0deb4fc516b72fe3cad006",
+      "report_file_sha256": "143580ee5cdc6845722b2eb0798f977ed093cf99c187742d4feaa3611594148e",
+      "report_path": "/home/agni/waymo/iscai_stage4/reports/block47_ablation_analysis.json"
+    },
+    "4.8": {
+      "implementation_sha256": "f21abaed100d1337ad95e6005298727ab5e103d10d3a173b7d2e561d886dc88d",
+      "report_file_sha256": "402ab3d771e9a3c77de0c091c893e9a0d6ee5826ec52d07d27b919c68276b353",
+      "report_path": "/home/agni/waymo/iscai_stage4/reports/block48_formal_evaluation.json"
+    },
+    "4.9": {
+      "implementation_sha256": "e1c779c05155dd86794f405a8567c994f0acac617015f717944e5ff6868491cd",
+      "report_file_sha256": "58c579a279529456cff161008b743544fd110508e3d0b405fbd9068329689d94",
+      "report_path": "/home/agni/waymo/iscai_stage4/reports/block49_reproducibility.json"
+    }
+  },
+  "implementation": {
+    "file_count": 85,
+    "sha256": "f2b85dcf8d533a9525ecff8ed823bbf06783785045fcff6adf626a1c1593ce41"
+  },
+  "purpose": "final_scientific_acceptance_and_scope_audit",
+  "recalibration": false,
+  "regression": {
+    "tests_passed": 130,
+    "tests_total": 130
+  },
+  "reproducibility": "PASS",
+  "scope_boundary": {
+    "DeepSense_in_Stage4": false,
+    "Stage4_complete_through": "probabilistic trajectory posterior and calibration",
+    "Stage5_next": "receiver/angular posterior and beam-policy interface",
+    "adaptive_TopK_beam_in_Stage4": false,
+    "optical_ADB_in_Stage4": false,
+    "receiver_angular_posterior_in_Stage4": false
+  },
+  "stage": 4,
+  "status": "PASS",
+  "training": false,
+  "upstream_modified": false
+}

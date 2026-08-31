@@ -1,0 +1,1834 @@
+============================================================
+BLOCK 5.7 PART 1/2 — SAFE READ-ONLY TIMING AUDIT
+============================================================
+timing-audit compile = PASS
+
+===== PRE-AUDIT STAGE5 REGRESSION =====
+
+..............................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 206 tests in 0.087s
+
+OK
+
+pre-audit Stage5 regression = 206 / 206 PASS
+
+===== EXACT TIMING SOURCE AUDIT =====
+============================================================
+STAGE 5 — BLOCK 5.7 PART 1/2
+EXACT TIMING / LATENCY SOURCE AUDIT
+============================================================
+read-only                = YES
+formal N=120 used        = NO
+Stage4 inference         = NO
+training/recalibration   = NO
+Tbeam frozen here        = NO
+Tframe frozen here       = NO
+
+===== A. BLOCK5.6 CONTINUITY =====
+Block5.6                = COMPLETE / FROZEN
+implementation SHA      = PASS
+optical policy SHA      = PASS
+
+============================================================
+B. PART-A TIMING EVIDENCE
+============================================================
+hit count = 21
+
+[1] score = 160
+cell = 3
+matched = ['t_chirp', 'chirp duration', '10e-6', '0.1']
+numbers = ['58767', '58523', '299', '92', '58.0', '193.4e12', '10e9', '10e-6', '1e9', '1.0', '0', '0', '1', '1', '3', '3', '3', '1e-12', '1000.0', '3600.0', '3600.0', '1000.0', '180.0', '180.0', '100.0', '0.01', '3.8', '0.1251', '0.2348', '1.6787']
+source =
+import numpy as np
+import matplotlib.pyplot as plt
+
+RNG_SEED = 58767 + 58523
+rng = np.random.default_rng(RNG_SEED)
+
+c = 299_792_458.0  # speed of light [m/s]
+
+# -----------------------------
+# Paper reference parameters
+# -----------------------------
+fc = 193.4e12       # optical carrier frequency [Hz]
+B = 10e9            # chirp bandwidth [Hz]
+T_chirp = 10e-6     # chirp duration / period [s]
+data_rate = 1e9     # reference data rate [bit/s]
+
+S = B / T_chirp     # chirp slope [Hz/s]
+lambda_c = c / fc   # carrier wavelength [m]
+
+Rs = data_rate      # symbol rate [symbols/s]
+Ts = 1.0 / Rs       # symbol duration [s]
+
+# x[m, n]
+SLOW_TIME_AXIS = 0 # m = chirp index / slow-time  -> axis 0
+FAST_TIME_AXIS = 1 # n = fast-time sample index   -> axis 1
+
+print(f"Chirp slope S = {S:.3e} Hz/s")
+print(f"Carrier wavelength = {lambda_c:.3e} m")
+print(f"Symbol duration Ts = {Ts:.3e} s")
+
+# -----------------------------
+# Numerical safeguards and unit conversions
+# -----------------------------
+EPS = 1e-12
+
+KMH_TO_MPS = 1000.0 / 3600.0
+MPS_TO_KMH = 3600.0 / 1000.0
+
+DEG_TO_RAD = np.pi / 180.0
+RAD_TO_DEG = 180.0 / np.pi
+
+CM_PER_M = 100.0
+M_PER_CM = 0.01
+
+# -----------------------------
+# Paper-reported reference results
+# -----------------------------
+PAPER_REPORTED_RANGE_ERROR_CM = 3.8
+PAPER_REPORTED_MHT_LINEAR_ERRORS_UNITS = (0.1251, 0.2348)
+PAPER_REPORTED_MHT_MEAN_DEVIATION_UNITS = 1.6787
+
+[2] score = 110
+cell = 9
+matched = ['t_chirp', 'chirp duration']
+numbers = ['3', '1', '2', '1e9', '3', '2', '1e9', '3', '1e6', '3', '1e9', '3', '3', '1e9', '3', '3', '1e6', '3', '10']
+source =
+# ============================================================
+# Module 3 - Cell 1
+# ============================================================
+
+B_sim = B
+S_sim = B_sim / T_chirp
+
+print("Module 2 full-waveform sampling")
+print("--------------------------------")
+print(f"Paper bandwidth B             : {B/1e9:.3f} GHz")
+print(f"Module 2 bandwidth B_sim      : {B_sim/1e9:.3f} GHz")
+print(f"Chirp duration T_chirp        : {T_chirp*1e6:.3f} us")
+print(f"N_fast                        : {N_fast}")
+print(f"Effective fs_fast             : {fs_fast/1e9:.3f} GHz")
+print(f"fs_fast / B_sim               : {fs_fast/B_sim:.3f}")
+print(f"DPSK symbol duration Ts       : {Ts*1e9:.3f} ns")
+print(f"Effective samples / symbol    : {samples_per_symbol_effective:.3f}")
+print(f"Symbols per chirp             : {num_symbols_per_chirp}")
+print(f"Fast-time duration covered    : {N_fast/fs_fast*1e6:.3f} us")
+
+if fs_fast <= B_sim:
+    print("WARNING: fs_fast <= B_sim, so the 10 GHz chirp is not safely sampled.")
+else:
+    print("OK: fs_fast > B_sim, so the complex-baseband chirp is sampled consistently.")
+
+[3] score = 105
+cell = 62
+matched = ['t_chirp']
+numbers = ['0', '1000', '0.0', '2', '2.0', '1', '9', '5', '1e6', '1e9', '2', '0', '1e6', '1e9', '60', '0', '1e6', '1e9', '1e6', '0.55', '1e9', '0.78', '9', '0.5', '0.01', '9', '0', '0.06', '1', '1']
+source =
+# ============================================================
+# Presentation-only plots - PC-FMCW waveform intuition
+# Uses existing Module 0 variables only.
+# ============================================================
+
+from matplotlib.patches import Polygon, Rectangle, Arc
+
+pcfmw_plot_sample_count = 1000
+pcfmw_plot_time_s = np.linspace(0.0, T_chirp, pcfmw_plot_sample_count)
+pcfmw_frequency_offset_hz = S * pcfmw_plot_time_s
+pcfmw_phase_cycles = (np.pi * S * pcfmw_plot_time_s**2) / (2.0 * np.pi)
+
+# -----------------------------
+# Plot 1: Chirp frequency ramp
+# -----------------------------
+pcfmw_freq_fig, pcfmw_freq_ax = plt.subplots(figsize=(9, 5))
+
+pcfmw_freq_ax.plot(
+    pcfmw_plot_time_s * 1e6,
+    pcfmw_frequency_offset_hz / 1e9,
+    linewidth=2
+)
+
+pcfmw_freq_ax.set_title("Module 0: Linear FMCW chirp frequency ramp")
+pcfmw_freq_ax.set_xlabel("Fast-time within one chirp, t [μs]")
+pcfmw_freq_ax.set_ylabel("Baseband frequency offset, f_offset(t) [GHz]")
+
+pcfmw_freq_formula_text = (
+    "Formula:\n"
+    r"$S = B/T_{\mathrm{chirp}}$" "\n"
+    r"$f_{\mathrm{offset}}(t)=S t$" "\n\n"
+    "Units:\n"
+    r"$B$ [Hz], $T_{\mathrm{chirp}}$ [s]" "\n"
+    r"$S$ [Hz/s], $f$ [Hz]"
+)
+
+pcfmw_freq_parameter_text = (
+    "We do not plot fc + St.\n\n"
+    "Expected endpoint:\n"
+    "f_offset(T_chirp) = B"
+)
+
+add_info_box(pcfmw_freq_ax, pcfmw_freq_formula_text, loc="upper left")
+add_info_box(pcfmw_freq_ax, pcfmw_freq_parameter_text, loc="lower right")
+
+pcfmw_freq_ax.scatter([T_chirp * 1e6], [B / 1e9], s=60)
+pcfmw_freq_ax.annotate(
+    "End of chirp:\n10 GHz sweep completed",
+    xy=(T_chirp * 1e6, B / 1e9),
+    xytext=(T_chirp * 1e6 * 0.55, B / 1e9 * 0.78),
+    arrowprops=dict(arrowstyle="->"),
+    fontsize=9,
+)
+
+pcfmw_freq_fig.text(
+    0.5, 0.01,
+    "Caption: The chirp slope S is the rate at which the FMCW frequency changes.",
+    ha="center",
+    fontsize=9,
+)
+
+plt.tight_layout(rect=[0, 0.06, 1, 1])
+plt.show()
+
+# -----------------------------
+# Plot 2: Baseband phase growth
+# -----------------------------
+pcfmw_phase_fig, pcfmw_phase_ax = plt.subplots(figsize=(9, 5))
+
+pcfmw_phase_ax.plot(
+    pcfmw_plot_time_s * 1e6,
+    pcfmw_phase_cycles / 1e3,
+    linewidth=2
+)
+
+pcfmw_phase_ax.set_title("Module 0: Quadratic baseband phase growth")
+pcfmw_phase_ax.set_xlabel("Fast-time within one chirp, t [μs]")
+pcfmw_phase_ax.set_ylabel("Baseband phase [thousand cycles]")
+
+pcfmw_phase_formula_text = (
+    "Formula:\n"
+    r"$\phi_{\mathrm{bb}}(t)=\pi S t^2$" "\n"
+    r"$N_{\mathrm{cycles}}=\phi_{\mathrm{bb}}/(2\pi)$" "\n\n"
+    "Meaning:\n"
+    "linear frequency ramp\n"
+    "comes from quadratic phase."
+)
+
+pcfmw_phase_axis_text = (
+    "Axes:\n"
+    "x-axis: fast-time inside one chirp\n"
+    "y-axis: phase in cycles / 1000\n\n"
+    "Why cycles?\n"
+    "Radians become very large,\n"
+    "so cycles are easier to read."
+)
+
+add_info_box(pcfmw_phase_ax, pcfmw_phase_formula_text, loc="upper left")
+add_info_box(pcfmw_phase_ax, pcfmw_phase_axis_text, loc="lower right")
+
+pcfmw_phase_fig.text(
+    0.5, 0.01,
+    "Caption: The FMCW chirp has quadratic phase, whose derivative gives a linear instantaneous frequency. "
+    "This is why the previous plot is linear while this phase plot is curved.",
+    ha="center",
+    fontsize=9,
+)
+
+plt.tight_layout(rect=[0, 0.07, 1, 1])
+plt.show()
+
+[4] score = 105
+cell = 30
+matched = ['t_chirp']
+numbers = ['3', '15', '-10.0', '31.0', '2.0', '10.0', '10.0', '7', '2.0', '2', '3.0', '8.0', '2', '2', '7', '2.0', '2', '3.0', '8.0', '2', '2', '3', '2.0', '1', '0', '-0.5', '2', '1.0', '1.0', '0']
+source =
+# ============================================================
+# Module 3 - Cell 15
+# ============================================================
+
+m2_crlb_snr_db = np.arange(-10.0, 31.0, 2.0)
+m2_crlb_gamma = 10.0 ** (m2_crlb_snr_db / 10.0) # linear SNR, not dB
+
+m2_eq7_T = T_chirp
+m2_eq7_Tc = T_chirp
+m2_eq7_M = M_chirps
+
+# Eq. (7): range variance lower bound
+m2_crlb_range_var_m2 = (
+    (c * m2_eq7_T / (2.0 * B)) ** 2
+    * 3.0
+    / (
+        8.0
+        * np.pi**2
+        * m2_crlb_gamma
+        * m2_eq7_M
+        * m2_eq7_Tc**2
+    )
+)
+
+# Eq. (7): velocity variance lower bound
+m2_crlb_velocity_var_m2ps2 = (
+    (lambda_c / 2.0) ** 2
+    * 3.0
+    / (
+        8.0
+        * np.pi**2
+        * m2_crlb_gamma
+        * m2_eq7_Tc**2
+        * m2_eq7_M**3
+    )
+)
+
+# Standard deviations from the variance bounds
+m2_crlb_range_std_m = np.sqrt(m2_crlb_range_var_m2)
+m2_crlb_range_std_cm = CM_PER_M * m2_crlb_range_std_m
+
+m2_crlb_velocity_std_mps = np.sqrt(m2_crlb_velocity_var_m2ps2)
+
+# ------------------------------------------------------------
+# Multi-target range-only FIM coupling proxy
+# ------------------------------------------------------------
+m2_crlb_range_resolution_m = c / (2.0 * B)
+
+
+def m2_target_range_separation_m(targets):
+    return abs(targets[1]["R_m"] - targets[0]["R_m"])
+
+
+def m2_range_coupling_from_targets(targets):
+    delta_r_m = m2_target_range_separation_m(targets)
+    coupling = np.exp(-0.5 * (delta_r_m / m2_crlb_range_resolution_m) ** 2)
+    return delta_r_m, coupling
+
+
+def m2_coupled_range_std_cm(coupling):
+    coupling_matrix = np.array([[1.0, coupling], [coupling, 1.0]])
+
+    coupling_inverse = np.linalg.inv(coupling_matrix)
+
+    target1_std_cm = CM_PER_M * np.sqrt(m2_crlb_range_var_m2 * coupling_inverse[0, 0])
+    target2_std_cm = CM_PER_M * np.sqrt(m2_crlb_range_var_m2 * coupling_inverse[1, 1])
+
+    std_factor = np.sqrt(np.diag(coupling_inverse))
+
+    return target1_std_cm, target2_std_cm, std_factor
+
+m2_crlb_well_delta_r_m, m2_crlb_well_coupling = m2_range_coupling_from_targets(targets_well_separated)
+m2_crlb_close_delta_r_m, m2_crlb_close_coupling = m2_range_coupling_from_targets(targets_closely_spaced)
+
+m2_crlb_well_target1_std_cm, m2_crlb_well_target2_std_cm, m2_crlb_well_std_factor = m2_coupled_range_std_cm(m2_crlb_well_coupling)
+m2_crlb_close_target1_std_cm, m2_crlb_close_target2_std_cm, m2_crlb_close_std_factor = m2_coupled_range_std_cm(m2_crlb_close_coupling)
+
+[5] score = 105
+cell = 23
+matched = ['t_chirp']
+numbers = ['3', '8', '10.0', '0', '2', '2.0', '2.0']
+source =
+# ============================================================
+# Module 3 - Cell 8
+# ============================================================
+
+def power_to_db(power):
+    """Convert linear power to dB scale."""
+    return 10.0 * np.log10(power + EPS)
+
+def compute_rdm(if_matrix):
+    """Compute a windowed and zero-padded Range-Doppler Map."""
+
+    # Hann windows reduce FFT sidelobes and make the target responses cleaner
+    win_slow = np.hanning(M_chirps)[:, None]
+    win_fast = np.hanning(N_fast)[None, :]
+
+    if_windowed = if_matrix * win_slow * win_fast
+
+    # Range FFT along fast-time samples
+    range_fft = np.fft.fft(
+        if_windowed,
+        n=N_fft_range,
+        axis=FAST_TIME_AXIS
+    )
+
+    # Shift range-frequency axis so negative/positive beat frequencies are centered
+    range_fft = np.fft.fftshift(range_fft, axes=FAST_TIME_AXIS)
+
+    # Doppler FFT along slow-time chirps
+    rdm_complex = np.fft.fft(
+        range_fft,
+        n=N_fft_doppler,
+        axis=SLOW_TIME_AXIS
+    )
+
+    # Shift Doppler axis so zero Doppler is centered
+    rdm_complex = np.fft.fftshift(rdm_complex, axes=SLOW_TIME_AXIS)
+
+    # Power spectrum
+    power = np.abs(rdm_complex) ** 2
+
+    # dB scale for visualization
+    power_db = power_to_db(power)
+
+    return rdm_complex, power, power_db
+
+def make_rdm_axes():
+    """Build beat-frequency, range, Doppler, and velocity axes corresponding to compute_rdm()"""
+    # Signed beat-frequency bins after fftshift on fast-time axis
+    beat_freq_axis_hz = np.fft.fftshift(
+        np.fft.fftfreq(N_fft_range, d=dt_fast)
+    )
+
+    # Doppler-frequency bins after fftshift on slow-time axis
+    doppler_axis_hz = np.fft.fftshift(
+        np.fft.fftfreq(N_fft_doppler, d=T_chirp)
+    )
+
+    # Velocity axis u
+    velocity_axis_mps = lambda_c * doppler_axis_hz / 2.0
+
+    # Signed range axis
+    range_axis_full_m = -c * beat_freq_axis_hz / (2.0 * S_sim)
+
+    return range_axis_full_m, beat_freq_axis_hz, doppler_axis_hz, velocity_axis_mps
+
+[6] score = 105
+cell = 13
+matched = ['t_chirp']
+numbers = ['1', '1', '-1', '1', '2', '0.5', '1', '1e9', '3', '1e9', '3']
+source =
+# ============================================================
+# Communication / DPSK receiver branch - Cell 1
+# ============================================================
+
+comm_num_symbols = int(np.floor(T_chirp / Ts))
+comm_symbol_edges = np.searchsorted(t_fast, np.arange(comm_num_symbols + 1) * Ts, side="left")
+
+comm_symbol_start_idx = comm_symbol_edges[:-1]
+comm_symbol_stop_idx = comm_symbol_edges[1:]
+
+# Keep only valid symbol intervals
+valid = comm_symbol_stop_idx > comm_symbol_start_idx
+comm_symbol_start_idx = comm_symbol_start_idx[valid]
+comm_symbol_stop_idx = comm_symbol_stop_idx[valid]
+
+comm_symbol_lengths = comm_symbol_stop_idx - comm_symbol_start_idx
+comm_num_symbols = len(comm_symbol_start_idx)
+
+comm_symbol_center_idx = (comm_symbol_start_idx + comm_symbol_stop_idx) // 2
+comm_symbol_center_sample = 0.5 * (comm_symbol_start_idx + comm_symbol_stop_idx - 1)
+
+print("Communication / DPSK timing")
+print("---------------------------")
+print(f"Data rate              : {data_rate/1e9:.3f} Gbps")
+print(f"Symbol duration Ts     : {Ts*1e9:.3f} ns")
+print(f"Symbols per chirp      : {comm_num_symbols}")
+print(f"Samples per symbol     : min={comm_symbol_lengths.min()}, max={comm_symbol_lengths.max()}")
+
+[7] score = 105
+cell = 4
+matched = ['t_chirp']
+numbers = ['3', '131', '72', '64', '1.0', '1.0', '4', '4', '2', '256', '10.0', '40.0', '-0.045', '0.045', '18.0', '-10', '1.00', '0.20', '34.0', '8', '0.90', '1.10', '18.00', '-2', '1.00', '0.30', '18.02', '2', '0.95', '1.40']
+source =
+# -----------------------------
+# Module 3/RDM deterministic simulation parameters and axes
+# -----------------------------
+N_fast = 131_072
+M_chirps = 64
+
+# Sampling parameters
+PRF = 1.0 / T_chirp
+fs_fast = N_fast / T_chirp
+dt_fast = 1.0 / fs_fast
+
+# Fast-time and slow-time axes.
+t_fast = np.arange(N_fast, dtype=np.float64) * dt_fast
+t_slow = np.arange(M_chirps, dtype=np.float64) * T_chirp
+
+num_symbols_per_chirp = int(np.ceil(T_chirp / Ts))
+samples_per_symbol_effective = fs_fast * Ts
+
+doppler_bin_hz = PRF / M_chirps
+
+N_fft_range = 2 ** int(np.ceil(np.log2(N_fast)))
+N_fft_doppler = 256
+
+# Plot limits for range-Doppler results
+fig2_range_limits_m = (10.0, 40.0)
+fig2_velocity_limits_mps = (-0.045, 0.045)
+
+targets_well_separated = [
+    {"R_m": 18.0, "fD_Hz": -10 * doppler_bin_hz, "alpha": 1.00, "phi0_rad": 0.20},
+    {"R_m": 34.0, "fD_Hz":   8 * doppler_bin_hz, "alpha": 0.90, "phi0_rad": 1.10},
+]
+
+targets_closely_spaced = [
+    {"R_m": 18.00, "fD_Hz": -2 * doppler_bin_hz, "alpha": 1.00, "phi0_rad": 0.30},
+    {"R_m": 18.02, "fD_Hz":  2 * doppler_bin_hz, "alpha": 0.95, "phi0_rad": 1.40},
+]
+
+# Communication receiver test settings.
+comm_rx_snr_db = 20.0
+comm_chirp_index = 0
+comm_fft_zeropad_factor = 8
+comm_noise_seed = 2025
+
+# -----------------------------
+# CA-CFAR deterministic parameters
+# -----------------------------
+cfar_range_limits_m = (10.0, 40.0)
+cfar_velocity_limits_mps = (-0.045, 0.045)
+
+cfar_guard_velocity_cells = 2
+cfar_guard_range_cells = 2
+cfar_train_velocity_cells = 8
+cfar_train_range_cells = 10
+cfar_alpha = 12.0
+
+cfar_target_range_tolerance_m = 0.05
+cfar_target_velocity_tolerance_mps = 0.004
+
+cfar_pfa = 1e-8
+
+cfar_cc_connectivity = 2
+cfar_cc_min_size = 8
+
+[8] score = 10
+cell = 69
+matched = ['0.1', 'delta_t']
+numbers = ['3', '1', '2', '2', '0', '1', '0', '0', '2', '2', '2.0', '5', '0', '0', '1', '5', '0.13', '0.0', '0.0', '0.0', '0.0', '1.2', '0.9', '0.0', '0.0', '1.2', '0.9', '2', '5', '0.0']
+source =
+# ============================================================
+# Module 3 - TODO Cell 1J
+# Dynamic shadow interval from Module 2 reconstructed tracks
+# ============================================================
+
+# ------------------------------------------------------------
+# Helper: convert one reconstructed track to ordered arrays
+# ------------------------------------------------------------
+def adb_track_arrays(track):
+    """
+    Convert one reconstructed Module 2 track into ordered frame, x, y arrays.
+    """
+    points_by_frame = m2_track_points_by_frame(track)
+    frames = np.array(sorted(points_by_frame.keys()))
+    xy = np.array([points_by_frame[frame] for frame in frames])
+
+    return frames, xy[:, 0], xy[:, 1]
+
+
+def adb_shadow_geometry_from_xy(x_track, y_track, include_radial_zone=False):
+    """
+    Convert reconstructed x(t), y(t) into dynamic ADB shadow geometry.
+
+    Coordinate convention:
+        ego vehicle at (0, 0)
+        +y = forward
+        +x = right
+        theta = atan2(x, y), in degrees
+
+    Dynamic quantities:
+        r(t)
+        theta_c(t)
+        theta_center(t) = theta_c(t) - Delta theta
+        epsilon(t)
+        theta_min(t)
+        theta_max(t)
+    """
+    target_range = np.sqrt(x_track**2 + y_track**2)
+    theta_c = np.rad2deg(np.arctan2(x_track, y_track))
+    shadow_center = theta_c - delta_theta_deg
+    effective_half_width = target_width_m / 2.0 + lateral_safety_margin_m
+    epsilon = np.rad2deg(np.arctan(effective_half_width / np.maximum(target_range, EPS)))
+
+    geometry = {
+        "range": target_range,
+        "range_target": target_range,
+        "theta_c": theta_c,
+        "shadow_center": shadow_center,
+        "epsilon": epsilon,
+        "theta_min": shadow_center - epsilon,
+        "theta_max": shadow_center + epsilon,
+    }
+
+    if include_radial_zone:
+        geometry["r_min"] = target_range + adb_trz_front_margin_units
+        geometry["r_max"] = geometry["r_min"] + adb_trz_transition_length_units
+
+    return geometry
+
+
+def adb_select_snapshot_indices(frames, n_samples=5):
+    """
+    Select representative indices from the frames that actually exist
+    in the reconstructed track.
+    """
+    if len(frames) == 0:
+        return np.array([])
+
+    sample_positions = np.linspace(0, len(frames) - 1, min(n_samples, len(frames)))
+    return np.array(sorted(set(int(round(position)) for position in sample_positions)))
+
+
+def adb_rec_track_arrays(track):
+    return adb_track_arrays(track)
+
+
+def adb_rec_shadow_geometry_from_xy(x_track, y_track):
+    return adb_shadow_geometry_from_xy(x_track, y_track)
+
+
+def adb_rec_select_frame_indices(frames, n_samples=5):
+    return adb_select_snapshot_indices(frames, n_samples)
+
+
+# ------------------------------------------------------------
+# Helper: draw one dynamic shadow cone
+# ------------------------------------------------------------
+def adb_rec_add_shadow_cone(
+    ax,
+    theta_min_deg,
+    theta_max_deg,
+    cone_length,
+    alpha_value=0.13
+):
+    """
+    Draw one reconstructed-track-driven angular shadow cone.
+    """
+    cone_min_x, cone_min_y = ray_xy_from_yaxis(theta_min_deg, cone_length)
+    cone_max_x, cone_max_y = ray_xy_from_yaxis(theta_max_deg, cone_length)
+
+    ax.add_patch(
+        Polygon(
+            [(0.0, 0.0), (cone_min_x, cone_min_y), (cone_max_x, cone_max_y)],
+            closed=True,
+            color=COLOR_THETA_BOUNDS,
+            alpha=alpha_value
+        )
+    )
+
+    ax.plot(
+        [0.0, cone_min_x],
+        [0.0, cone_min_y],
+        linestyle=":",
+        linewidth=1.2,
+        color=COLOR_THETA_BOUNDS,
+        alpha=0.9
+    )
+
+    ax.plot(
+        [0.0, cone_max_x],
+        [0.0, cone_max_y],
+        linestyle=":",
+        linewidth=1.2,
+        color=COLOR_THETA_BOUNDS,
+        alpha=0.9
+    )
+
+
+# ------------------------------------------------------------
+# Helper: plot one reconstructed track with dynamic shadow intervals
+# ------------------------------------------------------------
+def adb_rec_add_track_panel(ax, track, track_index, track_color):
+    """
+    Draw one reconstructed Module 2 track and its dynamic shadow intervals.
+    """
+    frames, x_track, y_track = adb_rec_track_arrays(track)
+    rec_geom = adb_rec_shadow_geometry_from_xy(x_track, y_track)
+    selected_indices = adb_rec_select_frame_indices(frames, n_samples=5)
+
+    # Forward axis and ego vehicle
+    ax.plot(
+        [0.0, 0.0],
+        [0.0, m2_y_range[1]],
+        linestyle="--",
+        linewidth=1.0,
+        color=COLOR_FORWARD,
+        alpha=0.75
+    )
+
+    add_ego_vehicle(ax)
+
+    # Reconstructed trajectory
+    ax.plot(
+        x_track,
+        y_track,
+        linewidth=2.6,
+        linestyle="--",
+        color=track_color
+    )
+
+    # Dynamic shadow cones at selected reconstructed frames
+    for array_idx in selected_indices:
+        frame_value = frames[array_idx]
+
+        rec_x = x_track[array_idx]
+        rec_y = y_track[array_idx]
+        rec_range = rec_geom["range"][array_idx]
+
+        # Shadow inter
+
+[9] score = 10
+cell = 68
+matched = ['0.1', 'delta_t']
+numbers = ['3', '1', '3', '-28.0', '0.3', '45.0', '1.9', '1.0', '2', '45.0', '65.0', '4.5', '1.9', '0.55', '0', '0', '0', '3.0', '90.0', '90.0', '0.0', '0.0', '2.0', '2.0', '0.0', '0.5', '3.0', '11', '0.04', '0.96']
+source =
+# ============================================================
+# Module 3 - TODO Cell 1I
+# Final staged top-down construction with:
+# - consistent colors across all panels
+# - clearer Δθ visibility
+# - label boxes instead of many arrows
+# Uses existing Module 3 variables only.
+# ============================================================
+
+demo_theta_c_deg = -28.0
+demo_delta_theta_deg = 0.3
+
+demo_target_range_m = 45.0
+demo_target_width_m = 1.9
+demo_lateral_safety_margin_m = 1.0
+demo_epsilon_deg = np.rad2deg(np.arctan((demo_target_width_m / 2 + demo_lateral_safety_margin_m) / demo_target_range_m))
+
+# Shadow-zone angular boundaries [degrees]
+demo_shadow_center_deg = demo_theta_c_deg - demo_delta_theta_deg
+
+demo_theta_shadow_min_deg = demo_shadow_center_deg - demo_epsilon_deg
+demo_theta_shadow_max_deg = demo_shadow_center_deg + demo_epsilon_deg
+
+# ------------------------------------------------------------
+# Plotting-only geometry
+# ------------------------------------------------------------
+demo_target_range_for_arcs_m = 45.0
+demo_plot_range_for_arcs_m = 65.0
+demo_car_length_for_arcs_m = 4.5
+demo_car_width_for_arcs_m = 1.9
+
+# ------------------------------------------------------------
+# Consistent color convention
+# ------------------------------------------------------------
+COLOR_THETA_C = "crimson"      # θc / target ray
+COLOR_DELTA = "darkorange"         # Δθ
+COLOR_CENTER = "forestgreen"   # θc - Δθ
+COLOR_EPS = "crimson"       # ε
+COLOR_THETA_BOUNDS = "dodgerblue"   # θmin, θmax, Θ
+COLOR_FORWARD = "0.55"         # forward axis
+
+def ray_xy_from_yaxis(angle_deg, length_m):
+    """
+    Convert an angle measured from the forward y-axis to x-y coordinates.
+    θ = 0°  -> straight ahead.
+    θ < 0° -> left.
+    θ > 0° -> right.
+    """
+    angle_rad = np.deg2rad(angle_deg)
+    return length_m * np.sin(angle_rad), length_m * np.cos(angle_rad)
+
+def add_angle_arc(ax, angle_start_deg, angle_end_deg, radius_m, label, color, lw=3.0):
+    """
+    Draw an angle arc.
+    Our ADB angle θ is measured from the forward y-axis.
+    Matplotlib Arc angles are measured from the positive x-axis.
+    """
+    theta_low = min(angle_start_deg, angle_end_deg)
+    theta_high = max(angle_start_deg, angle_end_deg)
+
+    mpl_theta1 = 90.0 - theta_high
+    mpl_theta2 = 90.0 - theta_low
+
+    arc = Arc(
+        (0.0, 0.0),
+        width=2.0 * radius_m,
+        height=2.0 * radius_m,
+        angle=0.0,
+        theta1=mpl_theta1,
+        theta2=mpl_theta2,
+        linewidth=lw,
+        color=color
+    )
+    ax.add_patch(arc)
+
+    mid_angle_deg = 0.5 * (angle_start_deg + angle_end_deg)
+    label_x, label_y = ray_xy_from_yaxis(mid_angle_deg, radius_m + 3.0)
+
+    ax.text(
+        label_x,
+        label_y,
+        label,
+        color=color,
+        fontsize=11,
+        fontweight="bold",
+        ha="center",
+        va="center"
+    )
+
+def add_label_box(ax, text):
+    """
+    Add a clean explanation box inside the panel.
+    """
+    ax.text(
+        0.04,
+        0.96,
+        text,
+        transform=ax.transAxes,
+        ha="left",
+        va="top",
+        fontsize=9,
+        bbox=dict(
+            boxstyle="round,pad=0.35",
+            facecolor="white",
+            edgecolor="0.75",
+            alpha=0.95
+        )
+    )
+
+def add_line_label(ax, x, y, text, color="black", ha="left"):
+    """
+    Direct label near a line, without arrow.
+    """
+    ax.text(
+        x,
+        y,
+        text,
+        fontsize=9,
+        color=color,
+        ha=ha,
+        va="center",
+        bbox=dict(
+            boxstyle="round,pad=0.15",
+            facecolor="white",
+            edgecolor="none",
+            alpha=0.88
+        )
+    )
+
+def add_ego_vehicle(ax):
+    ax.add_patch(
+        Rectangle(
+            (-demo_car_width_for_arcs_m / 2, -demo_car_length_for_arcs_m / 2),
+            demo_car_width_for_arcs_m,
+            demo_car_length_for_arcs_m,
+            fill=False,
+            linewidth=1.4
+        )
+    )
+    ax.text(0, -4.0, "ego", ha="center", va="top", fontsize=8)
+
+def add_target_vehicle(ax, target_x, target_y, alpha=1.0):
+    ax.add_patch(
+        Rectangle(
+            (
+                target_x - demo_car_width_for_arcs_m / 2,
+                target_y - demo_car_length_for_arcs_m / 2
+            ),
+            demo_car_width_for_arcs_m,
+            demo_car_length_for_arcs_m,
+            fill=False,
+            linewidth=1.3,
+            alpha=alpha
+        )
+    )
+    ax.text(
+        target_x,
+        target_y + 4.5,
+        "target",
+        ha="center",
+        va="bottom",
+        fontsize=8,
+        alpha=alpha
+    )
+
+def base_panel_format(ax):
+    # Forward reference axis
+    ax.plot(
+        [0, 0],
+        [0, demo_plot_range_for_arcs_m],
+        linestyle="--",
+        linewidth=1.0,
+        color=COLOR_FORWARD,
+        alpha=0.75
+    )
+
+    add_ego_vehicle(ax)
+
+    ax.set_aspect("equal", adjustable="box")
+    ax.grid(False)
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+    for spine in ax.spines.values():
+        spine.set_line
+
+[10] score = 10
+cell = 67
+matched = ['0.1', 'delta_t']
+numbers = ['3', '1', '3', '10.5', '5.8', '0.20', '0.90', '0.9', '0.35', '1', '4.2', '1.0', '5', '5', '1', '5', '0.08', '0.08', '0.8', '0.28', '1', '2', '3.05', '0.8', '0.35', '0.28', '0.28', '1.8', '0.36', '0.35']
+source =
+# ============================================================
+# Module 3 - TODO Cell 1B
+# Clear construction plot for angular grid and shadow interval
+# Uses existing Module 3 variables only.
+# ============================================================
+
+adb_shadow_interval_center_deg = theta_c_deg - delta_theta_deg
+
+fig, ax = plt.subplots(figsize=(10.5, 5.8))
+
+# Small white background behind text labels
+label_box = dict(
+    boxstyle="round,pad=0.20",
+    facecolor="white",
+    edgecolor="none",
+    alpha=0.90
+)
+
+# Useful horizontal offsets for labels when theta_min/theta_max are close
+label_offset_deg = max(0.9, 0.35 * abs(theta_shadow_max_deg - theta_shadow_min_deg))
+
+# ------------------------------------------------------------
+# 1) Angular grid baseline
+# ------------------------------------------------------------
+y_grid = 4.2
+
+ax.hlines(
+    y=y_grid,
+    xmin=theta_grid_deg.min(),
+    xmax=theta_grid_deg.max(),
+    linewidth=1.0
+)
+
+for tick in np.arange(
+    np.ceil(theta_grid_deg.min() / 5) * 5,
+    theta_grid_deg.max() + 1,
+    5
+):
+    ax.vlines(tick, y_grid - 0.08, y_grid + 0.08, linewidth=0.8)
+
+ax.text(
+    theta_grid_deg.min(),
+    y_grid + 0.28,
+    "1) Angular grid: possible horizontal angles θ",
+    ha="left",
+    va="bottom",
+    bbox=label_box
+)
+
+# ------------------------------------------------------------
+# 2) Target center and offset correction
+# ------------------------------------------------------------
+y_center = 3.05
+
+ax.hlines(
+    y=y_center,
+    xmin=theta_grid_deg.min(),
+    xmax=theta_grid_deg.max(),
+    linewidth=0.8,
+    alpha=0.35
+)
+
+ax.vlines(theta_c_deg, y_center - 0.28, y_center + 0.28, linewidth=1.8)
+ax.text(
+    theta_c_deg,
+    y_center + 0.36,
+    r"$\theta_c$",
+    ha="center",
+    va="bottom",
+    bbox=label_box
+)
+
+ax.vlines(
+    adb_shadow_interval_center_deg,
+    y_center - 0.35,
+    y_center + 0.35,
+    linestyle="--",
+    linewidth=1.4
+)
+
+ax.text(
+    adb_shadow_interval_center_deg,
+    y_center - 0.43,
+    r"$\theta_c-\Delta\theta$",
+    ha="center",
+    va="top",
+    bbox=label_box
+)
+
+if abs(delta_theta_deg) > EPS:
+    ax.annotate(
+        r"$\Delta\theta$",
+        xy=(adb_shadow_interval_center_deg, y_center + 0.03),
+        xytext=(theta_c_deg, y_center + 0.03),
+        arrowprops=dict(arrowstyle="<->", linewidth=1.0),
+        ha="center",
+        va="bottom",
+        bbox=label_box
+    )
+else:
+    ax.text(
+        theta_c_deg + 2.0,
+        y_center + 0.06,
+        r"$\Delta\theta=0^\circ$, so the two centers coincide",
+        ha="left",
+        va="bottom",
+        bbox=label_box
+    )
+
+ax.text(
+    theta_grid_deg.min(),
+    y_center + 0.50,
+    r"2) Target direction and offset correction",
+    ha="left",
+    va="bottom",
+    bbox=label_box
+)
+
+# ------------------------------------------------------------
+# 3) Final shadow interval Θ
+# ------------------------------------------------------------
+y_interval = 1.95
+
+ax.hlines(
+    y=y_interval,
+    xmin=theta_grid_deg.min(),
+    xmax=theta_grid_deg.max(),
+    linewidth=0.8,
+    alpha=0.35
+)
+
+# Highlighted shadow interval
+ax.hlines(
+    y=y_interval,
+    xmin=theta_shadow_min_deg,
+    xmax=theta_shadow_max_deg,
+    linewidth=8.0,
+    alpha=0.25
+)
+
+# Boundaries and center
+ax.vlines(theta_shadow_min_deg, y_interval - 0.32, y_interval + 0.32, linestyle=":", linewidth=1.5)
+ax.vlines(theta_shadow_max_deg, y_interval - 0.32, y_interval + 0.32, linestyle=":", linewidth=1.5)
+ax.vlines(adb_shadow_interval_center_deg, y_interval - 0.36, y_interval + 0.36, linewidth=1.5)
+
+# Staggered labels for min / center / max
+ax.text(
+    theta_shadow_min_deg - label_offset_deg,
+    y_interval + 0.28,
+    r"$\theta_{\min}$",
+    ha="right",
+    va="bottom",
+    bbox=label_box
+)
+
+ax.text(
+    adb_shadow_interval_center_deg,
+    y_interval + 0.48,
+    r"$\theta_c-\Delta\theta$",
+    ha="center",
+    va="bottom",
+    bbox=label_box
+)
+
+ax.text(
+    theta_shadow_max_deg + label_offset_deg,
+    y_interval + 0.28,
+    r"$\theta_{\max}$",
+    ha="left",
+    va="bottom",
+    bbox=label_box
+)
+
+# Epsilon callouts placed above the interval, not inside the tiny interval
+ax.annotate(
+    r"$\epsilon$",
+    xy=((theta_shadow_min_deg + adb_shadow_interval_center_deg) / 2, y_interval + 0.06),
+    xytext=(theta_shadow_min_deg - 2.3, y_interval + 0.68),
+    arrowprops=dict(arrowstyle="->", linewidth=0.9),
+    ha="center",
+    va="bottom",
+    bbox=label_box
+)
+
+ax.annotate(
+    r"$\epsilon$",
+    xy=((adb_shadow_interval_center_deg + theta_shadow_max_deg) / 2, y_interval + 0.06),
+    xytext=(theta_shadow_max_deg + 2.3, y_interval + 0.68),
+    arrowprops=dict(arrowstyle="->", linewidth=0.9),
+    ha="center",
+    va="bottom",
+    bbox=label_box
+)
+
+# Formula placed away from the narrow interval
+ax.text(
+    theta_grid_deg.min(),
+    y_interval - 0.60,
+    r"$\Theta=[\theta_c-\Delta\theta-\epsilon,\ \theta_c-\Delta\theta+\epsilon]$",
+    ha="left",
+    va="top",
+    bbox=label_box
+)
+
+ax.text(
+    theta_grid_deg.min(),
+    y_interval + 0.80,
+    r"3
+
+[11] score = 5
+cell = 74
+matched = ['0.1']
+numbers = ['3', '1', '3', '2.0', '1.2', '8', '0.18', '0.92', '7.0', '0.25', '0.45', '0.45', '1.5', '0.45', '0.45', '1.5', '1.2', '8', '0.18', '0.92', '2.0', '2.0', '14.0', '6.0', '3.0', '6.0', '9.0', '2.0', '9.0', '0.8']
+source =
+# ============================================================
+# Module 3 - TODO Cell 1O shared helpers
+# Consolidated helpers for the clean final Fig. 3 / ADB-style plots
+# ============================================================
+
+# ------------------------------------------------------------
+# Helper: extract dynamic shadow-angle series from one GT track
+# ------------------------------------------------------------
+def adb_fig3_clean_track_series_from_gt(x_track, y_track):
+    """
+    Return frame-wise dynamic shadow-angle quantities for one GT track.
+    """
+    adb_fig3_clean_frames = np.arange(len(x_track))
+
+    adb_fig3_clean_geom = adb_trz_shadow_geometry_from_xy(
+        x_track,
+        y_track
+    )
+
+    return {
+        "frames": adb_fig3_clean_frames,
+        "theta_c": adb_fig3_clean_geom["theta_c"],
+        "shadow_center": adb_fig3_clean_geom["shadow_center"],
+        "theta_min": adb_fig3_clean_geom["theta_min"],
+        "theta_max": adb_fig3_clean_geom["theta_max"],
+        "epsilon": adb_fig3_clean_geom["epsilon"],
+    }
+
+
+# ------------------------------------------------------------
+# Helper: extract dynamic shadow-angle series from one track
+# ------------------------------------------------------------
+def adb_fig3_clean_track_series(track):
+    """
+    Return frame-wise dynamic shadow-angle quantities for one reconstructed track.
+    """
+    adb_fig3_clean_frames, adb_fig3_clean_x, adb_fig3_clean_y = adb_trz_track_arrays(track)
+
+    adb_fig3_clean_geom = adb_trz_shadow_geometry_from_xy(
+        adb_fig3_clean_x,
+        adb_fig3_clean_y
+    )
+
+    return {
+        "frames": adb_fig3_clean_frames,
+        "theta_c": adb_fig3_clean_geom["theta_c"],
+        "shadow_center": adb_fig3_clean_geom["shadow_center"],
+        "theta_min": adb_fig3_clean_geom["theta_min"],
+        "theta_max": adb_fig3_clean_geom["theta_max"],
+        "epsilon": adb_fig3_clean_geom["epsilon"],
+    }
+
+
+def adb_fig3_clean_add_line_key(ax, x0, x1, y, color, linestyle, text, text_color=None):
+    """
+    Add a line sample and label in empty white space.
+    This replaces legends/arrows and keeps annotations away from the curves.
+    """
+    if text_color is None:
+        text_color = color
+
+    ax.plot(
+        [x0, x1],
+        [y, y],
+        color=color,
+        linestyle=linestyle,
+        linewidth=2.0,
+        clip_on=False
+    )
+
+    ax.text(
+        x1 + 1.2,
+        y,
+        text,
+        ha="left",
+        va="center",
+        fontsize=8,
+        color=text_color,
+        bbox=dict(
+            boxstyle="round,pad=0.18",
+            facecolor="white",
+            edgecolor="none",
+            alpha=0.92
+        )
+    )
+
+
+def adb_fig3_clean_add_window_key(ax, x0, x1, y, color, text):
+    """
+    Add a compact sample for a shadow window Θ(t) in the white area.
+    """
+    ax.hlines(
+        y,
+        x0,
+        x1,
+        color=color,
+        linewidth=7.0,
+        alpha=0.25,
+        clip_on=False
+    )
+
+    ax.plot(
+        [x0, x0],
+        [y - 0.45, y + 0.45],
+        color=color,
+        linewidth=1.5,
+        clip_on=False
+    )
+
+    ax.plot(
+        [x1, x1],
+        [y - 0.45, y + 0.45],
+        color=color,
+        linewidth=1.5,
+        clip_on=False
+    )
+
+    ax.text(
+        x1 + 1.2,
+        y,
+        text,
+        ha="left",
+        va="center",
+        fontsize=8,
+        color=color,
+        bbox=dict(
+            boxstyle="round,pad=0.18",
+            facecolor="white",
+            edgecolor="none",
+            alpha=0.92
+        )
+    )
+
+
+
+def adb_fig3_clean_layout(track1, track2):
+    """
+    Compute shared axis limits and explanation-strip coordinates.
+    """
+    all_theta = np.concatenate([
+        track1["theta_min"],
+        track1["theta_max"],
+        track1["shadow_center"],
+        track2["theta_min"],
+        track2["theta_max"],
+        track2["shadow_center"],
+    ])
+
+    data_ymin = np.floor(all_theta.min() - 2.0)
+    data_ymax = np.ceil(all_theta.max() + 2.0)
+    key_space = 14.0
+
+    xmin = min(track1["frames"].min(), track2["frames"].min())
+    xmax = max(track1["frames"].max(), track2["frames"].max())
+
+    return {
+        "all_theta": all_theta,
+        "data_ymin": data_ymin,
+        "data_ymax": data_ymax,
+        "key_space": key_space,
+        "ymin": data_ymin - key_space,
+        "ymax": data_ymax,
+        "xmin": xmin,
+        "xmax": xmax,
+        "xlim_left": xmin,
+        "xlim_right": xmax + 6.0,
+        "key_y1": data_ymin - key_space + 3.0,
+        "key_y2": data_ymin - key_space + 6.0,
+        "key_y3": data_ymin - key_space + 9.0,
+        "key_x0": xmin + 2.0,
+        "key_x1": xmin + 9.0,
+    }
+
+
+def adb_fig3_clean_style_axis(ax, layout):
+    ax.set_xlim(layout["xlim_left"], layout["xlim_right"])
+    ax.set_ylim(layout["ymin"], layout["ymax"])
+    ax.grid(False)
+
+    for spine in ax.spines.values():
+        spine.set_linewidth(0.8)
+
+
+def adb_fig3_clean_plot(track1, track2, source_label):
+    """
+    Draw the final two-panel Fig. 3 / ADB-style 
+
+[12] score = 5
+cell = 72
+matched = ['0.1']
+numbers = ['3', '1', '1', '0', '2', '4', '2.2', '3', '90.0', '90.0', '0.0', '0.0', '2.0', '2.0', '0.0', '0.5', '2.0', '9', '3', '0.0', '0.0', '0.0', '1', '8.0', '1.0', '0.75', '0.8', '1.2', '0.35', '1']
+source =
+# ============================================================
+# Module 3 - TODO Cell 1M (educational version)
+# Dynamic angle mapping:
+# top-down geometry  ->  1D shadow-angle axis
+# ============================================================
+
+if len(m2_final_tracks) == 0:
+    raise ValueError("m2_final_tracks is empty. Run Module 2 first.")
+
+
+# ------------------------------------------------------------
+# Small plotting helpers
+# ------------------------------------------------------------
+adb_angmap_num_snapshots = globals().get("adb_trz_num_snapshots", 4)
+adb_angmap_track_colors = ["tab:blue", "tab:orange", "tab:green", "tab:red"]
+
+
+def adb_angmap_add_arc(ax, angle_start_deg, angle_end_deg, radius_value, label_text, color_value, lw=2.2):
+    """
+    Draw an angle arc using the Module 3 convention:
+    angle measured from the forward +y axis.
+    """
+    adb_angmap_low = min(angle_start_deg, angle_end_deg)
+    adb_angmap_high = max(angle_start_deg, angle_end_deg)
+
+    adb_angmap_theta1 = 90.0 - adb_angmap_high
+    adb_angmap_theta2 = 90.0 - adb_angmap_low
+
+    adb_angmap_arc = Arc(
+        (0.0, 0.0),
+        width=2.0 * radius_value,
+        height=2.0 * radius_value,
+        angle=0.0,
+        theta1=adb_angmap_theta1,
+        theta2=adb_angmap_theta2,
+        linewidth=lw,
+        color=color_value
+    )
+    ax.add_patch(adb_angmap_arc)
+
+    adb_angmap_mid_angle = 0.5 * (angle_start_deg + angle_end_deg)
+    adb_angmap_label_x, adb_angmap_label_y = ray_xy_from_yaxis(
+        adb_angmap_mid_angle,
+        radius_value + 2.0
+    )
+
+    ax.text(
+        adb_angmap_label_x,
+        adb_angmap_label_y,
+        label_text,
+        color=color_value,
+        fontsize=9,
+        fontweight="bold",
+        ha="center",
+        va="center"
+    )
+
+
+def adb_angmap_topdown_panel_format(ax):
+    """
+    Minimal top-down format consistent with the Module 3 reference style.
+    """
+    ax.plot(
+        [0.0, 0.0],
+        [0.0, m2_y_range[1] + 8.0],
+        linestyle="--",
+        linewidth=1.0,
+        color=COLOR_FORWARD,
+        alpha=0.75
+    )
+
+    add_ego_vehicle(ax)
+
+    ax.set_aspect("equal", adjustable="box")
+    ax.grid(False)
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+    for adb_angmap_spine in ax.spines.values():
+        adb_angmap_spine.set_linewidth(0.8)
+
+
+def adb_angmap_draw_topdown(ax, frames, x_track, y_track, geom, array_idx, track_color, track_label):
+    """
+    Left panel: top-down geometry for one selected snapshot.
+    """
+    adb_angmap_topdown_panel_format(ax)
+
+    adb_angmap_frame = frames[array_idx]
+    adb_angmap_x = x_track[array_idx]
+    adb_angmap_y = y_track[array_idx]
+
+    adb_angmap_theta_c = geom["theta_c"][array_idx]
+    adb_angmap_center = geom["shadow_center"][array_idx]
+    adb_angmap_theta_min = geom["theta_min"][array_idx]
+    adb_angmap_theta_max = geom["theta_max"][array_idx]
+    adb_angmap_range = geom["range_target"][array_idx]
+    adb_angmap_r_max = geom["r_max"][array_idx]
+    adb_angmap_epsilon = geom["epsilon"][array_idx]
+
+    # Trajectory: past solid, future faded dashed
+    ax.plot(
+        x_track[array_idx:],
+        y_track[array_idx:],
+        linestyle="--",
+        linewidth=1.2,
+        color=track_color,
+        alpha=0.35
+    )
+
+    ax.plot(
+        x_track[:array_idx + 1],
+        y_track[:array_idx + 1],
+        linewidth=2.2,
+        color=track_color,
+        alpha=0.95
+    )
+
+    # Shadow cone Θ(t), drawn up to r_max
+    adb_angmap_theta_min_x, adb_angmap_theta_min_y = ray_xy_from_yaxis(
+        adb_angmap_theta_min,
+        adb_angmap_r_max
+    )
+    adb_angmap_theta_max_x, adb_angmap_theta_max_y = ray_xy_from_yaxis(
+        adb_angmap_theta_max,
+        adb_angmap_r_max
+    )
+
+    ax.add_patch(
+        Polygon(
+            [(0.0, 0.0),
+             (adb_angmap_theta_min_x, adb_angmap_theta_min_y),
+             (adb_angmap_theta_max_x, adb_angmap_theta_max_y)],
+            closed=True,
+            color=COLOR_THETA_BOUNDS,
+            alpha=0.12
+        )
+    )
+
+    # Boundary rays
+    ax.plot(
+        [0.0, adb_angmap_theta_min_x],
+        [0.0, adb_angmap_theta_min_y],
+        linestyle=":",
+        linewidth=1.5,
+        color=COLOR_THETA_BOUNDS
+    )
+
+    ax.plot(
+        [0.0, adb_angmap_theta_max_x],
+        [0.0, adb_angmap_theta_max_y],
+        linestyle=":",
+        linewidth=1.5,
+        color=COLOR_THETA_BOUNDS
+    )
+
+    # Target ray θc(t)
+    ax.plot(
+        [0.0, adb_angmap_x],
+        [0.0, adb_angmap_y],
+        linewidth=2.0,
+        color=COLOR_THETA_C,
+        alpha=0.85
+    )
+
+    # Corrected center ray θc(t) - Δθ
+    adb_angmap_center_x, adb_angmap_center_y = ray_xy_from_yaxis(
+        adb_angmap_center,
+        adb_angmap_r_max
+    )
+
+    ax.plot(
+        [0.0, adb_angmap_center_x],
+        [0.0, adb_angmap_center_y],
+        linewidth=2.0,
+        color=COLOR_CENTER,
+        alpha=0.85
+    )
+
+    # Target marker
+    ax.scatter(
+        adb_angmap_x,
+        adb_angmap_y,
+        s=55,
+        color=track_color,
+        zorde
+
+============================================================
+C. WOMD / CONTROL-INTERVAL EVIDENCE
+============================================================
+hit count = 6732
+
+[1] score = 30
+path = /home/agni/waymo/iscai_stage3/tests/test_association_covariance.py
+line = 93
+matched = ['0.1', 'dt_s']
+numbers = ['0.1']
+source =
+            dt_s=0.1,
+
+[2] score = 30
+path = /home/agni/waymo/iscai_stage3/tests/test_association_covariance.py
+line = 85
+matched = ['0.1', 'dt_s']
+numbers = ['0.1']
+source =
+            dt_s=0.1,
+
+[3] score = 30
+path = /home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/torch/testing/_internal/distributed/rpc/rpc_test.py
+line = 3519
+matched = ['0.1', '100 ms']
+numbers = ['0.1', '100']
+source =
+            timeout = 0.1  # 100 ms
+
+[4] score = 30
+path = /home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/torch/testing/_internal/distributed/rpc/rpc_test.py
+line = 3425
+matched = ['0.1', '100 ms']
+numbers = ['0.1', '100']
+source =
+        timeout = 0.1  # 100 ms
+
+[5] score = 30
+path = /home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/torch/ao/nn/quantized/modules/batchnorm.py
+line = 97
+matched = ['1e-5', '0.1']
+numbers = ['1e-5', '0.1']
+source =
+    def __init__(self, num_features, eps=1e-5, momentum=0.1, device=None, dtype=None):
+
+[6] score = 30
+path = /home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/torch/ao/nn/quantized/modules/batchnorm.py
+line = 57
+matched = ['1e-5', '0.1']
+numbers = ['1e-5', '0.1']
+source =
+        self, num_features, eps=1e-5, momentum=0.1, device=None, dtype=None
+
+[7] score = 30
+path = /home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/torch/ao/nn/quantized/modules/batchnorm.py
+line = 11
+matched = ['1e-5', '0.1']
+numbers = ['1e-5', '0.1']
+source =
+        self, num_features, eps=1e-5, momentum=0.1, device=None, dtype=None
+
+[8] score = 30
+path = /home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/torch/ao/nn/intrinsic/quantized/modules/bn_relu.py
+line = 77
+matched = ['1e-5', '0.1']
+numbers = ['1e-5', '0.1']
+source =
+    def __init__(self, num_features, eps=1e-5, momentum=0.1, device=None, dtype=None):
+
+[9] score = 30
+path = /home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/torch/ao/nn/intrinsic/quantized/modules/bn_relu.py
+line = 25
+matched = ['1e-5', '0.1']
+numbers = ['1e-5', '0.1']
+source =
+    def __init__(self, num_features, eps=1e-5, momentum=0.1, device=None, dtype=None):
+
+[10] score = 30
+path = /home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/sympy/functions/elementary/tests/test_trigonometric.py
+line = 1407
+matched = ['1e-5', '0.1']
+numbers = ['-0.1', '1e-5']
+source =
+    t(acot, -0.1, '-', 1e-5)
+
+[11] score = 30
+path = /home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/sympy/functions/elementary/tests/test_trigonometric.py
+line = 1406
+matched = ['1e-5', '0.1']
+numbers = ['0.1', '1e-5']
+source =
+    t(acot, 0.1, '+', 1e-5)
+
+[12] score = 30
+path = /home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/sympy/functions/elementary/tests/test_trigonometric.py
+line = 1405
+matched = ['1e-5', '0.1']
+numbers = ['-0.1', '1e-5']
+source =
+    t(atan, -0.1, '-', 1e-5)
+
+[13] score = 30
+path = /home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/sympy/functions/elementary/tests/test_trigonometric.py
+line = 1404
+matched = ['1e-5', '0.1']
+numbers = ['0.1', '1e-5']
+source =
+    t(atan, 0.1, '+', 1e-5)
+
+[14] score = 30
+path = /home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/numpy/fft/_helper.py
+line = 162
+matched = ['0.1', 'timestep']
+numbers = ['0.1']
+source =
+    >>> timestep = 0.1
+
+[15] score = 30
+path = /home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/mpmath/tests/test_elliptic.py
+line = 653
+matched = ['1e-5', '0.1']
+numbers = ['0.3068', '-4.037', '-0.632', '1.654', '-0.9609', '1.758765901861727', '0.161002343366626892', '1e-5']
+source =
+    assert elliprj(0.3068, -4.037-0.632j, 1.654, -0.9609).ae(1.758765901861727 - 0.161002343366626892j, abs_eps=1e-5)
+
+[16] score = 30
+path = /home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/mpmath/function_docs.py
+line = 9240
+matched = ['1e-5', '0.1']
+numbers = ['1e-5', '10', '+1e-5', '0.1', '+1e-6']
+source =
+    >>> coulombg(1e-5j, 10+1e-5j, 0.1+1e-6j)
+
+[17] score = 30
+path = /home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/mpmath/function_docs.py
+line = 9238
+matched = ['1e-5', '0.1']
+numbers = ['1e-5', '10', '+1e-5', '0.1', '+1e-6']
+source =
+    >>> coulombf(1e-5j, 10+1e-5j, 0.1+1e-6j)
+
+[18] score = 30
+path = /home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/matplotlib/tests/test_backend_bases.py
+line = 177
+matched = ['1e-5', '0.1']
+numbers = ['1e-6', '0.1', '1', '-1e-5', '0.8']
+source =
+    # Zoom from x=1e-6, y=0.1 to x=1-1e-5, 0.8 (data coordinates, "d").
+
+[19] score = 25
+path = /home/agni/waymo/iscai_stage4/tests/test_block44_gaussian_gru.py
+line = 491
+matched = ['0.1']
+numbers = ['-0.1', '0.3', '1.1']
+source =
+                        [-0.1, 0.3, 1.1],
+
+[20] score = 25
+path = /home/agni/waymo/iscai_stage4/tests/test_block44_gaussian_gru.py
+line = 479
+matched = ['0.1']
+numbers = ['0.2', '-0.1', '0.5']
+source =
+                    [0.2, -0.1, 0.5]
+
+============================================================
+D. EXISTING LATENCY / RUNTIME INSTRUMENTATION
+============================================================
+hit count = 1851
+
+[1] score = 40
+path = /home/agni/waymo/iscai_stage5/scripts/run_block57_part1_timing_audit.py
+line = 416
+matched = ['memory_allocated', 'max_memory_allocated']
+numbers = []
+source =
+                    "max_memory_allocated",
+
+[2] score = 40
+path = /home/agni/waymo/iscai_stage5/scripts/run_block57_part1_timing_audit.py
+line = 121
+matched = ['memory_allocated', 'max_memory_allocated']
+numbers = []
+source =
+    "max_memory_allocated",
+
+[3] score = 40
+path = /home/agni/waymo/iscai_stage5/artifacts/block52/exact_block44_hash_route_audit.json
+line = 367
+matched = ['cuda.synchronize', 'synchronize()']
+numbers = []
+source =
+      "text": "        torch.cuda.synchronize()"
+
+[4] score = 40
+path = /home/agni/waymo/iscai_stage4/scripts/run_block47_ablation_training.py
+line = 1453
+matched = ['cuda.synchronize', 'synchronize()']
+numbers = []
+source =
+        torch.cuda.synchronize()
+
+[5] score = 40
+path = /home/agni/waymo/iscai_stage4/scripts/run_block46_part1_safe.py
+line = 882
+matched = ['cuda.synchronize', 'synchronize()']
+numbers = []
+source =
+    torch.cuda.synchronize()
+
+[6] score = 40
+path = /home/agni/waymo/iscai_stage4/scripts/run_block46_gmm_training.py
+line = 1660
+matched = ['cuda.synchronize', 'synchronize()']
+numbers = []
+source =
+        torch.cuda.synchronize()
+
+[7] score = 40
+path = /home/agni/waymo/iscai_stage4/scripts/run_block44_preflight.py
+line = 714
+matched = ['cuda.synchronize', 'synchronize()']
+numbers = []
+source =
+    torch.cuda.synchronize()
+
+[8] score = 40
+path = /home/agni/waymo/iscai_stage4/scripts/run_block44_gaussian_training.py
+line = 2587
+matched = ['cuda.synchronize', 'synchronize()']
+numbers = []
+source =
+        torch.cuda.synchronize()
+
+[9] score = 40
+path = /home/agni/waymo/iscai_stage4/scripts/run_block43_preflight.py
+line = 214
+matched = ['cuda.synchronize', 'synchronize()']
+numbers = []
+source =
+torch.cuda.synchronize()
+
+[10] score = 40
+path = /home/agni/waymo/iscai_stage4/scripts/run_block43_deterministic_training.py
+line = 3039
+matched = ['cuda.synchronize', 'synchronize()']
+numbers = []
+source =
+        torch.cuda.synchronize()
+
+[11] score = 40
+path = /home/agni/waymo/iscai_stage4/scripts/run_block43_deterministic_gru_gate.py
+line = 2177
+matched = ['cuda.synchronize', 'synchronize()']
+numbers = []
+source =
+torch.cuda.synchronize()
+
+[12] score = 40
+path = /home/agni/waymo/iscai_stage4/scripts/repair_block44_python_headers.py
+line = 599
+matched = ['cuda.synchronize', 'synchronize()']
+numbers = []
+source =
+                "torch.cuda.synchronize(); "
+
+[13] score = 35
+path = /home/agni/waymo/iscai_stage5/scripts/run_block57_part1_timing_audit.py
+line = 415
+matched = ['memory_allocated']
+numbers = []
+source =
+                    "memory_allocated",
+
+[14] score = 35
+path = /home/agni/waymo/iscai_stage5/scripts/run_block57_part1_timing_audit.py
+line = 414
+matched = ['cuda.synchronize']
+numbers = []
+source =
+                    "cuda.synchronize",
+
+[15] score = 35
+path = /home/agni/waymo/iscai_stage5/scripts/run_block57_part1_timing_audit.py
+line = 413
+matched = ['perf_counter']
+numbers = []
+source =
+                    "perf_counter",
+
+[16] score = 35
+path = /home/agni/waymo/iscai_stage5/scripts/run_block57_part1_timing_audit.py
+line = 120
+matched = ['memory_allocated']
+numbers = []
+source =
+    "memory_allocated",
+
+[17] score = 35
+path = /home/agni/waymo/iscai_stage5/scripts/run_block57_part1_timing_audit.py
+line = 114
+matched = ['cuda.synchronize']
+numbers = []
+source =
+    "cuda.synchronize",
+
+[18] score = 35
+path = /home/agni/waymo/iscai_stage5/scripts/run_block57_part1_timing_audit.py
+line = 113
+matched = ['perf_counter']
+numbers = []
+source =
+    "perf_counter",
+
+[19] score = 35
+path = /home/agni/waymo/iscai_stage5/artifacts/block52/stage4_prediction_coordinate_semantics.json
+line = 6723
+matched = ['perf_counter']
+numbers = []
+source =
+              "text": "pilot_start = time.perf_counter()"
+
+[20] score = 35
+path = /home/agni/waymo/iscai_stage4/scripts/run_block48_formal_evaluation.py
+line = 2840
+matched = ['perf_counter']
+numbers = []
+source =
+        time.perf_counter()
+
+============================================================
+E. TIMING AUDIT CLASSIFICATION
+============================================================
+Part-A chirp-duration hits = 7
+100-ms/control hits        = 6111
+latency instrumentation hits = 1851
+
+============================================================
+BLOCK 5.7 PART 1/2 TIMING AUDIT FINAL
+============================================================
+Block5.6 continuity       = PASS
+Part-A timing evidence    = AUDITED
+control interval evidence = AUDITED
+runtime instrumentation   = AUDITED
+Tbeam                     = NOT YET FROZEN
+Tframe                    = NOT YET FROZEN
+formal N=120 used         = NO
+Stage4 inference          = NO
+STATUS = PASS_READ_ONLY_AUDIT
+report = /home/agni/waymo/iscai_stage5/artifacts/block57/timing_source_audit.json
+terminal remains open = YES
+
+timing-audit raw code = 0
+
+===== POST-AUDIT STAGE5 REGRESSION =====
+
+..............................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 206 tests in 0.072s
+
+OK
+
+post-audit Stage5 regression = 206 / 206 PASS
+
+============================================================
+BLOCK 5.7 PART 1/2 FINAL
+============================================================
+Block5.6 continuity       = PASS
+timing provenance         = AUDITED
+Tbeam                     = PENDING EXACT FREEZE
+Tframe                    = PENDING EXACT FREEZE
+latency instrumentation   = AUDITED
+formal N=120 used         = NO
+Stage4 inference          = NO
+Stage5 regression         = 206 / 206 PASS
+STATUS = PASS_READ_ONLY_AUDIT
+next = BLOCK 5.7 PART 2/2
+terminal remains open = YES

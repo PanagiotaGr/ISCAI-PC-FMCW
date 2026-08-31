@@ -1,0 +1,149 @@
+{
+  "block": "6.8_development_stage3_class_floors",
+  "candidate_space": {
+    "candidate_triplets": 3270,
+    "constraints": [
+      "j_vehicle <= j_pedestrian",
+      "j_vehicle <= j_cyclist",
+      "j_pedestrian > 0",
+      "j_cyclist > 0"
+    ],
+    "cyclist_j": [
+      1,
+      20
+    ],
+    "pedestrian_j": [
+      1,
+      20
+    ],
+    "representation": "f_c = j_c / 20",
+    "vehicle_j": [
+      0,
+      20
+    ]
+  },
+  "development_only": true,
+  "execution_integrity": {
+    "development_anchor_max_abs_delta": 2.220446049250313e-16,
+    "fixed_cache_parity": "PASS",
+    "synthetic_metric_kernel_parity_max_abs_delta": 0.0,
+    "winner_authoritative_max_abs_delta": 6.317169010117141e-14,
+    "winner_authoritative_replay_scenarios": 120
+  },
+  "formal_outcomes_read": false,
+  "immutable_after_freeze": [
+    "Stage-1 class k/gamma",
+    "Stage-2 class margin coefficients",
+    "Stage-3 vehicle intensity floor",
+    "Stage-3 pedestrian intensity floor",
+    "Stage-3 cyclist intensity floor"
+  ],
+  "outputs": {
+    "candidate_scores": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage3_floor_selection/block68_stage3_floor_candidate_scores.jsonl",
+      "records": 3270,
+      "sha256": "8bbe092789aa4acc097a11efed2805f2f20f7dcdd7e99a38b0012184e559a2d8"
+    },
+    "winner_scenarios": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage3_floor_selection/block68_stage3_winner_authoritative_scenarios.jsonl",
+      "records": 120,
+      "sha256": "2d741cd0b877569e60e00975008c3cfdd6bfd4ad21f0de9a675c9e5a7ff9a114"
+    }
+  },
+  "scientific_boundary": {
+    "NI_bounds_modified": false,
+    "P_occ_reopened": false,
+    "Stage1_modified": false,
+    "Stage2_modified": false,
+    "Stage3_floor_selected": true,
+    "Stage4_temporal_rate_selected": false,
+    "WOMD_reopened": false,
+    "formal_evaluation": false,
+    "primary_acceptance_tested": false
+  },
+  "selected": {
+    "f_cyclist": 1.0,
+    "f_pedestrian": 1.0,
+    "f_vehicle": 0.15,
+    "finite_scenario_support": {
+      "cyclist_visibility_proxy": 37,
+      "false_dimming": 120,
+      "glare_risk_exposure": 115,
+      "over_masking_area": 120,
+      "pedestrian_visibility_proxy": 45,
+      "road_illumination_retention": 120,
+      "vehicle_shadow_zone_violation": 115
+    },
+    "j_cyclist": 20,
+    "j_pedestrian": 20,
+    "j_vehicle": 3,
+    "metrics": {
+      "cyclist_visibility_proxy": 0.8467601478827491,
+      "false_dimming": 0.8815618060922982,
+      "glare_risk_exposure": 0.17856602644140326,
+      "over_masking_area": 0.24045481849147782,
+      "pedestrian_visibility_proxy": 0.8874751048792082,
+      "road_illumination_retention": 0.8096578881796337,
+      "vehicle_shadow_zone_violation": 0.030582326044826552
+    },
+    "risk_vector": {
+      "1-cyclist_visibility_proxy": 0.15323985211725089,
+      "1-pedestrian_visibility_proxy": 0.11252489512079178,
+      "1-road_illumination_retention": 0.1903421118203663,
+      "glare_risk_exposure": 0.17856602644140326,
+      "vehicle_shadow_zone_violation": 0.030582326044826552
+    },
+    "selection_key": [
+      0.1903421118203663,
+      0.13305104230892778,
+      0.24045481849147782,
+      0.8815618060922982,
+      3,
+      20,
+      20
+    ]
+  },
+  "selection_population": {
+    "class_counts": {
+      "TYPE_CYCLIST": 48,
+      "TYPE_PEDESTRIAN": 110,
+      "TYPE_VEHICLE": 719
+    },
+    "development_scenarios": 120,
+    "future_validity_as_selector": false,
+    "predictive_actors": 877,
+    "reactive_fallback_in_selection": false
+  },
+  "selection_semantics": {
+    "actuation_rate_limit": false,
+    "epsilon_tolerance": null,
+    "risk_vector": [
+      "vehicle_shadow_zone_violation",
+      "glare_risk_exposure",
+      "1-pedestrian_visibility_proxy",
+      "1-cyclist_visibility_proxy",
+      "1-road_illumination_retention"
+    ],
+    "rounding": false,
+    "scenario_aggregation": "equal-weight arithmetic macro mean over finite scenario-level metrics",
+    "selection_key": "(max(risk_vector), mean(risk_vector), over_masking_area, false_dimming, j_vehicle, j_pedestrian, j_cyclist)",
+    "temporal_smoothing": false,
+    "terminal_illumination": "ClassAwareComposition.raw_class_aware_illumination",
+    "weighted_sum": false
+  },
+  "stage": 6,
+  "status": "FROZEN_STAGE3_CLASS_FLOORS_BEFORE_STAGE4_TEMPORAL_RATE_SELECTION",
+  "upstream_seals": {
+    "cache_freeze": "6733ba1641afc341910bd5cc822a034103585706f32db4758d606b7bf2bf786d",
+    "cache_manifest": "9607f5bd6022da5471167650f652556dca8381b241adf0b7faaf06bd27edc041",
+    "class_runtime": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b",
+    "evaluator_runtime": "2015136fdcbfe3f837bcba5a2ee05578a4d8a01c4ecfd52e4dfac9f864349891",
+    "metric_runtime": "bf8358b5a7edfe40ffac2718ca7cd5af6e7b5fdb3ff8a2823caad6d0f40f057a",
+    "prereg": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e",
+    "road_roi": "832f4bc3215fe585fee781080c98b2928157f26e8a66d22f428f15604afb75e0",
+    "stage1": "a55f21589f55a75afcb660a8a7278e802dd9e102f4c75ca7863697359bbb2a87",
+    "stage2": "b061541f0563181cd07a91107a211b3519c6fdcc2e08243171db5b3bd9393ae8",
+    "stage3_execution": "28cc6e986d89ac449cce4b5180f3879567e0f6a8bd77a2bd6054fcb262cba091",
+    "stage3_scoring": "a8bf30b29056562eb303f287acfcca6d8aee011f26a353897f8d18b47325e1b3"
+  }
+}

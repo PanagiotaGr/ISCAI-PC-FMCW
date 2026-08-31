@@ -1,0 +1,77 @@
+{
+  "block": "6.8",
+  "constructed_oracle": {
+    "future_GT_read_after_decision_only": true,
+    "future_truth_controller_input": false,
+    "measured_ADB_ground_truth": false,
+    "type": "CONSTRUCTED_EVALUATOR_REFERENCE"
+  },
+  "frozen_outputs": {
+    "contract": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_evaluator_reference_contract.json",
+      "sha256": "c9ff0390820a3c37702fb391ba603244fffcf7c03c476045b590aa483e89bd7e"
+    },
+    "module": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/evaluator_reference.py",
+      "sha256": "2015136fdcbfe3f837bcba5a2ee05578a4d8a01c4ecfd52e4dfac9f864349891"
+    },
+    "road_roi_artifact": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/frozen_road_roi_definition.json",
+      "sha256": "832f4bc3215fe585fee781080c98b2928157f26e8a66d22f428f15604afb75e0"
+    },
+    "test": {
+      "path": "/home/agni/waymo/iscai_stage6/tests/test_block68_evaluator_reference_contract.py",
+      "sha256": "feae32f927ffeaaa9a9aed147e3515ed3a2449129aeb839fb194a5970ccc222c"
+    }
+  },
+  "next": "execute development-only class-aware predictive vs original-reactive ADB metrics and freeze numeric non-inferiority bounds",
+  "part": "2/2_evaluator_reference_contract_freeze",
+  "project": "Agni",
+  "regression": {
+    "post": 209,
+    "pre": 202,
+    "status": "PASS",
+    "targeted": 7
+  },
+  "road_ROI_resolution": {
+    "development_outcomes_seen_before_resolution": false,
+    "formal_outcomes_seen_before_resolution": false,
+    "previous_artifact_evidence": "NOT_PROVEN",
+    "resolution": "EXPLICIT_PREOUTCOME_FREEZE",
+    "rule": "all_valid_cells_of_frozen_theta_range_headlamp_actuator_grid"
+  },
+  "scientific_boundary": {
+    "development_performance_metrics_computed": false,
+    "formal_content_opened": false,
+    "formal_evaluation": false,
+    "formal_outcomes_read": false,
+    "numeric_noninferiority_bounds_selected": false,
+    "parameter_tuning": false,
+    "policy_tuning": false
+  },
+  "scientific_change": {
+    "class_policy": false,
+    "controller": false,
+    "metric_formula": false,
+    "new_preoutcome_evaluator_definition": "road_ROI_all_valid_frozen_theta_range_grid_cells",
+    "predictor": false
+  },
+  "stage": 6,
+  "status": "PASS_EVALUATOR_REFERENCE_CONTRACT_FROZEN",
+  "storage": {
+    "free_GiB": 1052.773151397705,
+    "pass": true,
+    "reserve_GiB": 250.0
+  },
+  "upstream": {
+    "I_final_binding_sha256": "1505c780423efbe27735c3729b95a18c3da2093f49826bd96cbfad8fdce5d5f1",
+    "metric_interface_sha256": "39518597079f65d556ee8f0fd3b00ce525319623c9eb8a83f6e3c608954213e9",
+    "metric_protocol_sha256": "409fbb2785e4ff13f29fdff96c91d608c245e009fcbb86ce57099d6a4e1815c9",
+    "metric_reconciliation_sha256": "077a89fa5163f8862a3a5b7489d98929d9ae3e160ed9e030eb75f42a91d48f9f",
+    "metric_runtime_sha256": "bf8358b5a7edfe40ffac2718ca7cd5af6e7b5fdb3ff8a2823caad6d0f40f057a",
+    "reference_extraction": {
+      "path": "/home/agni/waymo/iscai_stage6/reports/block68_exact_oracle_roi_binding_extract.json",
+      "sha256": "d74fd3182c16b7ed8198e9b0fc6f3f004ec12e2f9db08fd27c48dc5c1f77d545"
+    }
+  }
+}

@@ -1,0 +1,1532 @@
+==============================================================================
+BLOCK 6.7 PART 1/2 — READ-ONLY BINDING PREFLIGHT
+DEVELOPMENT-ONLY CLASS-AWARE POLICY SELECTION
+==============================================================================
+
+===== A. IMMUTABLE BLOCK6.6 / PART3B SEAL =====
+block66_part3b_class_aware_policy_preregistration.json         = EXACT PASS
+block66_part3c_final_closure.json                              = EXACT PASS
+block66_part3c_final_freeze_manifest.json                      = EXACT PASS
+block66_part3c_to_block67_handoff.json                         = EXACT PASS
+class_aware_policy.py                                          = EXACT PASS
+block66_class_aware_development_cohort_120.jsonl               = EXACT PASS
+block66_part2c2b_eligible_actor_pocc_manifest.jsonl            = EXACT PASS
+block66_part2c1_headlamp_eligible_predictive_matches.jsonl     = EXACT PASS
+block66_part3c_vehicle_surrogate_evidence.jsonl                = EXACT PASS
+block66_development_identity_safe_gaussian_posterior.jsonl     = EXACT PASS
+scientific source modification = NO
+numeric policy selection       = FORBIDDEN IN PREFLIGHT
+development outcomes read       = NO
+future GT read                  = NO
+formal outcomes read            = NO
+
+===== B. FROZEN INPUT RECORD CENSUS =====
+development cohort                   = 120
+P_occ manifest                       = 877
+eligible predictive matches          = 877
+vehicle surrogate evidence           = 719
+development posterior                = 6925
+
+===== C. PART3B EXACT SELECTION / MARGIN SEMANTICS =====
+Part3B top-level keys = ['ADB_metric_formulas', 'actuation_rate_limit', 'additional_class_margin_parameterization', 'block', 'causality', 'class_intensity_floor_parameterization', 'class_overlap_policy', 'class_threshold_parameterization', 'constructed_oracle_reference', 'continuous_illumination_conversion', 'controller_geometry', 'development_population', 'development_selection_protocol', 'frozen_inputs', 'frozen_probabilistic_runtime', 'next_implementation_gate', 'predictive_mask_aggregation', 'preserved_PartA_semantics', 'purpose', 'reactive_fallback_inside_class_aware_controller', 'required_runtime_components_to_implement_next', 'road_ROI', 'scientific_boundary', 'seven_ADB_baseline_factorization', 'source_of_numeric_candidate_grids', 'stage', 'status', 'temporal_smoothing', 'vehicle_relevant_region_surrogates']
+relevant flattened entries = 217
+ADB_metric_formulas.actuation_latency.used_for_policy_selection = False
+ADB_metric_formulas.cyclist_visibility_proxy.formula = 'mean(I_final over future GT cyclist projected full-box footprint cells)'
+ADB_metric_formulas.flicker_change_rate.formula = 'mean_h(count(I_h != I_prev)/grid_cell_count)'
+ADB_metric_formulas.glare_risk_exposure.formula = 'mean final normalized intensity over vehicle constructed front-upper/rear-upper surrogate reference cells'
+ADB_metric_formulas.mask_IoU.empty_union = 1.0
+ADB_metric_formulas.mask_IoU.formula = '|D∩O| / |D∪O|'
+ADB_metric_formulas.oracle_dim_support = 'O_tau = union of constructed future actor shadow supports'
+ADB_metric_formulas.pedestrian_visibility_proxy.formula = 'mean(I_final over future GT pedestrian projected full-box footprint cells)'
+ADB_metric_formulas.rate_limit_safety_override_fraction.formula = 'override cells / total actuator-cell transitions'
+ADB_metric_formulas.vehicle_shadow_zone_violation.no_vehicle_cells = 'NA'
+actuation_rate_limit.candidate_rates_per_s[0] = 1
+actuation_rate_limit.candidate_rates_per_s[1] = 2
+actuation_rate_limit.candidate_rates_per_s[2] = 4
+actuation_rate_limit.candidate_rates_per_s[3] = 8
+actuation_rate_limit.candidate_rates_per_s[4] = 16
+actuation_rate_limit.safety_override_metric = 'fraction of actuator cells/time steps where hard VRU floor overrides I_rate'
+actuation_rate_limit.safety_projection_after_rate_limit = 're-apply active VRU hard floor; record every rate-limit safety override'
+additional_class_margin_parameterization.angular_expansion = 'delta_theta = atan2(m_extra, max(r_tau, PartA_EPS))'
+additional_class_margin_parameterization.candidate_counts.TYPE_CYCLIST = 432
+additional_class_margin_parameterization.candidate_counts.TYPE_PEDESTRIAN = 54
+additional_class_margin_parameterization.candidate_counts.TYPE_VEHICLE = 324
+additional_class_margin_parameterization.candidate_rules.base_margin_m.candidate_count = 9
+additional_class_margin_parameterization.candidate_rules.base_margin_m.j_max = 8
+additional_class_margin_parameterization.candidate_rules.base_margin_m.j_min = 0
+additional_class_margin_parameterization.candidate_rules.base_margin_m.representation = 'j/4 metres'
+additional_class_margin_parameterization.candidate_rules.cyclist_lateral_multiplier.candidate_count = 8
+additional_class_margin_parameterization.candidate_rules.cyclist_lateral_multiplier.j_max = 8
+additional_class_margin_parameterization.candidate_rules.cyclist_lateral_multiplier.j_min = 1
+additional_class_margin_parameterization.candidate_rules.cyclist_lateral_multiplier.representation = 'j/4'
+additional_class_margin_parameterization.candidate_rules.cyclist_lateral_multiplier.zero_permitted = False
+additional_class_margin_parameterization.candidate_rules.uncertainty_multiplier.candidate_count = 6
+additional_class_margin_parameterization.candidate_rules.uncertainty_multiplier.j_max = 6
+additional_class_margin_parameterization.candidate_rules.uncertainty_multiplier.j_min = 1
+additional_class_margin_parameterization.candidate_rules.uncertainty_multiplier.representation = 'j/2'
+additional_class_margin_parameterization.candidate_rules.uncertainty_multiplier.zero_permitted = False
+additional_class_margin_parameterization.candidate_rules.vehicle_closing_multiplier.candidate_count = 6
+additional_class_margin_parameterization.candidate_rules.vehicle_closing_multiplier.j_max = 6
+additional_class_margin_parameterization.candidate_rules.vehicle_closing_multiplier.j_min = 1
+additional_class_margin_parameterization.candidate_rules.vehicle_closing_multiplier.representation = 'j/20'
+additional_class_margin_parameterization.candidate_rules.vehicle_closing_multiplier.zero_permitted = False
+additional_class_margin_parameterization.closing_speed_mps = 'v_close = max(0, (r_current-r_tau)/tau)'
+additional_class_margin_parameterization.coordinate_frame = 'H0 theta/r actuator plane'
+additional_class_margin_parameterization.cyclist_formula = 'm_extra = b_cyclist + u_cyclist*sigma_lat + q_cyclist*tau*v_lat'
+additional_class_margin_parameterization.cyclist_lateral_rate_mps = 'v_lat = abs(ell_current^T mean_displacement_xy_tau)/tau'
+additional_class_margin_parameterization.grid_dilation = 'ceil(delta_theta / frozen_theta_step); clip at actuator theta boundaries'
+additional_class_margin_parameterization.lateral_LOS_unit = 'ell_tau = [-p_tau_y/r_tau, p_tau_x/r_tau]'
+additional_class_margin_parameterization.lateral_predictive_sigma_m = 'sigma_lat = sqrt(ell_tau^T Sigma_xy,tau ell_tau)'
+additional_class_margin_parameterization.meaning = 'additional predictive dilation; does not replace Part-A generic margin'
+additional_class_margin_parameterization.pedestrian_formula = 'm_extra = b_pedestrian + u_pedestrian*sigma_lat'
+additional_class_margin_parameterization.predicted_absolute_center = 'p_tau_xy = causal_anchor_xy + calibrated_Gaussian_mean_displacement_xy'
+additional_class_margin_parameterization.predicted_range = 'r_tau = hypot(p_tau_x, p_tau_y)'
+additional_class_margin_parameterization.vehicle_formula = 'm_extra = b_vehicle + u_vehicle*sigma_lat + q_vehicle*tau*v_close'
+causality.future_track_duration_selection = False
+causality.objects_of_interest_selection = False
+causality.tracks_to_predict_selection = False
+class_intensity_floor_parameterization.candidate_triplets = 3270
+class_intensity_floor_parameterization.cyclist.j_max = 20
+class_intensity_floor_parameterization.cyclist.j_min = 1
+class_intensity_floor_parameterization.cyclist.zero_permitted = False
+class_intensity_floor_parameterization.cyclist_full_blackout_permitted = False
+class_intensity_floor_parameterization.pedestrian.j_max = 20
+class_intensity_floor_parameterization.pedestrian.j_min = 1
+class_intensity_floor_parameterization.pedestrian.zero_permitted = False
+class_intensity_floor_parameterization.pedestrian_full_blackout_permitted = False
+class_intensity_floor_parameterization.representation = 'f_c = j_c / 20'
+class_intensity_floor_parameterization.structural_constraints[0] = 'f_vehicle <= f_pedestrian'
+class_intensity_floor_parameterization.structural_constraints[1] = 'f_vehicle <= f_cyclist'
+class_intensity_floor_parameterization.structural_constraints[2] = 'f_pedestrian > 0'
+class_intensity_floor_parameterization.structural_constraints[3] = 'f_cyclist > 0'
+class_intensity_floor_parameterization.vehicle.j_max = 20
+class_intensity_floor_parameterization.vehicle.j_min = 0
+class_overlap_policy.VRU_floor_guard = 'F_vru = max(active pedestrian floor, active cyclist floor, 0)'
+class_overlap_policy.hard_priority_order[0] = 'VRU minimum-visibility floor constraint'
+class_overlap_policy.hard_priority_order[2] = 'cyclist glare/visibility objective'
+class_overlap_policy.hard_priority_order[3] = 'pedestrian glare/visibility objective'
+class_overlap_policy.pre_floor_guard_command = 'I_min = minimum over all active actor illumination maps'
+class_overlap_policy.reason = 'vehicle glare protection remains strong but may not force a pedestrian/cyclist below its hard non-blackout floor'
+class_threshold_parameterization.candidate_rule.candidates_per_class = 8192
+class_threshold_parameterization.candidate_rule.k_max = 8191
+class_threshold_parameterization.candidate_rule.k_min = 0
+class_threshold_parameterization.candidate_rule.representation = 'exact integer occupancy quantum'
+class_threshold_parameterization.candidate_rule.step = 1
+class_threshold_parameterization.equation = 'M_i,tau(theta,r) = 1[count_i,tau(theta,r) > k_c]'
+class_threshold_parameterization.equivalent_gamma = 'gamma_c = k_c / 8192'
+class_threshold_parameterization.independent_classes[0] = 'TYPE_VEHICLE'
+class_threshold_parameterization.independent_classes[1] = 'TYPE_PEDESTRIAN'
+class_threshold_parameterization.independent_classes[2] = 'TYPE_CYCLIST'
+class_threshold_parameterization.no_float_grid_search = True
+class_threshold_parameterization.strict_comparison = '>'
+constructed_oracle_reference.vehicle_glare_reference = 'heading-dependent geometry-based front-upper/rear-upper surrogate'
+continuous_illumination_conversion.per_active_theta_column.r_far = 'maximum active frozen range-cell center after threshold/dilation'
+continuous_illumination_conversion.per_active_theta_column.radial_profile = 'exact part_a_radial_profile with class-specific intensity_floor'
+development_population.calibration_partition_used_for_policy_tuning = False
+development_population.class_counts.TYPE_CYCLIST = 48
+development_population.class_counts.TYPE_PEDESTRIAN = 110
+development_population.class_counts.TYPE_VEHICLE = 719
+development_population.cohort_scenes = 120
+development_population.cohort_selection = 'frozen outcome-independent Block6.6 development cohort'
+development_population.eligible_predictive_actors = 877
+development_population.eligible_reactive_fallback_actors = 247
+development_population.formal_population_used = False
+development_population.partition = 'Stage4 DEVELOPMENT only'
+development_selection_protocol.acceptance_thresholds = 'NOT selected in Part3B; after the development-only winning policy is frozen, a separate pre-formal gate must freeze formal acceptance/non-inferiority thresholds before any formal outcome is read'
+development_selection_protocol.exact_tie_handling = 'no tolerance-based tie; compare stored deterministic float64 metrics then canonical parameter tuple'
+development_selection_protocol.formal_outcomes_allowed = False
+development_selection_protocol.full_cartesian_search = False
+development_selection_protocol.parameter_revisiting_after_later_stage = False
+development_selection_protocol.partition = 'development only'
+development_selection_protocol.stage_1_class_gamma.held_fixed = 'no additional class margin; floor not yet selected; no temporal/rate tuning'
+development_selection_protocol.stage_1_class_gamma.objective = 'maximize macro mean per-actor/per-horizon full-box mask IoU against constructed development future reference'
+development_selection_protocol.stage_1_class_gamma.tie_break.TYPE_CYCLIST = 'larger k first (less unnecessary dimming)'
+development_selection_protocol.stage_1_class_gamma.tie_break.TYPE_PEDESTRIAN = 'larger k first (less unnecessary dimming)'
+development_selection_protocol.stage_1_class_gamma.tie_break.TYPE_VEHICLE = 'smaller k first (more protective threshold)'
+development_selection_protocol.stage_1_class_gamma.vary = 'k_c only'
+development_selection_protocol.stage_2_class_margin.classwise_primary_objective = 'maximize macro actor-horizon IoU after dilation'
+development_selection_protocol.stage_2_class_margin.cyclist_lateral_response_required = True
+development_selection_protocol.stage_2_class_margin.gamma = 'frozen Stage-1 development selection'
+development_selection_protocol.stage_2_class_margin.mandatory_nonzero_uncertainty_response = True
+development_selection_protocol.stage_2_class_margin.tie_break_order[0] = 'lower over-masking area'
+development_selection_protocol.stage_2_class_margin.tie_break_order[1] = 'smaller base margin'
+development_selection_protocol.stage_2_class_margin.tie_break_order[2] = 'smaller uncertainty multiplier'
+development_selection_protocol.stage_2_class_margin.tie_break_order[3] = 'smaller closing/lateral multiplier'
+development_selection_protocol.stage_2_class_margin.tie_break_order[4] = 'canonical numeric tuple'
+development_selection_protocol.stage_2_class_margin.vary = 'class base / uncertainty / vehicle-closing / cyclist-lateral coefficients'
+development_selection_protocol.stage_2_class_margin.vehicle_closing_response_required = True
+development_selection_protocol.stage_3_class_floors.arbitrary_weighted_sum = False
+development_selection_protocol.stage_3_class_floors.gamma_and_margin = 'fixed from stages 1 and 2'
+development_selection_protocol.stage_3_class_floors.lexicographic_selection[0] = 'minimize maximum element of normalized risk vector'
+development_selection_protocol.stage_3_class_floors.lexicographic_selection[1] = 'minimize arithmetic mean of normalized risk vector'
+development_selection_protocol.stage_3_class_floors.lexicographic_selection[2] = 'minimize over_masking_area'
+development_selection_protocol.stage_3_class_floors.lexicographic_selection[3] = 'minimize false_dimming'
+development_selection_protocol.stage_3_class_floors.lexicographic_selection[4] = 'canonical floor tuple (f_vehicle,f_pedestrian,f_cyclist)'
+development_selection_protocol.stage_3_class_floors.normalized_risk_vector[0] = 'vehicle_shadow_zone_violation'
+development_selection_protocol.stage_3_class_floors.normalized_risk_vector[1] = 'glare_risk_exposure'
+development_selection_protocol.stage_3_class_floors.normalized_risk_vector[2] = '1-pedestrian_visibility_proxy'
+development_selection_protocol.stage_3_class_floors.normalized_risk_vector[3] = '1-cyclist_visibility_proxy'
+development_selection_protocol.stage_3_class_floors.normalized_risk_vector[4] = '1-road_illumination_retention'
+development_selection_protocol.stage_3_class_floors.risk_vector_all_components_unit_interval = True
+development_selection_protocol.stage_3_class_floors.vary = 'class floor triplets only'
+development_selection_protocol.stage_4_temporal_and_rate.all_class_parameters = 'fixed from stages 1-3'
+development_selection_protocol.stage_4_temporal_and_rate.lexicographic_selection[0] = 'minimize maximum normalized safety-risk component'
+development_selection_protocol.stage_4_temporal_and_rate.lexicographic_selection[1] = 'minimize mean normalized safety-risk component'
+development_selection_protocol.stage_4_temporal_and_rate.lexicographic_selection[2] = 'minimize temporal mean_absolute_change_rate'
+development_selection_protocol.stage_4_temporal_and_rate.lexicographic_selection[3] = 'minimize flicker_change_rate'
+development_selection_protocol.stage_4_temporal_and_rate.lexicographic_selection[4] = 'minimize rate-limit safety-override fraction'
+development_selection_protocol.stage_4_temporal_and_rate.lexicographic_selection[5] = 'minimize over_masking_area'
+development_selection_protocol.stage_4_temporal_and_rate.lexicographic_selection[6] = 'canonical temporal/rate tuple'
+development_selection_protocol.stage_4_temporal_and_rate.vary = 'smoothing time constant and finite dim/bright rate pair'
+development_selection_protocol.staged_search = True
+frozen_inputs.Part3A3_handoff.path = '/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3a3_to_part3b_handoff.json'
+frozen_inputs.Part3A3_report.path = '/home/agni/waymo/iscai_stage6/reports/block66_part3a3_operator_capability_correction.json'
+frozen_inputs.development_cohort.path = '/home/agni/waymo/iscai_stage6/artifacts/block66/block66_class_aware_development_cohort_120.jsonl'
+frozen_inputs.development_cohort.sha256 = '57440e3d976e7aeff44811b5eeb075dc56e0e0e070a3832ec72d354253b998c9'
+frozen_inputs.eligibility_freeze.path = '/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligibility_freeze_manifest.json'
+frozen_inputs.geometry_source.path = '/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/geometry.py'
+frozen_inputs.illumination_source.path = '/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/illumination.py'
+frozen_inputs.mc_numeric_config.path = '/home/agni/waymo/iscai_stage6/configs/block64_mc_grid_numeric_freeze.json'
+frozen_inputs.part2c2a_report.path = '/home/agni/waymo/iscai_stage6/reports/block66_part2c2a_probabilistic_kernel_binding_audit.json'
+frozen_inputs.part_a_reactive_source.path = '/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/part_a_reactive.py'
+frozen_inputs.pocc_freeze.path = '/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c2b_pocc_freeze_manifest.json'
+frozen_inputs.pocc_manifest.path = '/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c2b_eligible_actor_pocc_manifest.jsonl'
+frozen_inputs.pocc_report.path = '/home/agni/waymo/iscai_stage6/reports/block66_part2c2b_eligible_n8192_pocc.json'
+frozen_inputs.predictive_mask_source.path = '/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/predictive_mask.py'
+frozen_inputs.probabilistic_occupancy_source.path = '/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_occupancy.py'
+frozen_probabilistic_runtime.threshold_semantics = 'STRICT_GREATER_THAN'
+next_implementation_gate.development_parameter_sweep = 'BLOCKED_UNTIL_PART3C_RUNTIME_PASS'
+next_implementation_gate.requirements_before_any_sweep[1] = 'unit-test exact strict-gamma semantics'
+next_implementation_gate.requirements_before_any_sweep[2] = 'unit-test margin expansion in theta cells'
+next_implementation_gate.requirements_before_any_sweep[3] = 'unit-test class floors and no-VRU-blackout invariant'
+next_implementation_gate.requirements_before_any_sweep[7] = 'unit-test safety-floor override accounting'
+next_implementation_gate.requirements_before_any_sweep[10] = 'fresh Stage6 regression'
+predictive_mask_aggregation.per_actor = 'strict class threshold followed by class-aware angular dilation'
+preserved_PartA_semantics.class_aware_predictive_margin = 'additional expansion above the frozen Part-A generic safety semantics'
+preserved_PartA_semantics.generic_lateral_margin_m = 1.0
+preserved_PartA_semantics.generic_radial_margin_m = 4.0
+preserved_PartA_semantics.generic_reactive_safety_margin = 'preserved, not replaced'
+purpose = 'Freeze the complete class-aware predictive ADB policy family, candidate-generation rules, evaluator formulas, class overlap semantics, temporal smoothing semantics, actuation-rate-limit semantics and staged development-only selection procedure before any class-policy sweep.'
+reactive_fallback_inside_class_aware_controller.class_floor_applied = True
+required_runtime_components_to_implement_next[1] = 'class_aware_predictive_margin_operator'
+road_ROI.construction = 'map each frozen theta/range ground-cell center to H0 XY; include cell when its XY distance to a causal/static WOMD lane-center polyline is <= 1.75 m'
+road_ROI.empty_ROI = 'NA and excluded from macro average'
+seven_ADB_baseline_factorization.4_uncertainty_aware_predictive_ADB.margin = 'single shared sigma_lat-responsive margin family; no class terms'
+seven_ADB_baseline_factorization.5_class_agnostic_predictive_ADB.additional_uncertainty_margin = False
+seven_ADB_baseline_factorization.5_class_agnostic_predictive_ADB.class_specific_floor = False
+seven_ADB_baseline_factorization.5_class_agnostic_predictive_ADB.gamma = 0.5
+seven_ADB_baseline_factorization.6_class_aware_predictive_ADB.class_floor = True
+seven_ADB_baseline_factorization.6_class_aware_predictive_ADB.class_gamma = True
+seven_ADB_baseline_factorization.6_class_aware_predictive_ADB.class_margin = True
+source_of_numeric_candidate_grids = 'Stage6 implementation preregistration; not numerical values supplied by the PDF or SAE J3069.'
+stage = 6
+status = 'PREREGISTERED_PARAMETERIZATION_AND_DEVELOPMENT_SELECTION_RULE'
+temporal_smoothing.candidate_time_constants_ms[0] = 50
+temporal_smoothing.candidate_time_constants_ms[1] = 100
+temporal_smoothing.candidate_time_constants_ms[2] = 200
+temporal_smoothing.candidate_time_constants_ms[3] = 400
+temporal_smoothing.candidate_values_are_PDF_values = False
+temporal_smoothing.zero_smoothing_candidate = False
+vehicle_relevant_region_surrogates.controller_side_heading_source = 'predicted/samplewise heading only; no future GT heading'
+vehicle_relevant_region_surrogates.evaluator_side_heading_source = 'future GT heading permitted only after controller decision for constructed oracle/safety-reference evaluation'
+vehicle_relevant_region_surrogates.local_box_fraction_convention = 'FractionalBoxRegion bounds relative to actor-local length/width/height axes'
+vehicle_relevant_region_surrogates.oncoming_front_upper_surrogate.x_bounds[0] = 0.0
+vehicle_relevant_region_surrogates.oncoming_front_upper_surrogate.x_bounds[1] = 0.5
+vehicle_relevant_region_surrogates.oncoming_front_upper_surrogate.y_bounds[0] = -0.5
+vehicle_relevant_region_surrogates.oncoming_front_upper_surrogate.y_bounds[1] = 0.5
+vehicle_relevant_region_surrogates.oncoming_front_upper_surrogate.z_bounds[0] = 0.0
+vehicle_relevant_region_surrogates.oncoming_front_upper_surrogate.z_bounds[1] = 0.5
+vehicle_relevant_region_surrogates.oncoming_rule = 'cos(actor_heading_H0_rad) < 0'
+vehicle_relevant_region_surrogates.physical_ground_truth_claim = False
+vehicle_relevant_region_surrogates.preceding_rear_upper_surrogate.x_bounds[0] = -0.5
+vehicle_relevant_region_surrogates.preceding_rear_upper_surrogate.x_bounds[1] = 0.0
+vehicle_relevant_region_surrogates.preceding_rear_upper_surrogate.y_bounds[0] = -0.5
+vehicle_relevant_region_surrogates.preceding_rear_upper_surrogate.y_bounds[1] = 0.5
+vehicle_relevant_region_surrogates.preceding_rear_upper_surrogate.z_bounds[0] = 0.0
+vehicle_relevant_region_surrogates.preceding_rear_upper_surrogate.z_bounds[1] = 0.5
+vehicle_relevant_region_surrogates.preceding_rule = 'cos(actor_heading_H0_rad) >= 0'
+vehicle_relevant_region_surrogates.required_before_parameter_sweep = 'materialize/project these surrogate regions from the same frozen N8192 trajectory samples for vehicle compliance evidence; full-box P_occ remains the primary controller occupancy'
+vehicle_relevant_region_surrogates.semantics = 'geometry-based heading-dependent surrogate only; WOMD does not provide actual windshield, mirror or driver locations'
+
+----- PREFLIGHT SEMANTIC FLAGS -----
+strict_threshold_surface           = True
+iou_surface                        = True
+macro_surface                      = True
+tie_surface                        = True
+m_extra_surface                    = True
+atan2_surface                      = True
+sigma_lat_surface                  = True
+closing_surface                    = True
+cyclist_lateral_surface            = True
+vehicle_surrogate_surface          = True
+
+predictive dilation margin source = NOT GUESSED / MUST BE RESOLVED FROM ABOVE FROZEN TEXT
+
+===== D. PART3C FROZEN RUNTIME OPERATOR API =====
+
+------------------------------------------------------------------------------
+iscai_stage6.adb.class_aware_policy.threshold_occupancy_counts_strict_k
+------------------------------------------------------------------------------
+signature = (occupancy_counts, *, k: 'int', sample_count: 'int' = 8192) -> 'np.ndarray'
+def threshold_occupancy_counts_strict_k(
+    occupancy_counts,
+    *,
+    k: int,
+    sample_count: int = 8192,
+) -> np.ndarray:
+    """
+    Exact preregistered occupancy threshold:
+
+        M = 1[count > k]
+
+    This avoids any float threshold ambiguity.
+    """
+
+    if isinstance(k, bool):
+        raise ValueError(
+            "k must be an integer occupancy quantum"
+        )
+
+    k_value = int(k)
+
+    if k_value != k:
+        raise ValueError(
+            "k must be an exact integer"
+        )
+
+    n = int(sample_count)
+
+    if n <= 0:
+        raise ValueError(
+            "sample_count must be positive"
+        )
+
+    if not (
+        0 <= k_value <= n - 1
+    ):
+        raise ValueError(
+            "k must satisfy 0 <= k <= sample_count-1"
+        )
+
+    counts = np.asarray(
+        occupancy_counts
+    )
+
+    if not np.issubdtype(
+        counts.dtype,
+        np.integer,
+    ):
+        raise ValueError(
+            "occupancy_counts must have integer dtype"
+        )
+
+    if np.any(
+        counts < 0
+    ):
+        raise ValueError(
+            "occupancy_counts cannot be negative"
+        )
+
+    if np.any(
+        counts > n
+    ):
+        raise ValueError(
+            "occupancy_counts exceed sample_count"
+        )
+
+    return np.asarray(
+        counts > k_value,
+        dtype=bool,
+    )
+
+
+------------------------------------------------------------------------------
+iscai_stage6.adb.class_aware_policy.compute_class_aware_margin
+------------------------------------------------------------------------------
+signature = (actor_class: 'str', *, current_position_H0_m, mean_displacement_H0_m, covariance_H0_m2, horizon_s: 'float', base_margin_m: 'float', uncertainty_multiplier: 'float', motion_multiplier: 'float' = 0.0) -> 'MarginComputation'
+def compute_class_aware_margin(
+    actor_class: str,
+    *,
+    current_position_H0_m,
+    mean_displacement_H0_m,
+    covariance_H0_m2,
+    horizon_s: float,
+    base_margin_m: float,
+    uncertainty_multiplier: float,
+    motion_multiplier: float = 0.0,
+) -> MarginComputation:
+    """
+    Preregistered class-aware predictive margin.
+
+    The frozen Part-A generic 1 m lateral safety margin is
+    preserved and the class-aware term is ADDITIONAL.
+
+    Vehicle:
+        extra = b + u*sigma_lat + q*tau*v_close
+
+    Pedestrian:
+        extra = b + u*sigma_lat
+
+    Cyclist:
+        extra = b + u*sigma_lat + q*tau*v_lat
+    """
+
+    cls = _validate_actor_class(
+        actor_class
+    )
+
+    current_xy = _xy(
+        current_position_H0_m,
+        name="current_position_H0_m",
+    )
+
+    displacement_xy = _xy(
+        mean_displacement_H0_m,
+        name="mean_displacement_H0_m",
+    )
+
+    covariance_xy = _covariance_xy(
+        covariance_H0_m2
+    )
+
+    tau = _finite_scalar(
+        horizon_s,
+        name="horizon_s",
+    )
+
+    base = _finite_scalar(
+        base_margin_m,
+        name="base_margin_m",
+    )
+
+    uncertainty = _finite_scalar(
+        uncertainty_multiplier,
+        name="uncertainty_multiplier",
+    )
+
+    motion = _finite_scalar(
+        motion_multiplier,
+        name="motion_multiplier",
+    )
+
+    if tau <= 0.0:
+        raise ValueError(
+            "horizon_s must be > 0"
+        )
+
+    if base < 0.0:
+        raise ValueError(
+            "base_margin_m must be >= 0"
+        )
+
+    if uncertainty < 0.0:
+        raise ValueError(
+            "uncertainty_multiplier must be >= 0"
+        )
+
+    if motion < 0.0:
+        raise ValueError(
+            "motion_multiplier must be >= 0"
+        )
+
+    predicted_xy = (
+        current_xy
+        +
+        displacement_xy
+    )
+
+    predicted_range = float(
+        np.linalg.norm(
+            predicted_xy
+        )
+    )
+
+    current_range = float(
+        np.linalg.norm(
+            current_xy
+        )
+    )
+
+    predicted_denominator = max(
+        predicted_range,
+        float(PART_A_EPS),
+    )
+
+    lateral_los_predicted = np.asarray(
+        [
+            -predicted_xy[1]
+            /
+            predicted_denominator,
+
+            predicted_xy[0]
+            /
+            predicted_denominator,
+        ],
+        dtype=np.float64,
+    )
+
+    sigma_squared = float(
+        lateral_los_predicted
+        @
+        covariance_xy
+        @
+        lateral_los_predicted
+    )
+
+    if sigma_squared < 0.0:
+        if sigma_squared >= -1.0e-10:
+            sigma_squared = 0.0
+        else:
+            raise ValueError(
+                "negative lateral variance"
+            )
+
+    sigma_lat = math.sqrt(
+        sigma_squared
+    )
+
+    closing_speed = max(
+        0.0,
+        (
+            current_range
+            -
+            predicted_range
+        )
+        /
+        tau,
+    )
+
+    current_denominator = max(
+        current_range,
+        float(PART_A_EPS),
+    )
+
+    lateral_los_current = np.asarray(
+        [
+            -current_xy[1]
+            /
+            current_denominator,
+
+            current_xy[0]
+            /
+            current_denominator,
+        ],
+        dtype=np.float64,
+    )
+
+    cyclist_lateral_rate = (
+        abs(
+            float(
+                lateral_los_current
+                @
+                displacement_xy
+            )
+        )
+        /
+        tau
+    )
+
+    if cls == TYPE_VEHICLE:
+        additional = (
+            base
+            +
+            uncertainty
+            *
+            sigma_lat
+            +
+            motion
+            *
+            tau
+            *
+            closing_speed
+        )
+
+    elif cls == TYPE_PEDESTRIAN:
+        additional = (
+            base
+            +
+            uncertainty
+            *
+            sigma_lat
+        )
+
+    else:
+        additional = (
+            base
+            +
+            uncertainty
+            *
+            sigma_lat
+            +
+            motion
+            *
+            tau
+            *
+            cyclist_lateral_rate
+        )
+
+    generic_margin = float(
+        PART_A_LATERAL_SAFETY_MARGIN_M
+    )
+
+    total_margin = (
+        generic_margin
+        +
+        additional
+    )
+
+    return MarginComputation(
+        actor_class=cls,
+
+        predicted_center_H0_xy_m=(
+            float(
+                predicted_xy[0]
+            ),
+            float(
+                predicted_xy[1]
+            ),
+        ),
+
+        predicted_range_m=float(
+            predicted_range
+        ),
+
+        lateral_predictive_sigma_m=float(
+            sigma_lat
+        ),
+
+        closing_speed_mps=float(
+            closing_speed
+        ),
+
+        cyclist_lateral_rate_mps=float(
+            cyclist_lateral_rate
+        ),
+
+        part_a_generic_lateral_margin_m=float(
+            generic_margin
+        ),
+
+        additional_class_margin_m=float(
+            additional
+        ),
+
+        total_lateral_margin_m=float(
+            total_margin
+        ),
+    )
+
+
+------------------------------------------------------------------------------
+iscai_stage6.adb.class_aware_policy.angular_margin_cells
+------------------------------------------------------------------------------
+signature = (*, total_margin_m: 'float', predicted_range_m: 'float', theta_step_rad: 'float') -> 'int'
+def angular_margin_cells(
+    *,
+    total_margin_m: float,
+    predicted_range_m: float,
+    theta_step_rad: float,
+) -> int:
+    """
+    Convert total lateral safety expansion to frozen
+    theta-grid cells using the preregistered ceil rule.
+    """
+
+    margin = _finite_scalar(
+        total_margin_m,
+        name="total_margin_m",
+    )
+
+    actor_range = _finite_scalar(
+        predicted_range_m,
+        name="predicted_range_m",
+    )
+
+    step = _finite_scalar(
+        theta_step_rad,
+        name="theta_step_rad",
+    )
+
+    if margin < 0.0:
+        raise ValueError(
+            "total_margin_m must be >= 0"
+        )
+
+    if actor_range < 0.0:
+        raise ValueError(
+            "predicted_range_m must be >= 0"
+        )
+
+    if step <= 0.0:
+        raise ValueError(
+            "theta_step_rad must be > 0"
+        )
+
+    delta_theta = math.atan2(
+        margin,
+        max(
+            actor_range,
+            float(PART_A_EPS),
+        ),
+    )
+
+    return int(
+        math.ceil(
+            delta_theta
+            /
+            step
+        )
+    )
+
+
+------------------------------------------------------------------------------
+iscai_stage6.adb.class_aware_policy.dilate_mask_theta
+------------------------------------------------------------------------------
+signature = (mask, *, dilation_cells: 'int') -> 'np.ndarray'
+def dilate_mask_theta(
+    mask,
+    *,
+    dilation_cells: int,
+) -> np.ndarray:
+    """
+    Symmetric theta-axis dilation only.
+
+    Expected scientific shape:
+        [horizon, theta, range]
+
+    No range dilation and no vertical/pixel dimension.
+    """
+
+    source = np.asarray(
+        mask,
+        dtype=bool,
+    )
+
+    if source.ndim != 3:
+        raise ValueError(
+            "mask must have shape "
+            "[horizon, theta, range]"
+        )
+
+    cells = int(
+        dilation_cells
+    )
+
+    if cells != dilation_cells:
+        raise ValueError(
+            "dilation_cells must be an integer"
+        )
+
+    if cells < 0:
+        raise ValueError(
+            "dilation_cells must be >= 0"
+        )
+
+    if cells == 0:
+        return source.copy()
+
+    result = source.copy()
+
+    n_theta = int(
+        source.shape[1]
+    )
+
+    for offset in range(
+        1,
+        cells + 1,
+    ):
+        if offset >= n_theta:
+            break
+
+        result[
+            :,
+            offset:,
+            :,
+        ] |= source[
+            :,
+            :-offset,
+            :,
+        ]
+
+        result[
+            :,
+            :-offset,
+            :,
+        ] |= source[
+            :,
+            offset:,
+            :,
+        ]
+
+    return result
+
+
+===== E. EVALUATOR-ONLY FUTURE BOX API BINDING =====
+
+------------------------------------------------------------------------------
+iscai_stage6.adb.geometry.validate_controller_provenance
+------------------------------------------------------------------------------
+signature = (*, state_source: 'str', orientation_source: 'str', controller_path: 'bool') -> 'None'
+def validate_controller_provenance(
+    *,
+    state_source: str,
+    orientation_source: str,
+    controller_path: bool,
+) -> None:
+
+    state_source = str(
+        state_source
+    )
+
+    orientation_source = str(
+        orientation_source
+    )
+
+    if (
+        orientation_source
+        not in
+        _ALLOWED_ORIENTATION_SOURCES
+    ):
+        raise ValueError(
+            "Unknown orientation source: "
+            f"{orientation_source}"
+        )
+
+    if not controller_path:
+        return
+
+    if (
+        state_source
+        in
+        _FORBIDDEN_CONTROLLER_STATE_SOURCES
+    ):
+        raise ValueError(
+            "Future/oracle annotation is forbidden "
+            "on the Stage6 controller path: "
+            f"{state_source}"
+        )
+
+    if (
+        state_source
+        not in
+        _ALLOWED_CONTROLLER_STATE_SOURCES
+    ):
+        raise ValueError(
+            "Unapproved controller state source: "
+            f"{state_source}"
+        )
+
+    if (
+        orientation_source
+        ==
+        "oracle_evaluator_only"
+    ):
+        raise ValueError(
+            "Oracle orientation is forbidden "
+            "on the controller path"
+        )
+
+
+------------------------------------------------------------------------------
+iscai_stage6.adb.geometry.project_box_to_headlamp
+------------------------------------------------------------------------------
+signature = (box: 'Box3D', *, state_source: 'str', orientation_source: 'str', controller_path: 'bool' = True) -> 'ProjectedBox'
+def project_box_to_headlamp(
+    box: Box3D,
+    *,
+    state_source: str,
+    orientation_source: str,
+    controller_path: bool = True,
+) -> ProjectedBox:
+    """
+    Full 3D actor-box projection.
+
+    Centroid projection is retained only as diagnostic metadata;
+    all extent fields are derived from all 8 physical corners.
+    """
+
+    validate_controller_provenance(
+        state_source=state_source,
+        orientation_source=orientation_source,
+        controller_path=controller_path,
+    )
+
+    corners_xyz = box_corners_headlamp(
+        box
+    )
+
+    corners = project_points_to_headlamp(
+        corners_xyz
+    )
+
+    centroid = project_points_to_headlamp(
+        box.center[
+            None,
+            :
+        ]
+    )
+
+    (
+        theta_center,
+        theta_span,
+        theta_min,
+        theta_max,
+    ) = _minimal_circular_interval(
+        corners.theta_rad
+    )
+
+    return ProjectedBox(
+        box=box,
+        corners=corners,
+        centroid=centroid,
+
+        theta_center_rad=theta_center,
+        theta_span_rad=theta_span,
+        theta_min_unwrapped_rad=theta_min,
+        theta_max_unwrapped_rad=theta_max,
+
+        ground_range_min_m=float(
+            np.min(
+                corners.ground_range_m
+            )
+        ),
+
+        ground_range_max_m=float(
+            np.max(
+                corners.ground_range_m
+            )
+        ),
+
+        range_3d_min_m=float(
+            np.min(
+                corners.range_3d_m
+            )
+        ),
+
+        range_3d_max_m=float(
+            np.max(
+                corners.range_3d_m
+            )
+        ),
+
+        phi_min_rad=float(
+            np.min(
+                corners.phi_rad
+            )
+        ),
+
+        phi_max_rad=float(
+            np.max(
+                corners.phi_rad
+            )
+        ),
+
+        state_source=str(
+            state_source
+        ),
+
+        orientation_source=str(
+            orientation_source
+        ),
+
+        controller_path=bool(
+            controller_path
+        ),
+    )
+
+
+------------------------------------------------------------------------------
+iscai_stage6.adb.womd_geometry.world_heading_to_headlamp_yaw
+------------------------------------------------------------------------------
+signature = (*, heading_W_rad: 'float', T_H0_from_W: 'Any') -> 'float'
+def world_heading_to_headlamp_yaw(
+    *,
+    heading_W_rad: float,
+    T_H0_from_W: Any,
+) -> float:
+    """
+    Transform an actor's world-frame forward direction into H0
+    and recover yaw from the projected horizontal direction.
+
+    No future heading is used.
+    """
+
+    heading = float(
+        heading_W_rad
+    )
+
+    if not math.isfinite(
+        heading
+    ):
+        raise ValueError(
+            "heading_W_rad must be finite"
+        )
+
+    forward_W = np.asarray(
+        [
+            math.cos(heading),
+            math.sin(heading),
+            0.0,
+        ],
+        dtype=np.float64,
+    )
+
+    forward_H0 = (
+        _rotation_matrix(
+            T_H0_from_W
+        )
+        @
+        forward_W
+    )
+
+    horizontal_norm = math.hypot(
+        float(
+            forward_H0[0]
+        ),
+        float(
+            forward_H0[1]
+        ),
+    )
+
+    if horizontal_norm <= 1.0e-12:
+        raise ValueError(
+            "Transformed actor forward vector "
+            "has zero horizontal norm"
+        )
+
+    return wrap_angle(
+        math.atan2(
+            float(
+                forward_H0[1]
+            ),
+            float(
+                forward_H0[0]
+            ),
+        )
+    )
+
+
+build_causal_adb_actor_boxes signature = (*, scenario: 'Any', adapted: 'Any', allowed_classes: 'frozenset[str]' = frozenset({'TYPE_VEHICLE', 'TYPE_PEDESTRIAN', 'TYPE_CYCLIST'})) -> 'tuple[CausalADBActorBox, ...]'
+
+DeterministicFutureProjectedBox signature = (horizon_s: 'float', center_H0_m: 'Vec3', yaw_H0_rad: 'float', heading_fallback_used: 'bool', box: 'Box3D', projection: 'ProjectedBox') -> None
+DeterministicFutureProjectedBox fields = ['horizon_s', 'center_H0_m', 'yaw_H0_rad', 'heading_fallback_used', 'box', 'projection']
+
+------------------------------------------------------------------------------
+iscai_stage6.adb.probabilistic_occupancy._projected_theta_range_points
+------------------------------------------------------------------------------
+signature = (future_item) -> 'np.ndarray'
+def _projected_theta_range_points(
+    future_item,
+) -> np.ndarray:
+    """
+    Use all eight physical projected box corners.
+
+    Convert H0/headlamp XYZ corner locations to
+    (theta, ground-range) coordinates.
+
+    No centroid surrogate is used.
+    """
+
+    xyz = np.asarray(
+        future_item
+        .projection
+        .corners
+        .xyz,
+        dtype=np.float64,
+    )
+
+    if xyz.shape != (
+        8,
+        3,
+    ):
+        raise ValueError(
+            "Every projected physical box must "
+            "contain exactly eight XYZ corners."
+        )
+
+    if not np.all(
+        np.isfinite(
+            xyz
+        )
+    ):
+        raise ValueError(
+            "Projected corner XYZ must be finite."
+        )
+
+    theta = np.arctan2(
+        xyz[
+            :,
+            1
+        ],
+        xyz[
+            :,
+            0
+        ],
+    )
+
+    ground_range = np.hypot(
+        xyz[
+            :,
+            0
+        ],
+        xyz[
+            :,
+            1
+        ],
+    )
+
+    result = np.column_stack(
+        (
+            theta,
+            ground_range,
+        )
+    )
+
+    if not np.all(
+        np.isfinite(
+            result
+        )
+    ):
+        raise ValueError(
+            "Projected theta/r points must be finite."
+        )
+
+    return result
+
+
+------------------------------------------------------------------------------
+iscai_stage6.adb.probabilistic_occupancy.rasterize_projected_full_box
+------------------------------------------------------------------------------
+signature = (future_item, grid: 'OccupancyGrid') -> 'np.ndarray'
+def rasterize_projected_full_box(
+    future_item,
+    grid: OccupancyGrid,
+) -> np.ndarray:
+    """
+    Rasterize one sampled projected full box.
+
+    Returns bool [N_theta, N_range].
+
+    Only candidate cells inside the hull bounding box are
+    tested, but inclusion is against the convex hull itself,
+    not its rectangular bounding box.
+    """
+
+    theta_axis = np.asarray(
+        grid.theta_centers_rad,
+        dtype=np.float64,
+    )
+
+    range_axis = np.asarray(
+        grid.range_centers_m,
+        dtype=np.float64,
+    )
+
+    result = np.zeros(
+        grid.shape,
+        dtype=bool,
+    )
+
+    points = (
+        _projected_theta_range_points(
+            future_item
+        )
+    )
+
+    hull = convex_hull_theta_range(
+        points
+    )
+
+    if hull.shape[
+        0
+    ] < 3:
+        return result
+
+    theta_min = float(
+        np.min(
+            hull[
+                :,
+                0
+            ]
+        )
+    )
+
+    theta_max = float(
+        np.max(
+            hull[
+                :,
+                0
+            ]
+        )
+    )
+
+    range_min = float(
+        np.min(
+            hull[
+                :,
+                1
+            ]
+        )
+    )
+
+    range_max = float(
+        np.max(
+            hull[
+                :,
+                1
+            ]
+        )
+    )
+
+    theta_lo = int(
+        np.searchsorted(
+            theta_axis,
+            theta_min,
+            side="left",
+        )
+    )
+
+    theta_hi = int(
+        np.searchsorted(
+            theta_axis,
+            theta_max,
+            side="right",
+        )
+    )
+
+    range_lo = int(
+        np.searchsorted(
+            range_axis,
+            range_min,
+            side="left",
+        )
+    )
+
+    range_hi = int(
+        np.searchsorted(
+            range_axis,
+            range_max,
+            side="right",
+        )
+    )
+
+    if (
+        theta_lo
+        >=
+        theta_hi
+        or
+        range_lo
+        >=
+        range_hi
+    ):
+        return result
+
+    theta_candidate = theta_axis[
+        theta_lo:
+        theta_hi
+    ]
+
+    range_candidate = range_axis[
+        range_lo:
+        range_hi
+    ]
+
+    theta_mesh, range_mesh = np.meshgrid(
+        theta_candidate,
+        range_candidate,
+        indexing="ij",
+    )
+
+    query = np.column_stack(
+        (
+            theta_mesh.ravel(),
+            range_mesh.ravel(),
+        )
+    )
+
+    inside = (
+        _points_inside_ccw_convex_polygon(
+            query,
+            hull,
+        )
+    ).reshape(
+        theta_mesh.shape
+    )
+
+    result[
+        theta_lo:
+        theta_hi,
+        range_lo:
+        range_hi,
+    ] = inside
+
+    return result
+
+
+===== F. DEVELOPMENT RAW-WOMD RANDOM-ACCESS ROUTE =====
+
+------------------------------------------------------------------------------
+iscai_stage4.data.real_pipeline.read_training_scenario
+------------------------------------------------------------------------------
+signature = (record: 'dict') -> 'scenario_pb2.Scenario'
+def read_training_scenario(
+    record: dict,
+) -> scenario_pb2.Scenario:
+    path = (
+        TRAIN_MOTION
+        /
+        record[
+            "motion_shard"
+        ]
+    )
+
+    if not path.is_file():
+        raise FileNotFoundError(
+            path
+        )
+
+    offset = int(
+        record[
+            "compact_record_offset"
+        ]
+    )
+
+    expected_payload_length = int(
+        record[
+            "payload_length"
+        ]
+    )
+
+    with path.open(
+        "rb"
+    ) as stream:
+        stream.seek(
+            offset
+        )
+
+        length_bytes = (
+            stream.read(8)
+        )
+
+        if len(
+            length_bytes
+        ) != 8:
+            raise RuntimeError(
+                "Invalid TFRecord "
+                "length header."
+            )
+
+        payload_length = (
+            struct.unpack(
+                "<Q",
+                length_bytes,
+            )[0]
+        )
+
+        if (
+            payload_length
+            !=
+            expected_payload_length
+        ):
+            raise RuntimeError(
+                "Training-index payload "
+                "length does not match "
+                "canonical shard."
+            )
+
+        if len(
+            stream.read(4)
+        ) != 4:
+            raise RuntimeError(
+                "Missing TFRecord "
+                "length CRC."
+            )
+
+        payload = stream.read(
+            payload_length
+        )
+
+        if len(
+            payload
+        ) != payload_length:
+            raise RuntimeError(
+                "Incomplete TFRecord "
+                "payload."
+            )
+
+        if len(
+            stream.read(4)
+        ) != 4:
+            raise RuntimeError(
+                "Missing TFRecord "
+                "data CRC."
+            )
+
+    scenario = (
+        scenario_pb2.Scenario()
+    )
+
+    scenario.ParseFromString(
+        payload
+    )
+
+    if (
+        scenario.scenario_id
+        !=
+        record["scenario_id"]
+    ):
+        raise RuntimeError(
+            "Canonical training "
+            "scenario ID mismatch."
+        )
+
+    return scenario
+
+
+----- DEVELOPMENT MANIFEST RESOLUTION -----
+candidate path count = 1
+/home/agni/waymo/iscai_stage4/artifacts/block41/development.jsonl | SHA256 = e4689698bddd80e58add7267f791aea90ef4bef0309ca18d0d7a9e7e94fe7e5c
+resolved development manifest = /home/agni/waymo/iscai_stage4/artifacts/block41/development.jsonl
+resolved development SHA256 = e4689698bddd80e58add7267f791aea90ef4bef0309ca18d0d7a9e7e94fe7e5c
+
+development manifest first-record schema:
+keys = ['anchor_class_counts', 'compact_record_offset', 'motion_shard', 'partition', 'partition_rank', 'payload_length', 'scenario_id', 'selection_hash']
+anchor_class_counts: dict keys = ['TYPE_PEDESTRIAN', 'TYPE_VEHICLE']
+compact_record_offset: 26519064
+motion_shard: 'paired-from-training.tfrecord-00159-of-01000'
+partition: 'development'
+partition_rank: 1
+payload_length: 992424
+scenario_id: 'a6432ee002f8046d'
+selection_hash: '1e423739971605a7172a8dff1e04ddfee211a4d0bf89c96413aa9e686f4014c3'
+
+===== G. FROZEN JOIN / POSTERIOR / SURROGATE SCHEMAS =====
+
+cohort first record:
+keys = ['cohort_rank', 'cohort_stratum', 'cohort_stratum_rank', 'compact_record_offset', 'current_anchor_core_counts', 'current_time_index', 'headlamp_relevant_counts', 'headlamp_stratum', 'motion_shard', 'objects_of_interest_used', 'payload_length', 'scenario_id', 'selection_hash', 'selection_uses_centroid', 'selection_uses_full_box', 'selection_uses_future', 'source_rank', 'tracks_to_predict_used']
+cohort_rank: 0
+cohort_stratum: 'cyclist'
+cohort_stratum_rank: 0
+compact_record_offset: 18962707
+current_anchor_core_counts: dict keys = ['TYPE_CYCLIST', 'TYPE_PEDESTRIAN', 'TYPE_VEHICLE']
+current_time_index: 10
+headlamp_relevant_counts: dict keys = ['TYPE_CYCLIST', 'TYPE_PEDESTRIAN', 'TYPE_VEHICLE']
+headlamp_stratum: 'cyclist'
+motion_shard: 'paired-from-training.tfrecord-00766-of-01000'
+objects_of_interest_used: False
+payload_length: 1452062
+scenario_id: 'f72a05a05035feb8'
+selection_hash: '1e4334ce228a632e787057dea86f5367816823c4822c6c464d214d6a4cd7516b'
+selection_uses_centroid: False
+selection_uses_full_box: True
+selection_uses_future: False
+source_rank: 10
+tracks_to_predict_used: False
+
+eligible predictive match first record:
+keys = ['actor_box_index', 'association_anchor_distance_m', 'centroid_only', 'cohort_index', 'current_box_H0', 'current_headlamp_eligible', 'eligibility_geometry', 'eligibility_time', 'future_used_for_eligibility', 'maximum_range_m', 'object_type', 'objects_of_interest_used', 'posterior_key', 'posterior_sha_source', 'prediction_id', 'route', 'scenario_id', 'theta_domain_deg', 'tracks_to_predict_used']
+actor_box_index: 0
+association_anchor_distance_m: 2.2831229250760536
+centroid_only: False
+cohort_index: 0
+current_box_H0: dict keys = ['center_xyz_H0_m', 'height_m', 'length_m', 'width_m', 'yaw_rad']
+current_headlamp_eligible: True
+eligibility_geometry: 'continuous_full_box_ground_footprint_finite_sector'
+eligibility_time: 'CURRENT_CAUSAL_ANCHOR'
+future_used_for_eligibility: False
+maximum_range_m: 150.0
+object_type: 'TYPE_VEHICLE'
+objects_of_interest_used: False
+posterior_key: dict keys = ['prediction_id', 'scenario_id']
+posterior_sha_source: 'f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd'
+prediction_id: 's3trk-000027'
+route: 'PREDICTIVE_MATCH'
+scenario_id: 'f72a05a05035feb8'
+theta_domain_deg: list length = 2
+tracks_to_predict_used: False
+
+P_occ first manifest record:
+keys = ['actor_box_index', 'actor_rank', 'cohort_index', 'object_type', 'occupancy_counts_path', 'occupancy_counts_sha256', 'prediction_id', 'sample_count', 'scenario_id', 'seed', 'summary']
+actor_box_index: 0
+actor_rank: 0
+cohort_index: 0
+object_type: 'TYPE_VEHICLE'
+occupancy_counts_path: '/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0000__f72a05a05035feb8__s3trk-000027.counts.npy'
+occupancy_counts_sha256: 'ca5a29bf2ac96c7bf45eec45ce19fe77d95dc5389195514fb41677f57e1a2b99'
+prediction_id: 's3trk-000027'
+sample_count: 8192
+scenario_id: 'f72a05a05035feb8'
+seed: 20260821
+summary: dict keys = ['has_any_support', 'maximum_count_by_horizon', 'maximum_probability_by_horizon', 'nonzero_cells_by_horizon', 'occupancy_count_mass_by_horizon', 'occupancy_probability_mass_by_horizon']
+
+development posterior first record:
+keys = ['calibrated_predictive_covariance_H0_m2', 'cohort_index', 'future_GT_used', 'horizons_s', 'latest_position_H0_m', 'mean_calibration', 'mean_displacement_H0_m', 'objects_of_interest_used', 'posterior_family', 'prediction_id', 'raw_predictive_covariance_H0_m2', 'scenario_id', 'tracks_to_predict_used', 'truth_id_used', 'variance_scale_alpha_h']
+calibrated_predictive_covariance_H0_m2: list length = 4
+cohort_index: 0
+future_GT_used: False
+horizons_s: list length = 4
+latest_position_H0_m: list length = 3
+mean_calibration: 'UNCHANGED'
+mean_displacement_H0_m: list length = 4
+objects_of_interest_used: False
+posterior_family: 'calibrated_Gaussian_GRU'
+prediction_id: 's3trk-000000'
+raw_predictive_covariance_H0_m2: list length = 4
+scenario_id: 'f72a05a05035feb8'
+tracks_to_predict_used: False
+truth_id_used: False
+variance_scale_alpha_h: list length = 4
+
+vehicle surrogate first record:
+keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+actor_box_index: 0
+actor_rank: 0
+causality: dict keys = ['future_GT', 'objects_of_interest', 'tracks_to_predict', 'truth_ID']
+cohort_index: 0
+full_box_parity_exact: True
+full_box_parity_tolerance: None
+geometry_semantics: dict keys = ['axis', 'rotation']
+object_type: 'TYPE_VEHICLE'
+persisted_occupancy_content_sha256: '9f8c3a3165198ee60f6a8d5635c45e394bc7751460e1688fc2d37ff6578f249b'
+persisted_occupancy_file_sha256: 'ca5a29bf2ac96c7bf45eec45ce19fe77d95dc5389195514fb41677f57e1a2b99'
+persisted_occupancy_path: '/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0000__f72a05a05035feb8__s3trk-000027.counts.npy'
+prediction_id: 's3trk-000027'
+recovery_contract_sha256: 'ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1'
+replayed_occupancy_content_sha256: '9f8c3a3165198ee60f6a8d5635c45e394bc7751460e1688fc2d37ff6578f249b'
+sample_count: 8192
+scenario_id: 'f72a05a05035feb8'
+seed: 20260821
+status: 'PASS_EXACT_REPLAY_AND_SURROGATE_PROJECTION'
+vehicle_surrogate: dict keys = ['heading_samples_sha256', 'horizon_summaries', 'oncoming', 'physical_annotation_claim', 'preceding', 'samplewise_projection_sha256', 'trajectory_samples_sha256', 'vertical_actuator_claim']
+
+===== H. FRESH STAGE6 REGRESSION =====
+......................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 166 tests in 0.178s
+
+OK
+Stage6 regression = PASS | 166
+
+==============================================================================
+BLOCK 6.7 PART 1/2 — READ-ONLY BINDING PREFLIGHT — FINAL
+==============================================================================
+STATUS = PASS_BLOCK67_PART1OF2_BINDING_PREFLIGHT
+Part3B frozen semantics          = EXTRACTED
+Part3C runtime operators         = EXACT BOUND
+evaluator-only box route         = EXACT BOUND
+raw development WOMD route       = EXACT BOUND
+development manifest             = EXACT SHA BOUND
+P_occ actors                     = 877
+vehicle surrogate evidence       = 719
+policy sweep executed            = NO
+numeric policy selected          = NO
+development objective evaluated  = NO
+future GT read                   = NO
+formal outcomes read             = NO
+training / recalibration         = NO / NO
+new model forward                = NO
+new MC sampling                  = NO
+Stage6 regression                = PASS | 166
+NEXT = BLOCK6.7 PART 1/2 RETRY — EXECUTE FROZEN DEVELOPMENT GAMMA + MARGIN SELECTION
+terminal remains open = YES
+==============================================================================

@@ -1,0 +1,27 @@
+"""Agni Stage 5 — receiver-aware probabilistic beam control."""
+
+from .contracts import (
+    BEAM_BASELINES,
+    CODEBOOK_SIZES,
+    DEFAULT_PROBABILITY_MASS_TARGET,
+    FORMAL_POPULATION_N,
+    HORIZONS_S,
+    OPTICAL_LINK_CHAIN,
+    PRIMARY_RECEIVER_POLICY,
+    PROBABILITY_MASS_TARGETS,
+    RECEIVER_GEOMETRY_MODES,
+    contract_dict,
+)
+
+__all__ = [
+    "BEAM_BASELINES",
+    "CODEBOOK_SIZES",
+    "DEFAULT_PROBABILITY_MASS_TARGET",
+    "FORMAL_POPULATION_N",
+    "HORIZONS_S",
+    "OPTICAL_LINK_CHAIN",
+    "PRIMARY_RECEIVER_POLICY",
+    "PROBABILITY_MASS_TARGETS",
+    "RECEIVER_GEOMETRY_MODES",
+    "contract_dict",
+]

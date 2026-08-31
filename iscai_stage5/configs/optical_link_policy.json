@@ -1,0 +1,60 @@
+{
+  "DPSK_BER": {
+    "PartA_role": "analytic_continuation_of_frozen_DPSK_AWGN_receiver",
+    "formula": "0.5*exp(-snr_linear)",
+    "model": "Stage5_analytic_DBPSK_AWGN_BER_equals_0p5_exp_minus_SNR",
+    "paper_reported_BER_curve": false
+  },
+  "PartA_anchor": {
+    "absolute_Watts_claimed": false,
+    "power_units": "normalized_PartA_waveform_power_units_not_absolute_watts",
+    "raw_data_rate_bps": 1000000000.0,
+    "reference_noise_power_normalized": 0.01,
+    "reference_signal_power_normalized": 1.0,
+    "reference_snr_db": 20.0,
+    "reference_snr_linear": 100.0
+  },
+  "additional_losses": {
+    "Latm_mandatory_baseline": 1.0,
+    "Lgeo_mandatory_baseline": 1.0,
+    "Lpoint_extra_mandatory_baseline": 1.0,
+    "unsupported_range_atmosphere_model_invented": false
+  },
+  "block": "5.6",
+  "effective_rate": {
+    "PartA_source_defined": false,
+    "Stage5_derived": true,
+    "Tbeam_numeric_value": "DEFERRED_TO_BLOCK5.7",
+    "Tframe_numeric_value": "DEFERRED_TO_BLOCK5.7",
+    "formula": "Rraw*(1-BER)*max(0,1-K*Tbeam/Tframe)",
+    "formula_frozen_in_Block56": true,
+    "model": "Rraw_times_1_minus_BER_times_max_0_1_minus_K_Tbeam_over_Tframe"
+  },
+  "headlamp_frame": {
+    "Stage1_mode": "front_face_midpoint_surrogate",
+    "baseline_rotation": "identity",
+    "baseline_translation": "[L_SDC/2, 0, 0]",
+    "frame": "H0",
+    "second_extrinsic_applied": false,
+    "semantics": "Stage1_H0_is_configured_headlamp_surrogate_frame_no_second_extrinsic"
+  },
+  "optical_gain": {
+    "HPBW_rule": "azimuth_HPBW_equals_frozen_decision_cell_width_and_baseline_elevation_HPBW_equals_azimuth_HPBW",
+    "PartA_source_defined": false,
+    "constructed_Stage5_extension": true,
+    "measured": false,
+    "model": "constructed_Stage5_2D_Gaussian_pointing_gain"
+  },
+  "project": "Agni",
+  "scope": {
+    "Stage4_inference": false,
+    "absolute_physical_link_budget_claim": false,
+    "blockage_model": false,
+    "formal_N120_read": false,
+    "latency_values_frozen": false,
+    "recalibration": false,
+    "training": false
+  },
+  "stage": 5,
+  "status": "FROZEN"
+}

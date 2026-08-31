@@ -1,0 +1,1017 @@
+CANONICAL PART-A NOTEBOOK ADB SOURCE EXCERPT
+notebook_sha256=b5a80a6d3441de6d571db4f65b4a43ed4052cc2b3ccba935ad31b5dd51316ef3
+git_commit=44d62e3478e3818d1757b00971890f844cb032f7
+NOTE: source inspection only; notebook was not executed.
+
+
+------------------------------------------------------------
+CELL 3
+SOURCE_SHA256=b0f44ed098cd536cd4483c751ca7c5ca3418b9109f6e192e05ad6eed1e319c50
+------------------------------------------------------------
+0013: B = 10e9            # chirp bandwidth [Hz]
+0034: EPS = 1e-12
+0049: PAPER_REPORTED_MHT_LINEAR_ERRORS_UNITS = (0.1251, 0.2348)
+0050: PAPER_REPORTED_MHT_MEAN_DEVIATION_UNITS = 1.6787
+
+------------------------------------------------------------
+CELL 5
+SOURCE_SHA256=b2905e1df79ecf68f5da6812529feba3ce39be19a0e8ab1fdc7d3bac127aa1f5
+------------------------------------------------------------
+0002: # Module 2/MHT deterministic parameters and conventions
+0023: m2_rho_bin_width = 1.0
+0029: m2_support_eps = 1.6
+0047: m2_deviation_threshold = np.ceil(PAPER_REPORTED_MHT_MEAN_DEVIATION_UNITS)
+
+------------------------------------------------------------
+CELL 6
+SOURCE_SHA256=27098daeda53f63d0c72dc651c391c24a51e73f39bd3fb08dfd3425d6ee7a79a
+------------------------------------------------------------
+0002: # Module 3/ADB deterministic parameters and axes
+0004: theta_grid_deg = np.linspace(-25.0, 25.0, 501)
+0011: target_width_m = 1.9
+0014: transition_length_m = 20.0
+0016: epsilon_deg = 0.75
+0017: r_shadow_end_m = target_range_m + radial_safety_margin_m
+0018: r_transition_end_m = r_shadow_end_m + transition_length_m
+0021: adb_fig3a_host_speed_kmh = 40.0
+0022: adb_fig3a_oncoming_speed_kmh = 30.0
+0023: adb_fig3a_initial_separation_m = 150.0
+0026: adb_fig3b_host_speed_kmh = 50.0
+0027: adb_fig3b_num_preceding_vehicles = 2
+0028: adb_fig3b_initial_spacing_m = 30.0
+0029: adb_fig3b_lane_relation = "adjacent lanes"
+0031: adb_fig3_num_time_samples = 200
+0032: adb_fig3_time_stop_fraction = 0.95
+0035: assumed_lane_width_m = 3.5
+0036: assumed_vehicle_width_m = target_width_m
+0040: assumed_vehicle_half_width_m = 0.5 * assumed_vehicle_width_m
+0044: assumed_adb_r_min_m = 30.0
+0045: assumed_adb_r_max_m = 80.0
+0047: adb_angle_deg = np.linspace(-assumed_headlamp_fov_deg, assumed_headlamp_fov_deg, 301)
+0048: adb_range_m = np.linspace(0.0, adb_fig3a_initial_separation_m, 301)
+0050: # Dynamic ADB / track reconstruction visualization settings.
+0051: adb_trz_front_margin_units = 4.0
+0052: adb_trz_transition_length_units = 8.0
+0053: adb_trz_num_snapshots = 4
+0054: adb_rc_requested_frame = 0
+
+------------------------------------------------------------
+CELL 44
+SOURCE_SHA256=cb6b2a9f91663b067ad0f427a03fca59dc22c32f5ae7445058a792f4e9e818ac
+------------------------------------------------------------
+0008:     padded = np.pad(acc, pad_width=1, mode="edge")
+0017: def m2_detect_hough_peaks(smoothed_accumulator, rho_grid, theta_grid_deg):
+0043:             "theta_deg": float(theta_grid_deg[theta_idx]),
+0067:     mask = distances < m2_support_eps
+
+------------------------------------------------------------
+CELL 49
+SOURCE_SHA256=aba651620f08d4413de1ac04938434f3497d06f1180f974e8d9f72e6ee296dc6
+------------------------------------------------------------
+0126:     theta = float(np.arctan2(normal[1], normal[0]))
+0161:     m2_paper_first_scenario_reference_errors = list(PAPER_REPORTED_MHT_LINEAR_ERRORS_UNITS)
+
+------------------------------------------------------------
+CELL 52
+SOURCE_SHA256=cdbb6dc37836f4c506c6e1035fec2c2da90bfb1b4bfbf1a44a68611ae36bb009
+------------------------------------------------------------
+0005: # Shadow-zone angular boundaries [degrees]
+0006: theta_shadow_min_deg = theta_c_deg - delta_theta_deg - epsilon_deg
+0007: theta_shadow_max_deg = theta_c_deg - delta_theta_deg + epsilon_deg
+0012: THETA_DEG, R_M = np.meshgrid(theta_grid_deg, range_grid_m)
+0014: angular_shadow_mask = (
+0015:     (THETA_DEG >= theta_shadow_min_deg) &
+0016:     (THETA_DEG <= theta_shadow_max_deg)
+0020: full_shadow_range_mask = R_M <= r_shadow_end_m
+0022: # Smooth transition for r_min < r < r_max
+0023: transition_range_mask = (
+0024:     (R_M > r_shadow_end_m) &
+0025:     (R_M < r_transition_end_m)
+0029: # These are the actual regions where the illumination function will change.
+0030: full_shadow_mask = angular_shadow_mask & full_shadow_range_mask
+0031: transition_mask = angular_shadow_mask & transition_range_mask
+
+------------------------------------------------------------
+CELL 53
+SOURCE_SHA256=03010ae1e32a9f7219205f25fb41c884a3fcd13c03ccc488c86163cf16d1f6cf
+------------------------------------------------------------
+0005: # Full illumination initialization
+0008: # Full shadow region
+0009: L[full_shadow_mask] = 0.0
+0011: # Raised-cosine transition
+0012: transition_fraction = (
+0013:     (R_M[transition_mask] - r_shadow_end_m)
+0014:     / (r_transition_end_m - r_shadow_end_m)
+0017: L[transition_mask] = 0.5 * (
+0018:     1.0 - np.cos(np.pi * transition_fraction)
+
+------------------------------------------------------------
+CELL 55
+SOURCE_SHA256=cde51bf52360d03220923133779e95bba35ba9ab0f0b9aad6c61509166aad7ed
+------------------------------------------------------------
+0005: adb_fig3a_host_speed_mps = adb_fig3a_host_speed_kmh * KMH_TO_MPS
+0006: adb_fig3a_oncoming_speed_mps = adb_fig3a_oncoming_speed_kmh * KMH_TO_MPS
+0007: adb_fig3a_closing_speed_mps = adb_fig3a_host_speed_mps + adb_fig3a_oncoming_speed_mps
+0008: adb_fig3a_time_to_meet_s = adb_fig3a_initial_separation_m / adb_fig3a_closing_speed_mps
+0010: adb_fig3b_host_speed_mps = adb_fig3b_host_speed_kmh * KMH_TO_MPS
+0012: print("ADB / Fig. 3 paper scenarios")
+0015: print(f"  host speed        : {adb_fig3a_host_speed_kmh:.1f} km/h")
+0016: print(f"  oncoming speed    : {adb_fig3a_oncoming_speed_kmh:.1f} km/h")
+0017: print(f"  initial separation: {adb_fig3a_initial_separation_m:.1f} m")
+0018: print(f"  closing speed     : {adb_fig3a_closing_speed_mps:.3f} m/s")
+0019: print(f"  time to meet      : {adb_fig3a_time_to_meet_s:.2f} s")
+0022: print(f"  host speed        : {adb_fig3b_host_speed_kmh:.1f} km/h")
+0023: print(f"  vehicles          : {adb_fig3b_num_preceding_vehicles}")
+0024: print(f"  lane relation     : {adb_fig3b_lane_relation}")
+0025: print(f"  initial spacing   : {adb_fig3b_initial_spacing_m:.1f} m")
+
+------------------------------------------------------------
+CELL 56
+SOURCE_SHA256=03ee142699b728f2b679609d1cc898fe8e1f4ab00fe06d64bfef44c68f207f44
+------------------------------------------------------------
+0005: adb_fig3_time_stop_s = adb_fig3_time_stop_fraction * adb_fig3a_time_to_meet_s
+0006: adb_fig3_time_s = np.linspace(0.0, adb_fig3_time_stop_s, adb_fig3_num_time_samples)
+0009: adb_fig3a_range_m = adb_fig3a_initial_separation_m - adb_fig3a_closing_speed_mps * adb_fig3_time_s
+0012: adb_fig3b_initial_range_m = adb_fig3b_initial_spacing_m
+0014: print("ADB / Fig. 3 longitudinal inputs")
+0017: print(f"  time interval        : 0.00 ... {adb_fig3_time_stop_s:.2f} s")
+0018: print(f"  initial range        : {adb_fig3a_range_m[0]:.2f} m")
+0019: print(f"  final simulated range: {adb_fig3a_range_m[-1]:.2f} m")
+0022: print(f"  initial range        : {adb_fig3b_initial_range_m:.2f} m")
+
+------------------------------------------------------------
+CELL 57
+SOURCE_SHA256=e1ed1e2e162faf361ae2516723ffef3691f2198eb8992a2ff7ad03e438661bc7
+------------------------------------------------------------
+0009: print(f"  Fig. 3(a) host speed             : {adb_fig3a_host_speed_kmh:.1f} km/h")
+0010: print(f"  Fig. 3(a) oncoming speed         : {adb_fig3a_oncoming_speed_kmh:.1f} km/h")
+0011: print(f"  Fig. 3(a) initial separation     : {adb_fig3a_initial_separation_m:.1f} m")
+0012: print(f"  Fig. 3(b) host speed             : {adb_fig3b_host_speed_kmh:.1f} km/h")
+0013: print(f"  Fig. 3(b) preceding vehicles     : {adb_fig3b_num_preceding_vehicles}")
+0014: print(f"  Fig. 3(b) lane relation          : {adb_fig3b_lane_relation}")
+0015: print(f"  Fig. 3(b) initial spacing        : {adb_fig3b_initial_spacing_m:.1f} m")
+0021: print(f"Lane width assumption        : {assumed_lane_width_m:.2f} m")
+0022: print(f"Vehicle width assumption     : {assumed_vehicle_width_m:.2f} m")
+0023: print(f"Vehicle half-width           : {assumed_vehicle_half_width_m:.2f} m")
+
+------------------------------------------------------------
+CELL 58
+SOURCE_SHA256=90255518d63dea66793668d2ea90f97af2e62817bb4b345c2c17615c79d4adae
+------------------------------------------------------------
+0005: def adb_shadow_angles_deg(x_m, y_m):
+0007:     epsilon_dyn_rad = np.arctan(lateral_safety_margin_m / rho_m)
+0009:     theta_center = np.arctan2(y_m, x_m)
+0010:     theta_min = np.arctan2(y_m - assumed_vehicle_half_width_m, x_m) - epsilon_dyn_rad
+0011:     theta_max = np.arctan2(y_m + assumed_vehicle_half_width_m, x_m) + epsilon_dyn_rad
+0018: adb_fig3a_x_m = adb_fig3a_range_m
+0019: adb_fig3a_y_m = -assumed_lane_width_m * np.ones_like(adb_fig3a_x_m)
+0021: adb_fig3a_theta_center_deg, adb_fig3a_theta_min_deg, adb_fig3a_theta_max_deg = adb_shadow_angles_deg(
+0022:     adb_fig3a_x_m,
+0023:     adb_fig3a_y_m
+0029: adb_fig3b_x_m = adb_fig3b_initial_range_m * np.ones(adb_fig3b_num_preceding_vehicles)
+0030: adb_fig3b_y_m = np.array([-assumed_lane_width_m, assumed_lane_width_m])
+0032: adb_fig3b_theta_center_deg, adb_fig3b_theta_min_deg, adb_fig3b_theta_max_deg = adb_shadow_angles_deg(
+0033:     adb_fig3b_x_m,
+0034:     adb_fig3b_y_m
+0037: print("ADB / Fig. 3 shadow-angle boundaries")
+0041: print(f"  center angle start/end : {adb_fig3a_theta_center_deg[0]:+.2f} deg -> {adb_fig3a_theta_center_deg[-1]:+.2f} deg")
+0042: print(f"  shadow min start/end   : {adb_fig3a_theta_min_deg[0]:+.2f} deg -> {adb_fig3a_theta_min_deg[-1]:+.2f} deg")
+0043: print(f"  shadow max start/end   : {adb_fig3a_theta_max_deg[0]:+.2f} deg -> {adb_fig3a_theta_max_deg[-1]:+.2f} deg")
+0047: for i in range(adb_fig3b_num_preceding_vehicles):
+0050:         f"center={adb_fig3b_theta_center_deg[i]:+.2f} deg, "
+0051:         f"shadow=[{adb_fig3b_theta_min_deg[i]:+.2f}, {adb_fig3b_theta_max_deg[i]:+.2f}] deg"
+
+------------------------------------------------------------
+CELL 59
+SOURCE_SHA256=8564d4bbacb097cc243fdb2bb7db0db5a96c410c7c15d201eddf7560d11f9184
+------------------------------------------------------------
+0005: adb_angle_grid_deg, adb_range_grid_m = np.meshgrid(adb_angle_deg, adb_range_m)
+0007: def adb_intensity_map(theta_min_deg, theta_max_deg, x_m, y_m):
+0012:     r_max_m = r_min_m + transition_length_m
+0014:     intensity = np.ones_like(adb_range_grid_m, dtype=float)
+0016:     inside_shadow = (
+0017:         (adb_angle_grid_deg >= theta_min_deg)
+0018:         & (adb_angle_grid_deg <= theta_max_deg)
+0021:     full_shadow = inside_shadow & (adb_range_grid_m <= r_min_m)
+0022:     transition = (
+0023:         inside_shadow
+0024:         & (adb_range_grid_m > r_min_m)
+0025:         & (adb_range_grid_m < r_max_m)
+0027:     intensity[full_shadow] = 0.0
+0029:     u = (adb_range_grid_m[transition] - r_min_m) / (r_max_m - r_min_m)
+0030:     intensity[transition] = 0.5 * (1.0 - np.cos(np.pi * u))
+0034: def adb_combine_intensity_maps(theta_min_values, theta_max_values, x_values, y_values):
+0035:     """Combine ADB intensity maps from multiple vehicles."""
+0037:     combined = np.ones_like(adb_range_grid_m, dtype=float)
+0045:         vehicle_map = adb_intensity_map(theta_min_deg, theta_max_deg, x_m, y_m)
+0046:         combined = np.minimum(combined, vehicle_map)
+0051: adb_fig3a_snapshot_idx = len(adb_fig3_time_s) // 2
+0053: adb_fig3a_intensity = adb_intensity_map(
+0054:     adb_fig3a_theta_min_deg[adb_fig3a_snapshot_idx],
+0055:     adb_fig3a_theta_max_deg[adb_fig3a_snapshot_idx],
+0056:     adb_fig3a_x_m[adb_fig3a_snapshot_idx],
+0057:     adb_fig3a_y_m[adb_fig3a_snapshot_idx]
+0060: # Fig. 3(b): combine the two preceding-vehicle shadow regions.
+0061: adb_fig3b_intensity = adb_combine_intensity_maps(
+0062:     adb_fig3b_theta_min_deg,
+0063:     adb_fig3b_theta_max_deg,
+0064:     adb_fig3b_x_m,
+0065:     adb_fig3b_y_m
+0068: print("ADB / Fig. 3 raised-cosine intensity maps")
+0070: print(f"Assumed r_min             : {assumed_adb_r_min_m:.1f} m")
+0071: print(f"Assumed r_max             : {assumed_adb_r_max_m:.1f} m")
+0072: print(f"Angle grid                : {adb_angle_deg[0]:+.1f} ... {adb_angle_deg[-1]:+.1f} deg")
+0073: print(f"Range grid                : {adb_range_m[0]:.1f} ... {adb_range_m[-1]:.1f} m")
+0074: print(f"Fig. 3(a) snapshot time   : {adb_fig3_time_s[adb_fig3a_snapshot_idx]:.2f} s")
+0075: print(f"Fig. 3(a) snapshot range  : {adb_fig3a_range_m[adb_fig3a_snapshot_idx]:.2f} m")
+0076: print("Fig. 3(b) shadows combined using minimum intensity across the two vehicles.")
+
+------------------------------------------------------------
+CELL 60
+SOURCE_SHA256=03099376521bde3b32f933cca6089e02d691d855069c8ff9db7dc08a1f3e497b
+------------------------------------------------------------
+0005: def plot_adb_intensity_panel(ax, intensity_map, title):
+0008:         extent=[adb_angle_deg[0], adb_angle_deg[-1], adb_range_m[0], adb_range_m[-1]],
+0025: # Fig. 3(a): dynamic shadow angle for oncoming vehicle
+0029: ax.plot(adb_fig3_time_s, adb_fig3a_theta_center_deg, linewidth=2, label="center angle")
+0030: ax.plot(adb_fig3_time_s, adb_fig3a_theta_min_deg, linestyle="--", linewidth=1.5, label="shadow min")
+0031: ax.plot(adb_fig3_time_s, adb_fig3a_theta_max_deg, linestyle="--", linewidth=1.5, label="shadow max")
+0032: ax.fill_between(adb_fig3_time_s, adb_fig3a_theta_min_deg, adb_fig3a_theta_max_deg, alpha=0.20, label="shadow interval")
+0034: ax.set_title("Fig. 3(a): Oncoming vehicle shadow angle")
+0041: # Fig. 3(b): shadow intervals for two preceding vehicles
+0045: for i in range(adb_fig3b_num_preceding_vehicles):
+0046:     ax.axvspan(adb_fig3b_theta_min_deg[i], adb_fig3b_theta_max_deg[i], alpha=0.25, label=f"vehicle {i+1} shadow")
+0047:     ax.axvline(adb_fig3b_theta_center_deg[i], linestyle="--", linewidth=1.5, label=f"vehicle {i+1} center")
+0052: ax.set_title("Fig. 3(b): Multiple preceding vehicle shadows")
+0062: im0 = plot_adb_intensity_panel(ax, adb_fig3a_intensity, "Fig. 3(a): ADB intensity snapshot")
+0063: ax.axvline(adb_fig3a_theta_min_deg[adb_fig3a_snapshot_idx], linestyle="--", linewidth=1.2)
+0064: ax.axvline(adb_fig3a_theta_max_deg[adb_fig3a_snapshot_idx], linestyle="--", linewidth=1.2)
+0072: im1 = plot_adb_intensity_panel(ax, adb_fig3b_intensity, "Fig. 3(b): ADB intensity snapshot")
+0074: for i in range(adb_fig3b_num_preceding_vehicles):
+0075:     ax.axvline(adb_fig3b_theta_min_deg[i], linestyle="--", linewidth=1.2)
+0076:     ax.axvline(adb_fig3b_theta_max_deg[i], linestyle="--", linewidth=1.2)
+0081:     "ADB / Fig. 3 reproduction: paper traffic scenarios with explicit geometry assumptions",
+0089:     "Lateral positions, vehicle width, safety margin, FOV, and distance thresholds are explicit visualization assumptions.",
+
+------------------------------------------------------------
+CELL 67
+SOURCE_SHA256=371d55e3966381142b6bae9136e88dc17aa6589a4bf21f0ae59771d359f3bc59
+------------------------------------------------------------
+0003: # Clear construction plot for angular grid and shadow interval
+0007: adb_shadow_interval_center_deg = theta_c_deg - delta_theta_deg
+0020: label_offset_deg = max(0.9, 0.35 * abs(theta_shadow_max_deg - theta_shadow_min_deg))
+0029:     xmin=theta_grid_deg.min(),
+0030:     xmax=theta_grid_deg.max(),
+0031:     linewidth=1.0
+0035:     np.ceil(theta_grid_deg.min() / 5) * 5,
+0036:     theta_grid_deg.max() + 1,
+0039:     ax.vlines(tick, y_grid - 0.08, y_grid + 0.08, linewidth=0.8)
+0042:     theta_grid_deg.min(),
+0057:     xmin=theta_grid_deg.min(),
+0058:     xmax=theta_grid_deg.max(),
+0059:     linewidth=0.8,
+0063: ax.vlines(theta_c_deg, y_center - 0.28, y_center + 0.28, linewidth=1.8)
+0074:     adb_shadow_interval_center_deg,
+0078:     linewidth=1.4
+0082:     adb_shadow_interval_center_deg,
+0090: if abs(delta_theta_deg) > EPS:
+0093:         xy=(adb_shadow_interval_center_deg, y_center + 0.03),
+0095:         arrowprops=dict(arrowstyle="<->", linewidth=1.0),
+0111:     theta_grid_deg.min(),
+0120: # 3) Final shadow interval Θ
+0126:     xmin=theta_grid_deg.min(),
+0127:     xmax=theta_grid_deg.max(),
+0128:     linewidth=0.8,
+0132: # Highlighted shadow interval
+0135:     xmin=theta_shadow_min_deg,
+0136:     xmax=theta_shadow_max_deg,
+0137:     linewidth=8.0,
+0142: ax.vlines(theta_shadow_min_deg, y_interval - 0.32, y_interval + 0.32, linestyle=":", linewidth=1.5)
+0143: ax.vlines(theta_shadow_max_deg, y_interval - 0.32, y_interval + 0.32, linestyle=":", linewidth=1.5)
+0144: ax.vlines(adb_shadow_interval_center_deg, y_interval - 0.36, y_interval + 0.36, linewidth=1.5)
+0148:     theta_shadow_min_deg - label_offset_deg,
+0157:     adb_shadow_interval_center_deg,
+0166:     theta_shadow_max_deg + label_offset_deg,
+0174: # Epsilon callouts placed above the interval, not inside the tiny interval
+0176:     r"$\epsilon$",
+0177:     xy=((theta_shadow_min_deg + adb_shadow_interval_center_deg) / 2, y_interval + 0.06),
+0178:     xytext=(theta_shadow_min_deg - 2.3, y_interval + 0.68),
+0179:     arrowprops=dict(arrowstyle="->", linewidth=0.9),
+0186:     r"$\epsilon$",
+0187:     xy=((adb_shadow_interval_center_deg + theta_shadow_max_deg) / 2, y_interval + 0.06),
+0188:     xytext=(theta_shadow_max_deg + 2.3, y_interval + 0.68),
+0189:     arrowprops=dict(arrowstyle="->", linewidth=0.9),
+0197:     theta_grid_deg.min(),
+0199:     r"$\Theta=[\theta_c-\Delta\theta-\epsilon,\ \theta_c-\Delta\theta+\epsilon]$",
+0206:     theta_grid_deg.min(),
+0208:     r"3) Final shadow interval $\Theta$ after adding safety margin $\epsilon$",
+0215: # 4) Shadow mask profile used by Python
+0220: adb_shadow_interval_profile = np.where(
+0221:     (theta_grid_deg >= theta_shadow_min_deg) &
+0222:     (theta_grid_deg <= theta_shadow_max_deg),
+0228:     theta_grid_deg,
+0229:     y_mask_base + mask_height * adb_shadow_interval_profile,
+0231:     linewidth=1.8
+0235:     theta_grid_deg.min(),
+0237:     "4) Angular shadow mask used by Python: 1 inside Θ, 0 outside",
+0245:     theta_shadow_min_deg - label_offset_deg,
+0254:     theta_shadow_max_deg + label_offset_deg,
+0265: ax.set_title("ADB shadow interval parameters", pad=14)
+0267: ax.set_xlim(theta_grid_deg.min(), theta_grid_deg.max())
+
+------------------------------------------------------------
+CELL 68
+SOURCE_SHA256=6dca89dd5a2ee9c9c7b4f65038007303ba311732773fbd8d0c6ad9c6d6b6d68c
+------------------------------------------------------------
+0014: demo_target_width_m = 1.9
+0016: demo_epsilon_deg = np.rad2deg(np.arctan((demo_target_width_m / 2 + demo_lateral_safety_margin_m) / demo_target_range_m))
+0018: # Shadow-zone angular boundaries [degrees]
+0019: demo_shadow_center_deg = demo_theta_c_deg - demo_delta_theta_deg
+0021: demo_theta_shadow_min_deg = demo_shadow_center_deg - demo_epsilon_deg
+0022: demo_theta_shadow_max_deg = demo_shadow_center_deg + demo_epsilon_deg
+0030: demo_car_width_for_arcs_m = 1.9
+0038: COLOR_EPS = "crimson"       # ε
+0055:     Our ADB angle θ is measured from the forward y-axis.
+0066:         width=2.0 * radius_m,
+0071:         linewidth=lw,
+0133:             (-demo_car_width_for_arcs_m / 2, -demo_car_length_for_arcs_m / 2),
+0134:             demo_car_width_for_arcs_m,
+0137:             linewidth=1.4
+0146:                 target_x - demo_car_width_for_arcs_m / 2,
+0149:             demo_car_width_for_arcs_m,
+0152:             linewidth=1.3,
+0172:         linewidth=1.0,
+0185:         spine.set_linewidth(0.8)
+0193: center_x, center_y = ray_xy_from_yaxis(demo_shadow_center_deg, demo_plot_range_for_arcs_m)
+0194: theta_min_x, theta_min_y = ray_xy_from_yaxis(demo_theta_shadow_min_deg, demo_plot_range_for_arcs_m)
+0195: theta_max_x, theta_max_y = ray_xy_from_yaxis(demo_theta_shadow_max_deg, demo_plot_range_for_arcs_m)
+0227:     linewidth=2.4,
+0279:     linewidth=2.4,
+0287:     linewidth=2.4,
+0306:     r"$\theta_c-\Delta\theta$" "\n" r"shadow center",
+0318:     rf"$\theta_c-\Delta\theta={demo_shadow_center_deg:.1f}^\circ$"
+0321: ax.set_title(r"2) $\Delta\theta$: offset from target ray to shadow center", fontsize=11)
+0333:     linewidth=2.2,
+0341:     linewidth=2.2,
+0349:     linewidth=2.2,
+0355:     demo_theta_shadow_min_deg,
+0356:     demo_shadow_center_deg,
+0358:     label=r"$\epsilon$",
+0359:     color=COLOR_EPS,
+0365:     demo_shadow_center_deg,
+0366:     demo_theta_shadow_max_deg,
+0368:     label=r"$\epsilon$",
+0369:     color=COLOR_EPS,
+0376:     rf"$\epsilon={demo_epsilon_deg:.1f}^\circ$" "\n"
+0408: ax.set_title(r"3) Add safety margin $\epsilon$", fontsize=11)
+0430:     linewidth=2.2,
+0438:     linewidth=2.2,
+0445:     linewidth=2.0,
+0451:     demo_theta_shadow_min_deg,
+0452:     demo_theta_shadow_max_deg,
+0461:     r"$\Theta$ = final shadow interval" "\n"
+0462:     r"$[\theta_c-\Delta\theta-\epsilon,$" "\n"
+0463:     r"$\theta_c-\Delta\theta+\epsilon]$"
+0470:     "shadow cone",
+0475: ax.set_title(r"4) Final shadow interval $\Theta$", fontsize=11)
+
+------------------------------------------------------------
+CELL 69
+SOURCE_SHA256=784c29efa472129d42f38ee0d556fcbed023e879c10dfb6ebca00641cf15536b
+------------------------------------------------------------
+0003: # Dynamic shadow interval from Module 2 reconstructed tracks
+0009: def adb_track_arrays(track):
+0020: def adb_shadow_geometry_from_xy(x_track, y_track, include_radial_zone=False):
+0022:     Convert reconstructed x(t), y(t) into dynamic ADB shadow geometry.
+0028:         theta = atan2(x, y), in degrees
+0034:         epsilon(t)
+0039:     theta_c = np.rad2deg(np.arctan2(x_track, y_track))
+0040:     shadow_center = theta_c - delta_theta_deg
+0041:     effective_half_width = target_width_m / 2.0 + lateral_safety_margin_m
+0042:     epsilon = np.rad2deg(np.arctan(effective_half_width / np.maximum(target_range, EPS)))
+0048:         "shadow_center": shadow_center,
+0049:         "epsilon": epsilon,
+0050:         "theta_min": shadow_center - epsilon,
+0051:         "theta_max": shadow_center + epsilon,
+0055:         geometry["r_min"] = target_range + adb_trz_front_margin_units
+0056:         geometry["r_max"] = geometry["r_min"] + adb_trz_transition_length_units
+0061: def adb_select_snapshot_indices(frames, n_samples=5):
+0073: def adb_rec_track_arrays(track):
+0074:     return adb_track_arrays(track)
+0077: def adb_rec_shadow_geometry_from_xy(x_track, y_track):
+0078:     return adb_shadow_geometry_from_xy(x_track, y_track)
+0081: def adb_rec_select_frame_indices(frames, n_samples=5):
+0082:     return adb_select_snapshot_indices(frames, n_samples)
+0086: # Helper: draw one dynamic shadow cone
+0088: def adb_rec_add_shadow_cone(
+0096:     Draw one reconstructed-track-driven angular shadow cone.
+0114:         linewidth=1.2,
+0123:         linewidth=1.2,
+0130: # Helper: plot one reconstructed track with dynamic shadow intervals
+0132: def adb_rec_add_track_panel(ax, track, track_index, track_color):
+0134:     Draw one reconstructed Module 2 track and its dynamic shadow intervals.
+0136:     frames, x_track, y_track = adb_rec_track_arrays(track)
+0137:     rec_geom = adb_rec_shadow_geometry_from_xy(x_track, y_track)
+0138:     selected_indices = adb_rec_select_frame_indices(frames, n_samples=5)
+0145:         linewidth=1.0,
+0156:         linewidth=2.6,
+0161:     # Dynamic shadow cones at selected reconstructed frames
+0169:         # Shadow interval cone Θ(t)
+0170:         adb_rec_add_shadow_cone(
+0191:             linewidth=1.0,
+0196:         # Corrected shadow center ray
+0198:             rec_geom["shadow_center"][array_idx],
+0205:             linewidth=1.1,
+0227:         linewidths=1.5,
+0237:         linewidths=1.8,
+0244:         r"dynamic shadow interval" "\n"
+0245:         r"$\theta_c(t)=\mathrm{atan2}(x(t),y(t))$" "\n"
+0246:         r"$\Theta(t)=[\theta_c(t)-\Delta\theta-\epsilon(t),$" "\n"
+0247:         r"$\theta_c(t)-\Delta\theta+\epsilon(t)]$"
+0258:         spine.set_linewidth(0.8)
+0262: # Figure: dynamic ADB shadow intervals from reconstructed tracks
+0264: adb_rec_num_tracks = len(m2_final_tracks)
+0268:     adb_rec_num_tracks,
+0269:     figsize=(7.4 * adb_rec_num_tracks, 6.3),
+0273: if adb_rec_num_tracks == 1:
+0278: adb_rec_colors = [
+0286:     adb_rec_add_track_panel(
+0290:         track_color=adb_rec_colors[(idx - 1) % len(adb_rec_colors)]
+0294:         f"Dynamic ADB shadow interval from reconstructed track {idx}",
+
+------------------------------------------------------------
+CELL 70
+SOURCE_SHA256=4d70f649d8403fcc609cab593876850a45664ab0b70cb393e15dbf5b4e52cc6a
+------------------------------------------------------------
+0003: # Dynamic transition zone snapshots in top-down view
+0013: def adb_trz_track_arrays(track):
+0017:     return adb_track_arrays(track)
+0020: def adb_trz_shadow_geometry_from_xy(x_track, y_track):
+0022:     Dynamic ADB geometry from reconstructed x(t), y(t).
+0028:         theta = atan2(x, y), in degrees
+0030:     return adb_shadow_geometry_from_xy(x_track, y_track, include_radial_zone=True)
+0033: def adb_trz_select_snapshot_indices(frames, n_snapshots=4):
+0037:     return adb_select_snapshot_indices(frames, n_snapshots)
+0040: def adb_trz_sector_polygon_xy(angle_min_deg, angle_max_deg, r_inner, r_outer, n_points=80):
+0045:     adb_trz_outer_angles = np.linspace(angle_min_deg, angle_max_deg, n_points)
+0046:     adb_trz_inner_angles = np.linspace(angle_max_deg, angle_min_deg, n_points)
+0048:     adb_trz_outer_x, adb_trz_outer_y = ray_xy_from_yaxis(adb_trz_outer_angles, r_outer)
+0049:     adb_trz_inner_x, adb_trz_inner_y = ray_xy_from_yaxis(adb_trz_inner_angles, r_inner)
+0051:     adb_trz_poly_x = np.r_[adb_trz_outer_x, adb_trz_inner_x]
+0052:     adb_trz_poly_y = np.r_[adb_trz_outer_y, adb_trz_inner_y]
+0054:     return adb_trz_poly_x, adb_trz_poly_y
+0057: def adb_trz_add_sector_fill(ax, angle_min_deg, angle_max_deg, r_inner, r_outer, face_color, alpha_value):
+0061:     adb_trz_poly_x, adb_trz_poly_y = adb_trz_sector_polygon_xy(
+0070:             np.column_stack([adb_trz_poly_x, adb_trz_poly_y]),
+0079: def adb_trz_panel_format(ax):
+0087:         linewidth=1.0,
+0099:     for adb_trz_spine in ax.spines.values():
+0100:         adb_trz_spine.set_linewidth(0.8)
+0103: def adb_trz_draw_snapshot(ax, frames, x_track, y_track, geom, array_idx, track_color, track_label):
+0105:     Draw one top-down dynamic transition-zone snapshot for one reconstructed track.
+0107:     adb_trz_panel_format(ax)
+0109:     adb_trz_frame_value = frames[array_idx]
+0110:     adb_trz_x = x_track[array_idx]
+0111:     adb_trz_y = y_track[array_idx]
+0113:     adb_trz_theta_min = geom["theta_min"][array_idx]
+0114:     adb_trz_theta_max = geom["theta_max"][array_idx]
+0115:     adb_trz_shadow_center = geom["shadow_center"][array_idx]
+0116:     adb_trz_range_target = geom["range_target"][array_idx]
+0117:     adb_trz_r_min = geom["r_min"][array_idx]
+0118:     adb_trz_r_max = geom["r_max"][array_idx]
+0119:     adb_trz_epsilon = geom["epsilon"][array_idx]
+0126:         linewidth=1.2,
+0135:         linewidth=2.2,
+0140:     # Full shadow region: inside Theta, up to r_min
+0141:     adb_trz_add_sector_fill(
+0143:         adb_trz_theta_min,
+0144:         adb_trz_theta_max,
+0146:         adb_trz_r_min,
+0151:     # Transition zone: inside Theta, from r_min to r_max
+0152:     adb_trz_add_sector_fill(
+0154:         adb_trz_theta_min,
+0155:         adb_trz_theta_max,
+0156:         adb_trz_r_min,
+0157:         adb_trz_r_max,
+0163:     adb_trz_theta_min_x, adb_trz_theta_min_y = ray_xy_from_yaxis(adb_trz_theta_min, adb_trz_r_max)
+0164:     adb_trz_theta_max_x, adb_trz_theta_max_y = ray_xy_from_yaxis(adb_trz_theta_max, adb_trz_r_max)
+0165:     adb_trz_center_x, adb_trz_center_y = ray_xy_from_yaxis(adb_trz_shadow_center, adb_trz_r_max)
+0168:         [0.0, adb_trz_theta_min_x],
+0169:         [0.0, adb_trz_theta_min_y],
+0171:         linewidth=1.4,
+0176:         [0.0, adb_trz_theta_max_x],
+0177:         [0.0, adb_trz_theta_max_y],
+0179:         linewidth=1.4,
+0184:         [0.0, adb_trz_center_x],
+0185:         [0.0, adb_trz_center_y],
+0186:         linewidth=1.2,
+0193:         [0.0, adb_trz_x],
+0194:         [0.0, adb_trz_y],
+0195:         linewidth=1.0,
+0202:         adb_trz_x,
+0203:         adb_trz_y,
+0208:     add_target_vehicle(ax, adb_trz_x, adb_trz_y, alpha=0.70)
+0211:     adb_trz_mid_full_x, adb_trz_mid_full_y = ray_xy_from_yaxis(
+0212:         adb_trz_shadow_center,
+0213:         0.55 * adb_trz_r_min
+0216:     adb_trz_mid_tr_x, adb_trz_mid_tr_y = ray_xy_from_yaxis(
+0217:         adb_trz_shadow_center,
+0218:         0.5 * (adb_trz_r_min + adb_trz_r_max)
+0223:         adb_trz_mid_full_x,
+0224:         adb_trz_mid_full_y,
+0232:         adb_trz_mid_tr_x,
+0233:         adb_trz_mid_tr_y,
+0242:         f"frame = {adb_trz_frame_value}\n"
+0243:         rf"$r_{{target}}={adb_trz_range_target:.1f}$" "\n"
+0244:         rf"$r_{{min}}={adb_trz_r_min:.1f}$" "\n"
+0245:         rf"$r_{{max}}={adb_trz_r_max:.1f}$" "\n"
+0246:         rf"$\epsilon={adb_trz_epsilon:.1f}^\circ$"
+0249:     ax.set_title(f"{track_label} | snapshot {adb_trz_frame_value}", fontsize=10)
+0257: adb_trz_num_tracks = len(m2_final_tracks)
+0258: adb_trz_cols = adb_trz_num_snapshots
+0261:     adb_trz_num_tracks,
+0262:     adb_trz_cols,
+0263:     figsize=(5.0 * adb_trz_cols, 4.9 * adb_trz_num_tracks),
+0267: if adb_trz_num_tracks == 1:
+0270: adb_trz_colors = ["tab:blue", "tab:orange", "tab:green", "tab:red"]
+0272: for adb_trz_track_idx, adb_trz_track in enumerate(m2_final_tracks):
+0273:     adb_trz_frames, adb_trz_x_track, adb_trz_y_track = adb_trz_track_arrays(adb_trz_track)
+0274:     adb_trz_geom = adb_trz_shadow_geometry_from_xy(adb_trz_x_track, adb_trz_y_track)
+0275:     adb_trz_snapshot_indices = adb_trz_select_snapshot_indices(
+0276:         adb_trz_frames,
+0277:         n_snapshots=adb_trz_num_snapshots
+0280:     adb_trz_track_label = f"Reconstructed track {adb_trz_track_idx + 1}"
+0281:     adb_trz_track_color = adb_trz_colors[adb_trz_track_idx % len(adb_trz_colors)]
+0283:     for adb_trz_col_idx in range(adb_trz_cols):
+0284:         adb_trz_ax = axes[adb_trz_track_idx, adb_trz_col_idx]
+0286:         if adb_trz_col_idx < len(adb_trz_snapshot_indices):
+0287:             adb_trz_draw_snapshot(
+0288:                 adb_trz_ax,
+0289:                 adb_trz_frames,
+0290:                 adb_trz_x_track,
+0291:                 adb_trz_y_track,
+0292:                 adb_trz_geom,
+0293:                 adb_trz_snapshot_indices[adb_trz_col_idx],
+0294:                 adb_trz_track_color,
+0295:                 adb_trz_track_label
+0298:             adb_trz_ax.axis("off")
+
+------------------------------------------------------------
+CELL 71
+SOURCE_SHA256=08df3a0b7e5578a5395ffd47d33fdfcd555ba09eae781d68b1bcff226e217ae9
+------------------------------------------------------------
+0007: def adb_rc_profile(r_axis, r_min, r_max):
+0009:     Raised-cosine radial illumination profile.
+0018:     full_shadow_mask = r_axis <= r_min
+0019:     transition_mask = (r_axis > r_min) & (r_axis < r_max)
+0021:     L_profile[full_shadow_mask] = 0.0
+0023:     transition_fraction = (
+0024:         (r_axis[transition_mask] - r_min)
+0028:     L_profile[transition_mask] = 0.5 * (
+0029:         1.0 - np.cos(np.pi * transition_fraction)
+0035: def adb_rc_draw_profile_snapshot(
+0041:     epsilon_deg_value,
+0050:     L_profile = adb_rc_profile(r_axis, r_min, r_max)
+0055:         linewidth=2.2,
+0062:         linewidth=1.4,
+0069:         linewidth=1.4,
+0076:         linewidth=1.4,
+0083:         r"$L=0$" "\nfull shadow",
+0093:         r"$0<L<1$" "\ntransition",
+0151:         rf"$\epsilon={epsilon_deg_value:.1f}^\circ$",
+0166:     ax.set_ylabel("Normalized illumination L(r)")
+0172:         spine.set_linewidth(0.8)
+0179: adb_rc_frame0_items = []
+0181: for adb_rc_track_idx, adb_rc_track in enumerate(m2_final_tracks):
+0182:     adb_rc_frames, adb_rc_x_track, adb_rc_y_track = adb_trz_track_arrays(adb_rc_track)
+0184:     if adb_rc_requested_frame not in adb_rc_frames:
+0187:     adb_rc_array_idx = int(np.where(adb_rc_frames == adb_rc_requested_frame)[0][0])
+0189:     adb_rc_geom = adb_trz_shadow_geometry_from_xy(
+0190:         adb_rc_x_track,
+0191:         adb_rc_y_track
+0194:     adb_rc_frame0_items.append(
+0196:             "track_idx": adb_rc_track_idx,
+0197:             "frames": adb_rc_frames,
+0198:             "geom": adb_rc_geom,
+0199:             "array_idx": adb_rc_array_idx,
+0203: if len(adb_rc_frame0_items) == 0:
+0208:     len(adb_rc_frame0_items),
+0209:     figsize=(5.4 * len(adb_rc_frame0_items), 3.8),
+0213: if len(adb_rc_frame0_items) == 1:
+0216: for adb_rc_ax, adb_rc_item in zip(axes, adb_rc_frame0_items):
+0217:     adb_rc_track_label = f"Reconstructed track {adb_rc_item['track_idx'] + 1}"
+0218:     adb_rc_array_idx = adb_rc_item["array_idx"]
+0219:     adb_rc_geom = adb_rc_item["geom"]
+0221:     adb_rc_draw_profile_snapshot(
+0222:         adb_rc_ax,
+0223:         frame_value=adb_rc_requested_frame,
+0224:         r_target=adb_rc_geom["range_target"][adb_rc_array_idx],
+0225:         r_min=adb_rc_geom["r_min"][adb_rc_array_idx],
+0226:         r_max=adb_rc_geom["r_max"][adb_rc_array_idx],
+0227:         epsilon_deg_value=adb_rc_geom["epsilon"][adb_rc_array_idx],
+0228:         track_label=adb_rc_track_label
+
+------------------------------------------------------------
+CELL 72
+SOURCE_SHA256=de0ef63eecc281f0ec12e10355f059ecb96e526cd4fc8c4f1d5f565d50826fd6
+------------------------------------------------------------
+0004: # top-down geometry  ->  1D shadow-angle axis
+0014: adb_angmap_num_snapshots = globals().get("adb_trz_num_snapshots", 4)
+0015: adb_angmap_track_colors = ["tab:blue", "tab:orange", "tab:green", "tab:red"]
+0018: def adb_angmap_add_arc(ax, angle_start_deg, angle_end_deg, radius_value, label_text, color_value, lw=2.2):
+0023:     adb_angmap_low = min(angle_start_deg, angle_end_deg)
+0024:     adb_angmap_high = max(angle_start_deg, angle_end_deg)
+0026:     adb_angmap_theta1 = 90.0 - adb_angmap_high
+0027:     adb_angmap_theta2 = 90.0 - adb_angmap_low
+0029:     adb_angmap_arc = Arc(
+0031:         width=2.0 * radius_value,
+0034:         theta1=adb_angmap_theta1,
+0035:         theta2=adb_angmap_theta2,
+0036:         linewidth=lw,
+0039:     ax.add_patch(adb_angmap_arc)
+0041:     adb_angmap_mid_angle = 0.5 * (angle_start_deg + angle_end_deg)
+0042:     adb_angmap_label_x, adb_angmap_label_y = ray_xy_from_yaxis(
+0043:         adb_angmap_mid_angle,
+0048:         adb_angmap_label_x,
+0049:         adb_angmap_label_y,
+0059: def adb_angmap_topdown_panel_format(ax):
+0067:         linewidth=1.0,
+0079:     for adb_angmap_spine in ax.spines.values():
+0080:         adb_angmap_spine.set_linewidth(0.8)
+0083: def adb_angmap_draw_topdown(ax, frames, x_track, y_track, geom, array_idx, track_color, track_label):
+0087:     adb_angmap_topdown_panel_format(ax)
+0089:     adb_angmap_frame = frames[array_idx]
+0090:     adb_angmap_x = x_track[array_idx]
+0091:     adb_angmap_y = y_track[array_idx]
+0093:     adb_angmap_theta_c = geom["theta_c"][array_idx]
+0094:     adb_angmap_center = geom["shadow_center"][array_idx]
+0095:     adb_angmap_theta_min = geom["theta_min"][array_idx]
+0096:     adb_angmap_theta_max = geom["theta_max"][array_idx]
+0097:     adb_angmap_range = geom["range_target"][array_idx]
+0098:     adb_angmap_r_max = geom["r_max"][array_idx]
+0099:     adb_angmap_epsilon = geom["epsilon"][array_idx]
+0106:         linewidth=1.2,
+0114:         linewidth=2.2,
+0119:     # Shadow cone Θ(t), drawn up to r_max
+0120:     adb_angmap_theta_min_x, adb_angmap_theta_min_y = ray_xy_from_yaxis(
+0121:         adb_angmap_theta_min,
+0122:         adb_angmap_r_max
+0124:     adb_angmap_theta_max_x, adb_angmap_theta_max_y = ray_xy_from_yaxis(
+0125:         adb_angmap_theta_max,
+0126:         adb_angmap_r_max
+0132:              (adb_angmap_theta_min_x, adb_angmap_theta_min_y),
+0133:              (adb_angmap_theta_max_x, adb_angmap_theta_max_y)],
+0142:         [0.0, adb_angmap_theta_min_x],
+0143:         [0.0, adb_angmap_theta_min_y],
+0145:         linewidth=1.5,
+0150:         [0.0, adb_angmap_theta_max_x],
+0151:         [0.0, adb_angmap_theta_max_y],
+0153:         linewidth=1.5,
+0159:         [0.0, adb_angmap_x],
+0160:         [0.0, adb_angmap_y],
+0161:         linewidth=2.0,
+0167:     adb_angmap_center_x, adb_angmap_center_y = ray_xy_from_yaxis(
+0168:         adb_angmap_center,
+0169:         adb_angmap_r_max
+0173:         [0.0, adb_angmap_center_x],
+0174:         [0.0, adb_angmap_center_y],
+0175:         linewidth=2.0,
+0182:         adb_angmap_x,
+0183:         adb_angmap_y,
+0188:     add_target_vehicle(ax, adb_angmap_x, adb_angmap_y, alpha=0.75)
+0191:     adb_angmap_add_arc(
+0194:         adb_angmap_theta_c,
+0201:     adb_angmap_add_arc(
+0203:         adb_angmap_theta_c,
+0204:         adb_angmap_center,
+0211:     adb_angmap_add_arc(
+0213:         adb_angmap_theta_min,
+0214:         adb_angmap_theta_max,
+0223:         0.52 * adb_angmap_center_x,
+0224:         0.52 * adb_angmap_center_y,
+0225:         r"shadow center $\theta_c(t)-\Delta\theta$",
+0233:         f"frame = {adb_angmap_frame}\n"
+0237:         rf"$\epsilon(t)={adb_angmap_epsilon:.1f}^\circ$"
+0245: def adb_angmap_draw_angle_axis(ax, frames, geom, array_idx, xlim_min, xlim_max):
+0247:     Right panel: the same snapshot mapped to a 1D shadow-angle axis.
+0250:     adb_angmap_frame = frames[array_idx]
+0252:     adb_angmap_theta_c = geom["theta_c"][array_idx]
+0253:     adb_angmap_center = geom["shadow_center"][array_idx]
+0254:     adb_angmap_theta_min = geom["theta_min"][array_idx]
+0255:     adb_angmap_theta_max = geom["theta_max"][array_idx]
+0256:     adb_angmap_epsilon = geom["epsilon"][array_idx]
+0264:         linewidth=6.0,
+0273:         linewidth=1.2
+0276:     # Dynamic shadow interval Θ(t)
+0279:         adb_angmap_theta_min,
+0280:         adb_angmap_theta_max,
+0282:         linewidth=10.0,
+0288:         [adb_angmap_theta_min, adb_angmap_theta_min],
+0291:         linewidth=2.0
+0295:         [adb_angmap_theta_max, adb_angmap_theta_max],
+0298:         linewidth=2.0
+0303:         adb_angmap_theta_c,
+0311:         adb_angmap_center,
+0322:         xy=(adb_angmap_theta_c, 0.0),
+0323:         xytext=(adb_angmap_theta_c, 0.55),
+0333:         xy=(adb_angmap_center, 0.0),
+0334:         xytext=(adb_angmap_center, -0.58),
+0343:         r"$\Theta(t)$" "\n(shadow interval)",
+0344:         xy=(0.5 * (adb_angmap_theta_min + adb_angmap_theta_max), 0.0),
+0345:         xytext=(0.5 * (adb_angmap_theta_min + adb_angmap_theta_max), 0.88),
+0354:         adb_angmap_theta_min,
+0364:         adb_angmap_theta_max,
+0376:         f"frame = {adb_angmap_frame}\n"
+0377:         rf"$\epsilon(t)={adb_angmap_epsilon:.1f}^\circ$",
+0412:     ax.set_xlabel("Shadow angle θ [deg]")
+0416:     for adb_angmap_spine in ax.spines.values():
+0417:         adb_angmap_spine.set_linewidth(0.8)
+0423: for adb_angmap_track_idx, adb_angmap_track in enumerate(m2_final_tracks):
+0424:     adb_angmap_frames, adb_angmap_x_track, adb_angmap_y_track = adb_trz_track_arrays(adb_angmap_track)
+0426:     adb_angmap_geom = adb_trz_shadow_geometry_from_xy(
+0427:         adb_angmap_x_track,
+0428:         adb_angmap_y_track
+0431:     adb_angmap_snapshot_indices = adb_trz_select_snapshot_indices(
+0432:         adb_angmap_frames,
+0433:         n_snapshots=adb_angmap_num_snapshots
+0436:     adb_angmap_track_label = f"Reconstructed track {adb_angmap_track_idx + 1}"
+0437:     adb_angmap_track_color = adb_angmap_track_colors[
+0438:         adb_angmap_track_idx % len(adb_angmap_track_colors)
+0442:     adb_angmap_selected_theta_min = adb_angmap_geom["theta_min"][adb_angmap_snapshot_indices]
+0443:     adb_angmap_selected_theta_max = adb_angmap_geom["theta_max"][adb_angmap_snapshot_indices]
+0444:     adb_angmap_selected_theta_c = adb_angmap_geom["theta_c"][adb_angmap_snapshot_indices]
+0445:     adb_angmap_selected_center = adb_angmap_geom["shadow_center"][adb_angmap_snapshot_indices]
+0447:     adb_angmap_xlim_min = min(
+0451:                 adb_angmap_selected_theta_min.min(),
+0452:                 adb_angmap_selected_theta_c.min(),
+0453:                 adb_angmap_selected_center.min()
+0458:     adb_angmap_xlim_max = np.ceil(
+0460:             adb_angmap_selected_theta_max.max(),
+0461:             adb_angmap_selected_theta_c.max(),
+0462:             adb_angmap_selected_center.max()
+0467:         len(adb_angmap_snapshot_indices),
+0469:         figsize=(13.8, 4.3 * len(adb_angmap_snapshot_indices)),
+0473:     if len(adb_angmap_snapshot_indices) == 1:
+0476:     for adb_angmap_row, adb_angmap_array_idx in enumerate(adb_angmap_snapshot_indices):
+0477:         adb_angmap_draw_topdown(
+0478:             axes[adb_angmap_row, 0],
+0479:             adb_angmap_frames,
+0480:             adb_angmap_x_track,
+0481:             adb_angmap_y_track,
+0482:             adb_angmap_geom,
+0483:             adb_angmap_array_idx,
+0484:             adb_angmap_track_color,
+0485:             adb_angmap_track_label
+0488:         adb_angmap_draw_angle_axis(
+0489:             axes[adb_angmap_row, 1],
+0490:             adb_angmap_frames,
+0491:             adb_angmap_geom,
+0492:             adb_angmap_array_idx,
+0493:             adb_angmap_xlim_min,
+0494:             adb_angmap_xlim_max
+0498:         f"Educational dynamic angle mapping — {adb_angmap_track_label}",
+
+------------------------------------------------------------
+CELL 73
+SOURCE_SHA256=e512257284ca2e1e63a70c5d5e5e72477a597064d7a1324bb42d971f2fbdbcfa
+------------------------------------------------------------
+0003: # Dynamic intensity / top-down ADB plot
+0013: # - adb_trz_track_arrays()
+0014: # - adb_trz_shadow_geometry_from_xy()
+0015: # - adb_trz_select_snapshot_indices()
+0034: adb_int2_track = m2_final_tracks[1]
+0035: adb_int2_track_label = "Reconstructed track 2"
+0036: adb_int2_track_color = "tab:orange"
+0038: adb_int2_frames, adb_int2_x_track, adb_int2_y_track = adb_trz_track_arrays(adb_int2_track)
+0039: adb_int2_geom = adb_trz_shadow_geometry_from_xy(adb_int2_x_track, adb_int2_y_track)
+0041: adb_int2_num_snapshots = globals().get("adb_trz_num_snapshots", 4)
+0042: adb_int2_snapshot_indices = adb_trz_select_snapshot_indices(
+0043:     adb_int2_frames,
+0044:     n_snapshots=adb_int2_num_snapshots
+0050: def adb_int2_sector_polygon_xy(angle_min_deg, angle_max_deg, r_inner, r_outer, n_points=90):
+0055:     adb_int2_outer_angles = np.linspace(angle_min_deg, angle_max_deg, n_points)
+0056:     adb_int2_inner_angles = np.linspace(angle_max_deg, angle_min_deg, n_points)
+0058:     adb_int2_outer_x, adb_int2_outer_y = ray_xy_from_yaxis(adb_int2_outer_angles, r_outer)
+0059:     adb_int2_inner_x, adb_int2_inner_y = ray_xy_from_yaxis(adb_int2_inner_angles, r_inner)
+0061:     adb_int2_poly_x = np.r_[adb_int2_outer_x, adb_int2_inner_x]
+0062:     adb_int2_poly_y = np.r_[adb_int2_outer_y, adb_int2_inner_y]
+0064:     return adb_int2_poly_x, adb_int2_poly_y
+0067: def adb_int2_add_sector_fill(ax, angle_min_deg, angle_max_deg, r_inner, r_outer, face_color, alpha_value):
+0071:     adb_int2_poly_x, adb_int2_poly_y = adb_int2_sector_polygon_xy(
+0080:             np.column_stack([adb_int2_poly_x, adb_int2_poly_y]),
+0089: def adb_int2_suppression_from_radius(r_value, r_min_value, r_max_value):
+0096:         r >= r_max        -> S = 0   (full illumination, L = 1)
+0104:     adb_int2_fraction = (r_value - r_min_value) / (r_max_value - r_min_value)
+0105:     adb_int2_L = 0.5 * (1.0 - np.cos(np.pi * adb_int2_fraction))
+0106:     adb_int2_S = 1.0 - adb_int2_L
+0107:     return adb_int2_S
+0110: def adb_int2_panel_format(ax):
+0118:         linewidth=1.0,
+0130:     for adb_int2_spine in ax.spines.values():
+0131:         adb_int2_spine.set_linewidth(0.8)
+0134: def adb_int2_add_side_note(ax, text, x_axes, y_axes, text_color="0.20"):
+0137:     This keeps labels away from the shaded geometry.
+0157: def adb_int2_draw_snapshot(ax, array_idx):
+0159:     Draw one dynamic top-down ADB intensity snapshot for reconstructed track 2.
+0162:     adb_int2_panel_format(ax)
+0164:     adb_int2_frame_value = adb_int2_frames[array_idx]
+0165:     adb_int2_x = adb_int2_x_track[array_idx]
+0166:     adb_int2_y = adb_int2_y_track[array_idx]
+0168:     adb_int2_theta_c = adb_int2_geom["theta_c"][array_idx]
+0169:     adb_int2_shadow_center = adb_int2_geom["shadow_center"][array_idx]
+0170:     adb_int2_theta_min = adb_int2_geom["theta_min"][array_idx]
+0171:     adb_int2_theta_max = adb_int2_geom["theta_max"][array_idx]
+0173:     adb_int2_r_target = adb_int2_geom["range_target"][array_idx]
+0174:     adb_int2_r_min = adb_int2_geom["r_min"][array_idx]
+0175:     adb_int2_r_max = adb_int2_geom["r_max"][array_idx]
+0176:     adb_int2_epsilon = adb_int2_geom["epsilon"][array_idx]
+0179:     # 1) Full shadow region (L = 0)
+0181:     adb_int2_add_sector_fill(
+0183:         adb_int2_theta_min,
+0184:         adb_int2_theta_max,
+0186:         adb_int2_r_min,
+0192:     # 2) Raised-cosine transition zone using thin ring sectors
+0194:     adb_int2_num_bands = 20
+0195:     adb_int2_band_edges = np.linspace(adb_int2_r_min, adb_int2_r_max, adb_int2_num_bands + 1)
+0197:     for adb_int2_band_idx in range(adb_int2_num_bands):
+0198:         adb_int2_band_inner = adb_int2_band_edges[adb_int2_band_idx]
+0199:         adb_int2_band_outer = adb_int2_band_edges[adb_int2_band_idx + 1]
+0200:         adb_int2_band_mid = 0.5 * (adb_int2_band_inner + adb_int2_band_outer)
+0202:         adb_int2_suppression = adb_int2_suppression_from_radius(
+0203:             adb_int2_band_mid,
+0204:             adb_int2_r_min,
+0205:             adb_int2_r_max
+0208:         adb_int2_band_alpha = 0.03 + 0.22 * adb_int2_suppression
+0210:         adb_int2_add_sector_fill(
+0212:             adb_int2_theta_min,
+0213:             adb_int2_theta_max,
+0214:             adb_int2_band_inner,
+0215:             adb_int2_band_outer,
+0217:             alpha_value=adb_int2_band_alpha
+0223:     adb_int2_theta_min_x, adb_int2_theta_min_y = ray_xy_from_yaxis(
+0224:         adb_int2_theta_min,
+0225:         adb_int2_r_max
+0227:     adb_int2_theta_max_x, adb_int2_theta_max_y = ray_xy_from_yaxis(
+0228:         adb_int2_theta_max,
+0229:         adb_int2_r_max
+0231:     adb_int2_center_x, adb_int2_center_y = ray_xy_from_yaxis(
+0232:         adb_int2_shadow_center,
+0233:         adb_int2_r_max
+0237:         [0.0, adb_int2_theta_min_x],
+0238:         [0.0, adb_int2_theta_min_y],
+0240:         linewidth=1.3,
+0245:         [0.0, adb_int2_theta_max_x],
+0246:         [0.0, adb_int2_theta_max_y],
+0248:         linewidth=1.3,
+0253:         [0.0, adb_int2_center_x],
+0254:         [0.0, adb_int2_center_y],
+0255:         linewidth=1.2,
+0262:         [0.0, adb_int2_x],
+0263:         [0.0, adb_int2_y],
+0264:         linewidth=1.2,
+0273:         adb_int2_x_track[array_idx:],
+0274:         adb_int2_y_track[array_idx:],
+0276:         linewidth=1.2,
+0277:         color=adb_int2_track_color,
+0282:         adb_int2_x_track[:array_idx + 1],
+0283:         adb_int2_y_track[:array_idx + 1],
+0284:         linewidth=2.4,
+0285:         color=adb_int2_track_color,
+0291:         adb_int2_x,
+0292:         adb_int2_y,
+0294:         color=adb_int2_track_color,
+0297:     add_target_vehicle(ax, adb_int2_x, adb_int2_y, alpha=0.78)
+0306:         f"{adb_int2_track_label}\n"
+0307:         f"frame = {adb_int2_frame_value}\n"
+0308:         rf"$r_{{target}}={adb_int2_r_target:.1f}$" "\n"
+0309:         rf"$r_{{min}}={adb_int2_r_min:.1f}$" "\n"
+0310:         rf"$r_{{max}}={adb_int2_r_max:.1f}$" "\n"
+0311:         rf"$\epsilon={adb_int2_epsilon:.1f}^\circ$"
+0315:     ax.set_title(f"{adb_int2_track_label} | frame {adb_int2_frame_value}", fontsize=10)
+0325:     len(adb_int2_snapshot_indices),
+0326:     figsize=(5.6 * len(adb_int2_snapshot_indices), 6.2),
+0330: if len(adb_int2_snapshot_indices) == 1:
+0333: for adb_int2_plot_idx, adb_int2_array_idx in enumerate(adb_int2_snapshot_indices):
+0334:     adb_int2_draw_snapshot(
+0335:         axes[adb_int2_plot_idx],
+0336:         adb_int2_array_idx
+
+------------------------------------------------------------
+CELL 74
+SOURCE_SHA256=43a362062b9a6115e071b765ad41ce51c4a96a07a047fd616913c508766860ab
+------------------------------------------------------------
+0003: # Consolidated helpers for the clean final Fig. 3 / ADB-style plots
+0007: # Helper: extract dynamic shadow-angle series from one GT track
+0009: def adb_fig3_clean_track_series_from_gt(x_track, y_track):
+0011:     Return frame-wise dynamic shadow-angle quantities for one GT track.
+0013:     adb_fig3_clean_frames = np.arange(len(x_track))
+0015:     adb_fig3_clean_geom = adb_trz_shadow_geometry_from_xy(
+0021:         "frames": adb_fig3_clean_frames,
+0022:         "theta_c": adb_fig3_clean_geom["theta_c"],
+0023:         "shadow_center": adb_fig3_clean_geom["shadow_center"],
+0024:         "theta_min": adb_fig3_clean_geom["theta_min"],
+0025:         "theta_max": adb_fig3_clean_geom["theta_max"],
+0026:         "epsilon": adb_fig3_clean_geom["epsilon"],
+0031: # Helper: extract dynamic shadow-angle series from one track
+0033: def adb_fig3_clean_track_series(track):
+0035:     Return frame-wise dynamic shadow-angle quantities for one reconstructed track.
+0037:     adb_fig3_clean_frames, adb_fig3_clean_x, adb_fig3_clean_y = adb_trz_track_arrays(track)
+0039:     adb_fig3_clean_geom = adb_trz_shadow_geometry_from_xy(
+0040:         adb_fig3_clean_x,
+0041:         adb_fig3_clean_y
+0045:         "frames": adb_fig3_clean_frames,
+0046:         "theta_c": adb_fig3_clean_geom["theta_c"],
+0047:         "shadow_center": adb_fig3_clean_geom["shadow_center"],
+0048:         "theta_min": adb_fig3_clean_geom["theta_min"],
+0049:         "theta_max": adb_fig3_clean_geom["theta_max"],
+0050:         "epsilon": adb_fig3_clean_geom["epsilon"],
+0054: def adb_fig3_clean_add_line_key(ax, x0, x1, y, color, linestyle, text, text_color=None):
+0057:     This replaces legends/arrows and keeps annotations away from the curves.
+0067:         linewidth=2.0,
+0088: def adb_fig3_clean_add_window_key(ax, x0, x1, y, color, text):
+0090:     Add a compact sample for a shadow window Θ(t) in the white area.
+0097:         linewidth=7.0,
+0106:         linewidth=1.5,
+0114:         linewidth=1.5,
+0136: def adb_fig3_clean_layout(track1, track2):
+0143:         track1["shadow_center"],
+0146:         track2["shadow_center"],
+0175: def adb_fig3_clean_style_axis(ax, layout):
+0181:         spine.set_linewidth(0.8)
+0184: def adb_fig3_clean_plot(track1, track2, source_label):
+0186:     Draw the final two-panel Fig. 3 / ADB-style shadow-angle plot.
+0188:     layout = adb_fig3_clean_layout(track1, track2)
+0205:     ax.plot(track1["frames"], track1["theta_min"], color="crimson", linewidth=1.8, zorder=3)
+0206:     ax.plot(track1["frames"], track1["theta_max"], color="royalblue", linestyle="--", linewidth=1.8, zorder=3)
+0207:     ax.plot(track1["frames"], track1["shadow_center"], color="forestgreen", linewidth=1.1, alpha=0.75, zorder=2)
+0212:         "Single-target ADB output\n" + rf"{source_label} track 1 $\rightarrow$ dynamic $\Theta(t)$",
+0220:     adb_fig3_clean_add_line_key(ax, layout["key_x0"], layout["key_x1"], layout["key_y1"], color="crimson", linestyle="-", text=r"lower boundary $\theta_{\min}(t)$")
+0221:     adb_fig3_clean_add_line_key(ax, layout["key_x0"], layout["key_x1"], layout["key_y2"], color="royalblue", linestyle="--", text=r"upper boundary $\theta_{\max}(t)$")
+0222:     adb_fig3_clean_add_line_key(ax, layout["key_x0"], layout["key_x1"], layout["key_y3"], color="forestgreen", linestyle="-", text=r"shadow center $\theta_c(t)-\Delta\theta$")
+0226:     ax.set_ylabel("Shadow angle [deg]")
+0227:     adb_fig3_clean_style_axis(ax, layout)
+0231:     ax.plot(track1["frames"], track1["theta_min"], color="seagreen", linewidth=1.8, zorder=3)
+0232:     ax.plot(track1["frames"], track1["theta_max"], color="turquoise", linestyle="--", linewidth=1.8, zorder=3)
+0235:     ax.plot(track2["frames"], track2["theta_min"], color="crimson", linewidth=1.8, zorder=3)
+0236:     ax.plot(track2["frames"], track2["theta_max"], color="royalblue", linestyle="--", linewidth=1.8, zorder=3)
+0238:     ax.plot(track1["frames"], track1["shadow_center"], color="seagreen", linewidth=1.0, alpha=0.55, zorder=2)
+0239:     ax.plot(track2["frames"], track2["shadow_center"], color="darkorange", linewidth=1.0, alpha=0.55, zorder=2)
+0244:         "Multi-target ADB output\n" + rf"each {source_label} target produces one dynamic $\Theta(t)$",
+0252:     adb_fig3_clean_add_window_key(ax, layout["key_x0"], layout["key_x1"], layout["key_y1"], color="seagreen", text=r"Target 1 shadow window $\Theta_1(t)$")
+0253:     adb_fig3_clean_add_window_key(ax, layout["key_x0"], layout["key_x1"], layout["key_y2"], color="crimson", text=r"Target 2 shadow window $\Theta_2(t)$")
+0257:     ax.set_ylabel("Shadow angle [deg]")
+0258:     adb_fig3_clean_style_axis(ax, layout)
+
+------------------------------------------------------------
+CELL 75
+SOURCE_SHA256=02a8284800a748c03738bb0a2bb257c26377d62ccd04701a6b801391bd42fbae
+------------------------------------------------------------
+0003: # Final Fig. 3 / ADB-style result
+0004: # Based on dynamic shadow-angle boundaries from GT tracks
+0010: adb_fig3_clean_track1 = adb_fig3_clean_track_series_from_gt(m2_gt1_x, m2_gt1_y)
+0011: adb_fig3_clean_track2 = adb_fig3_clean_track_series_from_gt(m2_gt2_x, m2_gt2_y)
+0013: adb_fig3_clean_layout_values = adb_fig3_clean_plot(
+0014:     adb_fig3_clean_track1,
+0015:     adb_fig3_clean_track2,
+0019: adb_fig3_clean_all_theta = adb_fig3_clean_layout_values["all_theta"]
+0020: adb_fig3_clean_data_ymin = adb_fig3_clean_layout_values["data_ymin"]
+0021: adb_fig3_clean_data_ymax = adb_fig3_clean_layout_values["data_ymax"]
+0022: adb_fig3_clean_key_space = adb_fig3_clean_layout_values["key_space"]
+0023: adb_fig3_clean_ymin = adb_fig3_clean_layout_values["ymin"]
+0024: adb_fig3_clean_ymax = adb_fig3_clean_layout_values["ymax"]
+0025: adb_fig3_clean_xmin = adb_fig3_clean_layout_values["xmin"]
+0026: adb_fig3_clean_xmax = adb_fig3_clean_layout_values["xmax"]
+0027: adb_fig3_clean_xlim_left = adb_fig3_clean_layout_values["xlim_left"]
+0028: adb_fig3_clean_xlim_right = adb_fig3_clean_layout_values["xlim_right"]
+0029: adb_fig3_clean_key_y1 = adb_fig3_clean_layout_values["key_y1"]
+0030: adb_fig3_clean_key_y2 = adb_fig3_clean_layout_values["key_y2"]
+0031: adb_fig3_clean_key_y3 = adb_fig3_clean_layout_values["key_y3"]
+0032: adb_fig3_clean_key_x0 = adb_fig3_clean_layout_values["key_x0"]
+0033: adb_fig3_clean_key_x1 = adb_fig3_clean_layout_values["key_x1"]
+
+------------------------------------------------------------
+CELL 76
+SOURCE_SHA256=9953ff014b85eb4371142202c4c76bbff81aae325cfc7065ee7275dd27d32a86
+------------------------------------------------------------
+0003: # Final Fig. 3 / ADB-style result
+0004: # Based on dynamic shadow-angle boundaries from reconstructed tracks
+0010: adb_fig3_clean_track1 = adb_fig3_clean_track_series(m2_final_tracks[0])
+0011: adb_fig3_clean_track2 = adb_fig3_clean_track_series(m2_final_tracks[1])
+0013: adb_fig3_clean_layout_values = adb_fig3_clean_plot(
+0014:     adb_fig3_clean_track1,
+0015:     adb_fig3_clean_track2,
+0019: adb_fig3_clean_all_theta = adb_fig3_clean_layout_values["all_theta"]
+0020: adb_fig3_clean_data_ymin = adb_fig3_clean_layout_values["data_ymin"]
+0021: adb_fig3_clean_data_ymax = adb_fig3_clean_layout_values["data_ymax"]
+0022: adb_fig3_clean_key_space = adb_fig3_clean_layout_values["key_space"]
+0023: adb_fig3_clean_ymin = adb_fig3_clean_layout_values["ymin"]
+0024: adb_fig3_clean_ymax = adb_fig3_clean_layout_values["ymax"]
+0025: adb_fig3_clean_xmin = adb_fig3_clean_layout_values["xmin"]
+0026: adb_fig3_clean_xmax = adb_fig3_clean_layout_values["xmax"]
+0027: adb_fig3_clean_xlim_left = adb_fig3_clean_layout_values["xlim_left"]
+0028: adb_fig3_clean_xlim_right = adb_fig3_clean_layout_values["xlim_right"]
+0029: adb_fig3_clean_key_y1 = adb_fig3_clean_layout_values["key_y1"]
+0030: adb_fig3_clean_key_y2 = adb_fig3_clean_layout_values["key_y2"]
+0031: adb_fig3_clean_key_y3 = adb_fig3_clean_layout_values["key_y3"]
+0032: adb_fig3_clean_key_x0 = adb_fig3_clean_layout_values["key_x0"]
+0033: adb_fig3_clean_key_x1 = adb_fig3_clean_layout_values["key_x1"]

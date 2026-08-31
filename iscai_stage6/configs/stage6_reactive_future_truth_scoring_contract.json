@@ -1,0 +1,125 @@
+{
+  "NI_delta_rule": {
+    "SE": "sample_std/sqrt(n)",
+    "clip": [
+      0.02,
+      0.05
+    ],
+    "comparator_values": "ORIGINAL_REACTIVE_ONLY",
+    "confidence_interval_claim": false,
+    "cyclist_min_supported_n": 20,
+    "fixed_variability_scale": 1.96,
+    "over_masking_required_n": 120,
+    "pedestrian_min_supported_n": 20,
+    "predictive_values_allowed": false,
+    "raw_delta": "1.96*SE",
+    "sample_std": "ddof=1"
+  },
+  "block": "6.8_reactive_only_future_truth_scoring",
+  "evaluator_rasterization": {
+    "centroid_rasterization": false,
+    "conservative_subcell_intersection": true,
+    "freeze_timing": "BEFORE_ANY_FUTURE_TRUTH_VALUE_READ",
+    "range_rule": "[r_center-half_step,r_center+half_step] intersects [ground_range_min,ground_range_max]",
+    "semantics": "cell-rectangle intersection with corner-derived projected full-box theta/range bounding support",
+    "theta_rule": "circular_abs(theta_cell_center-theta_box_center) <= theta_span/2 + theta_cell_half_step"
+  },
+  "forbidden": {
+    "P_occ_open": true,
+    "controller_or_policy_tuning": true,
+    "formal_evaluation": true,
+    "formal_file_content_open": true,
+    "predictive_controller_execution": true,
+    "predictive_metric_read": true
+  },
+  "frozen_input_hashes": {
+    "cohort": "57440e3d976e7aeff44811b5eeb075dc56e0e0e070a3832ec72d354253b998c9",
+    "evaluator_contract": "c9ff0390820a3c37702fb391ba603244fffcf7c03c476045b590aa483e89bd7e",
+    "geometry_bind_report": "d5737f95ded6ea1d7f49670c589fc15cc80531b62038707198d4ea7b5fd393bd",
+    "geometry_module": "f6e6cc0dd362338eeeaae9d8e25947434a3e7c64b350f0baf81a79a46159f94e",
+    "grid_binding": "be5145fe60a941e7906639916cfa384d5674dc29f294f5a42e12c962bc4df4bc",
+    "ledger": "ac2b954571cdd0166bbcfa5bb8b2956785d1e132288dbe4af7fe2d55adeafcaa",
+    "ni_runtime": "3c67a7f152359710cb24db1a6e01c4b580728e6480b7c5d8f9c40a41349cf1cd",
+    "reactive_freeze_report": "6ca868dbdf13e8a675813d4af2d3c814ce5297155126e5124ac452131670903b",
+    "t0_maps": "7c5d63c76c3d9ef74adbbd7a68e3ce7483b1dd80fd262cba06f6ce1909994993"
+  },
+  "future_box_geometry": {
+    "center": "future WOMD GT center transformed W->frozen H0",
+    "centroid_only": false,
+    "controller_path": false,
+    "dimensions": "future WOMD GT length/width/height; evaluator only",
+    "heading": "future WOMD GT world forward vector rotated by frozen T_H0_from_W; yaw=atan2(H0_y,H0_x)",
+    "physical_box_corners": 8,
+    "projection": "iscai_stage6.adb.geometry.project_box_to_headlamp"
+  },
+  "future_truth": {
+    "WOMD_index_offsets": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "controller_input": false,
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "interpolation": false,
+    "policy_selection_input": false,
+    "prediction_input": false,
+    "role": "EVALUATOR_ONLY_AFTER_FROZEN_T0_DECISION",
+    "timestamp_tolerance_s": 0.001
+  },
+  "grid": {
+    "n_range": 301,
+    "n_theta": 501,
+    "range_max_m": 150.0,
+    "range_min_m": 0.0,
+    "range_step_m": 0.5,
+    "source_binding_sha256": "be5145fe60a941e7906639916cfa384d5674dc29f294f5a42e12c962bc4df4bc",
+    "theta_max_rad": 0.4363323129985824,
+    "theta_min_rad": -0.4363323129985824,
+    "theta_step_rad": 0.0017453292519943296
+  },
+  "metrics_allowed_in_this_run": [
+    "over_masking_area",
+    "pedestrian_visibility_proxy",
+    "cyclist_visibility_proxy"
+  ],
+  "metrics_forbidden_in_this_run": [
+    "vehicle_shadow_zone_violation",
+    "glare_risk_exposure",
+    "mask_IoU_with_constructed_oracle_future_mask",
+    "road_illumination_retention",
+    "false_dimming",
+    "temporal_smoothness",
+    "flicker_change_rate",
+    "energy_consumption",
+    "actuation_latency"
+  ],
+  "oracle_support": {
+    "measured_ADB_ground_truth_claim": false,
+    "semantics": "O_tau = union of constructed future full-box supports of frozen t0-selected ADB actors"
+  },
+  "original_reactive_candidate": {
+    "action_source": "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_t0_maps.npy",
+    "binary_dim_support": "D_tau = [I_final_tau < 1.0]",
+    "decision_time": "t0",
+    "four_horizon_schedule": "HOLD_T0_ACTION_UNCHANGED"
+  },
+  "population": {
+    "actor_population_source": "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_decision_ledger.jsonl",
+    "future_track_duration_used_as_selector": false,
+    "future_validity_used_as_selector": false,
+    "invalid_future_state_semantics": "actor remains in frozen t0 population; that actor contributes empty evaluator support at that horizon",
+    "objects_of_interest_used_as_selector": false,
+    "population_fixed_at_t0": true,
+    "scenario_count": 120,
+    "tracks_to_predict_used_as_selector": false
+  },
+  "purpose": "development-only original-reactive comparator statistics for pre-formal non-inferiority delta freeze",
+  "stage": 6,
+  "status": "FROZEN_BEFORE_FUTURE_TRUTH_READ"
+}

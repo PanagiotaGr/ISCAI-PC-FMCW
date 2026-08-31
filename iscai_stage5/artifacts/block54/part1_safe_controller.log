@@ -1,0 +1,130 @@
+============================================================
+BLOCK 5.4 PART 1/2 — SAFE EXECUTION
+============================================================
+
+===== CONTROLLED COMPILE =====
+beam_baselines.py = PASS
+test_block54_baselines.py = PASS
+run_block54_part1_gate.py = PASS
+run_block54_part1_safe.py = PASS
+
+===== BLOCK5.4 PART1 UNIT TESTS =====
+
+....................
+----------------------------------------------------------------------
+Ran 20 tests in 0.001s
+
+OK
+
+Block5.4 Part1 tests = 20 / 20 PASS
+
+===== PRE-GATE FULL STAGE5 REGRESSION =====
+
+................................................................................................................................
+----------------------------------------------------------------------
+Ran 128 tests in 0.065s
+
+OK
+
+pre-gate Stage5 regression = 128 / 128 PASS
+
+===== BLOCK5.4 PART1 SCIENTIFIC GATE =====
+============================================================
+STAGE 5 — BLOCK 5.4 PART 1/2
+FIXED / CLASSICAL BEAM-POLICY BASELINES
+============================================================
+
+===== A. BLOCK5.3 FROZEN CONTINUITY =====
+Block5.3                 = COMPLETE / FROZEN
+implementation SHA       = PASS
+codebook policy SHA       = PASS
+support                   = [-12,+12] deg
+beam counts               = 16 / 32 / 64
+
+===== B. BASELINE REGISTRY =====
+exhaustive sweep          = PRESENT
+previous-beam persistence = PRESENT / CAUSAL
+geometry nearest          = PRESENT
+fixed Top-1/3/5           = PRESENT
+oracle best gain          = EVALUATION ONLY
+adaptive Top-K            = NOT STARTED
+
+===== C. CROSS-CODEBOOK BASELINE SANITY =====
+16-beam baselines        = PASS
+32-beam baselines        = PASS
+64-beam baselines        = PASS
+
+===== D. CAUSAL GEOMETRY / PERSISTENCE =====
+geometry input            = CAUSAL PREDICTED AZIMUTH
+persistence state         = PREVIOUS SELECTED BEAM
+initialization fallback   = GEOMETRY NEAREST
+future receiver truth     = NO
+
+===== E. ORACLE ISOLATION =====
+oracle                    = EVALUATION ONLY
+oracle real comm label    = NO
+WOMD beam label           = NO
+controller oracle access  = NO
+
+===== F. SCOPE / LEAKAGE =====
+formal N=120 used         = NO
+Stage4 inference          = NO
+development tuning        = NO
+training/recalibration    = NO
+adaptive Top-K            = NOT STARTED
+blockage-aware baseline   = OPTIONAL / NOT STARTED
+optical BER chain         = NOT STARTED
+ADB                       = NOT STARTED
+
+============================================================
+BLOCK 5.4 PART 1/2 GATE
+============================================================
+Block5.3 continuity         = PASS
+exhaustive sweep            = PASS
+previous-beam persistence   = PASS / CAUSAL
+geometry nearest            = PASS
+fixed Top-1 / Top-3 / Top-5 = PASS
+fixed Top-K ranking         = P_b
+oracle best gain            = PASS / EVALUATION ONLY
+oracle controller access    = NO
+WOMD real beam labels       = NO
+formal N=120 used           = NO
+Stage4 inference            = NO
+adaptive Top-K              = NOT STARTED
+implementation files        = 56
+implementation SHA256       = 1716f961014bf7e1069f1114112f0d79a0aea5bae7868c164928d0587f3b062f
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage5/reports/block54_part1_beam_baselines.json
+next = BLOCK 5.4 PART 2/2
+terminal remains open = YES
+
+Block5.4 gate raw code = 0
+
+===== FINAL FULL STAGE5 REGRESSION =====
+
+................................................................................................................................
+----------------------------------------------------------------------
+Ran 128 tests in 0.065s
+
+OK
+
+final Stage5 regression = 128 / 128 PASS
+
+============================================================
+BLOCK 5.4 PART 1/2 FINAL
+============================================================
+Block5.3 continuity         = PASS
+exhaustive sweep            = PASS
+previous-beam persistence   = PASS / CAUSAL
+geometry nearest            = PASS
+fixed Top-1 / Top-3 / Top-5 = PASS
+fixed Top-K ranking         = P_b
+oracle best gain            = EVALUATION ONLY
+WOMD real beam labels       = NO
+formal N=120 used           = NO
+Stage4 inference            = NO
+adaptive Top-K              = NOT STARTED
+Stage5 regression           = 128 / 128 PASS
+STATUS = PASS
+next = BLOCK 5.4 PART 2/2
+terminal remains open = YES

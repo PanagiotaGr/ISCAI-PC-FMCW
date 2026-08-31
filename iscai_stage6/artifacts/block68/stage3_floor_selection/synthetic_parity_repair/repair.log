@@ -1,0 +1,59 @@
+==============================================================================
+BLOCK 6.8 STAGE-3 SYNTHETIC METRIC-FIXTURE REPAIR
+TEST FIXTURE ONLY — PRODUCTION METRIC KERNEL UNCHANGED
+==============================================================================
+
+===== A. EXACT FAILURE BOUNDARY =====
+runner pre-patch SHA256 = 47a90e2606db2742ebe95e58d0abf4e1d9e6be1388924673da468eddb271b479
+Stage-1 gamma           = FROZEN
+Stage-2 margins         = FROZEN
+Stage-3 floor outcomes  = NOT COMPUTED
+candidate sweep         = NOT STARTED
+Stage-4 temporal/rate   = NOT SELECTED
+primary acceptance      = NOT TESTED
+formal evaluation       = NO
+
+===== B. SYNTHETIC DENOMINATOR DIAGNOSIS =====
+synthetic grid cells       = 24
+production grid cells      = 603204
+authoritative synthetic    = 10 / 24
+compressed observed        = 10 / 603204 EXACT
+production overmask kernel = CORRECT / UNCHANGED
+failure source             = SYNTHETIC FIXTURE SHAPE
+
+===== C. VERIFIED BACKUP =====
+backup SHA256 = 47a90e2606db2742ebe95e58d0abf4e1d9e6be1388924673da468eddb271b479
+
+===== D. BUILD FIXTURE-ONLY PATCH =====
+patch syntax                = PASS
+synthetic fixture           = PRODUCTION GRID SHAPE
+compressed production code = UNCHANGED
+metric formulas             = UNCHANGED
+candidate comparator        = UNCHANGED
+Stage-1 gamma              = UNCHANGED
+Stage-2 margins            = UNCHANGED
+fixed caches               = UNCHANGED
+
+===== E. TRANSACTIONAL PATCH =====
+patched runner compile = PASS
+Stage6 regression      = 224 / 224 PASS
+runner post-patch SHA  = 0b351f8cd7f4d51ff259b5a9132f012ffe3b58ea3fdc420d912d2db76dd459e4
+
+==============================================================================
+BLOCK 6.8 SYNTHETIC METRIC-FIXTURE REPAIR — FINAL
+==============================================================================
+production overmask denominator = UNCHANGED
+production grid cells           = 603204
+synthetic fixture               = NOW 4x501x301
+compressed metric kernel        = UNCHANGED
+authoritative metric runtime    = UNCHANGED
+Stage-3 scoring comparator      = UNCHANGED
+Stage-3 floor outcomes          = NOT COMPUTED
+candidate sweep                 = NOT STARTED
+Stage-4 temporal/rate           = NOT SELECTED
+primary acceptance              = NOT TESTED
+formal evaluation               = NO
+Stage6 regression               = 224 / 224 PASS
+STATUS = PASS_STAGE3_SYNTHETIC_METRIC_FIXTURE_REPAIRED
+report = /home/agni/waymo/iscai_stage6/reports/block68_stage3_synthetic_metric_fixture_repair.json
+terminal remains open = YES

@@ -1,0 +1,74 @@
+CANONICAL PART-A DYNAMIC ADB FUNCTIONS
+notebook_sha256=b5a80a6d3441de6d571db4f65b4a43ed4052cc2b3ccba935ad31b5dd51316ef3
+notebook_executed=false
+
+
+============================================================
+FUNCTION: adb_intensity_map
+CELL: 59
+SHA256: 000407148d5120db7326f95ed42e12342ce5144054184b613ee1f5678837c350
+============================================================
+def adb_intensity_map(theta_min_deg, theta_max_deg, x_m, y_m):
+    # Current distance from ego vehicle to target center
+    target_range_m = np.hypot(x_m, y_m)
+    # Same logic as the simulation 1's example intensity map
+    r_min_m = target_range_m + radial_safety_margin_m
+    r_max_m = r_min_m + transition_length_m
+
+    intensity = np.ones_like(adb_range_grid_m, dtype=float)
+
+    inside_shadow = (
+        (adb_angle_grid_deg >= theta_min_deg)
+        & (adb_angle_grid_deg <= theta_max_deg)
+    )
+
+    full_shadow = inside_shadow & (adb_range_grid_m <= r_min_m)
+    transition = (
+        inside_shadow
+        & (adb_range_grid_m > r_min_m)
+        & (adb_range_grid_m < r_max_m)
+    )
+    intensity[full_shadow] = 0.0
+
+    u = (adb_range_grid_m[transition] - r_min_m) / (r_max_m - r_min_m)
+    intensity[transition] = 0.5 * (1.0 - np.cos(np.pi * u))
+
+    return intensity
+
+============================================================
+FUNCTION: adb_combine_intensity_maps
+CELL: 59
+SHA256: e5517dc82a865658f014f38e82e2b283aeda1f498f2a0000435b66d6aa3ab33f
+============================================================
+def adb_combine_intensity_maps(theta_min_values, theta_max_values, x_values, y_values):
+    """Combine ADB intensity maps from multiple vehicles."""
+
+    combined = np.ones_like(adb_range_grid_m, dtype=float)
+
+    for theta_min_deg, theta_max_deg, x_m, y_m in zip(
+        theta_min_values,
+        theta_max_values,
+        x_values,
+        y_values
+    ):
+        vehicle_map = adb_intensity_map(theta_min_deg, theta_max_deg, x_m, y_m)
+        combined = np.minimum(combined, vehicle_map)
+
+    return combined
+
+============================================================
+FUNCTION: adb_trz_shadow_geometry_from_xy
+CELL: 70
+SHA256: f968d50f08bdbda613ebc792c2d439736a0fe963142e4ea9bccd1a5b90926a83
+============================================================
+def adb_trz_shadow_geometry_from_xy(x_track, y_track):
+    """
+    Dynamic ADB geometry from reconstructed x(t), y(t).
+
+    Coordinate convention:
+        ego at (0, 0)
+        +y forward
+        +x right
+        theta = atan2(x, y), in degrees
+    """
+    return adb_shadow_geometry_from_xy(x_track, y_track, include_radial_zone=True)

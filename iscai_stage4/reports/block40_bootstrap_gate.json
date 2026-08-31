@@ -1,0 +1,138 @@
+{
+  "acceptance_policy": {
+    "PDF_minimum": "probabilistic predictor beats at least one frozen classical baseline",
+    "calibration_levels": [
+      0.5,
+      0.8,
+      0.9,
+      0.95,
+      0.99
+    ],
+    "calibration_statistics_from_formal_validation": false,
+    "stricter_project_gate": "calibrated probabilistic predictor planar ADE beats frozen Stage3 CV"
+  },
+  "block": "4.0",
+  "boundary": {
+    "downstream_stage_dependency": false,
+    "legacy_runtime_dependency": false,
+    "violations": []
+  },
+  "contracts": {
+    "GMM_implemented_and_evaluated": true,
+    "Gaussian_GRU_required": true,
+    "Transformer_required": false,
+    "future_model_input": false,
+    "main_observation_mode": "full_frozen_stage2_degraded",
+    "measurement_covariance_as_predictor_input": true,
+    "measurement_vs_predictive_uncertainty_separate": true,
+    "multi_agent_context_required": true,
+    "perfect_track_id_numeric_feature": false,
+    "receiver_angular_posterior_stage": 5,
+    "tracks_to_predict_model_input": false
+  },
+  "environment": {
+    "cuda_available": true,
+    "deterministic_algorithms_enabled": false,
+    "gpu_name": "NVIDIA RTX A6000",
+    "numpy_installed": true,
+    "numpy_version": "2.5.1",
+    "platform": "Linux-6.12.96+deb13-amd64-x86_64-with-glibc2.41",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "python_executable": "/home/agni/waymo/iscai_stage1/.venv_lidar/bin/python",
+    "scipy_installed": false,
+    "torch_autograd_smoke": true,
+    "torch_cholesky_smoke": true,
+    "torch_cuda_version": "13.2",
+    "torch_installed": true,
+    "torch_version": "2.13.0+cu132"
+  },
+  "failures": [],
+  "frozen_stage3_primary_baselines": {
+    "CA": {
+      "ADE_m": 42.49438163820611,
+      "F1": 0.20767163449792328,
+      "FDE_m": 115.39067810342564,
+      "precision": 0.1196509009009009,
+      "recall": 0.7855822550831792
+    },
+    "CTRV": {
+      "ADE_m": 6.453930162499179,
+      "F1": 0.20767163449792328,
+      "FDE_m": 10.415680828481843,
+      "precision": 0.1196509009009009,
+      "recall": 0.7855822550831792
+    },
+    "CV": {
+      "ADE_m": 9.538706032921292,
+      "F1": 0.1838307966001186,
+      "FDE_m": 19.598318908620666,
+      "precision": 0.10292164674634795,
+      "recall": 0.8595194085027726
+    },
+    "IMM_CV_CA_CTRV": {
+      "ADE_m": 11.232591369475708,
+      "F1": 0.20767163449792328,
+      "FDE_m": 20.139907890760277,
+      "precision": 0.1196509009009009,
+      "recall": 0.7855822550831792
+    },
+    "Kalman_EKF": {
+      "ADE_m": 12.373487723184146,
+      "F1": 0.1838307966001186,
+      "FDE_m": 19.791890509820036,
+      "precision": 0.10292164674634795,
+      "recall": 0.8595194085027726
+    },
+    "Multidimensional_Hough": {
+      "ADE_m": 1.6147003361796544,
+      "F1": 0.2904899135446686,
+      "FDE_m": 2.536680875181824,
+      "precision": 0.21105527638190955,
+      "recall": 0.4658040665434381
+    }
+  },
+  "implementation": {
+    "file_count": 5,
+    "sha256": "22f27101f5c6e57a1bc66a1299c05be911ea6af26a18a0fe36807cfa4e944a4f"
+  },
+  "legacy": {
+    "exists": true,
+    "file_count": 263,
+    "path": "/home/agni/waymo/iscai_stage4_panagiota",
+    "semantics": "reference_only_never_runtime_dependency",
+    "sha256": "9206d6a4ef7cd69b199a9d5fe4271d69e51710b70a63f38182e87fc824dea52d"
+  },
+  "regression": {
+    "pass": true,
+    "tests_passed": 9,
+    "tests_total": 9
+  },
+  "scope": "clean_bootstrap_upstream_environment_and_contract_freeze",
+  "stage": 4,
+  "status": "PASS",
+  "storage": {
+    "free_gib": 1056.5955390930176,
+    "hard_reserve_gib": 250.0,
+    "hard_reserve_pass": true
+  },
+  "torch_ready": true,
+  "upstream": {
+    "formal_N": 120,
+    "formal_manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "stage2_closure_report": "/home/agni/waymo/iscai_stage2/reports/stage2_closure_report.json",
+    "stage2_closure_report_sha256": "44b0961128ee13b97876c97ddfb91de1b9c01d2962413a412066fb93f31701b5",
+    "stage2_frozen_closure": true,
+    "stage3_formal_run_sha256": "5fbb4642f87ab8e62cf1e1b3ef4214d92df5b5a1423bd9fb72b9733ced02e433",
+    "stage3_implementation_sha256": "12b7a236cf1ea8e8a02b1c74da44d7db79cdaef363542a2be564b697036e6bbf",
+    "stage3_status": "COMPLETE_FROZEN"
+  },
+  "upstream_interfaces": {
+    "stage2_degraded_profile_sha256": "33a6dc4e3019d80fe23d97ee52c3fd1c915e21d272c3883f05888b8c01db925b",
+    "stage2_degraded_profile_source": "/home/agni/waymo/iscai_stage2/scripts/run_stage2_degraded_scene_smoke.py",
+    "stage3_association_tree": {
+      "file_count": 4,
+      "sha256": "81ae7a351fe04e921fe17f85804fc47633d704ea59fd4207018b212e6465e6fb"
+    },
+    "stage3_stage2_bridge_sha256": "50f34428dea80e8c665c911ef849d36f8199ad96e65dc1f888667d549eab4f71"
+  }
+}

@@ -1,0 +1,70 @@
+===== STAGE6-V2 DIAGNOSTIC =====
+
+--- V2 console ---
+exists = YES
+size = 2130 bytes
+sha256 = dea646b9473ca911590c04ef831f391b58a2071295cdee48d83457a972be7c71
+
+--- last 80 lines ---
+==============================================================================
+STAGE 6 — BLOCK 6.8
+DEVELOPMENT STAGE-4 TEMPORAL/RATE SELECTION
+EXACT 60-CANDIDATE AUTHORITATIVE SWEEP
+STAGE1+2+3 IMMUTABLE / NO PRIMARY ACCEPTANCE / NO FORMAL
+==============================================================================
+existing Stage-4 temporal/rate freeze = EXACT PASS
+STATUS = PASS_STAGE4_TEMPORAL_RATE_SELECTED_FROZEN
+==============================================================================
+STAGE 6 — BLOCK 6.8
+DEVELOPMENT STAGE-4 TEMPORAL/RATE SELECTION
+EXACT 60-CANDIDATE AUTHORITATIVE SWEEP
+STAGE1+2+3 IMMUTABLE / NO PRIMARY ACCEPTANCE / NO FORMAL
+==============================================================================
+
+===== A. EXACT FROZEN SELECTION BOUNDARY =====
+stage4_prefreeze         = EXACT PASS
+stage4_prefreeze_report  = EXACT PASS
+current_binding          = EXACT PASS
+t0_maps                  = EXACT PASS
+stage3_freeze            = EXACT PASS
+cache_manifest           = EXACT PASS
+cache_freeze             = EXACT PASS
+class_runtime            = EXACT PASS
+metric_runtime           = EXACT PASS
+evaluator_runtime        = EXACT PASS
+road_roi                 = EXACT PASS
+Stage-1 gamma         = IMMUTABLE
+Stage-2 margins       = IMMUTABLE
+Stage-3 floors        = IMMUTABLE
+primary acceptance    = NOT TESTED
+formal evaluation     = NO
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_stage6_v2_budgeted_residual_finalize.py", line 1026, in <module>
+    rc = engine.main()
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block68_stage4_temporal_rate_selection.py", line 1503, in main
+    tests_pre = run_regression()
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block68_stage4_temporal_rate_selection.py", line 504, in run_regression
+    require(
+    ~~~~~~~^
+        count
+        ^^^^^
+    ...<5 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block68_stage4_temporal_rate_selection.py", line 256, in require
+    raise RuntimeError(
+        message
+    )
+RuntimeError: Expected 224 tests; observed 229.
+
+--- V2 files ---
+EXISTS  664c52dc3a61a1498b11cf2d6ba0700332f9fe1c711a3d7c7235bac5a0e78985  iscai_stage6/src/iscai_stage6/adb/budgeted_residual_v2.py
+EXISTS  9dffdee4a67c5df9a1649ec1d00928bf5b6ec33bad0444c539213a5a987f28c9  iscai_stage6/tests/test_stage6_v2_budgeted_residual.py
+EXISTS  872bc8d98108740f08c10b20a8c749d8ea977fe096ac307702c57407dc68843a  iscai_stage6/scripts/run_stage6_v2_budgeted_residual_finalize.py
+EXISTS  9a512adccb03c73319885a37746d047759867c38315cde5823b4a24876a25074  iscai_stage6/configs/stage6_v2_budgeted_residual_protocol.json
+MISSING iscai_stage6/reports/stage6_v2_budgeted_temporal_rate_selection.json
+MISSING iscai_stage6/reports/stage6_v2_budgeted_development_acceptance.json
+MISSING iscai_stage6/reports/stage6_final_closure_v2.json
+MISSING iscai_stage6/artifacts/stage6_v2_budgeted_residual/stage6_to_stage7_handoff_v2.json

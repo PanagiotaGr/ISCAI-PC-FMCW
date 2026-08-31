@@ -1,0 +1,32 @@
+{
+  "block": "6.4-Part2B/2",
+  "freeze_report": {
+    "path": "/home/agni/waymo/iscai_stage6/reports/block64_part2b2_development_numeric_freeze.json",
+    "sha256": "06cb2487cc097a5df5b7f4966dded8509fa4771b70755146180cc13d1e64333f"
+  },
+  "immutable_evidence": {
+    "/home/agni/waymo/iscai_stage6/artifacts/block63/identity_safe_development_gaussian_posterior.jsonl": "318b22dfc3788195a1432169075d1c8654f0d183337711918db2303b5668f5ea",
+    "/home/agni/waymo/iscai_stage6/artifacts/block64/block64_part2b1_real_mc_convergence_counts.npz": "ee536151df1b49294ebdeda598d74734083dc90769fd3d70dc8a058142701b7a",
+    "/home/agni/waymo/iscai_stage6/configs/block64_part2a_probabilistic_occupancy_contract.json": "3c61222ca829849ee77b276ff21a199b016b0fe8455b6f4045d4e980f4874ae8",
+    "/home/agni/waymo/iscai_stage6/reports/block64_part2a_probabilistic_occupancy_kernel.json": "42ba4b5bfd54a4e5b74773f71a5ce2d040021a188dffb336beb2b32fb852b0a3",
+    "/home/agni/waymo/iscai_stage6/reports/block64_part2b1_real_mc_convergence.json": "57f23aaa55e31967653528157f2d7703fc10b632d353e2b8e25c53c379bc4d1f",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_full_box.py": "51daeab95713d6e7d2738ced466be4844b73dce70a09138b2b769de880462995",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_occupancy.py": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e"
+  },
+  "numeric_config": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block64_mc_grid_numeric_freeze.json",
+    "sha256": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73"
+  },
+  "scientific_lock": {
+    "MC_runtime_N": 8192,
+    "MC_seed": 20260821,
+    "formal_tuning": "FORBIDDEN",
+    "gamma": "NOT_YET_FROZEN",
+    "grid_shape": [
+      501,
+      301
+    ]
+  },
+  "stage": 6,
+  "status": "BLOCK64_MC_GRID_NUMERICS_FROZEN"
+}

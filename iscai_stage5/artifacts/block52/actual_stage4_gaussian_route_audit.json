@@ -1,0 +1,1007 @@
+{
+  "Block44_report": {
+    "path": "/home/agni/waymo/iscai_stage4/reports/block44_gaussian_gru.json",
+    "sha256": "78ccc780a9d753e9619e215fee0e83a706f1607445741b032983e526efd97a54"
+  },
+  "Gaussian_config": {
+    "path": "/home/agni/waymo/iscai_stage4/configs/stage4_gaussian_gru.json",
+    "sha256": "c74e37b7c3b5f496812fb4fcc27fbae4ddba5c35b59a8aeeac54099e5869c891"
+  },
+  "checkpoint": {
+    "load_status": "PASS_WEIGHTS_ONLY",
+    "sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f",
+    "top_level_keys": [
+      "stage",
+      "block",
+      "model_type",
+      "state_dict",
+      "state_dict_sha256",
+      "best_epoch",
+      "development_metrics",
+      "fingerprints",
+      "configuration",
+      "calibrated"
+    ],
+    "top_level_summary": {
+      "best_epoch": {
+        "repr": "12",
+        "type": "int"
+      },
+      "block": {
+        "repr": "'4.4'",
+        "type": "str"
+      },
+      "calibrated": {
+        "repr": "False",
+        "type": "bool"
+      },
+      "configuration": {
+        "keys_preview": [
+          "stage",
+          "block",
+          "status",
+          "purpose",
+          "upstream",
+          "input",
+          "predictive_distribution",
+          "initialization",
+          "normalization",
+          "training",
+          "raw_evaluation_before_calibration",
+          "acceptance",
+          "next_block"
+        ],
+        "length": 13,
+        "type": "dict"
+      },
+      "development_metrics": {
+        "keys_preview": [
+          "metric_Gaussian_NLL",
+          "planar_ADE_m",
+          "horizon_metric_NLL",
+          "horizon_planar_error_m",
+          "one_second_planar_error_m",
+          "class_planar_ADE_m",
+          "raw_empirical_coverage",
+          "mean_predictive_std_m",
+          "valid_actor_horizon_points",
+          "predictive_covariance_SPD_failures"
+        ],
+        "length": 10,
+        "type": "dict"
+      },
+      "fingerprints": {
+        "keys_preview": [
+          "configuration_sha256",
+          "deterministic_checkpoint_sha256",
+          "deterministic_state_dict_sha256",
+          "fit_cache_sha256",
+          "development_cache_sha256",
+          "normalization_sha256"
+        ],
+        "length": 6,
+        "type": "dict"
+      },
+      "model_type": {
+        "repr": "'GaussianTrajectoryGRU'",
+        "type": "str"
+      },
+      "stage": {
+        "repr": "4",
+        "type": "int"
+      },
+      "state_dict": {
+        "keys_preview": [
+          "target_gru.weight_ih_l0",
+          "target_gru.weight_hh_l0",
+          "target_gru.bias_ih_l0",
+          "target_gru.bias_hh_l0",
+          "neighbor_gru.weight_ih_l0",
+          "neighbor_gru.weight_hh_l0",
+          "neighbor_gru.bias_ih_l0",
+          "neighbor_gru.bias_hh_l0",
+          "map_encoder.0.weight",
+          "map_encoder.0.bias",
+          "map_encoder.2.weight",
+          "map_encoder.2.bias",
+          "fusion.0.weight",
+          "fusion.0.bias",
+          "fusion.2.weight",
+          "fusion.2.bias",
+          "mean_head.weight",
+          "mean_head.bias",
+          "cholesky_head.weight",
+          "cholesky_head.bias"
+        ],
+        "length": 20,
+        "type": "dict"
+      },
+      "state_dict_sha256": {
+        "repr": "'1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3'",
+        "type": "str"
+      }
+    }
+  },
+  "conclusion": {
+    "actual_covariance_source_resolved": true,
+    "actual_denormalization_source_resolved": true,
+    "actual_model_source_resolved": true,
+    "frozen_checkpoint": true,
+    "frozen_development_cache": true,
+    "materialized_dev_posterior": false,
+    "next_action": "exact_dev_only_forward_reproduction_using_frozen_Block4.4_route"
+  },
+  "development_cache": {
+    "arrays": {
+      "class_id": {
+        "dtype": "int64",
+        "finite_fraction": 1.0,
+        "shape": [
+          13682
+        ],
+        "size": 13682
+      },
+      "future": {
+        "dtype": "float32",
+        "finite_fraction": 1.0,
+        "shape": [
+          13682,
+          4,
+          3
+        ],
+        "size": 164184
+      },
+      "future_mask": {
+        "dtype": "float32",
+        "finite_fraction": 1.0,
+        "shape": [
+          13682,
+          4
+        ],
+        "size": 54728
+      },
+      "map_context": {
+        "dtype": "float32",
+        "finite_fraction": 1.0,
+        "shape": [
+          13682,
+          10
+        ],
+        "size": 136820
+      },
+      "neighbor_mask": {
+        "dtype": "float32",
+        "finite_fraction": 1.0,
+        "shape": [
+          13682,
+          8
+        ],
+        "size": 109456
+      },
+      "neighbors": {
+        "dtype": "float32",
+        "finite_fraction": 1.0,
+        "shape": [
+          13682,
+          8,
+          11,
+          14
+        ],
+        "size": 16856224
+      },
+      "target": {
+        "dtype": "float32",
+        "finite_fraction": 1.0,
+        "shape": [
+          13682,
+          11,
+          14
+        ],
+        "size": 2107028
+      }
+    },
+    "path": "/home/agni/waymo/iscai_stage4/artifacts/block43/development_cache.npz",
+    "sha256": "bc0e5b508df38f6e33d9cb1a6d21d7eaa86d20c91ba09ede6f500d46b87fbcaa"
+  },
+  "resolved_symbols": {
+    "GaussianTrajectoryGRU": {
+      "definition_start_line": 189,
+      "module": "iscai_stage4.ml",
+      "object_type": "type",
+      "signature": "(*, target_hidden_dim: 'int' = 64, neighbor_hidden_dim: 'int' = 32, map_hidden_dim: 'int' = 32, fusion_hidden_dim: 'int' = 128, use_neighbors: 'bool' = True, use_map: 'bool' = True)",
+      "source_path": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_gru.py",
+      "source_preview": "class GaussianTrajectoryGRU(\n    nn.Module\n):\n    \"\"\"\n    Probabilistic extension of the frozen\n    Block4.3 deterministic architecture.\n\n    Input:\n        same causal target history,\n        same Stage2 R_t conditioning,\n        same neighbours,\n        same map context.\n\n    Output per horizon:\n        predictive mean in R^3\n        full 3x3 SPD predictive covariance.\n    \"\"\"\n\n    def __init__(\n        self,\n        *,\n        target_hidden_dim: int = 64,\n        neighbor_hidden_dim: int = 32,\n        map_hidden_dim: int = 32,\n        fusion_hidden_dim: int = 128,\n        use_neighbors: bool = True,\n        use_map: bool = True,\n    ):\n        super().__init__()\n\n        if min(\n            target_hidden_dim,\n            neighbor_hidden_dim,\n            map_hidden_dim,\n            fusion_hidden_dim,\n        ) <= 0:\n            raise ValueError(\n                \"Hidden dimensions \"\n                \"must be positive.\"\n            )\n",
+      "source_sha256": "b5e206d7e62e437bd3b64a5c20c56cab6319494b119882794defeb70a9494bb8",
+      "symbol": "GaussianTrajectoryGRU"
+    },
+    "covariance_from_scale_tril": {
+      "definition_start_line": 40,
+      "module": "iscai_stage4.ml",
+      "object_type": "function",
+      "signature": "(scale_tril: 'torch.Tensor') -> 'torch.Tensor'",
+      "source_path": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py",
+      "source_preview": "def covariance_from_scale_tril(\n    scale_tril: torch.Tensor,\n) -> torch.Tensor:\n    if scale_tril.shape[-2:] != (\n        POSITION_DIM,\n        POSITION_DIM,\n    ):\n        raise ValueError(\n            \"scale_tril must end \"\n            \"in [3,3].\"\n        )\n\n    return (\n        scale_tril\n        @\n        scale_tril.transpose(\n            -1,\n            -2,\n        )\n    )\n",
+      "source_sha256": "87a9a2b8c7fb5347fee9b441af33135c303826d80ff6a8dee9373b984f4d809e",
+      "symbol": "covariance_from_scale_tril"
+    },
+    "denormalize_gaussian": {
+      "definition_start_line": 279,
+      "module": "iscai_stage4.ml",
+      "object_type": "function",
+      "signature": "(mean_normalized: 'torch.Tensor', scale_tril_normalized: 'torch.Tensor', label_mean: 'torch.Tensor', label_std: 'torch.Tensor')",
+      "source_path": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py",
+      "source_preview": "def denormalize_gaussian(\n    mean_normalized: torch.Tensor,\n    scale_tril_normalized:\n        torch.Tensor,\n    label_mean: torch.Tensor,\n    label_std: torch.Tensor,\n):\n    \"\"\"\n    Transform normalized Gaussian output\n    into metric H0-displacement coordinates.\n\n    If:\n        y_metric = D y_norm + b\n\n    then:\n        mu_metric = D mu_norm + b\n        L_metric  = D L_norm\n        Sigma_metric =\n            D Sigma_norm D^T\n    \"\"\"\n\n    if label_mean.shape != (\n        mean_normalized.shape[1],\n        POSITION_DIM,\n    ):\n        raise ValueError(\n            \"label_mean shape mismatch.\"\n        )\n\n    if label_std.shape != (\n        mean_normalized.shape[1],\n        POSITION_DIM,\n    ):\n        raise ValueError(\n            \"label_std shape mismatch.\"\n        )\n\n    if bool(\n        torch.any(\n            label_std\n",
+      "source_sha256": "87a9a2b8c7fb5347fee9b441af33135c303826d80ff6a8dee9373b984f4d809e",
+      "symbol": "denormalize_gaussian"
+    },
+    "gaussian_nll_per_horizon": {
+      "definition_start_line": 62,
+      "module": "iscai_stage4.ml",
+      "object_type": "function",
+      "signature": "(mean: 'torch.Tensor', scale_tril: 'torch.Tensor', target: 'torch.Tensor') -> 'torch.Tensor'",
+      "source_path": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py",
+      "source_preview": "def gaussian_nll_per_horizon(\n    mean: torch.Tensor,\n    scale_tril: torch.Tensor,\n    target: torch.Tensor,\n) -> torch.Tensor:\n    \"\"\"\n    Full 3-D Gaussian negative log likelihood.\n\n    Returns:\n        [B,H]\n    \"\"\"\n\n    if mean.shape != target.shape:\n        raise ValueError(\n            \"Gaussian mean/target \"\n            \"shape mismatch.\"\n        )\n\n    if mean.ndim != 3:\n        raise ValueError(\n            \"mean and target must \"\n            \"be [B,H,3].\"\n        )\n\n    if mean.shape[-1] != (\n        POSITION_DIM\n    ):\n        raise ValueError(\n            \"Expected 3-D trajectory.\"\n        )\n\n    if scale_tril.shape != (\n        mean.shape[0],\n        mean.shape[1],\n        POSITION_DIM,\n        POSITION_DIM,\n    ):\n        raise ValueError(\n            \"scale_tril shape mismatch.\"\n        )\n",
+      "source_sha256": "87a9a2b8c7fb5347fee9b441af33135c303826d80ff6a8dee9373b984f4d809e",
+      "symbol": "gaussian_nll_per_horizon"
+    },
+    "masked_gaussian_nll": {
+      "definition_start_line": 182,
+      "module": "iscai_stage4.ml",
+      "object_type": "function",
+      "signature": "(mean: 'torch.Tensor', scale_tril: 'torch.Tensor', target: 'torch.Tensor', validity_mask: 'torch.Tensor') -> 'torch.Tensor'",
+      "source_path": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py",
+      "source_preview": "def masked_gaussian_nll(\n    mean: torch.Tensor,\n    scale_tril: torch.Tensor,\n    target: torch.Tensor,\n    validity_mask: torch.Tensor,\n) -> torch.Tensor:\n    nll = (\n        gaussian_nll_per_horizon(\n            mean,\n            scale_tril,\n            target,\n        )\n    )\n\n    if validity_mask.shape != (\n        nll.shape\n    ):\n        raise ValueError(\n            \"Gaussian validity-mask \"\n            \"shape mismatch.\"\n        )\n\n    mask = validity_mask.to(\n        dtype=nll.dtype\n    )\n\n    denominator = (\n        mask.sum()\n    )\n\n    if denominator.item() == 0:\n        return (\n            mean.sum()\n            *\n            0.0\n            +\n            scale_tril.sum()\n            *\n            0.0\n        )\n",
+      "source_sha256": "87a9a2b8c7fb5347fee9b441af33135c303826d80ff6a8dee9373b984f4d809e",
+      "symbol": "masked_gaussian_nll"
+    }
+  },
+  "scientific_execution": {
+    "dataset_scan": false,
+    "formal_N120_read": false,
+    "model_forward": false,
+    "recalibration": false,
+    "training": false,
+    "upstream_modified": false
+  },
+  "status": "PASS_ACTUAL_STAGE4_ROUTE_RESOLVED",
+  "training_script": {
+    "all_imports": [
+      {
+        "imported_symbol": "annotations",
+        "line": 1,
+        "local_name": "annotations",
+        "module": "__future__"
+      },
+      {
+        "imported_symbol": "Counter",
+        "line": 3,
+        "local_name": "Counter",
+        "module": "collections"
+      },
+      {
+        "imported_symbol": "sha256",
+        "line": 4,
+        "local_name": "sha256",
+        "module": "hashlib"
+      },
+      {
+        "imported_symbol": null,
+        "line": 5,
+        "local_name": "json",
+        "module": "json"
+      },
+      {
+        "imported_symbol": null,
+        "line": 6,
+        "local_name": "math",
+        "module": "math"
+      },
+      {
+        "imported_symbol": null,
+        "line": 7,
+        "local_name": "os",
+        "module": "os"
+      },
+      {
+        "imported_symbol": "Path",
+        "line": 8,
+        "local_name": "Path",
+        "module": "pathlib"
+      },
+      {
+        "imported_symbol": null,
+        "line": 9,
+        "local_name": "re",
+        "module": "re"
+      },
+      {
+        "imported_symbol": null,
+        "line": 10,
+        "local_name": "shutil",
+        "module": "shutil"
+      },
+      {
+        "imported_symbol": null,
+        "line": 11,
+        "local_name": "subprocess",
+        "module": "subprocess"
+      },
+      {
+        "imported_symbol": null,
+        "line": 12,
+        "local_name": "sys",
+        "module": "sys"
+      },
+      {
+        "imported_symbol": null,
+        "line": 13,
+        "local_name": "time",
+        "module": "time"
+      },
+      {
+        "imported_symbol": null,
+        "line": 14,
+        "local_name": "traceback",
+        "module": "traceback"
+      },
+      {
+        "imported_symbol": null,
+        "line": 16,
+        "local_name": "np",
+        "module": "numpy"
+      },
+      {
+        "imported_symbol": null,
+        "line": 17,
+        "local_name": "torch",
+        "module": "torch"
+      },
+      {
+        "imported_symbol": "CHI_SQUARE_3_THRESHOLDS",
+        "line": 19,
+        "local_name": "CHI_SQUARE_3_THRESHOLDS",
+        "module": "iscai_stage4.ml"
+      },
+      {
+        "imported_symbol": "CLASS_CYCLIST",
+        "line": 19,
+        "local_name": "CLASS_CYCLIST",
+        "module": "iscai_stage4.ml"
+      },
+      {
+        "imported_symbol": "CLASS_ID_TO_NAME",
+        "line": 19,
+        "local_name": "CLASS_ID_TO_NAME",
+        "module": "iscai_stage4.ml"
+      },
+      {
+        "imported_symbol": "CLASS_OTHER",
+        "line": 19,
+        "local_name": "CLASS_OTHER",
+        "module": "iscai_stage4.ml"
+      },
+      {
+        "imported_symbol": "CLASS_PEDESTRIAN",
+        "line": 19,
+        "local_name": "CLASS_PEDESTRIAN",
+        "module": "iscai_stage4.ml"
+      },
+      {
+        "imported_symbol": "CLASS_VEHICLE",
+        "line": 19,
+        "local_name": "CLASS_VEHICLE",
+        "module": "iscai_stage4.ml"
+      },
+      {
+        "imported_symbol": "GaussianTrajectoryGRU",
+        "line": 19,
+        "local_name": "GaussianTrajectoryGRU",
+        "module": "iscai_stage4.ml"
+      },
+      {
+        "imported_symbol": "balanced_class_weights",
+        "line": 19,
+        "local_name": "balanced_class_weights",
+        "module": "iscai_stage4.ml"
+      },
+      {
+        "imported_symbol": "covariance_from_scale_tril",
+        "line": 19,
+        "local_name": "covariance_from_scale_tril",
+        "module": "iscai_stage4.ml"
+      },
+      {
+        "imported_symbol": "denormalize_gaussian",
+        "line": 19,
+        "local_name": "denormalize_gaussian",
+        "module": "iscai_stage4.ml"
+      },
+      {
+        "imported_symbol": "gaussian_nll_per_horizon",
+        "line": 19,
+        "local_name": "gaussian_nll_per_horizon",
+        "module": "iscai_stage4.ml"
+      },
+      {
+        "imported_symbol": "initialize_from_deterministic",
+        "line": 19,
+        "local_name": "initialize_from_deterministic",
+        "module": "iscai_stage4.ml"
+      },
+      {
+        "imported_symbol": "mahalanobis_squared",
+        "line": 19,
+        "local_name": "mahalanobis_squared",
+        "module": "iscai_stage4.ml"
+      },
+      {
+        "imported_symbol": "masked_gaussian_nll",
+        "line": 19,
+        "local_name": "masked_gaussian_nll",
+        "module": "iscai_stage4.ml"
+      },
+      {
+        "imported_symbol": "set_global_determinism",
+        "line": 19,
+        "local_name": "set_global_determinism",
+        "module": "iscai_stage4.ml"
+      }
+    ],
+    "path": "/home/agni/waymo/iscai_stage4/scripts/run_block44_gaussian_training.py",
+    "route_hits": [
+      {
+        "line": 26,
+        "text": "    GaussianTrajectoryGRU,"
+      },
+      {
+        "line": 28,
+        "text": "    covariance_from_scale_tril,"
+      },
+      {
+        "line": 29,
+        "text": "    denormalize_gaussian,"
+      },
+      {
+        "line": 61,
+        "text": "DET_CHECKPOINT = ("
+      },
+      {
+        "line": 71,
+        "text": "DEV_CACHE = ("
+      },
+      {
+        "line": 73,
+        "text": "    / \"artifacts/block43/development_cache.npz\""
+      },
+      {
+        "line": 81,
+        "text": "CHECKPOINT = ("
+      },
+      {
+        "line": 111,
+        "text": "EXPECTED_DET_CHECKPOINT_SHA = ("
+      },
+      {
+        "line": 302,
+        "text": "    with np.load("
+      },
+      {
+        "line": 791,
+        "text": "def build_gaussian_model("
+      },
+      {
+        "line": 803,
+        "text": "        GaussianTrajectoryGRU("
+      },
+      {
+        "line": 836,
+        "text": "# Development evaluation"
+      },
+      {
+        "line": 932,
+        "text": "            output = model("
+      },
+      {
+        "line": 944,
+        "text": "            ) = denormalize_gaussian("
+      },
+      {
+        "line": 982,
+        "text": "                    \"development NLL.\""
+      },
+      {
+        "line": 1044,
+        "text": "                covariance_from_scale_tril("
+      },
+      {
+        "line": 1239,
+        "text": "            \"Development set has \""
+      },
+      {
+        "line": 1272,
+        "text": "                \"Zero development labels \""
+      },
+      {
+        "line": 1426,
+        "text": "def probabilistic_prediction_sha256("
+      },
+      {
+        "line": 1474,
+        "text": "            output = model("
+      },
+      {
+        "line": 1509,
+        "text": "# Checkpoint/progress"
+      },
+      {
+        "line": 1512,
+        "text": "def save_best_checkpoint("
+      },
+      {
+        "line": 1535,
+        "text": "                \"GaussianTrajectoryGRU\","
+      },
+      {
+        "line": 1546,
+        "text": "            \"development_metrics\":"
+      },
+      {
+        "line": 1558,
+        "text": "        CHECKPOINT,"
+      },
+      {
+        "line": 1651,
+        "text": "        model.load_state_dict("
+      },
+      {
+        "line": 1657,
+        "text": "        optimizer.load_state_dict("
+      },
+      {
+        "line": 1683,
+        "text": "            \"checkpoint archived:\""
+      },
+      {
+        "line": 1712,
+        "text": "        DET_CHECKPOINT,"
+      },
+      {
+        "line": 1714,
+        "text": "        DEV_CACHE,"
+      },
+      {
+        "line": 1802,
+        "text": "            DET_CHECKPOINT"
+      },
+      {
+        "line": 1805,
+        "text": "        EXPECTED_DET_CHECKPOINT_SHA"
+      },
+      {
+        "line": 1809,
+        "text": "            \"checkpoint SHA changed.\""
+      },
+      {
+        "line": 1832,
+        "text": "            DEV_CACHE"
+      },
+      {
+        "line": 1838,
+        "text": "            \"development_cache\""
+      },
+      {
+        "line": 1844,
+        "text": "            \"Frozen development \""
+      },
+      {
+        "line": 1933,
+        "text": "        CHECKPOINT.is_file()"
+      },
+      {
+        "line": 1950,
+        "text": "                    \"checkpoint\""
+      },
+      {
+        "line": 1958,
+        "text": "                    CHECKPOINT"
+      },
+      {
+        "line": 1968,
+        "text": "                    \"checkpoint SHA256 =\","
+      },
+      {
+        "line": 2087,
+        "text": "    deterministic_checkpoint = ("
+      },
+      {
+        "line": 2089,
+        "text": "            DET_CHECKPOINT,"
+      },
+      {
+        "line": 2096,
+        "text": "        deterministic_checkpoint["
+      },
+      {
+        "line": 2110,
+        "text": "            deterministic_checkpoint["
+      },
+      {
+        "line": 2127,
+        "text": "        DEV_CACHE"
+      },
+      {
+        "line": 2143,
+        "text": "        \"development samples     =\","
+      },
+      {
+        "line": 2170,
+        "text": "        \"deterministic_checkpoint_sha256\":"
+      },
+      {
+        "line": 2171,
+        "text": "            EXPECTED_DET_CHECKPOINT_SHA,"
+      },
+      {
+        "line": 2181,
+        "text": "        \"development_cache_sha256\":"
+      },
+      {
+        "line": 2183,
+        "text": "                DEV_CACHE"
+      },
+      {
+        "line": 2192,
+        "text": "    model = build_gaussian_model("
+      },
+      {
+        "line": 2193,
+        "text": "        deterministic_checkpoint["
+      },
+      {
+        "line": 2201,
+        "text": "        deterministic_checkpoint["
+      },
+      {
+        "line": 2315,
+        "text": "        save_best_checkpoint("
+      },
+      {
+        "line": 2495,
+        "text": "            output = model("
+      },
+      {
+        "line": 2601,
+        "text": "        development = ("
+      },
+      {
+        "line": 2611,
+        "text": "            development["
+      },
+      {
+        "line": 2617,
+        "text": "            development["
+      },
+      {
+        "line": 2622,
+        "text": "        # Primary = development metric NLL."
+      },
+      {
+        "line": 2673,
+        "text": "            save_best_checkpoint("
+      },
+      {
+        "line": 2677,
+        "text": "                    development"
+      },
+      {
+        "line": 2699,
+        "text": "            \"development_metric_Gaussian_NLL\":"
+      },
+      {
+        "line": 2702,
+        "text": "            \"development_planar_ADE_m\":"
+      },
+      {
+        "line": 2705,
+        "text": "            \"development_one_second_planar_error_m\":"
+      },
+      {
+        "line": 2707,
+        "text": "                    development["
+      },
+      {
+        "line": 2775,
+        "text": "    # Freeze/evaluate best Gaussian checkpoint."
+      },
+      {
+        "line": 2778,
+        "text": "    if not CHECKPOINT.is_file():"
+      },
+      {
+        "line": 2780,
+        "text": "            \"Gaussian best checkpoint \""
+      },
+      {
+        "line": 2784,
+        "text": "    checkpoint = torch.load("
+      },
+      {
+        "line": 2785,
+        "text": "        CHECKPOINT,"
+      },
+      {
+        "line": 2791,
+        "text": "        checkpoint["
+      },
+      {
+        "line": 2798,
+        "text": "            \"Gaussian checkpoint \""
+      },
+      {
+        "line": 2802,
+        "text": "    best_model = build_gaussian_model("
+      },
+      {
+        "line": 2803,
+        "text": "        deterministic_checkpoint["
+      },
+      {
+        "line": 2809,
+        "text": "    best_model.load_state_dict("
+      },
+      {
+        "line": 2810,
+        "text": "        checkpoint["
+      },
+      {
+        "line": 2826,
+        "text": "        checkpoint["
+      },
+      {
+        "line": 2831,
+        "text": "            \"Gaussian checkpoint \""
+      },
+      {
+        "line": 2835,
+        "text": "    final_development = ("
+      },
+      {
+        "line": 2851,
+        "text": "        final_development["
+      },
+      {
+        "line": 2865,
+        "text": "            \"not improve development \""
+      },
+      {
+        "line": 2871,
+        "text": "        final_development["
+      },
+      {
+        "line": 2888,
+        "text": "            final_development["
+      },
+      {
+        "line": 2893,
+        "text": "                \"Final development \""
+      },
+      {
+        "line": 2903,
+        "text": "        probabilistic_prediction_sha256("
+      },
+      {
+        "line": 2911,
+        "text": "    repeat_checkpoint = ("
+      },
+      {
+        "line": 2913,
+        "text": "            CHECKPOINT,"
+      },
+      {
+        "line": 2920,
+        "text": "        build_gaussian_model("
+      },
+      {
+        "line": 2921,
+        "text": "            deterministic_checkpoint["
+      },
+      {
+        "line": 2928,
+        "text": "    repeat_model.load_state_dict("
+      },
+      {
+        "line": 2929,
+        "text": "        repeat_checkpoint["
+      },
+      {
+        "line": 2937,
+        "text": "        probabilistic_prediction_sha256("
+      },
+      {
+        "line": 2951,
+        "text": "            \"Frozen Gaussian checkpoint \""
+      },
+      {
+        "line": 3030,
+        "text": "    checkpoint_sha = ("
+      },
+      {
+        "line": 3032,
+        "text": "            CHECKPOINT"
+      },
+      {
+        "line": 3060,
+        "text": "        final_development["
+      },
+      {
+        "line": 3083,
+        "text": "            \"deterministic_checkpoint_sha256\":"
+      },
+      {
+        "line": 3084,
+        "text": "                EXPECTED_DET_CHECKPOINT_SHA,"
+      },
+      {
+        "line": 3123,
+        "text": "                    checkpoint["
+      },
+      {
+        "line": 3138,
+        "text": "                \"development_metric_Gaussian_NLL\","
+      },
+      {
+        "line": 3147,
+        "text": "        \"development\": {"
+      },
+      {
+        "line": 3151,
+        "text": "            \"best_raw_uncalibrated\":"
+      },
+      {
+        "line": 3152,
+        "text": "                final_development,"
+      },
+      {
+        "line": 3187,
+        "text": "        \"checkpoint\": {"
+      },
+      {
+        "line": 3189,
+        "text": "                str(CHECKPOINT),"
+      },
+      {
+        "line": 3192,
+        "text": "                checkpoint_sha,"
+      },
+      {
+        "line": 3199,
+        "text": "                    checkpoint["
+      },
+      {
+        "line": 3207,
+        "text": "            \"prediction_sha256\":"
+      },
+      {
+        "line": 3300,
+        "text": "                  \"fit/development caches and \""
+      },
+      {
+        "line": 3322,
+        "text": "                  \"checkpoint.\\n\""
+      },
+      {
+        "line": 3326,
+        "text": "                \"- Model selection uses development \""
+      },
+      {
+        "line": 3328,
+        "text": "                  \"development ADE as tiebreaker.\\n\""
+      },
+      {
+        "line": 3337,
+        "text": "                f\"- Initial development Gaussian \""
+      },
+      {
+        "line": 3339,
+        "text": "                f\"- Best development Gaussian \""
+      },
+      {
+        "line": 3341,
+        "text": "                f\"- Best development planar ADE: \""
+      },
+      {
+        "line": 3342,
+        "text": "                f\"{final_development['planar_ADE_m']:.9f} m.\\n\""
+      },
+      {
+        "line": 3344,
+        "text": "                f\"{checkpoint['best_epoch']}.\\n\""
+      },
+      {
+        "line": 3345,
+        "text": "                f\"- Checkpoint SHA256: \""
+      },
+      {
+        "line": 3346,
+        "text": "                f\"{checkpoint_sha}.\\n\""
+      },
+      {
+        "line": 3351,
+        "text": "                \"- Exact checkpoint inference repeat: \""
+      },
+      {
+        "line": 3392,
+        "text": "        final_development["
+      },
+      {
+        "line": 3416,
+        "text": "            final_development["
+      },
+      {
+        "line": 3425,
+        "text": "            final_development["
+      },
+      {
+        "line": 3433,
+        "text": "        checkpoint["
+      },
+      {
+        "line": 3439,
+        "text": "        final_development["
+      },
+      {
+        "line": 3460,
+        "text": "        \"checkpoint SHA256          =\","
+      },
+      {
+        "line": 3461,
+        "text": "        checkpoint_sha,"
+      },
+      {
+        "line": 3532,
+        "text": "        \"checkpoint freeze          = PASS\""
+      },
+      {
+        "line": 3594,
+        "text": "        \"checkpoint\""
+      },
+      {
+        "line": 3617,
+        "text": "            \"The Python 3.13 development-header \""
+      }
+    ],
+    "sha256": "6b4be296fb9d93f81d10b353a37b3427b63e437e6f123b10950db07697457218",
+    "target_imports": {
+      "GaussianTrajectoryGRU": {
+        "imported_symbol": "GaussianTrajectoryGRU",
+        "line": 19,
+        "local_name": "GaussianTrajectoryGRU",
+        "module": "iscai_stage4.ml"
+      },
+      "covariance_from_scale_tril": {
+        "imported_symbol": "covariance_from_scale_tril",
+        "line": 19,
+        "local_name": "covariance_from_scale_tril",
+        "module": "iscai_stage4.ml"
+      },
+      "denormalize_gaussian": {
+        "imported_symbol": "denormalize_gaussian",
+        "line": 19,
+        "local_name": "denormalize_gaussian",
+        "module": "iscai_stage4.ml"
+      },
+      "gaussian_nll_per_horizon": {
+        "imported_symbol": "gaussian_nll_per_horizon",
+        "line": 19,
+        "local_name": "gaussian_nll_per_horizon",
+        "module": "iscai_stage4.ml"
+      },
+      "masked_gaussian_nll": {
+        "imported_symbol": "masked_gaussian_nll",
+        "line": 19,
+        "local_name": "masked_gaussian_nll",
+        "module": "iscai_stage4.ml"
+      }
+    }
+  }
+}

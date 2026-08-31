@@ -1,0 +1,968 @@
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py:1049
+============================================================
+01037:         tuple(
+01038:             0.0
+01039:             for _ in range(
+01040:                 FEATURE_DIM
+01041:             )
+01042:         )
+01043:         for _ in range(
+01044:             HISTORY_STEPS
+01045:         )
+01046:     )
+01047: 
+01048: 
+01049: def build_model_input_payload(
+01050:     scene_inputs: CausalSceneInputs,
+01051:     *,
+01052:     prediction_id: str,
+01053:     map_context: tuple[
+01054:         float,
+01055:         ...,
+01056:     ],
+01057: ) -> ModelInputPayload:
+01058:     target = (
+01059:         scene_inputs
+01060:         .history_by_id(
+01061:             prediction_id
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py:1053
+============================================================
+01041:             )
+01042:         )
+01043:         for _ in range(
+01044:             HISTORY_STEPS
+01045:         )
+01046:     )
+01047: 
+01048: 
+01049: def build_model_input_payload(
+01050:     scene_inputs: CausalSceneInputs,
+01051:     *,
+01052:     prediction_id: str,
+01053:     map_context: tuple[
+01054:         float,
+01055:         ...,
+01056:     ],
+01057: ) -> ModelInputPayload:
+01058:     target = (
+01059:         scene_inputs
+01060:         .history_by_id(
+01061:             prediction_id
+01062:         )
+01063:     )
+01064: 
+01065:     tx, ty, _ = (
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py:1145
+============================================================
+01133:         )
+01134: 
+01135:     return ModelInputPayload(
+01136:         target_history=(
+01137:             target.feature_rows()
+01138:         ),
+01139:         neighbor_histories=tuple(
+01140:             neighbor_histories
+01141:         ),
+01142:         neighbor_mask=tuple(
+01143:             neighbor_mask
+01144:         ),
+01145:         map_context=tuple(
+01146:             float(x)
+01147:             for x in map_context
+01148:         ),
+01149:     )
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py:1147
+============================================================
+01135:     return ModelInputPayload(
+01136:         target_history=(
+01137:             target.feature_rows()
+01138:         ),
+01139:         neighbor_histories=tuple(
+01140:             neighbor_histories
+01141:         ),
+01142:         neighbor_mask=tuple(
+01143:             neighbor_mask
+01144:         ),
+01145:         map_context=tuple(
+01146:             float(x)
+01147:             for x in map_context
+01148:         ),
+01149:     )
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/supervision.py:739
+============================================================
+00727:         prediction_id,
+00728:         truth_track_index,
+00729:         distance,
+00730:         frame_index,
+00731:     ) in matches:
+00732:         history = (
+00733:             scene_inputs
+00734:             .history_by_id(
+00735:                 prediction_id
+00736:             )
+00737:         )
+00738: 
+00739:         map_context = (
+00740:             map_context_summary(
+00741:                 map_index,
+00742:                 target_position_H0_m=(
+00743:                     history
+00744:                     .latest_position_H0_m
+00745:                 ),
+00746:             )
+00747:         )
+00748: 
+00749:         model_input = (
+00750:             build_model_input_payload(
+00751:                 scene_inputs,
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/supervision.py:750
+============================================================
+00738: 
+00739:         map_context = (
+00740:             map_context_summary(
+00741:                 map_index,
+00742:                 target_position_H0_m=(
+00743:                     history
+00744:                     .latest_position_H0_m
+00745:                 ),
+00746:             )
+00747:         )
+00748: 
+00749:         model_input = (
+00750:             build_model_input_payload(
+00751:                 scene_inputs,
+00752:                 prediction_id=(
+00753:                     prediction_id
+00754:                 ),
+00755:                 map_context=(
+00756:                     map_context
+00757:                 ),
+00758:             )
+00759:         )
+00760: 
+00761:         track = (
+00762:             scenario.tracks[
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/supervision.py:755
+============================================================
+00743:                     history
+00744:                     .latest_position_H0_m
+00745:                 ),
+00746:             )
+00747:         )
+00748: 
+00749:         model_input = (
+00750:             build_model_input_payload(
+00751:                 scene_inputs,
+00752:                 prediction_id=(
+00753:                     prediction_id
+00754:                 ),
+00755:                 map_context=(
+00756:                     map_context
+00757:                 ),
+00758:             )
+00759:         )
+00760: 
+00761:         track = (
+00762:             scenario.tracks[
+00763:                 truth_track_index
+00764:             ]
+00765:         )
+00766: 
+00767:         future_label = (
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/supervision.py:756
+============================================================
+00744:                     .latest_position_H0_m
+00745:                 ),
+00746:             )
+00747:         )
+00748: 
+00749:         model_input = (
+00750:             build_model_input_payload(
+00751:                 scene_inputs,
+00752:                 prediction_id=(
+00753:                     prediction_id
+00754:                 ),
+00755:                 map_context=(
+00756:                     map_context
+00757:                 ),
+00758:             )
+00759:         )
+00760: 
+00761:         track = (
+00762:             scenario.tracks[
+00763:                 truth_track_index
+00764:             ]
+00765:         )
+00766: 
+00767:         future_label = (
+00768:             _build_future_label(
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py:200
+============================================================
+00188:                 arrays["neighbors"],
+00189:                 dtype=np.float32,
+00190:             )
+00191:         ).to(device)
+00192: 
+00193:         neighbor_mask = torch.from_numpy(
+00194:             np.asarray(
+00195:                 arrays["neighbor_mask"],
+00196:                 dtype=np.float32,
+00197:             )
+00198:         ).to(device)
+00199: 
+00200:         map_context = torch.from_numpy(
+00201:             np.asarray(
+00202:                 arrays["map_context"],
+00203:                 dtype=np.float32,
+00204:             )
+00205:         ).to(device)
+00206: 
+00207:         future = torch.from_numpy(
+00208:             np.asarray(
+00209:                 arrays["future"],
+00210:                 dtype=np.float32,
+00211:             )
+00212:         ).to(device)
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py:202
+============================================================
+00190:             )
+00191:         ).to(device)
+00192: 
+00193:         neighbor_mask = torch.from_numpy(
+00194:             np.asarray(
+00195:                 arrays["neighbor_mask"],
+00196:                 dtype=np.float32,
+00197:             )
+00198:         ).to(device)
+00199: 
+00200:         map_context = torch.from_numpy(
+00201:             np.asarray(
+00202:                 arrays["map_context"],
+00203:                 dtype=np.float32,
+00204:             )
+00205:         ).to(device)
+00206: 
+00207:         future = torch.from_numpy(
+00208:             np.asarray(
+00209:                 arrays["future"],
+00210:                 dtype=np.float32,
+00211:             )
+00212:         ).to(device)
+00213: 
+00214:         future_mask = torch.from_numpy(
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gmm_runtime.py:198
+============================================================
+00186:             )
+00187:         ).to(device)
+00188: 
+00189:         neighbor_mask = torch.from_numpy(
+00190:             np.asarray(
+00191:                 arrays[
+00192:                     "neighbor_mask"
+00193:                 ][indices],
+00194:                 dtype=np.float32,
+00195:             )
+00196:         ).to(device)
+00197: 
+00198:         map_context = torch.from_numpy(
+00199:             np.asarray(
+00200:                 arrays[
+00201:                     "map_context"
+00202:                 ][indices],
+00203:                 dtype=np.float32,
+00204:             )
+00205:         ).to(device)
+00206: 
+00207:         future = torch.from_numpy(
+00208:             np.asarray(
+00209:                 arrays["future"][indices],
+00210:                 dtype=np.float32,
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gmm_runtime.py:201
+============================================================
+00189:         neighbor_mask = torch.from_numpy(
+00190:             np.asarray(
+00191:                 arrays[
+00192:                     "neighbor_mask"
+00193:                 ][indices],
+00194:                 dtype=np.float32,
+00195:             )
+00196:         ).to(device)
+00197: 
+00198:         map_context = torch.from_numpy(
+00199:             np.asarray(
+00200:                 arrays[
+00201:                     "map_context"
+00202:                 ][indices],
+00203:                 dtype=np.float32,
+00204:             )
+00205:         ).to(device)
+00206: 
+00207:         future = torch.from_numpy(
+00208:             np.asarray(
+00209:                 arrays["future"][indices],
+00210:                 dtype=np.float32,
+00211:             )
+00212:         ).to(device)
+00213: 
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/normalization.py:115
+============================================================
+00103:     target = arrays[
+00104:         "target"
+00105:     ]
+00106: 
+00107:     neighbors = arrays[
+00108:         "neighbors"
+00109:     ]
+00110: 
+00111:     neighbor_mask = arrays[
+00112:         "neighbor_mask"
+00113:     ]
+00114: 
+00115:     map_context = arrays[
+00116:         "map_context"
+00117:     ]
+00118: 
+00119:     future = arrays[
+00120:         "future"
+00121:     ]
+00122: 
+00123:     future_mask = arrays[
+00124:         "future_mask"
+00125:     ]
+00126: 
+00127:     sample_count = int(
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/normalization.py:116
+============================================================
+00104:         "target"
+00105:     ]
+00106: 
+00107:     neighbors = arrays[
+00108:         "neighbors"
+00109:     ]
+00110: 
+00111:     neighbor_mask = arrays[
+00112:         "neighbor_mask"
+00113:     ]
+00114: 
+00115:     map_context = arrays[
+00116:         "map_context"
+00117:     ]
+00118: 
+00119:     future = arrays[
+00120:         "future"
+00121:     ]
+00122: 
+00123:     future_mask = arrays[
+00124:         "future_mask"
+00125:     ]
+00126: 
+00127:     sample_count = int(
+00128:         target.shape[0]
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/training/normalization.py:836
+============================================================
+00824:             )
+00825:         ],
+00826:         axis=0,
+00827:     )
+00828: 
+00829:     neighbor_mask = np.asarray(
+00830:         sample
+00831:         .model_input
+00832:         .neighbor_mask,
+00833:         dtype=np.float32,
+00834:     )
+00835: 
+00836:     map_context = (
+00837:         np.asarray(
+00838:             sample
+00839:             .model_input
+00840:             .map_context,
+00841:             dtype=np.float32,
+00842:         )
+00843:         -
+00844:         map_mean
+00845:     ) / map_std
+00846: 
+00847:     raw_target = np.asarray(
+00848:         sample
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/training/normalization.py:840
+============================================================
+00828: 
+00829:     neighbor_mask = np.asarray(
+00830:         sample
+00831:         .model_input
+00832:         .neighbor_mask,
+00833:         dtype=np.float32,
+00834:     )
+00835: 
+00836:     map_context = (
+00837:         np.asarray(
+00838:             sample
+00839:             .model_input
+00840:             .map_context,
+00841:             dtype=np.float32,
+00842:         )
+00843:         -
+00844:         map_mean
+00845:     ) / map_std
+00846: 
+00847:     raw_target = np.asarray(
+00848:         sample
+00849:         .model_input
+00850:         .target_history,
+00851:         dtype=np.float32,
+00852:     )
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/training/normalization.py:844
+============================================================
+00832:         .neighbor_mask,
+00833:         dtype=np.float32,
+00834:     )
+00835: 
+00836:     map_context = (
+00837:         np.asarray(
+00838:             sample
+00839:             .model_input
+00840:             .map_context,
+00841:             dtype=np.float32,
+00842:         )
+00843:         -
+00844:         map_mean
+00845:     ) / map_std
+00846: 
+00847:     raw_target = np.asarray(
+00848:         sample
+00849:         .model_input
+00850:         .target_history,
+00851:         dtype=np.float32,
+00852:     )
+00853: 
+00854:     observed = np.where(
+00855:         raw_target[
+00856:             :,
+
+============================================================
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/training/normalization.py:845
+============================================================
+00833:         dtype=np.float32,
+00834:     )
+00835: 
+00836:     map_context = (
+00837:         np.asarray(
+00838:             sample
+00839:             .model_input
+00840:             .map_context,
+00841:             dtype=np.float32,
+00842:         )
+00843:         -
+00844:         map_mean
+00845:     ) / map_std
+00846: 
+00847:     raw_target = np.asarray(
+00848:         sample
+00849:         .model_input
+00850:         .target_history,
+00851:         dtype=np.float32,
+00852:     )
+00853: 
+00854:     observed = np.where(
+00855:         raw_target[
+00856:             :,
+00857:             OBSERVED_MASK_INDEX
+
+============================================================
+/home/agni/waymo/iscai_stage4/scripts/repair_and_resume_block45_part2.py:845
+============================================================
+00833:             8,
+00834:             11,
+00835:             14,
+00836:             device=device,
+00837:         )
+00838: 
+00839:         neighbour_mask = torch.ones(
+00840:             2,
+00841:             8,
+00842:             device=device,
+00843:         )
+00844: 
+00845:         map_context = torch.randn(
+00846:             2,
+00847:             10,
+00848:             device=device,
+00849:         )
+00850: 
+00851:         output = smoke_model(
+00852:             target,
+00853:             neighbours,
+00854:             neighbour_mask,
+00855:             map_context,
+00856:         )
+00857: 
+
+============================================================
+/home/agni/waymo/iscai_stage4/scripts/repair_and_resume_block45_part2.py:855
+============================================================
+00843:         )
+00844: 
+00845:         map_context = torch.randn(
+00846:             2,
+00847:             10,
+00848:             device=device,
+00849:         )
+00850: 
+00851:         output = smoke_model(
+00852:             target,
+00853:             neighbours,
+00854:             neighbour_mask,
+00855:             map_context,
+00856:         )
+00857: 
+00858:     if tuple(
+00859:         output.mean.shape
+00860:     ) != (
+00861:         2,
+00862:         4,
+00863:         3,
+00864:     ):
+00865:         blocked(
+00866:             "constructor_output",
+00867:             (
+
+============================================================
+/home/agni/waymo/iscai_stage4/scripts/run_block43_deterministic_gru.py:196
+============================================================
+00184:     )
+00185: 
+00186:     neighbours = torch.tensor(
+00187:         sample.model_input.neighbor_histories,
+00188:         dtype=torch.float32,
+00189:     )
+00190: 
+00191:     neighbour_mask = torch.tensor(
+00192:         sample.model_input.neighbor_mask,
+00193:         dtype=torch.float32,
+00194:     )
+00195: 
+00196:     map_context = torch.tensor(
+00197:         sample.model_input.map_context,
+00198:         dtype=torch.float32,
+00199:     )
+00200: 
+00201:     future = torch.tensor(
+00202:         sample.future_label.positions_H0_m,
+00203:         dtype=torch.float32,
+00204:     )
+00205: 
+00206:     future_mask = torch.tensor(
+00207:         sample.future_label.valid_mask,
+00208:         dtype=torch.bool,
+
+============================================================
+/home/agni/waymo/iscai_stage4/scripts/run_block43_deterministic_gru.py:197
+============================================================
+00185: 
+00186:     neighbours = torch.tensor(
+00187:         sample.model_input.neighbor_histories,
+00188:         dtype=torch.float32,
+00189:     )
+00190: 
+00191:     neighbour_mask = torch.tensor(
+00192:         sample.model_input.neighbor_mask,
+00193:         dtype=torch.float32,
+00194:     )
+00195: 
+00196:     map_context = torch.tensor(
+00197:         sample.model_input.map_context,
+00198:         dtype=torch.float32,
+00199:     )
+00200: 
+00201:     future = torch.tensor(
+00202:         sample.future_label.positions_H0_m,
+00203:         dtype=torch.float32,
+00204:     )
+00205: 
+00206:     future_mask = torch.tensor(
+00207:         sample.future_label.valid_mask,
+00208:         dtype=torch.bool,
+00209:     )
+
+============================================================
+/home/agni/waymo/iscai_stage4/scripts/run_block43_deterministic_gru_gate.py:558
+============================================================
+00546:             [
+00547:                 item[
+00548:                     "neighbor_mask"
+00549:                 ]
+00550:                 for item in arrays
+00551:             ],
+00552:             axis=0,
+00553:         )
+00554:     ).to(
+00555:         device
+00556:     )
+00557: 
+00558:     map_context = torch.from_numpy(
+00559:         np.stack(
+00560:             [
+00561:                 item["map"]
+00562:                 for item in arrays
+00563:             ],
+00564:             axis=0,
+00565:         )
+00566:     ).to(
+00567:         device
+00568:     )
+00569: 
+00570:     label = torch.from_numpy(
+
+============================================================
+/home/agni/waymo/iscai_stage4/scripts/run_block43_deterministic_training.py:447
+============================================================
+00435:     )
+00436: 
+00437:     neighbor_mask = np.asarray(
+00438:         [
+00439:             sample
+00440:             .model_input
+00441:             .neighbor_mask
+00442:             for sample in samples
+00443:         ],
+00444:         dtype=np.float32,
+00445:     )
+00446: 
+00447:     map_context = np.asarray(
+00448:         [
+00449:             sample
+00450:             .model_input
+00451:             .map_context
+00452:             for sample in samples
+00453:         ],
+00454:         dtype=np.float32,
+00455:     )
+00456: 
+00457:     future = np.asarray(
+00458:         [
+00459:             sample
+
+============================================================
+/home/agni/waymo/iscai_stage4/scripts/run_block43_deterministic_training.py:451
+============================================================
+00439:             sample
+00440:             .model_input
+00441:             .neighbor_mask
+00442:             for sample in samples
+00443:         ],
+00444:         dtype=np.float32,
+00445:     )
+00446: 
+00447:     map_context = np.asarray(
+00448:         [
+00449:             sample
+00450:             .model_input
+00451:             .map_context
+00452:             for sample in samples
+00453:         ],
+00454:         dtype=np.float32,
+00455:     )
+00456: 
+00457:     future = np.asarray(
+00458:         [
+00459:             sample
+00460:             .future_label
+00461:             .positions_H0_m
+00462:             for sample in samples
+00463:         ],
+
+============================================================
+/home/agni/waymo/iscai_stage4/scripts/run_block43_deterministic_training.py:1231
+============================================================
+01219:                 np.asarray(
+01220:                     arrays[
+01221:                         "neighbor_mask"
+01222:                     ][index],
+01223:                     dtype=np.float32,
+01224:                 )
+01225:             )
+01226:             .to(
+01227:                 device=device
+01228:             )
+01229:         )
+01230: 
+01231:         map_context = (
+01232:             torch.from_numpy(
+01233:                 np.asarray(
+01234:                     arrays[
+01235:                         "map_context"
+01236:                     ][index],
+01237:                     dtype=np.float32,
+01238:                 )
+01239:             )
+01240:             .to(
+01241:                 device=device
+01242:             )
+01243:         )
+
+============================================================
+/home/agni/waymo/iscai_stage4/scripts/run_block43_deterministic_training.py:1235
+============================================================
+01223:                     dtype=np.float32,
+01224:                 )
+01225:             )
+01226:             .to(
+01227:                 device=device
+01228:             )
+01229:         )
+01230: 
+01231:         map_context = (
+01232:             torch.from_numpy(
+01233:                 np.asarray(
+01234:                     arrays[
+01235:                         "map_context"
+01236:                     ][index],
+01237:                     dtype=np.float32,
+01238:                 )
+01239:             )
+01240:             .to(
+01241:                 device=device
+01242:             )
+01243:         )
+01244: 
+01245:         future = (
+01246:             torch.from_numpy(
+01247:                 np.asarray(
+
+============================================================
+/home/agni/waymo/iscai_stage4/scripts/run_block43_preflight.py:180
+============================================================
+00168:     8,
+00169:     11,
+00170:     14,
+00171:     device=device,
+00172: )
+00173: 
+00174: neighbor_mask = torch.ones(
+00175:     16,
+00176:     8,
+00177:     device=device,
+00178: )
+00179: 
+00180: map_context = torch.randn(
+00181:     16,
+00182:     10,
+00183:     device=device,
+00184: )
+00185: 
+00186: truth = torch.randn(
+00187:     16,
+00188:     4,
+00189:     3,
+00190:     device=device,
+00191: )
+00192: 
+
+============================================================
+/home/agni/waymo/iscai_stage4/scripts/run_block44_gaussian_training.py:559
+============================================================
+00547:         neighbor_mask = (
+00548:             torch.from_numpy(
+00549:                 np.asarray(
+00550:                     arrays[
+00551:                         "neighbor_mask"
+00552:                     ][indices],
+00553:                     dtype=np.float32,
+00554:                 )
+00555:             )
+00556:             .to(device)
+00557:         )
+00558: 
+00559:         map_context = (
+00560:             torch.from_numpy(
+00561:                 np.asarray(
+00562:                     arrays[
+00563:                         "map_context"
+00564:                     ][indices],
+00565:                     dtype=np.float32,
+00566:                 )
+00567:             )
+00568:             .to(device)
+00569:         )
+00570: 
+00571:         future = torch.from_numpy(
+
+============================================================
+/home/agni/waymo/iscai_stage4/scripts/run_block44_gaussian_training.py:563
+============================================================
+00551:                         "neighbor_mask"
+00552:                     ][indices],
+00553:                     dtype=np.float32,
+00554:                 )
+00555:             )
+00556:             .to(device)
+00557:         )
+00558: 
+00559:         map_context = (
+00560:             torch.from_numpy(
+00561:                 np.asarray(
+00562:                     arrays[
+00563:                         "map_context"
+00564:                     ][indices],
+00565:                     dtype=np.float32,
+00566:                 )
+00567:             )
+00568:             .to(device)
+00569:         )
+00570: 
+00571:         future = torch.from_numpy(
+00572:             np.asarray(
+00573:                 arrays["future"][
+00574:                     indices
+00575:                 ],
+
+============================================================
+/home/agni/waymo/iscai_stage4/scripts/run_block44_preflight.py:568
+============================================================
+00556:         8,
+00557:         11,
+00558:         14,
+00559:         device=device,
+00560:     )
+00561: 
+00562:     neighbor_mask = torch.ones(
+00563:         batch,
+00564:         8,
+00565:         device=device,
+00566:     )
+00567: 
+00568:     map_context = torch.randn(
+00569:         batch,
+00570:         10,
+00571:         device=device,
+00572:     )
+00573: 
+00574:     with torch.no_grad():
+00575:         deterministic_mean = (
+00576:             deterministic(
+00577:                 target,
+00578:                 neighbors,
+00579:                 neighbor_mask,
+00580:                 map_context,
+
+============================================================
+/home/agni/waymo/iscai_stage4/scripts/run_block44_preflight.py:580
+============================================================
+00568:     map_context = torch.randn(
+00569:         batch,
+00570:         10,
+00571:         device=device,
+00572:     )
+00573: 
+00574:     with torch.no_grad():
+00575:         deterministic_mean = (
+00576:             deterministic(
+00577:                 target,
+00578:                 neighbors,
+00579:                 neighbor_mask,
+00580:                 map_context,
+00581:             )
+00582:         )
+00583: 
+00584:         gaussian_output = (
+00585:             gaussian(
+00586:                 target,
+00587:                 neighbors,
+00588:                 neighbor_mask,
+00589:                 map_context,
+00590:             )
+00591:         )
+00592: 
+
+============================================================
+/home/agni/waymo/iscai_stage4/scripts/run_block46_part1_safe.py:683
+============================================================
+00671:         8,
+00672:         11,
+00673:         14,
+00674:         device=device,
+00675:     )
+00676: 
+00677:     neighbor_mask = torch.ones(
+00678:         batch,
+00679:         8,
+00680:         device=device,
+00681:     )
+00682: 
+00683:     map_context = torch.randn(
+00684:         batch,
+00685:         10,
+00686:         device=device,
+00687:     )
+00688: 
+00689:     with torch.no_grad():
+00690:         gaussian_output = gaussian(
+00691:             target,
+00692:             neighbors,
+00693:             neighbor_mask,
+00694:             map_context,
+00695:         )
+
+============================================================
+/home/agni/waymo/iscai_stage4/scripts/run_block46_part1_safe.py:694
+============================================================
+00682: 
+00683:     map_context = torch.randn(
+00684:         batch,
+00685:         10,
+00686:         device=device,
+00687:     )
+00688: 
+00689:     with torch.no_grad():
+00690:         gaussian_output = gaussian(
+00691:             target,
+00692:             neighbors,
+00693:             neighbor_mask,
+00694:             map_context,
+00695:         )
+00696: 
+00697:         gmm_output = gmm(
+00698:             target,
+00699:             neighbors,
+00700:             neighbor_mask,
+00701:             map_context,
+00702:         )
+00703: 
+00704:     central_mean = (
+00705:         gmm_output.means[
+00706:             :,

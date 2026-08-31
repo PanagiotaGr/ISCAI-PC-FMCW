@@ -1,0 +1,55 @@
+{
+  "block": "3.8E",
+  "formal_N": 120,
+  "formal_manifest": {
+    "path": "/home/agni/waymo/iscai_stage3/artifacts/block38e/formal_validation_120.jsonl",
+    "scenario_count": 120,
+    "sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46"
+  },
+  "formal_selection_anchor_coverage": {
+    "class_totals": {
+      "TYPE_CYCLIST": 57,
+      "TYPE_PEDESTRIAN": 361,
+      "TYPE_VEHICLE": 3755
+    },
+    "strata": {
+      "cyclist": 40,
+      "pedestrian_no_cyclist": 40,
+      "vehicle_only": 40
+    }
+  },
+  "full_validation_inventory": {
+    "anchor_class_totals": {
+      "TYPE_CYCLIST": 10425,
+      "TYPE_PEDESTRIAN": 124099,
+      "TYPE_VEHICLE": 1390024
+    },
+    "runtime_s": 84.94009667192586,
+    "scenarios": 44097,
+    "stratum_availability": {
+      "cyclist": 7147,
+      "pedestrian_no_cyclist": 20027,
+      "vehicle_only": 16923
+    }
+  },
+  "runtime_basis": {
+    "block38d_scenario_runtime_median_ms": 5125.356565520633,
+    "block38d_scenario_runtime_p95_ms": 20723.7813801039,
+    "estimated_120_scene_median_minutes": 10.250713131041266,
+    "estimated_120_scene_p95_budget_minutes": 41.4475627602078
+  },
+  "selection": {
+    "degraded_outcome_used": false,
+    "future_used": false,
+    "performance_used": false,
+    "policy": "current-anchor class stratification + deterministic SHA ordering",
+    "strata": {
+      "cyclist": 40,
+      "pedestrian_no_cyclist": 40,
+      "vehicle_only": 40
+    },
+    "tracks_to_predict_used": false
+  },
+  "stage": 3,
+  "status": "PASS"
+}

@@ -1,0 +1,594 @@
+from __future__ import annotations
+
+from types import SimpleNamespace
+import inspect
+import unittest
+
+import numpy as np
+
+from iscai_stage5.angular_monte_carlo import (
+    TRAJECTORY_JOINT_SAMPLING_SEMANTICS,
+)
+
+from iscai_stage6.adb.geometry import (
+    Box3D,
+)
+
+from iscai_stage6.adb.probabilistic_full_box import (
+    HORIZONS_S,
+    ORIENTATION_SOURCE,
+    STATE_SOURCE,
+    CalibratedGaussianFullBoxPrediction,
+    absolute_mean_positions_H0_m,
+    build_stochastic_future_full_boxes,
+    sample_calibrated_future_positions_H0_m,
+)
+
+
+def covariance(
+    variance=0.04,
+):
+    matrix = np.diag(
+        [
+            float(
+                variance
+            ),
+            float(
+                variance
+            ),
+            float(
+                variance
+            ),
+        ]
+    )
+
+    return tuple(
+        tuple(
+            tuple(
+                float(x)
+                for x in row
+            )
+            for row in matrix
+        )
+        for _ in range(
+            4
+        )
+    )
+
+
+def prediction(
+    *,
+    zero_motion=False,
+    variance=0.04,
+):
+    if zero_motion:
+        mean = (
+            (0.0, 0.0, 0.0),
+            (0.0, 0.0, 0.0),
+            (0.0, 0.0, 0.0),
+            (0.0, 0.0, 0.0),
+        )
+
+    else:
+        mean = (
+            (1.0, 0.0, 0.0),
+            (3.0, 0.2, 0.0),
+            (5.0, 0.4, 0.0),
+            (10.0, 0.8, 0.0),
+        )
+
+    return CalibratedGaussianFullBoxPrediction(
+        prediction_id="synthetic_prediction",
+        latest_position_H0_m=(
+            20.0,
+            0.0,
+            1.0,
+        ),
+        mean_displacement_H0_m=mean,
+        calibrated_predictive_covariance_H0_m2=(
+            covariance(
+                variance
+            )
+        ),
+    )
+
+
+def actor_box(
+    *,
+    center=(
+        20.0,
+        0.0,
+        1.0,
+    ),
+    yaw=0.3,
+    future_state_used=False,
+):
+    return SimpleNamespace(
+        box=Box3D(
+            center_xyz=center,
+            length_m=4.4,
+            width_m=1.9,
+            height_m=1.6,
+            yaw_rad=float(
+                yaw
+            ),
+        ),
+        future_state_used=bool(
+            future_state_used
+        ),
+        tracks_to_predict_used=False,
+        objects_of_interest_used=False,
+    )
+
+
+class TestBlock64Part1StochasticFullBox(
+    unittest.TestCase
+):
+    def test_01_frozen_horizons_and_joint_semantics(
+        self,
+    ):
+        self.assertEqual(
+            HORIZONS_S,
+            (
+                0.1,
+                0.3,
+                0.5,
+                1.0,
+            ),
+        )
+
+        self.assertEqual(
+            TRAJECTORY_JOINT_SAMPLING_SEMANTICS,
+            (
+                "product_of_frozen_calibrated_"
+                "per_horizon_Gaussian_marginals"
+            ),
+        )
+
+    def test_02_absolute_mean_is_anchor_plus_displacement(
+        self,
+    ):
+        item = prediction()
+
+        absolute = (
+            absolute_mean_positions_H0_m(
+                item
+            )
+        )
+
+        expected = (
+            np.asarray(
+                item.latest_position_H0_m,
+                dtype=np.float64,
+            )[
+                None,
+                :
+            ]
+            +
+            np.asarray(
+                item.mean_displacement_H0_m,
+                dtype=np.float64,
+            )
+        )
+
+        np.testing.assert_array_equal(
+            absolute,
+            expected,
+        )
+
+    def test_03_same_seed_exact_repeat(
+        self,
+    ):
+        item = prediction()
+
+        first = (
+            sample_calibrated_future_positions_H0_m(
+                item,
+                sample_count=32,
+                seed=123,
+            )
+        )
+
+        second = (
+            sample_calibrated_future_positions_H0_m(
+                item,
+                sample_count=32,
+                seed=123,
+            )
+        )
+
+        self.assertTrue(
+            np.array_equal(
+                first,
+                second,
+            )
+        )
+
+    def test_04_different_seed_changes_samples(
+        self,
+    ):
+        item = prediction()
+
+        first = (
+            sample_calibrated_future_positions_H0_m(
+                item,
+                sample_count=32,
+                seed=123,
+            )
+        )
+
+        second = (
+            sample_calibrated_future_positions_H0_m(
+                item,
+                sample_count=32,
+                seed=124,
+            )
+        )
+
+        self.assertFalse(
+            np.array_equal(
+                first,
+                second,
+            )
+        )
+
+    def test_05_forecast_shape_and_counts(
+        self,
+    ):
+        forecast = (
+            build_stochastic_future_full_boxes(
+                prediction(),
+                actor_box(),
+                sample_count=5,
+                seed=123,
+            )
+        )
+
+        self.assertEqual(
+            forecast.trajectory_samples_H0_m.shape,
+            (
+                5,
+                4,
+                3,
+            ),
+        )
+
+        self.assertEqual(
+            forecast.heading_samples_rad.shape,
+            (
+                5,
+                4,
+            ),
+        )
+
+        self.assertEqual(
+            len(
+                forecast.future
+            ),
+            5,
+        )
+
+        self.assertTrue(
+            all(
+                len(
+                    sequence
+                )
+                ==
+                4
+                for sequence in
+                forecast.future
+            )
+        )
+
+        self.assertEqual(
+            forecast.projected_box_count,
+            20,
+        )
+
+        self.assertEqual(
+            forecast.projected_corner_count,
+            160,
+        )
+
+    def test_06_every_future_box_has_eight_corners(
+        self,
+    ):
+        forecast = (
+            build_stochastic_future_full_boxes(
+                prediction(),
+                actor_box(),
+                sample_count=3,
+                seed=123,
+            )
+        )
+
+        for sequence in forecast.future:
+            for item in sequence:
+                self.assertEqual(
+                    item.projection.corners.xyz.shape,
+                    (
+                        8,
+                        3,
+                    ),
+                )
+
+                self.assertGreater(
+                    item.projection.theta_span_rad,
+                    0.0,
+                )
+
+                self.assertGreater(
+                    item.projection.ground_range_max_m,
+                    item.projection.ground_range_min_m,
+                )
+
+    def test_07_current_dimensions_are_preserved(
+        self,
+    ):
+        current = actor_box()
+
+        forecast = (
+            build_stochastic_future_full_boxes(
+                prediction(),
+                current,
+                sample_count=3,
+                seed=123,
+            )
+        )
+
+        for sequence in forecast.future:
+            for item in sequence:
+                self.assertEqual(
+                    item.box.length_m,
+                    current.box.length_m,
+                )
+
+                self.assertEqual(
+                    item.box.width_m,
+                    current.box.width_m,
+                )
+
+                self.assertEqual(
+                    item.box.height_m,
+                    current.box.height_m,
+                )
+
+    def test_08_future_centers_equal_sampled_positions(
+        self,
+    ):
+        # Deliberately mismatch actor-box center from predictor
+        # anchor to prove there is no recentering.
+        current = actor_box(
+            center=(
+                24.0,
+                2.0,
+                1.0,
+            )
+        )
+
+        forecast = (
+            build_stochastic_future_full_boxes(
+                prediction(),
+                current,
+                sample_count=4,
+                seed=123,
+            )
+        )
+
+        for sample_index, sequence in enumerate(
+            forecast.future
+        ):
+            for horizon_index, item in enumerate(
+                sequence
+            ):
+                np.testing.assert_array_equal(
+                    np.asarray(
+                        item.box.center_xyz
+                    ),
+                    forecast.trajectory_samples_H0_m[
+                        sample_index,
+                        horizon_index,
+                        :
+                    ],
+                )
+
+    def test_09_controller_provenance_is_exact(
+        self,
+    ):
+        forecast = (
+            build_stochastic_future_full_boxes(
+                prediction(),
+                actor_box(),
+                sample_count=2,
+                seed=123,
+            )
+        )
+
+        self.assertEqual(
+            STATE_SOURCE,
+            "predicted_sample",
+        )
+
+        self.assertEqual(
+            ORIENTATION_SOURCE,
+            "predicted_tangent",
+        )
+
+        for sequence in forecast.future:
+            for item in sequence:
+                self.assertEqual(
+                    item.state_source,
+                    "predicted_sample",
+                )
+
+                self.assertEqual(
+                    item.orientation_source,
+                    "predicted_tangent",
+                )
+
+    def test_10_low_speed_heading_carry_forward(
+        self,
+    ):
+        current_heading = 0.47
+
+        forecast = (
+            build_stochastic_future_full_boxes(
+                prediction(
+                    zero_motion=True,
+                    variance=0.0,
+                ),
+                actor_box(
+                    yaw=current_heading
+                ),
+                sample_count=2,
+                seed=123,
+            )
+        )
+
+        np.testing.assert_array_equal(
+            forecast.heading_fallback_mask,
+            np.ones(
+                (
+                    2,
+                    4,
+                ),
+                dtype=bool,
+            ),
+        )
+
+        np.testing.assert_allclose(
+            forecast.heading_samples_rad,
+            current_heading,
+            rtol=0.0,
+            atol=0.0,
+        )
+
+    def test_11_calibrated_covariance_changes_support(
+        self,
+    ):
+        deterministic = (
+            sample_calibrated_future_positions_H0_m(
+                prediction(
+                    variance=0.0
+                ),
+                sample_count=32,
+                seed=123,
+            )
+        )
+
+        uncertain = (
+            sample_calibrated_future_positions_H0_m(
+                prediction(
+                    variance=0.04
+                ),
+                sample_count=32,
+                seed=123,
+            )
+        )
+
+        mean = (
+            absolute_mean_positions_H0_m(
+                prediction(
+                    variance=0.0
+                )
+            )
+        )
+
+        np.testing.assert_array_equal(
+            deterministic,
+            np.repeat(
+                mean[
+                    None,
+                    :,
+                    :
+                ],
+                32,
+                axis=0,
+            ),
+        )
+
+        self.assertFalse(
+            np.array_equal(
+                uncertain,
+                deterministic,
+            )
+        )
+
+    def test_12_noncausal_actor_box_is_rejected(
+        self,
+    ):
+        with self.assertRaises(
+            ValueError
+        ):
+            build_stochastic_future_full_boxes(
+                prediction(),
+                actor_box(
+                    future_state_used=True
+                ),
+                sample_count=2,
+                seed=123,
+            )
+
+    def test_13_invalid_covariance_shape_is_rejected(
+        self,
+    ):
+        with self.assertRaises(
+            ValueError
+        ):
+            CalibratedGaussianFullBoxPrediction(
+                prediction_id="bad",
+                latest_position_H0_m=(
+                    20.0,
+                    0.0,
+                    1.0,
+                ),
+                mean_displacement_H0_m=(
+                    (1.0, 0.0, 0.0),
+                    (2.0, 0.0, 0.0),
+                    (3.0, 0.0, 0.0),
+                    (4.0, 0.0, 0.0),
+                ),
+                calibrated_predictive_covariance_H0_m2=(
+                    np.zeros(
+                        (
+                            3,
+                            3,
+                            3,
+                        ),
+                        dtype=np.float64,
+                    )
+                ),
+            )
+
+    def test_14_no_cross_horizon_covariance_argument(
+        self,
+    ):
+        signature = inspect.signature(
+            CalibratedGaussianFullBoxPrediction
+        )
+
+        names = set(
+            signature.parameters.keys()
+        )
+
+        self.assertIn(
+            "calibrated_predictive_covariance_H0_m2",
+            names,
+        )
+
+        self.assertFalse(
+            any(
+                "cross"
+                in
+                name.lower()
+                or
+                "12x12"
+                in
+                name.lower()
+                for name in names
+            )
+        )
+
+
+if __name__ == "__main__":
+    unittest.main()

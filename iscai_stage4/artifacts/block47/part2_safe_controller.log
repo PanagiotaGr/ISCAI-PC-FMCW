@@ -1,0 +1,200 @@
+============================================================
+BLOCK 4.7 PART 2/2 — SAFE CONTROLLER
+============================================================
+
+===== CONTROLLED COMPILE =====
+uncertainty_analysis.py = PASS
+test_block47_uncertainty.py = PASS
+run_block47_ablation_training.py = PASS
+
+===== NEW PART2 UNIT TESTS =====
+
+........
+----------------------------------------------------------------------
+Ran 8 tests in 0.009s
+
+OK
+
+
+===== PRE-TRAIN FULL REGRESSION =====
+
+............................................................................................................
+----------------------------------------------------------------------
+Ran 108 tests in 0.412s
+
+OK
+
+pre-training regression = 108 / 108 PASS
+
+===== REAL BLOCK4.7 ANALYSIS/TRAINING =====
+============================================================
+STAGE 4 — BLOCK 4.7 ABLATIONS + UNCERTAINTY ANALYSIS
+============================================================
+Block4.7 Part1          = PASS
+R_t mapping             = 6..11 FROZEN
+fit/dev cache reuse     = PASS
+Stage2/3 rescan         = NO
+normalization           = FIT ONLY
+formal validation used  = NO
+
+===== FROZEN FULL-GAUSSIAN CROSS-CHECK =====
+ADE m = 1.5477828883725113 PASS
+NLL   = 3.153939398019741 PASS
+
+===== MEASUREMENT → PREDICTIVE UNCERTAINTY =====
+measurement sigma = sqrt(trace(R_t)/3)
+R_t PSD violations = 0 PASS
+minimum R_t eigenvalue = -5.7248813301343335e-08
+0.1 s | Spearman meas→pred sigma = 0.474189 | meas→error = 0.297883
+0.3 s | Spearman meas→pred sigma = 0.412935 | meas→error = 0.225117
+0.5 s | Spearman meas→pred sigma = 0.342038 | meas→error = 0.162098
+1.0 s | Spearman meas→pred sigma = 0.200901 | meas→error = 0.058397
+
+===== PHYSICAL R_t SCALE SENSITIVITY =====
+R_t x 0.5 | ADE= 1.556376 | NLL= 3.248242 | pred sigma@1s= 1.375942
+R_t x 1.0 | ADE= 1.547783 | NLL= 3.153939 | pred sigma@1s= 1.4098
+R_t x 2.0 | ADE= 1.580263 | NLL= 3.183496 | pred sigma@1s= 1.482862
+
+============================================================
+TRAINING ABLATION: no_measurement_covariance
+============================================================
+
+===== no_measurement_covariance INITIAL =====
+initial dev NLL = 5.18601549600617
+initial dev ADE = 1.704041044780623
+no_measurement_covariance epoch 01 | trainNLL=1.244190 | devNLL=3.834716 | devADE=1.645289 | bestEpoch=1 | patience=0/4
+no_measurement_covariance epoch 02 | trainNLL=0.650851 | devNLL=3.523824 | devADE=1.614755 | bestEpoch=2 | patience=0/4
+no_measurement_covariance epoch 03 | trainNLL=0.473400 | devNLL=3.358695 | devADE=1.603577 | bestEpoch=3 | patience=0/4
+no_measurement_covariance epoch 04 | trainNLL=0.366122 | devNLL=3.335754 | devADE=1.598149 | bestEpoch=4 | patience=0/4
+no_measurement_covariance epoch 05 | trainNLL=0.285581 | devNLL=3.318126 | devADE=1.595358 | bestEpoch=5 | patience=0/4
+no_measurement_covariance epoch 06 | trainNLL=0.212226 | devNLL=3.288526 | devADE=1.590007 | bestEpoch=6 | patience=0/4
+no_measurement_covariance epoch 07 | trainNLL=0.145720 | devNLL=3.342171 | devADE=1.579551 | bestEpoch=6 | patience=1/4
+no_measurement_covariance epoch 08 | trainNLL=0.122846 | devNLL=3.245356 | devADE=1.574123 | bestEpoch=8 | patience=0/4
+no_measurement_covariance epoch 09 | trainNLL=0.056304 | devNLL=3.234926 | devADE=1.576759 | bestEpoch=9 | patience=0/4
+no_measurement_covariance epoch 10 | trainNLL=0.044489 | devNLL=3.273664 | devADE=1.571874 | bestEpoch=9 | patience=1/4
+no_measurement_covariance epoch 11 | trainNLL=-0.036496 | devNLL=3.191210 | devADE=1.575592 | bestEpoch=11 | patience=0/4
+no_measurement_covariance epoch 12 | trainNLL=-0.079729 | devNLL=3.230355 | devADE=1.564723 | bestEpoch=11 | patience=1/4
+no_measurement_covariance epoch 13 | trainNLL=-0.104961 | devNLL=3.238492 | devADE=1.563651 | bestEpoch=11 | patience=2/4
+no_measurement_covariance epoch 14 | trainNLL=-0.133904 | devNLL=3.260355 | devADE=1.563257 | bestEpoch=11 | patience=3/4
+no_measurement_covariance epoch 15 | trainNLL=-0.164927 | devNLL=3.190186 | devADE=1.553535 | bestEpoch=15 | patience=0/4
+no_measurement_covariance epoch 16 | trainNLL=-0.202010 | devNLL=3.275687 | devADE=1.550743 | bestEpoch=15 | patience=1/4
+no_measurement_covariance epoch 17 | trainNLL=-0.226235 | devNLL=3.141583 | devADE=1.556834 | bestEpoch=17 | patience=0/4
+no_measurement_covariance epoch 18 | trainNLL=-0.267409 | devNLL=3.188140 | devADE=1.554124 | bestEpoch=17 | patience=1/4
+no_measurement_covariance epoch 19 | trainNLL=-0.279876 | devNLL=3.218869 | devADE=1.551867 | bestEpoch=17 | patience=2/4
+no_measurement_covariance epoch 20 | trainNLL=-0.290101 | devNLL=3.138333 | devADE=1.552896 | bestEpoch=20 | patience=0/4
+
+no_measurement_covariance BEST NLL = 3.1383326627162873
+no_measurement_covariance BEST ADE = 1.5528955795700325
+
+============================================================
+TRAINING ABLATION: actor_only
+============================================================
+
+===== actor_only INITIAL =====
+initial dev NLL = 5.489075504991986
+initial dev ADE = 1.7676494723548872
+actor_only epoch 01 | trainNLL=1.468060 | devNLL=3.912243 | devADE=1.717868 | bestEpoch=1 | patience=0/4
+actor_only epoch 02 | trainNLL=0.906029 | devNLL=3.598208 | devADE=1.679306 | bestEpoch=2 | patience=0/4
+actor_only epoch 03 | trainNLL=0.712402 | devNLL=3.474197 | devADE=1.665973 | bestEpoch=3 | patience=0/4
+actor_only epoch 04 | trainNLL=0.603385 | devNLL=3.415445 | devADE=1.658658 | bestEpoch=4 | patience=0/4
+actor_only epoch 05 | trainNLL=0.513788 | devNLL=3.398909 | devADE=1.656246 | bestEpoch=5 | patience=0/4
+actor_only epoch 06 | trainNLL=0.436615 | devNLL=3.330294 | devADE=1.648197 | bestEpoch=6 | patience=0/4
+actor_only epoch 07 | trainNLL=0.385715 | devNLL=3.368474 | devADE=1.637533 | bestEpoch=6 | patience=1/4
+actor_only epoch 08 | trainNLL=0.351810 | devNLL=3.335334 | devADE=1.634722 | bestEpoch=6 | patience=2/4
+actor_only epoch 09 | trainNLL=0.289009 | devNLL=3.333591 | devADE=1.631664 | bestEpoch=6 | patience=3/4
+actor_only epoch 10 | trainNLL=0.285428 | devNLL=3.377056 | devADE=1.625491 | bestEpoch=6 | patience=4/4
+actor_only early stopping = TRIGGERED
+
+actor_only BEST NLL = 3.330293699337862
+actor_only BEST ADE = 1.648196881246017
+
+============================================================
+TRAINING ABLATION: no_map
+============================================================
+
+===== no_map INITIAL =====
+initial dev NLL = 5.758498166326304
+initial dev ADE = 1.8866886325809147
+no_map epoch 01 | trainNLL=1.504108 | devNLL=3.863837 | devADE=1.770623 | bestEpoch=1 | patience=0/4
+no_map epoch 02 | trainNLL=0.884970 | devNLL=3.570026 | devADE=1.709178 | bestEpoch=2 | patience=0/4
+no_map epoch 03 | trainNLL=0.717014 | devNLL=3.454273 | devADE=1.690933 | bestEpoch=3 | patience=0/4
+no_map epoch 04 | trainNLL=0.617882 | devNLL=3.387673 | devADE=1.667191 | bestEpoch=4 | patience=0/4
+no_map epoch 05 | trainNLL=0.531899 | devNLL=3.376015 | devADE=1.651980 | bestEpoch=5 | patience=0/4
+no_map epoch 06 | trainNLL=0.428403 | devNLL=3.332322 | devADE=1.646786 | bestEpoch=6 | patience=0/4
+no_map epoch 07 | trainNLL=0.375680 | devNLL=3.297694 | devADE=1.637534 | bestEpoch=7 | patience=0/4
+no_map epoch 08 | trainNLL=0.351640 | devNLL=3.252425 | devADE=1.641525 | bestEpoch=8 | patience=0/4
+no_map epoch 09 | trainNLL=0.267769 | devNLL=3.199553 | devADE=1.629257 | bestEpoch=9 | patience=0/4
+no_map epoch 10 | trainNLL=0.315225 | devNLL=3.239938 | devADE=1.632409 | bestEpoch=9 | patience=1/4
+no_map epoch 11 | trainNLL=0.193037 | devNLL=3.152927 | devADE=1.622248 | bestEpoch=11 | patience=0/4
+no_map epoch 12 | trainNLL=0.140328 | devNLL=3.204225 | devADE=1.630150 | bestEpoch=11 | patience=1/4
+no_map epoch 13 | trainNLL=0.117611 | devNLL=3.215772 | devADE=1.620977 | bestEpoch=11 | patience=2/4
+no_map epoch 14 | trainNLL=0.110169 | devNLL=3.240733 | devADE=1.612433 | bestEpoch=11 | patience=3/4
+no_map epoch 15 | trainNLL=0.052894 | devNLL=3.151073 | devADE=1.614350 | bestEpoch=15 | patience=0/4
+no_map epoch 16 | trainNLL=0.031266 | devNLL=3.204964 | devADE=1.611200 | bestEpoch=15 | patience=1/4
+no_map epoch 17 | trainNLL=0.014803 | devNLL=3.196738 | devADE=1.612454 | bestEpoch=15 | patience=2/4
+no_map epoch 18 | trainNLL=-0.018340 | devNLL=3.175911 | devADE=1.611389 | bestEpoch=15 | patience=3/4
+no_map epoch 19 | trainNLL=-0.049542 | devNLL=3.137781 | devADE=1.615294 | bestEpoch=19 | patience=0/4
+no_map epoch 20 | trainNLL=-0.019455 | devNLL=3.138532 | devADE=1.615376 | bestEpoch=19 | patience=1/4
+
+no_map BEST NLL = 3.137781289527934
+no_map BEST ADE = 1.6152936763301904
+
+============================================================
+STAGE4 BLOCK 4.7 GATE
+============================================================
+R_t indices                 = (6, 7, 8, 9, 10, 11)
+measurement scalar          = sqrt(trace(R_t)/3)
+R_t PSD violations          = 0 PASS
+measurement/predictive UQ   = SEPARATE
+
+FULL GAUSSIAN REFERENCE
+NLL                         = 3.153939
+ADE m                       = 1.547783
+
+RETRAINED ABLATIONS
+no_measurement_covariance | NLL= 3.138333 | ADE= 1.552896 | deltaADE= 0.005113
+actor_only | NLL= 3.330294 | ADE= 1.648197 | deltaADE= 0.100414
+no_map | NLL= 3.137781 | ADE= 1.615294 | deltaADE= 0.067511
+
+R_t PHYSICAL SENSITIVITY @1.0s
+R_t x 0.5 | pred sigma= 1.375942 | ADE= 1.556376
+R_t x 1.0 | pred sigma= 1.4098 | ADE= 1.547783
+R_t x 2.0 | pred sigma= 1.482862 | ADE= 1.580263
+
+MEASUREMENT→PREDICTIVE SPEARMAN
+0.1 s = 0.474189
+0.3 s = 0.412935
+0.5 s = 0.342038
+1.0 s = 0.200901
+
+fit/dev cache reuse         = PASS
+Stage2/3 rescan             = NO
+formal validation used      = NO
+full Stage4 regression      = 108 / 108 PASS
+free GiB                    = 1055.072
+implementation files        = 65
+implementation SHA256       = 4b32edff0c08f23de4ec5109b46b64a8eccc5357da0deb4fc516b72fe3cad006
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage4/reports/block47_ablation_analysis.json
+
+===== BLOCK 4.7 FINAL =====
+measurement covariance R_t  = ANALYZED
+measurement→predictive UQ   = MEASURED
+physical R_t sensitivity    = MEASURED
+no-R_t retraining           = PASS
+actor-only retraining       = PASS
+no-map retraining           = PASS
+measurement/predictive UQ   = SEPARATE
+formal validation leak      = NONE
+regression                  = 108 / 108
+implementation SHA          = 4b32edff0c08f23de4ec5109b46b64a8eccc5357da0deb4fc516b72fe3cad006
+log closure                 = PASS
+
+Block4.7 runner raw process code = 0
+
+============================================================
+BLOCK 4.7 PART 2/2 SAFE CONTROLLER
+============================================================
+scientific STATUS = PASS
+Block4.7 closure   = PASS
+terminal remains open = YES

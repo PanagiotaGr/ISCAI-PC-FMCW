@@ -1,0 +1,203 @@
+{
+  "block": "6.8_stage3_floor_execution_preflight",
+  "evaluator_runtime": {
+    "geometry_region_callables": [
+      {
+        "name": "FractionalBoxRegion",
+        "signature": "(x_bounds: 'tuple[float, float]', y_bounds: 'tuple[float, float]', z_bounds: 'tuple[float, float]') -> None"
+      },
+      {
+        "name": "ProjectedBox",
+        "signature": "(box: 'Box3D', corners: 'ProjectedPoints', centroid: 'ProjectedPoints', theta_center_rad: 'float', theta_span_rad: 'float', theta_min_unwrapped_rad: 'float', theta_max_unwrapped_rad: 'float', ground_range_min_m: 'float', ground_range_max_m: 'float', range_3d_min_m: 'float', range_3d_max_m: 'float', phi_min_rad: 'float', phi_max_rad: 'float', state_source: 'str', orientation_source: 'str', controller_path: 'bool') -> None"
+      },
+      {
+        "name": "ProjectedPoints",
+        "signature": "(xyz: 'np.ndarray', ground_range_m: 'np.ndarray', range_3d_m: 'np.ndarray', theta_rad: 'np.ndarray', phi_rad: 'np.ndarray') -> None"
+      },
+      {
+        "name": "ProjectedRegion",
+        "signature": "(region: 'FractionalBoxRegion', points: 'ProjectedPoints', theta_center_rad: 'float', theta_span_rad: 'float', ground_range_min_m: 'float', ground_range_max_m: 'float', phi_min_rad: 'float', phi_max_rad: 'float') -> None"
+      },
+      {
+        "name": "centroid_only_projection",
+        "signature": "(box: 'Box3D') -> 'ProjectedPoints'"
+      },
+      {
+        "name": "project_box_to_headlamp",
+        "signature": "(box: 'Box3D', *, state_source: 'str', orientation_source: 'str', controller_path: 'bool' = True) -> 'ProjectedBox'"
+      },
+      {
+        "name": "project_points_to_headlamp",
+        "signature": "(points_xyz) -> 'ProjectedPoints'"
+      },
+      {
+        "name": "project_region_to_headlamp",
+        "signature": "(box: 'Box3D', region: 'FractionalBoxRegion') -> 'ProjectedRegion'"
+      },
+      {
+        "name": "region_corners_headlamp",
+        "signature": "(box: 'Box3D', region: 'FractionalBoxRegion') -> 'np.ndarray'"
+      }
+    ],
+    "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/evaluator_reference.py",
+    "public_callables": [
+      {
+        "name": "EvaluatorReferenceSemantics",
+        "signature": "(oracle_type: 'str', measured_adb_ground_truth: 'bool', controller_future_truth_access: 'bool', parameter_tuning_future_truth_access: 'bool', oracle_grid_semantics: 'str', road_roi_semantics: 'str', final_metric_intensity: 'str') -> None"
+      },
+      {
+        "name": "Iterable",
+        "signature": "(*args, **kwargs)"
+      },
+      {
+        "name": "aggregate_class_future_region",
+        "signature": "(actor_regions: 'Iterable[np.ndarray]', *, grid_shape) -> 'np.ndarray'"
+      },
+      {
+        "name": "aggregate_constructed_oracle_supports",
+        "signature": "(actor_supports: 'Iterable[np.ndarray]', *, grid_shape) -> 'np.ndarray'"
+      },
+      {
+        "name": "dataclass",
+        "signature": "(cls=None, /, *, init=True, repr=True, eq=True, order=False, unsafe_hash=False, frozen=False, match_args=True, kw_only=False, slots=False, weakref_slot=False)"
+      },
+      {
+        "name": "frozen_road_roi",
+        "signature": "(grid_shape) -> 'np.ndarray'"
+      },
+      {
+        "name": "validate_final_metric_illumination",
+        "signature": "(illumination, *, grid_shape) -> 'np.ndarray'"
+      }
+    ],
+    "sha256": "2015136fdcbfe3f837bcba5a2ee05578a4d8a01c4ecfd52e4dfac9f864349891"
+  },
+  "floor_candidate_space": {
+    "candidate_triplets": 3270,
+    "constraints": [
+      "f_vehicle <= f_pedestrian",
+      "f_vehicle <= f_cyclist",
+      "f_pedestrian > 0",
+      "f_cyclist > 0"
+    ],
+    "cyclist_j": [
+      1,
+      20
+    ],
+    "pedestrian_j": [
+      1,
+      20
+    ],
+    "representation": "f_c=j_c/20",
+    "vehicle_j": [
+      0,
+      20
+    ]
+  },
+  "frozen_artifacts": {
+    "evaluator_contract": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_evaluator_reference_contract.json",
+      "sha256": "c9ff0390820a3c37702fb391ba603244fffcf7c03c476045b590aa483e89bd7e"
+    },
+    "road_roi": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/frozen_road_roi_definition.json",
+      "sha256": "832f4bc3215fe585fee781080c98b2928157f26e8a66d22f428f15604afb75e0"
+    },
+    "vehicle_surrogate_evidence": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3c_vehicle_surrogate_evidence.jsonl",
+      "records": 719,
+      "sha256": "bfe8eb6d8b605d58f9b99d8097744b71b99ecb9ed9fd169191222375f31bc826"
+    }
+  },
+  "metric_runtime": {
+    "functions": [
+      {
+        "name": "vehicle_shadow_zone_violation",
+        "signature": "(candidate_mask, vehicle_oracle_region) -> 'float'",
+        "source": "def vehicle_shadow_zone_violation(\n    candidate_mask,\n    vehicle_oracle_region,\n) -> float:\n    \"\"\"\n    Frozen Block6.6 definition:\n\n        |O_vehicle \\ D| / |O_vehicle|\n\n    No vehicle cells:\n        NA -> NaN\n    \"\"\"\n\n    candidate = _bool_array(\n        candidate_mask,\n        name=\"candidate_mask\",\n    )\n\n    vehicle = _bool_array(\n        vehicle_oracle_region,\n        name=\"vehicle_oracle_region\",\n    )\n\n    _same_shape(\n        candidate,\n        vehicle,\n    )\n\n    denominator = int(\n        np.count_nonzero(\n            vehicle\n        )\n    )\n\n    if denominator == 0:\n        return float(\n            \"nan\"\n        )\n\n    missed = int(\n        np.count_nonzero(\n            vehicle\n            &\n            ~candidate\n        )\n    )\n\n    return float(\n        missed\n        /\n        denominator\n    )\n"
+      },
+      {
+        "name": "glare_risk_exposure",
+        "signature": "(intensity, vehicle_surrogate_reference_region) -> 'float'",
+        "source": "def glare_risk_exposure(\n    intensity,\n    vehicle_surrogate_reference_region,\n) -> float:\n    \"\"\"\n    Mean final normalized intensity over the constructed\n    vehicle front-upper/rear-upper surrogate reference cells.\n\n    Lower is better.\n\n    Empty evaluator support is reported as NaN.\n    \"\"\"\n\n    light = _intensity_array(\n        intensity,\n        name=\"intensity\",\n    )\n\n    region = _bool_array(\n        vehicle_surrogate_reference_region,\n        name=(\n            \"vehicle_surrogate_reference_region\"\n        ),\n    )\n\n    _same_shape(\n        light,\n        region,\n    )\n\n    if not np.any(\n        region\n    ):\n        return float(\n            \"nan\"\n        )\n\n    return float(\n        np.mean(\n            light[\n                region\n            ]\n        )\n    )\n"
+      },
+      {
+        "name": "pedestrian_visibility_proxy",
+        "signature": "(intensity, pedestrian_future_full_box_region) -> 'float'",
+        "source": "def pedestrian_visibility_proxy(\n    intensity,\n    pedestrian_future_full_box_region,\n) -> float:\n    \"\"\"\n    Frozen Block6.6 definition:\n\n        mean(\n            I_final over future-GT pedestrian\n            projected full-box footprint cells\n        )\n\n    Evaluator only.\n    Higher is better.\n\n    Empty support:\n        NA -> NaN\n    \"\"\"\n\n    light = _intensity_array(\n        intensity,\n        name=\"intensity\",\n    )\n\n    region = _bool_array(\n        pedestrian_future_full_box_region,\n        name=(\n            \"pedestrian_future_full_box_region\"\n        ),\n    )\n\n    _same_shape(\n        light,\n        region,\n    )\n\n    if not np.any(\n        region\n    ):\n        return float(\n            \"nan\"\n        )\n\n    return float(\n        np.mean(\n            light[\n                region\n            ]\n        )\n    )\n"
+      },
+      {
+        "name": "cyclist_visibility_proxy",
+        "signature": "(intensity, cyclist_future_full_box_region) -> 'float'",
+        "source": "def cyclist_visibility_proxy(\n    intensity,\n    cyclist_future_full_box_region,\n) -> float:\n    \"\"\"\n    Frozen Block6.6 definition:\n\n        mean(\n            I_final over future-GT cyclist\n            projected full-box footprint cells\n        )\n\n    Evaluator only.\n    Higher is better.\n\n    Empty support:\n        NA -> NaN\n    \"\"\"\n\n    light = _intensity_array(\n        intensity,\n        name=\"intensity\",\n    )\n\n    region = _bool_array(\n        cyclist_future_full_box_region,\n        name=(\n            \"cyclist_future_full_box_region\"\n        ),\n    )\n\n    _same_shape(\n        light,\n        region,\n    )\n\n    if not np.any(\n        region\n    ):\n        return float(\n            \"nan\"\n        )\n\n    return float(\n        np.mean(\n            light[\n                region\n            ]\n        )\n    )\n"
+      },
+      {
+        "name": "road_illumination_retention",
+        "signature": "(intensity, road_roi) -> 'float'",
+        "source": "def road_illumination_retention(\n    intensity,\n    road_roi,\n) -> float:\n    \"\"\"\n    Frozen Block6.6 definition:\n\n        mean(I_final over frozen road ROI)\n\n    Higher is better.\n    \"\"\"\n\n    light = _intensity_array(\n        intensity,\n        name=\"intensity\",\n    )\n\n    road = _bool_array(\n        road_roi,\n        name=\"road_roi\",\n    )\n\n    _same_shape(\n        light,\n        road,\n    )\n\n    if not np.any(\n        road\n    ):\n        raise ValueError(\n            \"road_roi must contain at least one cell\"\n        )\n\n    return float(\n        np.mean(\n            light[\n                road\n            ]\n        )\n    )\n"
+      },
+      {
+        "name": "over_masking_area",
+        "signature": "(candidate_mask, oracle_mask) -> 'float'",
+        "source": "def over_masking_area(\n    candidate_mask,\n    oracle_mask,\n) -> float:\n    \"\"\"\n    Frozen Block6.6 definition:\n\n        |D \\ O|\n        --------------------\n        |full actuator grid|\n\n    Lower is better.\n    \"\"\"\n\n    candidate = _bool_array(\n        candidate_mask,\n        name=\"candidate_mask\",\n    )\n\n    oracle = _bool_array(\n        oracle_mask,\n        name=\"oracle_mask\",\n    )\n\n    _same_shape(\n        candidate,\n        oracle,\n    )\n\n    unnecessary = (\n        candidate\n        &\n        ~oracle\n    )\n\n    return float(\n        np.count_nonzero(\n            unnecessary\n        )\n        /\n        candidate.size\n    )\n"
+      },
+      {
+        "name": "false_dimming",
+        "signature": "(intensity, oracle_mask) -> 'float'",
+        "source": "def false_dimming(\n    intensity,\n    oracle_mask,\n) -> float:\n    \"\"\"\n    Frozen Block6.6 definition:\n\n        D = [I_final < 1]\n\n        |D \\ O|\n        -------\n          |D|\n\n    If |D| = 0:\n        0\n    \"\"\"\n\n    light = _intensity_array(\n        intensity,\n        name=\"intensity\",\n    )\n\n    oracle = _bool_array(\n        oracle_mask,\n        name=\"oracle_mask\",\n    )\n\n    _same_shape(\n        light,\n        oracle,\n    )\n\n    dim = binary_dim_support(\n        light\n    )\n\n    dim_count = int(\n        np.count_nonzero(\n            dim\n        )\n    )\n\n    if dim_count == 0:\n        return 0.0\n\n    unnecessary = int(\n        np.count_nonzero(\n            dim\n            &\n            ~oracle\n        )\n    )\n\n    return float(\n        unnecessary\n        /\n        dim_count\n    )\n"
+      }
+    ],
+    "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/metric_semantics.py",
+    "sha256": "bf8358b5a7edfe40ffac2718ca7cd5af6e7b5fdb3ff8a2823caad6d0f40f057a"
+  },
+  "scientific_boundary": {
+    "Stage1_modified": false,
+    "Stage2_modified": false,
+    "Stage3_floor_metrics_computed": false,
+    "Stage4_parameters_selected": false,
+    "floor_triplet_selected": false,
+    "formal_evaluation": false,
+    "primary_acceptance_tested": false
+  },
+  "seals": {
+    "class_policy": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b",
+    "evaluator_contract": "c9ff0390820a3c37702fb391ba603244fffcf7c03c476045b590aa483e89bd7e",
+    "evaluator_reference": "2015136fdcbfe3f837bcba5a2ee05578a4d8a01c4ecfd52e4dfac9f864349891",
+    "prereg": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e",
+    "reconciliation": "077a89fa5163f8862a3a5b7489d98929d9ae3e160ed9e030eb75f42a91d48f9f",
+    "road_roi": "832f4bc3215fe585fee781080c98b2928157f26e8a66d22f428f15604afb75e0",
+    "stage1": "a55f21589f55a75afcb660a8a7278e802dd9e102f4c75ca7863697359bbb2a87",
+    "stage2": "b061541f0563181cd07a91107a211b3519c6fdcc2e08243171db5b3bd9393ae8",
+    "vehicle_surrogate": "bfe8eb6d8b605d58f9b99d8097744b71b99ecb9ed9fd169191222375f31bc826"
+  },
+  "selection": {
+    "lexicographic_order": [
+      "minimize maximum element of normalized risk vector",
+      "minimize arithmetic mean of normalized risk vector",
+      "minimize over_masking_area",
+      "minimize false_dimming",
+      "canonical floor tuple (f_vehicle,f_pedestrian,f_cyclist)"
+    ],
+    "risk_components_are_already_normalized_unit_interval": true,
+    "risk_vector": [
+      "vehicle_shadow_zone_violation",
+      "glare_risk_exposure",
+      "1-pedestrian_visibility_proxy",
+      "1-cyclist_visibility_proxy",
+      "1-road_illumination_retention"
+    ],
+    "weighted_sum": false
+  },
+  "stage": 6,
+  "stage1_stage2": {
+    "class_margin": "immutable",
+    "gamma": "immutable"
+  },
+  "stage3_illumination": {
+    "actuation_rate_limit_applied": false,
+    "reason": "temporal/rate parameters belong to Stage-4 and are not selected until after Stage-3 floors freeze",
+    "temporal_smoothing_applied": false,
+    "terminal_value": "ClassAwareComposition.raw_class_aware_illumination"
+  },
+  "status": "FROZEN_STAGE3_FLOOR_EXECUTION_BEFORE_FLOOR_OUTCOMES"
+}

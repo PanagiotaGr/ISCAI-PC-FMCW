@@ -1,0 +1,60 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b2_real_future_full_box.py", line 2541, in main
+    scientific_run()
+    ~~~~~~~~~~~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b2_real_future_full_box.py", line 1333, in scientific_run
+    construct_prediction(
+    ~~~~~~~~~~~~~~~~~~~~^
+        DeterministicSharedMeanPrediction,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<15 lines>...
+        horizons_s=HORIZONS_S,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b2_real_future_full_box.py", line 491, in construct_prediction
+    raise ScientificBlock(
+    ...<3 lines>...
+    )
+ScientificBlock: BLOCKED_EXACT_PREDICTION_CONSTRUCTOR_BINDING: unresolved required field 'latest_position_H0_m'; signature=(prediction_id: 'str', latest_position_H0_m: 'Vec3', mean_displacement_H0_m: 'tuple[Vec3, Vec3, Vec3, Vec3]') -> None
+========================================================================
+BLOCK 6.3 PART 2B/2 — REAL FUTURE FULL-BOX EXECUTION
+========================================================================
+
+===== A. FROZEN PREREQUISITE SEAL =====
+Part2A       = EXACT PASS
+Part2B/1     = EXACT PASS
+binding      = EXACT PASS
+Part1        = EXACT PASS
+Part2A status  = PASS
+Part2B/1 status= PASS
+
+===== B. IDENTITY-SAFE POSTERIOR LOAD =====
+JSONL = /home/agni/waymo/iscai_stage6/artifacts/block63/identity_safe_development_gaussian_posterior.jsonl
+JSONL SHA = 318b22dfc3788195a1432169075d1c8654f0d183337711918db2303b5668f5ea
+NPZ SHA   = 2d35613bfb0bdc7133c5b3e96b4ab28e9cca64340442f9a2ab1bcf9db3aad914
+records   = 27
+prediction_id unique = PASS
+anonymous row binding = NO
+
+===== C. REAL CAUSAL ADB BOXES =====
+scenario_id       = b85e1bd6cc8e74c0
+current index     = 10
+causal ADB boxes  = 9
+future box input  = NO
+tracks_to_predict = NO
+
+===== D. GAUSSIAN MEAN → DETERMINISTIC PREDICTIONS =====
+
+========================================================================
+CONTROLLED BLOCK — NO SCIENTIFIC STATE ADVANCE
+========================================================================
+exception type = ScientificBlock
+exception      = BLOCKED_EXACT_PREDICTION_CONSTRUCTOR_BINDING: unresolved required field 'latest_position_H0_m'; signature=(prediction_id: 'str', latest_position_H0_m: 'Vec3', mean_displacement_H0_m: 'tuple[Vec3, Vec3, Vec3, Vec3]') -> None
+
+
+training/recalibration = NO / NO
+formal evaluation      = NO
+upstream modification  = NO
+terminal remains open  = YES
+========================================================================

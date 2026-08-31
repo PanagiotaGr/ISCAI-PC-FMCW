@@ -1,0 +1,16 @@
+{
+  "actor_dependent": false,
+  "all_valid_grid_cells_included": true,
+  "block": "6.8",
+  "concrete_shape": "bound at evaluator runtime to the already-frozen controller grid; no data-dependent shape selection",
+  "development_outcome_dependent": false,
+  "domain": "frozen_theta_range_headlamp_actuator_grid",
+  "formal_outcome_dependent": false,
+  "freeze_timing": "before_development_metric_outcomes",
+  "future_truth_dependent": false,
+  "project": "Agni",
+  "representation": "deterministic_runtime_mask_rule",
+  "rule": "road_roi = np.ones((theta_cells, range_cells), dtype=bool)",
+  "stage": 6,
+  "status": "FROZEN_ROAD_ROI_DEFINITION"
+}

@@ -1,0 +1,83 @@
+{
+  "block": "6.5-Part1",
+  "class_policy": {
+    "class_agnostic": true,
+    "class_margin": false,
+    "class_specific_floor": false,
+    "class_specific_gamma": false,
+    "cyclist_policy": false,
+    "pedestrian_policy": false,
+    "vehicle_policy": false
+  },
+  "frozen_numeric_context": {
+    "MC_N": 8192,
+    "MC_seed": 20260821,
+    "grid_shape": [
+      501,
+      301
+    ]
+  },
+  "frozen_upstream": {
+    "P_occ_module_sha256": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e",
+    "block62_closure_sha256": "23b299b4dc6a123ce64a6ab1350b3ed9cb149c8fed176b37e9715d9935704d92",
+    "block64_freeze_sha256": "bf0e7ee51cd9aadfced923f769dccf6dc2ff374179d6ba01428e0c891bbe1ad5",
+    "block64_handoff_sha256": "50c914e017d8d2aaa487c75077b49098c3ae5f2165b3048834b3a4bcc17719ae",
+    "block64_numeric_sha256": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73",
+    "block64_report_sha256": "06cb2487cc097a5df5b7f4966dded8509fa4771b70755146180cc13d1e64333f",
+    "illumination_module_sha256": "daeb96029ff6e1720d17cd20d3e8f00155c566eeecec3b3726f4adcc8b05d832"
+  },
+  "implementation": {
+    "module": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/predictive_mask.py",
+    "module_sha256": "239611ddb1cc21b9ddd46962eb561e58e0d1474be58878f9c79c256ba1940575",
+    "test": "/home/agni/waymo/iscai_stage6/tests/test_block65_part1_parameterized_mask.py",
+    "test_sha256": "71f56693bd16259f6037e2c1fb317fbeaeda2a3bf62a765f511cb3fc551e92cb"
+  },
+  "multi_actor_predictive_mask": {
+    "actor_order_invariant": true,
+    "binary_OR_equivalence": true,
+    "empty_actor_set": "all_false",
+    "equation": "M_tau = 1 - product_i(1 - M_i_tau)"
+  },
+  "per_actor_mask": {
+    "allowed_runtime_domain": "[0,1]",
+    "comparison": "STRICT_GREATER_THAN",
+    "equal_to_gamma_is_active": false,
+    "equation": "M_i_tau = 1[P_occ_i(theta,r,tau) > gamma]",
+    "gamma_default": null,
+    "gamma_frozen": false
+  },
+  "reactive_fallback": {
+    "PartA_floor_semantics_preserved": true,
+    "applies_to": "unmatched_causal_ADB_actors",
+    "binary_conversion": false,
+    "implementation": "exact_call_through_to_frozen_Block6.2_reactive_adb_map",
+    "multi_region_rule": "frozen_Block6.2_elementwise_minimum",
+    "output": "continuous_normalized_intensity_[0,1]",
+    "raised_cosine_preserved": true
+  },
+  "representation_boundary": {
+    "final_predictive_reactive_intensity_composition": false,
+    "kept_separate": true,
+    "predictive_binary_mask_shape": "[4,N_theta,N_range]",
+    "reactive_fallback_shape": "[N_theta,N_range]",
+    "reason": "do_not_invent_dimming_depth_or_destroy_reactive_raised_cosine_before_policy_freeze"
+  },
+  "scientific_execution": {
+    "formal_evaluation": false,
+    "model_forward": false,
+    "parameter_tuning": false,
+    "real_posterior_sampling": false,
+    "recalibration": false,
+    "training": false
+  },
+  "stage": 6,
+  "status": "PASS_PARAMETERIZED_CLASS_AGNOSTIC_PREDICTIVE_MASK_CONTRACT",
+  "still_deferred": {
+    "actuation_rate_limits": true,
+    "class_aware_policy": true,
+    "development_gamma_selection": true,
+    "dimming_floors": true,
+    "formal_evaluation": true,
+    "temporal_smoothing": true
+  }
+}

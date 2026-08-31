@@ -1,0 +1,707 @@
+{
+  "audit": "BLOCK52_MATERIALIZATION_PROVENANCE",
+  "block": "6.3",
+  "controller_decision": {
+    "anonymous_batch_controller_input": false,
+    "arbitrary_batch_row": false,
+    "identity_preserving_runtime_required": true,
+    "truth_identity_reconstruction": false
+  },
+  "excerpt": "/home/agni/waymo/iscai_stage6/artifacts/block63/block63_part2_materialization_provenance_excerpt.txt",
+  "gates": {
+    "calibrated_covariance_output": true,
+    "calibration": true,
+    "checkpoint": true,
+    "coordinate_semantics": true,
+    "direct_runtime_call": false,
+    "fit_only_normalization": true,
+    "posterior_output": false,
+    "probe_calibrated_output_call": false,
+    "runtime_execution": false
+  },
+  "part": "2/2",
+  "producer_logs": {
+    "/home/agni/waymo/iscai_stage5/artifacts/block52/dev_posterior_materialization.log": {
+      "contexts": [
+        {
+          "context": "00059: checkpoint best epoch     = 12\n00060: checkpoint calibrated     = FALSE PASS\n00061: \n00062: ============================================================\n00063: C. CANONICAL STAGE4 RUNTIME SETUP\n00064: ============================================================\n00065: CalibrationNormalizer signature = (statistics, *, device)\n00066: reconstructed frozen architecture = {'target_hidden_dim': 64, 'neighbor_hidden_dim': 32, 'map_hidden_dim': 32, 'fusion_hidden_dim': 128}\n00067: canonical normalizer       = PASS\n00068: canonical model builder    = PASS\n00069: strict state_dict load     = PASS\n00070: device                     = NVIDIA RTX A6000\n00071: ",
+          "line": 65
+        }
+      ],
+      "sha256": "2f086d111a33a5f3434beacd276cb3db8dcd8ff02978ce464384b441a1255018"
+    },
+    "/home/agni/waymo/iscai_stage5/artifacts/block52/dev_posterior_materialization_v2.log": {
+      "contexts": [
+        {
+          "context": "00094: full normalized posterior SHA = 8f8e9714fb16d2fc9ffc0a2421e5c5849b4f2239fd7691597ec9dee3eb505549\n00095: Stage5 posterior content SHA  = e63e7f14be6e119587716a4e6b25d492c154ec1881aa75225a454fd05964e4b9\n00096: \n00097: ============================================================\n00098: H. STAGE5-ONLY MATERIALIZATION\n00099: ============================================================\n00100: artifact = /home/agni/waymo/iscai_stage5/artifacts/block52/development_gaussian_posterior.npz\n00101: artifact file SHA256 = 39dacd4a1dd83ac9951244328403384421731dcffc1cf01617bcc6c6395460b4\n00102: Stage4 files written = NO\n00103: \n00104: ============================================================\n00105: CORRECTED DEV POSTERIOR MATERIALIZATION GATE\n00106: ============================================================",
+          "line": 100
+        },
+        {
+          "context": "00115: future truth used             = NO\n00116: formal N=120 used             = NO\n00117: training/recalibration        = NO\n00118: Stage4 frozen inference       = YES\n00119: Stage4 modified               = NO\n00120: STATUS = PASS\n00121: report = /home/agni/waymo/iscai_stage5/artifacts/block52/development_gaussian_posterior.json\n00122: next = BLOCK5.2 PART2 CONVERGENCE RESOLVER PATCH\n00123: terminal remains open = YES\n00124: \n00125: materialization raw code = 0\n00126: \n00127: ===== POST-INFERENCE STAGE5 REGRESSION =====",
+          "line": 121
+        }
+      ],
+      "sha256": "dbb77e9d39bacf5553d5d5839100f4d5d8d229622c7ba5dd80c1ca37a32b7910"
+    }
+  },
+  "project": "Agni",
+  "scope": {
+    "dataset_access": false,
+    "formal_evaluation": false,
+    "model_inference": false,
+    "parameter_tuning": false,
+    "upstream_modified": false
+  },
+  "stage": 6,
+  "status": "BLOCKED_MATERIALIZATION_PRODUCER_EVIDENCE_INCOMPLETE",
+  "support_contexts": {
+    "actual_stage4_gaussian_route_audit.log": [
+      {
+        "context": "00003: ============================================================\n00004: formal N=120 read     = NO\n00005: model forward pass    = NO\n00006: dataset scan          = NO\n00007: training/recalibration= NO\n00008: upstream modification = NO\n00009: \n00010: ============================================================\n00011: A. ACTUAL BLOCK4.4 GAUSSIAN IMPORTS",
+        "line": 7
+      },
+      {
+        "context": "00057: \n00058: ============================================================\n00059: C. FROZEN BLOCK4.3 DEVELOPMENT CACHE\n00060: ============================================================\n00061: path = /home/agni/waymo/iscai_stage4/artifacts/block43/development_cache.npz\n00062: SHA256 = bc0e5b508df38f6e33d9cb1a6d21d7eaa86d20c91ba09ede6f500d46b87fbcaa\n00063: keys = ['target', 'neighbors', 'neighbor_mask', 'map_context', 'future', 'future_mask', 'class_id']\n00064: target                         shape = [13682, 11, 14] | dtype = float32\n00065: neighbors                      shape = [13682, 8, 11, 14] | dtype = float32",
+        "line": 61
+      },
+      {
+        "context": "00069: future_mask                    shape = [13682, 4] | dtype = float32\n00070: class_id                       shape = [13682] | dtype = int64\n00071: \n00072: ============================================================\n00073: D. FROZEN BLOCK4.4 CHECKPOINT\n00074: ============================================================\n00075: SHA256 = 49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f\n00076: weights_only load = PASS_WEIGHTS_ONLY\n00077: top-level keys = ['stage', 'block', 'model_type', 'state_dict', 'state_dict_sha256', 'best_epoch', 'development_metrics', 'fingerprints', 'configuration', 'calibrated']",
+        "line": 73
+      },
+      {
+        "context": "00081: state_dict = {\"type\": \"dict\", \"length\": 20, \"keys_preview\": [\"target_gru.weight_ih_l0\", \"target_gru.weight_hh_l0\", \"target_gru.bias_ih_l0\", \"target_gru.bias_hh_l0\", \"neighbor_gru.weight_ih_l0\", \"neighbor_gru.weight_hh_l0\", \"neighbor_gru.bias_ih_l0\", \"neighbor_gru.bias_hh_l0\", \"map_encoder.0.weight\", \"map_encoder.0.bias\", \"map_encoder.2.weight\", \"map_encoder.2.bias\", \"fusion.0.weight\", \"fusion.0.bias\", \"fusion.2.weight\", \"fusion.2.bias\", \"mean_head.weight\", \"mean_head.bias\", \"cholesky_head.weight\", \"cholesky_head.bias\"]}\n00082: state_dict_sha256 = {\"type\": \"str\", \"repr\": \"'1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3'\"}\n00083: best_epoch = {\"type\": \"int\", \"repr\": \"12\"}\n00084: development_metrics = {\"type\": \"dict\", \"length\": 10, \"keys_preview\": [\"metric_Gaussian_NLL\", \"planar_ADE_m\", \"horizon_metric_NLL\", \"horizon_planar_error_m\", \"one_second_planar_error_m\", \"class_planar_ADE_m\", \"raw_empirical_coverage\", \"mean_predictive_std_m\", \"valid_actor_horizon_points\", \"predictive_covariance_SPD_failures\"]}\n00085: fingerprints = {\"type\": \"dict\", \"length\": 6, \"keys_preview\": [\"configuration_sha256\", \"deterministic_checkpoint_sha256\", \"deterministic_state_dict_sha256\", \"fit_cache_sha256\", \"development_cache_sha256\", \"normalization_sha256\"]}\n00086: configuration = {\"type\": \"dict\", \"length\": 13, \"keys_preview\": [\"stage\", \"block\", \"status\", \"purpose\", \"upstream\", \"input\", \"predictive_distribution\", \"initialization\", \"normalization\", \"training\", \"raw_evaluation_before_calibration\", \"acceptance\", \"next_block\"]}\n00087: calibrated = {\"type\": \"bool\", \"repr\": \"False\"}\n00088: \n00089: ============================================================",
+        "line": 85
+      },
+      {
+        "context": "00082: state_dict_sha256 = {\"type\": \"str\", \"repr\": \"'1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3'\"}\n00083: best_epoch = {\"type\": \"int\", \"repr\": \"12\"}\n00084: development_metrics = {\"type\": \"dict\", \"length\": 10, \"keys_preview\": [\"metric_Gaussian_NLL\", \"planar_ADE_m\", \"horizon_metric_NLL\", \"horizon_planar_error_m\", \"one_second_planar_error_m\", \"class_planar_ADE_m\", \"raw_empirical_coverage\", \"mean_predictive_std_m\", \"valid_actor_horizon_points\", \"predictive_covariance_SPD_failures\"]}\n00085: fingerprints = {\"type\": \"dict\", \"length\": 6, \"keys_preview\": [\"configuration_sha256\", \"deterministic_checkpoint_sha256\", \"deterministic_state_dict_sha256\", \"fit_cache_sha256\", \"development_cache_sha256\", \"normalization_sha256\"]}\n00086: configuration = {\"type\": \"dict\", \"length\": 13, \"keys_preview\": [\"stage\", \"block\", \"status\", \"purpose\", \"upstream\", \"input\", \"predictive_distribution\", \"initialization\", \"normalization\", \"training\", \"raw_evaluation_before_calibration\", \"acceptance\", \"next_block\"]}\n00087: calibrated = {\"type\": \"bool\", \"repr\": \"False\"}\n00088: \n00089: ============================================================\n00090: E. BLOCK4.4 TRAINING / DEV-INFERENCE ROUTE",
+        "line": 86
+      },
+      {
+        "context": "00091: ============================================================\n00092: L  26:     GaussianTrajectoryGRU,\n00093: L  28:     covariance_from_scale_tril,\n00094: L  29:     denormalize_gaussian,\n00095: L  61: DET_CHECKPOINT = (\n00096: L  71: DEV_CACHE = (\n00097: L  73:     / \"artifacts/block43/development_cache.npz\"\n00098: L  81: CHECKPOINT = (\n00099: L 111: EXPECTED_DET_CHECKPOINT_SHA = (",
+        "line": 95
+      },
+      {
+        "context": "00093: L  28:     covariance_from_scale_tril,\n00094: L  29:     denormalize_gaussian,\n00095: L  61: DET_CHECKPOINT = (\n00096: L  71: DEV_CACHE = (\n00097: L  73:     / \"artifacts/block43/development_cache.npz\"\n00098: L  81: CHECKPOINT = (\n00099: L 111: EXPECTED_DET_CHECKPOINT_SHA = (\n00100: L 302:     with np.load(\n00101: L 791: def build_gaussian_model(",
+        "line": 97
+      },
+      {
+        "context": "00094: L  29:     denormalize_gaussian,\n00095: L  61: DET_CHECKPOINT = (\n00096: L  71: DEV_CACHE = (\n00097: L  73:     / \"artifacts/block43/development_cache.npz\"\n00098: L  81: CHECKPOINT = (\n00099: L 111: EXPECTED_DET_CHECKPOINT_SHA = (\n00100: L 302:     with np.load(\n00101: L 791: def build_gaussian_model(\n00102: L 803:         GaussianTrajectoryGRU(",
+        "line": 98
+      },
+      {
+        "context": "00095: L  61: DET_CHECKPOINT = (\n00096: L  71: DEV_CACHE = (\n00097: L  73:     / \"artifacts/block43/development_cache.npz\"\n00098: L  81: CHECKPOINT = (\n00099: L 111: EXPECTED_DET_CHECKPOINT_SHA = (\n00100: L 302:     with np.load(\n00101: L 791: def build_gaussian_model(\n00102: L 803:         GaussianTrajectoryGRU(\n00103: L 836: # Development evaluation",
+        "line": 99
+      },
+      {
+        "context": "00097: L  73:     / \"artifacts/block43/development_cache.npz\"\n00098: L  81: CHECKPOINT = (\n00099: L 111: EXPECTED_DET_CHECKPOINT_SHA = (\n00100: L 302:     with np.load(\n00101: L 791: def build_gaussian_model(\n00102: L 803:         GaussianTrajectoryGRU(\n00103: L 836: # Development evaluation\n00104: L 932:             output = model(\n00105: L 944:             ) = denormalize_gaussian(",
+        "line": 101
+      },
+      {
+        "context": "00108: L1239:             \"Development set has \"\n00109: L1272:                 \"Zero development labels \"\n00110: L1426: def probabilistic_prediction_sha256(\n00111: L1474:             output = model(\n00112: L1509: # Checkpoint/progress\n00113: L1512: def save_best_checkpoint(\n00114: L1535:                 \"GaussianTrajectoryGRU\",\n00115: L1546:             \"development_metrics\":\n00116: L1558:         CHECKPOINT,",
+        "line": 112
+      },
+      {
+        "context": "00109: L1272:                 \"Zero development labels \"\n00110: L1426: def probabilistic_prediction_sha256(\n00111: L1474:             output = model(\n00112: L1509: # Checkpoint/progress\n00113: L1512: def save_best_checkpoint(\n00114: L1535:                 \"GaussianTrajectoryGRU\",\n00115: L1546:             \"development_metrics\":\n00116: L1558:         CHECKPOINT,\n00117: L1651:         model.load_state_dict(",
+        "line": 113
+      },
+      {
+        "context": "00112: L1509: # Checkpoint/progress\n00113: L1512: def save_best_checkpoint(\n00114: L1535:                 \"GaussianTrajectoryGRU\",\n00115: L1546:             \"development_metrics\":\n00116: L1558:         CHECKPOINT,\n00117: L1651:         model.load_state_dict(\n00118: L1657:         optimizer.load_state_dict(\n00119: L1683:             \"checkpoint archived:\"\n00120: L1712:         DET_CHECKPOINT,",
+        "line": 116
+      },
+      {
+        "context": "00115: L1546:             \"development_metrics\":\n00116: L1558:         CHECKPOINT,\n00117: L1651:         model.load_state_dict(\n00118: L1657:         optimizer.load_state_dict(\n00119: L1683:             \"checkpoint archived:\"\n00120: L1712:         DET_CHECKPOINT,\n00121: L1714:         DEV_CACHE,\n00122: L1802:             DET_CHECKPOINT\n00123: L1805:         EXPECTED_DET_CHECKPOINT_SHA",
+        "line": 119
+      },
+      {
+        "context": "00116: L1558:         CHECKPOINT,\n00117: L1651:         model.load_state_dict(\n00118: L1657:         optimizer.load_state_dict(\n00119: L1683:             \"checkpoint archived:\"\n00120: L1712:         DET_CHECKPOINT,\n00121: L1714:         DEV_CACHE,\n00122: L1802:             DET_CHECKPOINT\n00123: L1805:         EXPECTED_DET_CHECKPOINT_SHA\n00124: L1809:             \"checkpoint SHA changed.\"",
+        "line": 120
+      },
+      {
+        "context": "00118: L1657:         optimizer.load_state_dict(\n00119: L1683:             \"checkpoint archived:\"\n00120: L1712:         DET_CHECKPOINT,\n00121: L1714:         DEV_CACHE,\n00122: L1802:             DET_CHECKPOINT\n00123: L1805:         EXPECTED_DET_CHECKPOINT_SHA\n00124: L1809:             \"checkpoint SHA changed.\"\n00125: L1832:             DEV_CACHE\n00126: L1838:             \"development_cache\"",
+        "line": 122
+      },
+      {
+        "context": "00119: L1683:             \"checkpoint archived:\"\n00120: L1712:         DET_CHECKPOINT,\n00121: L1714:         DEV_CACHE,\n00122: L1802:             DET_CHECKPOINT\n00123: L1805:         EXPECTED_DET_CHECKPOINT_SHA\n00124: L1809:             \"checkpoint SHA changed.\"\n00125: L1832:             DEV_CACHE\n00126: L1838:             \"development_cache\"\n00127: L1844:             \"Frozen development \"",
+        "line": 123
+      },
+      {
+        "context": "00120: L1712:         DET_CHECKPOINT,\n00121: L1714:         DEV_CACHE,\n00122: L1802:             DET_CHECKPOINT\n00123: L1805:         EXPECTED_DET_CHECKPOINT_SHA\n00124: L1809:             \"checkpoint SHA changed.\"\n00125: L1832:             DEV_CACHE\n00126: L1838:             \"development_cache\"\n00127: L1844:             \"Frozen development \"\n00128: L1933:         CHECKPOINT.is_file()",
+        "line": 124
+      },
+      {
+        "context": "00122: L1802:             DET_CHECKPOINT\n00123: L1805:         EXPECTED_DET_CHECKPOINT_SHA\n00124: L1809:             \"checkpoint SHA changed.\"\n00125: L1832:             DEV_CACHE\n00126: L1838:             \"development_cache\"\n00127: L1844:             \"Frozen development \"\n00128: L1933:         CHECKPOINT.is_file()\n00129: L1950:                     \"checkpoint\"\n00130: L1958:                     CHECKPOINT",
+        "line": 126
+      },
+      {
+        "context": "00124: L1809:             \"checkpoint SHA changed.\"\n00125: L1832:             DEV_CACHE\n00126: L1838:             \"development_cache\"\n00127: L1844:             \"Frozen development \"\n00128: L1933:         CHECKPOINT.is_file()\n00129: L1950:                     \"checkpoint\"\n00130: L1958:                     CHECKPOINT\n00131: L1968:                     \"checkpoint SHA256 =\",\n00132: L2087:     deterministic_checkpoint = (",
+        "line": 128
+      },
+      {
+        "context": "00125: L1832:             DEV_CACHE\n00126: L1838:             \"development_cache\"\n00127: L1844:             \"Frozen development \"\n00128: L1933:         CHECKPOINT.is_file()\n00129: L1950:                     \"checkpoint\"\n00130: L1958:                     CHECKPOINT\n00131: L1968:                     \"checkpoint SHA256 =\",\n00132: L2087:     deterministic_checkpoint = (\n00133: L2089:             DET_CHECKPOINT,",
+        "line": 129
+      },
+      {
+        "context": "00126: L1838:             \"development_cache\"\n00127: L1844:             \"Frozen development \"\n00128: L1933:         CHECKPOINT.is_file()\n00129: L1950:                     \"checkpoint\"\n00130: L1958:                     CHECKPOINT\n00131: L1968:                     \"checkpoint SHA256 =\",\n00132: L2087:     deterministic_checkpoint = (\n00133: L2089:             DET_CHECKPOINT,\n00134: L2096:         deterministic_checkpoint[",
+        "line": 130
+      },
+      {
+        "context": "00127: L1844:             \"Frozen development \"\n00128: L1933:         CHECKPOINT.is_file()\n00129: L1950:                     \"checkpoint\"\n00130: L1958:                     CHECKPOINT\n00131: L1968:                     \"checkpoint SHA256 =\",\n00132: L2087:     deterministic_checkpoint = (\n00133: L2089:             DET_CHECKPOINT,\n00134: L2096:         deterministic_checkpoint[\n00135: L2110:             deterministic_checkpoint[",
+        "line": 131
+      },
+      {
+        "context": "00128: L1933:         CHECKPOINT.is_file()\n00129: L1950:                     \"checkpoint\"\n00130: L1958:                     CHECKPOINT\n00131: L1968:                     \"checkpoint SHA256 =\",\n00132: L2087:     deterministic_checkpoint = (\n00133: L2089:             DET_CHECKPOINT,\n00134: L2096:         deterministic_checkpoint[\n00135: L2110:             deterministic_checkpoint[\n00136: L2127:         DEV_CACHE",
+        "line": 132
+      },
+      {
+        "context": "00129: L1950:                     \"checkpoint\"\n00130: L1958:                     CHECKPOINT\n00131: L1968:                     \"checkpoint SHA256 =\",\n00132: L2087:     deterministic_checkpoint = (\n00133: L2089:             DET_CHECKPOINT,\n00134: L2096:         deterministic_checkpoint[\n00135: L2110:             deterministic_checkpoint[\n00136: L2127:         DEV_CACHE\n00137: L2143:         \"development samples     =\",",
+        "line": 133
+      },
+      {
+        "context": "00130: L1958:                     CHECKPOINT\n00131: L1968:                     \"checkpoint SHA256 =\",\n00132: L2087:     deterministic_checkpoint = (\n00133: L2089:             DET_CHECKPOINT,\n00134: L2096:         deterministic_checkpoint[\n00135: L2110:             deterministic_checkpoint[\n00136: L2127:         DEV_CACHE\n00137: L2143:         \"development samples     =\",\n00138: L2170:         \"deterministic_checkpoint_sha256\":",
+        "line": 134
+      },
+      {
+        "context": "00131: L1968:                     \"checkpoint SHA256 =\",\n00132: L2087:     deterministic_checkpoint = (\n00133: L2089:             DET_CHECKPOINT,\n00134: L2096:         deterministic_checkpoint[\n00135: L2110:             deterministic_checkpoint[\n00136: L2127:         DEV_CACHE\n00137: L2143:         \"development samples     =\",\n00138: L2170:         \"deterministic_checkpoint_sha256\":\n00139: L2171:             EXPECTED_DET_CHECKPOINT_SHA,",
+        "line": 135
+      },
+      {
+        "context": "00134: L2096:         deterministic_checkpoint[\n00135: L2110:             deterministic_checkpoint[\n00136: L2127:         DEV_CACHE\n00137: L2143:         \"development samples     =\",\n00138: L2170:         \"deterministic_checkpoint_sha256\":\n00139: L2171:             EXPECTED_DET_CHECKPOINT_SHA,\n00140: L2181:         \"development_cache_sha256\":\n00141: L2183:                 DEV_CACHE\n00142: L2192:     model = build_gaussian_model(",
+        "line": 138
+      },
+      {
+        "context": "00135: L2110:             deterministic_checkpoint[\n00136: L2127:         DEV_CACHE\n00137: L2143:         \"development samples     =\",\n00138: L2170:         \"deterministic_checkpoint_sha256\":\n00139: L2171:             EXPECTED_DET_CHECKPOINT_SHA,\n00140: L2181:         \"development_cache_sha256\":\n00141: L2183:                 DEV_CACHE\n00142: L2192:     model = build_gaussian_model(\n00143: L2193:         deterministic_checkpoint[",
+        "line": 139
+      },
+      {
+        "context": "00136: L2127:         DEV_CACHE\n00137: L2143:         \"development samples     =\",\n00138: L2170:         \"deterministic_checkpoint_sha256\":\n00139: L2171:             EXPECTED_DET_CHECKPOINT_SHA,\n00140: L2181:         \"development_cache_sha256\":\n00141: L2183:                 DEV_CACHE\n00142: L2192:     model = build_gaussian_model(\n00143: L2193:         deterministic_checkpoint[\n00144: L2201:         deterministic_checkpoint[",
+        "line": 140
+      },
+      {
+        "context": "00138: L2170:         \"deterministic_checkpoint_sha256\":\n00139: L2171:             EXPECTED_DET_CHECKPOINT_SHA,\n00140: L2181:         \"development_cache_sha256\":\n00141: L2183:                 DEV_CACHE\n00142: L2192:     model = build_gaussian_model(\n00143: L2193:         deterministic_checkpoint[\n00144: L2201:         deterministic_checkpoint[\n00145: L2315:         save_best_checkpoint(\n00146: L2495:             output = model(",
+        "line": 142
+      },
+      {
+        "context": "00139: L2171:             EXPECTED_DET_CHECKPOINT_SHA,\n00140: L2181:         \"development_cache_sha256\":\n00141: L2183:                 DEV_CACHE\n00142: L2192:     model = build_gaussian_model(\n00143: L2193:         deterministic_checkpoint[\n00144: L2201:         deterministic_checkpoint[\n00145: L2315:         save_best_checkpoint(\n00146: L2495:             output = model(\n00147: L2601:         development = (",
+        "line": 143
+      },
+      {
+        "context": "00140: L2181:         \"development_cache_sha256\":\n00141: L2183:                 DEV_CACHE\n00142: L2192:     model = build_gaussian_model(\n00143: L2193:         deterministic_checkpoint[\n00144: L2201:         deterministic_checkpoint[\n00145: L2315:         save_best_checkpoint(\n00146: L2495:             output = model(\n00147: L2601:         development = (\n00148: L2611:             development[",
+        "line": 144
+      },
+      {
+        "context": "00141: L2183:                 DEV_CACHE\n00142: L2192:     model = build_gaussian_model(\n00143: L2193:         deterministic_checkpoint[\n00144: L2201:         deterministic_checkpoint[\n00145: L2315:         save_best_checkpoint(\n00146: L2495:             output = model(\n00147: L2601:         development = (\n00148: L2611:             development[\n00149: L2617:             development[",
+        "line": 145
+      },
+      {
+        "context": "00147: L2601:         development = (\n00148: L2611:             development[\n00149: L2617:             development[\n00150: L2622:         # Primary = development metric NLL.\n00151: L2673:             save_best_checkpoint(\n00152: L2677:                     development\n00153: L2699:             \"development_metric_Gaussian_NLL\":\n00154: L2702:             \"development_planar_ADE_m\":\n00155: L2705:             \"development_one_second_planar_error_m\":",
+        "line": 151
+      },
+      {
+        "context": "00153: L2699:             \"development_metric_Gaussian_NLL\":\n00154: L2702:             \"development_planar_ADE_m\":\n00155: L2705:             \"development_one_second_planar_error_m\":\n00156: L2707:                     development[\n00157: L2775:     # Freeze/evaluate best Gaussian checkpoint.\n00158: L2778:     if not CHECKPOINT.is_file():\n00159: L2780:             \"Gaussian best checkpoint \"\n00160: L2784:     checkpoint = torch.load(\n00161: L2785:         CHECKPOINT,",
+        "line": 157
+      },
+      {
+        "context": "00154: L2702:             \"development_planar_ADE_m\":\n00155: L2705:             \"development_one_second_planar_error_m\":\n00156: L2707:                     development[\n00157: L2775:     # Freeze/evaluate best Gaussian checkpoint.\n00158: L2778:     if not CHECKPOINT.is_file():\n00159: L2780:             \"Gaussian best checkpoint \"\n00160: L2784:     checkpoint = torch.load(\n00161: L2785:         CHECKPOINT,\n00162: L2791:         checkpoint[",
+        "line": 158
+      },
+      {
+        "context": "00155: L2705:             \"development_one_second_planar_error_m\":\n00156: L2707:                     development[\n00157: L2775:     # Freeze/evaluate best Gaussian checkpoint.\n00158: L2778:     if not CHECKPOINT.is_file():\n00159: L2780:             \"Gaussian best checkpoint \"\n00160: L2784:     checkpoint = torch.load(\n00161: L2785:         CHECKPOINT,\n00162: L2791:         checkpoint[\n00163: L2798:             \"Gaussian checkpoint \"",
+        "line": 159
+      },
+      {
+        "context": "00156: L2707:                     development[\n00157: L2775:     # Freeze/evaluate best Gaussian checkpoint.\n00158: L2778:     if not CHECKPOINT.is_file():\n00159: L2780:             \"Gaussian best checkpoint \"\n00160: L2784:     checkpoint = torch.load(\n00161: L2785:         CHECKPOINT,\n00162: L2791:         checkpoint[\n00163: L2798:             \"Gaussian checkpoint \"\n00164: L2802:     best_model = build_gaussian_model(",
+        "line": 160
+      },
+      {
+        "context": "00157: L2775:     # Freeze/evaluate best Gaussian checkpoint.\n00158: L2778:     if not CHECKPOINT.is_file():\n00159: L2780:             \"Gaussian best checkpoint \"\n00160: L2784:     checkpoint = torch.load(\n00161: L2785:         CHECKPOINT,\n00162: L2791:         checkpoint[\n00163: L2798:             \"Gaussian checkpoint \"\n00164: L2802:     best_model = build_gaussian_model(\n00165: L2803:         deterministic_checkpoint[",
+        "line": 161
+      }
+    ],
+    "calibrated_runtime_api_audit.log": [
+      {
+        "context": "00007: ============================================================\n00008: model forward pass    = NO\n00009: formal N=120 read     = NO\n00010: dataset scan          = NO\n00011: training/recalibration= NO\n00012: upstream modification = NO\n00013: \n00014: ============================================================\n00015: A. STAGE4\u2192STAGE5 HANDOFF",
+        "line": 11
+      },
+      {
+        "context": "00016: ============================================================\n00017: handoff SHA256 = 491bce010d35c2a394f879ecf35ed26ef1de92f7fff1465dcbf46b072a87c6fd\n00018: Stage5_scope_start.trajectory_posterior_source = calibrated_Gaussian_GRU\n00019: alternative_frozen_models.GMM_GRU.calibrated = False\n00020: alternative_frozen_models.GMM_GRU.checkpoint_path = /home/agni/waymo/iscai_stage4/artifacts/block46/gmm_gru.pt\n00021: alternative_frozen_models.GMM_GRU.checkpoint_sha256 = 5aebeaf40d522d58345d424ae2557d6f87e2c02bdc26c23635cc6e3a28cbe3ee\n00022: alternative_frozen_models.GMM_GRU.selected_as_default_downstream = False\n00023: alternative_frozen_models.deterministic_GRU.checkpoint_path = /home/agni/waymo/iscai_stage4/artifacts/block43/deterministic_gru.pt\n00024: alternative_frozen_models.deterministic_GRU.checkpoint_sha256 = 5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5",
+        "line": 20
+      },
+      {
+        "context": "00017: handoff SHA256 = 491bce010d35c2a394f879ecf35ed26ef1de92f7fff1465dcbf46b072a87c6fd\n00018: Stage5_scope_start.trajectory_posterior_source = calibrated_Gaussian_GRU\n00019: alternative_frozen_models.GMM_GRU.calibrated = False\n00020: alternative_frozen_models.GMM_GRU.checkpoint_path = /home/agni/waymo/iscai_stage4/artifacts/block46/gmm_gru.pt\n00021: alternative_frozen_models.GMM_GRU.checkpoint_sha256 = 5aebeaf40d522d58345d424ae2557d6f87e2c02bdc26c23635cc6e3a28cbe3ee\n00022: alternative_frozen_models.GMM_GRU.selected_as_default_downstream = False\n00023: alternative_frozen_models.deterministic_GRU.checkpoint_path = /home/agni/waymo/iscai_stage4/artifacts/block43/deterministic_gru.pt\n00024: alternative_frozen_models.deterministic_GRU.checkpoint_sha256 = 5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5\n00025: causal_input_contract.measurement_covariance_feature_indices[0] = 6",
+        "line": 21
+      },
+      {
+        "context": "00019: alternative_frozen_models.GMM_GRU.calibrated = False\n00020: alternative_frozen_models.GMM_GRU.checkpoint_path = /home/agni/waymo/iscai_stage4/artifacts/block46/gmm_gru.pt\n00021: alternative_frozen_models.GMM_GRU.checkpoint_sha256 = 5aebeaf40d522d58345d424ae2557d6f87e2c02bdc26c23635cc6e3a28cbe3ee\n00022: alternative_frozen_models.GMM_GRU.selected_as_default_downstream = False\n00023: alternative_frozen_models.deterministic_GRU.checkpoint_path = /home/agni/waymo/iscai_stage4/artifacts/block43/deterministic_gru.pt\n00024: alternative_frozen_models.deterministic_GRU.checkpoint_sha256 = 5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5\n00025: causal_input_contract.measurement_covariance_feature_indices[0] = 6\n00026: causal_input_contract.measurement_covariance_feature_indices[1] = 7\n00027: causal_input_contract.measurement_covariance_feature_indices[2] = 8",
+        "line": 23
+      },
+      {
+        "context": "00020: alternative_frozen_models.GMM_GRU.checkpoint_path = /home/agni/waymo/iscai_stage4/artifacts/block46/gmm_gru.pt\n00021: alternative_frozen_models.GMM_GRU.checkpoint_sha256 = 5aebeaf40d522d58345d424ae2557d6f87e2c02bdc26c23635cc6e3a28cbe3ee\n00022: alternative_frozen_models.GMM_GRU.selected_as_default_downstream = False\n00023: alternative_frozen_models.deterministic_GRU.checkpoint_path = /home/agni/waymo/iscai_stage4/artifacts/block43/deterministic_gru.pt\n00024: alternative_frozen_models.deterministic_GRU.checkpoint_sha256 = 5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5\n00025: causal_input_contract.measurement_covariance_feature_indices[0] = 6\n00026: causal_input_contract.measurement_covariance_feature_indices[1] = 7\n00027: causal_input_contract.measurement_covariance_feature_indices[2] = 8\n00028: causal_input_contract.measurement_covariance_feature_indices[3] = 9",
+        "line": 24
+      },
+      {
+        "context": "00027: causal_input_contract.measurement_covariance_feature_indices[2] = 8\n00028: causal_input_contract.measurement_covariance_feature_indices[3] = 9\n00029: causal_input_contract.measurement_covariance_feature_indices[4] = 10\n00030: causal_input_contract.measurement_covariance_feature_indices[5] = 11\n00031: default_downstream_posterior.calibrator_path = /home/agni/waymo/iscai_stage4/artifacts/block45/covariance_scaler.json\n00032: default_downstream_posterior.calibrator_sha256 = 508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087\n00033: default_downstream_posterior.checkpoint_path = /home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt\n00034: default_downstream_posterior.checkpoint_sha256 = 49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f\n00035: default_downstream_posterior.covariance_family = full_3D_SPD",
+        "line": 31
+      },
+      {
+        "context": "00029: causal_input_contract.measurement_covariance_feature_indices[4] = 10\n00030: causal_input_contract.measurement_covariance_feature_indices[5] = 11\n00031: default_downstream_posterior.calibrator_path = /home/agni/waymo/iscai_stage4/artifacts/block45/covariance_scaler.json\n00032: default_downstream_posterior.calibrator_sha256 = 508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087\n00033: default_downstream_posterior.checkpoint_path = /home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt\n00034: default_downstream_posterior.checkpoint_sha256 = 49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f\n00035: default_downstream_posterior.covariance_family = full_3D_SPD\n00036: default_downstream_posterior.covariance_parameterization = Cholesky\n00037: default_downstream_posterior.family = calibrated_Gaussian_GRU",
+        "line": 33
+      },
+      {
+        "context": "00030: causal_input_contract.measurement_covariance_feature_indices[5] = 11\n00031: default_downstream_posterior.calibrator_path = /home/agni/waymo/iscai_stage4/artifacts/block45/covariance_scaler.json\n00032: default_downstream_posterior.calibrator_sha256 = 508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087\n00033: default_downstream_posterior.checkpoint_path = /home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt\n00034: default_downstream_posterior.checkpoint_sha256 = 49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f\n00035: default_downstream_posterior.covariance_family = full_3D_SPD\n00036: default_downstream_posterior.covariance_parameterization = Cholesky\n00037: default_downstream_posterior.family = calibrated_Gaussian_GRU\n00038: default_downstream_posterior.formal_covariance_SPD = True",
+        "line": 34
+      },
+      {
+        "context": "00040: default_downstream_posterior.horizons_s[1] = 0.3\n00041: default_downstream_posterior.horizons_s[2] = 0.5\n00042: default_downstream_posterior.horizons_s[3] = 1.0\n00043: default_downstream_posterior.mandatory_default = True\n00044: default_downstream_posterior.normalization_path = /home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json\n00045: default_downstream_posterior.normalization_sha256 = 3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6\n00046: default_downstream_posterior.predictive_covariance = Sigma_cal,h = alpha_h * Sigma_raw,h\n00047: default_downstream_posterior.predictive_mean = unchanged_by_calibration\n00048: default_downstream_posterior.standard_deviation_scale[0] = 1.1111734563206301",
+        "line": 44
+      },
+      {
+        "context": "00041: default_downstream_posterior.horizons_s[2] = 0.5\n00042: default_downstream_posterior.horizons_s[3] = 1.0\n00043: default_downstream_posterior.mandatory_default = True\n00044: default_downstream_posterior.normalization_path = /home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json\n00045: default_downstream_posterior.normalization_sha256 = 3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6\n00046: default_downstream_posterior.predictive_covariance = Sigma_cal,h = alpha_h * Sigma_raw,h\n00047: default_downstream_posterior.predictive_mean = unchanged_by_calibration\n00048: default_downstream_posterior.standard_deviation_scale[0] = 1.1111734563206301\n00049: default_downstream_posterior.standard_deviation_scale[1] = 1.1597952532754616",
+        "line": 45
+      },
+      {
+        "context": "00043: default_downstream_posterior.mandatory_default = True\n00044: default_downstream_posterior.normalization_path = /home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json\n00045: default_downstream_posterior.normalization_sha256 = 3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6\n00046: default_downstream_posterior.predictive_covariance = Sigma_cal,h = alpha_h * Sigma_raw,h\n00047: default_downstream_posterior.predictive_mean = unchanged_by_calibration\n00048: default_downstream_posterior.standard_deviation_scale[0] = 1.1111734563206301\n00049: default_downstream_posterior.standard_deviation_scale[1] = 1.1597952532754616\n00050: default_downstream_posterior.standard_deviation_scale[2] = 1.1639682374225084\n00051: default_downstream_posterior.standard_deviation_scale[3] = 1.1326826659448475",
+        "line": 47
+      },
+      {
+        "context": "00048: default_downstream_posterior.standard_deviation_scale[0] = 1.1111734563206301\n00049: default_downstream_posterior.standard_deviation_scale[1] = 1.1597952532754616\n00050: default_downstream_posterior.standard_deviation_scale[2] = 1.1639682374225084\n00051: default_downstream_posterior.standard_deviation_scale[3] = 1.1326826659448475\n00052: default_downstream_posterior.variance_scale_alpha_h[0] = 1.2347064500315355\n00053: default_downstream_posterior.variance_scale_alpha_h[1] = 1.3451250295202921\n00054: default_downstream_posterior.variance_scale_alpha_h[2] = 1.354822057728461\n00055: default_downstream_posterior.variance_scale_alpha_h[3] = 1.2829700217319266\n00056: formal_evidence.Gaussian_FDE_1s_m = 3.3198138702547295",
+        "line": 52
+      },
+      {
+        "context": "00049: default_downstream_posterior.standard_deviation_scale[1] = 1.1597952532754616\n00050: default_downstream_posterior.standard_deviation_scale[2] = 1.1639682374225084\n00051: default_downstream_posterior.standard_deviation_scale[3] = 1.1326826659448475\n00052: default_downstream_posterior.variance_scale_alpha_h[0] = 1.2347064500315355\n00053: default_downstream_posterior.variance_scale_alpha_h[1] = 1.3451250295202921\n00054: default_downstream_posterior.variance_scale_alpha_h[2] = 1.354822057728461\n00055: default_downstream_posterior.variance_scale_alpha_h[3] = 1.2829700217319266\n00056: formal_evidence.Gaussian_FDE_1s_m = 3.3198138702547295\n00057: formal_evidence.PDF_calibration_measured = True",
+        "line": 53
+      },
+      {
+        "context": "00050: default_downstream_posterior.standard_deviation_scale[2] = 1.1639682374225084\n00051: default_downstream_posterior.standard_deviation_scale[3] = 1.1326826659448475\n00052: default_downstream_posterior.variance_scale_alpha_h[0] = 1.2347064500315355\n00053: default_downstream_posterior.variance_scale_alpha_h[1] = 1.3451250295202921\n00054: default_downstream_posterior.variance_scale_alpha_h[2] = 1.354822057728461\n00055: default_downstream_posterior.variance_scale_alpha_h[3] = 1.2829700217319266\n00056: formal_evidence.Gaussian_FDE_1s_m = 3.3198138702547295\n00057: formal_evidence.PDF_calibration_measured = True\n00058: formal_evidence.calibrated_Gaussian_ADE_m = 1.9848952833749467",
+        "line": 54
+      },
+      {
+        "context": "00051: default_downstream_posterior.standard_deviation_scale[3] = 1.1326826659448475\n00052: default_downstream_posterior.variance_scale_alpha_h[0] = 1.2347064500315355\n00053: default_downstream_posterior.variance_scale_alpha_h[1] = 1.3451250295202921\n00054: default_downstream_posterior.variance_scale_alpha_h[2] = 1.354822057728461\n00055: default_downstream_posterior.variance_scale_alpha_h[3] = 1.2829700217319266\n00056: formal_evidence.Gaussian_FDE_1s_m = 3.3198138702547295\n00057: formal_evidence.PDF_calibration_measured = True\n00058: formal_evidence.calibrated_Gaussian_ADE_m = 1.9848952833749467\n00059: formal_evidence.calibrated_Gaussian_NLL = 3.6848268203287406",
+        "line": 55
+      },
+      {
+        "context": "00053: default_downstream_posterior.variance_scale_alpha_h[1] = 1.3451250295202921\n00054: default_downstream_posterior.variance_scale_alpha_h[2] = 1.354822057728461\n00055: default_downstream_posterior.variance_scale_alpha_h[3] = 1.2829700217319266\n00056: formal_evidence.Gaussian_FDE_1s_m = 3.3198138702547295\n00057: formal_evidence.PDF_calibration_measured = True\n00058: formal_evidence.calibrated_Gaussian_ADE_m = 1.9848952833749467\n00059: formal_evidence.calibrated_Gaussian_NLL = 3.6848268203287406\n00060: formal_evidence.calibrated_macro_ECE = 0.11165527003334381\n00061: formal_evidence.internal_Gaussian_less_than_CV = True",
+        "line": 57
+      },
+      {
+        "context": "00059: formal_evidence.calibrated_Gaussian_NLL = 3.6848268203287406\n00060: formal_evidence.calibrated_macro_ECE = 0.11165527003334381\n00061: formal_evidence.internal_Gaussian_less_than_CV = True\n00062: formal_evidence.raw_Gaussian_NLL = 4.15760466880646\n00063: measurement_predictive_uncertainty_separation.calibration_applies_to = predictive_covariance_only\n00064: measurement_predictive_uncertainty_separation.measurement_R_t_modified_by_calibration = False\n00065: \n00066: ============================================================\n00067: B. CALIBRATION_RUNTIME PUBLIC API",
+        "line": 63
+      },
+      {
+        "context": "00060: formal_evidence.calibrated_macro_ECE = 0.11165527003334381\n00061: formal_evidence.internal_Gaussian_less_than_CV = True\n00062: formal_evidence.raw_Gaussian_NLL = 4.15760466880646\n00063: measurement_predictive_uncertainty_separation.calibration_applies_to = predictive_covariance_only\n00064: measurement_predictive_uncertainty_separation.measurement_R_t_modified_by_calibration = False\n00065: \n00066: ============================================================\n00067: B. CALIBRATION_RUNTIME PUBLIC API\n00068: ============================================================",
+        "line": 64
+      },
+      {
+        "context": "00063: measurement_predictive_uncertainty_separation.calibration_applies_to = predictive_covariance_only\n00064: measurement_predictive_uncertainty_separation.measurement_R_t_modified_by_calibration = False\n00065: \n00066: ============================================================\n00067: B. CALIBRATION_RUNTIME PUBLIC API\n00068: ============================================================\n00069: module = iscai_stage4.ml.calibration_runtime\n00070: source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00071: source SHA256 = 58d633182d9147100f7b830eb54b181cab9cf754dfc3b325d71036295658c727",
+        "line": 67
+      },
+      {
+        "context": "00065: \n00066: ============================================================\n00067: B. CALIBRATION_RUNTIME PUBLIC API\n00068: ============================================================\n00069: module = iscai_stage4.ml.calibration_runtime\n00070: source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00071: source SHA256 = 58d633182d9147100f7b830eb54b181cab9cf754dfc3b325d71036295658c727\n00072: \n00073: CalibrationNormalizer | class",
+        "line": 69
+      },
+      {
+        "context": "00066: ============================================================\n00067: B. CALIBRATION_RUNTIME PUBLIC API\n00068: ============================================================\n00069: module = iscai_stage4.ml.calibration_runtime\n00070: source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00071: source SHA256 = 58d633182d9147100f7b830eb54b181cab9cf754dfc3b325d71036295658c727\n00072: \n00073: CalibrationNormalizer | class\n00074:   signature = (statistics, *, device)",
+        "line": 70
+      },
+      {
+        "context": "00069: module = iscai_stage4.ml.calibration_runtime\n00070: source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00071: source SHA256 = 58d633182d9147100f7b830eb54b181cab9cf754dfc3b325d71036295658c727\n00072: \n00073: CalibrationNormalizer | class\n00074:   signature = (statistics, *, device)\n00075:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00076:   line = 33\n00077: ",
+        "line": 73
+      },
+      {
+        "context": "00071: source SHA256 = 58d633182d9147100f7b830eb54b181cab9cf754dfc3b325d71036295658c727\n00072: \n00073: CalibrationNormalizer | class\n00074:   signature = (statistics, *, device)\n00075:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00076:   line = 33\n00077: \n00078: GaussianTrajectoryGRU | class\n00079:   signature = (*, target_hidden_dim: 'int' = 64, neighbor_hidden_dim: 'int' = 32, map_hidden_dim: 'int' = 32, fusion_hidden_dim: 'int' = 128, use_neighbors: 'bool' = True, use_map: 'bool' = True)",
+        "line": 75
+      },
+      {
+        "context": "00084:   signature = (actor_class: 'str') -> 'int'\n00085:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/training_utils.py\n00086:   line = 30\n00087: \n00088: apply_variance_scale | function\n00089:   signature = (scale_tril: 'torch.Tensor', variance_scale) -> 'torch.Tensor'\n00090:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration.py\n00091:   line = 131\n00092: ",
+        "line": 88
+      },
+      {
+        "context": "00085:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/training_utils.py\n00086:   line = 30\n00087: \n00088: apply_variance_scale | function\n00089:   signature = (scale_tril: 'torch.Tensor', variance_scale) -> 'torch.Tensor'\n00090:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration.py\n00091:   line = 131\n00092: \n00093: build_gaussian_model | function",
+        "line": 89
+      },
+      {
+        "context": "00086:   line = 30\n00087: \n00088: apply_variance_scale | function\n00089:   signature = (scale_tril: 'torch.Tensor', variance_scale) -> 'torch.Tensor'\n00090:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration.py\n00091:   line = 131\n00092: \n00093: build_gaussian_model | function\n00094:   signature = (configuration, *, device)",
+        "line": 90
+      },
+      {
+        "context": "00089:   signature = (scale_tril: 'torch.Tensor', variance_scale) -> 'torch.Tensor'\n00090:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration.py\n00091:   line = 131\n00092: \n00093: build_gaussian_model | function\n00094:   signature = (configuration, *, device)\n00095:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00096:   line = 374\n00097: ",
+        "line": 93
+      },
+      {
+        "context": "00091:   line = 131\n00092: \n00093: build_gaussian_model | function\n00094:   signature = (configuration, *, device)\n00095:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00096:   line = 374\n00097: \n00098: calibrated_nll_per_horizon | function\n00099:   signature = (raw_metric_nll, mahalanobis_squared_raw, variance_scale)",
+        "line": 95
+      },
+      {
+        "context": "00095:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00096:   line = 374\n00097: \n00098: calibrated_nll_per_horizon | function\n00099:   signature = (raw_metric_nll, mahalanobis_squared_raw, variance_scale)\n00100:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00101:   line = 855\n00102: \n00103: covariance_from_scale_tril | function",
+        "line": 99
+      },
+      {
+        "context": "00096:   line = 374\n00097: \n00098: calibrated_nll_per_horizon | function\n00099:   signature = (raw_metric_nll, mahalanobis_squared_raw, variance_scale)\n00100:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00101:   line = 855\n00102: \n00103: covariance_from_scale_tril | function\n00104:   signature = (scale_tril: 'torch.Tensor') -> 'torch.Tensor'",
+        "line": 100
+      },
+      {
+        "context": "00116:   line = 62\n00117: \n00118: infer_scene_statistics | function\n00119:   signature = (model, samples, normalizer, *, device)\n00120:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00121:   line = 593\n00122: \n00123: mahalanobis_squared | function\n00124:   signature = (mean: 'torch.Tensor', scale_tril: 'torch.Tensor', target: 'torch.Tensor') -> 'torch.Tensor'",
+        "line": 120
+      },
+      {
+        "context": "00126:   line = 230\n00127: \n00128: masked_nll_metrics | function\n00129:   signature = (nll, validity)\n00130:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00131:   line = 954\n00132: \n00133: masked_planar_ade | function\n00134:   signature = (planar_error, validity)",
+        "line": 130
+      },
+      {
+        "context": "00131:   line = 954\n00132: \n00133: masked_planar_ade | function\n00134:   signature = (planar_error, validity)\n00135:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00136:   line = 1053\n00137: \n00138: prediction_sha256 | function\n00139:   signature = (mean, scale_tril)",
+        "line": 135
+      },
+      {
+        "context": "00136:   line = 1053\n00137: \n00138: prediction_sha256 | function\n00139:   signature = (mean, scale_tril)\n00140:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00141:   line = 563\n00142: \n00143: probe_calibrated_output | function\n00144:   signature = (model, samples, normalizer, variance_scale, *, device)",
+        "line": 140
+      },
+      {
+        "context": "00139:   signature = (mean, scale_tril)\n00140:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00141:   line = 563\n00142: \n00143: probe_calibrated_output | function\n00144:   signature = (model, samples, normalizer, variance_scale, *, device)\n00145:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00146:   line = 1121\n00147: ",
+        "line": 143
+      },
+      {
+        "context": "00140:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00141:   line = 563\n00142: \n00143: probe_calibrated_output | function\n00144:   signature = (model, samples, normalizer, variance_scale, *, device)\n00145:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00146:   line = 1121\n00147: \n00148: samples_to_arrays | function",
+        "line": 144
+      },
+      {
+        "context": "00141:   line = 563\n00142: \n00143: probe_calibrated_output | function\n00144:   signature = (model, samples, normalizer, variance_scale, *, device)\n00145:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00146:   line = 1121\n00147: \n00148: samples_to_arrays | function\n00149:   signature = (samples)",
+        "line": 145
+      },
+      {
+        "context": "00146:   line = 1121\n00147: \n00148: samples_to_arrays | function\n00149:   signature = (samples)\n00150:   source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n00151:   line = 411\n00152: \n00153: ============================================================\n00154: C. RELEVANT RUNTIME CALLABLE DEFINITIONS",
+        "line": 150
+      },
+      {
+        "context": "00154: C. RELEVANT RUNTIME CALLABLE DEFINITIONS\n00155: ============================================================\n00156: \n00157: ------------------------------------------------------------\n00158: CalibrationNormalizer (statistics, *, device)\n00159: ------------------------------------------------------------\n00160: class CalibrationNormalizer:\n00161:     \"\"\"\n00162:     Frozen Block4.3 fit-only normalization.",
+        "line": 158
+      },
+      {
+        "context": "00156: \n00157: ------------------------------------------------------------\n00158: CalibrationNormalizer (statistics, *, device)\n00159: ------------------------------------------------------------\n00160: class CalibrationNormalizer:\n00161:     \"\"\"\n00162:     Frozen Block4.3 fit-only normalization.\n00163: \n00164:     Calibration data never contributes",
+        "line": 160
+      }
+    ],
+    "dev_posterior_resolver_audit.log": [
+      {
+        "context": "00018: inspection = {\n00019:   \"type\": \"json\",\n00020:   \"interesting_fields\": [\n00021:     {\n00022:       \"key\": \"checkpoint.best_epoch\",\n00023:       \"value\": 12\n00024:     },\n00025:     {\n00026:       \"key\": \"checkpoint.exact_inference_repeat\",",
+        "line": 22
+      },
+      {
+        "context": "00022:       \"key\": \"checkpoint.best_epoch\",\n00023:       \"value\": 12\n00024:     },\n00025:     {\n00026:       \"key\": \"checkpoint.exact_inference_repeat\",\n00027:       \"value\": true\n00028:     },\n00029:     {\n00030:       \"key\": \"checkpoint.file_sha256\",",
+        "line": 26
+      },
+      {
+        "context": "00026:       \"key\": \"checkpoint.exact_inference_repeat\",\n00027:       \"value\": true\n00028:     },\n00029:     {\n00030:       \"key\": \"checkpoint.file_sha256\",\n00031:       \"value\": \"49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f\"\n00032:     },\n00033:     {\n00034:       \"key\": \"checkpoint.path\",",
+        "line": 30
+      },
+      {
+        "context": "00030:       \"key\": \"checkpoint.file_sha256\",\n00031:       \"value\": \"49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f\"\n00032:     },\n00033:     {\n00034:       \"key\": \"checkpoint.path\",\n00035:       \"value\": \"/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt\"\n00036:     },\n00037:     {\n00038:       \"key\": \"checkpoint.prediction_sha256\",",
+        "line": 34
+      },
+      {
+        "context": "00031:       \"value\": \"49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f\"\n00032:     },\n00033:     {\n00034:       \"key\": \"checkpoint.path\",\n00035:       \"value\": \"/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt\"\n00036:     },\n00037:     {\n00038:       \"key\": \"checkpoint.prediction_sha256\",\n00039:       \"value\": \"a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a\"",
+        "line": 35
+      },
+      {
+        "context": "00034:       \"key\": \"checkpoint.path\",\n00035:       \"value\": \"/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt\"\n00036:     },\n00037:     {\n00038:       \"key\": \"checkpoint.prediction_sha256\",\n00039:       \"value\": \"a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a\"\n00040:     },\n00041:     {\n00042:       \"key\": \"checkpoint.state_dict_sha256\",",
+        "line": 38
+      },
+      {
+        "context": "00038:       \"key\": \"checkpoint.prediction_sha256\",\n00039:       \"value\": \"a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a\"\n00040:     },\n00041:     {\n00042:       \"key\": \"checkpoint.state_dict_sha256\",\n00043:       \"value\": \"1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3\"\n00044:     },\n00045:     {\n00046:       \"key\": \"development.NLL_improved_over_initialization\",",
+        "line": 42
+      },
+      {
+        "context": "00181:     {\n00182:       \"key\"\n00183: \n00184: [2] score = 32\n00185: path = iscai_stage4/artifacts/block43/development_cache.npz\n00186: size = 77824990\n00187: inspection = {\n00188:   \"type\": \"npz\",\n00189:   \"arrays\": {",
+        "line": 185
+      },
+      {
+        "context": "02065: ============================================================\n02066: B. SOURCE-CODE / REPORT PROVENANCE HITS\n02067: ============================================================\n02068: \n02069: FILE: iscai_stage4/artifacts/block45/run_block45_real_calibration.pre_model_config_repair.py\n02070:   L27:     fit_per_horizon_covariance_scale,\n02071:   L34:     build_gaussian_model,\n02072:   L59: BLOCK44 = (\n02073:   L62:       \"block44_gaussian_gru.json\"",
+        "line": 2069
+      },
+      {
+        "context": "02066: B. SOURCE-CODE / REPORT PROVENANCE HITS\n02067: ============================================================\n02068: \n02069: FILE: iscai_stage4/artifacts/block45/run_block45_real_calibration.pre_model_config_repair.py\n02070:   L27:     fit_per_horizon_covariance_scale,\n02071:   L34:     build_gaussian_model,\n02072:   L59: BLOCK44 = (\n02073:   L62:       \"block44_gaussian_gru.json\"\n02074:   L65: GAUSSIAN_CHECKPOINT = (",
+        "line": 2070
+      },
+      {
+        "context": "02067: ============================================================\n02068: \n02069: FILE: iscai_stage4/artifacts/block45/run_block45_real_calibration.pre_model_config_repair.py\n02070:   L27:     fit_per_horizon_covariance_scale,\n02071:   L34:     build_gaussian_model,\n02072:   L59: BLOCK44 = (\n02073:   L62:       \"block44_gaussian_gru.json\"\n02074:   L65: GAUSSIAN_CHECKPOINT = (\n02075:   L67:     / \"artifacts/block44/\"",
+        "line": 2071
+      },
+      {
+        "context": "02070:   L27:     fit_per_horizon_covariance_scale,\n02071:   L34:     build_gaussian_model,\n02072:   L59: BLOCK44 = (\n02073:   L62:       \"block44_gaussian_gru.json\"\n02074:   L65: GAUSSIAN_CHECKPOINT = (\n02075:   L67:     / \"artifacts/block44/\"\n02076:   L68:       \"gaussian_gru.pt\"\n02077:   L89: CACHE_DIR = (\n02078:   L92:       \"cache/calibration\"",
+        "line": 2074
+      },
+      {
+        "context": "02072:   L59: BLOCK44 = (\n02073:   L62:       \"block44_gaussian_gru.json\"\n02074:   L65: GAUSSIAN_CHECKPOINT = (\n02075:   L67:     / \"artifacts/block44/\"\n02076:   L68:       \"gaussian_gru.pt\"\n02077:   L89: CACHE_DIR = (\n02078:   L92:       \"cache/calibration\"\n02079:   L101: CACHE_REPORT = (\n02080:   L104:       \"calibration_cache_manifest.json\"",
+        "line": 2076
+      },
+      {
+        "context": "02074:   L65: GAUSSIAN_CHECKPOINT = (\n02075:   L67:     / \"artifacts/block44/\"\n02076:   L68:       \"gaussian_gru.pt\"\n02077:   L89: CACHE_DIR = (\n02078:   L92:       \"cache/calibration\"\n02079:   L101: CACHE_REPORT = (\n02080:   L104:       \"calibration_cache_manifest.json\"\n02081:   L110:       \"covariance_scaler.json\"\n02082:   L137: EXPECTED_BLOCK44_IMPL_SHA = (",
+        "line": 2078
+      },
+      {
+        "context": "02076:   L68:       \"gaussian_gru.pt\"\n02077:   L89: CACHE_DIR = (\n02078:   L92:       \"cache/calibration\"\n02079:   L101: CACHE_REPORT = (\n02080:   L104:       \"calibration_cache_manifest.json\"\n02081:   L110:       \"covariance_scaler.json\"\n02082:   L137: EXPECTED_BLOCK44_IMPL_SHA = (\n02083:   L142: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (\n02084:   L147: EXPECTED_GAUSSIAN_STATE_SHA = (",
+        "line": 2080
+      },
+      {
+        "context": "02077:   L89: CACHE_DIR = (\n02078:   L92:       \"cache/calibration\"\n02079:   L101: CACHE_REPORT = (\n02080:   L104:       \"calibration_cache_manifest.json\"\n02081:   L110:       \"covariance_scaler.json\"\n02082:   L137: EXPECTED_BLOCK44_IMPL_SHA = (\n02083:   L142: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (\n02084:   L147: EXPECTED_GAUSSIAN_STATE_SHA = (\n02085:   L275:             if \"__pycache__\" in (",
+        "line": 2081
+      },
+      {
+        "context": "02079:   L101: CACHE_REPORT = (\n02080:   L104:       \"calibration_cache_manifest.json\"\n02081:   L110:       \"covariance_scaler.json\"\n02082:   L137: EXPECTED_BLOCK44_IMPL_SHA = (\n02083:   L142: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (\n02084:   L147: EXPECTED_GAUSSIAN_STATE_SHA = (\n02085:   L275:             if \"__pycache__\" in (\n02086:   L362:         np.savez(\n02087:   L397: def cache_path(",
+        "line": 2083
+      },
+      {
+        "context": "02098:   L661:     device,\n02099:   L669:     path = cache_path(\n02100: \n02101: FILE: iscai_stage4/scripts/repair_and_resume_block45_part2.py\n02102:   L43: GAUSSIAN_CHECKPOINT = (\n02103:   L45:     / \"artifacts/block44/\"\n02104:   L46:       \"gaussian_gru.pt\"\n02105:   L49: DETERMINISTIC_CHECKPOINT = (\n02106:   L74: EXPECTED_DET_CHECKPOINT_SHA = (",
+        "line": 2102
+      },
+      {
+        "context": "02100: \n02101: FILE: iscai_stage4/scripts/repair_and_resume_block45_part2.py\n02102:   L43: GAUSSIAN_CHECKPOINT = (\n02103:   L45:     / \"artifacts/block44/\"\n02104:   L46:       \"gaussian_gru.pt\"\n02105:   L49: DETERMINISTIC_CHECKPOINT = (\n02106:   L74: EXPECTED_DET_CHECKPOINT_SHA = (\n02107:   L84: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (\n02108:   L89: EXPECTED_GAUSSIAN_STATE_SHA = (",
+        "line": 2104
+      },
+      {
+        "context": "02101: FILE: iscai_stage4/scripts/repair_and_resume_block45_part2.py\n02102:   L43: GAUSSIAN_CHECKPOINT = (\n02103:   L45:     / \"artifacts/block44/\"\n02104:   L46:       \"gaussian_gru.pt\"\n02105:   L49: DETERMINISTIC_CHECKPOINT = (\n02106:   L74: EXPECTED_DET_CHECKPOINT_SHA = (\n02107:   L84: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (\n02108:   L89: EXPECTED_GAUSSIAN_STATE_SHA = (\n02109:   L214:         \"block44_modified\":",
+        "line": 2105
+      },
+      {
+        "context": "02102:   L43: GAUSSIAN_CHECKPOINT = (\n02103:   L45:     / \"artifacts/block44/\"\n02104:   L46:       \"gaussian_gru.pt\"\n02105:   L49: DETERMINISTIC_CHECKPOINT = (\n02106:   L74: EXPECTED_DET_CHECKPOINT_SHA = (\n02107:   L84: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (\n02108:   L89: EXPECTED_GAUSSIAN_STATE_SHA = (\n02109:   L214:         \"block44_modified\":\n02110:   L286:         GAUSSIAN_CHECKPOINT,",
+        "line": 2106
+      },
+      {
+        "context": "02103:   L45:     / \"artifacts/block44/\"\n02104:   L46:       \"gaussian_gru.pt\"\n02105:   L49: DETERMINISTIC_CHECKPOINT = (\n02106:   L74: EXPECTED_DET_CHECKPOINT_SHA = (\n02107:   L84: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (\n02108:   L89: EXPECTED_GAUSSIAN_STATE_SHA = (\n02109:   L214:         \"block44_modified\":\n02110:   L286:         GAUSSIAN_CHECKPOINT,\n02111:   L287:         DETERMINISTIC_CHECKPOINT,",
+        "line": 2107
+      },
+      {
+        "context": "02106:   L74: EXPECTED_DET_CHECKPOINT_SHA = (\n02107:   L84: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (\n02108:   L89: EXPECTED_GAUSSIAN_STATE_SHA = (\n02109:   L214:         \"block44_modified\":\n02110:   L286:         GAUSSIAN_CHECKPOINT,\n02111:   L287:         DETERMINISTIC_CHECKPOINT,\n02112:   L315:     # B. Verify BOTH frozen checkpoints before patching\n02113:   L320:         \"===== FROZEN CHECKPOINT VERIFICATION =====\"\n02114:   L325:             DETERMINISTIC_CHECKPOINT",
+        "line": 2110
+      },
+      {
+        "context": "02107:   L84: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (\n02108:   L89: EXPECTED_GAUSSIAN_STATE_SHA = (\n02109:   L214:         \"block44_modified\":\n02110:   L286:         GAUSSIAN_CHECKPOINT,\n02111:   L287:         DETERMINISTIC_CHECKPOINT,\n02112:   L315:     # B. Verify BOTH frozen checkpoints before patching\n02113:   L320:         \"===== FROZEN CHECKPOINT VERIFICATION =====\"\n02114:   L325:             DETERMINISTIC_CHECKPOINT\n02115:   L329:     actual_gaussian_file_sha = (",
+        "line": 2111
+      },
+      {
+        "context": "02108:   L89: EXPECTED_GAUSSIAN_STATE_SHA = (\n02109:   L214:         \"block44_modified\":\n02110:   L286:         GAUSSIAN_CHECKPOINT,\n02111:   L287:         DETERMINISTIC_CHECKPOINT,\n02112:   L315:     # B. Verify BOTH frozen checkpoints before patching\n02113:   L320:         \"===== FROZEN CHECKPOINT VERIFICATION =====\"\n02114:   L325:             DETERMINISTIC_CHECKPOINT\n02115:   L329:     actual_gaussian_file_sha = (\n02116:   L331:             GAUSSIAN_CHECKPOINT",
+        "line": 2112
+      },
+      {
+        "context": "02109:   L214:         \"block44_modified\":\n02110:   L286:         GAUSSIAN_CHECKPOINT,\n02111:   L287:         DETERMINISTIC_CHECKPOINT,\n02112:   L315:     # B. Verify BOTH frozen checkpoints before patching\n02113:   L320:         \"===== FROZEN CHECKPOINT VERIFICATION =====\"\n02114:   L325:             DETERMINISTIC_CHECKPOINT\n02115:   L329:     actual_gaussian_file_sha = (\n02116:   L331:             GAUSSIAN_CHECKPOINT\n02117:   L338:         EXPECTED_DET_CHECKPOINT_SHA",
+        "line": 2113
+      },
+      {
+        "context": "02110:   L286:         GAUSSIAN_CHECKPOINT,\n02111:   L287:         DETERMINISTIC_CHECKPOINT,\n02112:   L315:     # B. Verify BOTH frozen checkpoints before patching\n02113:   L320:         \"===== FROZEN CHECKPOINT VERIFICATION =====\"\n02114:   L325:             DETERMINISTIC_CHECKPOINT\n02115:   L329:     actual_gaussian_file_sha = (\n02116:   L331:             GAUSSIAN_CHECKPOINT\n02117:   L338:         EXPECTED_DET_CHECKPOINT_SHA\n02118:   L341:             \"deterministic_checkpoint_file\",",
+        "line": 2114
+      },
+      {
+        "context": "02112:   L315:     # B. Verify BOTH frozen checkpoints before patching\n02113:   L320:         \"===== FROZEN CHECKPOINT VERIFICATION =====\"\n02114:   L325:             DETERMINISTIC_CHECKPOINT\n02115:   L329:     actual_gaussian_file_sha = (\n02116:   L331:             GAUSSIAN_CHECKPOINT\n02117:   L338:         EXPECTED_DET_CHECKPOINT_SHA\n02118:   L341:             \"deterministic_checkpoint_file\",\n02119:   L343:                 \"Frozen Block4.3 checkpoint \"\n02120:   L355:         actual_gaussian_file_sha",
+        "line": 2116
+      },
+      {
+        "context": "02113:   L320:         \"===== FROZEN CHECKPOINT VERIFICATION =====\"\n02114:   L325:             DETERMINISTIC_CHECKPOINT\n02115:   L329:     actual_gaussian_file_sha = (\n02116:   L331:             GAUSSIAN_CHECKPOINT\n02117:   L338:         EXPECTED_DET_CHECKPOINT_SHA\n02118:   L341:             \"deterministic_checkpoint_file\",\n02119:   L343:                 \"Frozen Block4.3 checkpoint \"\n02120:   L355:         actual_gaussian_file_sha\n02121:   L357:         EXPECTED_GAUSSIAN_CHECKPOINT_SHA",
+        "line": 2117
+      },
+      {
+        "context": "02114:   L325:             DETERMINISTIC_CHECKPOINT\n02115:   L329:     actual_gaussian_file_sha = (\n02116:   L331:             GAUSSIAN_CHECKPOINT\n02117:   L338:         EXPECTED_DET_CHECKPOINT_SHA\n02118:   L341:             \"deterministic_checkpoint_file\",\n02119:   L343:                 \"Frozen Block4.3 checkpoint \"\n02120:   L355:         actual_gaussian_file_sha\n02121:   L357:         EXPECTED_GAUSSIAN_CHECKPOINT_SHA\n02122:   L360:             \"gaussian_checkpoint_file\",",
+        "line": 2118
+      },
+      {
+        "context": "02115:   L329:     actual_gaussian_file_sha = (\n02116:   L331:             GAUSSIAN_CHECKPOINT\n02117:   L338:         EXPECTED_DET_CHECKPOINT_SHA\n02118:   L341:             \"deterministic_checkpoint_file\",\n02119:   L343:                 \"Frozen Block4.3 checkpoint \"\n02120:   L355:         actual_gaussian_file_sha\n02121:   L357:         EXPECTED_GAUSSIAN_CHECKPOINT_SHA\n02122:   L360:             \"gaussian_checkpoint_file\",\n02123:   L362:                 \"Frozen Block4.4 checkpoint \"",
+        "line": 2119
+      },
+      {
+        "context": "02117:   L338:         EXPECTED_DET_CHECKPOINT_SHA\n02118:   L341:             \"deterministic_checkpoint_file\",\n02119:   L343:                 \"Frozen Block4.3 checkpoint \"\n02120:   L355:         actual_gaussian_file_sha\n02121:   L357:         EXPECTED_GAUSSIAN_CHECKPOINT_SHA\n02122:   L360:             \"gaussian_checkpoint_file\",\n02123:   L362:                 \"Frozen Block4.4 checkpoint \"\n02124:   L367:                 \"Audit the frozen Gaussian \"\n02125:   L373:     deterministic_checkpoint = (",
+        "line": 2121
+      },
+      {
+        "context": "02118:   L341:             \"deterministic_checkpoint_file\",\n02119:   L343:                 \"Frozen Block4.3 checkpoint \"\n02120:   L355:         actual_gaussian_file_sha\n02121:   L357:         EXPECTED_GAUSSIAN_CHECKPOINT_SHA\n02122:   L360:             \"gaussian_checkpoint_file\",\n02123:   L362:                 \"Frozen Block4.4 checkpoint \"\n02124:   L367:                 \"Audit the frozen Gaussian \"\n02125:   L373:     deterministic_checkpoint = (\n02126:   L375:             DETERMINISTIC_CHECKPOINT,",
+        "line": 2122
+      },
+      {
+        "context": "02119:   L343:                 \"Frozen Block4.3 checkpoint \"\n02120:   L355:         actual_gaussian_file_sha\n02121:   L357:         EXPECTED_GAUSSIAN_CHECKPOINT_SHA\n02122:   L360:             \"gaussian_checkpoint_file\",\n02123:   L362:                 \"Frozen Block4.4 checkpoint \"\n02124:   L367:                 \"Audit the frozen Gaussian \"\n02125:   L373:     deterministic_checkpoint = (\n02126:   L375:             DETERMINISTIC_CHECKPOINT,\n02127:   L381:     gaussian_checkpoint = (",
+        "line": 2123
+      },
+      {
+        "context": "02121:   L357:         EXPECTED_GAUSSIAN_CHECKPOINT_SHA\n02122:   L360:             \"gaussian_checkpoint_file\",\n02123:   L362:                 \"Frozen Block4.4 checkpoint \"\n02124:   L367:                 \"Audit the frozen Gaussian \"\n02125:   L373:     deterministic_checkpoint = (\n02126:   L375:             DETERMINISTIC_CHECKPOINT,\n02127:   L381:     gaussian_checkpoint = (\n02128:   L383:             GAUSSIAN_CHECKPOINT,\n02129:   L391:             deterministic_checkpoint[",
+        "line": 2125
+      },
+      {
+        "context": "02122:   L360:             \"gaussian_checkpoint_file\",\n02123:   L362:                 \"Frozen Block4.4 checkpoint \"\n02124:   L367:                 \"Audit the frozen Gaussian \"\n02125:   L373:     deterministic_checkpoint = (\n02126:   L375:             DETERMINISTIC_CHECKPOINT,\n02127:   L381:     gaussian_checkpoint = (\n02128:   L383:             GAUSSIAN_CHECKPOINT,\n02129:   L391:             deterministic_checkpoint[\n02130:   L397:     actual_gaussian_state_sha = (",
+        "line": 2126
+      },
+      {
+        "context": "02123:   L362:                 \"Frozen Block4.4 checkpoint \"\n02124:   L367:                 \"Audit the frozen Gaussian \"\n02125:   L373:     deterministic_checkpoint = (\n02126:   L375:             DETERMINISTIC_CHECKPOINT,\n02127:   L381:     gaussian_checkpoint = (\n02128:   L383:             GAUSSIAN_CHECKPOINT,\n02129:   L391:             deterministic_checkpoint[\n02130:   L397:     actual_gaussian_state_sha = (\n02131:   L399:             gaussian_checkpoint[",
+        "line": 2127
+      },
+      {
+        "context": "02124:   L367:                 \"Audit the frozen Gaussian \"\n02125:   L373:     deterministic_checkpoint = (\n02126:   L375:             DETERMINISTIC_CHECKPOINT,\n02127:   L381:     gaussian_checkpoint = (\n02128:   L383:             GAUSSIAN_CHECKPOINT,\n02129:   L391:             deterministic_checkpoint[\n02130:   L397:     actual_gaussian_state_sha = (\n02131:   L399:             gaussian_checkpoint[\n02132: ",
+        "line": 2128
+      },
+      {
+        "context": "02125:   L373:     deterministic_checkpoint = (\n02126:   L375:             DETERMINISTIC_CHECKPOINT,\n02127:   L381:     gaussian_checkpoint = (\n02128:   L383:             GAUSSIAN_CHECKPOINT,\n02129:   L391:             deterministic_checkpoint[\n02130:   L397:     actual_gaussian_state_sha = (\n02131:   L399:             gaussian_checkpoint[\n02132: \n02133: FILE: iscai_stage4/scripts/repair_block44_python_headers.py",
+        "line": 2129
+      },
+      {
+        "context": "02127:   L381:     gaussian_checkpoint = (\n02128:   L383:             GAUSSIAN_CHECKPOINT,\n02129:   L391:             deterministic_checkpoint[\n02130:   L397:     actual_gaussian_state_sha = (\n02131:   L399:             gaussian_checkpoint[\n02132: \n02133: FILE: iscai_stage4/scripts/repair_block44_python_headers.py\n02134:   L18:     / \"reports/block44_environment_repair.json\"\n02135:   L23:     / \"reports/block44_part1_safe_gate.json\"",
+        "line": 2131
+      }
+    ],
+    "dev_posterior_resolver_summary.log": [
+      {
+        "context": "00021: inspection =\n00022: {\n00023:   \"interesting_fields\": [\n00024:     {\n00025:       \"key\": \"checkpoint.best_epoch\",\n00026:       \"value\": 12\n00027:     },\n00028:     {\n00029:       \"key\": \"checkpoint.exact_inference_repeat\",",
+        "line": 25
+      },
+      {
+        "context": "00025:       \"key\": \"checkpoint.best_epoch\",\n00026:       \"value\": 12\n00027:     },\n00028:     {\n00029:       \"key\": \"checkpoint.exact_inference_repeat\",\n00030:       \"value\": true\n00031:     },\n00032:     {\n00033:       \"key\": \"checkpoint.file_sha256\",",
+        "line": 29
+      },
+      {
+        "context": "00029:       \"key\": \"checkpoint.exact_inference_repeat\",\n00030:       \"value\": true\n00031:     },\n00032:     {\n00033:       \"key\": \"checkpoint.file_sha256\",\n00034:       \"value\": \"49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f\"\n00035:     },\n00036:     {\n00037:       \"key\": \"checkpoint.path\",",
+        "line": 33
+      },
+      {
+        "context": "00033:       \"key\": \"checkpoint.file_sha256\",\n00034:       \"value\": \"49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f\"\n00035:     },\n00036:     {\n00037:       \"key\": \"checkpoint.path\",\n00038:       \"value\": \"/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt\"\n00039:     },\n00040:     {\n00041:       \"key\": \"checkpoint.prediction_sha256\",",
+        "line": 37
+      },
+      {
+        "context": "00034:       \"value\": \"49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f\"\n00035:     },\n00036:     {\n00037:       \"key\": \"checkpoint.path\",\n00038:       \"value\": \"/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt\"\n00039:     },\n00040:     {\n00041:       \"key\": \"checkpoint.prediction_sha256\",\n00042:       \"value\": \"a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a\"",
+        "line": 38
+      },
+      {
+        "context": "00037:       \"key\": \"checkpoint.path\",\n00038:       \"value\": \"/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt\"\n00039:     },\n00040:     {\n00041:       \"key\": \"checkpoint.prediction_sha256\",\n00042:       \"value\": \"a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a\"\n00043:     },\n00044:     {\n00045:       \"key\": \"checkpoint.state_dict_sha256\",",
+        "line": 41
+      },
+      {
+        "context": "00041:       \"key\": \"checkpoint.prediction_sha256\",\n00042:       \"value\": \"a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a\"\n00043:     },\n00044:     {\n00045:       \"key\": \"checkpoint.state_dict_sha256\",\n00046:       \"value\": \"1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3\"\n00047:     },\n00048:     {\n00049:       \"key\": \"development.NLL_improved_over_initialization\",",
+        "line": 45
+      },
+      {
+        "context": "00215: \n00216: [CANDIDATE 2]\n00217: priority = 127\n00218: original score = 32\n00219: path = iscai_stage4/artifacts/block43/development_cache.npz\n00220: size = 77824990\n00221: sha256 = bc0e5b508df38f6e33d9cb1a6d21d7eaa86d20c91ba09ede6f500d46b87fbcaa\n00222: inspection =\n00223: {",
+        "line": 219
+      },
+      {
+        "context": "01186: L60: DEV_MANIFEST = (\n01187: L63:       \"development.jsonl\"\n01188: L78: DEV_SUBSET = (\n01189: L81:       \"deterministic_dev_scenes.jsonl\"\n01190: L90: CHECKPOINT = (\n01191: L92:     / \"checkpoints/\"\n01192: L129: EXPECTED_DEV_SHA = (\n01193: L141: DEV_QUOTA = 128\n01194: L149: DEV_SCENES = (",
+        "line": 1190
+      },
+      {
+        "context": "01187: L63:       \"development.jsonl\"\n01188: L78: DEV_SUBSET = (\n01189: L81:       \"deterministic_dev_scenes.jsonl\"\n01190: L90: CHECKPOINT = (\n01191: L92:     / \"checkpoints/\"\n01192: L129: EXPECTED_DEV_SHA = (\n01193: L141: DEV_QUOTA = 128\n01194: L149: DEV_SCENES = (\n01195: L150:     DEV_QUOTA",
+        "line": 1191
+      },
+      {
+        "context": "01219: L90:       \"cache\"\n01220: L93: FIT_CACHE = (\n01221: L96:       \"fit_cache.npz\"\n01222: L99: DEV_CACHE = (\n01223: L102:       \"development_cache.npz\"\n01224: L105: CACHE_REPORT = (\n01225: L108:       \"cache_manifest.json\"\n01226: L117: CHECKPOINT = (\n01227: L150: EXPECTED_DEV_SHA = (",
+        "line": 1223
+      },
+      {
+        "context": "01222: L99: DEV_CACHE = (\n01223: L102:       \"development_cache.npz\"\n01224: L105: CACHE_REPORT = (\n01225: L108:       \"cache_manifest.json\"\n01226: L117: CHECKPOINT = (\n01227: L150: EXPECTED_DEV_SHA = (\n01228: L330:         np.savez(\n01229: L528:             \"Cache array keys changed.\"\n01230: L608:                 f\"Non-finite cache \"",
+        "line": 1226
+      },
+      {
+        "context": "01247: L30:     gaussian_nll_per_horizon,\n01248: L33:     masked_gaussian_nll,\n01249: L43:     / \"reports/block44_part1_safe_gate.json\"\n01250: L48:     / \"reports/block44_preflight.json\"\n01251: L58:     / \"configs/stage4_gaussian_gru.json\"\n01252: L61: DET_CHECKPOINT = (\n01253: L66: FIT_CACHE = (\n01254: L68:     / \"artifacts/block43/fit_cache.npz\"\n01255: L71: DEV_CACHE = (",
+        "line": 1251
+      },
+      {
+        "context": "01248: L33:     masked_gaussian_nll,\n01249: L43:     / \"reports/block44_part1_safe_gate.json\"\n01250: L48:     / \"reports/block44_preflight.json\"\n01251: L58:     / \"configs/stage4_gaussian_gru.json\"\n01252: L61: DET_CHECKPOINT = (\n01253: L66: FIT_CACHE = (\n01254: L68:     / \"artifacts/block43/fit_cache.npz\"\n01255: L71: DEV_CACHE = (\n01256: L73:     / \"artifacts/block43/development_cache.npz\"",
+        "line": 1252
+      },
+      {
+        "context": "01252: L61: DET_CHECKPOINT = (\n01253: L66: FIT_CACHE = (\n01254: L68:     / \"artifacts/block43/fit_cache.npz\"\n01255: L71: DEV_CACHE = (\n01256: L73:     / \"artifacts/block43/development_cache.npz\"\n01257: L81: CHECKPOINT = (\n01258: L83:     / \"artifacts/block44/gaussian_gru.pt\"\n01259: L88:     / \"artifacts/block44/training_progress.pt\"\n01260: L93:     / \"reports/block44_gaussian_gru.json\"",
+        "line": 1256
+      },
+      {
+        "context": "01253: L66: FIT_CACHE = (\n01254: L68:     / \"artifacts/block43/fit_cache.npz\"\n01255: L71: DEV_CACHE = (\n01256: L73:     / \"artifacts/block43/development_cache.npz\"\n01257: L81: CHECKPOINT = (\n01258: L83:     / \"artifacts/block44/gaussian_gru.pt\"\n01259: L88:     / \"artifacts/block44/training_progress.pt\"\n01260: L93:     / \"reports/block44_gaussian_gru.json\"\n01261: L98:     / \"reports/block44_training_failure.json\"",
+        "line": 1257
+      },
+      {
+        "context": "01254: L68:     / \"artifacts/block43/fit_cache.npz\"\n01255: L71: DEV_CACHE = (\n01256: L73:     / \"artifacts/block43/development_cache.npz\"\n01257: L81: CHECKPOINT = (\n01258: L83:     / \"artifacts/block44/gaussian_gru.pt\"\n01259: L88:     / \"artifacts/block44/training_progress.pt\"\n01260: L93:     / \"reports/block44_gaussian_gru.json\"\n01261: L98:     / \"reports/block44_training_failure.json\"\n01262: L111: EXPECTED_DET_CHECKPOINT_SHA = (",
+        "line": 1258
+      },
+      {
+        "context": "01258: L83:     / \"artifacts/block44/gaussian_gru.pt\"\n01259: L88:     / \"artifacts/block44/training_progress.pt\"\n01260: L93:     / \"reports/block44_gaussian_gru.json\"\n01261: L98:     / \"reports/block44_training_failure.json\"\n01262: L111: EXPECTED_DET_CHECKPOINT_SHA = (\n01263: L213:             if \"__pycache__\" in path.parts:\n01264: L268:     torch.save(\n01265: L296: # Frozen Block4.3 cache\n01266: L299: def load_cache(",
+        "line": 1262
+      },
+      {
+        "context": "01304: L68: CACHE_ROOT = (\n01305: L70:     / \"artifacts/block43/cache\"\n01306: L73: CACHE_META = (\n01307: L75:     / \"artifacts/block43/cache_manifest.json\"\n01308: L83: CHECKPOINT = (\n01309: L107: EXPECTED_DEV_SHA = (\n01310: L363:         CACHE_ROOT\n01311: L389:                 \"Frozen cache scenario \"\n01312: L410:                     \"Frozen cache file \"",
+        "line": 1308
+      },
+      {
+        "context": "01364: L45:     evaluate_gaussian_condition,\n01365: L68:       \"measurement_covariance_feature_contract.json\"\n01366: L81: BLOCK44 = (\n01367: L83:     / \"reports/block44_gaussian_gru.json\"\n01368: L86: DETERMINISTIC_CHECKPOINT = (\n01369: L91: GAUSSIAN_CHECKPOINT = (\n01370: L93:     / \"artifacts/block44/gaussian_gru.pt\"\n01371: L98:     / \"artifacts/block45/covariance_scaler.json\"\n01372: L101: FIT_CACHE = (",
+        "line": 1368
+      },
+      {
+        "context": "01365: L68:       \"measurement_covariance_feature_contract.json\"\n01366: L81: BLOCK44 = (\n01367: L83:     / \"reports/block44_gaussian_gru.json\"\n01368: L86: DETERMINISTIC_CHECKPOINT = (\n01369: L91: GAUSSIAN_CHECKPOINT = (\n01370: L93:     / \"artifacts/block44/gaussian_gru.pt\"\n01371: L98:     / \"artifacts/block45/covariance_scaler.json\"\n01372: L101: FIT_CACHE = (\n01373: L103:     / \"artifacts/block43/fit_cache.npz\"",
+        "line": 1369
+      },
+      {
+        "context": "01366: L81: BLOCK44 = (\n01367: L83:     / \"reports/block44_gaussian_gru.json\"\n01368: L86: DETERMINISTIC_CHECKPOINT = (\n01369: L91: GAUSSIAN_CHECKPOINT = (\n01370: L93:     / \"artifacts/block44/gaussian_gru.pt\"\n01371: L98:     / \"artifacts/block45/covariance_scaler.json\"\n01372: L101: FIT_CACHE = (\n01373: L103:     / \"artifacts/block43/fit_cache.npz\"\n01374: L106: DEV_CACHE = (",
+        "line": 1370
+      },
+      {
+        "context": "01367: L83:     / \"reports/block44_gaussian_gru.json\"\n01368: L86: DETERMINISTIC_CHECKPOINT = (\n01369: L91: GAUSSIAN_CHECKPOINT = (\n01370: L93:     / \"artifacts/block44/gaussian_gru.pt\"\n01371: L98:     / \"artifacts/block45/covariance_scaler.json\"\n01372: L101: FIT_CACHE = (\n01373: L103:     / \"artifacts/block43/fit_cache.npz\"\n01374: L106: DEV_CACHE = (\n01375: L108:     / \"artifacts/block43/development_cache.npz\"",
+        "line": 1371
+      },
+      {
+        "context": "01371: L98:     / \"artifacts/block45/covariance_scaler.json\"\n01372: L101: FIT_CACHE = (\n01373: L103:     / \"artifacts/block43/fit_cache.npz\"\n01374: L106: DEV_CACHE = (\n01375: L108:     / \"artifacts/block43/development_cache.npz\"\n01376: L141: EXPECTED_DETERMINISTIC_CHECKPOINT_SHA = (\n01377: L146: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (\n01378: L151: EXPECTED_GAUSSIAN_STATE_SHA = (\n01379: L169: CACHE_KEYS = (",
+        "line": 1375
+      },
+      {
+        "context": "01372: L101: FIT_CACHE = (\n01373: L103:     / \"artifacts/block43/fit_cache.npz\"\n01374: L106: DEV_CACHE = (\n01375: L108:     / \"artifacts/block43/development_cache.npz\"\n01376: L141: EXPECTED_DETERMINISTIC_CHECKPOINT_SHA = (\n01377: L146: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (\n01378: L151: EXPECTED_GAUSSIAN_STATE_SHA = (\n01379: L169: CACHE_KEYS = (\n01380: L285:             if \"__pycache__\" in path.parts:",
+        "line": 1376
+      },
+      {
+        "context": "01373: L103:     / \"artifacts/block43/fit_cache.npz\"\n01374: L106: DEV_CACHE = (\n01375: L108:     / \"artifacts/block43/development_cache.npz\"\n01376: L141: EXPECTED_DETERMINISTIC_CHECKPOINT_SHA = (\n01377: L146: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (\n01378: L151: EXPECTED_GAUSSIAN_STATE_SHA = (\n01379: L169: CACHE_KEYS = (\n01380: L285:             if \"__pycache__\" in path.parts:\n01381: L338: def load_cache(",
+        "line": 1377
+      },
+      {
+        "context": "01413: L506:     covariance_indices=EXPECTED_R_INDICES,\n01414: \n01415: [SOURCE 9]\n01416: priority = 380\n01417: path = iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py\n01418: L13: from iscai_stage4.ml.gaussian_gru import (\n01419: L14:     GaussianTrajectoryGRU,\n01420: L17: from iscai_stage4.ml.gaussian_math import (\n01421: L18:     covariance_from_scale_tril,",
+        "line": 1417
+      },
+      {
+        "context": "01437: L205:         ).to(device)\n01438: L212:         ).to(device)\n01439: L219:         ).to(device)\n01440: L226:         ).to(device)\n01441: L374: def build_gaussian_model(\n01442: L377:     device,\n01443: \n01444: [SOURCE 10]\n01445: priority = 380",
+        "line": 1441
+      },
+      {
+        "context": "01447: L15:     GaussianTrajectoryGRU,\n01448: L16:     covariance_from_scale_tril,\n01449: L17:     denormalize_gaussian,\n01450: L20:     masked_gaussian_nll,\n01451: L40: DET_CHECKPOINT = (\n01452: L46: FIT_CACHE = (\n01453: L49:       \"fit_cache.npz\"\n01454: L52: DEV_CACHE = (\n01455: L55:       \"development_cache.npz\"",
+        "line": 1451
+      },
+      {
+        "context": "01451: L40: DET_CHECKPOINT = (\n01452: L46: FIT_CACHE = (\n01453: L49:       \"fit_cache.npz\"\n01454: L52: DEV_CACHE = (\n01455: L55:       \"development_cache.npz\"\n01456: L64: GAUSSIAN_CONFIG = (\n01457: L67:       \"stage4_gaussian_gru.json\"\n01458: L73:       \"block44_preflight.json\"\n01459: L79:       \"block44_preflight_failure.json\"",
+        "line": 1455
+      },
+      {
+        "context": "01453: L49:       \"fit_cache.npz\"\n01454: L52: DEV_CACHE = (\n01455: L55:       \"development_cache.npz\"\n01456: L64: GAUSSIAN_CONFIG = (\n01457: L67:       \"stage4_gaussian_gru.json\"\n01458: L73:       \"block44_preflight.json\"\n01459: L79:       \"block44_preflight_failure.json\"\n01460: L87: EXPECTED_CHECKPOINT_SHA = (\n01461: L172: def load_cache_shapes(",
+        "line": 1457
+      },
+      {
+        "context": "01456: L64: GAUSSIAN_CONFIG = (\n01457: L67:       \"stage4_gaussian_gru.json\"\n01458: L73:       \"block44_preflight.json\"\n01459: L79:       \"block44_preflight_failure.json\"\n01460: L87: EXPECTED_CHECKPOINT_SHA = (\n01461: L172: def load_cache_shapes(\n01462: L192:                     f\"Cache lacks {key}: \"\n01463: L210:     device,\n01464: L244:             device",
+        "line": 1460
+      },
+      {
+        "context": "01465: L249: def make_gaussian_model(\n01466: L252:     device,\n01467: L261:         GaussianTrajectoryGRU(\n01468: L286:             device\n01469: L324:     if not DET_CHECKPOINT.is_file():\n01470: L327:             \"checkpoint missing.\"\n01471: L332:             DET_CHECKPOINT\n01472: \n01473: [SOURCE 11]",
+        "line": 1469
+      },
+      {
+        "context": "01466: L252:     device,\n01467: L261:         GaussianTrajectoryGRU(\n01468: L286:             device\n01469: L324:     if not DET_CHECKPOINT.is_file():\n01470: L327:             \"checkpoint missing.\"\n01471: L332:             DET_CHECKPOINT\n01472: \n01473: [SOURCE 11]\n01474: priority = 375",
+        "line": 1470
+      },
+      {
+        "context": "01467: L261:         GaussianTrajectoryGRU(\n01468: L286:             device\n01469: L324:     if not DET_CHECKPOINT.is_file():\n01470: L327:             \"checkpoint missing.\"\n01471: L332:             DET_CHECKPOINT\n01472: \n01473: [SOURCE 11]\n01474: priority = 375\n01475: path = iscai_stage4/artifacts/block45/run_block45_real_calibration.pre_model_config_repair.py",
+        "line": 1471
+      },
+      {
+        "context": "01471: L332:             DET_CHECKPOINT\n01472: \n01473: [SOURCE 11]\n01474: priority = 375\n01475: path = iscai_stage4/artifacts/block45/run_block45_real_calibration.pre_model_config_repair.py\n01476: L27:     fit_per_horizon_covariance_scale,\n01477: L34:     build_gaussian_model,\n01478: L59: BLOCK44 = (\n01479: L62:       \"block44_gaussian_gru.json\"",
+        "line": 1475
+      },
+      {
+        "context": "01472: \n01473: [SOURCE 11]\n01474: priority = 375\n01475: path = iscai_stage4/artifacts/block45/run_block45_real_calibration.pre_model_config_repair.py\n01476: L27:     fit_per_horizon_covariance_scale,\n01477: L34:     build_gaussian_model,\n01478: L59: BLOCK44 = (\n01479: L62:       \"block44_gaussian_gru.json\"\n01480: L65: GAUSSIAN_CHECKPOINT = (",
+        "line": 1476
+      },
+      {
+        "context": "01473: [SOURCE 11]\n01474: priority = 375\n01475: path = iscai_stage4/artifacts/block45/run_block45_real_calibration.pre_model_config_repair.py\n01476: L27:     fit_per_horizon_covariance_scale,\n01477: L34:     build_gaussian_model,\n01478: L59: BLOCK44 = (\n01479: L62:       \"block44_gaussian_gru.json\"\n01480: L65: GAUSSIAN_CHECKPOINT = (\n01481: L67:     / \"artifacts/block44/\"",
+        "line": 1477
+      },
+      {
+        "context": "01476: L27:     fit_per_horizon_covariance_scale,\n01477: L34:     build_gaussian_model,\n01478: L59: BLOCK44 = (\n01479: L62:       \"block44_gaussian_gru.json\"\n01480: L65: GAUSSIAN_CHECKPOINT = (\n01481: L67:     / \"artifacts/block44/\"\n01482: L68:       \"gaussian_gru.pt\"\n01483: L89: CACHE_DIR = (\n01484: L92:       \"cache/calibration\"",
+        "line": 1480
+      },
+      {
+        "context": "01478: L59: BLOCK44 = (\n01479: L62:       \"block44_gaussian_gru.json\"\n01480: L65: GAUSSIAN_CHECKPOINT = (\n01481: L67:     / \"artifacts/block44/\"\n01482: L68:       \"gaussian_gru.pt\"\n01483: L89: CACHE_DIR = (\n01484: L92:       \"cache/calibration\"\n01485: L101: CACHE_REPORT = (\n01486: L104:       \"calibration_cache_manifest.json\"",
+        "line": 1482
+      }
+    ]
+  }
+}

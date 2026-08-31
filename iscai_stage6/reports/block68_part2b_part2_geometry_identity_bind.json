@@ -1,0 +1,359 @@
+{
+  "block": "6.8_Part2B_Part2_geometry_identity_bind",
+  "causal_adb_box": [
+    {
+      "name": "scenario_id",
+      "type": "str"
+    },
+    {
+      "name": "track_index",
+      "type": "int"
+    },
+    {
+      "name": "track_id",
+      "type": "str"
+    },
+    {
+      "name": "object_type",
+      "type": "str"
+    },
+    {
+      "name": "box",
+      "type": "Box3D"
+    },
+    {
+      "name": "stage1_anchor_center_H0_m",
+      "type": "tuple[float, float, float] | None"
+    },
+    {
+      "name": "stage1_anchor_bearing_H0_rad",
+      "type": "float | None"
+    },
+    {
+      "name": "center_consistency_error_m",
+      "type": "float"
+    },
+    {
+      "name": "source_time_index",
+      "type": "int"
+    },
+    {
+      "name": "state_source",
+      "type": "str"
+    },
+    {
+      "name": "orientation_source",
+      "type": "str"
+    },
+    {
+      "name": "tracks_to_predict_used",
+      "type": "bool"
+    },
+    {
+      "name": "objects_of_interest_used",
+      "type": "bool"
+    },
+    {
+      "name": "future_state_used",
+      "type": "bool"
+    }
+  ],
+  "decision_ledger": {
+    "actor_box_index_paths": [
+      "selected_adb_actors[].actor_box_index"
+    ],
+    "identity_paths": [
+      "causality",
+      "causality.P_occ_opened",
+      "causality.future_state_field_access_by_runner",
+      "causality.future_track_duration_selector",
+      "causality.future_truth_scoring",
+      "causality.future_validity_selector",
+      "causality.objects_of_interest_selector",
+      "causality.performance_metric_computed",
+      "causality.tracks_to_predict_selector",
+      "cohort_index",
+      "current_time_index",
+      "scenario_id",
+      "selected_adb_actor_count",
+      "selected_adb_actor_counts",
+      "selected_adb_actor_counts.TYPE_CYCLIST",
+      "selected_adb_actor_counts.TYPE_PEDESTRIAN",
+      "selected_adb_actor_counts.TYPE_VEHICLE",
+      "selected_adb_actors",
+      "selected_adb_actors[]",
+      "selected_adb_actors[].actor_box_index",
+      "selected_adb_actors[].causal_box_future_state_used",
+      "selected_adb_actors[].current_box_H0",
+      "selected_adb_actors[].current_box_H0.center_xyz_H0_m",
+      "selected_adb_actors[].current_box_H0.center_xyz_H0_m[]",
+      "selected_adb_actors[].current_box_H0.height_m",
+      "selected_adb_actors[].current_box_H0.length_m",
+      "selected_adb_actors[].current_box_H0.width_m",
+      "selected_adb_actors[].current_box_H0.yaw_rad",
+      "selected_adb_actors[].future_used_for_eligibility",
+      "selected_adb_actors[].geometry_parity",
+      "selected_adb_actors[].geometry_parity.center_m",
+      "selected_adb_actors[].geometry_parity.dimension_m",
+      "selected_adb_actors[].geometry_parity.yaw_rad",
+      "selected_adb_actors[].object_type",
+      "selected_adb_actors[].objects_of_interest_used",
+      "selected_adb_actors[].prediction_id",
+      "selected_adb_actors[].reactive_control_input",
+      "selected_adb_actors[].selector_route",
+      "selected_adb_actors[].track_id",
+      "selected_adb_actors[].track_index",
+      "selected_adb_actors[].tracks_to_predict_used"
+    ],
+    "rows": 120,
+    "track_id_paths": [
+      "selected_adb_actors[].track_id"
+    ],
+    "track_index_paths": [
+      "selected_adb_actors[].track_index"
+    ],
+    "unique_scenarios": 120
+  },
+  "evaluator_reference": {
+    "functions": {
+      "_actor_support_array": "(value, *, grid_shape) -> 'np.ndarray'",
+      "aggregate_class_future_region": "(actor_regions: 'Iterable[np.ndarray]', *, grid_shape) -> 'np.ndarray'",
+      "aggregate_constructed_oracle_supports": "(actor_supports: 'Iterable[np.ndarray]', *, grid_shape) -> 'np.ndarray'",
+      "frozen_road_roi": "(grid_shape) -> 'np.ndarray'",
+      "validate_final_metric_illumination": "(illumination, *, grid_shape) -> 'np.ndarray'"
+    },
+    "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/evaluator_reference.py",
+    "sha256": "2015136fdcbfe3f837bcba5a2ee05578a4d8a01c4ecfd52e4dfac9f864349891"
+  },
+  "frozen_seals": {
+    "evaluator_contract": "c9ff0390820a3c37702fb391ba603244fffcf7c03c476045b590aa483e89bd7e",
+    "grid_binding": "be5145fe60a941e7906639916cfa384d5674dc29f294f5a42e12c962bc4df4bc",
+    "ledger": "ac2b954571cdd0166bbcfa5bb8b2956785d1e132288dbe4af7fe2d55adeafcaa",
+    "maps": "7c5d63c76c3d9ef74adbbd7a68e3ce7483b1dd80fd262cba06f6ce1909994993",
+    "reactive_report": "6ca868dbdf13e8a675813d4af2d3c814ce5297155126e5124ac452131670903b"
+  },
+  "geometry": {
+    "dataclasses": {
+      "Box3D": [
+        {
+          "name": "center_xyz",
+          "type": "tuple[float, float, float]"
+        },
+        {
+          "name": "length_m",
+          "type": "float"
+        },
+        {
+          "name": "width_m",
+          "type": "float"
+        },
+        {
+          "name": "height_m",
+          "type": "float"
+        },
+        {
+          "name": "yaw_rad",
+          "type": "float"
+        }
+      ],
+      "FractionalBoxRegion": [
+        {
+          "name": "x_bounds",
+          "type": "tuple[float, float]"
+        },
+        {
+          "name": "y_bounds",
+          "type": "tuple[float, float]"
+        },
+        {
+          "name": "z_bounds",
+          "type": "tuple[float, float]"
+        }
+      ],
+      "ProjectedBox": [
+        {
+          "name": "box",
+          "type": "Box3D"
+        },
+        {
+          "name": "corners",
+          "type": "ProjectedPoints"
+        },
+        {
+          "name": "centroid",
+          "type": "ProjectedPoints"
+        },
+        {
+          "name": "theta_center_rad",
+          "type": "float"
+        },
+        {
+          "name": "theta_span_rad",
+          "type": "float"
+        },
+        {
+          "name": "theta_min_unwrapped_rad",
+          "type": "float"
+        },
+        {
+          "name": "theta_max_unwrapped_rad",
+          "type": "float"
+        },
+        {
+          "name": "ground_range_min_m",
+          "type": "float"
+        },
+        {
+          "name": "ground_range_max_m",
+          "type": "float"
+        },
+        {
+          "name": "range_3d_min_m",
+          "type": "float"
+        },
+        {
+          "name": "range_3d_max_m",
+          "type": "float"
+        },
+        {
+          "name": "phi_min_rad",
+          "type": "float"
+        },
+        {
+          "name": "phi_max_rad",
+          "type": "float"
+        },
+        {
+          "name": "state_source",
+          "type": "str"
+        },
+        {
+          "name": "orientation_source",
+          "type": "str"
+        },
+        {
+          "name": "controller_path",
+          "type": "bool"
+        }
+      ],
+      "ProjectedPoints": [
+        {
+          "name": "xyz",
+          "type": "np.ndarray"
+        },
+        {
+          "name": "ground_range_m",
+          "type": "np.ndarray"
+        },
+        {
+          "name": "range_3d_m",
+          "type": "np.ndarray"
+        },
+        {
+          "name": "theta_rad",
+          "type": "np.ndarray"
+        },
+        {
+          "name": "phi_rad",
+          "type": "np.ndarray"
+        }
+      ],
+      "ProjectedRegion": [
+        {
+          "name": "region",
+          "type": "FractionalBoxRegion"
+        },
+        {
+          "name": "points",
+          "type": "ProjectedPoints"
+        },
+        {
+          "name": "theta_center_rad",
+          "type": "float"
+        },
+        {
+          "name": "theta_span_rad",
+          "type": "float"
+        },
+        {
+          "name": "ground_range_min_m",
+          "type": "float"
+        },
+        {
+          "name": "ground_range_max_m",
+          "type": "float"
+        },
+        {
+          "name": "phi_min_rad",
+          "type": "float"
+        },
+        {
+          "name": "phi_max_rad",
+          "type": "float"
+        }
+      ]
+    },
+    "module": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/geometry.py",
+    "module_sha256": "f6e6cc0dd362338eeeaae9d8e25947434a3e7c64b350f0baf81a79a46159f94e",
+    "project_box_to_headlamp_signature": "(box: 'Box3D', *, state_source: 'str', orientation_source: 'str', controller_path: 'bool' = True) -> 'ProjectedBox'"
+  },
+  "metric_signatures": {
+    "cyclist_visibility_proxy": "(intensity, cyclist_future_full_box_region) -> 'float'",
+    "over_masking_area": "(candidate_mask, oracle_mask) -> 'float'",
+    "pedestrian_visibility_proxy": "(intensity, pedestrian_future_full_box_region) -> 'float'"
+  },
+  "next": "materialize evaluator-only future full-box supports for original_reactive_ADB and compute only the three reactive statistics permitted to freeze NI deltas",
+  "regression_tests": 224,
+  "scientific_boundary": {
+    "NI_deltas_computed": false,
+    "formal_content_opened": false,
+    "future_truth_opened": false,
+    "metric_values_computed": false,
+    "policy_modified": false,
+    "predictive_performance_computed": false
+  },
+  "stage": 6,
+  "stage1": {
+    "AdaptedScenario": [
+      {
+        "name": "scenario_id",
+        "type": "str"
+      },
+      {
+        "name": "anchor_index",
+        "type": "int"
+      },
+      {
+        "name": "sdc_track_index",
+        "type": "int"
+      },
+      {
+        "name": "frames",
+        "type": "AnchorFrames"
+      },
+      {
+        "name": "actors",
+        "type": "tuple[AdaptedActor, ...]"
+      }
+    ],
+    "AnchorFrames": [
+      {
+        "name": "T_W_from_E0",
+        "type": "RigidTransform"
+      },
+      {
+        "name": "T_E0_from_W",
+        "type": "RigidTransform"
+      },
+      {
+        "name": "T_W_from_H0",
+        "type": "RigidTransform"
+      },
+      {
+        "name": "T_H0_from_W",
+        "type": "RigidTransform"
+      }
+    ]
+  },
+  "status": "PASS_FUTURE_EVALUATOR_GEOMETRY_IDENTITY_BOUND"
+}

@@ -1,0 +1,85 @@
+{
+  "calibration": {
+    "Stage2_measurement_R_t": "SEPARATE_UNCHANGED",
+    "max_numeric_equivalence_error": 9.1552734375e-05,
+    "predictive_mean_changed": false,
+    "rule": "Sigma_cal_h=alpha_h*Sigma_raw_h",
+    "variance_scale_alpha_h": [
+      1.2347064500315355,
+      1.3451250295202921,
+      1.354822057728461,
+      1.2829700217319266
+    ]
+  },
+  "coordinate_semantics": {
+    "Stage4_prediction": "metric_H0_displacement",
+    "absolute_mean_rule": "anchor_position_H0_m+mean_displacement_H0_m",
+    "causal_anchor": "latest_causal_observed_target_position_H0",
+    "future_truth_used": false,
+    "translation_changes_covariance": false
+  },
+  "frozen_inputs": {
+    "Gaussian_checkpoint": {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt",
+      "sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f",
+      "state_dict_sha256": "1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3"
+    },
+    "deterministic_checkpoint": {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block43/deterministic_gru.pt",
+      "sha256": "5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5"
+    },
+    "development_cache": {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block43/development_cache.npz",
+      "sha256": "bc0e5b508df38f6e33d9cb1a6d21d7eaa86d20c91ba09ede6f500d46b87fbcaa"
+    },
+    "normalization": {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json",
+      "sha256": "3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6"
+    },
+    "training_script": {
+      "path": "/home/agni/waymo/iscai_stage4/scripts/run_block44_gaussian_training.py",
+      "sha256": "6b4be296fb9d93f81d10b353a37b3427b63e437e6f123b10950db07697457218"
+    }
+  },
+  "historical_reproduction": {
+    "actual_sha256": "a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a",
+    "batch_size": 512,
+    "exact_match": true,
+    "expected_sha256": "a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a",
+    "function": "Block4.4.probabilistic_prediction_sha256",
+    "sample_limit": 2048
+  },
+  "next": "patch_Block5.2_Part2_convergence_resolver_to_this_Stage5_only_artifact",
+  "posterior": {
+    "artifact": "/home/agni/waymo/iscai_stage5/artifacts/block52/development_gaussian_posterior.npz",
+    "artifact_file_sha256": "39dacd4a1dd83ac9951244328403384421731dcffc1cf01617bcc6c6395460b4",
+    "content_sha256": "e63e7f14be6e119587716a4e6b25d492c154ec1881aa75225a454fd05964e4b9",
+    "covariance_shape": [
+      13682,
+      4,
+      3,
+      3
+    ],
+    "development_N": 13682,
+    "full_materialization_batch_size": 512,
+    "full_normalized_prediction_sha256": "8f8e9714fb16d2fc9ffc0a2421e5c5849b4f2239fd7691597ec9dee3eb505549",
+    "mean_shape": [
+      13682,
+      4,
+      3
+    ],
+    "minimum_covariance_eigenvalue": 0.003772672310780928
+  },
+  "purpose": "Block5.2_nonformal_MC_convergence_only",
+  "scientific_execution": {
+    "Stage4_frozen_model_inference": true,
+    "Stage4_modified": false,
+    "development_only": true,
+    "formal_N120_read": false,
+    "model_selection": false,
+    "optimizer": false,
+    "recalibration": false,
+    "training": false
+  },
+  "status": "PASS"
+}

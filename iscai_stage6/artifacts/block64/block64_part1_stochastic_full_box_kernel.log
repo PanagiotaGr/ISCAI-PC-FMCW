@@ -1,0 +1,94 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block64_part1_stochastic_full_box_kernel.py", line 1837, in main
+    require(
+    ~~~~~~~^
+        dedicated[
+        ^^^^^^^^^^
+    ...<7 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block64_part1_stochastic_full_box_kernel.py", line 1415, in require
+    raise ControlledBlock(
+        message
+    )
+ControlledBlock: Block6.4 Part1 dedicated tests failed.
+========================================================================
+BLOCK 6.4 PART1 — STOCHASTIC FULL-BOX KERNEL
+========================================================================
+
+===== A. FROZEN BLOCK6.3 HANDOFF SEAL =====
+closure    = EXACT PASS
+handoff    = EXACT PASS
+freeze     = EXACT PASS
+posterior  = EXACT PASS
+
+===== B. CALIBRATED POSTERIOR BOUNDARY =====
+records                        = 27
+calibrated covariance          = PRESENT
+future GT / truth ID           = NO / NO
+tracks_to_predict              = NO
+
+===== C. MATERIALIZE BLOCK6.4 PART1 KERNEL =====
+module = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_full_box.py
+module SHA256 = 51daeab95713d6e7d2738ced466be4844b73dce70a09138b2b769de880462995
+test = /home/agni/waymo/iscai_stage6/tests/test_block64_part1_stochastic_full_box.py
+test SHA256 = fc422178631858a4b41c4dede0ae97704f14ad1d0c2981f638660f2400c462f1
+compile = PASS
+
+===== D. BLOCK6.4 PART1 DEDICATED TESTS =====
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/tests/test_block64_part1_stochastic_full_box.py", line 459, in test_10_low_speed_heading_carry_forward
+    np.testing.assert_allclose(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        forecast.heading_samples_rad,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        atol=0.0,
+        ^^^^^^^^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/numpy/testing/_private/utils.py", line 1780, in assert_allclose
+    assert_array_compare(compare, actual, desired, err_msg=str(err_msg),
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         verbose=verbose, header=header, equal_nan=equal_nan,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         strict=strict)
+                         ^^^^^^^^^^^^^^
+  File "/home/agni/waymo/iscai_stage1/.venv_lidar/lib/python3.13/site-packages/numpy/testing/_private/utils.py", line 988, in assert_array_compare
+    raise AssertionError(msg)
+AssertionError: 
+Not equal to tolerance rtol=0, atol=0
+
+Mismatched elements: 8 / 8 (100%)
+First 5 mismatches are at indices:
+ [0, 0]: 0.46999999999999975 (ACTUAL), 0.47 (DESIRED)
+ [0, 1]: 0.46999999999999975 (ACTUAL), 0.47 (DESIRED)
+ [0, 2]: 0.46999999999999975 (ACTUAL), 0.47 (DESIRED)
+ [0, 3]: 0.46999999999999975 (ACTUAL), 0.47 (DESIRED)
+ [1, 0]: 0.46999999999999975 (ACTUAL), 0.47 (DESIRED)
+Max absolute difference among violations: 2.22044605e-16
+Max relative difference among violations: 4.7243533e-16
+ ACTUAL: array([[0.47, 0.47, 0.47, 0.47],
+       [0.47, 0.47, 0.47, 0.47]])
+ DESIRED: array(0.47)
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.031s
+
+FAILED (failures=1)
+
+========================================================================
+BLOCK6.4 PART1 — CONTROLLED BLOCK
+========================================================================
+exception type = ControlledBlock
+exception      = Block6.4 Part1 dedicated tests failed.
+
+
+formal evaluation      = NO
+model forward          = NO
+training/recalibration = NO / NO
+upstream modification  = NO
+terminal remains open  = YES
+========================================================================

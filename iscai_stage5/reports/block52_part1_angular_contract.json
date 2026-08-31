@@ -1,0 +1,71 @@
+{
+  "Block51_continuity": {
+    "Stage5_contract_sha256": "04fd32e4bc6e160f2627f465a7820c74e19ca2e1a1f47f23ed1884f842cb7db4",
+    "historical_implementation_sha256": "604c0ea15353830ed6dd74b40ff7e42313bf9f86c816aa1e76f0057ab6bc8a53",
+    "receiver_policy_sha256": "b5b6fc2b0a3c4575ed9567aff15f36f3430f4887862c245f045fae7cf9e349c0",
+    "status": "PASS"
+  },
+  "analytic_crosscheck": {
+    "PSD": true,
+    "covariance_mapping": "Sigma_rae=J@Sigma_xyz@J.T",
+    "finite_difference_max_abs_error": 1.06181641257308e-09,
+    "method": "first_order_Jacobian_Gaussian",
+    "primary_posterior": false,
+    "scope": "fixed_heading_known_receiver_geometry_or_already_resolved_receiver_position_Gaussian"
+  },
+  "angular_coordinates": {
+    "azimuth": "atan2(y,x)",
+    "elevation": "atan2(z,sqrt(x^2+y^2))",
+    "frame": "headlamp_frame_H0",
+    "order": [
+      "range_m",
+      "azimuth_rad",
+      "elevation_rad"
+    ],
+    "range": "sqrt(x^2+y^2+z^2)"
+  },
+  "block": "5.2_part_1",
+  "development_pending": {
+    "angular_monte_carlo_sample_count": "NOT_YET_FROZEN",
+    "formal_N120_allowed": false,
+    "freeze_source": "non_formal_development_only",
+    "low_speed_heading_threshold": "NOT_YET_FROZEN"
+  },
+  "implementation": {
+    "file_count": 23,
+    "sha256": "9bd121ba2e98a265eb83a727af8d29da945cefc8ebe9eed9499ba5c011c3bc16"
+  },
+  "leakage": {
+    "formal_data": false,
+    "future_truth": false,
+    "oracle_angular_label": false,
+    "tracks_to_predict": false
+  },
+  "next": "Block5.2 Part2 deterministic Monte Carlo trajectory+receiver uncertainty propagation",
+  "primary_posterior": {
+    "implementation": "Block5.2_Part2",
+    "implemented_in_Part1": false,
+    "method": "deterministic_monte_carlo",
+    "sample_dependent_heading": "Block5.2_Part2",
+    "trajectory_plus_receiver_placement_uncertainty": true
+  },
+  "project": "Agni",
+  "scientific_execution": {
+    "Monte_Carlo_receiver_inference": false,
+    "Stage4_inference": false,
+    "beam_codebook": false,
+    "beam_selection": false,
+    "dataset_scan": false,
+    "formal_evaluation": false,
+    "recalibration": false,
+    "training": false
+  },
+  "stage": 5,
+  "status": "PASS",
+  "uncertainty_semantics": {
+    "Stage2_measurement_R_t": "NOT_THIS_COVARIANCE",
+    "Stage4_predictive_covariance": "DISTINCT",
+    "combination": "distinct_then_combined_only_at_receiver_position_level",
+    "receiver_placement_covariance": "DISTINCT"
+  }
+}

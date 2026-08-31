@@ -1,0 +1,51 @@
+
+============================================================
+/home/agni/waymo/iscai_stage5/artifacts/block52/dev_posterior_materialization_v2.log:100
+============================================================
+00094: full normalized posterior SHA = 8f8e9714fb16d2fc9ffc0a2421e5c5849b4f2239fd7691597ec9dee3eb505549
+00095: Stage5 posterior content SHA  = e63e7f14be6e119587716a4e6b25d492c154ec1881aa75225a454fd05964e4b9
+00096: 
+00097: ============================================================
+00098: H. STAGE5-ONLY MATERIALIZATION
+00099: ============================================================
+00100: artifact = /home/agni/waymo/iscai_stage5/artifacts/block52/development_gaussian_posterior.npz
+00101: artifact file SHA256 = 39dacd4a1dd83ac9951244328403384421731dcffc1cf01617bcc6c6395460b4
+00102: Stage4 files written = NO
+00103: 
+00104: ============================================================
+00105: CORRECTED DEV POSTERIOR MATERIALIZATION GATE
+00106: ============================================================
+
+============================================================
+/home/agni/waymo/iscai_stage5/artifacts/block52/dev_posterior_materialization_v2.log:121
+============================================================
+00115: future truth used             = NO
+00116: formal N=120 used             = NO
+00117: training/recalibration        = NO
+00118: Stage4 frozen inference       = YES
+00119: Stage4 modified               = NO
+00120: STATUS = PASS
+00121: report = /home/agni/waymo/iscai_stage5/artifacts/block52/development_gaussian_posterior.json
+00122: next = BLOCK5.2 PART2 CONVERGENCE RESOLVER PATCH
+00123: terminal remains open = YES
+00124: 
+00125: materialization raw code = 0
+00126: 
+00127: ===== POST-INFERENCE STAGE5 REGRESSION =====
+
+============================================================
+/home/agni/waymo/iscai_stage5/artifacts/block52/dev_posterior_materialization.log:65
+============================================================
+00059: checkpoint best epoch     = 12
+00060: checkpoint calibrated     = FALSE PASS
+00061: 
+00062: ============================================================
+00063: C. CANONICAL STAGE4 RUNTIME SETUP
+00064: ============================================================
+00065: CalibrationNormalizer signature = (statistics, *, device)
+00066: reconstructed frozen architecture = {'target_hidden_dim': 64, 'neighbor_hidden_dim': 32, 'map_hidden_dim': 32, 'fusion_hidden_dim': 128}
+00067: canonical normalizer       = PASS
+00068: canonical model builder    = PASS
+00069: strict state_dict load     = PASS
+00070: device                     = NVIDIA RTX A6000
+00071: 

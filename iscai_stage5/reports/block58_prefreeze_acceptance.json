@@ -1,0 +1,29 @@
+{
+  "acceptance_policy": {
+    "alpha": 0.05,
+    "coverage_method": "one_sided_exact_binomial_lower_tail_consistency_with_requested_q",
+    "nominal_q": 0.95,
+    "path": "/home/agni/waymo/iscai_stage5/configs/formal_stage5_acceptance_policy.json",
+    "reported_q": [
+      0.9,
+      0.95,
+      0.975,
+      0.99
+    ],
+    "sha256": "a89dcc3c785933632b547d73dae96696e3b63ebd19b46e73b7b0602fa0da313f"
+  },
+  "block": "5.8",
+  "formal_manifest": {
+    "path": "/home/agni/waymo/iscai_stage3/artifacts/block38e/formal_validation_120.jsonl",
+    "scenario_count_contract": 120,
+    "sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46"
+  },
+  "formal_outcome_metrics_read": false,
+  "formal_results_used_for_parameter_selection": false,
+  "formal_stage5_metrics_computed": false,
+  "next": "Route-B one-scene schema probe, then deterministic pre-TTP materialization",
+  "phase": "pre_formal_acceptance_freeze",
+  "post_hoc_tuning": false,
+  "stage": 5,
+  "status": "PASS_PREFORMAL_FREEZE"
+}

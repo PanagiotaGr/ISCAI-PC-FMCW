@@ -1,0 +1,127 @@
+============================================================
+STAGE4 BLOCK 4.10 PART 1/2 FINAL ACCEPTANCE AUDIT
+============================================================
+
+===== A. CONTROLLED COMPILE =====
+closure_runtime.py = PASS
+test_block410_closure.py = PASS
+run_block410_part1_safe.py = PASS
+
+===== B. FROZEN BLOCK4.0 → BLOCK4.9 CHAIN =====
+Block 4.0 = PASS | block40_bootstrap_gate.json
+Block 4.1 = PASS | block41_training_split_gate.json
+Block 4.2 = PASS | block42_neural_sample_gate.json
+Block 4.3 = PASS | block43_deterministic_gru.json
+Block 4.4 = PASS | block44_gaussian_gru.json
+Block 4.5 = PASS | block45_calibration.json
+Block 4.6 = PASS | block46_gmm_gru.json
+Block 4.7 = PASS | block47_ablation_analysis.json
+Block 4.8 = PASS | block48_formal_evaluation.json
+Block 4.9 = PASS | block49_reproducibility.json
+
+===== C. CRITICAL FROZEN ARTIFACTS =====
+formal manifest                = PASS
+validation manifest            = PASS
+fit-only normalization         = PASS
+deterministic checkpoint       = PASS
+Gaussian checkpoint            = PASS
+covariance calibrator          = PASS
+GMM checkpoint                 = PASS
+Stage4 reproducibility manifest= PASS
+
+===== D. REPRODUCIBILITY MANIFEST =====
+formal N                  = 120 PASS
+formal matched/eligible   = 494 / 547 PASS
+formal output content SHA = PASS
+fresh-process probes      = 4 / 4 PASS
+exact prediction SHA      = 4 / 4 PASS
+
+===== E. FORMAL SCIENTIFIC EVIDENCE =====
+calibrated Gaussian ADE m = 1.9848952833749467
+frozen CV ADE m           = 9.538706032921292
+classical baselines beaten= ['CA', 'CTRV', 'CV', 'IMM_CV_CA_CTRV', 'Kalman_EKF']
+matched-target recall     = 0.903107861060329
+raw formal ECE            = 0.18362046536363294
+calibrated formal ECE     = 0.11165527003334381
+PDF performance gate      = PASS
+PDF calibration gate      = PASS
+internal CV gate          = PASS
+
+===== F. CAUSAL / LEAKAGE CONTRACT =====
+future model input          = NO
+tracks_to_predict input     = NO
+tracks_to_predict ordering  = AFTER PREDICTION PASS
+formal training             = NO
+formal normalization fit    = NO
+formal model selection      = NO
+formal calibrator fit       = NO
+causal/leakage contract     = PASS
+
+===== G. STAGE4 ACCEPTANCE MATRIX =====
+causal_real_PC_FMCW_observation_interface   = PASS
+measurement_covariance_R_t_is_input         = PASS
+deterministic_GRU_baseline                  = PASS
+Gaussian_probabilistic_predictor            = PASS
+trajectory_uncertainty_calibration          = PASS
+GMM_multimodal_extension                    = PASS
+GMM_not_selected_post_hoc                   = PASS
+measurement_to_predictive_uncertainty_analysis= PASS
+multi_agent_and_map_ablation                = PASS
+frozen_formal_N120_evaluation               = PASS
+probabilistic_beats_classical               = PASS
+internal_Gaussian_beats_CV                  = PASS
+reproducibility_exact                       = PASS
+causal_leakage_free                         = PASS
+
+mandatory criteria      = 14
+mandatory criteria PASS = 14
+mandatory failures      = []
+Stage4 closure readiness = PASS
+
+===== H. BLOCK4.10 UNIT TESTS =====
+
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+OK
+
+
+===== I. FULL STAGE4 REGRESSION =====
+
+..................................................................................................................................
+----------------------------------------------------------------------
+Ran 130 tests in 0.421s
+
+OK
+
+
+============================================================
+STAGE4 BLOCK 4.10 PART 1/2 SAFE GATE
+============================================================
+Block4.0→4.9 frozen chain = PASS
+critical artifact hashes  = PASS
+formal N=120 evidence      = PASS
+probabilistic > classical  = PASS
+Gaussian < frozen CV       = PASS
+formal calibration measured= PASS
+formal ECE improved        = PASS
+measurement/predictive UQ  = PASS
+multi-agent/map ablations  = PASS
+GMM extension              = PASS
+causal/leakage contract    = PASS
+exact reproducibility      = PASS
+mandatory acceptance       = 14 / 14 PASS
+Stage4 scope boundary      = PASS
+receiver/beam/ADB          = DEFERRED AS PLANNED
+training performed         = NO
+formal inference performed = NO
+recalibration performed    = NO
+final Stage4 freeze written= NO
+Stage5 started             = NO
+full Stage4 regression     = 130 / 130 PASS
+implementation files       = 85
+implementation SHA256      = f2b85dcf8d533a9525ecff8ed823bbf06783785045fcff6adf626a1c1593ce41
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage4/reports/block410_part1_acceptance_audit.json
+terminal remains open      = YES

@@ -1,0 +1,76 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b1_frozen_gaussian_forward.py", line 3539, in main
+    scientific_run()
+    ~~~~~~~~~~~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b1_frozen_gaussian_forward.py", line 2458, in scientific_run
+    model = build_gaussian_model(
+        checkpoint[
+    ...<2 lines>...
+        device=device,
+    )
+  File "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py", line 380, in build_gaussian_model
+    configuration[
+    ~~~~~~~~~~~~~^
+        "model"
+        ^^^^^^^
+    ]
+    ^
+KeyError: 'model'
+========================================================================
+BLOCK 6.3 PART 2B/1 — FROZEN GAUSSIAN CAUSAL FORWARD
+========================================================================
+
+===== A. FROZEN PREREQUISITE SEAL =====
+part2a           = PASS
+checkpoint       = PASS
+normalization    = PASS
+calibrator       = PASS
+
+===== B. SAME REAL CAUSAL DEVELOPMENT ROUTE =====
+scenario_id             = b85e1bd6cc8e74c0
+causal histories        = 27
+prediction_id unique    = PASS
+future access           = NO
+
+===== C. EXACT PER-TARGET MAP-CONTEXT BINDING =====
+static map frame        = H0
+H0 transform source     = AdaptedScenario.frames.T_H0_from_W
+map producer            = build_static_map_index_H0
+per-target summary      = map_context_summary
+target position source  = latest_position_H0_m
+map context matrix      = (27, 10)
+unique map rows         = 27
+shared scene vector     = NO
+future map state        = NO
+
+===== D. CAUSAL MODEL INPUT PAYLOADS =====
+payloads                = 27
+per-target map contexts = YES
+attach_supervision      = NOT CALLED
+future labels           = NOT READ
+tracks_to_predict       = NOT USED
+
+===== E. FIT-ONLY FROZEN NORMALIZER =====
+normalizer constructor  = exact_frozen_statistics_mapping_directly
+prepare batch keys      = ['class_id', 'future_mask', 'map_context', 'neighbor_mask', 'neighbors', 'target', 'true_displacement']
+evaluator-only placeholders = ['future', 'future_mask', 'class_id']
+synthetic→model         = NO
+
+===== F. FROZEN GAUSSIAN CHECKPOINT =====
+
+========================================================================
+CONTROLLED BLOCK — NO SCIENTIFIC STATE ADVANCE
+========================================================================
+exception type = KeyError
+exception      = 'model'
+
+report = /home/agni/waymo/iscai_stage6/reports/block63_part2b1_frozen_gaussian_forward.json
+report SHA256 = 043beed5e72ed00c6187b21d6517f89478386e3b358c0a46c69d8e1ddacfdd5f
+
+========================================================================
+BLOCK 6.3 PART 2B/1 — FINAL
+========================================================================
+status = BLOCKED_EXACT_FROZEN_GAUSSIAN_FORWARD_BOUNDARY
+diagnostic excerpt = /home/agni/waymo/iscai_stage6/artifacts/block63/block63_part2b1_runtime_boundary_excerpt.txt
+terminal remains open = YES
+========================================================================

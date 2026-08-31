@@ -1,0 +1,256 @@
+{
+  "block": "4.6",
+  "calibration": {
+    "GMM_calibrated": false,
+    "reason": "GMM is not selected for downstream use in Block4.6",
+    "required_before_downstream_use_if_selected": true
+  },
+  "checkpoint": {
+    "architecture_metadata_separate": true,
+    "exact_inference_repeat": true,
+    "experiment_metadata_separate": true,
+    "file_sha256": "5aebeaf40d522d58345d424ae2557d6f87e2c02bdc26c23635cc6e3a28cbe3ee",
+    "path": "/home/agni/waymo/iscai_stage4/artifacts/block46/gmm_gru.pt",
+    "prediction_sha256": "0b35669827e92e027349b385fa9249c6b10833b01fc46033262ef0a4f0830d88",
+    "state_dict_sha256": "3bd803104a5de694b9c6073fa651230e16a08899db14894e0f1fd1e2f11c1a97"
+  },
+  "development": {
+    "ADE_comparison_is_diagnostic_only": true,
+    "GMM_minus_Gaussian_ADE_m": 0.0007720110998057361,
+    "Gaussian_mixture_mean_ADE_reference_m": 1.5477828883725113,
+    "best_GMM": {
+      "MAP_component_horizon_error_m": {
+        "0.1": 1.027156285850152,
+        "0.3": 1.2894913486149757,
+        "0.5": 1.5798354990124563,
+        "1.0": 2.3654877118200175
+      },
+      "MAP_component_one_second_error_m": 2.3654877118200175,
+      "MAP_component_planar_ADE_m": 1.5493749438009337,
+      "MAP_mode_counts": {
+        "0": 0,
+        "1": 13545,
+        "2": 0
+      },
+      "active_samples": 13545,
+      "class_mixture_mean_ADE_m": {
+        "TYPE_CYCLIST": 1.6384433270544139,
+        "TYPE_PEDESTRIAN": 0.9924532708997131,
+        "TYPE_VEHICLE": 1.5877080179491212
+      },
+      "component_covariance_SPD_failures": 0,
+      "effective_mode_count": 2.8029330220157345,
+      "joint_GMM_NLL_per_sample": 9.193963769495202,
+      "mean_mixture_probability": [
+        0.24210223947428566,
+        0.5085785148679748,
+        0.24931923833532324
+      ],
+      "mean_pairwise_mode_separation_1.0s_m": 0.9430015078620071,
+      "mean_valid_horizons_per_active_sample": 3.8230343300110743,
+      "min_component_ADE_m": 1.3596808854923692,
+      "min_component_FDE_1.0s_m": 2.0404033984851178,
+      "mixture_entropy_nats": 1.0300715325722707,
+      "mixture_mean_horizon_error_m": {
+        "0.1": 1.0260937665266658,
+        "0.3": 1.2888152983272094,
+        "0.5": 1.5789122044185004,
+        "1.0": 2.364886834223258
+      },
+      "mixture_mean_one_second_error_m": 2.364886834223258,
+      "mixture_mean_planar_ADE_m": 1.548554899472317,
+      "valid_actor_horizon_points": 51783
+    },
+    "initialized_GMM": {
+      "MAP_component_horizon_error_m": {
+        "0.1": 1.0297580075691404,
+        "0.3": 1.2931371308534294,
+        "0.5": 1.5846995631406917,
+        "1.0": 2.3744870864390744
+      },
+      "MAP_component_one_second_error_m": 2.3744870864390744,
+      "MAP_component_planar_ADE_m": 1.5543252046098623,
+      "MAP_mode_counts": {
+        "0": 13545,
+        "1": 0,
+        "2": 0
+      },
+      "active_samples": 13545,
+      "class_mixture_mean_ADE_m": {
+        "TYPE_CYCLIST": 1.6158116943726655,
+        "TYPE_PEDESTRIAN": 0.9868421623772564,
+        "TYPE_VEHICLE": 1.5874928085057225
+      },
+      "component_covariance_SPD_failures": 0,
+      "effective_mode_count": 3.0,
+      "joint_GMM_NLL_per_sample": 11.975549275851328,
+      "mean_mixture_probability": [
+        0.33333334685164034,
+        0.33333334685164034,
+        0.33333334685164034
+      ],
+      "mean_pairwise_mode_separation_1.0s_m": 0.20035746722140993,
+      "mean_valid_horizons_per_active_sample": 3.8230343300110743,
+      "min_component_ADE_m": 1.5134561138075628,
+      "min_component_FDE_1.0s_m": 2.2891711777954846,
+      "mixture_entropy_nats": 1.0986123232526417,
+      "mixture_mean_horizon_error_m": {
+        "0.1": 1.0263130172664794,
+        "0.3": 1.2881608333036054,
+        "0.5": 1.5785701519484296,
+        "1.0": 2.362455755091934
+      },
+      "mixture_mean_one_second_error_m": 2.362455755091934,
+      "mixture_mean_planar_ADE_m": 1.5477828883725113,
+      "valid_actor_horizon_points": 51783
+    },
+    "joint_NLL_improved": true
+  },
+  "distribution": {
+    "component_covariance": "full_3D_SPD_Cholesky",
+    "components": 3,
+    "independent_horizon_mode_switching": false,
+    "mode_scope": "trajectory_level",
+    "semantic_maneuver_labels": false
+  },
+  "formal_validation": {
+    "evaluation": "DEFERRED_TO_BLOCK4.8",
+    "used": false
+  },
+  "implementation": {
+    "file_count": 58,
+    "sha256": "bf7ba0ef8c83d0b6a8d5ef2acd62419035f4367b17d4d6844f7a99c288f1c961"
+  },
+  "multimodality": {
+    "MAP_mode_counts": {
+      "0": 0,
+      "1": 13545,
+      "2": 0
+    },
+    "effective_mode_count": 2.8029330220157345,
+    "mean_mixture_probability": [
+      0.24210223947428566,
+      0.5085785148679748,
+      0.24931923833532324
+    ],
+    "mean_pairwise_mode_separation_1.0s_m": 0.9430015078620071,
+    "minADE_m": 1.3596808854923692,
+    "minFDE_1.0s_m": 2.0404033984851178,
+    "mixture_entropy_nats": 1.0300715325722707,
+    "mode_diversity_is_closure_gate": false
+  },
+  "not_yet_claimed": [
+    "GMM superiority on frozen formal N=120 validation",
+    "GMM calibration",
+    "Gaussian inadequacy",
+    "GMM downstream selection",
+    "measurement-covariance ablation",
+    "multi-agent/map ablation",
+    "receiver/angular posterior"
+  ],
+  "regression": {
+    "tests_passed": 92,
+    "tests_total": 92
+  },
+  "role": {
+    "GMM": "multimodal_ablation_extension",
+    "GMM_automatically_replaces_Gaussian": false,
+    "GMM_calibration_required_if_selected": true,
+    "GMM_downstream_selected": false,
+    "Gaussian_adequacy_decision": "DEFERRED_TO_BLOCK4.8_FORMAL_AND_SLICES",
+    "mandatory_probabilistic_baseline": "frozen_calibrated_Gaussian_Block4.5"
+  },
+  "stage": 4,
+  "status": "PASS",
+  "storage": {
+    "free_gib": 1055.0741577148438,
+    "hard_reserve_gib": 250.0,
+    "pass": true
+  },
+  "training": {
+    "GPU": "NVIDIA RTX A6000",
+    "best_epoch": 1,
+    "class_balanced_sampler": true,
+    "device": "cuda:0",
+    "history": [
+      {
+        "development_MAP_ADE_m": 1.5493749438009337,
+        "development_effective_mode_count": 2.8029330220157345,
+        "development_joint_GMM_NLL_per_sample": 9.193963769495202,
+        "development_minADE_m": 1.3596808854923692,
+        "development_minFDE_1.0s_m": 2.0404033984851178,
+        "development_mixture_mean_ADE_m": 1.548554899472317,
+        "epoch": 1,
+        "improved": true,
+        "patience": 0,
+        "training_joint_GMM_NLL_per_sample": -2.961985020226892
+      },
+      {
+        "development_MAP_ADE_m": 1.5548745693416517,
+        "development_effective_mode_count": 2.8721696179834577,
+        "development_joint_GMM_NLL_per_sample": 9.247406828223053,
+        "development_minADE_m": 1.3641986563884274,
+        "development_minFDE_1.0s_m": 2.056172234117864,
+        "development_mixture_mean_ADE_m": 1.5523376671111295,
+        "epoch": 2,
+        "improved": false,
+        "patience": 1,
+        "training_joint_GMM_NLL_per_sample": -3.990111043106511
+      },
+      {
+        "development_MAP_ADE_m": 1.558279035228743,
+        "development_effective_mode_count": 2.8887787957964193,
+        "development_joint_GMM_NLL_per_sample": 9.379619547976652,
+        "development_minADE_m": 1.3688884454884183,
+        "development_minFDE_1.0s_m": 2.068956408448357,
+        "development_mixture_mean_ADE_m": 1.555297721908614,
+        "epoch": 3,
+        "improved": false,
+        "patience": 2,
+        "training_joint_GMM_NLL_per_sample": -4.362029288827425
+      },
+      {
+        "development_MAP_ADE_m": 1.5606592259857242,
+        "development_effective_mode_count": 2.90523443267811,
+        "development_joint_GMM_NLL_per_sample": 9.43626078580657,
+        "development_minADE_m": 1.3623813385539232,
+        "development_minFDE_1.0s_m": 2.0531580497558792,
+        "development_mixture_mean_ADE_m": 1.5559475141832866,
+        "epoch": 4,
+        "improved": false,
+        "patience": 3,
+        "training_joint_GMM_NLL_per_sample": -4.606052481992397
+      },
+      {
+        "development_MAP_ADE_m": 1.5630267672381017,
+        "development_effective_mode_count": 2.9050408054603865,
+        "development_joint_GMM_NLL_per_sample": 9.51347827481889,
+        "development_minADE_m": 1.3684151470287123,
+        "development_minFDE_1.0s_m": 2.061204477346607,
+        "development_mixture_mean_ADE_m": 1.5576056270880405,
+        "epoch": 5,
+        "improved": false,
+        "patience": 4,
+        "training_joint_GMM_NLL_per_sample": -4.823400861017346
+      }
+    ],
+    "model_selection": "development_joint_GMM_NLL_per_sample",
+    "objective": "joint_trajectory_GMM_NLL",
+    "primary_class_sampling_mass": {
+      "TYPE_CYCLIST": 1.0000000000000002,
+      "TYPE_PEDESTRIAN": 1.0000000000000004,
+      "TYPE_VEHICLE": 1.0
+    },
+    "runtime_this_invocation_s": 9.49186764890328,
+    "seed": 20260823,
+    "tiebreaker": "development_mixture_mean_planar_ADE"
+  },
+  "upstream": {
+    "Gaussian_checkpoint_sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f",
+    "Stage2_Stage3_rescan": false,
+    "calibrated_Gaussian_artifact_sha256": "508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087",
+    "development_cache_reused": true,
+    "fit_cache_reused": true,
+    "normalization": "FROZEN_FIT_ONLY"
+  }
+}

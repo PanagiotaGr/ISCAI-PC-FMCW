@@ -1,0 +1,39 @@
+{
+  "calibration": {
+    "measurement_R_t_modified": false,
+    "refit_on_formal": false,
+    "reuse_existing_calibrator": true
+  },
+  "checkpoint_weights_modified": false,
+  "completion_gate": {
+    "confidence_regions_have_measured_calibration": true,
+    "probabilistic_beats_at_least_one_classical_on_common_support": true
+  },
+  "deferred_final_paper_scope": {
+    "direct_noisy_PC_FMCW_vr_feature": "DEFERRED_REQUIRES_RETRAINING",
+    "full_input_ablation_suite": "DEFERRED_TO_FINAL_EXPERIMENTAL_SYNTHESIS"
+  },
+  "mandatory_repairs": {
+    "classical_comparison": {
+      "new": "exact common scenario-target-horizon support",
+      "old": "scalar ADE comparison across different matched populations",
+      "required_stage3_run_sha256": "9151ef8714fb710b57b8cc762bb809cebf29b6174d1aeb8dab609b42f6641e7b"
+    },
+    "oracle_current_truth_prefilter": {
+      "checker_must_verify": true,
+      "new": "all causal predictions must be generated and sealed before evaluator truth is read",
+      "old": "current WOMD truth could filter estimated tracks before prediction"
+    }
+  },
+  "normalization_modified": false,
+  "recalibration": false,
+  "repair": "stage4_scientific_repair_v1",
+  "split_modified": false,
+  "stage": 4,
+  "status": "REPAIR_APPLIED_PENDING_INDEPENDENT_CHECK",
+  "training": false,
+  "upstream": {
+    "Stage3_manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "Stage3_repaired_run_sha256": "9151ef8714fb710b57b8cc762bb809cebf29b6174d1aeb8dab609b42f6641e7b"
+  }
+}

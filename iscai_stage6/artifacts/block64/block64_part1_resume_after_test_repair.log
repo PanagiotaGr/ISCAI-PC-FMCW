@@ -1,0 +1,55 @@
+========================================================================
+BLOCK 6.4 PART1 — RESUME AFTER TEST-ONLY REPAIR
+========================================================================
+
+===== D. REPAIRED DEDICATED TESTS =====
+..............
+----------------------------------------------------------------------
+Ran 14 tests in 0.030s
+
+OK
+
+dedicated tests = PASS | 14
+
+===== E. FULL STAGE6 REGRESSION =====
+................................................................................................................
+----------------------------------------------------------------------
+Ran 112 tests in 0.052s
+
+OK
+
+full regression = PASS | 112
+
+===== F. BLOCK6.4 PART1 CONTRACT =====
+contract = /home/agni/waymo/iscai_stage6/configs/block64_part1_stochastic_full_box_kernel_contract.json
+contract SHA256 = 030148d9ab49e8dff2b434fa0fb7b819da77ad3d5faf3d42744bb13ef8024808
+
+===== G. BLOCK6.4 PART1 REPORT =====
+report = /home/agni/waymo/iscai_stage6/reports/block64_part1_stochastic_full_box_kernel.json
+report SHA256 = 8bcc13051c93f216d7365ee44d6079df6a14567bc1b6b879b33e748473b206a4
+
+===== H. BLOCK6.4 PART1 — FINAL =====
+STATUS = PASS_BLOCK64_PART1_STOCHASTIC_FULL_BOX_KERNEL
+scientific module changed      = NO
+calibrated covariance          = USED
+cross-horizon covariance       = NOT INVENTED
+samplewise heading             = PREDICTED TANGENT
+sampled geometry               = FULL BOX
+corners per sampled box        = 8
+centroid-only                  = NO
+MC sample count frozen         = NO
+seed set frozen                = NO
+occupancy gamma frozen         = NO
+scientific grid frozen         = NO
+real posterior sampled         = NO
+formal evaluation              = NO
+training/recalibration         = NO / NO
+dedicated tests                = PASS | 14
+full Stage6 regression         = PASS | 112
+module SHA256                  = 51daeab95713d6e7d2738ced466be4844b73dce70a09138b2b769de880462995
+test SHA256                    = 8ca464ef17ace511aa04676f1a9a3962b00102e5e4cc16a8cb5d56483971bbac
+runner SHA256                  = 72d9a31e97646c12a89edc03d86d0b840301f1c7fe2d364f84a06c2f6c6b2c9e
+contract SHA256                = 030148d9ab49e8dff2b434fa0fb7b819da77ad3d5faf3d42744bb13ef8024808
+report SHA256                  = 8bcc13051c93f216d7365ee44d6079df6a14567bc1b6b879b33e748473b206a4
+NEXT = BLOCK6.4 PART2 DEVELOPMENT MC CONVERGENCE + PROBABILISTIC OCCUPANCY KERNEL
+terminal remains open = YES

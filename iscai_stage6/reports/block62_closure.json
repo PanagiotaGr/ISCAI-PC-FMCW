@@ -1,0 +1,56 @@
+{
+  "Stage6_completion_claim": false,
+  "block": "6.2",
+  "completed": {
+    "H0_PartA_coordinate_adapter": true,
+    "Part_A_L_theta_r": true,
+    "Part_A_current_track_semantics": true,
+    "Part_A_dynamic_width_margin_geometry": true,
+    "elementwise_minimum_multi_actor": true,
+    "future_selector_invariance": true,
+    "original_reactive_ADB_baseline": true,
+    "raised_cosine_transition": true,
+    "real_causal_geometry_smoke": true,
+    "static_ADB_baseline": true
+  },
+  "frozen_binding": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block62_part_a_reactive_binding.json",
+    "sha256": "a9773e94de81c1d2d081ddb7264f062690c761057ee8dc2c303b1c0e7f6554b0"
+  },
+  "not_yet_completed": {
+    "class_aware_ADB": "BLOCK6.5",
+    "deterministic_predictive_ADB": "BLOCK6.3",
+    "formal_Stage6_acceptance": false,
+    "metrics_oracle_and_ablations": "BLOCK6.7_PLUS",
+    "preformal_numeric_freeze": "BLOCK6.8",
+    "probabilistic_occupancy": "BLOCK6.4",
+    "smoothing_and_actuation": "BLOCK6.6"
+  },
+  "part1": {
+    "report": "/home/agni/waymo/iscai_stage6/reports/block62_part1_static_reactive_kernel.json",
+    "report_sha256": "865c81eeb689a1b0c7e41b08117c9197c19e5cac76de147a07898b17c2224477"
+  },
+  "part2": {
+    "report": "/home/agni/waymo/iscai_stage6/reports/block62_part2_exact_part_a_reactive.json",
+    "report_sha256": "b9b2eebc55cba4c996732d236455e82b41227e95cad792d6960eafde60bedaeb"
+  },
+  "project": "Agni",
+  "real_smoke": {
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block62/block62_real_causal_reactive_smoke.json",
+    "sha256": "f8d84cf63804da1581ff751a965f6f066d0f90038ce66f961fab45d00f9d95e3"
+  },
+  "scientific_distinctions": {
+    "PartA_grid_is_formal_Stage6_grid": false,
+    "TRZ_visual_transition_units": 8.0,
+    "communication_beam_equals_ADB_actuator": false,
+    "control_and_visual_radial_semantics_separate": true,
+    "control_transition_length_m": 20.0,
+    "dynamic_epsilon": "WIDTH_PLUS_MARGIN_OVER_RANGE",
+    "fixed_demo_epsilon_deg": 0.75,
+    "legacy_original_reactive_center_based": true,
+    "predictive_centroid_only_forbidden": true
+  },
+  "stage": 6,
+  "status": "PASS_COMPLETE",
+  "upstream_modified": false
+}

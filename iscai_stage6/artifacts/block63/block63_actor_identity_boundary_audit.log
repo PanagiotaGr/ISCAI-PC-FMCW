@@ -1,0 +1,1320 @@
+============================================================
+STAGE 6 — BLOCK 6.3 ACTOR-IDENTITY BOUNDARY AUDIT
+DIRECT CAUSAL KEY vs ANCHOR-GEOMETRY ASSOCIATION
+============================================================
+
+===== A. FROZEN PREREQUISITES =====
+Block6.2             = EXACT PASS
+interface audit      = EXACT PASS
+exact route audit    = EXACT PASS
+unresolved gate      = ACTOR IDENTITY ONLY
+
+===== B1. _extract_prediction_id =====
+
+PATH = /home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py
+LINE = 624
+SHA256 = df577d4e91a3f32c8d975e1fed2b3eb6b823ac61f03e787faf6e105a7584aa0e
+def _extract_prediction_id(
+    associated_track,
+) -> str:
+    for name in (
+        "track_id",
+        "prediction_id",
+        "associated_track_id",
+    ):
+        if hasattr(
+            associated_track,
+            name,
+        ):
+            value = getattr(
+                associated_track,
+                name,
+            )
+
+            if value is not None:
+                value = str(value)
+
+                if value:
+                    return value
+
+    raise RuntimeError(
+        "Cannot resolve associated "
+        "track identifier."
+    )
+
+===== B2. build_causal_track_history =====
+
+PATH = /home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py
+LINE = 796
+SHA256 = e373b82c49b821f13a13225f079d70ccc7180cb50a693813a5f86add0c7a863d
+def build_causal_track_history(
+    associated_track,
+    *,
+    context,
+    timestamps_s: tuple[
+        float,
+        ...,
+    ],
+) -> CausalTrackHistory:
+    if len(
+        timestamps_s
+    ) != HISTORY_STEPS:
+        raise ValueError(
+            "Stage4 requires 11 "
+            "causal timestamps."
+        )
+
+    observations = tuple(
+        cartesianize_associated_track(
+            associated_track,
+            context=context,
+        )
+    )
+
+    if not observations:
+        raise ValueError(
+            "Associated track has no "
+            "Cartesian observations."
+        )
+
+    by_frame = {}
+
+    for observation in observations:
+        frame_index = (
+            _extract_frame_index(
+                observation,
+                timestamps_s=(
+                    timestamps_s
+                ),
+            )
+        )
+
+        by_frame[
+            frame_index
+        ] = (
+            _extract_position(
+                observation
+            ),
+            _extract_covariance(
+                observation
+            ),
+        )
+
+    steps = []
+
+    previous_position = None
+    previous_timestamp = None
+
+    for frame_index, timestamp in (
+        enumerate(
+            timestamps_s
+        )
+    ):
+        if frame_index not in by_frame:
+            steps.append(
+                HistoryStep(
+                    frame_index=frame_index,
+                    timestamp_s=(
+                        float(timestamp)
+                    ),
+                    position_H0_m=(
+                        0.0,
+                        0.0,
+                        0.0,
+                    ),
+                    velocity_H0_mps=(
+                        0.0,
+                        0.0,
+                        0.0,
+                    ),
+                    measurement_covariance_H0_m2=(
+                        _zero_covariance()
+                    ),
+                    observed=False,
+                    velocity_valid=False,
+                )
+            )
+
+            continue
+
+        (
+            position,
+            covariance,
+        ) = by_frame[
+            frame_index
+        ]
+
+        velocity = (
+            0.0,
+            0.0,
+            0.0,
+        )
+
+        velocity_valid = False
+
+        if (
+            previous_position
+            is not None
+            and
+            previous_timestamp
+            is not None
+        ):
+            dt = (
+                float(timestamp)
+                -
+                previous_timestamp
+            )
+
+            if dt <= 0.0:
+                raise RuntimeError(
+                    "Non-positive causal "
+                    "velocity interval."
+                )
+
+            velocity = tuple(
+                (
+                    position[axis]
+                    -
+                    previous_position[axis]
+                )
+                /
+                dt
+                for axis in range(3)
+            )
+
+            velocity_valid = True
+
+        steps.append(
+            HistoryStep(
+                frame_index=frame_index,
+                timestamp_s=(
+                    float(timestamp)
+                ),
+                position_H0_m=(
+                    position
+                ),
+                velocity_H0_mps=(
+                    velocity
+                ),
+                measurement_covariance_H0_m2=(
+                    covariance
+                ),
+                observed=True,
+                velocity_valid=(
+                    velocity_valid
+                ),
+            )
+        )
+
+        previous_position = position
+        previous_timestamp = float(
+            timestamp
+        )
+
+    observed = [
+        step
+        for step in steps
+        if step.observed
+    ]
+
+    latest = observed[-1]
+
+    return CausalTrackHistory(
+        prediction_id=(
+            _extract_prediction_id(
+                associated_track
+            )
+        ),
+        steps=tuple(
+            steps
+        ),
+        latest_observed_frame_index=(
+            latest.frame_index
+        ),
+        latest_position_H0_m=(
+            latest.position_H0_m
+        ),
+    )
+
+===== B3. build_causal_scene_inputs =====
+
+PATH = /home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py
+LINE = 986
+SHA256 = f2d98461eeaa5ba4a53bc3bcd6480444e758d7a9318c1bfcf52b520bb1889e16
+def build_causal_scene_inputs(
+    associated_tracks,
+    *,
+    scenario_id: str,
+    context,
+    timestamps_s: tuple[
+        float,
+        ...,
+    ],
+) -> CausalSceneInputs:
+    histories = []
+
+    for associated_track in (
+        associated_tracks
+    ):
+        try:
+            history = (
+                build_causal_track_history(
+                    associated_track,
+                    context=context,
+                    timestamps_s=(
+                        timestamps_s
+                    ),
+                )
+            )
+
+        except ValueError:
+            continue
+
+        histories.append(
+            history
+        )
+
+    histories.sort(
+        key=lambda history:
+            history.prediction_id
+    )
+
+    return CausalSceneInputs(
+        scenario_id=scenario_id,
+        timestamps_s=(
+            timestamps_s
+        ),
+        histories=tuple(
+            histories
+        ),
+    )
+
+===== B4. CausalTrackHistory =====
+
+PATH = /home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py
+LINE = 282
+SHA256 = 3e3c55e67e5405314701eba295fbaa6a9f4e4988080d8fef013be45dfc45aedf
+class CausalTrackHistory:
+    prediction_id: str
+
+    steps: tuple[
+        HistoryStep,
+        ...,
+    ]
+
+    latest_observed_frame_index: int
+    latest_position_H0_m: Vec3
+
+    def __post_init__(self) -> None:
+        if not self.prediction_id:
+            raise ValueError(
+                "prediction_id cannot "
+                "be empty."
+            )
+
+        if len(
+            self.steps
+        ) != HISTORY_STEPS:
+            raise ValueError(
+                "Stage4 history must contain "
+                "exactly 11 causal frames."
+            )
+
+        expected_indices = tuple(
+            range(
+                HISTORY_STEPS
+            )
+        )
+
+        actual_indices = tuple(
+            int(step.frame_index)
+            for step in self.steps
+        )
+
+        if (
+            actual_indices
+            !=
+            expected_indices
+        ):
+            raise ValueError(
+                "History frame grid changed."
+            )
+
+        observed_indices = [
+            step.frame_index
+            for step in self.steps
+            if step.observed
+        ]
+
+        if not observed_indices:
+            raise ValueError(
+                "Causal history contains "
+                "no observations."
+            )
+
+        if (
+            max(observed_indices)
+            !=
+            self.latest_observed_frame_index
+        ):
+            raise ValueError(
+                "latest observed frame mismatch."
+            )
+
+        _finite3(
+            self.latest_position_H0_m
+        )
+
+    @property
+    def observed_count(
+        self,
+    ) -> int:
+        return sum(
+            step.observed
+            for step in self.steps
+        )
+
+    def feature_rows(
+        self,
+    ) -> tuple[
+        tuple[float, ...],
+        ...,
+    ]:
+        return tuple(
+            step.feature_row()
+            for step in self.steps
+        )
+CausalTrackHistory fields = ('prediction_id', 'steps', 'latest_observed_frame_index', 'latest_position_H0_m')
+
+===== C. STAGE3 PREDICTION-ID PROVENANCE =====
+relevant source contexts = 70
+
+--- context 1 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/association/nearest_neighbor.py:260
+0254:                 detection_index
+0255:                 in matched_detection_indices
+0256:             ):
+0257:                 continue
+0258: 
+0259:             track_id = (
+0260:                 f"s3trk-"
+0261:                 f"{next_track_number:06d}"
+0262:             )
+0263: 
+0264:             next_track_number += 1
+0265: 
+0266:             associated = AssociatedDetection(
+
+--- context 2 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/adapters.py:83
+0077:                     )
+0078:                 ),
+0079:             )
+0080:         )
+0081: 
+0082:     return EvaluationPredictionTrack(
+0083:         prediction_id=str(
+0084:             prediction.track_id
+0085:         ),
+0086:         anchor_position_H0_m=tuple(
+0087:             float(x)
+0088:             for x in anchor_position_H0_m
+0089:         ),
+
+--- context 3 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:18
+0012:     EvaluationTruth,
+0013: )
+0014: 
+0015: 
+0016: @dataclass(frozen=True)
+0017: class EvaluationMatch:
+0018:     prediction_id: str
+0019:     truth_id: str
+0020: 
+0021:     anchor_distance_m: float
+0022: 
+0023: 
+0024: @dataclass(frozen=True)
+
+--- context 4 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:19
+0013: )
+0014: 
+0015: 
+0016: @dataclass(frozen=True)
+0017: class EvaluationMatch:
+0018:     prediction_id: str
+0019:     truth_id: str
+0020: 
+0021:     anchor_distance_m: float
+0022: 
+0023: 
+0024: @dataclass(frozen=True)
+0025: class AssignmentResult:
+
+--- context 5 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:31
+0025: class AssignmentResult:
+0026:     matches: tuple[
+0027:         EvaluationMatch,
+0028:         ...
+0029:     ]
+0030: 
+0031:     unmatched_prediction_ids: tuple[
+0032:         str,
+0033:         ...
+0034:     ]
+0035: 
+0036:     unmatched_truth_ids: tuple[
+0037:         str,
+
+--- context 6 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:36
+0030: 
+0031:     unmatched_prediction_ids: tuple[
+0032:         str,
+0033:         ...
+0034:     ]
+0035: 
+0036:     unmatched_truth_ids: tuple[
+0037:         str,
+0038:         ...
+0039:     ]
+0040: 
+0041:     assignment_information: str = (
+0042:         "anchor_truth_only"
+
+--- context 7 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:248
+0242:     """
+0243: 
+0244:     prediction_tracks = tuple(
+0245:         sorted(
+0246:             predictions.tracks,
+0247:             key=lambda track:
+0248:             track.prediction_id,
+0249:         )
+0250:     )
+0251: 
+0252:     truth_tracks = tuple(
+0253:         sorted(
+0254:             truth.tracks,
+
+--- context 8 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:256
+0250:     )
+0251: 
+0252:     truth_tracks = tuple(
+0253:         sorted(
+0254:             truth.tracks,
+0255:             key=lambda track:
+0256:             track.truth_id,
+0257:         )
+0258:     )
+0259: 
+0260:     prediction_count = len(
+0261:         prediction_tracks
+0262:     )
+
+--- context 9 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:275
+0269:         prediction_count == 0
+0270:         and
+0271:         truth_count == 0
+0272:     ):
+0273:         return AssignmentResult(
+0274:             matches=(),
+0275:             unmatched_prediction_ids=(),
+0276:             unmatched_truth_ids=(),
+0277:         )
+0278: 
+0279:     size = max(
+0280:         prediction_count,
+0281:         truth_count,
+
+--- context 10 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:276
+0270:         and
+0271:         truth_count == 0
+0272:     ):
+0273:         return AssignmentResult(
+0274:             matches=(),
+0275:             unmatched_prediction_ids=(),
+0276:             unmatched_truth_ids=(),
+0277:         )
+0278: 
+0279:     size = max(
+0280:         prediction_count,
+0281:         truth_count,
+0282:     )
+
+--- context 11 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:354
+0348:             matrix
+0349:         )
+0350:     )
+0351: 
+0352:     matches = []
+0353: 
+0354:     matched_prediction_ids = set()
+0355:     matched_truth_ids = set()
+0356: 
+0357:     for row, column in enumerate(
+0358:         assignment
+0359:     ):
+0360:         if (
+
+--- context 12 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:355
+0349:         )
+0350:     )
+0351: 
+0352:     matches = []
+0353: 
+0354:     matched_prediction_ids = set()
+0355:     matched_truth_ids = set()
+0356: 
+0357:     for row, column in enumerate(
+0358:         assignment
+0359:     ):
+0360:         if (
+0361:             row >= prediction_count
+
+--- context 13 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:389
+0383:             config.anchor_assignment_gate_m
+0384:         ):
+0385:             continue
+0386: 
+0387:         matches.append(
+0388:             EvaluationMatch(
+0389:                 prediction_id=(
+0390:                     prediction
+0391:                     .prediction_id
+0392:                 ),
+0393:                 truth_id=(
+0394:                     target.truth_id
+0395:                 ),
+
+--- context 14 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:391
+0385:             continue
+0386: 
+0387:         matches.append(
+0388:             EvaluationMatch(
+0389:                 prediction_id=(
+0390:                     prediction
+0391:                     .prediction_id
+0392:                 ),
+0393:                 truth_id=(
+0394:                     target.truth_id
+0395:                 ),
+0396:                 anchor_distance_m=(
+0397:                     distance
+
+--- context 15 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:393
+0387:         matches.append(
+0388:             EvaluationMatch(
+0389:                 prediction_id=(
+0390:                     prediction
+0391:                     .prediction_id
+0392:                 ),
+0393:                 truth_id=(
+0394:                     target.truth_id
+0395:                 ),
+0396:                 anchor_distance_m=(
+0397:                     distance
+0398:                 ),
+0399:             )
+
+--- context 16 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:394
+0388:             EvaluationMatch(
+0389:                 prediction_id=(
+0390:                     prediction
+0391:                     .prediction_id
+0392:                 ),
+0393:                 truth_id=(
+0394:                     target.truth_id
+0395:                 ),
+0396:                 anchor_distance_m=(
+0397:                     distance
+0398:                 ),
+0399:             )
+0400:         )
+
+--- context 17 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:402
+0396:                 anchor_distance_m=(
+0397:                     distance
+0398:                 ),
+0399:             )
+0400:         )
+0401: 
+0402:         matched_prediction_ids.add(
+0403:             prediction.prediction_id
+0404:         )
+0405: 
+0406:         matched_truth_ids.add(
+0407:             target.truth_id
+0408:         )
+
+--- context 18 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:403
+0397:                     distance
+0398:                 ),
+0399:             )
+0400:         )
+0401: 
+0402:         matched_prediction_ids.add(
+0403:             prediction.prediction_id
+0404:         )
+0405: 
+0406:         matched_truth_ids.add(
+0407:             target.truth_id
+0408:         )
+0409: 
+
+--- context 19 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:406
+0400:         )
+0401: 
+0402:         matched_prediction_ids.add(
+0403:             prediction.prediction_id
+0404:         )
+0405: 
+0406:         matched_truth_ids.add(
+0407:             target.truth_id
+0408:         )
+0409: 
+0410:     matches.sort(
+0411:         key=lambda item: (
+0412:             item.truth_id,
+
+--- context 20 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:407
+0401: 
+0402:         matched_prediction_ids.add(
+0403:             prediction.prediction_id
+0404:         )
+0405: 
+0406:         matched_truth_ids.add(
+0407:             target.truth_id
+0408:         )
+0409: 
+0410:     matches.sort(
+0411:         key=lambda item: (
+0412:             item.truth_id,
+0413:             item.prediction_id,
+
+--- context 21 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:412
+0406:         matched_truth_ids.add(
+0407:             target.truth_id
+0408:         )
+0409: 
+0410:     matches.sort(
+0411:         key=lambda item: (
+0412:             item.truth_id,
+0413:             item.prediction_id,
+0414:         )
+0415:     )
+0416: 
+0417:     unmatched_predictions = tuple(
+0418:         sorted(
+
+--- context 22 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:413
+0407:             target.truth_id
+0408:         )
+0409: 
+0410:     matches.sort(
+0411:         key=lambda item: (
+0412:             item.truth_id,
+0413:             item.prediction_id,
+0414:         )
+0415:     )
+0416: 
+0417:     unmatched_predictions = tuple(
+0418:         sorted(
+0419:             track.prediction_id
+
+--- context 23 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:419
+0413:             item.prediction_id,
+0414:         )
+0415:     )
+0416: 
+0417:     unmatched_predictions = tuple(
+0418:         sorted(
+0419:             track.prediction_id
+0420:             for track in (
+0421:                 prediction_tracks
+0422:             )
+0423:             if (
+0424:                 track.prediction_id
+0425:                 not in
+
+--- context 24 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:424
+0418:         sorted(
+0419:             track.prediction_id
+0420:             for track in (
+0421:                 prediction_tracks
+0422:             )
+0423:             if (
+0424:                 track.prediction_id
+0425:                 not in
+0426:                 matched_prediction_ids
+0427:             )
+0428:         )
+0429:     )
+0430: 
+
+--- context 25 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:426
+0420:             for track in (
+0421:                 prediction_tracks
+0422:             )
+0423:             if (
+0424:                 track.prediction_id
+0425:                 not in
+0426:                 matched_prediction_ids
+0427:             )
+0428:         )
+0429:     )
+0430: 
+0431:     unmatched_truth = tuple(
+0432:         sorted(
+
+--- context 26 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:433
+0427:             )
+0428:         )
+0429:     )
+0430: 
+0431:     unmatched_truth = tuple(
+0432:         sorted(
+0433:             track.truth_id
+0434:             for track in truth_tracks
+0435:             if (
+0436:                 track.truth_id
+0437:                 not in
+0438:                 matched_truth_ids
+0439:             )
+
+--- context 27 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:436
+0430: 
+0431:     unmatched_truth = tuple(
+0432:         sorted(
+0433:             track.truth_id
+0434:             for track in truth_tracks
+0435:             if (
+0436:                 track.truth_id
+0437:                 not in
+0438:                 matched_truth_ids
+0439:             )
+0440:         )
+0441:     )
+0442: 
+
+--- context 28 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:438
+0432:         sorted(
+0433:             track.truth_id
+0434:             for track in truth_tracks
+0435:             if (
+0436:                 track.truth_id
+0437:                 not in
+0438:                 matched_truth_ids
+0439:             )
+0440:         )
+0441:     )
+0442: 
+0443:     return AssignmentResult(
+0444:         matches=tuple(matches),
+
+--- context 29 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:445
+0439:             )
+0440:         )
+0441:     )
+0442: 
+0443:     return AssignmentResult(
+0444:         matches=tuple(matches),
+0445:         unmatched_prediction_ids=(
+0446:             unmatched_predictions
+0447:         ),
+0448:         unmatched_truth_ids=(
+0449:             unmatched_truth
+0450:         ),
+0451:         assignment_information=(
+
+--- context 30 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py:448
+0442: 
+0443:     return AssignmentResult(
+0444:         matches=tuple(matches),
+0445:         unmatched_prediction_ids=(
+0446:             unmatched_predictions
+0447:         ),
+0448:         unmatched_truth_ids=(
+0449:             unmatched_truth
+0450:         ),
+0451:         assignment_information=(
+0452:             "anchor_truth_only"
+0453:         ),
+0454:         future_truth_used_for_assignment=False,
+
+--- context 31 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py:165
+0159:     evaluator sidecar.
+0160: 
+0161:     It must never be supplied to a Stage3
+0162:     algorithm.
+0163:     """
+0164: 
+0165:     truth_id: str
+0166: 
+0167:     actor_class: str
+0168: 
+0169:     anchor_position_H0_m: Vec3
+0170: 
+0171:     points: tuple[
+
+--- context 32 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py:177
+0171:     points: tuple[
+0172:         TruthTrajectoryPoint,
+0173:         ...
+0174:     ]
+0175: 
+0176:     def __post_init__(self) -> None:
+0177:         if not self.truth_id:
+0178:             raise ValueError(
+0179:                 "Truth ID cannot be empty."
+0180:             )
+0181: 
+0182:         if not self.actor_class:
+0183:             raise ValueError(
+
+--- context 33 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py:238
+0232:             raise ValueError(
+0233:                 "Truth anchor timestamp must "
+0234:                 "be finite."
+0235:             )
+0236: 
+0237:         ids = [
+0238:             track.truth_id
+0239:             for track in self.tracks
+0240:         ]
+0241: 
+0242:         if len(ids) != len(set(ids)):
+0243:             raise ValueError(
+0244:                 "Truth IDs must be unique."
+
+--- context 34 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py:286
+0280: 
+0281: @dataclass(frozen=True)
+0282: class EvaluationPredictionTrack:
+0283:     """
+0284:     Algorithm output packaged for evaluation.
+0285: 
+0286:     prediction_id is an algorithm-generated
+0287:     identifier. It is not WOMD truth identity.
+0288:     """
+0289: 
+0290:     prediction_id: str
+0291: 
+0292:     anchor_position_H0_m: Vec3
+
+--- context 35 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py:290
+0284:     Algorithm output packaged for evaluation.
+0285: 
+0286:     prediction_id is an algorithm-generated
+0287:     identifier. It is not WOMD truth identity.
+0288:     """
+0289: 
+0290:     prediction_id: str
+0291: 
+0292:     anchor_position_H0_m: Vec3
+0293: 
+0294:     points: tuple[
+0295:         PredictionTrajectoryPoint,
+0296:         ...
+
+--- context 36 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py:300
+0294:     points: tuple[
+0295:         PredictionTrajectoryPoint,
+0296:         ...
+0297:     ]
+0298: 
+0299:     def __post_init__(self) -> None:
+0300:         if not self.prediction_id:
+0301:             raise ValueError(
+0302:                 "Prediction ID cannot "
+0303:                 "be empty."
+0304:             )
+0305: 
+0306:         _validate_vec3(
+
+--- context 37 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py:361
+0355:             raise ValueError(
+0356:                 "Prediction anchor timestamp "
+0357:                 "must be finite."
+0358:             )
+0359: 
+0360:         ids = [
+0361:             track.prediction_id
+0362:             for track in self.tracks
+0363:         ]
+0364: 
+0365:         if len(ids) != len(set(ids)):
+0366:             raise ValueError(
+0367:                 "Prediction IDs must "
+
+--- context 38 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py:31
+0025: 
+0026:     error_3d_m: float
+0027: 
+0028: 
+0029: @dataclass(frozen=True)
+0030: class TrackEvaluation:
+0031:     prediction_id: str
+0032:     truth_id: str
+0033: 
+0034:     actor_class: str
+0035: 
+0036:     anchor_assignment_error_m: float
+0037: 
+
+--- context 39 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py:32
+0026:     error_3d_m: float
+0027: 
+0028: 
+0029: @dataclass(frozen=True)
+0030: class TrackEvaluation:
+0031:     prediction_id: str
+0032:     truth_id: str
+0033: 
+0034:     actor_class: str
+0035: 
+0036:     anchor_assignment_error_m: float
+0037: 
+0038:     horizon_errors: tuple[
+
+--- context 40 ---
+/home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py:281
+0275:             truth,
+0276:             config=config,
+0277:         )
+0278:     )
+0279: 
+0280:     prediction_by_id = {
+0281:         track.prediction_id: track
+0282:         for track in predictions.tracks
+0283:     }
+0284: 
+0285:     truth_by_id = {
+0286:         track.truth_id: track
+0287:         for track in truth.tracks
+... 30 additional contexts stored in report
+
+Stage3 identity-bearing classes =
+AssociatedDetection | /home/agni/waymo/iscai_stage3/src/iscai_stage3/association/contracts.py | fields = ['track_id', 'frame_index', 'timestamp_s', 'detection']
+AssociatedTrack | /home/agni/waymo/iscai_stage3/src/iscai_stage3/association/contracts.py | fields = ['track_id', 'detections', 'terminated']
+_WorkingTrack | /home/agni/waymo/iscai_stage3/src/iscai_stage3/association/nearest_neighbor.py | fields = ['track_id', 'history', 'missed_frames', 'terminated']
+CAPrediction | /home/agni/waymo/iscai_stage3/src/iscai_stage3/baselines/ca.py | fields = ['track_id', 'anchor_timestamp_s', 'points', 'model', 'annotated_velocity_used', 'annotated_acceleration_used', 'future_information_used']
+CTRVPrediction | /home/agni/waymo/iscai_stage3/src/iscai_stage3/baselines/ctrv.py | fields = ['track_id', 'anchor_timestamp_s', 'points', 'model', 'annotated_velocity_used', 'annotated_heading_used', 'future_information_used']
+CVPrediction | /home/agni/waymo/iscai_stage3/src/iscai_stage3/baselines/cv.py | fields = ['track_id', 'anchor_timestamp_s', 'points', 'model', 'annotated_velocity_used', 'future_information_used']
+HoughPrediction | /home/agni/waymo/iscai_stage3/src/iscai_stage3/baselines/hough.py | fields = ['track_id', 'anchor_timestamp_s', 'points', 'model', 'truth_used', 'estimated_association_used', 'actor_identity_used', 'future_information_used']
+IMMPrediction | /home/agni/waymo/iscai_stage3/src/iscai_stage3/baselines/imm.py | fields = ['track_id', 'anchor_timestamp_s', 'points', 'model', 'truth_used', 'annotated_velocity_used', 'annotated_heading_used', 'future_information_used']
+KalmanPrediction | /home/agni/waymo/iscai_stage3/src/iscai_stage3/baselines/kalman.py | fields = ['track_id', 'anchor_timestamp_s', 'points', 'model', 'truth_used', 'annotated_velocity_used', 'future_information_used']
+EvaluationMatch | /home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/assignment.py | fields = ['prediction_id', 'truth_id', 'anchor_distance_m']
+EvaluationTruthTrack | /home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py | fields = ['truth_id', 'actor_class', 'anchor_position_H0_m', 'points']
+EvaluationPredictionTrack | /home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/contracts.py | fields = ['prediction_id', 'anchor_position_H0_m', 'points']
+TrackEvaluation | /home/agni/waymo/iscai_stage3/src/iscai_stage3/evaluation/metrics.py | fields = ['prediction_id', 'truth_id', 'actor_class', 'anchor_assignment_error_m', 'horizon_errors', 'ade_m', 'fde_m', 'ade_3d_m', 'fde_3d_m']
+IMMTrackResult | /home/agni/waymo/iscai_stage3/src/iscai_stage3/filters/imm.py | fields = ['track_id', 'initial_mode_states', 'initial_mode_probabilities', 'updates', 'current_mode_states', 'current_mode_probabilities', 'combined_current_state', 'truth_used', 'annotated_velocity_used', 'annotated_heading_used', 'future_information_used']
+KalmanTrackResult | /home/agni/waymo/iscai_stage3/src/iscai_stage3/filters/kalman_ekf.py | fields = ['track_id', 'initial_state', 'updates', 'current_state', 'process_model', 'measurement_model', 'truth_used', 'annotated_velocity_used', 'future_information_used']
+CartesianObservation | /home/agni/waymo/iscai_stage3/src/iscai_stage3/geometry/headlamp.py | fields = ['track_id', 'frame_index', 'timestamp_s', 'detection_key', 'position_H0_m', 'position_covariance_H0_m2', 'measurement']
+HoughTrack | /home/agni/waymo/iscai_stage3/src/iscai_stage3/hough/multidimensional.py | fields = ['track_id', 'anchor_frame_index', 'anchor_timestamp_s', 'anchor_position_H0_m', 'velocity_H0_mps', 'support_refs', 'coverage', 'time_span_s', 'mean_residual_m', 'accumulator_score', 'source_peak', 'truth_used', 'actor_identity_used', 'detection_key_matching_used', 'actor_class_used', 'future_information_used']
+CausalCAState | /home/agni/waymo/iscai_stage3/src/iscai_stage3/state/ca.py | fields = ['track_id', 'timestamp_s', 'position_H0_m', 'velocity_H0_mps', 'acceleration_H0_mps2', 'covariance_9x9', 'source_frame_indices', 'annotated_velocity_used', 'annotated_acceleration_used', 'future_information_used']
+CausalCVState | /home/agni/waymo/iscai_stage3/src/iscai_stage3/state/causal.py | fields = ['track_id', 'timestamp_s', 'position_H0_m', 'velocity_H0_mps', 'covariance_6x6', 'source_frame_indices', 'annotated_velocity_used', 'future_information_used']
+CausalCTRVState | /home/agni/waymo/iscai_stage3/src/iscai_stage3/state/ctrv.py | fields = ['track_id', 'timestamp_s', 'position_H0_m', 'planar_speed_mps', 'heading_rad', 'turn_rate_radps', 'vertical_velocity_mps', 'source_frame_indices', 'annotated_velocity_used', 'annotated_heading_used', 'future_information_used']
+
+===== D. STAGE6 CAUSAL BOX IDENTITY CONTRACT =====
+class CausalADBActorBox:
+    scenario_id: str
+    track_index: int
+    track_id: str
+    object_type: str
+
+    box: Box3D
+
+    stage1_anchor_center_H0_m: tuple[float, float, float] | None
+
+    stage1_anchor_bearing_H0_rad: float | None
+
+    center_consistency_error_m: float
+
+    source_time_index: int
+
+    state_source: str = "current_causal"
+    orientation_source: str = "current_causal"
+
+    tracks_to_predict_used: bool = False
+    objects_of_interest_used: bool = False
+    future_state_used: bool = False
+CausalADBActorBox fields = ('scenario_id', 'track_index', 'track_id', 'object_type', 'box', 'stage1_anchor_center_H0_m', 'stage1_anchor_bearing_H0_rad', 'center_consistency_error_m', 'source_time_index', 'state_source', 'orientation_source', 'tracks_to_predict_used', 'objects_of_interest_used', 'future_state_used')
+direct actor-field overlap = []
+
+===== E1. STAGE4 FORMAL NPZ ID-LIKE SCHEMA =====
+selected_class_id = {'shape': [494], 'dtype': 'int64', 'head': [2, 1, 0, 0, 1, 0, 0, 2]}
+validity = {'shape': [494, 4], 'dtype': 'bool'}
+eligible_class_id = {'shape': [547], 'dtype': 'int64', 'head': [1, 1, 2, 0, 0, 0, 2, 2]}
+eligible_validity = {'shape': [547, 4], 'dtype': 'bool'}
+
+===== E2. STAGE5 DEV POSTERIOR NPZ ID-LIKE SCHEMA =====
+NO ID-LIKE ARRAYS
+
+===== E3. STAGE5 DEV POSTERIOR JSON IDENTITY FIELDS =====
+coordinate_semantics.Stage4_prediction = metric_H0_displacement
+coordinate_semantics.causal_anchor = latest_causal_observed_target_position_H0
+posterior.full_normalized_prediction_sha256 = 8f8e9714fb16d2fc9ffc0a2421e5c5849b4f2239fd7691597ec9dee3eb505549
+
+===== F. FORMAL CLEAN-RECORD IDENTITY =====
+
+--- formal record 0 ---
+top-level keys = ['angular_runtime_s', 'beam_gain_loss_db', 'beam_probability_runtime_s', 'ber', 'codebook', 'containment_hit', 'distance_m', 'effective_rate_bps', 'effective_rate_loss_bps', 'exhaustive_reacquisition', 'geometry', 'horizon', 'loss_of_lock', 'optical_gain', 'overhead_fraction', 'overhead_reduction_vs_exhaustive', 'physical_probe_count', 'predictor_runtime_s', 'primary_switched', 'q', 'reacquisition_latency_s', 'received_power', 'received_power_loss_db', 'scenario_id', 'selected_k', 'selected_mass', 'snr_db', 'snr_loss_db', 'topk_runtime_s', 'type', 'uncertainty_rad']
+scenario_id = b90adbf772ab2317
+
+--- formal record 1 ---
+top-level keys = ['angular_runtime_s', 'beam_gain_loss_db', 'beam_probability_runtime_s', 'ber', 'codebook', 'containment_hit', 'distance_m', 'effective_rate_bps', 'effective_rate_loss_bps', 'exhaustive_reacquisition', 'geometry', 'horizon', 'loss_of_lock', 'optical_gain', 'overhead_fraction', 'overhead_reduction_vs_exhaustive', 'physical_probe_count', 'predictor_runtime_s', 'primary_switched', 'q', 'reacquisition_latency_s', 'received_power', 'received_power_loss_db', 'scenario_id', 'selected_k', 'selected_mass', 'snr_db', 'snr_loss_db', 'topk_runtime_s', 'type', 'uncertainty_rad']
+scenario_id = b90adbf772ab2317
+
+--- formal record 2 ---
+top-level keys = ['angular_runtime_s', 'beam_gain_loss_db', 'beam_probability_runtime_s', 'ber', 'codebook', 'containment_hit', 'distance_m', 'effective_rate_bps', 'effective_rate_loss_bps', 'exhaustive_reacquisition', 'geometry', 'horizon', 'loss_of_lock', 'optical_gain', 'overhead_fraction', 'overhead_reduction_vs_exhaustive', 'physical_probe_count', 'predictor_runtime_s', 'primary_switched', 'q', 'reacquisition_latency_s', 'received_power', 'received_power_loss_db', 'scenario_id', 'selected_k', 'selected_mass', 'snr_db', 'snr_loss_db', 'topk_runtime_s', 'type', 'uncertainty_rad']
+scenario_id = b90adbf772ab2317
+
+--- formal record 3 ---
+top-level keys = ['angular_runtime_s', 'beam_gain_loss_db', 'beam_probability_runtime_s', 'ber', 'codebook', 'containment_hit', 'distance_m', 'effective_rate_bps', 'effective_rate_loss_bps', 'exhaustive_reacquisition', 'geometry', 'horizon', 'loss_of_lock', 'optical_gain', 'overhead_fraction', 'overhead_reduction_vs_exhaustive', 'physical_probe_count', 'predictor_runtime_s', 'primary_switched', 'q', 'reacquisition_latency_s', 'received_power', 'received_power_loss_db', 'scenario_id', 'selected_k', 'selected_mass', 'snr_db', 'snr_loss_db', 'topk_runtime_s', 'type', 'uncertainty_rad']
+scenario_id = b90adbf772ab2317
+
+--- formal record 4 ---
+top-level keys = ['angular_runtime_s', 'beam_gain_loss_db', 'beam_probability_runtime_s', 'ber', 'codebook', 'containment_hit', 'distance_m', 'effective_rate_bps', 'effective_rate_loss_bps', 'exhaustive_reacquisition', 'geometry', 'horizon', 'loss_of_lock', 'optical_gain', 'overhead_fraction', 'overhead_reduction_vs_exhaustive', 'physical_probe_count', 'predictor_runtime_s', 'primary_switched', 'q', 'reacquisition_latency_s', 'received_power', 'received_power_loss_db', 'scenario_id', 'selected_k', 'selected_mass', 'snr_db', 'snr_loss_db', 'topk_runtime_s', 'type', 'uncertainty_rad']
+scenario_id = b90adbf772ab2317
+
+===== G. FORMAL-ROUTE IDENTITY CREATION CONTEXT =====
+
+--- route context 1 ---
+0203: 
+0204:             lower = key.lower()
+0205: 
+0206:             identity_like = any(
+0207:                 token in lower
+0208:                 for token in (
+0209:                     "scenario",
+0210:                     "track_index",
+0211:                     "track_id",
+0212:                     "sample_id",
+0213:                     "class_id",
+0214:                     "object_type",
+0215:                     "prediction_sha",
+0216:                 )
+0217:             )
+
+--- route context 2 ---
+0204:             lower = key.lower()
+0205: 
+0206:             identity_like = any(
+0207:                 token in lower
+0208:                 for token in (
+0209:                     "scenario",
+0210:                     "track_index",
+0211:                     "track_id",
+0212:                     "sample_id",
+0213:                     "class_id",
+0214:                     "object_type",
+0215:                     "prediction_sha",
+0216:                 )
+0217:             )
+0218: 
+
+--- route context 3 ---
+0212:                     "sample_id",
+0213:                     "class_id",
+0214:                     "object_type",
+0215:                     "prediction_sha",
+0216:                 )
+0217:             )
+0218: 
+0219:             truth_like = any(
+0220:                 token in lower
+0221:                 for token in (
+0222:                     "truth",
+0223:                     "future",
+0224:                     "label",
+0225:                 )
+0226:             )
+
+--- route context 4 ---
+0215:                     "prediction_sha",
+0216:                 )
+0217:             )
+0218: 
+0219:             truth_like = any(
+0220:                 token in lower
+0221:                 for token in (
+0222:                     "truth",
+0223:                     "future",
+0224:                     "label",
+0225:                 )
+0226:             )
+0227: 
+0228:             if (
+0229:                 identity_like
+
+--- route context 5 ---
+0224:                     "label",
+0225:                 )
+0226:             )
+0227: 
+0228:             if (
+0229:                 identity_like
+0230:                 and
+0231:                 not truth_like
+0232:                 and
+0233:                 array.ndim >= 1
+0234:             ):
+0235:                 flat = array.reshape(-1)
+0236: 
+0237:                 result[
+0238:                     "identity_previews"
+
+--- route context 6 ---
+0673: 
+0674:     return {
+0675:         "scenario_identity":
+0676:             select(
+0677:                 "scenario"
+0678:             ),
+0679: 
+0680:         "track_identity":
+0681:             select(
+0682:                 "track_id",
+0683:                 "track_index",
+0684:                 "target_index",
+0685:             ),
+0686: 
+0687:         "Gaussian_mean":
+
+--- route context 7 ---
+0675:         "scenario_identity":
+0676:             select(
+0677:                 "scenario"
+0678:             ),
+0679: 
+0680:         "track_identity":
+0681:             select(
+0682:                 "track_id",
+0683:                 "track_index",
+0684:                 "target_index",
+0685:             ),
+0686: 
+0687:         "Gaussian_mean":
+0688:             [
+0689:                 key
+
+--- route context 8 ---
+0676:             select(
+0677:                 "scenario"
+0678:             ),
+0679: 
+0680:         "track_identity":
+0681:             select(
+0682:                 "track_id",
+0683:                 "track_index",
+0684:                 "target_index",
+0685:             ),
+0686: 
+0687:         "Gaussian_mean":
+0688:             [
+0689:                 key
+0690:                 for key in keys
+
+--- route context 9 ---
+1222:         key_groups[
+1223:             "scenario_identity"
+1224:         ]
+1225:     )
+1226: 
+1227:     has_track = bool(
+1228:         key_groups[
+1229:             "track_identity"
+1230:         ]
+1231:     )
+1232: 
+1233:     has_gaussian_mean = bool(
+1234:         key_groups[
+1235:             "Gaussian_mean"
+1236:         ]
+
+===== H. CONTROLLER IDENTITY SAFETY BOUNDARY =====
+predictor internal prediction_id = True
+truth/oracle metadata exists      = True
+direct controller-safe box key    = NOT PROVEN
+predictor causal anchor H0         = True
+causal box anchor H0               = True
+causal anchor association possible = True
+
+truth_track_index controller use = FORBIDDEN
+truth_id controller use          = FORBIDDEN
+future GT association            = FORBIDDEN
+tracks_to_predict identity join   = FORBIDDEN
+
+===== I. IDENTITY BINDING OUTCOME =====
+identity outcome = NO_DIRECT_SAFE_KEY_CAUSAL_ANCHOR_ASSOCIATION_REQUIRED
+next binding     = FREEZE_DEVELOPMENT_ONLY_CAUSAL_ANCHOR_ASSOCIATION_BEFORE_BLOCK63
+
+===== J. FUTURE-YAW BINDING READINESS =====
+frozen Stage5 tangent-heading source = AVAILABLE
+future GT heading required = NO
+deterministic mean treatment = ONE-SAMPLE TRAJECTORY THROUGH SAME HEADING RULE
+yaw binding frozen here = NO
+
+===== K. IMMUTABILITY =====
+Stage3 = UNCHANGED
+Stage4 = UNCHANGED
+Stage5 = UNCHANGED
+Block6.2 = UNCHANGED
+scientific implementation = UNCHANGED
+
+report = /home/agni/waymo/iscai_stage6/reports/block63_actor_identity_boundary_audit.json
+report SHA256 = 526909d4f9a5c0f0d5fc8419df6b0f0fc624ce13fbac527d44c649c1e1703559
+
+============================================================
+BLOCK 6.3 ACTOR-IDENTITY BOUNDARY AUDIT — FINAL
+============================================================
+Stage4 internal prediction_id = PASS
+direct predictor→box ID       = NOT PROVEN
+causal predictor anchor H0    = PASS
+causal box anchor H0          = PASS
+truth/oracle identity join    = FORBIDDEN
+identity outcome              = NO_DIRECT_SAFE_KEY_CAUSAL_ANCHOR_ASSOCIATION_REQUIRED
+future yaw source rule        = STAGE5 TANGENT + LOW-SPEED CARRY-FORWARD
+future GT heading             = NO
+deterministic Gaussian mean   = STILL CANDIDATE / NOT YET FROZEN
+predictive ADB implementation = NOT STARTED
+upstream modified             = NO
+STATUS = PASS_IDENTITY_BOUNDARY_RESOLVED_ASSOCIATION_REQUIRED
+terminal remains open = YES

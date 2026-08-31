@@ -1,0 +1,187 @@
+==============================================================================
+BLOCK 6.6 PART3C — PART 2/2 — FINAL
+DETERMINISTIC REPLAY + VEHICLE SURROGATE EVIDENCE + CLASS-AWARE INTEGRATION
+==============================================================================
+
+===== A. IMMUTABLE UPSTREAM SEAL =====
+Part3B preregistration                = EXACT PASS
+Part3C Part1/2 runtime report         = EXACT PASS
+Part3C route audit                    = EXACT PASS
+Part3C persistence audit              = EXACT PASS
+class_aware_policy.py                 = EXACT PASS
+Part3C operator tests                 = EXACT PASS
+part_a_reactive.py                    = EXACT PASS
+illumination.py                       = EXACT PASS
+predictive_mask.py                    = EXACT PASS
+probabilistic_full_box.py             = EXACT PASS
+probabilistic_occupancy.py            = EXACT PASS
+P_occ manifest                        = EXACT PASS
+eligible predictive matches           = EXACT PASS
+frozen Gaussian posterior             = EXACT PASS
+N8192/grid numeric freeze             = EXACT PASS
+P_occ persistence contract            = EXACT PASS
+
+===== B. DETERMINISTIC REPLAY RECOVERY CONTRACT =====
+recovery contract = /home/agni/waymo/iscai_stage6/configs/block66_part3c_part2of2_deterministic_replay_contract.json
+recovery contract SHA256 = ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1
+
+===== C. LOAD FROZEN VEHICLE REPLAY ROUTE =====
+frozen causal guard source fields = ['box', 'future_state_used', 'objects_of_interest_used', 'tracks_to_predict_used']
+causal actor-box provenance adapter = ACTIVE
+scientific kernel modified = NO
+actor geometry modified = NO
+frozen causal provenance = PASS | 877/877
+P_occ records             = 877
+predictive vehicle actors = 719
+posterior records         = 6925
+grid                      = 4 x 501 x 301
+N_MC / seed               = 8192 / 20260821
+
+===== D. 719-VEHICLE DETERMINISTIC REPLAY =====
+resolved region axis semantics = X_LENGTH_Y_WIDTH
+resolved yaw rotation semantics = CCW_STANDARD
+geometry probe worst error = 3.552713678800501e-15
+progress = 1/719 | replayed_now=1 | reused=0 | elapsed=7.9s | ETA~94.7 min
+progress = 10/719 | replayed_now=10 | reused=0 | elapsed=78.6s | ETA~92.8 min
+progress = 20/719 | replayed_now=20 | reused=0 | elapsed=158.5s | ETA~92.3 min
+progress = 30/719 | replayed_now=30 | reused=0 | elapsed=237.8s | ETA~91.0 min
+progress = 40/719 | replayed_now=40 | reused=0 | elapsed=315.7s | ETA~89.3 min
+progress = 50/719 | replayed_now=50 | reused=0 | elapsed=394.8s | ETA~88.0 min
+progress = 60/719 | replayed_now=60 | reused=0 | elapsed=473.5s | ETA~86.7 min
+progress = 70/719 | replayed_now=70 | reused=0 | elapsed=553.1s | ETA~85.5 min
+progress = 80/719 | replayed_now=80 | reused=0 | elapsed=632.1s | ETA~84.2 min
+progress = 90/719 | replayed_now=90 | reused=0 | elapsed=710.9s | ETA~82.8 min
+progress = 100/719 | replayed_now=100 | reused=0 | elapsed=788.7s | ETA~81.4 min
+progress = 110/719 | replayed_now=110 | reused=0 | elapsed=867.7s | ETA~80.1 min
+progress = 120/719 | replayed_now=120 | reused=0 | elapsed=947.8s | ETA~78.9 min
+progress = 130/719 | replayed_now=130 | reused=0 | elapsed=1026.3s | ETA~77.5 min
+progress = 140/719 | replayed_now=140 | reused=0 | elapsed=1103.9s | ETA~76.1 min
+progress = 150/719 | replayed_now=150 | reused=0 | elapsed=1182.3s | ETA~74.7 min
+progress = 160/719 | replayed_now=160 | reused=0 | elapsed=1257.5s | ETA~73.2 min
+progress = 170/719 | replayed_now=170 | reused=0 | elapsed=1335.7s | ETA~71.9 min
+progress = 180/719 | replayed_now=180 | reused=0 | elapsed=1414.6s | ETA~70.6 min
+progress = 190/719 | replayed_now=190 | reused=0 | elapsed=1492.3s | ETA~69.2 min
+progress = 200/719 | replayed_now=200 | reused=0 | elapsed=1571.4s | ETA~68.0 min
+progress = 210/719 | replayed_now=210 | reused=0 | elapsed=1649.3s | ETA~66.6 min
+progress = 220/719 | replayed_now=220 | reused=0 | elapsed=1726.2s | ETA~65.3 min
+progress = 230/719 | replayed_now=230 | reused=0 | elapsed=1805.7s | ETA~64.0 min
+progress = 240/719 | replayed_now=240 | reused=0 | elapsed=1886.2s | ETA~62.7 min
+progress = 250/719 | replayed_now=250 | reused=0 | elapsed=1962.6s | ETA~61.4 min
+progress = 260/719 | replayed_now=260 | reused=0 | elapsed=2042.5s | ETA~60.1 min
+progress = 270/719 | replayed_now=270 | reused=0 | elapsed=2119.6s | ETA~58.7 min
+progress = 280/719 | replayed_now=280 | reused=0 | elapsed=2197.7s | ETA~57.4 min
+progress = 290/719 | replayed_now=290 | reused=0 | elapsed=2275.4s | ETA~56.1 min
+progress = 300/719 | replayed_now=300 | reused=0 | elapsed=2353.2s | ETA~54.8 min
+progress = 310/719 | replayed_now=310 | reused=0 | elapsed=2429.1s | ETA~53.4 min
+progress = 320/719 | replayed_now=320 | reused=0 | elapsed=2506.6s | ETA~52.1 min
+progress = 330/719 | replayed_now=330 | reused=0 | elapsed=2585.8s | ETA~50.8 min
+progress = 340/719 | replayed_now=340 | reused=0 | elapsed=2663.9s | ETA~49.5 min
+progress = 350/719 | replayed_now=350 | reused=0 | elapsed=2739.9s | ETA~48.1 min
+progress = 360/719 | replayed_now=360 | reused=0 | elapsed=2817.3s | ETA~46.8 min
+progress = 370/719 | replayed_now=370 | reused=0 | elapsed=2895.3s | ETA~45.5 min
+progress = 380/719 | replayed_now=380 | reused=0 | elapsed=2971.6s | ETA~44.2 min
+progress = 390/719 | replayed_now=390 | reused=0 | elapsed=3047.2s | ETA~42.8 min
+progress = 400/719 | replayed_now=400 | reused=0 | elapsed=3124.0s | ETA~41.5 min
+progress = 410/719 | replayed_now=410 | reused=0 | elapsed=3201.5s | ETA~40.2 min
+progress = 420/719 | replayed_now=420 | reused=0 | elapsed=3277.8s | ETA~38.9 min
+progress = 430/719 | replayed_now=430 | reused=0 | elapsed=3354.8s | ETA~37.6 min
+progress = 440/719 | replayed_now=440 | reused=0 | elapsed=3431.3s | ETA~36.3 min
+progress = 450/719 | replayed_now=450 | reused=0 | elapsed=3507.8s | ETA~34.9 min
+progress = 460/719 | replayed_now=460 | reused=0 | elapsed=3585.4s | ETA~33.6 min
+progress = 470/719 | replayed_now=470 | reused=0 | elapsed=3662.3s | ETA~32.3 min
+progress = 480/719 | replayed_now=480 | reused=0 | elapsed=3739.7s | ETA~31.0 min
+progress = 490/719 | replayed_now=490 | reused=0 | elapsed=3816.7s | ETA~29.7 min
+progress = 500/719 | replayed_now=500 | reused=0 | elapsed=3891.9s | ETA~28.4 min
+progress = 510/719 | replayed_now=510 | reused=0 | elapsed=3968.3s | ETA~27.1 min
+progress = 520/719 | replayed_now=520 | reused=0 | elapsed=4044.5s | ETA~25.8 min
+progress = 530/719 | replayed_now=530 | reused=0 | elapsed=4122.4s | ETA~24.5 min
+progress = 540/719 | replayed_now=540 | reused=0 | elapsed=4201.0s | ETA~23.2 min
+progress = 550/719 | replayed_now=550 | reused=0 | elapsed=4280.7s | ETA~21.9 min
+progress = 560/719 | replayed_now=560 | reused=0 | elapsed=4361.0s | ETA~20.6 min
+progress = 570/719 | replayed_now=570 | reused=0 | elapsed=4441.6s | ETA~19.4 min
+progress = 580/719 | replayed_now=580 | reused=0 | elapsed=4518.6s | ETA~18.0 min
+progress = 590/719 | replayed_now=590 | reused=0 | elapsed=4595.4s | ETA~16.7 min
+progress = 600/719 | replayed_now=600 | reused=0 | elapsed=4674.1s | ETA~15.5 min
+progress = 610/719 | replayed_now=610 | reused=0 | elapsed=4749.8s | ETA~14.1 min
+progress = 620/719 | replayed_now=620 | reused=0 | elapsed=4828.1s | ETA~12.8 min
+progress = 630/719 | replayed_now=630 | reused=0 | elapsed=4905.6s | ETA~11.6 min
+progress = 640/719 | replayed_now=640 | reused=0 | elapsed=4983.3s | ETA~10.3 min
+progress = 650/719 | replayed_now=650 | reused=0 | elapsed=5061.0s | ETA~9.0 min
+progress = 660/719 | replayed_now=660 | reused=0 | elapsed=5136.6s | ETA~7.7 min
+progress = 670/719 | replayed_now=670 | reused=0 | elapsed=5215.5s | ETA~6.4 min
+progress = 680/719 | replayed_now=680 | reused=0 | elapsed=5291.8s | ETA~5.1 min
+progress = 690/719 | replayed_now=690 | reused=0 | elapsed=5369.9s | ETA~3.8 min
+progress = 700/719 | replayed_now=700 | reused=0 | elapsed=5448.4s | ETA~2.5 min
+progress = 710/719 | replayed_now=710 | reused=0 | elapsed=5525.7s | ETA~1.2 min
+progress = 719/719 | replayed_now=719 | reused=0 | elapsed=5595.7s | ETA~0.0 min
+
+vehicle exact parity = PASS | 719/719
+vehicle surrogate evidence = MATERIALIZED | 719
+replayed this run = 719
+resumed from cache = 0
+surrogate manifest = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3c_vehicle_surrogate_evidence.jsonl
+surrogate manifest SHA256 = bfe8eb6d8b605d58f9b99d8097744b71b99ecb9ed9fd169191222375f31bc826
+
+===== E. CLASS-AWARE REAL-EVIDENCE INTEGRATION SMOKE =====
+TYPE_VEHICLE = END-TO-END OPERATOR CHAIN PASS
+TYPE_PEDESTRIAN = END-TO-END OPERATOR CHAIN PASS
+TYPE_CYCLIST = END-TO-END OPERATOR CHAIN PASS
+vehicle/pedestrian/cyclist = PASS / PASS / PASS
+smoke tuple numeric selection = NO
+development objective evaluated = NO
+
+===== F. FRESH STAGE6 REGRESSION =====
+......................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 166 tests in 0.179s
+
+OK
+Stage6 regression = PASS | 166
+post-run part_a_reactive.py           = EXACT PASS
+post-run illumination.py              = EXACT PASS
+post-run predictive_mask.py           = EXACT PASS
+post-run class_aware_policy.py        = EXACT PASS
+
+===== G. BLOCK6.6 PART3C FINAL CLOSURE =====
+final closure report = /home/agni/waymo/iscai_stage6/reports/block66_part3c_final_closure.json
+final closure SHA256 = 8413fd646a1bf18e15c12bf0441d1ddb1ea72ed142703020ac0d2c77dba0bb29
+
+===== H. BLOCK6.6 PART3C FINAL FREEZE =====
+freeze manifest = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3c_final_freeze_manifest.json
+freeze SHA256 = 880c2efb0895f463aaf3350eed7730389a5871651d7ad6091cef052d95434738
+
+===== I. HANDOFF TO BLOCK6.7 PART 1/2 =====
+handoff = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3c_to_block67_handoff.json
+handoff SHA256 = 859e4d936c9e0eb04f35925382c7fa3aa86c91e1d2ff85beb86bb27e77ca4b5d
+
+==============================================================================
+BLOCK 6.6 PART3C — PART 2/2 — FINAL
+==============================================================================
+STATUS = PASS_BLOCK66_PART3C_COMPLETE
+predictive vehicles replayed = 719
+N_MC / seed                 = 8192 / 20260821
+full-box replay parity       = EXACT PASS | 719/719
+vehicle surrogate evidence   = MATERIALIZED | 719
+surrogate semantics          = GEOMETRY-BASED ONLY
+actual windshield claim      = NO
+actual mirror claim          = NO
+vertical actuator DOF        = NO
+class-aware operator chain   = PASS | 3/3 CORE CLASSES
+Part-A raised cosine         = PRESERVED
+Part-A generic margins       = PRESERVED
+original reactive baseline   = UNCHANGED
+policy sweep executed        = NO
+numeric policy selected      = NO
+formal outcomes read         = NO
+new model forward            = NO
+new stochastic realization  = NO
+deterministic PRNG replay    = YES
+Stage6 regression            = PASS | 166
+recovery contract SHA256     = ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1
+surrogate manifest SHA256    = bfe8eb6d8b605d58f9b99d8097744b71b99ecb9ed9fd169191222375f31bc826
+closure SHA256               = 8413fd646a1bf18e15c12bf0441d1ddb1ea72ed142703020ac0d2c77dba0bb29
+freeze SHA256                = 880c2efb0895f463aaf3350eed7730389a5871651d7ad6091cef052d95434738
+handoff SHA256               = 859e4d936c9e0eb04f35925382c7fa3aa86c91e1d2ff85beb86bb27e77ca4b5d
+NEXT = BLOCK6.7 PART 1/2 DEVELOPMENT-ONLY CLASS-AWARE POLICY SELECTION
+terminal remains open = YES
+==============================================================================

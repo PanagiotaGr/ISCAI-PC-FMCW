@@ -1,0 +1,153 @@
+============================================================
+BLOCK 4.8 PART 2/2 — CANONICAL VALIDATION RESOLVER REPAIR
+============================================================
+
+============================================================
+A. CANONICAL VALIDATION MANIFEST AUDIT
+============================================================
+manifest path = /home/agni/waymo/iscai_data_prep/manifests/selected_validation.jsonl
+manifest SHA  = dc10609ef18a2ba881657eb3da3a3df7a81bdcc8345ecbc2227102ab16b8833c
+validation rows = 44097
+
+formal IDs resolved      = 120 / 120
+source-shard matches     = 120 / 120
+selection-hash matches   = 120 / 120
+validation split matches = 120 / 120
+
+canonical validation route = PASS
+
+============================================================
+B. ONE-SCENARIO READER SMOKE
+NO NEURAL INFERENCE
+============================================================
+expected scenario ID = cfd33c593d645bf5
+loaded scenario ID   = cfd33c593d645bf5
+source shard         = /waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00030-of-00150
+compact offset       = 8396022
+WOMD 91 timestamps    = PASS
+current index 10       = PASS
+reader route           = PASS
+
+============================================================
+C. MINIMAL BLOCK 4.8 RUNNER PATCH
+============================================================
+resolver patch         = APPLIED
+backup                 = /home/agni/waymo/iscai_stage4/artifacts/block48/run_block48_formal_evaluation.pre_canonical_validation_repair.py
+heuristic discovery    = REMOVED
+canonical manifest     = /home/agni/waymo/iscai_data_prep/manifests/selected_validation.jsonl
+
+============================================================
+D. CONTROLLED COMPILE
+============================================================
+run_block48_formal_evaluation.py = PASS
+run_block48_part2_safe.py = PASS
+formal_runtime.py = PASS
+test_block48_formal_runtime.py = PASS
+
+============================================================
+E. FULL STAGE4 REGRESSION BEFORE RESUME
+============================================================
+..................................................................................................................
+----------------------------------------------------------------------
+Ran 114 tests in 0.408s
+
+OK
+full Stage4 regression = 114 / 114 PASS
+
+============================================================
+VALIDATION RESOLVER REPAIR = PASS
+============================================================
+canonical manifest SHA = PASS
+validation rows        = 44097 PASS
+formal IDs             = 120 / 120 PASS
+source_shard match     = 120 / 120 PASS
+selection_hash match   = 120 / 120 PASS
+one-scenario reader    = PASS
+full regression        = 114 / 114 PASS
+training               = NO
+recalibration          = NO
+classical rerun        = NO
+safe to resume N=120   = YES
+
+============================================================
+F. RESUMING BLOCK 4.8 PART 2/2
+============================================================
+============================================================
+BLOCK 4.8 PART 2/2 — SAFE CONTROLLER
+============================================================
+
+===== CONTROLLED COMPILE =====
+formal_runtime.py = PASS
+test_block48_formal_runtime.py = PASS
+run_block48_formal_evaluation.py = PASS
+
+===== NEW PART2 UNIT TESTS =====
+
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+OK
+
+
+===== PRE-FORMAL FULL REGRESSION =====
+
+..................................................................................................................
+----------------------------------------------------------------------
+Ran 114 tests in 0.408s
+
+OK
+
+pre-formal regression = 114 / 114 PASS
+
+===== FROZEN FORMAL N=120 RUN =====
+============================================================
+STAGE 4 — BLOCK 4.8 FROZEN FORMAL N=120 EVALUATION
+============================================================
+formal manifest N          = 120 PASS
+formal manifest SHA        = PASS
+validation manifest        = /home/agni/waymo/iscai_data_prep/manifests/selected_validation.jsonl
+validation manifest rows   = 44097
+all formal IDs resolvable = PASS
+Stage3 formal run SHA      = PASS
+fit-only normalization     = PASS
+formal training            = NO
+formal model selection     = NO
+formal calibration fit     = NO
+
+deterministic class        = iscai_stage4.ml.deterministic_gru.DeterministicTrajectoryGRU
+deterministic state load   = PASS
+Gaussian state load        = PASS
+GMM state load             = PASS
+
+===== FORMAL SAMPLE SCHEMA PROBE =====
+
+============================================================
+BLOCK 4.8 PART 2/2 = BLOCKED
+============================================================
+exception = RuntimeError Neural sample actor class does not match WOMD truth track.
+
+RECOVERY:
+Inspect the schema probe / explicit supervision metadata. Do not use prediction_id or tracks_to_predict as a causal identity feature.
+
+formal cache reusable      = YES
+training performed         = NO
+model selection performed  = NO
+recalibration performed    = NO
+Stage3 classical rerun     = NO
+terminal remains open      = YES
+failure report = /home/agni/waymo/iscai_stage4/reports/block48_formal_evaluation_failure.json
+
+formal runner raw process code = 0
+
+============================================================
+BLOCK 4.8 PART 2/2 SAFE CONTROLLER
+============================================================
+STATUS = BLOCKED
+phase = formal_evaluation
+reason = Neural sample actor class does not match WOMD truth track.
+recovery = Inspect the schema probe / explicit supervision metadata. Do not use prediction_id or tracks_to_predict as a causal identity feature.
+terminal remains open = YES
+
+safe-controller raw code = 0
+terminal remains open    = YES

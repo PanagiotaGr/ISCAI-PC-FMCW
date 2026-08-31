@@ -1,0 +1,26 @@
+{
+  "block": "4.8_part_2_class_semantics_repair",
+  "classical_rerun": false,
+  "discovery_supervised_samples": 106,
+  "model_selection": false,
+  "pre_repair_cache": {
+    "archive_path": null,
+    "archived": false,
+    "existing_shards": 0
+  },
+  "recalibration": false,
+  "regression": "114/114 PASS",
+  "repair": {
+    "cache_contract_versioned": true,
+    "comparison": "WOMD symbolic enum semantics mapped into frozen Stage4 internal class IDs",
+    "eligible_class_domain": "Stage4_internal_class_id",
+    "raw_integer_equality_removed": true
+  },
+  "root_cause": "Stage4 internal class_id and WOMD protobuf object_type have different numeric encodings.",
+  "semantic_mismatch_count": 0,
+  "stage": 4,
+  "status": "PASS",
+  "training": false,
+  "truth_index_source": "sample.truth_track_index",
+  "upstream_modified": false
+}

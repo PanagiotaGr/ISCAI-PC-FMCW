@@ -1,0 +1,92 @@
+============================================================
+STAGE 6 — BLOCK 6.8
+PRE-OUTCOME NON-INFERIORITY BOUND-SELECTION RULE FREEZE
+NO DEVELOPMENT PERFORMANCE VALUES / NO FORMAL CONTENT
+============================================================
+
+===== A. EXACT UPSTREAM FREEZE =====
+evaluator reference contract = EXACT PASS
+post-actuation I_final       = FROZEN
+constructed oracle           = FROZEN
+road ROI                     = FROZEN
+metric authority             = EXACT PASS
+
+===== B. PRE-OUTCOME BOUNDARY =====
+development metric values = NOT READ
+predictive outcomes        = NOT READ
+reactive outcomes          = NOT READ
+formal content             = NOT OPENED
+exact NI deltas            = NOT YET COMPUTED
+policy tuning              = NO
+
+===== C. PRE-FREEZE REGRESSION =====
+pre-freeze regression = 209 / 209 PASS
+
+===== D. BUILD PRE-OUTCOME RULE =====
+rule JSON syntax   = PASS
+runtime syntax     = PASS
+test syntax        = PASS
+delta source       = REACTIVE COMPARATOR ONLY
+scale              = 1.96
+absolute floor     = 0.02
+absolute cap       = 0.05
+VRU min support    = 20
+overmask support   = 120 EXACT
+
+===== E. TRANSACTIONAL WRITE =====
+rule config  = WRITTEN
+rule runtime = WRITTEN
+rule tests   = WRITTEN
+
+===== F. TARGETED TESTS =====
+targeted regression = 8 / 8 PASS
+
+===== G. FULL STAGE6 REGRESSION =====
+full Stage6 regression = 217 / 217 PASS
+
+===== H. EXACT RULE READBACK =====
+predictive outcome dependency = NONE
+formal outcome dependency     = NONE
+vehicle gate                  = STRICT IMPROVEMENT
+NI rule                       = FROZEN
+exact deltas                  = NOT YET COMPUTED
+
+===== I. UPSTREAM IMMUTABILITY =====
+controller runtime    = UNCHANGED
+metric runtime        = UNCHANGED
+evaluator contract    = UNCHANGED
+road ROI              = UNCHANGED
+scientific policies   = UNCHANGED
+
+===== J. STORAGE =====
+free GiB        = 1052.773
+250-GiB reserve = PASS
+
+===== K. FREEZE REPORT =====
+rule config SHA256 = b5c0f40725e26578a4739f0582e4467ec48b72db8bb077d13862cc83dee98d24
+rule module SHA256 = 3c67a7f152359710cb24db1a6e01c4b580728e6480b7c5d8f9c40a41349cf1cd
+freeze report SHA256 = 289f9369735566daa2344a90cb312d4c06ede76b73827f07e408855c4e06ce6b
+
+============================================================
+BLOCK 6.8 NI BOUND-SELECTION RULE — FINAL
+============================================================
+development metrics        = NOT READ
+predictive outcomes         = NOT READ
+reactive outcomes           = NOT READ
+formal content              = NOT OPENED
+bound source                = REACTIVE COMPARATOR ONLY
+variability scale           = 1.96
+absolute delta floor        = 0.02
+absolute delta cap          = 0.05
+VRU minimum support         = 20
+overmask required support   = 120
+vehicle violation tolerance = NONE
+vehicle formal gate         = STRICT IMPROVEMENT
+exact NI deltas             = NOT YET COMPUTED
+policy/parameter tuning     = NO
+targeted regression         = 8 / 8 PASS
+full Stage6 regression      = 217 / 217 PASS
+formal evaluation allowed   = NO
+STATUS = PASS_NI_BOUND_SELECTION_RULE_FROZEN
+report = /home/agni/waymo/iscai_stage6/reports/block68_noninferiority_bound_rule_freeze.json
+terminal remains open = YES

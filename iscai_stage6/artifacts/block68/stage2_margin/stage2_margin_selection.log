@@ -1,0 +1,119 @@
+============================================================
+STAGE 6 — BLOCK 6.8
+DEVELOPMENT STAGE-2 CLASS-MARGIN SELECTION
+STAGE-1 k/GAMMA IMMUTABLE
+M_EXTRA DILATION ONLY
+NO FLOORS / NO TEMPORAL / NO RATE / NO FORMAL
+============================================================
+
+===== A. EXACT PRE-STAGE2 BOUNDARY =====
+prereg               = EXACT PASS
+stage1_freeze        = EXACT PASS
+pocc_manifest        = EXACT PASS
+predictive_matches   = EXACT PASS
+ledger               = EXACT PASS
+replay_contract      = EXACT PASS
+margin_bind          = EXACT PASS
+class_policy         = EXACT PASS
+timestamp            = EXACT PASS
+vehicle k               = 980 (FROZEN)
+pedestrian k            = 499 (FROZEN)
+cyclist k               = 557 (FROZEN)
+vehicle candidates      = 324
+pedestrian candidates   = 54
+cyclist candidates      = 432
+Stage2 dilation semantic= M_EXTRA ONLY
+Part-A generic 1m       = NOT RE-APPLIED
+
+===== B. STAGE2 POSTERIOR INPUT BINDING =====
+posterior SHA256        = f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd
+Stage2 input binding SHA= 20cad64a5c26ab38198b65de0728bf6e07a3346ad71c851a8e34b811ee9de21b
+Stage6 pre regression   = 224 / 224 PASS
+
+===== C. DEVELOPMENT INPUT JOIN =====
+P_occ actors            = 877
+posterior join          = EXACT PASS
+predictive-match join   = EXACT PASS
+track-identity join     = EXACT PASS
+future used as selector = NO
+
+===== D. STAGE-2 CLASS-MARGIN SWEEP =====
+TYPE_VEHICLE factorization/operator parity = PASS
+TYPE_CYCLIST factorization/operator parity = PASS
+TYPE_PEDESTRIAN factorization/operator parity = PASS
+processed actors = 100 / 877
+development scenarios = 20 / 120
+processed actors = 200 / 877
+processed actors = 300 / 877
+development scenarios = 40 / 120
+processed actors = 400 / 877
+development scenarios = 60 / 120
+processed actors = 500 / 877
+processed actors = 600 / 877
+development scenarios = 80 / 120
+processed actors = 700 / 877
+development scenarios = 100 / 120
+processed actors = 800 / 877
+development scenarios = 120 / 120
+
+===== E. EXACT PREREGISTERED STAGE-2 SELECTION =====
+
+TYPE_VEHICLE
+  scored pairs       = 2819
+  invalid future / NA= 57
+  base margin m      = 0.0
+  uncertainty mult   = 0.5
+  motion mult        = 0.05
+  macro IoU          = 0.41918095515651327
+  macro overmask     = 0.003226307053031618
+  primary ties       = 1
+  after overmask ties= 1
+
+TYPE_PEDESTRIAN
+  scored pairs       = 412
+  invalid future / NA= 28
+  base margin m      = 0.0
+  uncertainty mult   = 0.5
+  motion mult        = 0.0
+  macro IoU          = 0.22030627084752338
+  macro overmask     = 0.0009210846442456835
+  primary ties       = 1
+  after overmask ties= 1
+
+TYPE_CYCLIST
+  scored pairs       = 182
+  invalid future / NA= 10
+  base margin m      = 0.0
+  uncertainty mult   = 0.5
+  motion mult        = 0.25
+  macro IoU          = 0.2229309135285922
+  macro overmask     = 0.0016067678450553899
+  primary ties       = 1
+  after overmask ties= 1
+
+===== F. POST-SELECTION REGRESSION =====
+Stage6 regression = 224 / 224 PASS
+
+===== G. WRITE-ONCE STAGE-2 MARGIN FREEZE =====
+candidate scores SHA = 3258070cb0c5140c3b5e7d059bbc25f2f4f00ed5a3be4bab10695e87ce77217d
+Stage-2 freeze SHA    = b061541f0563181cd07a91107a211b3519c6fdcc2e08243171db5b3bd9393ae8
+
+============================================================
+BLOCK 6.8 STAGE-2 CLASS-MARGIN SELECTION — FINAL
+============================================================
+Stage-1 gamma              = IMMUTABLE
+vehicle base/u/q           = 0.0 0.5 0.05
+pedestrian base/u          = 0.0 0.5
+cyclist base/u/q           = 0.0 0.5 0.25
+margin dilation            = M_EXTRA ONLY
+Part-A generic margin      = NOT DOUBLE-APPLIED
+floor selection            = NOT EXECUTED
+temporal/rate selection    = NOT EXECUTED
+primary acceptance gate    = NOT TESTED
+NI bounds                  = UNCHANGED
+formal evaluation          = NO
+Stage6 regression          = 224 / 224 PASS
+free GiB                   = 1052.632
+STATUS = PASS_STAGE2_CLASS_MARGIN_SELECTED_FROZEN
+report = /home/agni/waymo/iscai_stage6/reports/block68_stage2_class_margin_selection.json
+terminal remains open = YES

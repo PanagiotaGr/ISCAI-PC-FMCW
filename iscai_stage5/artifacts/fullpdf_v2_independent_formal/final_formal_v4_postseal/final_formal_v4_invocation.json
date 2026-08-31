@@ -1,0 +1,47 @@
+{
+  "Stage6_allowed": false,
+  "decision_controller_reexecuted": false,
+  "decision_ledger": {
+    "byte_exact_run1_run2": true,
+    "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/decision_ledger_sealed.jsonl",
+    "receiver_keys": 120,
+    "rows": 17280,
+    "sha256": "751703975b3fc837cc1cf660cf1321db5768323d6cf2fbef524d05a3dbb48af4"
+  },
+  "evaluator_truth": {
+    "opened_postseal": true,
+    "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_repair/evaluator_truth_binding_fullpdf_v2.jsonl",
+    "sha256": "1c9582cdf62dfc02cc36c6e0a56c6ce1a1b25eedc09e9fd10af00618d51a5961",
+    "truth_map_hash": "d27dda703e69f0d260747e608bbd47c03c619de92201e15bc716ca867d454763"
+  },
+  "formal_attempt": "FINAL_V4_POSTSEAL_EVALUATOR_ONLY",
+  "formal_metrics_computed_before_marker": false,
+  "formal_tuning": false,
+  "frozen_hashes": {
+    "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/formal_prediction_ledger_run1.jsonl": "2dd3c396d5c365677c41b3a0df6344a7c28d423daaa368dbe466bd4b17b4c2a8",
+    "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/decision_ledger_sealed.jsonl": "751703975b3fc837cc1cf660cf1321db5768323d6cf2fbef524d05a3dbb48af4",
+    "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/evaluator_truth_binding_materialization_v1/stage5_fullpdf_v2_evaluator_truth_binding_seal_v1.json": "85d68d26bcd178b3aaa467743e31c4910d94f7c75006d350d1dc1a2e888acfcc",
+    "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/truth_candidate_postseal_diagnostic_v1/truth_candidate_postseal_diagnostic_v1.json": "e94dbb37fc115f28dbea07703ebc9a9de8a3068d7859fa22d5d58943590e2ebf",
+    "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_repair/evaluator_truth_binding_fullpdf_v2.jsonl": "1c9582cdf62dfc02cc36c6e0a56c6ce1a1b25eedc09e9fd10af00618d51a5961",
+    "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_repair/primary_receiver_binding_fullpdf_v2.jsonl": "5a5516ee050d2fd1c0a571193007650e75f23836b2734ee3df1950cc04f2e1c8",
+    "/home/agni/waymo/iscai_stage5/configs/stage5_fullpdf_v2_evaluator_truth_binding_amendment_v1.json": "e49ab5f3f6de1aab6f3fcaa739c306ddc3fa08267861cc4ea0f5b2ebe0e66712",
+    "/home/agni/waymo/iscai_stage5/configs/stage5_fullpdf_v2_preformal_addendum.json": "570fbada05c8e8ed71775bbb6eb668f4016dd65c98b09b4f158abeb379eca6aa",
+    "/home/agni/waymo/iscai_stage5/configs/stage5_fullpdf_v2_protocol.json": "91dec3cc3d3a7b72385f012d1d2bfdb8981a497e1344f585d38f3e05f2e4fa5a",
+    "/home/agni/waymo/iscai_stage5/reports/stage5_fullpdf_v2_evaluator_truth_binding_materialization_v1.json": "80bb779cf3f86030c18cca95c3a748655c8cd5b6dd6f9e61d2cb334174d3fd5a",
+    "/home/agni/waymo/iscai_stage5/scripts/check_stage5_fullpdf_v2.py": "5e77d678af188d3f0b34b84ab53ddc78fc1b2921c6bea573dd9722c439c63599",
+    "/home/agni/waymo/iscai_stage5/scripts/run_stage5_fullpdf_v2_independent_formal_checker.py": "342344902e6b00cb841036dcdc0e54f1e1ba396344fa602864521890f5eb5da5",
+    "/home/agni/waymo/iscai_stage5/src/iscai_stage5/fullpdf_v2.py": "e57708e9332bb40e84f18270e483d91165e26c149b80e82c8f10b4df44376249"
+  },
+  "post_outcome_tuning": false,
+  "recalibration": false,
+  "regression": {
+    "log_sha256": "02f19c73741ef8c0dc5c755395d8654ef63f42d502a01e9b5ad5f2bb3e44d9a5",
+    "status": "PASS",
+    "tests": 271
+  },
+  "retraining": false,
+  "stage": 5,
+  "status": "INVOKED_BEFORE_FORMAL_METRIC_CALL",
+  "training": false,
+  "version": "fullpdf_v2"
+}

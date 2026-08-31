@@ -1,0 +1,152 @@
+============================================================
+BLOCK 5.2 — DEV POSTERIOR MATERIALIZATION V2
+============================================================
+compile = PASS
+
+===== PRE-INFERENCE STAGE5 REGRESSION =====
+
+........................................................................
+----------------------------------------------------------------------
+Ran 72 tests in 0.102s
+
+OK
+
+pre-inference Stage5 regression = 72 / 72 PASS
+
+===== EXACT FROZEN DEVELOPMENT INFERENCE =====
+============================================================
+BLOCK 5.2 — CORRECTED FROZEN DEV POSTERIOR MATERIALIZATION
+============================================================
+formal N=120 used         = NO
+development data only     = YES
+frozen Stage4 inference   = YES
+training                  = NO
+optimizer                  = NO
+recalibration             = NO
+Stage4 modification       = NO
+
+============================================================
+A. FROZEN STAGE4 INTEGRITY
+============================================================
+Gaussian checkpoint       = PASS
+Gaussian state_dict       = PASS
+development cache         = PASS
+fit normalization         = PASS
+deterministic checkpoint  = PASS
+frozen prediction SHA     = PASS
+
+============================================================
+B. EXACT FROZEN BLOCK4.4 ROUTE
+============================================================
+============================================================
+STAGE 4 — BLOCK 4.4 GAUSSIAN PROBABILISTIC TRAINING
+============================================================
+Block4.4 already COMPLETE/FROZEN.
+checkpoint SHA256 = 49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f
+STATUS = PASS
+frozen GaussianNormalizer = PASS
+frozen model builder      = PASS
+strict state_dict load    = PASS
+seed                      = 20260821
+device                    = NVIDIA RTX A6000
+
+============================================================
+C. FROZEN DEVELOPMENT CACHE
+============================================================
+development N           = 13682
+target shape            = (13682, 11, 14)
+neighbors shape         = (13682, 8, 11, 14)
+future truth used below = NO
+
+============================================================
+D. EXACT HISTORICAL BLOCK4.4 PREDICTION HASH
+============================================================
+frozen hash sample limit = 2048
+frozen hash batch size   = 512
+expected SHA256          = a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a
+actual SHA256            = a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a
+exact frozen prediction reproduction = PASS
+
+============================================================
+E. FULL DEVELOPMENT POSTERIOR
+============================================================
+full mean shape            = (13682, 4, 3)
+full covariance shape      = (13682, 4, 3, 3)
+Stage4 output semantics    = H0 DISPLACEMENT
+causal anchor              = LATEST OBSERVED H0
+absolute H0 conversion     = PASS
+future truth used          = NO
+
+============================================================
+F. FROZEN CALIBRATION / PSD VALIDATION
+============================================================
+predictive mean unchanged = PASS
+Sigma_cal=alpha_h*Sigma   = PASS
+max calibration error     = 9.1552734375e-05
+max symmetry error        = 0.0
+minimum eigenvalue        = 0.003772672310780928
+Stage2 measurement R_t    = UNCHANGED / SEPARATE
+
+============================================================
+G. FULL DEVELOPMENT POSTERIOR HASHES
+============================================================
+historical first-2048 SHA = a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a
+full normalized posterior SHA = 8f8e9714fb16d2fc9ffc0a2421e5c5849b4f2239fd7691597ec9dee3eb505549
+Stage5 posterior content SHA  = e63e7f14be6e119587716a4e6b25d492c154ec1881aa75225a454fd05964e4b9
+
+============================================================
+H. STAGE5-ONLY MATERIALIZATION
+============================================================
+artifact = /home/agni/waymo/iscai_stage5/artifacts/block52/development_gaussian_posterior.npz
+artifact file SHA256 = 39dacd4a1dd83ac9951244328403384421731dcffc1cf01617bcc6c6395460b4
+Stage4 files written = NO
+
+============================================================
+CORRECTED DEV POSTERIOR MATERIALIZATION GATE
+============================================================
+exact frozen Block4.4 SHA     = PASS
+historical hash sample limit  = 2048
+historical hash batch size    = 512
+development posterior N       = 13682
+Stage4 posterior              = H0 DISPLACEMENT
+causal absolute H0 conversion = PASS
+calibrated predictive mean    = UNCHANGED
+calibrated covariance         = PASS
+future truth used             = NO
+formal N=120 used             = NO
+training/recalibration        = NO
+Stage4 frozen inference       = YES
+Stage4 modified               = NO
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage5/artifacts/block52/development_gaussian_posterior.json
+next = BLOCK5.2 PART2 CONVERGENCE RESOLVER PATCH
+terminal remains open = YES
+
+materialization raw code = 0
+
+===== POST-INFERENCE STAGE5 REGRESSION =====
+
+........................................................................
+----------------------------------------------------------------------
+Ran 72 tests in 0.058s
+
+OK
+
+post-inference Stage5 regression = 72 / 72 PASS
+
+============================================================
+BLOCK 5.2 DEV MATERIALIZATION V2 FINAL
+============================================================
+historical Block4.4 SHA     = EXACT PASS
+historical hash scope       = FIRST 2048 / BATCH 512
+full dev posterior           = MATERIALIZED
+absolute H0 conversion       = PASS
+frozen covariance calibration= PASS
+future truth used            = NO
+formal N=120 used            = NO
+training/recalibration       = NO
+Stage4 modified              = NO
+Stage5 regression            = 72 / 72 PASS
+STATUS = PASS
+next = PATCH BLOCK5.2 PART2 CONVERGENCE RESOLVER
+terminal remains open = YES

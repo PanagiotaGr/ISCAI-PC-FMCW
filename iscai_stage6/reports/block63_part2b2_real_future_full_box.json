@@ -1,0 +1,65 @@
+{
+  "artifact": {
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block63/block63_part2b2_real_future_full_box.json",
+    "scientific_digest": "dfb3e474e2eaebebd6f8d9b8f5292c12551de17c29dbd2c2820f4a5b06e6b86e",
+    "sha256": "48118f193628937bf2daa94208ca801408aa76dfb360465064884356d52e2c62"
+  },
+  "association": {
+    "ADB_boxes": 9,
+    "matched": 6,
+    "reactive_fallback": 3,
+    "unmatched_predictions": 21
+  },
+  "block": "6.3-Part2B/2",
+  "frozen_prerequisites": {
+    "Part1_sha256": "871c8a81e43048ff2ccf7ef1844ad5433a859ff15b944749e13be9160b08256a",
+    "Part2A_sha256": "71c9d03cc9c1b33dbb371dccd7140d5226494554b6b21df7fbfa19e9f43ba71a",
+    "Part2B1_sha256": "54a4c99394d0fe29e4e7e480deacaefd07682b4fa1f1f8d8555a051a5efdabaf",
+    "binding_sha256": "03903018109e7d5037643381ff71141a5c57f003b8bdc6b9be13bb4304468f67"
+  },
+  "geometry": {
+    "centroid_only": false,
+    "corners_per_box": 8,
+    "full_box": true,
+    "future_boxes": 24,
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "total_projected_corners": 192
+  },
+  "next": "BLOCK6.3 FINAL DETERMINISTIC PREDICTIVE BASELINE CLOSURE",
+  "posterior": {
+    "anonymous_row_binding": false,
+    "causal_anchor_retained": true,
+    "covariance_used": false,
+    "identity_safe": true,
+    "mean_only": true,
+    "prediction_id_retained": true,
+    "records": 27
+  },
+  "provenance": {
+    "future_GT": false,
+    "orientation_source_expected": "predicted_tangent",
+    "perfect_actor_identity": false,
+    "persisted_predicted_sample": true,
+    "persisted_predicted_tangent": true,
+    "state_source_expected": "predicted_sample"
+  },
+  "regression": {
+    "status": "PASS",
+    "tests": 98
+  },
+  "scenario_id": "b85e1bd6cc8e74c0",
+  "scientific_execution": {
+    "formal_evaluation": false,
+    "new_model_forward": false,
+    "parameter_tuning": false,
+    "recalibration": false,
+    "training": false
+  },
+  "stage": 6,
+  "status": "PASS_REAL_FUTURE_FULL_BOX_EXECUTED"
+}

@@ -1,0 +1,290 @@
+==============================================================================
+BLOCK 6.6 PART3C/2A — VEHICLE SURROGATE FROZEN-EVIDENCE ROUTE BINDING AUDIT
+==============================================================================
+
+===== A. IMMUTABLE UPSTREAM SEAL =====
+Part3B preregistration              = EXACT PASS
+Part3C/1 report                     = EXACT PASS
+Part3C/1 handoff                    = EXACT PASS
+class_aware_policy.py               = EXACT PASS
+P_occ manifest                      = EXACT PASS
+eligible predictive matches         = EXACT PASS
+P_occ cache directory              = PRESENT
+
+===== B. EXACT SURROGATE GEOMETRY API =====
+Box3D = (center_xyz: 'tuple[float, float, float]', length_m: 'float', width_m: 'float', height_m: 'float', yaw_rad: 'float') -> None
+FractionalBoxRegion = (x_bounds: 'tuple[float, float]', y_bounds: 'tuple[float, float]', z_bounds: 'tuple[float, float]') -> None
+project_region_to_headlamp = (box: 'Box3D', region: 'FractionalBoxRegion') -> 'ProjectedRegion'
+CalibratedGaussianFullBoxPrediction = (prediction_id: 'str', latest_position_H0_m: 'Vec3', mean_displacement_H0_m: 'tuple[Vec3, Vec3, Vec3, Vec3]', calibrated_predictive_covariance_H0_m2: 'tuple[tuple[tuple[float, float, float], tuple[float, float, float], tuple[float, float, float]], tuple[tuple[float, float, float], tuple[float, float, float], tuple[float, float, float]], tuple[tuple[float, float, float], tuple[float, float, float], tuple[float, float, float]], tuple[tuple[float, float, float], tuple[float, float, float], tuple[float, float, float]]]') -> None
+StochasticFullBoxForecast = (prediction_id: 'str', sample_count: 'int', seed: 'int', absolute_mean_H0_m: 'np.ndarray', trajectory_samples_H0_m: 'np.ndarray', heading_samples_rad: 'np.ndarray', heading_fallback_mask: 'np.ndarray', future: 'tuple[tuple[StochasticFutureProjectedBox, StochasticFutureProjectedBox, StochasticFutureProjectedBox, StochasticFutureProjectedBox], ...]', joint_sampling_semantics: 'str' = 'product_of_frozen_calibrated_per_horizon_Gaussian_marginals') -> None
+build_stochastic_future_full_boxes = (prediction: 'CalibratedGaussianFullBoxPrediction', actor_box, *, sample_count: 'int', seed: 'int') -> 'StochasticFullBoxForecast'
+oncoming front-upper surrogate = VALID
+preceding rear-upper surrogate = VALID
+actual windshield/mirror annotation claim = NO
+
+===== C. P_OCC MANIFEST SCHEMA =====
+manifest records = 877
+distinct top-level schemas = 1
+
+schema[0] count = 877
+keys = ('actor_box_index', 'actor_rank', 'cohort_index', 'object_type', 'occupancy_counts_path', 'occupancy_counts_sha256', 'prediction_id', 'sample_count', 'scenario_id', 'seed', 'summary')
+
+first manifest record field summaries:
+actor_box_index = {'type': 'int', 'repr': '0'}
+actor_rank = {'type': 'int', 'repr': '0'}
+cohort_index = {'type': 'int', 'repr': '0'}
+object_type = {'type': 'str', 'repr': "'TYPE_VEHICLE'"}
+occupancy_counts_path = {'type': 'str', 'repr': "'/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0000__f72a05a05035feb8__s3trk-000027.counts.npy'"}
+occupancy_counts_sha256 = {'type': 'str', 'repr': "'ca5a29bf2ac96c7bf45eec45ce19fe77d95dc5389195514fb41677f57e1a2b99'"}
+prediction_id = {'type': 'str', 'repr': "'s3trk-000027'"}
+sample_count = {'type': 'int', 'repr': '8192'}
+scenario_id = {'type': 'str', 'repr': "'f72a05a05035feb8'"}
+seed = {'type': 'int', 'repr': '20260821'}
+summary = {'type': 'dict', 'keys': ['has_any_support', 'maximum_count_by_horizon', 'maximum_probability_by_horizon', 'nonzero_cells_by_horizon', 'occupancy_count_mass_by_horizon', 'occupancy_probability_mass_by_horizon']}
+
+===== D. ELIGIBLE PREDICTIVE MATCH SCHEMA =====
+eligible predictive match records = 877
+distinct match schemas = 1
+
+match schema[0] count = 877
+keys = ('actor_box_index', 'association_anchor_distance_m', 'centroid_only', 'cohort_index', 'current_box_H0', 'current_headlamp_eligible', 'eligibility_geometry', 'eligibility_time', 'future_used_for_eligibility', 'maximum_range_m', 'object_type', 'objects_of_interest_used', 'posterior_key', 'posterior_sha_source', 'prediction_id', 'route', 'scenario_id', 'theta_domain_deg', 'tracks_to_predict_used')
+
+first eligible-match record field summaries:
+actor_box_index = {'type': 'int', 'repr': '0'}
+association_anchor_distance_m = {'type': 'float', 'repr': '2.2831229250760536'}
+centroid_only = {'type': 'bool', 'repr': 'False'}
+cohort_index = {'type': 'int', 'repr': '0'}
+current_box_H0 = {'type': 'dict', 'keys': ['center_xyz_H0_m', 'height_m', 'length_m', 'width_m', 'yaw_rad']}
+current_headlamp_eligible = {'type': 'bool', 'repr': 'True'}
+eligibility_geometry = {'type': 'str', 'repr': "'continuous_full_box_ground_footprint_finite_sector'"}
+eligibility_time = {'type': 'str', 'repr': "'CURRENT_CAUSAL_ANCHOR'"}
+future_used_for_eligibility = {'type': 'bool', 'repr': 'False'}
+maximum_range_m = {'type': 'float', 'repr': '150.0'}
+object_type = {'type': 'str', 'repr': "'TYPE_VEHICLE'"}
+objects_of_interest_used = {'type': 'bool', 'repr': 'False'}
+posterior_key = {'type': 'dict', 'keys': ['prediction_id', 'scenario_id']}
+posterior_sha_source = {'type': 'str', 'repr': "'f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd'"}
+prediction_id = {'type': 'str', 'repr': "'s3trk-000027'"}
+route = {'type': 'str', 'repr': "'PREDICTIVE_MATCH'"}
+scenario_id = {'type': 'str', 'repr': "'f72a05a05035feb8'"}
+theta_domain_deg = {'type': 'list', 'length': 2, 'first_type': 'float'}
+tracks_to_predict_used = {'type': 'bool', 'repr': 'False'}
+
+===== E. MANIFEST PATH / CACHE BINDING =====
+path-like fields inspected = 20
+resolvable existing paths = 20
+{"field": "occupancy_counts_path", "record_index": 0, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0000__f72a05a05035feb8__s3trk-000027.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0000__f72a05a05035feb8__s3trk-000027.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 1, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0001__f72a05a05035feb8__s3trk-000024.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0001__f72a05a05035feb8__s3trk-000024.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 2, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0002__f72a05a05035feb8__s3trk-000005.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0002__f72a05a05035feb8__s3trk-000005.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 3, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0003__f72a05a05035feb8__s3trk-000021.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0003__f72a05a05035feb8__s3trk-000021.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 4, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0004__217d94b9231ed401__s3trk-000059.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0004__217d94b9231ed401__s3trk-000059.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 5, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0005__217d94b9231ed401__s3trk-000049.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0005__217d94b9231ed401__s3trk-000049.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 6, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0006__217d94b9231ed401__s3trk-000039.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0006__217d94b9231ed401__s3trk-000039.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 7, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0007__217d94b9231ed401__s3trk-000013.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0007__217d94b9231ed401__s3trk-000013.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 8, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0008__217d94b9231ed401__s3trk-000008.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0008__217d94b9231ed401__s3trk-000008.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 9, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0009__6ccad5b8230fdfaf__s3trk-000025.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0009__6ccad5b8230fdfaf__s3trk-000025.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 10, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0010__6ccad5b8230fdfaf__s3trk-000001.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0010__6ccad5b8230fdfaf__s3trk-000001.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 11, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0011__6ccad5b8230fdfaf__s3trk-000026.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0011__6ccad5b8230fdfaf__s3trk-000026.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 12, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0012__6ccad5b8230fdfaf__s3trk-000008.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0012__6ccad5b8230fdfaf__s3trk-000008.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 13, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0013__6ccad5b8230fdfaf__s3trk-000013.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0013__6ccad5b8230fdfaf__s3trk-000013.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 14, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0014__78249f8856cb2c57__s3trk-000022.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0014__78249f8856cb2c57__s3trk-000022.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 15, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0015__78249f8856cb2c57__s3trk-000057.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0015__78249f8856cb2c57__s3trk-000057.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 16, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0016__78249f8856cb2c57__s3trk-000049.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0016__78249f8856cb2c57__s3trk-000049.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 17, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0017__78249f8856cb2c57__s3trk-000017.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0017__78249f8856cb2c57__s3trk-000017.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 18, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0018__78249f8856cb2c57__s3trk-000054.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0018__78249f8856cb2c57__s3trk-000054.counts.npy"}
+{"field": "occupancy_counts_path", "record_index": 19, "resolved": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0019__78249f8856cb2c57__s3trk-000036.counts.npy", "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0019__78249f8856cb2c57__s3trk-000036.counts.npy"}
+
+cache file count = 1754
+cache suffix counts = {'.npy': 877, '.json': 877}
+
+===== F. READ-ONLY SAMPLE CACHE INSPECTION =====
+numpy cache files = 877
+
+cache sample = /home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0000__f72a05a05035feb8__s3trk-000027.counts.npy
+{
+  "dtype": "uint32",
+  "kind": "npy",
+  "shape": [
+    4,
+    501,
+    301
+  ]
+}
+
+cache sample = /home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0001__f72a05a05035feb8__s3trk-000024.counts.npy
+{
+  "dtype": "uint32",
+  "kind": "npy",
+  "shape": [
+    4,
+    501,
+    301
+  ]
+}
+
+cache sample = /home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0002__f72a05a05035feb8__s3trk-000005.counts.npy
+{
+  "dtype": "uint32",
+  "kind": "npy",
+  "shape": [
+    4,
+    501,
+    301
+  ]
+}
+
+non-numpy cache sample = /home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0000__f72a05a05035feb8__s3trk-000027.json
+size bytes = 2754
+first 1200 chars =
+{
+  "actor_box_index": 0,
+  "actor_rank": 0,
+  "causality": {
+    "centroid_only": false,
+    "future_GT": false,
+    "objects_of_interest": false,
+    "tracks_to_predict": false,
+    "truth_ID": false
+  },
+  "cohort_index": 0,
+  "frozen_seals": {
+    "Part2C2A_report_sha256": "4c79d9ba8084aa3cfbfed03945bf989703769feb5303827844413c2ee71ac0dc",
+    "eligible_predictive_sha256": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6",
+    "fullbox_module_sha256": "51daeab95713d6e7d2738ced466be4844b73dce70a09138b2b769de880462995",
+    "numeric_freeze_sha256": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73",
+    "occupancy_module_sha256": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e",
+    "persistence_contract_sha256": "2777e25003a2c76d506609130e7927501f15a868fa6ec37dfd192bbb58ea79e5",
+    "posterior_sha256": "f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd"
+  },
+  "full_box_semantics": "all_eight_physical_box_corners_samplewise_predicted_tangent_heading",
+  "grid_shape": [
+    501,
+    301
+  ],
+  "horizons_s": [
+    0.1,
+    0.3,
+    0.5,
+    1.0
+  ],
+  "object_type": "TYPE_VEHICLE",
+  "occupancy_counts": {
+    "dtype
+
+non-numpy cache sample = /home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0001__f72a05a05035feb8__s3trk-000024.json
+size bytes = 2758
+first 1200 chars =
+{
+  "actor_box_index": 4,
+  "actor_rank": 1,
+  "causality": {
+    "centroid_only": false,
+    "future_GT": false,
+    "objects_of_interest": false,
+    "tracks_to_predict": false,
+    "truth_ID": false
+  },
+  "cohort_index": 0,
+  "frozen_seals": {
+    "Part2C2A_report_sha256": "4c79d9ba8084aa3cfbfed03945bf989703769feb5303827844413c2ee71ac0dc",
+    "eligible_predictive_sha256": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6",
+    "fullbox_module_sha256": "51daeab95713d6e7d2738ced466be4844b73dce70a09138b2b769de880462995",
+    "numeric_freeze_sha256": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73",
+    "occupancy_module_sha256": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e",
+    "persistence_contract_sha256": "2777e25003a2c76d506609130e7927501f15a868fa6ec37dfd192bbb58ea79e5",
+    "posterior_sha256": "f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd"
+  },
+  "full_box_semantics": "all_eight_physical_box_corners_samplewise_predicted_tangent_heading",
+  "grid_shape": [
+    501,
+    301
+  ],
+  "horizons_s": [
+    0.1,
+    0.3,
+    0.5,
+    1.0
+  ],
+  "object_type": "TYPE_VEHICLE",
+  "occupancy_counts": {
+    "dtype
+
+non-numpy cache sample = /home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0002__f72a05a05035feb8__s3trk-000005.json
+size bytes = 2749
+first 1200 chars =
+{
+  "actor_box_index": 9,
+  "actor_rank": 2,
+  "causality": {
+    "centroid_only": false,
+    "future_GT": false,
+    "objects_of_interest": false,
+    "tracks_to_predict": false,
+    "truth_ID": false
+  },
+  "cohort_index": 0,
+  "frozen_seals": {
+    "Part2C2A_report_sha256": "4c79d9ba8084aa3cfbfed03945bf989703769feb5303827844413c2ee71ac0dc",
+    "eligible_predictive_sha256": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6",
+    "fullbox_module_sha256": "51daeab95713d6e7d2738ced466be4844b73dce70a09138b2b769de880462995",
+    "numeric_freeze_sha256": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73",
+    "occupancy_module_sha256": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e",
+    "persistence_contract_sha256": "2777e25003a2c76d506609130e7927501f15a868fa6ec37dfd192bbb58ea79e5",
+    "posterior_sha256": "f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd"
+  },
+  "full_box_semantics": "all_eight_physical_box_corners_samplewise_predicted_tangent_heading",
+  "grid_shape": [
+    501,
+    301
+  ],
+  "horizons_s": [
+    0.1,
+    0.3,
+    0.5,
+    1.0
+  ],
+  "object_type": "TYPE_VEHICLE",
+  "occupancy_counts": {
+    "dtype
+
+===== G. JOIN-KEY EVIDENCE =====
+manifest common keys = ['actor_box_index', 'actor_rank', 'cohort_index', 'object_type', 'occupancy_counts_path', 'occupancy_counts_sha256', 'prediction_id', 'sample_count', 'scenario_id', 'seed', 'summary']
+eligible-match common keys = ['actor_box_index', 'association_anchor_distance_m', 'centroid_only', 'cohort_index', 'current_box_H0', 'current_headlamp_eligible', 'eligibility_geometry', 'eligibility_time', 'future_used_for_eligibility', 'maximum_range_m', 'object_type', 'objects_of_interest_used', 'posterior_key', 'posterior_sha_source', 'prediction_id', 'route', 'scenario_id', 'theta_domain_deg', 'tracks_to_predict_used']
+shared top-level candidate join keys = ['actor_box_index', 'cohort_index', 'object_type', 'prediction_id', 'scenario_id']
+
+===== H. FRESH STAGE6 REGRESSION =====
+......................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 166 tests in 0.178s
+
+OK
+Stage6 regression = PASS | 166
+
+===== I. PART3C/2A ROUTE-AUDIT REPORT =====
+report = /home/agni/waymo/iscai_stage6/reports/block66_part3c2a_vehicle_surrogate_route_binding_audit.json
+report SHA256 = e2372c70d353f7122a91e514853ac1e823245e5ca1cfbf6d9eac5673ad550026
+handoff = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3c2a_to_part3c2b_handoff.json
+handoff SHA256 = 620d8d13b4f0ee04fdde627a698efe24c42d43b362c19a227eea4d7e0e35cc5e
+
+==============================================================================
+BLOCK 6.6 PART3C/2A — FINAL
+==============================================================================
+STATUS = PASS_FROZEN_VEHICLE_SURROGATE_EVIDENCE_ROUTE_AUDITED
+P_occ manifest records      = 877
+eligible predictive matches = 877
+cache files                 = 1754
+candidate join keys         = ['actor_box_index', 'cohort_index', 'object_type', 'prediction_id', 'scenario_id']
+geometry surrogate API      = BOUND
+new sampling                = NO
+new model forward           = NO
+policy sweep                = NO
+numeric policy selected     = NO
+formal outcomes read        = NO
+source modified             = NO
+cache modified              = NO
+Stage6 regression           = PASS | 166
+report SHA256               = e2372c70d353f7122a91e514853ac1e823245e5ca1cfbf6d9eac5673ad550026
+handoff SHA256              = 620d8d13b4f0ee04fdde627a698efe24c42d43b362c19a227eea4d7e0e35cc5e
+NEXT = BLOCK6.6 PART3C/2B EXACT-CACHE VEHICLE SURROGATE MATERIALIZATION
+terminal remains open = YES
+==============================================================================

@@ -1,0 +1,68 @@
+{
+  "Monte_Carlo": {
+    "base_seed": 20260821,
+    "convergence_artifact": "/home/agni/waymo/iscai_stage5/artifacts/block52/mc_convergence.json",
+    "convergence_artifact_sha256": "2a66b9128b06250b90b61ed0cd3e0a089b86946bd34c0eac4483de150306fc5e",
+    "convergence_reference_N": 32768,
+    "formal_data_used_for_selection": false,
+    "minimum_sample_count": 2048,
+    "minimum_sample_count_basis": "at_least_2048_samples_so_probability_mass_resolution_is_below_0p05_percent",
+    "sample_count": 2048,
+    "selection_rule": "smallest_preregistered_candidate_passing_all_development_convergence_thresholds"
+  },
+  "angular_output": {
+    "azimuth_statistics": "circular",
+    "coordinates": [
+      "range_m",
+      "azimuth_rad",
+      "elevation_rad"
+    ],
+    "covariance": "sample_covariance_using_wrapped_azimuth_residuals",
+    "elevation_statistics": "ordinary_bounded_angle"
+  },
+  "development_evidence": {
+    "formal_population": false,
+    "model_inference_performed_in_this_freeze_run": false,
+    "source": "/home/agni/waymo/iscai_stage5/artifacts/block52/development_gaussian_posterior.npz",
+    "source_materialization_used_frozen_Stage4_inference": true,
+    "source_sha256": "39dacd4a1dd83ac9951244328403384421731dcffc1cf01617bcc6c6395460b4"
+  },
+  "forbidden": {
+    "formal_tuning": false,
+    "future_GT_heading": false,
+    "future_truth": false,
+    "oracle_angle": false,
+    "tracks_to_predict": false
+  },
+  "heading": {
+    "future_GT_heading": false,
+    "low_speed_fallback": "previous_causal_or_predicted_heading",
+    "low_speed_threshold_mps": 0.25,
+    "source": "samplewise_trajectory_tangent_with_causal_heading_fallback",
+    "threshold_basis": "preregistered_numerical_stability_choice_equivalent_to_2p5cm_displacement_over_0p1s"
+  },
+  "next": "Block5.3_directional_codebooks_and_beam_probabilities",
+  "primary_method": "deterministic_monte_carlo",
+  "receiver_placement": {
+    "centroid_baseline": true,
+    "known_receiver_offset": true,
+    "measurement_R_t": "remains_separate",
+    "trajectory_and_placement_UQ": "jointly_propagated",
+    "uncertain_offset_sampling": "one_body_frame_receiver_offset_draw_shared_across_all_horizons_per_MC_sample",
+    "uncertain_receiver_offset": true
+  },
+  "status": "FROZEN",
+  "trajectory_posterior": {
+    "cross_horizon_covariance_invented": false,
+    "family": "calibrated_Gaussian_GRU",
+    "joint_sampling": "product_of_frozen_calibrated_per_horizon_Gaussian_marginals",
+    "measurement_R_t_modified": false,
+    "predictive_mean_calibration": "unchanged",
+    "variance_scale_alpha_h": [
+      1.2347064500315355,
+      1.3451250295202921,
+      1.354822057728461,
+      1.2829700217319266
+    ]
+  }
+}

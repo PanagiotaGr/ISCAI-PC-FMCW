@@ -1,0 +1,59 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part1_deterministic_future_box.py", line 3967, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part1_deterministic_future_box.py", line 679, in main
+    project_box_to_headlamp(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        probe_box,
+        ^^^^^^^^^^
+    ...<6 lines>...
+        controller_path=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/geometry.py", line 834, in project_box_to_headlamp
+    validate_controller_provenance(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        state_source=state_source,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        orientation_source=orientation_source,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        controller_path=controller_path,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/geometry.py", line 117, in validate_controller_provenance
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Unknown orientation source: predicted_trajectory_tangent
+============================================================
+STAGE 6 — BLOCK 6.3 PART 1/2
+DETERMINISTIC FUTURE FULL-BOX PROJECTION
+============================================================
+
+===== A. FROZEN BINDING SEAL =====
+binding            = EXACT PASS
+binding_freeze     = EXACT PASS
+block62            = EXACT PASS
+association policy  = FROZEN PASS
+shared mean policy  = FROZEN PASS
+future box policy   = FROZEN PASS
+
+===== B. RUNTIME API / PROVENANCE PREFLIGHT =====
+
+============================================================
+BLOCK 6.3 PART 1/2 = BLOCKED
+============================================================
+exception = ValueError Unknown orientation source: predicted_trajectory_tangent
+
+
+new Block6.3 source rollback = NOT REQUIRED
+Block6.2 modified       = NO
+Stage3–5 modified       = NO
+training/inference      = NO
+dataset access          = NO
+formal evaluation       = NO
+parameter tuning        = NO
+terminal remains open   = YES

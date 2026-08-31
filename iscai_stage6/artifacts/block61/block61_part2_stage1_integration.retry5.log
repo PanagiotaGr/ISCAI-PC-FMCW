@@ -1,0 +1,115 @@
+============================================================
+STAGE 6 — BLOCK 6.1 PART 2/2
+FROZEN STAGE1 INTEGRATION + REAL FULL-BOX SMOKE
+============================================================
+
+===== 0. PROJECT SOURCE-PATH BOOTSTRAP =====
+Stage1 source root = /home/agni/waymo/iscai_stage1/src
+Stage6 source root = /home/agni/waymo/iscai_stage6/src
+current-process sys.path = BOOTSTRAPPED
+child PYTHONPATH         = SYNCHRONIZED
+iscai_stage1 import probe= PASS
+iscai_stage6 import probe= PASS
+
+===== A. FROZEN PREREQUISITES =====
+Block6.1 Part1       = EXACT PASS
+Stage1 closure       = PASS_COMPLETE
+H0                   = front_face_midpoint_surrogate
+axes                 = +x forward / +y left / +z up
+future-box dependency= NO
+tracks_to_predict use= NO
+
+===== B. STAGE1 HEADLAMP API / EXTRINSIC AUDIT =====
+HeadlampSurrogateConfig module = iscai_stage1.contracts.stage1a
+default roll                 = 0.0
+default pitch                = 0.0
+yaw-only Stage6 box basis    = COMPATIBLE PASS
+
+===== C. CAUSAL WOMD → FULL BOX H0 ADAPTER =====
+womd_geometry.py = ALREADY_EXACT
+
+===== D. PACKAGE EXPORT CONTRACT =====
+adb/__init__.py = ALREADY_UPDATED
+
+===== E. ADAPTER UNIT TESTS =====
+test file = ALREADY_EXACT
+
+===== F. CONTROLLED COMPILE =====
+adapter/tests compile = PASS
+
+===== G. ONE REAL FROZEN STAGE1 SCENARIO =====
+scenario ID               = b85e1bd6cc8e74c0
+historical source_shard   = /waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00000-of-00150
+historical record offset  = 0
+runtime motion shard      = /home/agni/waymo/data/paired_womd_lidar_v1_3_0/validation/motion/paired-from-validation.tfrecord-00000-of-00150
+compact runtime offset    = 0
+payload length            = 647785
+record access             = VALIDATED STAGE3 RANDOM ACCESS
+historical path role      = PROVENANCE ONLY
+current_time_index        = 10
+
+===== H. REAL STAGE1 H0 → STAGE6 FULL BOX =====
+ADB actor boxes       = 9
+classes               = {'TYPE_VEHICLE': 9}
+Stage1 center agreement= PASS
+Stage1 bearing agreement= PASS
+real full-box corners = 8/8 PER ACTOR PASS
+
+===== I. STRICT CAUSALITY / SELECTION INVARIANCE =====
+tracks_to_predict mutation = INVARIANT PASS
+objects_of_interest mutation= INVARIANT PASS
+future-state mutation       = INVARIANT PASS
+causal geometry SHA256      = 4f4485715479df3a04a986e3bcd16c47f76edabcf51b92dfac5c68073805c1fe
+
+===== J. DIAGNOSTIC-ONLY THETA-R RASTER SMOKE =====
+real actors rasterized = 9
+grid semantics          = DIAGNOSTIC_ONLY
+scientific FOV frozen   = NO
+scientific resolution   = NO
+final grid freeze block = 6.8 PRE-FORMAL
+
+===== K. BLOCK6.1 INTEGRATION CONTRACT =====
+integration contract = WRITTEN
+contract SHA256      = 6904ca04125ad451c3e60c1d5f9546b509b0c6c36c792c46e77c17c03845eee5
+real-scene evidence = WRITTEN
+
+===== L. FULL STAGE6 REGRESSION =====
+Ran 46 tests in 0.023s
+OK
+
+===== M. IMMUTABILITY / STORAGE =====
+Stage1 frozen sources/artifacts = UNCHANGED
+Stage5 closure                 = UNCHANGED
+Block6.0 / Part1 evidence      = UNCHANGED
+free GiB                       = 1054.833
+250-GiB reserve                = PASS
+
+===== N. BLOCK6.1 CLOSURE =====
+Block6.1 closure = WRITTEN
+closure SHA256   = 1d0f8781d365efd09614c8fb5a06bdbda8f56c1c673b0ddab8b40810de270ac1
+
+============================================================
+BLOCK 6.1 PART 2/2 — FINAL
+============================================================
+Stage1 H0 contract          = VERIFIED PASS
+H0 axes                     = +X FORWARD / +Y LEFT / +Z UP
+headlamp extrinsic          = FROZEN STAGE1 BASELINE
+real WOMD scenario          = EXACT RECORD PASS
+real full-box projection    = PASS
+Stage1 center cross-check   = PASS
+Stage1 bearing cross-check  = PASS
+vehicle/ped/cyclist support = PASS
+tracks_to_predict selector  = NO / MUTATION INVARIANT
+objects_of_interest selector= NO / MUTATION INVARIANT
+future-state leakage        = NO / MUTATION INVARIANT
+centroid-only ADB           = FORBIDDEN
+communication codebook      = NOT REUSED
+illumination interface      = THETA-GROUND-RANGE FROZEN
+final grid numerics         = NOT PREMATURELY FROZEN
+final numeric freeze        = BLOCK6.8 PRE-FORMAL
+Stage6 regression           = PASS
+upstream modified           = NO
+training/model inference    = NO
+STATUS = PASS_COMPLETE
+closure = /home/agni/waymo/iscai_stage6/reports/block61_closure.json
+terminal remains open = YES

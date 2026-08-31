@@ -1,0 +1,801 @@
+{
+  "block": "6.8_development_selection_runtime_bind",
+  "conclusion": {
+    "next_selection_stage": "stage_1_class_gamma",
+    "preexisting_selected_numeric_policy": false,
+    "selection_is_still_required": true
+  },
+  "frozen_seals": {
+    "acceptance": "e103466b1a6eb62be4e6746029147cbda9671b05130acba5210a3ab7328e6b81",
+    "final_script": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+    "ni_delta": "a77e548e060c314dd98a7220b0f9ed3aebd5d1978eb70f456b82920e792a29d4",
+    "part3c_closure": "8413fd646a1bf18e15c12bf0441d1ddb1ea72ed142703020ac0d2c77dba0bb29",
+    "part3c_freeze": "880c2efb0895f463aaf3350eed7730389a5871651d7ad6091cef052d95434738",
+    "pocc_manifest": "c361ed640b91850831d7e7177d89733fedd3e171f5f3111bcd93698c74a4a300",
+    "predictive_matches": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6",
+    "prereg": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e",
+    "replay_contract": "ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1",
+    "timestamp": "51a3b56a119467001a9f4617e1e19dc82c548c0a30c79fc9c4a9c1f5ef27bf56"
+  },
+  "next": "execute preregistered development-only Stage-1 class-gamma selection using P_occ counts and constructed future full-box reference; freeze k_vehicle, k_pedestrian, k_cyclist before Stage-2",
+  "operator_argument_assignments": [
+    {
+      "expression": "8192",
+      "line": 191,
+      "variable": "N_MC"
+    },
+    {
+      "expression": "np.asarray([0.1, 0.3, 0.5, 1.0], dtype=np.float64)",
+      "line": 194,
+      "variable": "HORIZONS_S"
+    },
+    {
+      "expression": "np.linspace(0.0, 150.0, 301, dtype=np.float64)",
+      "line": 213,
+      "variable": "RANGE_CENTERS_M"
+    },
+    {
+      "expression": "float(THETA_CENTERS_RAD[1] - THETA_CENTERS_RAD[0])",
+      "line": 220,
+      "variable": "THETA_STEP_RAD"
+    },
+    {
+      "expression": "line.strip()",
+      "line": 399,
+      "variable": "value"
+    },
+    {
+      "expression": "np.ascontiguousarray(np.asarray(array))",
+      "line": 426,
+      "variable": "value"
+    },
+    {
+      "expression": "posterior_index[scenario_id, prediction_id]",
+      "line": 2226,
+      "variable": "posterior"
+    },
+    {
+      "expression": "{'gamma_k': 0, 'base_margin_m': 0.0, 'uncertainty_multiplier': 0.5, 'vehicle_motion_multiplier': 0.05, 'cyclist_motion_multiplier': 0.25, 'vehicle_floor': 0.0, 'pedestrian_floor': 0.05, 'cyclist_floor': 0.05, 'smoothing_time_constant_s': 0.05, 'rho_dim_per_s': 1.0, 'rho_bright_per_s': 1.0, 'selection_status': 'NOT_SELECTED_STRUCTURAL_SMOKE_ONLY'}",
+      "line": 2944,
+      "variable": "smoke_tuple"
+    },
+    {
+      "expression": "posterior_index[scenario_id, prediction_id]",
+      "line": 3028,
+      "variable": "posterior"
+    },
+    {
+      "expression": "np.load(Path(manifest['occupancy_counts_path']), allow_pickle=False, mmap_mode='r')",
+      "line": 3045,
+      "variable": "counts"
+    },
+    {
+      "expression": "threshold_occupancy_counts_strict_k(counts, k=smoke_tuple['gamma_k'], sample_count=N_MC)",
+      "line": 3055,
+      "variable": "binary"
+    },
+    {
+      "expression": "smoke_tuple['vehicle_motion_multiplier']",
+      "line": 3072,
+      "variable": "motion_multiplier"
+    },
+    {
+      "expression": "smoke_tuple['vehicle_floor']",
+      "line": 3078,
+      "variable": "intensity_floor"
+    },
+    {
+      "expression": "smoke_tuple['cyclist_motion_multiplier']",
+      "line": 3085,
+      "variable": "motion_multiplier"
+    },
+    {
+      "expression": "smoke_tuple['cyclist_floor']",
+      "line": 3091,
+      "variable": "intensity_floor"
+    },
+    {
+      "expression": "0.0",
+      "line": 3098,
+      "variable": "motion_multiplier"
+    },
+    {
+      "expression": "smoke_tuple['pedestrian_floor']",
+      "line": 3100,
+      "variable": "intensity_floor"
+    },
+    {
+      "expression": "compute_class_aware_margin(actor_class, current_position_H0_m=posterior['latest_position_H0_m'], mean_displacement_H0_m=posterior['mean_displacement_H0_m'][h], covariance_H0_m2=posterior['calibrated_predictive_covariance_H0_m2'][h], horizon_s=float(tau), base_margin_m=smoke_tuple['base_margin_m'], uncertainty_multiplier=smoke_tuple['uncertainty_multiplier'], motion_multiplier=motion_multiplier)",
+      "line": 3109,
+      "variable": "margin"
+    },
+    {
+      "expression": "angular_margin_cells(total_margin_m=margin['total_lateral_margin_m'] if isinstance(margin, dict) else margin.total_lateral_margin_m, predicted_range_m=margin['predicted_range_m'] if isinstance(margin, dict) else margin.predicted_range_m, theta_step_rad=THETA_STEP_RAD)",
+      "line": 3138,
+      "variable": "cells"
+    },
+    {
+      "expression": "np.stack(per_horizon_masks, axis=0)",
+      "line": 3220,
+      "variable": "dilated"
+    },
+    {
+      "expression": "{actor_class: illumination}",
+      "line": 3237,
+      "variable": "class_illumination"
+    },
+    {
+      "expression": "{actor_class: dilated}",
+      "line": 3246,
+      "variable": "active_masks"
+    },
+    {
+      "expression": "{actor_class: float(intensity_floor)}",
+      "line": 3251,
+      "variable": "floors"
+    },
+    {
+      "expression": "{}",
+      "line": 3259,
+      "variable": "active_masks"
+    },
+    {
+      "expression": "{}",
+      "line": 3260,
+      "variable": "floors"
+    },
+    {
+      "expression": "composition['raw_class_aware_illumination'] if isinstance(composition, dict) else composition.raw_class_aware_illumination",
+      "line": 3275,
+      "variable": "raw"
+    },
+    {
+      "expression": "composition['vru_floor_guard'] if isinstance(composition, dict) else composition.vru_floor_guard",
+      "line": 3287,
+      "variable": "vru_guard"
+    },
+    {
+      "expression": "np.ones((501, 301), dtype=np.float64)",
+      "line": 3302,
+      "variable": "current_illumination"
+    },
+    {
+      "expression": "temporal_smooth_schedule(raw, current_illumination=current_illumination, horizons_s=tuple((float(value) for value in HORIZONS_S)), time_constant_s=smoke_tuple['smoothing_time_constant_s'])",
+      "line": 3310,
+      "variable": "smoothed"
+    }
+  ],
+  "part3c_closure_relevant": [
+    {
+      "path": "PartA_continuity.generic_lateral_margin",
+      "value": "PRESERVED"
+    },
+    {
+      "path": "PartA_continuity.generic_radial_margin",
+      "value": "PRESERVED"
+    },
+    {
+      "path": "deterministic_replay.PRNG_deterministic_replay_executed",
+      "value": true
+    },
+    {
+      "path": "deterministic_replay.contract_path",
+      "value": "/home/agni/waymo/iscai_stage6/configs/block66_part3c_part2of2_deterministic_replay_contract.json"
+    },
+    {
+      "path": "deterministic_replay.contract_sha256",
+      "value": "ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1"
+    },
+    {
+      "path": "deterministic_replay.full_box_exact_parity",
+      "value": "PASS_719_OF_719"
+    },
+    {
+      "path": "deterministic_replay.new_random_seed",
+      "value": false
+    },
+    {
+      "path": "deterministic_replay.new_stochastic_realization",
+      "value": false
+    },
+    {
+      "path": "deterministic_replay.replayed_this_run",
+      "value": 719
+    },
+    {
+      "path": "deterministic_replay.reused_from_resumable_cache",
+      "value": 0
+    },
+    {
+      "path": "deterministic_replay.same_seed_per_actor",
+      "value": true
+    },
+    {
+      "path": "deterministic_replay.sample_count_per_actor",
+      "value": 8192
+    },
+    {
+      "path": "deterministic_replay.seed",
+      "value": 20260821
+    },
+    {
+      "path": "deterministic_replay.tolerance",
+      "value": null
+    },
+    {
+      "path": "deterministic_replay.vehicles",
+      "value": 719
+    },
+    {
+      "path": "integration_smoke.formal_outcomes_read",
+      "value": false
+    },
+    {
+      "path": "integration_smoke.numeric_policy_selected",
+      "value": false
+    },
+    {
+      "path": "integration_smoke.results[0].active_cells_after_margin",
+      "value": 29212
+    },
+    {
+      "path": "integration_smoke.results[0].active_cells_before_margin",
+      "value": 23029
+    },
+    {
+      "path": "integration_smoke.results[0].margin[0].additional_margin_m",
+      "value": 0.36685084841369864
+    },
+    {
+      "path": "integration_smoke.results[0].margin[0].dilation_cells",
+      "value": 29
+    },
+    {
+      "path": "integration_smoke.results[0].margin[0].horizon_s",
+      "value": 0.1
+    },
+    {
+      "path": "integration_smoke.results[0].margin[0].total_margin_m",
+      "value": 1.3668508484136987
+    },
+    {
+      "path": "integration_smoke.results[0].margin[1].additional_margin_m",
+      "value": 0.47324462842014725
+    },
+    {
+      "path": "integration_smoke.results[0].margin[1].dilation_cells",
+      "value": 29
+    },
+    {
+      "path": "integration_smoke.results[0].margin[1].horizon_s",
+      "value": 0.3
+    },
+    {
+      "path": "integration_smoke.results[0].margin[1].total_margin_m",
+      "value": 1.4732446284201473
+    },
+    {
+      "path": "integration_smoke.results[0].margin[2].additional_margin_m",
+      "value": 0.6003596645944657
+    },
+    {
+      "path": "integration_smoke.results[0].margin[2].dilation_cells",
+      "value": 29
+    },
+    {
+      "path": "integration_smoke.results[0].margin[2].horizon_s",
+      "value": 0.5
+    },
+    {
+      "path": "integration_smoke.results[0].margin[2].total_margin_m",
+      "value": 1.6003596645944658
+    },
+    {
+      "path": "integration_smoke.results[0].margin[3].additional_margin_m",
+      "value": 0.899633746530175
+    },
+    {
+      "path": "integration_smoke.results[0].margin[3].dilation_cells",
+      "value": 29
+    },
+    {
+      "path": "integration_smoke.results[0].margin[3].horizon_s",
+      "value": 1.0
+    },
+    {
+      "path": "integration_smoke.results[0].margin[3].total_margin_m",
+      "value": 1.8996337465301751
+    },
+    {
+      "path": "integration_smoke.results[0].rate_limit_safety_override_fraction",
+      "value": 0.0
+    },
+    {
+      "path": "integration_smoke.results[1].active_cells_after_margin",
+      "value": 2546
+    },
+    {
+      "path": "integration_smoke.results[1].active_cells_before_margin",
+      "value": 1648
+    },
+    {
+      "path": "integration_smoke.results[1].margin[0].additional_margin_m",
+      "value": 0.31185064284323866
+    },
+    {
+      "path": "integration_smoke.results[1].margin[0].dilation_cells",
+      "value": 11
+    },
+    {
+      "path": "integration_smoke.results[1].margin[0].horizon_s",
+      "value": 0.1
+    },
+    {
+      "path": "integration_smoke.results[1].margin[0].total_margin_m",
+      "value": 1.3118506428432386
+    },
+    {
+      "path": "integration_smoke.results[1].margin[1].additional_margin_m",
+      "value": 0.3453228854355918
+    },
+    {
+      "path": "integration_smoke.results[1].margin[1].dilation_cells",
+      "value": 11
+    },
+    {
+      "path": "integration_smoke.results[1].margin[1].horizon_s",
+      "value": 0.3
+    },
+    {
+      "path": "integration_smoke.results[1].margin[1].total_margin_m",
+      "value": 1.3453228854355919
+    },
+    {
+      "path": "integration_smoke.results[1].margin[2].additional_margin_m",
+      "value": 0.37969071663033543
+    },
+    {
+      "path": "integration_smoke.results[1].margin[2].dilation_cells",
+      "value": 12
+    },
+    {
+      "path": "integration_smoke.results[1].margin[2].horizon_s",
+      "value": 0.5
+    },
+    {
+      "path": "integration_smoke.results[1].margin[2].total_margin_m",
+      "value": 1.3796907166303354
+    },
+    {
+      "path": "integration_smoke.results[1].margin[3].additional_margin_m",
+      "value": 0.5058511451794291
+    },
+    {
+      "path": "integration_smoke.results[1].margin[3].dilation_cells",
+      "value": 13
+    },
+    {
+      "path": "integration_smoke.results[1].margin[3].horizon_s",
+      "value": 1.0
+    },
+    {
+      "path": "integration_smoke.results[1].margin[3].total_margin_m",
+      "value": 1.5058511451794292
+    },
+    {
+      "path": "integration_smoke.results[1].rate_limit_safety_override_fraction",
+      "value": 0.0
+    },
+    {
+      "path": "integration_smoke.results[2].active_cells_after_margin",
+      "value": 14727
+    },
+    {
+      "path": "integration_smoke.results[2].active_cells_before_margin",
+      "value": 9581
+    },
+    {
+      "path": "integration_smoke.results[2].margin[0].additional_margin_m",
+      "value": 0.45468369949315823
+    },
+    {
+      "path": "integration_smoke.results[2].margin[0].dilation_cells",
+      "value": 21
+    },
+    {
+      "path": "integration_smoke.results[2].margin[0].horizon_s",
+      "value": 0.1
+    },
+    {
+      "path": "integration_smoke.results[2].margin[0].total_margin_m",
+      "value": 1.4546836994931582
+    },
+    {
+      "path": "integration_smoke.results[2].margin[1].additional_margin_m",
+      "value": 0.5427117427524912
+    },
+    {
+      "path": "integration_smoke.results[2].margin[1].dilation_cells",
+      "value": 23
+    },
+    {
+      "path": "integration_smoke.results[2].margin[1].horizon_s",
+      "value": 0.3
+    },
+    {
+      "path": "integration_smoke.results[2].margin[1].total_margin_m",
+      "value": 1.5427117427524912
+    },
+    {
+      "path": "integration_smoke.results[2].margin[2].additional_margin_m",
+      "value": 0.6350353119889571
+    },
+    {
+      "path": "integration_smoke.results[2].margin[2].dilation_cells",
+      "value": 24
+    },
+    {
+      "path": "integration_smoke.results[2].margin[2].horizon_s",
+      "value": 0.5
+    },
+    {
+      "path": "integration_smoke.results[2].margin[2].total_margin_m",
+      "value": 1.6350353119889571
+    },
+    {
+      "path": "integration_smoke.results[2].margin[3].additional_margin_m",
+      "value": 0.8693834022671043
+    },
+    {
+      "path": "integration_smoke.results[2].margin[3].dilation_cells",
+      "value": 28
+    },
+    {
+      "path": "integration_smoke.results[2].margin[3].horizon_s",
+      "value": 1.0
+    },
+    {
+      "path": "integration_smoke.results[2].margin[3].total_margin_m",
+      "value": 1.8693834022671043
+    },
+    {
+      "path": "integration_smoke.results[2].rate_limit_safety_override_fraction",
+      "value": 0.0
+    },
+    {
+      "path": "integration_smoke.tuple.base_margin_m",
+      "value": 0.0
+    },
+    {
+      "path": "integration_smoke.tuple.cyclist_floor",
+      "value": 0.05
+    },
+    {
+      "path": "integration_smoke.tuple.gamma_k",
+      "value": 0
+    },
+    {
+      "path": "integration_smoke.tuple.pedestrian_floor",
+      "value": 0.05
+    },
+    {
+      "path": "integration_smoke.tuple.rho_bright_per_s",
+      "value": 1.0
+    },
+    {
+      "path": "integration_smoke.tuple.rho_dim_per_s",
+      "value": 1.0
+    },
+    {
+      "path": "integration_smoke.tuple.selection_status",
+      "value": "NOT_SELECTED_STRUCTURAL_SMOKE_ONLY"
+    },
+    {
+      "path": "integration_smoke.tuple.smoothing_time_constant_s",
+      "value": 0.05
+    },
+    {
+      "path": "integration_smoke.tuple.vehicle_floor",
+      "value": 0.0
+    },
+    {
+      "path": "scientific_boundary.formal_outcomes_read",
+      "value": false
+    },
+    {
+      "path": "scientific_boundary.formal_tuning",
+      "value": false
+    },
+    {
+      "path": "scientific_boundary.numeric_policy_selected",
+      "value": false
+    },
+    {
+      "path": "scientific_boundary.objects_of_interest_selection",
+      "value": false
+    },
+    {
+      "path": "scientific_boundary.policy_parameter_sweep_executed",
+      "value": false
+    },
+    {
+      "path": "scientific_boundary.tracks_to_predict_selection",
+      "value": false
+    },
+    {
+      "path": "vehicle_surrogate_evidence.controller_primary_occupancy",
+      "value": "full-box P_occ"
+    },
+    {
+      "path": "vehicle_surrogate_evidence.dense_samplewise_arrays_persisted",
+      "value": false
+    },
+    {
+      "path": "vehicle_surrogate_evidence.samplewise_projection_hash_per_actor",
+      "value": true
+    }
+  ],
+  "part3c_final_operator_calls": [
+    {
+      "containing_function": null,
+      "end_line": 3062,
+      "function": "threshold_occupancy_counts_strict_k",
+      "keywords": {
+        "k": "smoke_tuple['gamma_k']",
+        "sample_count": "N_MC"
+      },
+      "line": 3056,
+      "positional": [
+        "counts"
+      ]
+    },
+    {
+      "containing_function": null,
+      "end_line": 3136,
+      "function": "compute_class_aware_margin",
+      "keywords": {
+        "base_margin_m": "smoke_tuple['base_margin_m']",
+        "covariance_H0_m2": "posterior['calibrated_predictive_covariance_H0_m2'][h]",
+        "current_position_H0_m": "posterior['latest_position_H0_m']",
+        "horizon_s": "float(tau)",
+        "mean_displacement_H0_m": "posterior['mean_displacement_H0_m'][h]",
+        "motion_multiplier": "motion_multiplier",
+        "uncertainty_multiplier": "smoke_tuple['uncertainty_multiplier']"
+      },
+      "line": 3109,
+      "positional": [
+        "actor_class"
+      ]
+    },
+    {
+      "containing_function": null,
+      "end_line": 3163,
+      "function": "angular_margin_cells",
+      "keywords": {
+        "predicted_range_m": "margin['predicted_range_m'] if isinstance(margin, dict) else margin.predicted_range_m",
+        "theta_step_rad": "THETA_STEP_RAD",
+        "total_margin_m": "margin['total_lateral_margin_m'] if isinstance(margin, dict) else margin.total_lateral_margin_m"
+      },
+      "line": 3138,
+      "positional": []
+    },
+    {
+      "containing_function": null,
+      "end_line": 3217,
+      "function": "dilate_mask_theta",
+      "keywords": {
+        "dilation_cells": "int(cells)"
+      },
+      "line": 3208,
+      "positional": [
+        "np.asarray(binary[h:h + 1], dtype=bool)"
+      ]
+    },
+    {
+      "containing_function": null,
+      "end_line": 3234,
+      "function": "predictive_mask_to_illumination",
+      "keywords": {
+        "intensity_floor": "float(intensity_floor)",
+        "range_centers_m": "RANGE_CENTERS_M"
+      },
+      "line": 3226,
+      "positional": [
+        "dilated"
+      ]
+    },
+    {
+      "containing_function": null,
+      "end_line": 3272,
+      "function": "compose_class_aware_illumination",
+      "keywords": {
+        "class_active_masks": "active_masks",
+        "class_floors": "floors",
+        "class_illumination": "class_illumination"
+      },
+      "line": 3263,
+      "positional": []
+    },
+    {
+      "containing_function": null,
+      "end_line": 3324,
+      "function": "temporal_smooth_schedule",
+      "keywords": {
+        "current_illumination": "current_illumination",
+        "horizons_s": "tuple((float(value) for value in HORIZONS_S))",
+        "time_constant_s": "smoke_tuple['smoothing_time_constant_s']"
+      },
+      "line": 3310,
+      "positional": [
+        "raw"
+      ]
+    },
+    {
+      "containing_function": null,
+      "end_line": 3347,
+      "function": "apply_actuation_rate_limit",
+      "keywords": {
+        "current_illumination": "current_illumination",
+        "horizons_s": "tuple((float(value) for value in HORIZONS_S))",
+        "rho_bright_per_s": "smoke_tuple['rho_bright_per_s']",
+        "rho_dim_per_s": "smoke_tuple['rho_dim_per_s']",
+        "vru_floor_guard": "vru_guard"
+      },
+      "line": 3327,
+      "positional": [
+        "smoothed"
+      ]
+    }
+  ],
+  "pocc_manifest_schema": [
+    "actor_box_index",
+    "actor_rank",
+    "cohort_index",
+    "object_type",
+    "occupancy_counts_path",
+    "occupancy_counts_sha256",
+    "prediction_id",
+    "sample_count",
+    "scenario_id",
+    "seed",
+    "summary",
+    "summary.has_any_support",
+    "summary.maximum_count_by_horizon",
+    "summary.maximum_count_by_horizon[]",
+    "summary.maximum_probability_by_horizon",
+    "summary.maximum_probability_by_horizon[]",
+    "summary.nonzero_cells_by_horizon",
+    "summary.nonzero_cells_by_horizon[]",
+    "summary.occupancy_count_mass_by_horizon",
+    "summary.occupancy_count_mass_by_horizon[]",
+    "summary.occupancy_probability_mass_by_horizon",
+    "summary.occupancy_probability_mass_by_horizon[]"
+  ],
+  "predictive_match_schema": [
+    "actor_box_index",
+    "association_anchor_distance_m",
+    "centroid_only",
+    "cohort_index",
+    "current_box_H0",
+    "current_box_H0.center_xyz_H0_m",
+    "current_box_H0.center_xyz_H0_m[]",
+    "current_box_H0.height_m",
+    "current_box_H0.length_m",
+    "current_box_H0.width_m",
+    "current_box_H0.yaw_rad",
+    "current_headlamp_eligible",
+    "eligibility_geometry",
+    "eligibility_time",
+    "future_used_for_eligibility",
+    "maximum_range_m",
+    "object_type",
+    "objects_of_interest_used",
+    "posterior_key",
+    "posterior_key.prediction_id",
+    "posterior_key.scenario_id",
+    "posterior_sha_source",
+    "prediction_id",
+    "route",
+    "scenario_id",
+    "theta_domain_deg",
+    "theta_domain_deg[]",
+    "tracks_to_predict_used"
+  ],
+  "regression": 224,
+  "replay_contract_relevant": [
+    {
+      "path": "frozen_random_route.occupancy_kernel_sha256",
+      "value": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e"
+    },
+    {
+      "path": "frozen_random_route.sampler",
+      "value": "exact frozen product-of-horizon Gaussian sampler / PCG64 route"
+    },
+    {
+      "path": "persistence.dense_samplewise_arrays_persisted",
+      "value": false
+    },
+    {
+      "path": "replay_population.all_classes_replayed",
+      "value": false
+    },
+    {
+      "path": "replay_population.eligible_predictive_vehicles",
+      "value": 719
+    },
+    {
+      "path": "replay_population.vehicle_only_reason",
+      "value": "geometry-based front-upper/rear-upper surrogate requirement is vehicle-specific"
+    },
+    {
+      "path": "scientific_boundaries.formal_outcomes_read",
+      "value": false
+    },
+    {
+      "path": "scientific_boundaries.numeric_policy_selection",
+      "value": false
+    },
+    {
+      "path": "scientific_boundaries.policy_sweep",
+      "value": false
+    },
+    {
+      "path": "upstream.numeric_freeze.path",
+      "value": "/home/agni/waymo/iscai_stage6/configs/block64_mc_grid_numeric_freeze.json"
+    },
+    {
+      "path": "upstream.numeric_freeze.sha256",
+      "value": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73"
+    },
+    {
+      "path": "upstream.occupancy_module.path",
+      "value": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_occupancy.py"
+    },
+    {
+      "path": "upstream.occupancy_module.sha256",
+      "value": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e"
+    },
+    {
+      "path": "vehicle_surrogate_semantics.controller_primary_occupancy_remains",
+      "value": "full-box P_occ"
+    }
+  ],
+  "scientific_boundary": {
+    "P_occ_arrays_opened": false,
+    "formal_evaluation": false,
+    "future_oracle_metrics_computed": false,
+    "gamma_sweep_executed": false,
+    "numeric_policy_selected": false,
+    "predictive_performance_computed": false
+  },
+  "stage": 6,
+  "stage1_gamma_protocol": {
+    "held_fixed": "no additional class margin; floor not yet selected; no temporal/rate tuning",
+    "objective": "maximize macro mean per-actor/per-horizon full-box mask IoU against constructed development future reference",
+    "tie_break": {
+      "TYPE_CYCLIST": "larger k first (less unnecessary dimming)",
+      "TYPE_PEDESTRIAN": "larger k first (less unnecessary dimming)",
+      "TYPE_VEHICLE": "smaller k first (more protective threshold)"
+    },
+    "vary": "k_c only"
+  },
+  "status": "PASS_DEVELOPMENT_SELECTION_RUNTIME_BOUND",
+  "threshold_parameterization": {
+    "candidate_rule": {
+      "candidates_per_class": 8192,
+      "k_max": 8191,
+      "k_min": 0,
+      "representation": "exact integer occupancy quantum",
+      "step": 1
+    },
+    "equation": "M_i,tau(theta,r) = 1[count_i,tau(theta,r) > k_c]",
+    "equivalent_gamma": "gamma_c = k_c / 8192",
+    "independent_classes": [
+      "TYPE_VEHICLE",
+      "TYPE_PEDESTRIAN",
+      "TYPE_CYCLIST"
+    ],
+    "no_float_grid_search": true,
+    "strict_comparison": ">"
+  }
+}

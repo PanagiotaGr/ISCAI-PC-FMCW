@@ -1,0 +1,52 @@
+{
+  "Part1": {
+    "Stage6_contract": "/home/agni/waymo/iscai_stage6/configs/stage6_contract.json",
+    "Stage6_contract_sha256": "6b2ee6454f876c3658d4d308b827202cd31dd7c77bf96c38e6c6da70e6573675",
+    "report": "/home/agni/waymo/iscai_stage6/reports/block60_part1_handoff_contract.json",
+    "report_sha256": "4a1adbc757d39fdf1e25d76fe3ec48cda49fcebe37c2d257814671d9633339bd",
+    "status": "PASS_CONTRACT_FROZEN"
+  },
+  "Part2": {
+    "Part_A_ADB_source_audit": "/home/agni/waymo/iscai_stage6/artifacts/block60/part_a_adb_source_audit.json",
+    "Part_A_ADB_source_audit_sha256": "5b3b8aacaa6c8947c6d9d57264a908994a6a8d3193179a75bcd4f6b4697b0e64",
+    "reactive_adapter_contract": "/home/agni/waymo/iscai_stage6/configs/part_a_reactive_adb_adapter_contract.json",
+    "reactive_adapter_contract_sha256": "d552e9d766ec356fbf57079a647a7b3c5e882a6e153c8b9e5f06c8b207539e4c"
+  },
+  "block": "6.0",
+  "frozen_scientific_contract": {
+    "Part_A_and_paper_provenance_distinguished": true,
+    "Part_A_angular_shadow_semantics_preserved": true,
+    "Part_A_basic_L_theta_r_preserved": true,
+    "Part_A_radial_threshold_semantics_preserved": true,
+    "Part_A_raised_cosine_preserved": true,
+    "Stage6_predictive_change": "current deterministic region -> future probabilistic region",
+    "multiple_actor_intensity_combination_preserved": true,
+    "reactive_baseline_is_current_state_only": true,
+    "whole_ADB_model_arbitrarily_replaced": false
+  },
+  "next": "Block6.1: illumination-space definition and full future-box projection into headlamp angle-range geometry",
+  "project": "Agni",
+  "regression": {
+    "Block6_0_tests": "PASS"
+  },
+  "scientific_execution": {
+    "Part_A_notebook_rerun": false,
+    "formal_evaluation": false,
+    "inference": false,
+    "parameter_tuning": false,
+    "predictive_ADB_implementation_started": false,
+    "reactive_adapter_implementation_started": false,
+    "training": false
+  },
+  "stage": 6,
+  "status": "PASS_COMPLETE",
+  "upstream": {
+    "Part_A_git_commit": "44d62e3478e3818d1757b00971890f844cb032f7",
+    "Part_A_reference_sha256": "fcdfc0a7b9c14fa9447ceb8563a6f20ac277706223388dc9aa8a1edf416c5e2b",
+    "Stage5_closure_sha256": "c83731948749f3ca20742aaac6b7474f53c755cbc8209dd31db969d229f60610",
+    "Stage5_freeze_sha256": "af9612205f190a04d9da565a98a0449f4ed98f53027b6f971b8457f73bd70913",
+    "Stage5_handoff_sha256": "c900ccbd63e7c680af28ed5cd8046f408463eceb7ce943b324b266dda73500eb",
+    "Stage5_status": "COMPLETE_FROZEN"
+  },
+  "upstream_modified": false
+}

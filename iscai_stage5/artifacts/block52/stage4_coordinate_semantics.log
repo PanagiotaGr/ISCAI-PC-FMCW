@@ -1,0 +1,2062 @@
+============================================================
+BLOCK 5.2 — COORDINATE SEMANTICS SAFE CONTROLLER
+============================================================
+compile = PASS
+============================================================
+BLOCK 5.2 — STAGE4 PREDICTION-COORDINATE SEMANTIC AUDIT
+============================================================
+model forward pass    = NO
+formal N=120 read     = NO
+dataset scan          = NO
+training/recalibration= NO
+upstream modification = NO
+
+============================================================
+A. FROZEN BLOCK4.3 NORMALIZATION
+============================================================
+path = /home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json
+SHA256 = 3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6
+{
+  "calibration_used": false,
+  "continuous_feature_mean": [
+    -0.4892875943158473,
+    1.6509485615199415,
+    -0.2966244902042905,
+    0.837157244279352,
+    -0.039076888601007144,
+    -0.0033103295693422186,
+    0.6699312829489187,
+    -0.0031701553213251054,
+    7.0476648252687865e-06,
+    0.8388677714738461,
+    -1.9899908831105273e-05,
+    1.423362226694129
+  ],
+  "continuous_feature_std": [
+    32.95467400300616,
+    28.232856905864434,
+    2.092118871268435,
+    32.77884439232807,
+    33.02806448288359,
+    12.953189350576718,
+    3.078435466749296,
+    1.7695341317061122,
+    0.6827917993801238,
+    3.5440528033651892,
+    0.6069358070484366,
+    5.226704468878048
+  ],
+  "development_used": false,
+  "label_displacement_mean": [
+    [
+      0.13007088691299454,
+      -0.009454513690765774,
+      -0.00595621884818416
+    ],
+    [
+      0.25189157920308564,
+      -0.018269621280981006,
+      -0.006957900924953559
+    ],
+    [
+      0.3840395248758152,
+      -0.025380008056422685,
+      -0.006908590412966617
+    ],
+    [
+      0.764490583785491,
+      -0.05333015817784657,
+      -0.005716003541891749
+    ]
+  ],
+  "label_displacement_std": [
+    [
+      2.108129758471249,
+      1.1766709642960933,
+      1.0521182396038433
+    ],
+    [
+      2.946966166360802,
+      1.5178348778080983,
+      1.0457358748923975
+    ],
+    [
+      3.8658635164507253,
+      1.9127738858677783,
+      1.0431715804152502
+    ],
+    [
+      6.287019686024694,
+      3.0053620147764994,
+      1.0333035957932626
+    ]
+  ],
+  "label_valid_count_per_horizon": [
+    112831,
+    110346,
+    108416,
+    103886
+  ],
+  "map_mean": [
+    5.324304655891342,
+    2292.8533671000646,
+    26.639824675634244,
+    910.2583416009608,
+    6.589249199198382,
+    852.650122708997,
+    71.1632610286267,
+    8.355838685534263,
+    271.9592346084822,
+    0.524942126607836
+  ],
+  "map_std": [
+    8.248965696695901,
+    1215.5631521569821,
+    111.6788265399522,
+    612.667750179903,
+    7.239576547186826,
+    319.5408453983796,
+    185.77684649770194,
+    7.6010361927712,
+    380.61011018789054,
+    1.0891741110788282
+  ],
+  "missing_history_rows_in_statistics": false,
+  "observed_history_row_count": 4425389,
+  "padded_neighbor_slots_in_statistics": false,
+  "sample_count": 114906,
+  "sha256": "70b2f5c194167423996ec5b4d3c05c1d0e3eaf98b5e96feb509feaca8f172487",
+  "source": "fit_only",
+  "validation_used": false
+}
+
+============================================================
+B. TOP STAGE4 FUTURE/CACHE/NORMALIZATION SOURCE ROUTES
+============================================================
+relevant source files = 82
+
+FILE = iscai_stage4/scripts/run_block43_deterministic_training.py
+score = 190
+tokens = ['development_cache.npz', 'fit_cache.npz', 'fit_normalization', 'label_mean', 'label_std', 'future', 'future_mask', 'displacement', 'relative', 'h0']
+
+--- window 1: L1-L9 ---
+    1: from __future__ import annotations
+    2: 
+    3: from collections import Counter
+    4: from hashlib import sha256
+    5: import json
+    6: import math
+    7: import os
+    8: from pathlib import Path
+    9: import shutil
+
+--- window 2: L28-L44 ---
+   28:     CLASS_CYCLIST,
+   29:     CLASS_ID_TO_NAME,
+   30:     CLASS_OTHER,
+   31:     CLASS_PEDESTRIAN,
+   32:     CLASS_VEHICLE,
+   33:     DeterministicTrajectoryGRU,
+   34:     actor_class_id,
+   35:     balanced_class_weights,
+   36:     compute_fit_normalization,
+   37:     masked_mse_loss,
+   38:     set_global_determinism,
+   39: )
+   40: 
+   41: 
+   42: ROOT = Path(
+   43:     "/home/agni/waymo"
+   44: )
+
+--- window 3: L88-L122 ---
+   88:     STAGE4
+   89:     / "artifacts/block43/"
+   90:       "cache"
+   91: )
+   92: 
+   93: FIT_CACHE = (
+   94:     STAGE4
+   95:     / "artifacts/block43/"
+   96:       "fit_cache.npz"
+   97: )
+   98: 
+   99: DEV_CACHE = (
+  100:     STAGE4
+  101:     / "artifacts/block43/"
+  102:       "development_cache.npz"
+  103: )
+  104: 
+  105: CACHE_REPORT = (
+  106:     STAGE4
+  107:     / "artifacts/block43/"
+  108:       "cache_manifest.json"
+  109: )
+  110: 
+  111: NORMALIZATION = (
+  112:     STAGE4
+  113:     / "artifacts/block43/"
+  114:       "fit_normalization.json"
+  115: )
+  116: 
+  117: CHECKPOINT = (
+  118:     STAGE4
+  119:     / "artifacts/block43/"
+  120:       "deterministic_gru.pt"
+  121: )
+  122: 
+
+--- window 4: L153-L170 ---
+  153: 
+  154: MIN_FREE_GIB = 250.0
+  155: 
+  156: ARRAY_KEYS = (
+  157:     "target",
+  158:     "neighbors",
+  159:     "neighbor_mask",
+  160:     "map_context",
+  161:     "future",
+  162:     "future_mask",
+  163:     "class_id",
+  164: )
+  165: 
+  166: 
+  167: def file_sha256(
+  168:     path: Path,
+  169: ) -> str:
+  170:     digest = sha256()
+
+--- window 5: L374-L400 ---
+  374:             np.zeros(
+  375:                 (
+  376:                     0,
+  377:                     10,
+  378:                 ),
+  379:                 dtype=np.float32,
+  380:             ),
+  381: 
+  382:         "future":
+  383:             np.zeros(
+  384:                 (
+  385:                     0,
+  386:                     4,
+  387:                     3,
+  388:                 ),
+  389:                 dtype=np.float32,
+  390:             ),
+  391: 
+  392:         "future_mask":
+  393:             np.zeros(
+  394:                 (
+  395:                     0,
+  396:                     4,
+  397:                 ),
+  398:                 dtype=np.float32,
+  399:             ),
+  400: 
+
+--- window 6: L449-L478 ---
+  449:             sample
+  450:             .model_input
+  451:             .map_context
+  452:             for sample in samples
+  453:         ],
+  454:         dtype=np.float32,
+  455:     )
+  456: 
+  457:     future = np.asarray(
+  458:         [
+  459:             sample
+  460:             .future_label
+  461:             .positions_H0_m
+  462:             for sample in samples
+  463:         ],
+  464:         dtype=np.float32,
+  465:     )
+  466: 
+  467:     future_mask = np.asarray(
+  468:         [
+  469:             sample
+  470:             .future_label
+  471:             .valid_mask
+  472:             for sample in samples
+  473:         ],
+  474:         dtype=np.float32,
+  475:     )
+  476: 
+  477:     class_id = np.asarray(
+  478:         [
+
+--- window 7: L492-L512 ---
+  492:             neighbors,
+  493: 
+  494:         "neighbor_mask":
+  495:             neighbor_mask,
+  496: 
+  497:         "map_context":
+  498:             map_context,
+  499: 
+  500:         "future":
+  501:             future,
+  502: 
+  503:         "future_mask":
+  504:             future_mask,
+  505: 
+  506:         "class_id":
+  507:             class_id,
+  508:     }
+  509: 
+  510:     validate_arrays(
+  511:         result
+  512:     )
+
+--- window 8: L557-L580 ---
+  557:             ),
+  558: 
+  559:         "map_context":
+  560:             (
+  561:                 n,
+  562:                 10,
+  563:             ),
+  564: 
+  565:         "future":
+  566:             (
+  567:                 n,
+  568:                 4,
+  569:                 3,
+  570:             ),
+  571: 
+  572:         "future_mask":
+  573:             (
+  574:                 n,
+  575:                 4,
+  576:             ),
+  577: 
+  578:         "class_id":
+  579:             (
+  580:                 n,
+
+FILE = iscai_stage4/scripts/run_block43_deterministic_gru_gate.py
+score = 148
+tokens = ['fit_normalization', 'label_mean', 'label_std', 'future', 'displacement', 'relative', 'anchor', 'target position', 'h0']
+
+--- window 1: L1-L9 ---
+    1: from __future__ import annotations
+    2: 
+    3: from collections import Counter
+    4: from dataclasses import asdict
+    5: from hashlib import sha256
+    6: import json
+    7: import math
+    8: import os
+    9: from pathlib import Path
+
+--- window 2: L27-L43 ---
+   27: from iscai_stage4.models import (
+   28:     DeterministicGRUConfig,
+   29:     DeterministicTrajectoryGRU,
+   30: )
+   31: 
+   32: from iscai_stage4.training import (
+   33:     FitNormalizationStats,
+   34:     FitStatsAccumulator,
+   35:     denormalize_displacement,
+   36:     normalized_sample_arrays,
+   37: )
+   38: 
+   39: 
+   40: ROOT = Path(
+   41:     "/home/agni/waymo"
+   42: )
+   43: 
+
+--- window 3: L79-L95 ---
+   79:     STAGE4
+   80:     / "artifacts/block43/"
+   81:       "deterministic_dev_scenes.jsonl"
+   82: )
+   83: 
+   84: NORMALIZATION = (
+   85:     STAGE4
+   86:     / "artifacts/block43/"
+   87:       "fit_normalization.json"
+   88: )
+   89: 
+   90: CHECKPOINT = (
+   91:     STAGE4
+   92:     / "checkpoints/"
+   93:       "block43_deterministic_gru.pt"
+   94: )
+   95: 
+
+--- window 4: L226-L242 ---
+  226:     )
+  227: 
+  228: 
+  229: def stratum(
+  230:     record,
+  231: ):
+  232:     counts = (
+  233:         record[
+  234:             "anchor_class_counts"
+  235:         ]
+  236:     )
+  237: 
+  238:     cyclist = (
+  239:         int(
+  240:             counts.get(
+  241:                 "TYPE_CYCLIST",
+  242:                 0,
+
+--- window 5: L341-L357 ---
+  341:                 **record,
+  342: 
+  343:                 "block43_stratum":
+  344:                     group,
+  345: 
+  346:                 "block43_stratum_rank":
+  347:                     rank,
+  348: 
+  349:                 "selection_future_based":
+  350:                     False,
+  351: 
+  352:                 "selection_performance_based":
+  353:                     False,
+  354:             })
+  355: 
+  356:     return tuple(
+  357:         selected
+
+--- window 6: L396-L412 ---
+  396: def label_hash(
+  397:     samples,
+  398: ):
+  399:     return canonical_sha(
+  400:         tuple(
+  401:             (
+  402:                 sample.prediction_id,
+  403:                 sample
+  404:                 .future_label
+  405:                 .sha256(),
+  406:             )
+  407:             for sample in samples
+  408:         )
+  409:     )
+  410: 
+  411: 
+  412: def configure_determinism():
+
+--- window 7: L945-L967 ---
+  945: 
+  946:     class_errors = (
+  947:         {}
+  948:     )
+  949: 
+  950:     total_samples = 0
+  951:     valid_samples = 0
+  952: 
+  953:     label_mean = np.asarray(
+  954:         stats.label_mean,
+  955:         dtype=np.float32,
+  956:     )
+  957: 
+  958:     label_std = np.asarray(
+  959:         stats.label_std,
+  960:         dtype=np.float32,
+  961:     )
+  962: 
+  963:     def consume(
+  964:         batch_samples,
+  965:     ):
+  966:         nonlocal (
+  967:             total_samples,
+
+--- window 8: L1013-L1051 ---
+ 1013:             .detach()
+ 1014:             .cpu()
+ 1015:             .numpy()
+ 1016:         )
+ 1017: 
+ 1018:         pred_disp = (
+ 1019:             prediction
+ 1020:             *
+ 1021:             label_std[
+ 1022:                 None,
+ 1023:                 :,
+ 1024:                 :,
+ 1025:             ]
+ 1026:             +
+ 1027:             label_mean[
+ 1028:                 None,
+ 1029:                 :,
+ 1030:                 :,
+ 1031:             ]
+ 1032:         )
+ 1033: 
+ 1034:         true_disp = (
+ 1035:             label_np
+ 1036:             *
+ 1037:             label_std[
+ 1038:                 None,
+ 1039:                 :,
+ 1040:                 :,
+ 1041:             ]
+ 1042:             +
+ 1043:             label_mean[
+ 1044:                 None,
+ 1045:                 :,
+ 1046:                 :,
+ 1047:             ]
+ 1048:         )
+ 1049: 
+ 1050:         for sample_index, (
+ 1051:             sample,
+
+FILE = iscai_stage4/scripts/run_block43_deterministic_gru.py
+score = 130
+tokens = ['future', 'future_mask', 'displacement', 'relative', 'h0']
+
+--- window 1: L1-L9 ---
+    1: from __future__ import annotations
+    2: 
+    3: from collections import Counter
+    4: from hashlib import sha256
+    5: import json
+    6: import math
+    7: import os
+    8: from pathlib import Path
+    9: import random
+
+--- window 2: L193-L215 ---
+  193:         dtype=torch.float32,
+  194:     )
+  195: 
+  196:     map_context = torch.tensor(
+  197:         sample.model_input.map_context,
+  198:         dtype=torch.float32,
+  199:     )
+  200: 
+  201:     future = torch.tensor(
+  202:         sample.future_label.positions_H0_m,
+  203:         dtype=torch.float32,
+  204:     )
+  205: 
+  206:     future_mask = torch.tensor(
+  207:         sample.future_label.valid_mask,
+  208:         dtype=torch.bool,
+  209:     )
+  210: 
+  211:     observed = (
+  212:         target[
+  213:             :,
+  214:             12
+  215:         ]
+
+--- window 3: L277-L300 ---
+  277:         )
+  278: 
+  279:         neighbours[
+  280:             slot,
+  281:             neighbour_observed,
+  282:             :3
+  283:         ] -= origin
+  284: 
+  285:     future_displacement = (
+  286:         future
+  287:         -
+  288:         origin.unsqueeze(0)
+  289:     )
+  290: 
+  291:     future_displacement[
+  292:         ~future_mask
+  293:     ] = 0.0
+  294: 
+  295:     class_id = (
+  296:         CLASS_TO_ID.get(
+  297:             sample.actor_class,
+  298:             CLASS_TO_ID[
+  299:                 "TYPE_OTHER"
+  300:             ],
+
+--- window 4: L309-L329 ---
+  309:             neighbours,
+  310: 
+  311:         "neighbour_mask":
+  312:             neighbour_mask,
+  313: 
+  314:         "map":
+  315:             map_context,
+  316: 
+  317:         "future":
+  318:             future_displacement,
+  319: 
+  320:         "future_mask":
+  321:             future_mask,
+  322: 
+  323:         "class_id":
+  324:             torch.tensor(
+  325:                 class_id,
+  326:                 dtype=torch.long,
+  327:             ),
+  328:     }
+  329: 
+
+--- window 5: L337-L354 ---
+  337:             ],
+  338:             dim=0,
+  339:         )
+  340:         for key in (
+  341:             "target",
+  342:             "neighbours",
+  343:             "neighbour_mask",
+  344:             "map",
+  345:             "future",
+  346:             "future_mask",
+  347:             "class_id",
+  348:         )
+  349:     }
+  350: 
+  351: 
+  352: def materialize_partition(
+  353:     name,
+  354:     records,
+
+--- window 6: L632-L648 ---
+  632:             runtime_s,
+  633: 
+  634:         "total_bytes":
+  635:             total_bytes,
+  636: 
+  637:         "files":
+  638:             files,
+  639: 
+  640:         "future_based_selection":
+  641:             False,
+  642: 
+  643:         "performance_based_selection":
+  644:             False,
+  645: 
+  646:         "class_based_scenario_selection":
+  647:             False,
+  648:     }
+
+--- window 7: L701-L718 ---
+  701: 
+  702:     pieces = {
+  703:         key: []
+  704:         for key in (
+  705:             "target",
+  706:             "neighbours",
+  707:             "neighbour_mask",
+  708:             "map",
+  709:             "future",
+  710:             "future_mask",
+  711:             "class_id",
+  712:         )
+  713:     }
+  714: 
+  715:     for item in metadata[
+  716:         "files"
+  717:     ]:
+  718:         data = torch.load(
+
+--- window 8: L1048-L1070 ---
+ 1048:             ),
+ 1049:         ).cpu()
+ 1050: 
+ 1051:         predictions.append(
+ 1052:             prediction
+ 1053:         )
+ 1054: 
+ 1055:         targets.append(
+ 1056:             data["future"][
+ 1057:                 start:end
+ 1058:             ]
+ 1059:         )
+ 1060: 
+ 1061:         masks.append(
+ 1062:             data["future_mask"][
+ 1063:                 start:end
+ 1064:             ]
+ 1065:         )
+ 1066: 
+ 1067:         class_ids.append(
+ 1068:             data["class_id"][
+ 1069:                 start:end
+ 1070:             ]
+
+FILE = iscai_stage4/scripts/run_block47_ablation_training.py
+score = 102
+tokens = ['development_cache.npz', 'fit_cache.npz', 'fit_normalization', 'label_mean', 'label_std', 'future', 'future_mask', 'displacement', 'relative', 'h0', 'denormalize_gaussian']
+
+--- window 1: L1-L9 ---
+    1: from __future__ import annotations
+    2: 
+    3: from hashlib import sha256
+    4: import json
+    5: import os
+    6: from pathlib import Path
+    7: import re
+    8: import shutil
+    9: import subprocess
+
+--- window 2: L16-L32 ---
+   16: 
+   17: from iscai_stage4.ml import (
+   18:     CLASS_CYCLIST,
+   19:     CLASS_ID_TO_NAME,
+   20:     CLASS_PEDESTRIAN,
+   21:     CLASS_VEHICLE,
+   22:     GaussianTrajectoryGRU,
+   23:     balanced_class_weights,
+   24:     denormalize_gaussian,
+   25:     gaussian_nll_per_horizon,
+   26:     initialize_from_deterministic,
+   27:     masked_gaussian_nll,
+   28:     set_global_determinism,
+   29: )
+   30: 
+   31: from iscai_stage4.ml.ablation_runtime import (
+   32:     ABLATION_ACTOR_ONLY,
+
+--- window 3: L95-L121 ---
+   95: 
+   96: CALIBRATOR = (
+   97:     STAGE4
+   98:     / "artifacts/block45/covariance_scaler.json"
+   99: )
+  100: 
+  101: FIT_CACHE = (
+  102:     STAGE4
+  103:     / "artifacts/block43/fit_cache.npz"
+  104: )
+  105: 
+  106: DEV_CACHE = (
+  107:     STAGE4
+  108:     / "artifacts/block43/development_cache.npz"
+  109: )
+  110: 
+  111: NORMALIZATION = (
+  112:     STAGE4
+  113:     / "artifacts/block43/fit_normalization.json"
+  114: )
+  115: 
+  116: ARTIFACT_DIR = (
+  117:     STAGE4
+  118:     / "artifacts/block47"
+  119: )
+  120: 
+  121: REPORT = (
+
+--- window 4: L166-L183 ---
+  166:     ABLATION_NO_MAP,
+  167: )
+  168: 
+  169: CACHE_KEYS = (
+  170:     "target",
+  171:     "neighbors",
+  172:     "neighbor_mask",
+  173:     "map_context",
+  174:     "future",
+  175:     "future_mask",
+  176:     "class_id",
+  177: )
+  178: 
+  179: 
+  180: def file_sha256(
+  181:     path,
+  182: ):
+  183:     digest = sha256()
+
+--- window 5: L293-L325 ---
+  293: 
+  294:             files.append(
+  295:                 path
+  296:             )
+  297: 
+  298:     files.sort(
+  299:         key=lambda path:
+  300:             str(
+  301:                 path.relative_to(
+  302:                     STAGE4
+  303:                 )
+  304:             )
+  305:     )
+  306: 
+  307:     digest = sha256()
+  308: 
+  309:     for path in files:
+  310:         relative = str(
+  311:             path.relative_to(
+  312:                 STAGE4
+  313:             )
+  314:         )
+  315: 
+  316:         digest.update(
+  317:             relative.encode(
+  318:                 "utf-8"
+  319:             )
+  320:         )
+  321:         digest.update(
+  322:             b"\0"
+  323:         )
+  324: 
+  325:         digest.update(
+
+--- window 6: L379-L402 ---
+  379:             ),
+  380: 
+  381:         "map_context":
+  382:             (
+  383:                 n,
+  384:                 10,
+  385:             ),
+  386: 
+  387:         "future":
+  388:             (
+  389:                 n,
+  390:                 4,
+  391:                 3,
+  392:             ),
+  393: 
+  394:         "future_mask":
+  395:             (
+  396:                 n,
+  397:                 4,
+  398:             ),
+  399: 
+  400:         "class_id":
+  401:             (
+  402:                 n,
+
+--- window 7: L776-L805 ---
+  776:                 neighbors,
+  777:                 neighbor_mask,
+  778:                 map_context,
+  779:             )
+  780: 
+  781:             (
+  782:                 mean_metric,
+  783:                 scale_metric,
+  784:             ) = denormalize_gaussian(
+  785:                 output.mean,
+  786:                 output.scale_tril,
+  787:                 normalizer.label_mean,
+  788:                 normalizer.label_std,
+  789:             )
+  790: 
+  791:             truth = batch[
+  792:                 "true_displacement"
+  793:             ]
+  794: 
+  795:             valid = (
+  796:                 batch[
+  797:                     "future_mask"
+  798:                 ]
+  799:                 >
+  800:                 0.5
+  801:             )
+  802: 
+  803:             nll = gaussian_nll_per_horizon(
+  804:                 mean_metric,
+  805:                 scale_metric,
+
+--- window 8: L1379-L1395 ---
+ 1379: 
+ 1380:             loss = masked_gaussian_nll(
+ 1381:                 output.mean,
+ 1382:                 output.scale_tril,
+ 1383:                 batch[
+ 1384:                     "label_normalized"
+ 1385:                 ],
+ 1386:                 batch[
+ 1387:                     "future_mask"
+ 1388:                 ],
+ 1389:             )
+ 1390: 
+ 1391:             if not bool(
+ 1392:                 torch.isfinite(
+ 1393:                     loss
+ 1394:                 )
+ 1395:             ):
+
+FILE = iscai_stage4/scripts/run_block43_preflight.py
+score = 102
+tokens = ['future']
+
+--- window 1: L1-L9 ---
+    1: from __future__ import annotations
+    2: 
+    3: from hashlib import sha256
+    4: import json
+    5: from pathlib import Path
+    6: import subprocess
+    7: import sys
+    8: 
+    9: import torch
+
+FILE = iscai_stage4/reports/block43_deterministic_gru.json
+score = 102
+tokens = ['future']
+
+--- window 1: L42-L58 ---
+   42:         110346,
+   43:         108416,
+   44:         103886
+   45:       ],
+   46:       "zero_sample_scenes": 1
+   47:     },
+   48:     "fit_scenes": 4096,
+   49:     "sample_cap_per_scene": 64,
+   50:     "selection_future_based": false,
+   51:     "selection_performance_based": false,
+   52:     "selection_sha256": "541dbc5a7f167d29bd19371228bca42a93eb7b38f0a3647deb1f12227d943640"
+   53:   },
+   54:   "development": {
+   55:     "best": {
+   56:       "class_planar_ADE_m": {
+   57:         "TYPE_CYCLIST": 1.6503467935441098,
+   58:         "TYPE_PEDESTRIAN": 1.0323782335345042,
+
+--- window 2: L95-L111 ---
+   95:   },
+   96:   "implementation": {
+   97:     "file_count": 31,
+   98:     "sha256": "7f42e0cf534ed3ffb8d69e7230f5e04eecde8639428911017af771c7b2993def"
+   99:   },
+  100:   "model": {
+  101:     "actor_class_feature": false,
+  102:     "architecture": "GRU",
+  103:     "future_input": false,
+  104:     "map_context": true,
+  105:     "measurement_covariance_input": true,
+  106:     "multi_agent_context": true,
+  107:     "perfect_track_id_feature": false,
+  108:     "predictive_covariance": false
+  109:   },
+  110:   "normalization": {
+  111:     "calibration_used": false,
+
+FILE = iscai_stage4/scripts/run_block44_gaussian_training.py
+score = 100
+tokens = ['development_cache.npz', 'fit_cache.npz', 'fit_normalization', 'label_mean', 'label_std', 'future', 'future_mask', 'displacement', 'relative', 'denormalize_gaussian']
+
+--- window 1: L1-L9 ---
+    1: from __future__ import annotations
+    2: 
+    3: from collections import Counter
+    4: from hashlib import sha256
+    5: import json
+    6: import math
+    7: import os
+    8: from pathlib import Path
+    9: import re
+
+--- window 2: L21-L37 ---
+   21:     CLASS_CYCLIST,
+   22:     CLASS_ID_TO_NAME,
+   23:     CLASS_OTHER,
+   24:     CLASS_PEDESTRIAN,
+   25:     CLASS_VEHICLE,
+   26:     GaussianTrajectoryGRU,
+   27:     balanced_class_weights,
+   28:     covariance_from_scale_tril,
+   29:     denormalize_gaussian,
+   30:     gaussian_nll_per_horizon,
+   31:     initialize_from_deterministic,
+   32:     mahalanobis_squared,
+   33:     masked_gaussian_nll,
+   34:     set_global_determinism,
+   35: )
+   36: 
+   37: 
+
+--- window 3: L60-L86 ---
+   60: 
+   61: DET_CHECKPOINT = (
+   62:     STAGE4
+   63:     / "artifacts/block43/deterministic_gru.pt"
+   64: )
+   65: 
+   66: FIT_CACHE = (
+   67:     STAGE4
+   68:     / "artifacts/block43/fit_cache.npz"
+   69: )
+   70: 
+   71: DEV_CACHE = (
+   72:     STAGE4
+   73:     / "artifacts/block43/development_cache.npz"
+   74: )
+   75: 
+   76: NORMALIZATION = (
+   77:     STAGE4
+   78:     / "artifacts/block43/fit_normalization.json"
+   79: )
+   80: 
+   81: CHECKPOINT = (
+   82:     STAGE4
+   83:     / "artifacts/block44/gaussian_gru.pt"
+   84: )
+   85: 
+   86: PROGRESS = (
+
+--- window 4: L120-L137 ---
+  120: 
+  121: MIN_FREE_GIB = 250.0
+  122: 
+  123: ARRAY_KEYS = (
+  124:     "target",
+  125:     "neighbors",
+  126:     "neighbor_mask",
+  127:     "map_context",
+  128:     "future",
+  129:     "future_mask",
+  130:     "class_id",
+  131: )
+  132: 
+  133: CONFIDENCE_LEVELS = (
+  134:     0.50,
+  135:     0.80,
+  136:     0.90,
+  137:     0.95,
+
+--- window 5: L219-L251 ---
+  219:             ):
+  220:                 continue
+  221: 
+  222:             files.append(path)
+  223: 
+  224:     files.sort(
+  225:         key=lambda path:
+  226:             str(
+  227:                 path.relative_to(
+  228:                     STAGE4
+  229:                 )
+  230:             )
+  231:     )
+  232: 
+  233:     digest = sha256()
+  234: 
+  235:     for path in files:
+  236:         relative = str(
+  237:             path.relative_to(
+  238:                 STAGE4
+  239:             )
+  240:         )
+  241: 
+  242:         digest.update(
+  243:             relative.encode("utf-8")
+  244:         )
+  245:         digest.update(b"\0")
+  246: 
+  247:         digest.update(
+  248:             path.read_bytes()
+  249:         )
+  250:         digest.update(b"\0")
+  251: 
+
+--- window 6: L323-L342 ---
+  323:             (n, 8, 11, 14),
+  324: 
+  325:         "neighbor_mask":
+  326:             (n, 8),
+  327: 
+  328:         "map_context":
+  329:             (n, 10),
+  330: 
+  331:         "future":
+  332:             (n, 4, 3),
+  333: 
+  334:         "future_mask":
+  335:             (n, 4),
+  336: 
+  337:         "class_id":
+  338:             (n,),
+  339:     }
+  340: 
+  341:     for key, shape in expected.items():
+  342:         if tuple(
+
+--- window 7: L348-L365 ---
+  348:                 f"{arrays[key].shape}"
+  349:             )
+  350: 
+  351:     for key in (
+  352:         "target",
+  353:         "neighbors",
+  354:         "neighbor_mask",
+  355:         "map_context",
+  356:         "future",
+  357:         "future_mask",
+  358:     ):
+  359:         if not np.isfinite(
+  360:             arrays[key]
+  361:         ).all():
+  362:             raise RuntimeError(
+  363:                 f"Non-finite values "
+  364:                 f"in {path.name}:{key}"
+  365:             )
+
+--- window 8: L459-L485 ---
+  459:         )
+  460: 
+  461:         self.map_std = torch.tensor(
+  462:             statistics["map_std"],
+  463:             dtype=torch.float32,
+  464:             device=device,
+  465:         )
+  466: 
+  467:         self.label_mean = torch.tensor(
+  468:             statistics[
+  469:                 "label_displacement_mean"
+  470:             ],
+  471:             dtype=torch.float32,
+  472:             device=device,
+  473:         )
+  474: 
+  475:         self.label_std = torch.tensor(
+  476:             statistics[
+  477:                 "label_displacement_std"
+  478:             ],
+  479:             dtype=torch.float32,
+  480:             device=device,
+  481:         )
+  482: 
+  483:         if bool(
+  484:             torch.any(
+  485:                 self.feature_std
+
+FILE = iscai_stage4/src/iscai_stage4/training/normalization.py
+score = 80
+tokens = ['label_mean', 'label_std', 'future', 'displacement', 'h0']
+
+--- window 1: L1-L9 ---
+    1: from __future__ import annotations
+    2: 
+    3: from dataclasses import dataclass
+    4: import json
+    5: from math import sqrt
+    6: from pathlib import Path
+    7: 
+    8: import numpy as np
+    9: 
+
+--- window 2: L54-L76 ---
+   54:         tuple[float, ...]
+   55: 
+   56:     map_std:
+   57:         tuple[float, ...]
+   58: 
+   59:     map_count:
+   60:         tuple[int, ...]
+   61: 
+   62:     label_mean:
+   63:         tuple[
+   64:             tuple[float, ...],
+   65:             ...,
+   66:         ]
+   67: 
+   68:     label_std:
+   69:         tuple[
+   70:             tuple[float, ...],
+   71:             ...,
+   72:         ]
+   73: 
+   74:     label_count:
+   75:         tuple[
+   76:             tuple[int, ...],
+
+--- window 3: L98-L122 ---
+   98:             self.map_mean
+   99:         ) != MAP_CONTEXT_DIM:
+  100:             raise ValueError(
+  101:                 "Map normalization "
+  102:                 "dimension changed."
+  103:             )
+  104: 
+  105:         if len(
+  106:             self.label_mean
+  107:         ) != 4:
+  108:             raise ValueError(
+  109:                 "Label horizon count changed."
+  110:             )
+  111: 
+  112:         if any(
+  113:             len(row) != 3
+  114:             for row in self.label_mean
+  115:         ):
+  116:             raise ValueError(
+  117:                 "Label dimension changed."
+  118:             )
+  119: 
+  120:         if any(
+  121:             float(value) <= 0.0
+  122:             for value
+
+--- window 4: L132-L148 ---
+  132:             in self.map_std
+  133:         ):
+  134:             raise ValueError(
+  135:                 "Map std must be > 0."
+  136:             )
+  137: 
+  138:         if any(
+  139:             float(value) <= 0.0
+  140:             for row in self.label_std
+  141:             for value in row
+  142:         ):
+  143:             raise ValueError(
+  144:                 "Label std must be > 0."
+  145:             )
+  146: 
+  147:     def to_dict(self):
+  148:         return {
+
+--- window 5: L171-L196 ---
+  171:                     self.map_std
+  172:                 ),
+  173: 
+  174:             "map_count":
+  175:                 list(
+  176:                     self.map_count
+  177:                 ),
+  178: 
+  179:             "label_mean": [
+  180:                 list(row)
+  181:                 for row
+  182:                 in self.label_mean
+  183:             ],
+  184: 
+  185:             "label_std": [
+  186:                 list(row)
+  187:                 for row
+  188:                 in self.label_std
+  189:             ],
+  190: 
+  191:             "label_count": [
+  192:                 list(row)
+  193:                 for row
+  194:                 in self.label_count
+  195:             ],
+  196:         }
+
+--- window 6: L238-L270 ---
+  238: 
+  239:             map_count=tuple(
+  240:                 int(x)
+  241:                 for x in data[
+  242:                     "map_count"
+  243:                 ]
+  244:             ),
+  245: 
+  246:             label_mean=tuple(
+  247:                 tuple(
+  248:                     float(x)
+  249:                     for x in row
+  250:                 )
+  251:                 for row in data[
+  252:                     "label_mean"
+  253:                 ]
+  254:             ),
+  255: 
+  256:             label_std=tuple(
+  257:                 tuple(
+  258:                     float(x)
+  259:                     for x in row
+  260:                 )
+  261:                 for row in data[
+  262:                     "label_std"
+  263:                 ]
+  264:             ),
+  265: 
+  266:             label_count=tuple(
+  267:                 tuple(
+  268:                     int(x)
+  269:                     for x in row
+  270:                 )
+
+--- window 7: L502-L554 ---
+  502: 
+  503:         origin = target[
+  504:             observed[-1],
+  505:             :3,
+  506:         ]
+  507: 
+  508:         positions = np.asarray(
+  509:             sample
+  510:             .future_label
+  511:             .positions_H0_m,
+  512:             dtype=np.float64,
+  513:         )
+  514: 
+  515:         valid = np.asarray(
+  516:             sample
+  517:             .future_label
+  518:             .valid_mask,
+  519:             dtype=bool,
+  520:         )
+  521: 
+  522:         displacement = (
+  523:             positions
+  524:             -
+  525:             origin[
+  526:                 None,
+  527:                 :,
+  528:             ]
+  529:         )
+  530: 
+  531:         for horizon in range(4):
+  532:             if not valid[
+  533:                 horizon
+  534:             ]:
+  535:                 continue
+  536: 
+  537:             self.label_sum[
+  538:                 horizon
+  539:             ] += displacement[
+  540:                 horizon
+  541:             ]
+  542: 
+  543:             self.label_sumsq[
+  544:                 horizon
+  545:             ] += (
+  546:                 displacement[
+  547:                     horizon
+  548:                 ].square()
+  549:             )
+  550: 
+  551:             self.label_count[
+  552:                 horizon
+  553:             ] += 1
+  554: 
+
+--- window 8: L618-L635 ---
+  618:             map_std,
+  619:         ) = self._finalize(
+  620:             self.map_sum,
+  621:             self.map_sumsq,
+  622:             self.map_count,
+  623:         )
+  624: 
+  625:         (
+  626:             label_mean,
+  627:             label_std,
+  628:         ) = self._finalize(
+  629:             self.label_sum,
+  630:             self.label_sumsq,
+  631:             self.label_count,
+  632:         )
+  633: 
+  634:         return FitNormalizationStats(
+  635:             history_mean=tuple(
+
+FILE = iscai_stage4/scripts/run_block44_preflight.py
+score = 78
+tokens = ['development_cache.npz', 'fit_cache.npz', 'fit_normalization', 'label_mean', 'label_std', 'future', 'future_mask', 'displacement', 'denormalize_gaussian']
+
+--- window 1: L1-L25 ---
+    1: from __future__ import annotations
+    2: 
+    3: from hashlib import sha256
+    4: import json
+    5: from pathlib import Path
+    6: import subprocess
+    7: import sys
+    8: import traceback
+    9: 
+   10: import numpy as np
+   11: import torch
+   12: 
+   13: from iscai_stage4.ml import (
+   14:     DeterministicTrajectoryGRU,
+   15:     GaussianTrajectoryGRU,
+   16:     covariance_from_scale_tril,
+   17:     denormalize_gaussian,
+   18:     empirical_coverage,
+   19:     initialize_from_deterministic,
+   20:     masked_gaussian_nll,
+   21:     set_global_determinism,
+   22: )
+   23: 
+   24: 
+   25: ROOT = Path(
+
+--- window 2: L41-L69 ---
+   41:     STAGE4
+   42:     / "artifacts/block43/"
+   43:       "deterministic_gru.pt"
+   44: )
+   45: 
+   46: FIT_CACHE = (
+   47:     STAGE4
+   48:     / "artifacts/block43/"
+   49:       "fit_cache.npz"
+   50: )
+   51: 
+   52: DEV_CACHE = (
+   53:     STAGE4
+   54:     / "artifacts/block43/"
+   55:       "development_cache.npz"
+   56: )
+   57: 
+   58: NORMALIZATION = (
+   59:     STAGE4
+   60:     / "artifacts/block43/"
+   61:       "fit_normalization.json"
+   62: )
+   63: 
+   64: GAUSSIAN_CONFIG = (
+   65:     STAGE4
+   66:     / "configs/"
+   67:       "stage4_gaussian_gru.json"
+   68: )
+   69: 
+
+--- window 3: L176-L193 ---
+  176:         path,
+  177:         allow_pickle=False,
+  178:     ) as data:
+  179:         required = (
+  180:             "target",
+  181:             "neighbors",
+  182:             "neighbor_mask",
+  183:             "map_context",
+  184:             "future",
+  185:             "future_mask",
+  186:             "class_id",
+  187:         )
+  188: 
+  189:         for key in required:
+  190:             if key not in data:
+  191:                 raise RuntimeError(
+  192:                     f"Cache lacks {key}: "
+  193:                     f"{path}"
+
+--- window 4: L718-L769 ---
+  718:     with torch.no_grad():
+  719:         output = gaussian(
+  720:             target,
+  721:             neighbors,
+  722:             neighbor_mask,
+  723:             map_context,
+  724:         )
+  725: 
+  726:         label_mean = torch.tensor(
+  727:             normalization[
+  728:                 "label_displacement_mean"
+  729:             ],
+  730:             dtype=torch.float32,
+  731:             device=device,
+  732:         )
+  733: 
+  734:         label_std = torch.tensor(
+  735:             normalization[
+  736:                 "label_displacement_std"
+  737:             ],
+  738:             dtype=torch.float32,
+  739:             device=device,
+  740:         )
+  741: 
+  742:         (
+  743:             metric_mean,
+  744:             metric_scale,
+  745:         ) = denormalize_gaussian(
+  746:             output.mean,
+  747:             output.scale_tril,
+  748:             label_mean,
+  749:             label_std,
+  750:         )
+  751: 
+  752:         metric_target = (
+  753:             truth
+  754:             *
+  755:             label_std[
+  756:                 None,
+  757:                 :,
+  758:                 :
+  759:             ]
+  760:             +
+  761:             label_mean[
+  762:                 None,
+  763:                 :,
+  764:                 :
+  765:             ]
+  766:         )
+  767: 
+  768:         coverage = empirical_coverage(
+  769:             metric_mean,
+
+--- window 5: L879-L895 ---
+  879:                 EXPECTED_STATE_SHA,
+  880: 
+  881:             "fit_cache_unchanged":
+  882:                 True,
+  883: 
+  884:             "development_cache_unchanged":
+  885:                 True,
+  886: 
+  887:             "fit_normalization_unchanged":
+  888:                 True
+  889:         },
+  890: 
+  891:         "environment": {
+  892:             "torch":
+  893:                 torch.__version__,
+  894: 
+  895:             "cuda_runtime":
+
+FILE = iscai_stage4/scripts/run_block42_neural_sample_gate.py
+score = 78
+tokens = ['future', 'relative', 'anchor', 'h0']
+
+--- window 1: L1-L9 ---
+    1: from __future__ import annotations
+    2: 
+    3: import ast
+    4: from collections import Counter
+    5: from hashlib import sha256
+    6: import importlib
+    7: import json
+    8: from pathlib import Path
+    9: import shutil
+
+--- window 2: L356-L372 ---
+  356: 
+  357:         elif isinstance(
+  358:             node,
+  359:             ast.ImportFrom,
+  360:         ):
+  361:             if (
+  362:                 node.module
+  363:                 ==
+  364:                 "__future__"
+  365:             ):
+  366:                 continue
+  367: 
+  368:             module = (
+  369:                 importlib
+  370:                 .import_module(
+  371:                     node.module
+  372:                 )
+
+--- window 3: L567-L585 ---
+  567:         for x
+  568:         in scenario.timestamps_seconds[
+  569:             :expected
+  570:         ]
+  571:     )
+  572: 
+  573:     context = (
+  574:         FrameTransformContext(
+  575:             T_H0_from_W=(
+  576:                 adapted.frames
+  577:                 .T_H0_from_W
+  578:             ),
+  579:             T_Ht_from_W_by_frame=tuple(
+  580:                 frame.T_Ht_from_W
+  581:                 for frame
+  582:                 in dynamic_frames
+  583:             ),
+  584:         )
+  585:     )
+
+--- window 4: L612-L647 ---
+  612:                 associated.tracks
+  613:             ),
+  614: 
+  615:         "scene_inputs":
+  616:             scene_inputs,
+  617:     }
+  618: 
+  619: 
+  620: def mutate_future(
+  621:     scenario,
+  622: ):
+  623:     clone = (
+  624:         scenario_pb2.Scenario()
+  625:     )
+  626: 
+  627:     clone.CopyFrom(
+  628:         scenario
+  629:     )
+  630: 
+  631:     anchor = int(
+  632:         clone.current_time_index
+  633:     )
+  634: 
+  635:     for track in (
+  636:         clone.tracks
+  637:     ):
+  638:         for index in range(
+  639:             anchor + 1,
+  640:             len(
+  641:                 track.states
+  642:             ),
+  643:         ):
+  644:             state = (
+  645:                 track.states[
+  646:                     index
+  647:                 ]
+
+--- window 5: L695-L711 ---
+  695: 
+  696: def sample_label_hashes(
+  697:     samples,
+  698: ):
+  699:     return tuple(
+  700:         (
+  701:             sample.prediction_id,
+  702:             sample
+  703:             .future_label
+  704:             .sha256(),
+  705:         )
+  706:         for sample in samples
+  707:     )
+  708: 
+  709: 
+  710: def implementation_fingerprint():
+  711:     roots = (
+
+--- window 6: L735-L767 ---
+  735: 
+  736:             files.append(
+  737:                 path
+  738:             )
+  739: 
+  740:     files.sort(
+  741:         key=lambda path:
+  742:             str(
+  743:                 path.relative_to(
+  744:                     STAGE4
+  745:                 )
+  746:             )
+  747:     )
+  748: 
+  749:     digest = sha256()
+  750: 
+  751:     for path in files:
+  752:         relative = str(
+  753:             path.relative_to(
+  754:                 STAGE4
+  755:             )
+  756:         )
+  757: 
+  758:         digest.update(
+  759:             relative.encode(
+  760:                 "utf-8"
+  761:             )
+  762:         )
+  763: 
+  764:         digest.update(
+  765:             b"\0"
+  766:         )
+  767: 
+
+--- window 7: L969-L985 ---
+  969: partition_sample_counts = Counter()
+  970: sample_classes = Counter()
+  971: 
+  972: real_covariance_rows = 0
+  973: real_observed_rows = 0
+  974: real_neighbor_slots_used = 0
+  975: real_map_nonzero_samples = 0
+  976: 
+  977: future_probe = None
+  978: 
+  979: pilot_start = time.perf_counter()
+  980: 
+  981: 
+  982: for index, (
+  983:     partition,
+  984:     record,
+  985: ) in enumerate(
+
+--- window 8: L1006-L1033 ---
+ 1006: 
+ 1007:     scene_inputs = (
+ 1008:         built[
+ 1009:             "scene_inputs"
+ 1010:         ]
+ 1011:     )
+ 1012: 
+ 1013:     # Crucial boundary:
+ 1014:     # future labels are attached only here,
+ 1015:     # after the full truth-free causal
+ 1016:     # algorithm input has already been built.
+ 1017:     samples = (
+ 1018:         attach_supervision(
+ 1019:             scene_inputs,
+ 1020:             scenario,
+ 1021:             T_H0_from_W=(
+ 1022:                 built[
+ 1023:                     "adapted"
+ 1024:                 ].frames
+ 1025:                 .T_H0_from_W
+ 1026:             ),
+ 1027:         )
+ 1028:     )
+ 1029: 
+ 1030:     partition_sample_counts[
+ 1031:         partition
+ 1032:     ] += len(
+ 1033:         samples
+
+FILE = iscai_stage4/reports/block42_neural_sample_gate.json
+score = 74
+tokens = ['future', 'h0']
+
+--- window 1: L1-L17 ---
+    1: {
+    2:   "block": "4.2",
+    3:   "causality": {
+    4:     "future_mutation_causal_scene": true,
+    5:     "future_mutation_labels_changed": true,
+    6:     "future_mutation_model_payload": true,
+    7:     "future_mutation_stage2_hash": true,
+    8:     "future_used_for_supervision_pairing": false,
+    9:     "future_validity_model_input": false,
+   10:     "objects_of_interest_model_input": false,
+   11:     "perfect_track_id_numeric_feature": false,
+   12:     "tracks_to_predict_model_input": false
+   13:   },
+   14:   "context": {
+   15:     "LiDAR_actor_features": false,
+   16:     "map_context_dim": 10,
+   17:     "maximum_neighbors": 8,
+
+--- window 2: L20-L36 ---
+   20:   },
+   21:   "implementation": {
+   22:     "file_count": 15,
+   23:     "sha256": "4f6ef90bd3455bf55f100561d66ef93549d8472112b85fce45930ec169f89fd0"
+   24:   },
+   25:   "measurement_uncertainty": {
+   26:     "distinct_from_predictive_uncertainty": true,
+   27:     "reaches_neural_features": true,
+   28:     "source": "Stage2 R_t propagated to H0 through frozen Stage3 geometry"
+   29:   },
+   30:   "real_pilot": {
+   31:     "map_context_nonzero_samples": 350,
+   32:     "neighbor_slots_used": 2800,
+   33:     "partition_sample_counts": {
+   34:       "calibration": 60,
+   35:       "development": 137,
+   36:       "fit": 153
+
+FILE = iscai_stage4/src/iscai_stage4/ml/normalization.py
+score = 72
+tokens = ['fit_normalization', 'label_mean', 'label_std', 'future', 'future_mask', 'displacement']
+
+--- window 1: L1-L9 ---
+    1: from __future__ import annotations
+    2: 
+    3: from hashlib import sha256
+    4: import json
+    5: 
+    6: import numpy as np
+    7: 
+    8: 
+    9: CONTINUOUS_FEATURE_DIM = 12
+
+--- window 2: L74-L106 ---
+   74:         ),
+   75:         indices,
+   76:         :3,
+   77:     ].astype(
+   78:         np.float64
+   79:     )
+   80: 
+   81: 
+   82: def compute_fit_normalization(
+   83:     arrays,
+   84:     *,
+   85:     chunk_size: int = 4096,
+   86: ):
+   87:     """
+   88:     Fit partition only.
+   89: 
+   90:     Continuous history statistics use only
+   91:     actual observed rows.
+   92: 
+   93:     Zero-padded missing timesteps and
+   94:     padded neighbour slots never enter
+   95:     mean/std estimates.
+   96: 
+   97:     Label statistics use only valid future
+   98:     labels and are computed as displacement
+   99:     from the latest causal observed target
+  100:     position.
+  101:     """
+  102: 
+  103:     target = arrays[
+  104:         "target"
+  105:     ]
+  106: 
+
+--- window 3: L111-L132 ---
+  111:     neighbor_mask = arrays[
+  112:         "neighbor_mask"
+  113:     ]
+  114: 
+  115:     map_context = arrays[
+  116:         "map_context"
+  117:     ]
+  118: 
+  119:     future = arrays[
+  120:         "future"
+  121:     ]
+  122: 
+  123:     future_mask = arrays[
+  124:         "future_mask"
+  125:     ]
+  126: 
+  127:     sample_count = int(
+  128:         target.shape[0]
+  129:     )
+  130: 
+  131:     if sample_count <= 0:
+  132:         raise ValueError(
+
+--- window 4: L154-L181 ---
+  154:         map_context.shape[1],
+  155:         dtype=np.float64,
+  156:     )
+  157: 
+  158:     map_count = 0
+  159: 
+  160:     label_sum = np.zeros(
+  161:         (
+  162:             future.shape[1],
+  163:             future.shape[2],
+  164:         ),
+  165:         dtype=np.float64,
+  166:     )
+  167: 
+  168:     label_sumsq = np.zeros_like(
+  169:         label_sum
+  170:     )
+  171: 
+  172:     label_count = np.zeros(
+  173:         future.shape[1],
+  174:         dtype=np.int64,
+  175:     )
+  176: 
+  177:     for start in range(
+  178:         0,
+  179:         sample_count,
+  180:         chunk_size,
+  181:     ):
+
+--- window 5: L210-L233 ---
+  210:         m = np.asarray(
+  211:             map_context[
+  212:                 start:stop
+  213:             ],
+  214:             dtype=np.float64,
+  215:         )
+  216: 
+  217:         y = np.asarray(
+  218:             future[
+  219:                 start:stop
+  220:             ],
+  221:             dtype=np.float64,
+  222:         )
+  223: 
+  224:         ym = np.asarray(
+  225:             future_mask[
+  226:                 start:stop
+  227:             ],
+  228:             dtype=np.float64,
+  229:         )
+  230: 
+  231:         target_observed = (
+  232:             t[:, :, 12]
+  233:             >
+
+--- window 6: L323-L355 ---
+  323:         )
+  324: 
+  325:         origin = (
+  326:             latest_observed_position(
+  327:                 t
+  328:             )
+  329:         )
+  330: 
+  331:         displacement = (
+  332:             y
+  333:             -
+  334:             origin[:, None, :]
+  335:         )
+  336: 
+  337:         for horizon in range(
+  338:             y.shape[1]
+  339:         ):
+  340:             valid = (
+  341:                 ym[:, horizon]
+  342:                 >
+  343:                 0.5
+  344:             )
+  345: 
+  346:             values = (
+  347:                 displacement[
+  348:                     valid,
+  349:                     horizon,
+  350:                     :
+  351:                 ]
+  352:             )
+  353: 
+  354:             if values.size:
+  355:                 label_sum[
+
+--- window 7: L437-L469 ---
+  437: 
+  438:     map_std = np.sqrt(
+  439:         np.maximum(
+  440:             map_var,
+  441:             EPS_STD**2,
+  442:         )
+  443:     )
+  444: 
+  445:     label_mean = (
+  446:         label_sum
+  447:         /
+  448:         label_count[:, None]
+  449:     )
+  450: 
+  451:     label_var = (
+  452:         label_sumsq
+  453:         /
+  454:         label_count[:, None]
+  455:         -
+  456:         np.square(
+  457:             label_mean
+  458:         )
+  459:     )
+  460: 
+  461:     label_std = np.sqrt(
+  462:         np.maximum(
+  463:             label_var,
+  464:             EPS_STD**2,
+  465:         )
+  466:     )
+  467: 
+  468:     result = {
+  469:         "source":
+
+--- window 8: L484-L504 ---
+  484:             feature_std.tolist(),
+  485: 
+  486:         "map_mean":
+  487:             map_mean.tolist(),
+  488: 
+  489:         "map_std":
+  490:             map_std.tolist(),
+  491: 
+  492:         "label_displacement_mean":
+  493:             label_mean.tolist(),
+  494: 
+  495:         "label_displacement_std":
+  496:             label_std.tolist(),
+  497: 
+  498:         "label_valid_count_per_horizon":
+  499:             label_count.tolist(),
+  500: 
+  501:         "missing_history_rows_in_statistics":
+  502:             False,
+  503: 
+  504:         "padded_neighbor_slots_in_statistics":
+
+============================================================
+C. EXPLICIT COORDINATE-SEMANTIC SIGNALS
+============================================================
+
+DISPLACEMENT / RELATIVE SIGNALS
+iscai_stage4/scripts/run_block43_deterministic_gru_gate.py:L35:     denormalize_displacement,
+iscai_stage4/scripts/run_block43_deterministic_gru.py:L285:     future_displacement = (
+iscai_stage4/scripts/run_block43_deterministic_gru.py:L291:     future_displacement[
+iscai_stage4/scripts/run_block43_deterministic_gru.py:L318:             future_displacement,
+iscai_stage4/scripts/run_block47_ablation_training.py:L301:                 path.relative_to(
+iscai_stage4/scripts/run_block47_ablation_training.py:L311:             path.relative_to(
+iscai_stage4/scripts/run_block47_ablation_training.py:L792:                 "true_displacement"
+iscai_stage4/scripts/run_block44_gaussian_training.py:L227:                 path.relative_to(
+iscai_stage4/scripts/run_block44_gaussian_training.py:L237:             path.relative_to(
+iscai_stage4/scripts/run_block44_gaussian_training.py:L469:                 "label_displacement_mean"
+iscai_stage4/scripts/run_block44_gaussian_training.py:L477:                 "label_displacement_std"
+iscai_stage4/src/iscai_stage4/training/normalization.py:L522:         displacement = (
+iscai_stage4/src/iscai_stage4/training/normalization.py:L539:             ] += displacement[
+iscai_stage4/src/iscai_stage4/training/normalization.py:L546:                 displacement[
+iscai_stage4/scripts/run_block44_preflight.py:L728:                 "label_displacement_mean"
+iscai_stage4/scripts/run_block44_preflight.py:L736:                 "label_displacement_std"
+iscai_stage4/scripts/run_block42_neural_sample_gate.py:L743:                 path.relative_to(
+iscai_stage4/scripts/run_block42_neural_sample_gate.py:L753:             path.relative_to(
+iscai_stage4/src/iscai_stage4/ml/normalization.py:L98:     labels and are computed as displacement
+iscai_stage4/src/iscai_stage4/ml/normalization.py:L331:         displacement = (
+iscai_stage4/src/iscai_stage4/ml/normalization.py:L347:                 displacement[
+iscai_stage4/src/iscai_stage4/ml/normalization.py:L492:         "label_displacement_mean":
+iscai_stage4/src/iscai_stage4/ml/normalization.py:L495:         "label_displacement_std":
+iscai_stage4/scripts/run_block48_formal_evaluation.py:L402:                 path.relative_to(
+iscai_stage4/scripts/run_block48_formal_evaluation.py:L412:             path.relative_to(
+iscai_stage4/scripts/run_block48_formal_evaluation.py:L1323:                 "true_displacement"
+iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py:L81:                 "label_displacement_mean"
+iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py:L89:                 "label_displacement_std"
+iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py:L340:         displacement = (
+iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py:L363:             "true_displacement":
+
+ABSOLUTE / H0-POSITION SIGNALS
+iscai_stage4/src/iscai_stage4/data/supervision.py:L354:     target_position_H0_m: Vec3,
+iscai_stage4/src/iscai_stage4/data/supervision.py:L357:         target_position_H0_m
+iscai_stage4/src/iscai_stage4/data/supervision.py:L488:             .latest_position_H0_m
+iscai_stage4/src/iscai_stage4/data/neural_inputs.py:L167:     position_H0_m: Vec3
+iscai_stage4/src/iscai_stage4/data/neural_inputs.py:L195:             self.position_H0_m
+iscai_stage4/src/iscai_stage4/data/neural_inputs.py:L226:                 self.position_H0_m[0]
+iscai_stage4/src/iscai_stage4/data/neural_inputs.py:L229:                 self.position_H0_m[1]
+iscai_stage4/src/iscai_stage4/data/neural_inputs.py:L232:                 self.position_H0_m[2]
+iscai_stage4/src/iscai_stage4/data/neural_inputs.py:L291:     latest_position_H0_m: Vec3
+iscai_stage4/src/iscai_stage4/data/neural_inputs.py:L350:             self.latest_position_H0_m
+
+ANCHOR / CURRENT-POSITION SIGNALS
+iscai_stage4/scripts/run_block43_deterministic_gru_gate.py:L234:             "anchor_class_counts"
+iscai_stage4/scripts/run_block42_neural_sample_gate.py:L631:     anchor = int(
+iscai_stage4/scripts/run_block42_neural_sample_gate.py:L639:             anchor + 1,
+iscai_stage4/scripts/run_block41_training_split_gate.py:L20:     current_anchor_class_counts,
+iscai_stage4/scripts/run_block41_training_split_gate.py:L228:         "current_anchor_class_counts":
+iscai_stage4/scripts/run_block41_training_split_gate.py:L230:                 current_anchor_class_counts(
+iscai_stage4/scripts/run_block41_training_split_gate.py:L265:     anchor = int(
+iscai_stage4/scripts/run_block41_training_split_gate.py:L280:             anchor + 1,
+iscai_stage4/scripts/run_block41_training_split_gate.py:L669:             current_anchor_class_counts(
+iscai_stage4/src/iscai_stage4/data/training_index.py:L42:     anchor_class_counts: tuple[
+iscai_stage4/src/iscai_stage4/data/training_index.py:L85:             self.anchor_class_counts
+iscai_stage4/src/iscai_stage4/data/training_index.py:L101:             self.anchor_class_counts
+iscai_stage4/src/iscai_stage4/data/training_index.py:L126:             "anchor_class_counts":
+iscai_stage4/src/iscai_stage4/data/training_index.py:L160: def current_anchor_class_counts(
+iscai_stage4/src/iscai_stage4/data/training_index.py:L167:     Strictly current/anchor metadata.
+iscai_stage4/src/iscai_stage4/data/training_index.py:L174:     anchor = int(
+iscai_stage4/src/iscai_stage4/data/training_index.py:L178:     if anchor != 10:
+iscai_stage4/src/iscai_stage4/data/training_index.py:L205:         if anchor >= len(
+iscai_stage4/src/iscai_stage4/data/training_index.py:L210:                 "the anchor state."
+iscai_stage4/src/iscai_stage4/data/training_index.py:L214:             anchor
+iscai_stage4/reports/block41_training_split_gate.json:L100:     "current_anchor_actor_counts": {
+iscai_stage4/configs/stage4_training_split.json:L3:   "current_anchor_class_support": {
+iscai_stage4/configs/stage4_training_split.json:L95:     "class_balancing": "later fit-sample sampler; current/anchor class only; does not modify frozen scenario partitions",
+iscai_stage4/src/iscai_stage4/data/supervision.py:L425:     anchor = int(
+iscai_stage4/src/iscai_stage4/data/supervision.py:L442:             anchor
+iscai_stage4/src/iscai_stage4/data/supervision.py:L448:                     anchor
+iscai_stage4/src/iscai_stage4/data/__init__.py:L3:     current_anchor_class_counts,
+iscai_stage4/src/iscai_stage4/data/__init__.py:L38:     "current_anchor_class_counts",
+iscai_stage4/reports/block48_part1_discovery.json:L115:         "primary_evaluation.metrics.CA.anchor_assignment_error_mean_m",
+iscai_stage4/reports/block48_part1_discovery.json:L727:         "primary_evaluation.metrics.CTRV.anchor_assignment_error_mean_m",
+
+============================================================
+SEMANTIC AUDIT FINAL
+============================================================
+normalization SHA      = PASS
+source evidence        = COLLECTED
+model forward executed = NO
+formal N=120 used      = NO
+upstream modified      = NO
+STATUS = PASS_READ_ONLY_AUDIT
+report = /home/agni/waymo/iscai_stage5/artifacts/block52/stage4_prediction_coordinate_semantics.json
+terminal remains open = YES
+
+semantic-audit raw code = 0
+terminal remains open = YES

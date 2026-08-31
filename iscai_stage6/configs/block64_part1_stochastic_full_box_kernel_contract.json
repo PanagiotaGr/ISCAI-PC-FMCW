@@ -1,0 +1,76 @@
+{
+  "block": "6.4-Part1",
+  "full_box_geometry": {
+    "center": "sampled_absolute_H0_position",
+    "centroid_only": false,
+    "communication_codebook_reused": false,
+    "corners_per_box": 8,
+    "length_width_height": "current_causal_box_held",
+    "projector": "project_box_to_headlamp"
+  },
+  "heading": {
+    "future_GT_heading": false,
+    "low_speed_behavior": "frozen_Stage5_previous_causal_or_predicted_heading_carry_forward",
+    "orientation_provenance": "predicted_tangent",
+    "source": "resolve_samplewise_headings",
+    "state_provenance": "predicted_sample"
+  },
+  "implementation": {
+    "module": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_full_box.py",
+    "module_sha256": "51daeab95713d6e7d2738ced466be4844b73dce70a09138b2b769de880462995",
+    "runner": "/home/agni/waymo/iscai_stage6/scripts/run_block64_part1_stochastic_full_box_kernel.py",
+    "runner_sha256": "72d9a31e97646c12a89edc03d86d0b840301f1c7fe2d364f84a06c2f6c6b2c9e",
+    "test": "/home/agni/waymo/iscai_stage6/tests/test_block64_part1_stochastic_full_box.py",
+    "test_sha256": "8ca464ef17ace511aa04676f1a9a3962b00102e5e4cc16a8cb5d56483971bbac"
+  },
+  "not_yet_frozen": {
+    "MC_sample_count": true,
+    "MC_seed_set": true,
+    "actuation_rate_limits": true,
+    "class_margins": true,
+    "dimming_floors": true,
+    "occupancy_gamma": true,
+    "scientific_illumination_grid": true,
+    "temporal_smoothing": true
+  },
+  "not_yet_implemented": {
+    "actuation_rate_limits": true,
+    "class_aware_policy": true,
+    "multi_actor_mask_aggregation": true,
+    "occupancy_rasterization": true,
+    "occupancy_thresholding": true,
+    "temporal_smoothing": true
+  },
+  "scientific_execution": {
+    "formal_evaluation": false,
+    "model_forward": false,
+    "parameter_tuning": false,
+    "real_posterior_sampling": false,
+    "recalibration": false,
+    "training": false
+  },
+  "stage": 6,
+  "status": "PASS_STOCHASTIC_FULL_BOX_KERNEL_CONTRACT",
+  "test_repair": {
+    "numerical_tolerance_added": false,
+    "reason": "compare low-speed carry-forward to stored causal Box3D yaw rather than pre-Box3D float literal",
+    "scientific_module_changed": false
+  },
+  "trajectory_uncertainty": {
+    "Stage5_sampler": "sample_product_of_horizon_gaussians",
+    "absolute_mean": "latest_position_H0_m + mean_displacement_H0_m",
+    "anchor_source": "latest_position_H0_m",
+    "cross_horizon_covariance_invented": false,
+    "joint_sampling_semantics": "product_of_frozen_calibrated_per_horizon_Gaussian_marginals",
+    "mean_source": "mean_displacement_H0_m",
+    "sample_count": "RUNTIME_PARAMETER_NOT_FROZEN",
+    "seed": "RUNTIME_PARAMETER_NOT_FROZEN",
+    "source": "calibrated_predictive_covariance_H0_m2"
+  },
+  "upstream": {
+    "block63_closure_sha256": "c451c965fa4b8a237f36358da9c1c36436a4317ee0b1501e170be2c804977d1c",
+    "block63_freeze_sha256": "230b800e3889a412202306c450824152b7bff2aa6e35d12376a22d007597e8f2",
+    "block63_handoff_sha256": "611f1679b83fb1273cf2d1836a03073e3c557704c9656741d46ea19f80ca18c6",
+    "identity_safe_posterior_sha256": "318b22dfc3788195a1432169075d1c8654f0d183337711918db2303b5668f5ea"
+  }
+}

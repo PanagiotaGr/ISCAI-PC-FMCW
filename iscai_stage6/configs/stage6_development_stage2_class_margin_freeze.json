@@ -1,0 +1,133 @@
+{
+  "block": "6.8_development_stage2_class_margin",
+  "development_only": true,
+  "formal_outcomes_read": false,
+  "immutable_after_freeze": [
+    "Stage-1 class k/gamma",
+    "vehicle base/uncertainty/closing coefficients",
+    "pedestrian base/uncertainty coefficients",
+    "cyclist base/uncertainty/lateral coefficients"
+  ],
+  "margin_semantics": {
+    "PartA_generic_lateral_margin_m": 1.0,
+    "PartA_generic_margin_reapplied_in_stage2_dilation": false,
+    "cyclist": "b + u*sigma_lat + q*tau*v_lat",
+    "dilation_input": "additional_class_margin_m / m_extra",
+    "pedestrian": "b + u*sigma_lat",
+    "vehicle": "b + u*sigma_lat + q*tau*v_close"
+  },
+  "objective": "maximize macro actor-horizon full-box mask IoU after additional class-margin theta dilation",
+  "overmask_semantics": "|candidate_dilated_mask \\ actor_oracle_mask| / |full actuator grid|",
+  "scientific_boundary": {
+    "NI_bounds_modified": false,
+    "floor_selection": false,
+    "formal_evaluation": false,
+    "primary_acceptance_tested": false,
+    "temporal_rate_selection": false
+  },
+  "secondary_tie_break": "lower macro actor-horizon over-masking area",
+  "selected": {
+    "TYPE_CYCLIST": {
+      "base_margin_m": 0.0,
+      "candidate_index": 0,
+      "invalid_future_actor_horizon_pairs_NA": 10,
+      "macro_actor_horizon_IoU": 0.2229309135285922,
+      "macro_actor_horizon_over_masking_area": 0.0016067678450553899,
+      "motion_multiplier": 0.25,
+      "primary_IoU_maximizer_count": 1,
+      "scored_actor_horizon_pairs": 182,
+      "secondary_overmask_winner_count": 1,
+      "stage1_gamma": 0.0679931640625,
+      "stage1_k": 557,
+      "tie_break_order": [
+        "lower over-masking area",
+        "smaller base margin",
+        "smaller uncertainty multiplier",
+        "smaller closing/lateral multiplier",
+        "canonical numeric tuple"
+      ],
+      "uncertainty_multiplier": 0.5
+    },
+    "TYPE_PEDESTRIAN": {
+      "base_margin_m": 0.0,
+      "candidate_index": 0,
+      "invalid_future_actor_horizon_pairs_NA": 28,
+      "macro_actor_horizon_IoU": 0.22030627084752338,
+      "macro_actor_horizon_over_masking_area": 0.0009210846442456835,
+      "motion_multiplier": 0.0,
+      "primary_IoU_maximizer_count": 1,
+      "scored_actor_horizon_pairs": 412,
+      "secondary_overmask_winner_count": 1,
+      "stage1_gamma": 0.0609130859375,
+      "stage1_k": 499,
+      "tie_break_order": [
+        "lower over-masking area",
+        "smaller base margin",
+        "smaller uncertainty multiplier",
+        "motion multiplier not applicable",
+        "canonical numeric tuple"
+      ],
+      "uncertainty_multiplier": 0.5
+    },
+    "TYPE_VEHICLE": {
+      "base_margin_m": 0.0,
+      "candidate_index": 0,
+      "invalid_future_actor_horizon_pairs_NA": 57,
+      "macro_actor_horizon_IoU": 0.41918095515651327,
+      "macro_actor_horizon_over_masking_area": 0.003226307053031618,
+      "motion_multiplier": 0.05,
+      "primary_IoU_maximizer_count": 1,
+      "scored_actor_horizon_pairs": 2819,
+      "secondary_overmask_winner_count": 1,
+      "stage1_gamma": 0.11962890625,
+      "stage1_k": 980,
+      "tie_break_order": [
+        "lower over-masking area",
+        "smaller base margin",
+        "smaller uncertainty multiplier",
+        "smaller closing/lateral multiplier",
+        "canonical numeric tuple"
+      ],
+      "uncertainty_multiplier": 0.5
+    }
+  },
+  "stage": 6,
+  "stage1_gamma": {
+    "TYPE_CYCLIST": {
+      "gamma": 0.0679931640625,
+      "k": 557
+    },
+    "TYPE_PEDESTRIAN": {
+      "gamma": 0.0609130859375,
+      "k": 499
+    },
+    "TYPE_VEHICLE": {
+      "gamma": 0.11962890625,
+      "k": 980
+    }
+  },
+  "stage2_only": {
+    "actuation_rate_selected": false,
+    "class_floor_selected": false,
+    "class_margin_selected": true,
+    "gamma_selected": true,
+    "temporal_smoothing_selected": false
+  },
+  "status": "FROZEN_STAGE2_CLASS_MARGIN_BEFORE_STAGE3_FLOOR_SELECTION",
+  "upstream": {
+    "class_policy": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b",
+    "input_binding": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_development_stage2_margin_input_binding.json",
+      "sha256": "20cad64a5c26ab38198b65de0728bf6e07a3346ad71c851a8e34b811ee9de21b"
+    },
+    "ledger": "ac2b954571cdd0166bbcfa5bb8b2956785d1e132288dbe4af7fe2d55adeafcaa",
+    "margin_bind": "80c35d2aa5cd7fea1e54f7a6cb52b8bb0f28f36632ca66e6500f992dcff6d5cf",
+    "pocc_manifest": "c361ed640b91850831d7e7177d89733fedd3e171f5f3111bcd93698c74a4a300",
+    "posterior_sha256": "f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd",
+    "predictive_matches": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6",
+    "prereg": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e",
+    "replay_contract": "ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1",
+    "stage1_freeze": "a55f21589f55a75afcb660a8a7278e802dd9e102f4c75ca7863697359bbb2a87",
+    "timestamp": "51a3b56a119467001a9f4617e1e19dc82c548c0a30c79fc9c4a9c1f5ef27bf56"
+  }
+}

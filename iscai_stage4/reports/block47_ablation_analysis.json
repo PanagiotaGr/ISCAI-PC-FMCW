@@ -1,0 +1,419 @@
+{
+  "block": "4.7",
+  "feature_contract": {
+    "R_t_indices": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "R_t_names": [
+      "meas_cov_xx_H0_m2",
+      "meas_cov_xy_H0_m2",
+      "meas_cov_xz_H0_m2",
+      "meas_cov_yy_H0_m2",
+      "meas_cov_yz_H0_m2",
+      "meas_cov_zz_H0_m2"
+    ],
+    "R_t_used_by_full_model": true
+  },
+  "formal_validation": {
+    "formal_ablation_comparison": "not_required_before_Block4.8",
+    "used": false
+  },
+  "implementation": {
+    "file_count": 65,
+    "sha256": "4b32edff0c08f23de4ec5109b46b64a8eccc5357da0deb4fc516b72fe3cad006"
+  },
+  "measurement_to_predictive_uncertainty": {
+    "correlations": {
+      "0.1": {
+        "Pearson_measurement_vs_planar_error": 0.16544544171920025,
+        "Pearson_measurement_vs_predictive_sigma": 0.332478256959239,
+        "Spearman_measurement_vs_planar_error": 0.2978832736345989,
+        "Spearman_measurement_vs_predictive_sigma": 0.4741891231652206
+      },
+      "0.3": {
+        "Pearson_measurement_vs_planar_error": 0.12341049514219869,
+        "Pearson_measurement_vs_predictive_sigma": 0.25025327410504783,
+        "Spearman_measurement_vs_planar_error": 0.22511687209718909,
+        "Spearman_measurement_vs_predictive_sigma": 0.4129350514370937
+      },
+      "0.5": {
+        "Pearson_measurement_vs_planar_error": 0.09823236483484468,
+        "Pearson_measurement_vs_predictive_sigma": 0.18058990629176666,
+        "Spearman_measurement_vs_planar_error": 0.16209779252450018,
+        "Spearman_measurement_vs_predictive_sigma": 0.3420384670773688
+      },
+      "1.0": {
+        "Pearson_measurement_vs_planar_error": 0.04648421056275872,
+        "Pearson_measurement_vs_predictive_sigma": 0.1078738278556503,
+        "Spearman_measurement_vs_planar_error": 0.05839686813277954,
+        "Spearman_measurement_vs_predictive_sigma": 0.20090059792133613
+      }
+    },
+    "equal_count_measurement_uncertainty_bins": {
+      "1": {
+        "horizons": {
+          "0.1": {
+            "mean_calibrated_predictive_sigma_RMS_m": 0.5520061397469428,
+            "mean_planar_error_m": 0.8307745111318839,
+            "valid": 2722
+          },
+          "0.3": {
+            "mean_calibrated_predictive_sigma_RMS_m": 0.7217696538725218,
+            "mean_planar_error_m": 1.1206870855138384,
+            "valid": 2715
+          },
+          "0.5": {
+            "mean_calibrated_predictive_sigma_RMS_m": 0.9283852376781541,
+            "mean_planar_error_m": 1.4491433387912631,
+            "valid": 2710
+          },
+          "1.0": {
+            "mean_calibrated_predictive_sigma_RMS_m": 1.4784309682627292,
+            "mean_planar_error_m": 2.3345678053549968,
+            "valid": 2692
+          }
+        },
+        "measurement_sigma_RMS_m": {
+          "max": 0.31234392152695356,
+          "mean": 0.1940236914145437,
+          "min": 0.04012775979078769
+        },
+        "sample_count": 2737
+      },
+      "2": {
+        "horizons": {
+          "0.1": {
+            "mean_calibrated_predictive_sigma_RMS_m": 0.6065294441944089,
+            "mean_planar_error_m": 0.8720299850448944,
+            "valid": 2718
+          },
+          "0.3": {
+            "mean_calibrated_predictive_sigma_RMS_m": 0.7723905159568085,
+            "mean_planar_error_m": 1.1420891691515203,
+            "valid": 2677
+          },
+          "0.5": {
+            "mean_calibrated_predictive_sigma_RMS_m": 0.9718963002585203,
+            "mean_planar_error_m": 1.4569030743111142,
+            "valid": 2669
+          },
+          "1.0": {
+            "mean_calibrated_predictive_sigma_RMS_m": 1.4992201682133228,
+            "mean_planar_error_m": 2.285735422366329,
+            "valid": 2612
+          }
+        },
+        "measurement_sigma_RMS_m": {
+          "max": 0.5007944897802391,
+          "mean": 0.4089266044890698,
+          "min": 0.3126471611310331
+        },
+        "sample_count": 2736
+      },
+      "3": {
+        "horizons": {
+          "0.1": {
+            "mean_calibrated_predictive_sigma_RMS_m": 0.6887551246374557,
+            "mean_planar_error_m": 1.0112030284237359,
+            "valid": 2695
+          },
+          "0.3": {
+            "mean_calibrated_predictive_sigma_RMS_m": 0.8612560813316186,
+            "mean_planar_error_m": 1.2750970816286933,
+            "valid": 2643
+          },
+          "0.5": {
+            "mean_calibrated_predictive_sigma_RMS_m": 1.0478121301136925,
+            "mean_planar_error_m": 1.5471986537655025,
+            "valid": 2609
+          },
+          "1.0": {
+            "mean_calibrated_predictive_sigma_RMS_m": 1.5691494715316783,
+            "mean_planar_error_m": 2.312033192230818,
+            "valid": 2506
+          }
+        },
+        "measurement_sigma_RMS_m": {
+          "max": 0.6676971969231238,
+          "mean": 0.5843199571619352,
+          "min": 0.5009799721529302
+        },
+        "sample_count": 2737
+      },
+      "4": {
+        "horizons": {
+          "0.1": {
+            "mean_calibrated_predictive_sigma_RMS_m": 0.7800506745509549,
+            "mean_planar_error_m": 1.1168601438076593,
+            "valid": 2681
+          },
+          "0.3": {
+            "mean_calibrated_predictive_sigma_RMS_m": 0.954408633853434,
+            "mean_planar_error_m": 1.3574686024564133,
+            "valid": 2605
+          },
+          "0.5": {
+            "mean_calibrated_predictive_sigma_RMS_m": 1.1432973838104596,
+            "mean_planar_error_m": 1.622307065447406,
+            "valid": 2561
+          },
+          "1.0": {
+            "mean_calibrated_predictive_sigma_RMS_m": 1.671962093949472,
+            "mean_planar_error_m": 2.3915584813996897,
+            "valid": 2407
+          }
+        },
+        "measurement_sigma_RMS_m": {
+          "max": 0.8572349648749397,
+          "mean": 0.7589310663974749,
+          "min": 0.6677848309890044
+        },
+        "sample_count": 2736
+      },
+      "5": {
+        "horizons": {
+          "0.1": {
+            "mean_calibrated_predictive_sigma_RMS_m": 0.9318797545976287,
+            "mean_planar_error_m": 1.311642938800125,
+            "valid": 2627
+          },
+          "0.3": {
+            "mean_calibrated_predictive_sigma_RMS_m": 1.112326634172285,
+            "mean_planar_error_m": 1.5680430771278218,
+            "valid": 2500
+          },
+          "0.5": {
+            "mean_calibrated_predictive_sigma_RMS_m": 1.3003280916332531,
+            "mean_planar_error_m": 1.85364025571139,
+            "valid": 2346
+          },
+          "1.0": {
+            "mean_calibrated_predictive_sigma_RMS_m": 1.818347533806651,
+            "mean_planar_error_m": 2.5213523855150974,
+            "valid": 2088
+          }
+        },
+        "measurement_sigma_RMS_m": {
+          "max": 5.2949366440913535,
+          "mean": 1.0531254580319915,
+          "min": 0.857467593123387
+        },
+        "sample_count": 2736
+      }
+    },
+    "measurement_uncertainty_definition": "latest causal target R_t: sqrt(trace(R_t)/3)",
+    "predictive_sigma_uses_Block45_calibration_scale": true,
+    "predictive_uncertainty_definition": "sqrt(trace(Sigma_pred)/3)"
+  },
+  "measurement_uncertainty": {
+    "PSD_violation_count": 0,
+    "minimum_eigenvalue": -5.7248813301343335e-08,
+    "scalar_definition": "sqrt(trace(latest_causal_target_R_t)/3)",
+    "units": "m"
+  },
+  "physical_R_t_sensitivity": {
+    "model_retrained_for_sensitivity": false,
+    "results": {
+      "0.5": {
+        "horizon_NLL": {
+          "0.1": 2.499760295241076,
+          "0.3": 3.026953682398687,
+          "0.5": 3.4126371314887067,
+          "1.0": 4.129972849895876
+        },
+        "horizon_planar_error_m": {
+          "0.1": 1.0303612240614888,
+          "0.3": 1.2938934326171876,
+          "0.5": 1.5873662480461177,
+          "1.0": 2.378855100505384
+        },
+        "mean_predictive_sigma_RMS_m": {
+          "0.1": 0.6163753505832497,
+          "0.3": 0.7344546847873263,
+          "0.5": 0.8948013997900712,
+          "1.0": 1.3759417369955684
+        },
+        "metric_Gaussian_NLL": 3.2482420818910165,
+        "planar_ADE_m": 1.55637575861196,
+        "predictive_covariance_SPD_failures": 0,
+        "valid_actor_horizon_points": 51783
+      },
+      "1.0": {
+        "horizon_NLL": {
+          "0.1": 2.410499496136465,
+          "0.3": 2.9226757682440305,
+          "0.5": 3.314474197393612,
+          "1.0": 4.044859515472623
+        },
+        "horizon_planar_error_m": {
+          "0.1": 1.0263130081858938,
+          "0.3": 1.288160796143693,
+          "0.5": 1.578570180347882,
+          "1.0": 2.3624556955696363
+        },
+        "mean_predictive_sigma_RMS_m": {
+          "0.1": 0.6391071903291472,
+          "0.3": 0.7592431473405394,
+          "0.5": 0.9209054758309301,
+          "1.0": 1.4097998007193469
+        },
+        "metric_Gaussian_NLL": 3.153939398019741,
+        "planar_ADE_m": 1.5477828883725113,
+        "predictive_covariance_SPD_failures": 0,
+        "valid_actor_horizon_points": 51783
+      },
+      "2.0": {
+        "horizon_NLL": {
+          "0.1": 2.440086150784795,
+          "0.3": 2.9455437647153255,
+          "0.5": 3.3426738216877907,
+          "1.0": 4.08294877630092
+        },
+        "horizon_planar_error_m": {
+          "0.1": 1.0437481593652946,
+          "0.3": 1.3156418845352336,
+          "0.5": 1.6139929118753635,
+          "1.0": 2.4136277292957637
+        },
+        "mean_predictive_sigma_RMS_m": {
+          "0.1": 0.6873420886160548,
+          "0.3": 0.8118626401486099,
+          "0.5": 0.9768433847830433,
+          "1.0": 1.482861888626638
+        },
+        "metric_Gaussian_NLL": 3.1834962314188537,
+        "planar_ADE_m": 1.5802631670263407,
+        "predictive_covariance_SPD_failures": 0,
+        "valid_actor_horizon_points": 51783
+      }
+    },
+    "scaling_applied_to": "all_observed_target_and_neighbor_history_R_t",
+    "variance_scaling": [
+      0.5,
+      1.0,
+      2.0
+    ]
+  },
+  "regression": {
+    "tests_passed": 108,
+    "tests_total": 108
+  },
+  "retrained_input_context_ablations": {
+    "comparison": {
+      "actor_only": {
+        "ADE_m": 1.648196881246017,
+        "NLL": 3.330293699337862,
+        "delta_ADE_m_vs_full": 0.10041399287350572,
+        "delta_NLL_vs_full": 0.17635430131812102
+      },
+      "full": {
+        "ADE_m": 1.5477828883725113,
+        "NLL": 3.153939398019741
+      },
+      "no_map": {
+        "ADE_m": 1.6152936763301904,
+        "NLL": 3.137781289527934,
+        "delta_ADE_m_vs_full": 0.06751078795767906,
+        "delta_NLL_vs_full": -0.01615810849180699
+      },
+      "no_measurement_covariance": {
+        "ADE_m": 1.5528955795700325,
+        "NLL": 3.1383326627162873,
+        "delta_ADE_m_vs_full": 0.005112691197521224,
+        "delta_NLL_vs_full": -0.01560673530345369
+      }
+    },
+    "full_reference": {
+      "ADE_m": 1.5477828883725113,
+      "NLL": 3.153939398019741
+    },
+    "performance_direction_is_closure_gate": false,
+    "protocol": "same_Gaussian_training_seed_sampler_optimizer_and_model_selection",
+    "results": {
+      "actor_only": {
+        "best_epoch": 6,
+        "checkpoint_file_sha256": "da0f940fc05acb0eae4e2d21c8333a277d8a99f1ccbbf2b5e0c2ade2431aa1a4",
+        "metrics": {
+          "class_planar_ADE_m": {
+            "TYPE_CYCLIST": 1.8060741414126473,
+            "TYPE_PEDESTRIAN": 1.0348170752449202,
+            "TYPE_VEHICLE": 1.6908222215296778
+          },
+          "horizon_planar_error_m": {
+            "0.1": 1.0810094185105341,
+            "0.3": 1.3609127073708915,
+            "0.5": 1.679218350514371,
+            "1.0": 2.542109411705417
+          },
+          "metric_Gaussian_NLL": 3.330293699337862,
+          "one_second_planar_error_m": 2.542109411705417,
+          "planar_ADE_m": 1.648196881246017,
+          "predictive_covariance_SPD_failures": 0
+        },
+        "state_dict_sha256": "9875c0a579147718c58315ad8d2efc73ac2b9f3e6f4c04d76a1cf7148729b4b5"
+      },
+      "no_map": {
+        "best_epoch": 19,
+        "checkpoint_file_sha256": "c37e2db9f90d7eaa42525faf9b1fbec34eb2be87ae3856137502ec341323fbd8",
+        "metrics": {
+          "class_planar_ADE_m": {
+            "TYPE_CYCLIST": 1.4346217983921978,
+            "TYPE_PEDESTRIAN": 1.0499205922872823,
+            "TYPE_VEHICLE": 1.6576962174534915
+          },
+          "horizon_planar_error_m": {
+            "0.1": 1.0405892006992488,
+            "0.3": 1.334092034233941,
+            "0.5": 1.6536530594161982,
+            "1.0": 2.5032332710597824
+          },
+          "metric_Gaussian_NLL": 3.137781289527934,
+          "one_second_planar_error_m": 2.5032332710597824,
+          "planar_ADE_m": 1.6152936763301904,
+          "predictive_covariance_SPD_failures": 0
+        },
+        "state_dict_sha256": "0685453b1ce22f87640fa3d539220f3a1ef2994ba756ced12c327a6be0a7d8a4"
+      },
+      "no_measurement_covariance": {
+        "best_epoch": 20,
+        "checkpoint_file_sha256": "8a5481878962eba1bf4bb6156ebbaf4aae29807650ec616c1525b9dc25197d76",
+        "metrics": {
+          "class_planar_ADE_m": {
+            "TYPE_CYCLIST": 1.5921392524268487,
+            "TYPE_PEDESTRIAN": 1.001578117558849,
+            "TYPE_VEHICLE": 1.592187828369421
+          },
+          "horizon_planar_error_m": {
+            "0.1": 1.026261818654603,
+            "0.3": 1.2922483865166001,
+            "0.5": 1.58342137479098,
+            "1.0": 2.374578740857375
+          },
+          "metric_Gaussian_NLL": 3.1383326627162873,
+          "one_second_planar_error_m": 2.374578740857375,
+          "planar_ADE_m": 1.5528955795700325,
+          "predictive_covariance_SPD_failures": 0
+        },
+        "state_dict_sha256": "dd690962b528f56c47081cf45412f5eeb623701d6151c16c7ddc1217d87b42b4"
+      }
+    }
+  },
+  "stage": 4,
+  "status": "PASS",
+  "storage": {
+    "free_gib": 1055.0715560913086,
+    "hard_reserve_gib": 250.0,
+    "pass": true
+  },
+  "uncertainty_separation": {
+    "Block45_calibration": "predictive_covariance_only",
+    "measurement_uncertainty": "Stage2_R_t_input",
+    "predictive_uncertainty": "learned_Gaussian_Sigma_output",
+    "separate": true
+  }
+}

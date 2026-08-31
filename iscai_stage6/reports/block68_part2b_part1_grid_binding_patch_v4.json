@@ -1,0 +1,49 @@
+{
+  "binding": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/stage6_frozen_illumination_grid_runtime_binding.json",
+    "semantic_AST_validation": true,
+    "sha256": "be5145fe60a941e7906639916cfa384d5674dc29f294f5a42e12c962bc4df4bc"
+  },
+  "block": "6.8_Part2B_Part1_grid_binding_patch_v4",
+  "next": "rerun the original Part2B Part1 reactive decision-ledger runner",
+  "prior_validation_failures": {
+    "V1": "brittle old-error-string sentinel",
+    "V2": "contiguous source SHA validation",
+    "V3": "exact filename constant validation did not account for lexical string concatenation",
+    "scientific_failure": false,
+    "target_modified_by_failed_patchers": false
+  },
+  "project": "Agni",
+  "regression": {
+    "status": "PASS",
+    "tests": 224
+  },
+  "repair_scope": {
+    "all_other_top_level_functions_byte_exact": true,
+    "heuristic_grid_discovery": false,
+    "modified_top_level_function": "resolve_grid",
+    "old_resolve_grid_lines": [
+      461,
+      722
+    ],
+    "old_resolve_grid_sha256": "2a32646a82709818a1e62fdc7dc1b816cba2ab0b8b44c4c504b63724b987c2cd",
+    "scientific_parameter_change": false,
+    "whole_runner_pre_sha256": "fb9c62a46f2ad238fbbbf9ddb4ce791c02e74b65c66f316e2f586ddbd2bd13d6"
+  },
+  "runner": {
+    "backup_path": "/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch_v4/run_block68_part2b_part1_reactive_decision_ledger.pre_v4.py",
+    "backup_sha256": "fb9c62a46f2ad238fbbbf9ddb4ce791c02e74b65c66f316e2f586ddbd2bd13d6",
+    "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_part2b_part1_reactive_decision_ledger.py",
+    "post_patch_sha256": "c7bedc46e1dc687258b6d81790f54a3c05d7d2e55da8b7e681bd379d1058579e"
+  },
+  "scientific_boundary": {
+    "P_occ_content_read": false,
+    "exact_NI_deltas_computed": false,
+    "formal_evaluation": false,
+    "future_truth_read": false,
+    "predictive_performance_read": false,
+    "reactive_performance_read": false
+  },
+  "stage": 6,
+  "status": "PASS_PART2B_PART1_GRID_BINDING_PATCHED_V4"
+}

@@ -1,0 +1,129 @@
+{
+  "actor_classes": [
+    "TYPE_VEHICLE",
+    "TYPE_PEDESTRIAN",
+    "TYPE_CYCLIST"
+  ],
+  "authority": {
+    "I_final_binding_sha256": "1505c780423efbe27735c3729b95a18c3da2093f49826bd96cbfad8fdce5d5f1",
+    "exact_reference_extraction_sha256": "d74fd3182c16b7ed8198e9b0fc6f3f004ec12e2f9db08fd27c48dc5c1f77d545",
+    "metric_reconciliation_sha256": "077a89fa5163f8862a3a5b7489d98929d9ae3e160ed9e030eb75f42a91d48f9f",
+    "metric_semantics": "Block6.6_preoutcome_preregistration"
+  },
+  "block": "6.8",
+  "constructed_oracle": {
+    "actor_population": "all evaluator-valid vehicle, pedestrian and cyclist actors",
+    "actor_support": "future-GT full-box projected shadow/footprint support on frozen theta-range headlamp grid",
+    "aggregation": "O_tau = union of per-actor future supports",
+    "controller_input": false,
+    "future_truth_access": "evaluator_after_controller_decision_only",
+    "grid": "same_frozen_theta_range_grid_as_controller",
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "measured_ADB_ground_truth": false,
+    "parameter_tuning_input": false,
+    "type": "CONSTRUCTED_EVALUATOR_REFERENCE"
+  },
+  "controller_output": {
+    "metric_input": "RateLimitedSchedule.illumination",
+    "post_actuation_rate_limit": true,
+    "post_temporal_smoothing": true,
+    "raw_class_aware_map_used_for_metrics": false
+  },
+  "cyclist_visibility_region": {
+    "future_truth_controller_input": false,
+    "role": "evaluator_only",
+    "semantics": "future-GT cyclist projected full-box footprint cells"
+  },
+  "data_use_boundary": {
+    "constructed_oracle_used_for_tuning": false,
+    "formal_data_allowed_now": false,
+    "future_truth_access_time": "after_controller_decision",
+    "future_truth_allowed_for_controller": false,
+    "future_truth_allowed_for_evaluator": true
+  },
+  "exact_scientific_sources": {
+    "class_aware_policy": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/class_aware_policy.py",
+      "sha256": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b"
+    },
+    "deterministic_predictive": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/deterministic_predictive.py",
+      "sha256": "a81834dee7203d37b045d070d6e448010dd9add88eb2d054ccfb56e207156d3e"
+    },
+    "exact_symbols": {
+      "StochasticFullBoxForecast": {
+        "object_type": "type",
+        "signature": "(prediction_id: 'str', sample_count: 'int', seed: 'int', absolute_mean_H0_m: 'np.ndarray', trajectory_samples_H0_m: 'np.ndarray', heading_samples_rad: 'np.ndarray', heading_fallback_mask: 'np.ndarray', future: 'tuple[tuple[StochasticFutureProjectedBox, StochasticFutureProjectedBox, StochasticFutureProjectedBox, StochasticFutureProjectedBox], ...]', joint_sampling_semantics: 'str' = 'product_of_frozen_calibrated_per_horizon_Gaussian_marginals') -> None"
+      },
+      "build_deterministic_future_full_boxes": {
+        "object_type": "function",
+        "signature": "(prediction: 'DeterministicSharedMeanPrediction', actor_box) -> 'tuple[DeterministicFutureProjectedBox, DeterministicFutureProjectedBox, DeterministicFutureProjectedBox, DeterministicFutureProjectedBox]'"
+      },
+      "estimate_actor_occupancy_probability": {
+        "object_type": "function",
+        "signature": "(forecast: 'StochasticFullBoxForecast', grid: 'OccupancyGrid') -> 'ActorOccupancyProbability'"
+      }
+    },
+    "probabilistic_full_box": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_full_box.py",
+      "sha256": "51daeab95713d6e7d2738ced466be4844b73dce70a09138b2b769de880462995"
+    },
+    "probabilistic_occupancy": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_occupancy.py",
+      "sha256": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e"
+    }
+  },
+  "formal_evaluation_allowed": false,
+  "freeze_timing": "before_development_metric_outcomes",
+  "horizons_s": [
+    0.1,
+    0.3,
+    0.5,
+    1.0
+  ],
+  "metric_supports": {
+    "actuation_latency": "loaded_P_occ_or_current_geometry_to_final_four_horizon_schedule_seconds",
+    "cyclist_visibility_proxy": "I_final_over_future_GT_cyclist_full_box",
+    "energy_consumption": "mean_post_actuation_I_final_full_horizon_grid",
+    "false_dimming": "candidate_D_minus_O_over_candidate_D",
+    "flicker_change_rate": "post_actuation_exact_cell_change_fraction",
+    "glare_risk_exposure": "constructed_vehicle_surrogate_region",
+    "mask_IoU": "candidate_D_vs_constructed_O",
+    "over_masking_area": "candidate_D_minus_O_over_full_actuator_grid",
+    "pedestrian_visibility_proxy": "I_final_over_future_GT_pedestrian_full_box",
+    "road_illumination_retention": "I_final_over_frozen_road_ROI",
+    "temporal_smoothness": "post_actuation_I_final_change_rate",
+    "vehicle_shadow_zone_violation": "constructed_future_vehicle_required_region"
+  },
+  "next": "development-only ADB metric execution and numeric non-inferiority bound freeze",
+  "pedestrian_visibility_region": {
+    "future_truth_controller_input": false,
+    "role": "evaluator_only",
+    "semantics": "future-GT pedestrian projected full-box footprint cells"
+  },
+  "project": "Agni",
+  "road_ROI": {
+    "actor_dependent": false,
+    "development_outcome_dependent": false,
+    "formal_outcome_dependent": false,
+    "future_truth_dependent": false,
+    "justification": "Block6.6 preregistered a frozen road ROI but no narrower numerical ROI artifact existed. The Stage6 theta-range headlamp actuator grid is the road-domain illumination evaluation grid, so all valid cells are frozen as the road ROI before any development metric outcome.",
+    "map_dependent": false,
+    "mask_value_on_valid_grid": true,
+    "rule": "all_valid_cells_of_frozen_theta_range_headlamp_actuator_grid",
+    "status": "FROZEN_PRE_DEVELOPMENT_OUTCOMES"
+  },
+  "stage": 6,
+  "status": "FROZEN_EVALUATOR_REFERENCE_CONTRACT",
+  "vehicle_reference_region": {
+    "existing_evidence": "PROVEN",
+    "future_truth_controller_input": false,
+    "role": "evaluator_only",
+    "semantics": "constructed vehicle front-upper/rear-upper surrogate reference region"
+  }
+}

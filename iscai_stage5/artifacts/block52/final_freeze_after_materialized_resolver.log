@@ -1,0 +1,185 @@
+============================================================
+BLOCK 5.2 PART 2/2 — SAFE EXECUTION
+============================================================
+
+===== CONTROLLED COMPILE =====
+angular_monte_carlo.py = PASS
+test_block52_monte_carlo.py = PASS
+run_block52_part2_freeze.py = PASS
+run_block52_part2_safe.py = PASS
+
+===== BLOCK5.2 PART2 UNIT TESTS =====
+
+..................
+----------------------------------------------------------------------
+Ran 18 tests in 0.058s
+
+OK
+
+Block5.2 Part2 tests = 18 / 18 PASS
+
+===== PRE-FREEZE FULL STAGE5 REGRESSION =====
+
+........................................................................
+----------------------------------------------------------------------
+Ran 72 tests in 0.060s
+
+OK
+
+pre-freeze Stage5 regression = 72 / 72 PASS
+
+===== FINAL BLOCK5.2 FREEZE =====
+============================================================
+STAGE 5 — BLOCK 5.2 PART 2/2
+DETERMINISTIC MC RECEIVER/ANGULAR POSTERIOR
+============================================================
+
+===== A. BLOCK5.1 / BLOCK5.2 PART1 CONTINUITY =====
+Block5.1                  = PASS
+Block5.2 Part1            = PASS
+historical implementation= PASS
+receiver policy           = FROZEN PASS
+
+===== B. FROZEN STAGE4 GAUSSIAN → MC CONTRACT =====
+Stage4 mean               = UNCHANGED
+Stage4 covariance         = CALIBRATED alpha_h PASS
+measurement R_t           = NOT MODIFIED
+cross-horizon covariance  = NOT INVENTED
+joint MC semantics        = PRODUCT OF FROZEN MARGINALS
+
+===== C. NON-FORMAL BLOCK4.4 DEVELOPMENT POSTERIOR =====
+development prediction artifact = /home/agni/waymo/iscai_stage5/artifacts/block52/development_gaussian_posterior.npz
+development artifact SHA256 = 39dacd4a1dd83ac9951244328403384421731dcffc1cf01617bcc6c6395460b4
+mean key                  = mean_absolute_H0_m
+covariance key            = calibrated_covariance_H0_m2
+development samples       = 13682
+stable convergence cases  = 24
+formal N=120 touched      = NO
+Stage4 inference this run = NO
+development artifact read = YES
+
+===== D. DEVELOPMENT-ONLY MC CONVERGENCE =====
+
+candidate N = 2048
+  azimuth_mean_abs_deg_p95        = 0.09305082248181351 | limit = 0.25
+  azimuth_std_abs_deg_p95         = 0.06321196800364887 | limit = 0.25
+  elevation_mean_abs_deg_p95      = 0.01541634913322651 | limit = 0.2
+  elevation_std_abs_deg_p95       = 0.008474067117095571 | limit = 0.2
+  range_mean_abs_m_p95            = 0.044363050813358375 | limit = 0.1
+  azimuth_mean_abs_deg_max        = 0.16680297236855662 | limit = 0.75
+  elevation_mean_abs_deg_max      = 0.017637384626076818 | limit = 0.6
+  status = PASS
+
+candidate N = 4096
+  azimuth_mean_abs_deg_p95        = 0.04960762960849468 | limit = 0.25
+  azimuth_std_abs_deg_p95         = 0.03835278358124358 | limit = 0.25
+  elevation_mean_abs_deg_p95      = 0.010685861244409262 | limit = 0.2
+  elevation_std_abs_deg_p95       = 0.0073469979041569525 | limit = 0.2
+  range_mean_abs_m_p95            = 0.039024130326358264 | limit = 0.1
+  azimuth_mean_abs_deg_max        = 0.05132367716302905 | limit = 0.75
+  elevation_mean_abs_deg_max      = 0.022148202679289374 | limit = 0.6
+  status = PASS
+
+candidate N = 8192
+  azimuth_mean_abs_deg_p95        = 0.03027723019461374 | limit = 0.25
+  azimuth_std_abs_deg_p95         = 0.02354002984575232 | limit = 0.25
+  elevation_mean_abs_deg_p95      = 0.005634120777072151 | limit = 0.2
+  elevation_std_abs_deg_p95       = 0.004843221357296808 | limit = 0.2
+  range_mean_abs_m_p95            = 0.020278564852414502 | limit = 0.1
+  azimuth_mean_abs_deg_max        = 0.039637470534579895 | limit = 0.75
+  elevation_mean_abs_deg_max      = 0.006358500618465607 | limit = 0.6
+  status = PASS
+
+selected MC sample count = 2048
+selection                = SMALLEST PASSING CANDIDATE
+formal tuning            = NO
+MC convergence SHA256    = 2a66b9128b06250b90b61ed0cd3e0a089b86946bd34c0eac4483de150306fc5e
+
+===== E. HEADING + RECEIVER-PLACEMENT CONTRACT =====
+low-speed threshold      = 0.25 m/s
+threshold basis          = preregistered_numerical_stability_choice_equivalent_to_2p5cm_displacement_over_0p1s
+heading source           = SAMPLEWISE PREDICTED TANGENT
+low-speed fallback       = PREVIOUS CAUSAL/PREDICTED HEADING
+future GT heading        = NO
+uncertain RX offset      = ONE DRAW PER MC SAMPLE
+RX offset shared horizons= YES
+
+===== F. PRIMARY MC END-TO-END SANITY =====
+primary MC run           = PASS
+exact-repeat hash        = PASS
+sample SHA256            = 921688c06b8717099de24d3d8b73de9f3ba23970b4e8d566022eaf4b96a5fcd9
+output horizons          = 4 PASS
+angular covariance PSD   = PASS
+beam codebook            = NOT STARTED
+
+===== G. ANGULAR-POSTERIOR POLICY FREEZE =====
+angular posterior policy = FROZEN
+policy SHA256            = 846f6bf3d3419a2ea99fabc6293514726388bf60a31bb2a889aaf18b487fd82e
+
+============================================================
+BLOCK 5.2 PART 2/2 GATE
+============================================================
+Block5.1 continuity           = PASS
+Block5.2 Part1 continuity     = PASS
+Stage4 calibrated Gaussian    = PASS
+Stage4 predictive mean        = UNCHANGED
+Stage4 covariance alpha_h     = PASS
+cross-horizon covariance      = NOT INVENTED
+trajectory joint assumption   = PRODUCT OF MARGINALS
+primary angular posterior     = DETERMINISTIC MONTE CARLO
+MC sample count               = 2048 FROZEN
+MC development convergence    = PASS
+samplewise predicted heading  = PASS
+low-speed threshold           = 0.25 m/s FROZEN
+future GT heading             = NO
+receiver offset shared horizons= YES
+centroid/known/uncertain      = PASS
+circular azimuth statistics   = PASS
+exact-repeat MC hash          = PASS
+formal N=120 used             = NO
+Stage4 inference this run     = NO
+beam codebook                 = NOT STARTED
+training/recalibration        = NO
+angular policy SHA256         = 846f6bf3d3419a2ea99fabc6293514726388bf60a31bb2a889aaf18b487fd82e
+convergence SHA256            = 2a66b9128b06250b90b61ed0cd3e0a089b86946bd34c0eac4483de150306fc5e
+implementation files          = 41
+implementation SHA256         = e6a6c3996a1c09b493ebfe61516f7a4619994dd1aed34c7ada7e17f3711f9878
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage5/reports/block52_receiver_angular_posterior.json
+next = BLOCK 5.3
+terminal remains open = YES
+
+Block5.2 freeze raw code = 0
+
+===== FINAL FULL STAGE5 REGRESSION =====
+
+........................................................................
+----------------------------------------------------------------------
+Ran 72 tests in 0.060s
+
+OK
+
+final Stage5 regression = 72 / 72 PASS
+
+============================================================
+BLOCK 5.2 FINAL
+============================================================
+Part1 angular/Jacobian       = PASS
+Part2 deterministic MC       = PASS
+calibrated Gaussian input    = PASS
+cross-horizon covariance     = NOT INVENTED
+receiver-placement UQ        = JOINTLY PROPAGATED
+samplewise future heading    = PASS
+future GT heading            = NO
+MC development convergence   = PASS
+MC sample count              = 2048 FROZEN
+angular posterior policy     = FROZEN
+formal N=120 used            = NO
+Stage4 inference             = NO
+beam codebook                = NOT STARTED
+training/recalibration       = NO
+Stage5 regression            = 72 / 72 PASS
+scientific STATUS            = PASS
+Block5.2                     = COMPLETE
+next                         = BLOCK 5.3
+terminal remains open        = YES

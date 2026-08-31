@@ -1,0 +1,47 @@
+{
+  "development_cohort": {
+    "N": 120,
+    "class_actor_support": {
+      "TYPE_CYCLIST": 56,
+      "TYPE_PEDESTRIAN": 178,
+      "TYPE_VEHICLE": 890
+    },
+    "class_scene_support": {
+      "TYPE_CYCLIST": 40,
+      "TYPE_PEDESTRIAN": 56,
+      "TYPE_VEHICLE": 116
+    },
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_class_aware_development_cohort_120.jsonl",
+    "sha256": "57440e3d976e7aeff44811b5eeb075dc56e0e0e070a3832ec72d354253b998c9",
+    "strata": {
+      "cyclist": 40,
+      "pedestrian_no_cyclist": 40,
+      "vehicle_only": 40
+    }
+  },
+  "forbidden_next": [
+    "future_GT_controller_input",
+    "tracks_to_predict_actor_selection",
+    "objects_of_interest_actor_selection",
+    "perfect_track_ID_association",
+    "formal_outcome_read",
+    "class_policy_parameter_tuning_before_development_evidence"
+  ],
+  "from": "6.6-Part1B",
+  "required_next": [
+    "run_frozen_calibrated_Gaussian_predictor_only_on_cohort",
+    "retain_identity_safe_prediction_id_per_causal_track_history",
+    "apply_frozen_reciprocal_unique_nearest_anchor_association",
+    "record_predictive_matches_and_original_reactive_fallbacks",
+    "materialize_frozen_N8192_full_box_P_occ_for_matched_ADB_actors"
+  ],
+  "stage": 6,
+  "status": "PASS_READY_FOR_FROZEN_MODEL_COHORT_POSTERIOR_MATERIALIZATION",
+  "to": "6.6-Part2",
+  "upstream_freeze": {
+    "cohort_sha256": "57440e3d976e7aeff44811b5eeb075dc56e0e0e070a3832ec72d354253b998c9",
+    "freeze_sha256": "42b8238388af96de950b9dfa8ec62ef51acea9f192160c40b93922e9acca1854",
+    "prereg_sha256": "498888381e5ab9dd2f14db59cec6661beac22368e31088d6326fe76190bd4081",
+    "report_sha256": "3a965b4ef3c451e7526608f2b5ceb5a151eb08caf922a25f1b25a1ec5a12f5f0"
+  }
+}

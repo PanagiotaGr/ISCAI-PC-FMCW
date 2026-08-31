@@ -1,0 +1,121 @@
+============================================================
+STAGE 5 — BLOCK 5.0 PART 1/2
+FROZEN HANDOFF + RECEIVER/PART-A DISCOVERY
+============================================================
+
+============================================================
+A. EXACT FROZEN UPSTREAM HASHES
+============================================================
+Stage4 closure                = PASS
+Stage4→Stage5 handoff         = PASS
+Stage4 freeze manifest        = PASS
+Stage4 reproducibility        = PASS
+Gaussian checkpoint           = PASS
+fit-only normalization        = PASS
+covariance calibrator         = PASS
+formal N=120 manifest         = PASS
+PDF certification             = PASS
+PDF resolution                = PASS
+Waymo NOTICE                  = PASS
+
+============================================================
+B. STAGES 0→4 PDF-COMPLIANCE CONTINUITY
+============================================================
+Stage0 PDF compliance = PASS
+Stage1 PDF compliance = PASS
+Stage2 PDF compliance = PASS
+Stage3 PDF compliance = PASS
+Stage4 PDF compliance = PASS
+unresolved upstream items = 0
+
+============================================================
+C. STAGE4 → STAGE5 SEMANTIC HANDOFF
+============================================================
+default trajectory posterior = CALIBRATED GAUSSIAN PASS
+horizons                     = [0.1, 0.3, 0.5, 1.0] PASS
+calibration alpha_h          = PASS
+predictive mean preserved    = PASS
+measurement R_t separate     = PASS
+GMM downstream selection     = NO PASS
+next required layer          = RECEIVER/ANGULAR POSTERIOR
+
+============================================================
+D. FORMAL POPULATION CONTINUITY
+============================================================
+formal scenarios          = 120 PASS
+unique formal scenarios   = 120 PASS
+formal used for Stage5 tuning = NO
+tracks_to_predict receiver selector = NO
+
+============================================================
+E. FROZEN STAGE1 RECEIVER-GEOMETRY ROUTE
+============================================================
+receiver module           = iscai_stage1.geometry.receiver
+receiver API              = receiver_geometry_in_H0
+receiver signature        = (actor: 'ActorAnchorStateW', T_H0_from_W: 'RigidTransform', config: 'ReceiverGeometryConfig') -> 'ReceiverGeometryH0'
+receiver config class     = ReceiverGeometryConfig
+offset mean support       = PASS
+offset covariance support = PASS
+Stage1 receiver geometry  = REUSABLE PASS
+
+============================================================
+F. FROZEN PART-A OPTICAL / DPSK DISCOVERY
+============================================================
+Part-A reference SHA256  = fcdfc0a7b9c14fa9447ceb8563a6f20ac277706223388dc9aa8a1edf416c5e2b
+existing referenced paths= 2
+  referenced: /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw
+  referenced: /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+candidate Part-A files   = 6
+  candidate: /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/README.md
+  candidate: /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/requirements.txt
+  candidate: /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+  candidate: /home/agni/waymo/training_audit.py
+  candidate: /home/agni/waymo/NOTICE.md
+  candidate: /home/agni/waymo/iscai_stage0/reports/stage0/part_a_frozen_reference.json
+
+Part-A evidence groups:
+  DPSK                            = FOUND
+  BER                             = FOUND
+  optical_gain_or_received_power  = FOUND
+  effective_rate                  = FOUND
+  PartA_waveform_constants        = FOUND
+
+Part-A frozen reference  = PASS
+Part-A numerical route   = FOUND
+optical/DPSK evidence groups = 4 / 4
+safe for Part2 exact API/value audit = YES
+
+============================================================
+G. STAGE5 ENVIRONMENT / STORAGE / LEGACY ISOLATION
+============================================================
+python                  = 3.13.5
+numpy                   = 2.5.1
+torch                   = 2.13.0+cu132
+torch CUDA              = 13.2
+CUDA available          = True
+GPU                     = NVIDIA RTX A6000
+CUBLAS workspace        = :4096:8
+free GiB                = 1055.035
+250-GiB reserve         = PASS
+legacy Stage5 present   = YES
+legacy runtime dependency = NO
+
+============================================================
+BLOCK 5.0 PART 1/2 GATE
+============================================================
+Stages0–4 PDF certification = PASS
+Stage4 closure/handoff       = PASS
+calibrated Gaussian default  = PASS
+measurement/predictive UQ    = SEPARATE PASS
+formal N=120 continuity      = PASS
+formal used for tuning       = NO
+receiver geometry route      = PASS
+Part-A frozen reference      = PASS
+Part-A optical/DPSK route    = DISCOVERED
+legacy runtime dependency    = NO
+training/inference           = NO
+upstream Stage0–4 modified   = NO
+safe to freeze Stage5 contract in Part2 = YES
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage5/reports/block50_part1_discovery.json
+terminal remains open = YES

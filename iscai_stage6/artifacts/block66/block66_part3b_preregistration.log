@@ -1,0 +1,100 @@
+==============================================================================
+BLOCK 6.6 PART3B — CLASS-AWARE POLICY PREREGISTRATION
+==============================================================================
+
+===== A. AUTHORITATIVE UPSTREAM SEAL =====
+Part3A3 capability report           = EXACT PASS
+Part3A3 -> Part3B handoff           = EXACT PASS
+part_a_reactive.py                  = EXACT PASS
+illumination.py                     = EXACT PASS
+predictive_mask.py                  = EXACT PASS
+geometry.py                         = EXACT PASS
+probabilistic_occupancy.py          = EXACT PASS
+
+===== B. EXACT DEVELOPMENT P_OCC / COHORT SEAL =====
+Part2C/2A kernel audit              = EXACT PASS
+Part2C/2B P_occ report              = EXACT PASS
+Part2C/2B P_occ freeze              = EXACT PASS
+headlamp eligibility freeze         = EXACT PASS
+
+----- exact JSONL seals -----
+development P_occ manifest          = EXACT PASS
+development cohort N120             = EXACT PASS
+N8192/grid numeric freeze           = EXACT PASS
+numeric freeze path = /home/agni/waymo/iscai_stage6/configs/block64_mc_grid_numeric_freeze.json
+
+===== C. RUNTIME API BOUNDARY SMOKE =====
+FractionalBoxRegion = (x_bounds: 'tuple[float, float]', y_bounds: 'tuple[float, float]', z_bounds: 'tuple[float, float]') -> None
+ReactiveShadowRegion = (theta_center_rad: 'float', theta_span_rad: 'float', r_shadow_end_m: 'float', r_transition_end_m: 'float', intensity_floor: 'float' = 0.0, source_semantics: 'str' = 'current_deterministic_region') -> None
+part_a_radial_profile = (range_m, *, r_shadow_end_m: 'float', r_transition_end_m: 'float', intensity_floor: 'float' = 0.0)
+threshold_actor_occupancy = (actor_occupancy: 'ActorOccupancyProbability', *, gamma: 'float') -> 'BinaryActorPredictiveMask'
+oncoming front-upper surrogate = VALID
+preceding rear-upper surrogate = VALID
+surrogate physical claim = NONE
+
+===== D. CANDIDATE-UNIVERSE INVARIANTS =====
+gamma candidates per class = 8192
+vehicle margin candidates  = 324
+pedestrian margin candidates= 54
+cyclist margin candidates  = 432
+floor triplets             = 3270
+temporal/rate combinations = 60
+numeric policy selected    = NO
+
+===== E. WRITE CLASS-AWARE POLICY PREREGISTRATION =====
+preregistration = /home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json
+preregistration SHA256 = 5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e
+
+===== F. FRESH STAGE6 REGRESSION =====
+.................................................................................................................................................
+----------------------------------------------------------------------
+Ran 145 tests in 0.193s
+
+OK
+fresh Stage6 regression = PASS | 145
+
+===== G. PART3B REPORT =====
+report = /home/agni/waymo/iscai_stage6/reports/block66_part3b_class_aware_policy_preregistration.json
+report SHA256 = 1bf01b44a1cd842a1e1bf78f094da9dbb50c622ff895161851e901e1d36a53ac
+
+===== H. PART3B FREEZE MANIFEST =====
+freeze manifest = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3b_preregistration_freeze_manifest.json
+freeze SHA256 = a1d13bced062c2f2303b7166ab4f8b24f1ff17a236950dc569dcf16c580108c1
+
+===== I. PART3C HANDOFF =====
+handoff = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3b_to_part3c_handoff.json
+handoff SHA256 = 60874c8a4d9c8feae5e800f89168e2807a9c859c37dab0577186055e82ad5163
+
+==============================================================================
+BLOCK 6.6 PART3B — FINAL
+==============================================================================
+STATUS = PASS_CLASS_AWARE_POLICY_PREREGISTRATION_FROZEN
+development cohort           = 120 | FROZEN
+development predictive actors= 877 | FROZEN
+N_MC / seed                  = 8192 / 20260821 | FROZEN
+class gamma family           = PREREGISTERED
+class predictive margins     = PREREGISTERED
+class intensity floors       = PREREGISTERED
+vehicle surrogate regions    = PREREGISTERED / GEOMETRY-BASED
+class overlap priority       = PREREGISTERED
+temporal smoothing           = PREREGISTERED
+actuation-rate limiter       = PREREGISTERED
+ADB metric formulas          = FROZEN BEFORE SWEEP
+road ROI proxy               = FROZEN BEFORE SWEEP
+seven baseline factorization = FROZEN
+Part-A raised cosine         = PRESERVED
+Part-A generic margin        = PRESERVED
+original reactive baseline   = UNCHANGED
+vertical actuator DOF        = NO
+numeric policy selected      = NO
+policy sweep executed        = NO
+formal outcomes read         = NO
+scientific source modified   = NO
+Stage6 regression            = PASS | 145
+preregistration SHA256       = 5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e
+report SHA256                = 1bf01b44a1cd842a1e1bf78f094da9dbb50c622ff895161851e901e1d36a53ac
+freeze SHA256                = a1d13bced062c2f2303b7166ab4f8b24f1ff17a236950dc569dcf16c580108c1
+handoff SHA256               = 60874c8a4d9c8feae5e800f89168e2807a9c859c37dab0577186055e82ad5163
+NEXT = BLOCK6.6 PART3C IMPLEMENT PREREGISTERED CLASS-AWARE RUNTIME
+terminal remains open = YES
+==============================================================================

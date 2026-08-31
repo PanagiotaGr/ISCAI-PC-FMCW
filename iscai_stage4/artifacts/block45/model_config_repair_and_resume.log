@@ -1,0 +1,245 @@
+============================================================
+BLOCK 4.5 PART 2/2 — MODEL CONFIG REPAIR
+============================================================
+
+===== FROZEN CHECKPOINT VERIFICATION =====
+Block4.3 checkpoint SHA   = PASS
+Block4.3 state SHA        = PASS
+Block4.3 model config     = PASS
+Block4.4 checkpoint SHA   = PASS
+Block4.4 state SHA        = PASS
+Block4.4 config has model = False
+ROOT CAUSE CONFIRMED:
+Block4.4 checkpoint configuration does not contain 'model'.
+Architecture must therefore be read from frozen Block4.3 config, exactly as Block4.4 training did.
+
+source repair            = APPLIED
+backup                    = /home/agni/waymo/iscai_stage4/artifacts/block45/run_block45_real_calibration.pre_model_config_repair.py
+
+===== CONTROLLED COMPILE =====
+calibration_runtime.py = PASS
+run_block45_real_calibration.py = PASS
+run_block45_part2_safe.py = PASS
+
+===== GAUSSIAN CONSTRUCTOR SMOKE =====
+architecture source        = FROZEN BLOCK4.3 CONFIG
+predictive weights source  = FROZEN BLOCK4.4 STATE
+strict state_dict load     = PASS
+Gaussian forward           = PASS
+mean shape                 = [2, 4, 3] PASS
+Cholesky shape             = [2, 4, 3, 3] PASS
+
+===== PRE-RESUME FULL REGRESSION =====
+............................................................................
+----------------------------------------------------------------------
+Ran 76 tests in 0.343s
+
+OK
+full Stage4 regression    = 76 / 76 PASS
+
+============================================================
+MODEL CONFIG REPAIR = PASS
+============================================================
+Block4.3 modified         = NO
+Block4.4 modified         = NO
+Gaussian weights changed  = NO
+calibration method changed= NO
+7209 scan safe to resume  = YES
+
+============================================================
+RESUMING BLOCK 4.5 PART 2/2
+============================================================
+============================================================
+BLOCK 4.5 PART 2/2 — SAFE CONTROLLER
+============================================================
+
+===== CONTROLLED COMPILE =====
+calibration_runtime.py = PASS
+test_block45_runtime.py = PASS
+run_block45_real_calibration.py = PASS
+
+===== NEW PART2 UNIT TESTS =====
+
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.003s
+
+OK
+
+
+===== PRE-SCAN FULL REGRESSION =====
+
+............................................................................
+----------------------------------------------------------------------
+Ran 76 tests in 0.267s
+
+OK
+
+pre-scan regression = 76 / 76 PASS
+
+===== FULL REAL CALIBRATION =====
+============================================================
+STAGE 4 — BLOCK 4.5 REAL CALIBRATION
+============================================================
+Block4.4 frozen upstream = PASS
+Gaussian checkpoint       = PASS
+calibration scenarios     = 7209
+normalization source      = FIT ONLY
+development used to fit   = NO
+formal validation used    = NO
+
+============================================================
+CALIBRATION CACHE / INFERENCE
+============================================================
+calibration: 100/7209 | samples=2728 | reused=0
+calibration: 200/7209 | samples=5784 | reused=0
+calibration: 300/7209 | samples=8308 | reused=0
+calibration: 400/7209 | samples=11091 | reused=0
+calibration: 500/7209 | samples=13881 | reused=0
+calibration: 600/7209 | samples=16683 | reused=0
+calibration: 700/7209 | samples=19445 | reused=0
+calibration: 800/7209 | samples=22423 | reused=0
+calibration: 900/7209 | samples=25015 | reused=0
+calibration: 1000/7209 | samples=27516 | reused=0
+calibration: 1100/7209 | samples=30410 | reused=0
+calibration: 1200/7209 | samples=33482 | reused=0
+calibration: 1300/7209 | samples=36450 | reused=0
+calibration: 1400/7209 | samples=38929 | reused=0
+calibration: 1500/7209 | samples=42210 | reused=0
+calibration: 1600/7209 | samples=45206 | reused=0
+calibration: 1700/7209 | samples=48107 | reused=0
+calibration: 1800/7209 | samples=50977 | reused=0
+calibration: 1900/7209 | samples=53884 | reused=0
+calibration: 2000/7209 | samples=56566 | reused=0
+calibration: 2100/7209 | samples=59245 | reused=0
+calibration: 2200/7209 | samples=62136 | reused=0
+calibration: 2300/7209 | samples=64823 | reused=0
+calibration: 2400/7209 | samples=67529 | reused=0
+calibration: 2500/7209 | samples=69995 | reused=0
+calibration: 2600/7209 | samples=73054 | reused=0
+calibration: 2700/7209 | samples=76017 | reused=0
+calibration: 2800/7209 | samples=78813 | reused=0
+calibration: 2900/7209 | samples=81638 | reused=0
+calibration: 3000/7209 | samples=84352 | reused=0
+calibration: 3100/7209 | samples=86957 | reused=0
+calibration: 3200/7209 | samples=89391 | reused=0
+calibration: 3300/7209 | samples=92145 | reused=0
+calibration: 3400/7209 | samples=95230 | reused=0
+calibration: 3500/7209 | samples=97806 | reused=0
+calibration: 3600/7209 | samples=100869 | reused=0
+calibration: 3700/7209 | samples=103622 | reused=0
+calibration: 3800/7209 | samples=106294 | reused=0
+calibration: 3900/7209 | samples=108897 | reused=0
+calibration: 4000/7209 | samples=111720 | reused=0
+calibration: 4100/7209 | samples=114470 | reused=0
+calibration: 4200/7209 | samples=117364 | reused=0
+calibration: 4300/7209 | samples=120224 | reused=0
+calibration: 4400/7209 | samples=122995 | reused=0
+calibration: 4500/7209 | samples=125825 | reused=0
+calibration: 4600/7209 | samples=128604 | reused=0
+calibration: 4700/7209 | samples=131352 | reused=0
+calibration: 4800/7209 | samples=134084 | reused=0
+calibration: 4900/7209 | samples=137033 | reused=0
+calibration: 5000/7209 | samples=139952 | reused=0
+calibration: 5100/7209 | samples=142862 | reused=0
+calibration: 5200/7209 | samples=145692 | reused=0
+calibration: 5300/7209 | samples=148566 | reused=0
+calibration: 5400/7209 | samples=151147 | reused=0
+calibration: 5500/7209 | samples=154046 | reused=0
+calibration: 5600/7209 | samples=156817 | reused=0
+calibration: 5700/7209 | samples=159736 | reused=0
+calibration: 5800/7209 | samples=162198 | reused=0
+calibration: 5900/7209 | samples=164898 | reused=0
+calibration: 6000/7209 | samples=167423 | reused=0
+calibration: 6100/7209 | samples=170186 | reused=0
+calibration: 6200/7209 | samples=172961 | reused=0
+calibration: 6300/7209 | samples=175896 | reused=0
+calibration: 6400/7209 | samples=178676 | reused=0
+calibration: 6500/7209 | samples=181445 | reused=0
+calibration: 6600/7209 | samples=183922 | reused=0
+calibration: 6700/7209 | samples=186597 | reused=0
+calibration: 6800/7209 | samples=189289 | reused=0
+calibration: 6900/7209 | samples=191907 | reused=0
+calibration: 7000/7209 | samples=194893 | reused=0
+calibration: 7100/7209 | samples=197808 | reused=0
+calibration: 7200/7209 | samples=200557 | reused=0
+calibration: 7209/7209 | samples=200756 | reused=0
+
+calibration samples       = 200756
+valid horizon points      = 761039
+class counts              = {'TYPE_VEHICLE': 184229, 'TYPE_PEDESTRIAN': 14865, 'TYPE_CYCLIST': 1662}
+zero-sample scenes        = 1
+statistics content SHA    = d46f1e6e21ddaf792bd0939e929ad70403265c212f4e9f178a8ea9a29e3055f1
+
+calibration inference repeat = 4/4 PASS
+
+============================================================
+STAGE4 BLOCK 4.5 GATE
+============================================================
+calibration scenarios      = 7209 / 7209
+full calibration partition = PASS
+calibration samples        = 200756
+fit used for calibration   = NO
+development used           = NO
+formal validation used     = NO
+calibration inference repeat= 4 / 4 PASS
+
+variance scales alpha_h    = [1.2347064500315355, 1.3451250295202921, 1.354822057728461, 1.2829700217319266]
+std scales sqrt(alpha_h)   = [1.1111734563206301, 1.1597952532754616, 1.1639682374225084, 1.1326826659448475]
+
+raw macro ECE              = 0.071127
+calibrated macro ECE       = 0.049012
+ECE non-worsening          = PASS
+raw coverage-event Brier   = 0.166879
+calibrated Brier           = 0.136294
+raw metric Gaussian NLL    = 3.093514
+calibrated Gaussian NLL     = 2.939034
+
+predictive mean unchanged  = PASS
+planar ADE unchanged       = 1.507623
+measurement R_t modified   = NO
+calibrated covariance SPD  = PASS
+
+CALIBRATED COVERAGE
+coverage 50%                  = 0.606998
+coverage 80%                  = 0.799998
+coverage 90%                  = 0.861991
+coverage 95%                  = 0.898364
+coverage 99%                  = 0.941847
+
+calibrator content SHA256  = 616ad562c699f29103157b27d79ecc77570634be9b660f69e94bf7e9606cfdf7
+calibrator file SHA256     = 508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087
+statistics content SHA256  = d46f1e6e21ddaf792bd0939e929ad70403265c212f4e9f178a8ea9a29e3055f1
+exact calibrator repeat    = PASS
+full Stage4 regression     = 76 / 76 PASS
+free GiB                   = 1055.075
+implementation files       = 49
+implementation SHA256      = 482fa179b958f05526657d9970346b3ca699c649b77783f63d4c8de2fd7be7cf
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage4/reports/block45_calibration.json
+
+===== BLOCK 4.5 FINAL =====
+full calibration partition = PASS
+covariance calibration      = PASS
+50/80/90/95/99 reliability = PASS
+coverage ECE               = PASS
+coverage-event Brier       = PASS
+mean preserved             = PASS
+SPD preserved              = PASS
+calibrator reproducibility = PASS
+formal validation leak     = NONE
+regression                 = 76 / 76
+implementation SHA         = 482fa179b958f05526657d9970346b3ca699c649b77783f63d4c8de2fd7be7cf
+log closure                = PASS
+
+real-calibration raw process code = 0
+
+============================================================
+BLOCK 4.5 PART 2/2 SAFE CONTROLLER
+============================================================
+scientific STATUS = PASS
+Block4.5 closure   = PASS
+terminal remains open = YES
+
+safe controller raw code = 0
+terminal remains open    = YES

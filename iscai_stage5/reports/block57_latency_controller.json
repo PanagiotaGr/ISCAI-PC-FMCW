@@ -1,0 +1,49 @@
+{
+  "block": "5.7",
+  "completion": "COMPLETE_FROZEN",
+  "implementation": {
+    "file_count": 84,
+    "sha256": "ee5afade5b566f030bb286e030b6a6b685113410651cccf6d294f67760255ee9"
+  },
+  "latency_contract": {
+    "formal_runtime_values": "BLOCK5.8",
+    "prediction_target": "t_plus_tau_total",
+    "runtime_instrumentation": true,
+    "sub100ms_GT": false
+  },
+  "next": "Block5.8 frozen formal Stage5 evaluation and PDF acceptance gate",
+  "policy": {
+    "path": "/home/agni/waymo/iscai_stage5/configs/beam_latency_policy.json",
+    "sha256": "aa04f2e73da591b87f2ab2e962d1b69c1bad645c043c0d15970dbf0990080ed0"
+  },
+  "project": "Agni",
+  "scope": {
+    "ADB_started": false,
+    "Stage4_inference": false,
+    "formal_N120_read": false,
+    "recalibration": false,
+    "training": false
+  },
+  "stage": 5,
+  "status": "PASS",
+  "timing_resolution": {
+    "PartA_assignment_locations": [
+      {
+        "cell": 3,
+        "value_s": 1e-05
+      }
+    ],
+    "Stage0_timestamp_contract": {
+      "path": "/home/agni/waymo/iscai_stage0/tests/test_womd_schema_and_causality.py",
+      "sha256": "4d1b478bf181c55035bffc358a62992c55327db4906117247c595155f42f0877",
+      "test_tolerance_s": 0.001,
+      "verified_interval_s": 0.1
+    },
+    "Tbeam_is_constructed_mapping": true,
+    "Tbeam_s": 1e-05,
+    "Tchirp_s": 1e-05,
+    "Tframe_is_optical_measurement": false,
+    "Tframe_s": 0.1,
+    "Tscene_s": 0.1
+  }
+}

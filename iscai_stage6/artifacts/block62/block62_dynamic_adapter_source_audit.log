@@ -1,0 +1,192 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block62_dynamic_adapter_source_audit.py", line 1023, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block62_dynamic_adapter_source_audit.py", line 720, in main
+    require(
+    ~~~~~~~^
+        semantic[
+        ^^^^^^^^^
+    ...<2 lines>...
+        "Dynamic vehicle-width use not proven.",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block62_dynamic_adapter_source_audit.py", line 78, in require
+    raise RuntimeError(message)
+RuntimeError: Dynamic vehicle-width use not proven.
+============================================================
+BLOCK 6.2 — EXACT DYNAMIC PART-A ADAPTER SOURCE AUDIT
+READ ONLY / NO NOTEBOOK EXECUTION
+============================================================
+
+===== A. FROZEN IDENTITY =====
+canonical notebook = EXACT SHA PASS
+prebinding audit   = EXACT SHA PASS
+notebook execution = NO
+
+===== B. EXACT DYNAMIC FUNCTION DISCOVERY =====
+all ADB function definitions =
+  cell=58 | adb_shadow_angles_deg
+  cell=59 | adb_intensity_map
+  cell=59 | adb_combine_intensity_maps
+  cell=60 | plot_adb_intensity_panel
+  cell=69 | adb_track_arrays
+  cell=69 | adb_shadow_geometry_from_xy
+  cell=69 | adb_select_snapshot_indices
+  cell=69 | adb_rec_track_arrays
+  cell=69 | adb_rec_shadow_geometry_from_xy
+  cell=69 | adb_rec_select_frame_indices
+  cell=69 | adb_rec_add_shadow_cone
+  cell=69 | adb_rec_add_track_panel
+  cell=70 | adb_trz_track_arrays
+  cell=70 | adb_trz_shadow_geometry_from_xy
+  cell=70 | adb_trz_select_snapshot_indices
+  cell=70 | adb_trz_sector_polygon_xy
+  cell=70 | adb_trz_add_sector_fill
+  cell=70 | adb_trz_panel_format
+  cell=70 | adb_trz_draw_snapshot
+  cell=71 | adb_rc_profile
+  cell=71 | adb_rc_draw_profile_snapshot
+  cell=72 | adb_angmap_add_arc
+  cell=72 | adb_angmap_topdown_panel_format
+  cell=72 | adb_angmap_draw_topdown
+  cell=72 | adb_angmap_draw_angle_axis
+  cell=73 | adb_int2_sector_polygon_xy
+  cell=73 | adb_int2_add_sector_fill
+  cell=73 | adb_int2_suppression_from_radius
+  cell=73 | adb_int2_panel_format
+  cell=73 | adb_int2_add_side_note
+  cell=73 | adb_int2_draw_snapshot
+  cell=74 | adb_fig3_clean_track_series_from_gt
+  cell=74 | adb_fig3_clean_track_series
+  cell=74 | adb_fig3_clean_add_line_key
+  cell=74 | adb_fig3_clean_add_window_key
+  cell=74 | adb_fig3_clean_layout
+  cell=74 | adb_fig3_clean_style_axis
+  cell=74 | adb_fig3_clean_plot
+
+adb_intensity_map | cell = 59 | SHA256 = 000407148d5120db7326f95ed42e12342ce5144054184b613ee1f5678837c350
+adb_combine_intensity_maps | cell = 59 | SHA256 = e5517dc82a865658f014f38e82e2b283aeda1f498f2a0000435b66d6aa3ab33f
+adb_trz_shadow_geometry_from_xy | cell = 70 | SHA256 = f968d50f08bdbda613ebc792c2d439736a0fe963142e4ea9bccd1a5b90926a83
+
+===== C. EXACT FUNCTION SOURCES =====
+
+============================================================
+FUNCTION: adb_intensity_map
+CELL: 59
+SHA256: 000407148d5120db7326f95ed42e12342ce5144054184b613ee1f5678837c350
+============================================================
+def adb_intensity_map(theta_min_deg, theta_max_deg, x_m, y_m):
+    # Current distance from ego vehicle to target center
+    target_range_m = np.hypot(x_m, y_m)
+    # Same logic as the simulation 1's example intensity map
+    r_min_m = target_range_m + radial_safety_margin_m
+    r_max_m = r_min_m + transition_length_m
+
+    intensity = np.ones_like(adb_range_grid_m, dtype=float)
+
+    inside_shadow = (
+        (adb_angle_grid_deg >= theta_min_deg)
+        & (adb_angle_grid_deg <= theta_max_deg)
+    )
+
+    full_shadow = inside_shadow & (adb_range_grid_m <= r_min_m)
+    transition = (
+        inside_shadow
+        & (adb_range_grid_m > r_min_m)
+        & (adb_range_grid_m < r_max_m)
+    )
+    intensity[full_shadow] = 0.0
+
+    u = (adb_range_grid_m[transition] - r_min_m) / (r_max_m - r_min_m)
+    intensity[transition] = 0.5 * (1.0 - np.cos(np.pi * u))
+
+    return intensity
+
+============================================================
+FUNCTION: adb_combine_intensity_maps
+CELL: 59
+SHA256: e5517dc82a865658f014f38e82e2b283aeda1f498f2a0000435b66d6aa3ab33f
+============================================================
+def adb_combine_intensity_maps(theta_min_values, theta_max_values, x_values, y_values):
+    """Combine ADB intensity maps from multiple vehicles."""
+
+    combined = np.ones_like(adb_range_grid_m, dtype=float)
+
+    for theta_min_deg, theta_max_deg, x_m, y_m in zip(
+        theta_min_values,
+        theta_max_values,
+        x_values,
+        y_values
+    ):
+        vehicle_map = adb_intensity_map(theta_min_deg, theta_max_deg, x_m, y_m)
+        combined = np.minimum(combined, vehicle_map)
+
+    return combined
+
+============================================================
+FUNCTION: adb_trz_shadow_geometry_from_xy
+CELL: 70
+SHA256: f968d50f08bdbda613ebc792c2d439736a0fe963142e4ea9bccd1a5b90926a83
+============================================================
+def adb_trz_shadow_geometry_from_xy(x_track, y_track):
+    """
+    Dynamic ADB geometry from reconstructed x(t), y(t).
+
+    Coordinate convention:
+        ego at (0, 0)
+        +y forward
+        +x right
+        theta = atan2(x, y), in degrees
+    """
+    return adb_shadow_geometry_from_xy(x_track, y_track, include_radial_zone=True)
+
+===== D. CRITICAL PARAMETER SOURCE LINES =====
+theta_grid_deg                   | C06:L004 | theta_grid_deg = np.linspace(-25.0, 25.0, 501)
+range_grid_m                     | C06:L005 | range_grid_m = np.linspace(0.0, 180.0, 361)
+target_width_m                   | C06:L011 | target_width_m = 1.9
+target_range_m                   | C06:L010 | target_range_m = 150.0
+target_range_m                   | C37:L010 | target_range_m = target["R_m"]
+target_range_m                   | C59:L009 | target_range_m = np.hypot(x_m, y_m)
+lateral_safety_margin_m          | C06:L012 | lateral_safety_margin_m = 1.0
+radial_safety_margin_m           | C06:L013 | radial_safety_margin_m = 4.0
+transition_length_m              | C06:L014 | transition_length_m = 20.0
+epsilon_deg                      | C06:L016 | epsilon_deg = 0.75
+epsilon_deg                      | C71:L227 | epsilon_deg_value=adb_rc_geom["epsilon"][adb_rc_array_idx],
+theta_c_deg                      | C06:L007 | theta_c_deg = -5.0
+delta_theta_deg                  | C06:L008 | delta_theta_deg = 0.0
+r_shadow_end_m                   | C06:L017 | r_shadow_end_m = target_range_m + radial_safety_margin_m
+r_transition_end_m               | C06:L018 | r_transition_end_m = r_shadow_end_m + transition_length_m
+assumed_vehicle_width_m          | C06:L036 | assumed_vehicle_width_m = target_width_m
+assumed_vehicle_half_width_m     | C06:L040 | assumed_vehicle_half_width_m = 0.5 * assumed_vehicle_width_m
+assumed_safety_margin_deg        | C06:L037 | assumed_safety_margin_deg = 0.5
+assumed_safety_margin_rad        | C06:L041 | assumed_safety_margin_rad = np.deg2rad(assumed_safety_margin_deg)
+assumed_adb_r_min_m              | C06:L044 | assumed_adb_r_min_m = 30.0
+assumed_adb_r_max_m              | C06:L045 | assumed_adb_r_max_m = 80.0
+
+canonical epsilon_deg = 0.75 EXACT SOURCE PASS
+
+===== E. DYNAMIC ADAPTER SEMANTIC GATES =====
+dynamic_geometry_uses_xy                 = PASS
+dynamic_geometry_uses_angular_mapping    = PASS
+dynamic_geometry_uses_vehicle_width      = NOT PROVEN
+dynamic_geometry_uses_margin             = NOT PROVEN
+intensity_has_transition                 = PASS
+intensity_has_shadow                     = PASS
+multi_actor_combination_is_min_like      = PASS
+
+============================================================
+DYNAMIC ADAPTER SOURCE AUDIT = BLOCKED
+============================================================
+exception = RuntimeError Dynamic vehicle-width use not proven.
+
+
+Part-A modified        = NO
+Stage1–5 modified      = NO
+Block6.1 modified      = NO
+Block6.2 Part1 modified= NO
+dataset access         = NO
+training/inference     = NO
+formal evaluation      = NO
+terminal remains open  = YES

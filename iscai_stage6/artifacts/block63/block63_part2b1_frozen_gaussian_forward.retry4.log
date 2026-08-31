@@ -1,0 +1,65 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b1_frozen_gaussian_forward.py", line 3414, in main
+    scientific_run()
+    ~~~~~~~~~~~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b1_frozen_gaussian_forward.py", line 2246, in scientific_run
+    batch = normalizer.prepare(
+        prepare_arrays,
+        device=device,
+    )
+  File "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py", line 202, in prepare
+    arrays["map_context"],
+    ~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'map_context'
+========================================================================
+BLOCK 6.3 PART 2B/1 — FROZEN GAUSSIAN CAUSAL FORWARD
+========================================================================
+
+===== A. FROZEN PREREQUISITE SEAL =====
+part2a           = PASS
+checkpoint       = PASS
+normalization    = PASS
+calibrator       = PASS
+
+===== B. SAME REAL CAUSAL DEVELOPMENT ROUTE =====
+scenario_id             = b85e1bd6cc8e74c0
+causal histories        = 27
+prediction_id unique    = PASS
+future access           = NO
+
+===== C. EXACT PER-TARGET MAP-CONTEXT BINDING =====
+static map frame        = H0
+H0 transform source     = AdaptedScenario.frames.T_H0_from_W
+map producer            = build_static_map_index_H0
+per-target summary      = map_context_summary
+target position source  = latest_position_H0_m
+map context matrix      = (27, 10)
+unique map rows         = 27
+shared scene vector     = NO
+future map state        = NO
+
+===== D. CAUSAL MODEL INPUT PAYLOADS =====
+payloads                = 27
+per-target map contexts = YES
+attach_supervision      = NOT CALLED
+future labels           = NOT READ
+tracks_to_predict       = NOT USED
+
+===== E. FIT-ONLY FROZEN NORMALIZER =====
+
+========================================================================
+CONTROLLED BLOCK — NO SCIENTIFIC STATE ADVANCE
+========================================================================
+exception type = KeyError
+exception      = 'map_context'
+
+report = /home/agni/waymo/iscai_stage6/reports/block63_part2b1_frozen_gaussian_forward.json
+report SHA256 = 3ec3d66db37e0d8b216cbcf20b757bbb05c545b46bedca8e248fb8a17d7910e9
+
+========================================================================
+BLOCK 6.3 PART 2B/1 — FINAL
+========================================================================
+status = BLOCKED_EXACT_FROZEN_GAUSSIAN_FORWARD_BOUNDARY
+diagnostic excerpt = /home/agni/waymo/iscai_stage6/artifacts/block63/block63_part2b1_runtime_boundary_excerpt.txt
+terminal remains open = YES
+========================================================================

@@ -1,0 +1,40 @@
+{
+  "CUDA": {
+    "NLL": true,
+    "SPD": true,
+    "backward": true,
+    "forward": true
+  },
+  "GMM_training_started": false,
+  "Gaussian_mandatory_baseline_modified": false,
+  "block": "4.6_part_1",
+  "distribution": {
+    "component_covariance": "full_3D_SPD",
+    "components": 3,
+    "family": "trajectory_level_GMM",
+    "independent_horizon_mode_switching": false,
+    "trajectory_level_mixture_weights": true
+  },
+  "formal_validation_used": false,
+  "initialization": {
+    "central_component_exact_Gaussian_mean": true,
+    "maneuver_labels": false,
+    "source": "frozen_Block4.4_Gaussian",
+    "symmetry_break_second_coordinate": [
+      -0.05,
+      0.0,
+      0.05
+    ]
+  },
+  "objective": {
+    "future_validity_loss_mask_only": true,
+    "joint_trajectory_GMM_NLL": true,
+    "logsumexp": true
+  },
+  "regression": {
+    "tests_passed": 88,
+    "tests_total": 88
+  },
+  "stage": 4,
+  "status": "PASS"
+}

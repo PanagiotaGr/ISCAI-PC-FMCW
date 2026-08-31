@@ -1,0 +1,76 @@
+{
+  "Stage5_handoff": {
+    "path": "/home/agni/waymo/iscai_stage4/artifacts/block410/stage4_to_stage5_handoff_repaired_v1.json",
+    "sha256": "6045938b1add8f427e55dd1addf6992cb111217bb14e5304fc7e75a21e7b1efa"
+  },
+  "closure": "4.10_repaired_v1",
+  "formal_report": {
+    "path": "/home/agni/waymo/iscai_stage4/reports/block48_formal_evaluation_repaired_v1.json",
+    "sha256": "f5cd19c40bc1f6e49142532c954edc7ea70b5567efcb3b399bc05ec8d7bc1f83"
+  },
+  "legacy_pre_repair": {
+    "closure_sha256": "570da4feb918b1025b5e85cc919360d922b471c468c85b3844f13fb7774e7c2f",
+    "formal_sha256": "402ab3d771e9a3c77de0c091c893e9a0d6ee5826ec52d07d27b919c68276b353",
+    "role": "HISTORICAL_ONLY"
+  },
+  "performance_gate": {
+    "classical_baseline": "repaired_Stage3_CV",
+    "common_support": {
+      "CV_common_ADE_m": 6.5329401724917835,
+      "Gaussian_beats_CV": true,
+      "Gaussian_common_ADE_m": 1.6689863596174326,
+      "Gaussian_minus_CV_m": -4.863953812874351,
+      "Stage3_namespace": "(formal_rank, truth_id, horizon_s)",
+      "Stage4_namespace": "(formal_rank, truth_track_index)",
+      "by_horizon": {
+        "0.1": {
+          "CV_ADE_m": 1.8759292410307433,
+          "Gaussian_ADE_m": 0.864176138952319,
+          "n": 380
+        },
+        "0.3": {
+          "CV_ADE_m": 4.334378897385913,
+          "Gaussian_ADE_m": 1.2476235859502536,
+          "n": 371
+        },
+        "0.5": {
+          "CV_ADE_m": 6.929073786514348,
+          "Gaussian_ADE_m": 1.6880476893754277,
+          "n": 368
+        },
+        "1.0": {
+          "CV_ADE_m": 13.328353033380838,
+          "Gaussian_ADE_m": 2.9367827482868605,
+          "n": 359
+        }
+      },
+      "common_actor_count": 381,
+      "common_event_count": 1478,
+      "common_scenario_count": 112,
+      "future_truth_used_for_Stage3_assignment": false,
+      "identity_bridge": "truth_id = str(scenario.tracks[truth_track_index].id)",
+      "support_semantics": "exact_common_formal_rank_WOMD_track_id_horizon",
+      "tracks_to_predict_model_input": false
+    },
+    "probabilistic_predictor": "calibrated_Gaussian_GRU"
+  },
+  "regression": {
+    "status": "PASS",
+    "tests": 137
+  },
+  "scientific_repairs": {
+    "calibration": "PASS",
+    "causal_inference": "PASS",
+    "exact_common_support_comparison": "PASS",
+    "oracle_current_truth_prefilter": "PASS"
+  },
+  "scope_boundary": {
+    "Stage4_completion_gate": "SATISFIED",
+    "direct_noisy_PC_FMCW_vr_as_extra_GRU_feature": "DEFERRED_FULL_INPUT_ABLATION_REQUIRING_RETRAINING",
+    "final_paper_full_input_ablation_suite": "DEFERRED_TO_FINAL_EXPERIMENTAL_SYNTHESIS"
+  },
+  "stage": 4,
+  "status": "COMPLETE_FROZEN",
+  "timestamp_utc": "2026-08-26T08:21:44.854847+00:00",
+  "verdict": "PASS_BUT_NOT_FULL_SPEC"
+}

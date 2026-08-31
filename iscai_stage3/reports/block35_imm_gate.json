@@ -1,0 +1,62 @@
+{
+  "baseline": "IMM_CV_CA_CTRV",
+  "block": "3.5",
+  "common_observation_interface": {
+    "frame": "Ht",
+    "full_stage2_R_t_used": true,
+    "measurement": [
+      "range",
+      "radial_velocity",
+      "azimuth",
+      "elevation"
+    ]
+  },
+  "formal_real_validation_metrics": "DEFERRED_TO_COMMON_STAGE3_EVALUATION_BLOCK",
+  "full_imm": {
+    "combined_posterior": true,
+    "interaction_mixing": true,
+    "markov_transition_matrix": true,
+    "mixed_covariance": true,
+    "mixed_mean": true,
+    "mode_measurement_likelihoods": true,
+    "posterior_mode_probabilities": true,
+    "separate_mode_covariances": true,
+    "separate_mode_states": true
+  },
+  "implementation": {
+    "files": 58,
+    "sha256": "bf8cb4b390feecc28fdfeb2b102135aab527547a88345ce69fc98124a33848f3"
+  },
+  "information_policy": {
+    "annotated_heading_used": false,
+    "annotated_velocity_used": false,
+    "future_information_used": false,
+    "truth_used": false
+  },
+  "modes": [
+    "CV",
+    "CA",
+    "CTRV"
+  ],
+  "open_loop_prediction": {
+    "future_measurements_used": false,
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "interaction_continues": true
+  },
+  "stage": 3,
+  "status": "PASS",
+  "synthetic_gate": {
+    "combined_vx_mps": 15.0,
+    "combined_x_m": 17.500000000000004,
+    "expected_vx_mps": 15.0,
+    "expected_x_m": 17.5,
+    "moving_sensor": true,
+    "status": "PASS",
+    "updates": 3
+  }
+}

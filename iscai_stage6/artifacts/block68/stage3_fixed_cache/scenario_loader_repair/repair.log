@@ -1,0 +1,56 @@
+============================================================================
+BLOCK 6.8 STAGE-3 SCENARIO-LOADER ROUTE REPAIR
+PATH-RESOLUTION ASSUMPTION ONLY
+============================================================================
+
+===== A. EXACT CURRENT BOUNDARY =====
+target SHA256             = EXACT PASS
+posterior cardinality fix = PRESERVED
+Stage-1 gamma             = FROZEN
+Stage-2 margins           = FROZEN
+Stage-3 scoring           = FROZEN
+Stage-3 floor outcomes    = NOT COMPUTED
+formal evaluation         = NO
+
+===== B. OBSOLETE PATH ASSUMPTION =====
+absolute motion_shard requirement = FOUND
+frozen shard identifier example   = RELATIVE/LOGICAL NAME
+repair route = Stage4 read_training_scenario(cohort_row)
+directory prefix guessing = FORBIDDEN
+
+===== C. VERIFIED BACKUP =====
+backup SHA256 = 1cb25fe7264daa59b8734cf7bfea7baa01fa2dc1610a2c9aa30d31a753a2d25e
+
+===== D. BUILD MINIMAL LOADER-ROUTE PATCH =====
+patch syntax             = PASS
+cohort metadata          = UNCHANGED
+scenario population      = UNCHANGED
+posterior semantics      = UNCHANGED
+P_occ semantics          = UNCHANGED
+Stage1/2 numerics        = UNCHANGED
+evaluator semantics      = UNCHANGED
+floor scoring            = UNCHANGED
+
+===== E. TRANSACTIONAL PATCH =====
+patched runner compile = PASS
+Stage6 regression      = 224 / 224 PASS
+post-patch SHA256      = 5c4952829354d8f2dc090d514bc1144f1fb42b530214233add5601073791833f
+
+============================================================================
+BLOCK 6.8 SCENARIO-LOADER ROUTE REPAIR — FINAL
+============================================================================
+motion_shard absolute path = NOT REQUIRED
+cohort field               = UNCHANGED
+scenario loader            = AUTHORITATIVE STAGE-4 ROUTE
+directory prefix guessed   = NO
+selected actors            = STILL 877
+posterior subset repair    = PRESERVED
+Stage-1 gamma              = UNCHANGED
+Stage-2 margins            = UNCHANGED
+Stage-3 scoring            = UNCHANGED
+Stage-3 floor outcomes     = NOT COMPUTED
+formal evaluation         = NO
+Stage6 regression          = 224 / 224 PASS
+STATUS = PASS_STAGE3_SCENARIO_LOADER_ROUTE_REPAIRED
+report = /home/agni/waymo/iscai_stage6/reports/block68_stage3_scenario_loader_route_repair.json
+terminal remains open = YES

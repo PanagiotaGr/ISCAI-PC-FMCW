@@ -1,0 +1,37 @@
+{
+  "connectivity_semantics": "constructed_hypothetical_connected_vehicle",
+  "distance": "reported_and_sliced_later_but_not_used_as_extra_primary_eligibility_cutoff",
+  "eligibility": {
+    "association_valid_required": true,
+    "current_causal_availability_required": true,
+    "positive_forward_H0_required": true,
+    "vehicle_class_required": true
+  },
+  "forbidden_inputs": {
+    "future_truth": false,
+    "oracle_connectivity": false,
+    "perfect_track_ID": false,
+    "tracks_to_predict": false
+  },
+  "max_planar_range_m": null,
+  "max_range_development_tuning_performed": false,
+  "max_range_formal_tuning_performed": false,
+  "max_range_resolution_basis": "preregistered_structural_choice_not_performance_tuned",
+  "max_range_semantics": "no_additional_receiver_eligibility_range_cutoff",
+  "minimum_forward_H0_m": 0.0,
+  "no_eligible_receiver_state": "NO_ELIGIBLE_RECEIVER",
+  "primary_policy": "nearest_causal_vehicle_ahead",
+  "status": "FROZEN",
+  "upstream_provenance": {
+    "Block5.0_contract_sha256": "04fd32e4bc6e160f2627f465a7820c74e19ca2e1a1f47f23ed1884f842cb7db4",
+    "Block5.1_Part1_implementation_sha256": "3006d2dd1592d5fa317776635d0355d8595cc79888aa9973a7feb6d975501e43",
+    "Stage3_common_contract": {
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/contracts/common.py",
+      "sha256": "9a0fed7622973e97f565ef13fef52be17b3c155fa7fd58e382217bbfffb4b696"
+    },
+    "Stage3_degraded_bridge": {
+      "path": "/home/agni/waymo/iscai_stage3/src/iscai_stage3/observations/stage2_bridge.py",
+      "sha256": "50f34428dea80e8c665c911ef849d36f8199ad96e65dc1f888667d549eab4f71"
+    }
+  }
+}

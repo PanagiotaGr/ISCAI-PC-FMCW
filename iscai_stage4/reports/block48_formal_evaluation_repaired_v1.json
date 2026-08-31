@@ -1,0 +1,93 @@
+{
+  "block": "4.8_repaired_v1",
+  "calibration": {
+    "SPD_after_calibration": true,
+    "calibrated_Brier": 0.19413178861788616,
+    "calibrated_ECE": 0.11165527003334381,
+    "calibrated_NLL": 3.6848268203287406,
+    "formal_used_for_calibrator": false,
+    "mean_modified": false,
+    "measurement_R_t_modified": false,
+    "pass": true,
+    "raw_Brier": 0.2397821951219512,
+    "raw_ECE": 0.18362046536363294,
+    "raw_NLL": 4.15760466880646
+  },
+  "causal_inference": {
+    "Stage4_calibrator_bound": true,
+    "Stage4_checkpoint_bound": true,
+    "attach_supervision_AST_call": false,
+    "future_GT_guard": true,
+    "no_attach_declaration": true,
+    "no_tracks_to_predict_declaration": true,
+    "pass": true,
+    "route": "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b1_frozen_gaussian_forward.py",
+    "route_sha256": "c7f294792f98932713527b010014108e1eb764e1f68e5050bbe73bc53565977b",
+    "runtime_evidence": {
+      "/home/agni/waymo/iscai_stage6/reports/block63_part2b1_frozen_gaussian_forward.json": {
+        "deterministic_Block63_contract.future_GT_used": false,
+        "deterministic_Block63_contract.predictive_covariance_used": false,
+        "model_input.attach_supervision_called": false,
+        "model_input.objects_of_interest_used": false,
+        "model_input.tracks_to_predict_used": false
+      }
+    }
+  },
+  "exact_common_support_comparison": {
+    "CV_common_ADE_m": 6.5329401724917835,
+    "Gaussian_beats_CV": true,
+    "Gaussian_common_ADE_m": 1.6689863596174326,
+    "Gaussian_minus_CV_m": -4.863953812874351,
+    "Stage3_namespace": "(formal_rank, truth_id, horizon_s)",
+    "Stage4_namespace": "(formal_rank, truth_track_index)",
+    "by_horizon": {
+      "0.1": {
+        "CV_ADE_m": 1.8759292410307433,
+        "Gaussian_ADE_m": 0.864176138952319,
+        "n": 380
+      },
+      "0.3": {
+        "CV_ADE_m": 4.334378897385913,
+        "Gaussian_ADE_m": 1.2476235859502536,
+        "n": 371
+      },
+      "0.5": {
+        "CV_ADE_m": 6.929073786514348,
+        "Gaussian_ADE_m": 1.6880476893754277,
+        "n": 368
+      },
+      "1.0": {
+        "CV_ADE_m": 13.328353033380838,
+        "Gaussian_ADE_m": 2.9367827482868605,
+        "n": 359
+      }
+    },
+    "common_actor_count": 381,
+    "common_event_count": 1478,
+    "common_scenario_count": 112,
+    "future_truth_used_for_Stage3_assignment": false,
+    "identity_bridge": "truth_id = str(scenario.tracks[truth_track_index].id)",
+    "support_semantics": "exact_common_formal_rank_WOMD_track_id_horizon",
+    "tracks_to_predict_model_input": false
+  },
+  "formal_population": {
+    "Stage3_manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "Stage3_repaired_run_sha256": "9151ef8714fb710b57b8cc762bb809cebf29b6174d1aeb8dab609b42f6641e7b",
+    "Stage4_matched_targets": 494,
+    "scenarios": 120
+  },
+  "historical_Block48": {
+    "path": "/home/agni/waymo/iscai_stage4/reports/block48_formal_evaluation.json",
+    "role": "HISTORICAL_PRE_REPAIR_ONLY",
+    "sha256": "402ab3d771e9a3c77de0c091c893e9a0d6ee5826ec52d07d27b919c68276b353"
+  },
+  "recalibration_performed": false,
+  "repairs": {
+    "cross_population_classical_comparison": "REPAIRED_BY_EXACT_COMMON_ACTOR_HORIZON_SUPPORT",
+    "oracle_current_truth_prefilter": "REPAIRED_BY_CAUSAL_PREDICTION_BEFORE_EVALUATOR_TRUTH"
+  },
+  "stage": 4,
+  "status": "PASS",
+  "timestamp_utc": "2026-08-26T08:21:44.854847+00:00",
+  "training_performed": false
+}

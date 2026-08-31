@@ -1,0 +1,956 @@
+{
+  "configuration_training": {
+    "batch_size": 512,
+    "class_sampler": "reuse_Block4.3_equal_primary_class_mass_sampler",
+    "device": "cuda:0",
+    "dtype": "float32",
+    "early_stopping_patience": 4,
+    "early_stopping_primary_metric": "development_metric_Gaussian_NLL",
+    "early_stopping_tiebreaker": "development_planar_ADE_m",
+    "gradient_clip_norm": 5.0,
+    "learning_rate": 0.0005,
+    "max_epochs": 20,
+    "mixed_precision": false,
+    "num_workers": 0,
+    "optimizer": "AdamW",
+    "seed": 20260821,
+    "weight_decay": 1e-05
+  },
+  "decision": {
+    "batch_size_only_explanation": false,
+    "next": "reproduce_exact_Block44_probabilistic_prediction_sha256_and_preprocessing_route",
+    "relax_exact_hash_gate": false
+  },
+  "definitions": {
+    "GaussianNormalizer": {
+      "end_line": 784,
+      "kind": "ClassDef",
+      "line": 431,
+      "source": "class GaussianNormalizer:\n\n    def __init__(\n        self,\n        statistics,\n        *,\n        device,\n    ):\n        self.feature_mean = torch.tensor(\n            statistics[\n                \"continuous_feature_mean\"\n            ],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        self.feature_std = torch.tensor(\n            statistics[\n                \"continuous_feature_std\"\n            ],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        self.map_mean = torch.tensor(\n            statistics[\"map_mean\"],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        self.map_std = torch.tensor(\n            statistics[\"map_std\"],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        self.label_mean = torch.tensor(\n            statistics[\n                \"label_displacement_mean\"\n            ],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        self.label_std = torch.tensor(\n            statistics[\n                \"label_displacement_std\"\n            ],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        if bool(\n            torch.any(\n                self.feature_std\n                <=\n                0.0\n            )\n        ):\n            raise RuntimeError(\n                \"Invalid frozen \"\n                \"feature std.\"\n            )\n\n        if bool(\n            torch.any(\n                self.map_std\n                <=\n                0.0\n            )\n        ):\n            raise RuntimeError(\n                \"Invalid frozen map std.\"\n            )\n\n        if bool(\n            torch.any(\n                self.label_std\n                <=\n                0.0\n            )\n        ):\n            raise RuntimeError(\n                \"Invalid frozen label std.\"\n            )\n\n    def prepare(\n        self,\n        arrays,\n        indices,\n        *,\n        device,\n    ):\n        indices = np.asarray(\n            indices,\n            dtype=np.int64,\n        )\n\n        target = torch.from_numpy(\n            np.asarray(\n                arrays[\"target\"][\n                    indices\n                ],\n                dtype=np.float32,\n            )\n        ).to(device)\n\n        neighbors = torch.from_numpy(\n            np.asarray(\n                arrays[\"neighbors\"][\n                    indices\n                ],\n                dtype=np.float32,\n            )\n        ).to(device)\n\n        neighbor_mask = (\n            torch.from_numpy(\n                np.asarray(\n                    arrays[\n                        \"neighbor_mask\"\n                    ][indices],\n                    dtype=np.float32,\n                )\n            )\n            .to(device)\n        )\n\n        map_context = (\n            torch.from_numpy(\n                np.asarray(\n                    arrays[\n                        \"map_context\"\n                    ][indices],\n                    dtype=np.float32,\n                )\n            )\n            .to(device)\n        )\n\n        future = torch.from_numpy(\n            np.asarray(\n                arrays[\"future\"][\n                    indices\n                ],\n                dtype=np.float32,\n            )\n        ).to(device)\n\n        future_mask = (\n            torch.from_numpy(\n                np.asarray(\n                    arrays[\n                        \"future_mask\"\n                    ][indices],\n                    dtype=np.float32,\n                )\n            )\n            .to(device)\n        )\n\n        class_id = (\n            torch.from_numpy(\n                np.asarray(\n                    arrays[\n                        \"class_id\"\n                    ][indices],\n                    dtype=np.int64,\n                )\n            )\n            .to(device)\n        )\n\n        target_observed = (\n            target[\n                :,\n                :,\n                12:13\n            ]\n        )\n\n        target_continuous = (\n            (\n                target[\n                    :,\n                    :,\n                    :12\n                ]\n                -\n                self.feature_mean\n            )\n            /\n            self.feature_std\n        )\n\n        target_continuous = (\n            target_continuous\n            *\n            target_observed\n        )\n\n        target_normalized = (\n            torch.cat(\n                (\n                    target_continuous,\n                    target[\n                        :,\n                        :,\n                        12:\n                    ],\n                ),\n                dim=-1,\n            )\n        )\n\n        neighbor_observed = (\n            neighbors[\n                :,\n                :,\n                :,\n                12:13\n            ]\n            *\n            neighbor_mask[\n                :,\n                :,\n                None,\n                None\n            ]\n        )\n\n        neighbor_continuous = (\n            (\n                neighbors[\n                    :,\n                    :,\n                    :,\n                    :12\n                ]\n                -\n                self.feature_mean\n            )\n            /\n            self.feature_std\n        )\n\n        neighbor_continuous = (\n            neighbor_continuous\n            *\n            neighbor_observed\n        )\n\n        neighbors_normalized = (\n            torch.cat(\n                (\n                    neighbor_continuous,\n\n                    neighbors[\n                        :,\n                        :,\n                        :,\n                        12:\n                    ]\n                    *\n                    neighbor_mask[\n                        :,\n                        :,\n                        None,\n                        None\n                    ],\n                ),\n                dim=-1,\n            )\n        )\n\n        map_normalized = (\n            (\n                map_context\n                -\n                self.map_mean\n            )\n            /\n            self.map_std\n        )\n\n        origin = (\n            latest_position_torch(\n                target\n            )\n        )\n\n        displacement = (\n            future\n            -\n            origin[\n                :,\n                None,\n                :\n            ]\n        )\n\n        normalized_label = (\n            (\n                displacement\n                -\n                self.label_mean[\n                    None,\n                    :,\n                    :\n                ]\n            )\n            /\n            self.label_std[\n                None,\n                :,\n                :\n            ]\n        )\n\n        normalized_label = (\n            normalized_label\n            *\n            future_mask[\n                :,\n                :,\n                None\n            ]\n        )\n\n        return {\n            \"target\":\n                target_normalized,\n\n            \"neighbors\":\n                neighbors_normalized,\n\n            \"neighbor_mask\":\n                neighbor_mask,\n\n            \"map_context\":\n                map_normalized,\n\n            \"label_normalized\":\n                normalized_label,\n\n            \"true_displacement\":\n                displacement,\n\n            \"future_mask\":\n                future_mask,\n\n            \"class_id\":\n                class_id,\n        }"
+    },
+    "build_gaussian_model": {
+      "end_line": 832,
+      "kind": "FunctionDef",
+      "line": 791,
+      "source": "def build_gaussian_model(\n    deterministic_configuration,\n    *,\n    device,\n):\n    section = (\n        deterministic_configuration[\n            \"model\"\n        ]\n    )\n\n    return (\n        GaussianTrajectoryGRU(\n            target_hidden_dim=int(\n                section[\n                    \"target_hidden_dim\"\n                ]\n            ),\n\n            neighbor_hidden_dim=int(\n                section[\n                    \"neighbor_hidden_dim\"\n                ]\n            ),\n\n            map_hidden_dim=int(\n                section[\n                    \"map_hidden_dim\"\n                ]\n            ),\n\n            fusion_hidden_dim=int(\n                section[\n                    \"fusion_hidden_dim\"\n                ]\n            ),\n\n            use_neighbors=True,\n            use_map=True,\n        )\n        .to(device)\n    )"
+    },
+    "probabilistic_prediction_sha256": {
+      "end_line": 1505,
+      "kind": "FunctionDef",
+      "line": 1426,
+      "source": "def probabilistic_prediction_sha256(\n    model,\n    arrays,\n    normalizer,\n    *,\n    device,\n    sample_limit=2048,\n):\n    digest = sha256()\n\n    model.eval()\n\n    count = min(\n        int(\n            arrays[\n                \"target\"\n            ].shape[0]\n        ),\n        int(\n            sample_limit\n        ),\n    )\n\n    with torch.inference_mode():\n        for start in range(\n            0,\n            count,\n            512,\n        ):\n            stop = min(\n                count,\n                start + 512,\n            )\n\n            indices = np.arange(\n                start,\n                stop,\n                dtype=np.int64,\n            )\n\n            batch = (\n                normalizer.prepare(\n                    arrays,\n                    indices,\n                    device=device,\n                )\n            )\n\n            output = model(\n                batch[\"target\"],\n                batch[\"neighbors\"],\n                batch[\n                    \"neighbor_mask\"\n                ],\n                batch[\"map_context\"],\n            )\n\n            for tensor in (\n                output.mean,\n                output.scale_tril,\n            ):\n                value = (\n                    tensor\n                    .detach()\n                    .cpu()\n                    .contiguous()\n                    .numpy()\n                    .astype(\n                        np.float32,\n                        copy=False,\n                    )\n                )\n\n                digest.update(\n                    value.tobytes(\n                        order=\"C\"\n                    )\n                )\n\n    return digest.hexdigest()"
+    }
+  },
+  "determinism_hits": [
+    {
+      "line": 31,
+      "text": "    initialize_from_deterministic,"
+    },
+    {
+      "line": 34,
+      "text": "    set_global_determinism,"
+    },
+    {
+      "line": 53,
+      "text": "    / \"reports/block43_deterministic_gru.json\""
+    },
+    {
+      "line": 63,
+      "text": "    / \"artifacts/block43/deterministic_gru.pt\""
+    },
+    {
+      "line": 395,
+      "text": "        device=target.device,"
+    },
+    {
+      "line": 421,
+      "text": "        device=target.device,"
+    },
+    {
+      "line": 437,
+      "text": "        device,"
+    },
+    {
+      "line": 443,
+      "text": "            dtype=torch.float32,"
+    },
+    {
+      "line": 444,
+      "text": "            device=device,"
+    },
+    {
+      "line": 451,
+      "text": "            dtype=torch.float32,"
+    },
+    {
+      "line": 452,
+      "text": "            device=device,"
+    },
+    {
+      "line": 457,
+      "text": "            dtype=torch.float32,"
+    },
+    {
+      "line": 458,
+      "text": "            device=device,"
+    },
+    {
+      "line": 463,
+      "text": "            dtype=torch.float32,"
+    },
+    {
+      "line": 464,
+      "text": "            device=device,"
+    },
+    {
+      "line": 471,
+      "text": "            dtype=torch.float32,"
+    },
+    {
+      "line": 472,
+      "text": "            device=device,"
+    },
+    {
+      "line": 479,
+      "text": "            dtype=torch.float32,"
+    },
+    {
+      "line": 480,
+      "text": "            device=device,"
+    },
+    {
+      "line": 522,
+      "text": "        device,"
+    },
+    {
+      "line": 534,
+      "text": "                dtype=np.float32,"
+    },
+    {
+      "line": 536,
+      "text": "        ).to(device)"
+    },
+    {
+      "line": 543,
+      "text": "                dtype=np.float32,"
+    },
+    {
+      "line": 545,
+      "text": "        ).to(device)"
+    },
+    {
+      "line": 553,
+      "text": "                    dtype=np.float32,"
+    },
+    {
+      "line": 556,
+      "text": "            .to(device)"
+    },
+    {
+      "line": 565,
+      "text": "                    dtype=np.float32,"
+    },
+    {
+      "line": 568,
+      "text": "            .to(device)"
+    },
+    {
+      "line": 576,
+      "text": "                dtype=np.float32,"
+    },
+    {
+      "line": 578,
+      "text": "        ).to(device)"
+    },
+    {
+      "line": 586,
+      "text": "                    dtype=np.float32,"
+    },
+    {
+      "line": 589,
+      "text": "            .to(device)"
+    },
+    {
+      "line": 601,
+      "text": "            .to(device)"
+    },
+    {
+      "line": 792,
+      "text": "    deterministic_configuration,"
+    },
+    {
+      "line": 794,
+      "text": "    device,"
+    },
+    {
+      "line": 797,
+      "text": "        deterministic_configuration["
+    },
+    {
+      "line": 831,
+      "text": "        .to(device)"
+    },
+    {
+      "line": 844,
+      "text": "    device,"
+    },
+    {
+      "line": 854,
+      "text": "        dtype=np.float64,"
+    },
+    {
+      "line": 859,
+      "text": "        dtype=np.float64,"
+    },
+    {
+      "line": 893,
+      "text": "        dtype=np.float64,"
+    },
+    {
+      "line": 929,
+      "text": "                device=device,"
+    },
+    {
+      "line": 1431,
+      "text": "    device,"
+    },
+    {
+      "line": 1470,
+      "text": "                    device=device,"
+    },
+    {
+      "line": 1494,
+      "text": "                        np.float32,"
+    },
+    {
+      "line": 1625,
+      "text": "    device,"
+    },
+    {
+      "line": 1634,
+      "text": "            map_location=device,"
+    },
+    {
+      "line": 1695,
+      "text": "            \"the frozen deterministic \""
+    },
+    {
+      "line": 1808,
+      "text": "            \"Frozen deterministic \""
+    },
+    {
+      "line": 1982,
+      "text": "    if not torch.cuda.is_available():"
+    },
+    {
+      "line": 1984,
+      "text": "            \"CUDA unavailable.\""
+    },
+    {
+      "line": 1988,
+      "text": "        torch.version.cuda"
+    },
+    {
+      "line": 1993,
+      "text": "            \"Frozen CUDA runtime \""
+    },
+    {
+      "line": 1997,
+      "text": "    device = torch.device("
+    },
+    {
+      "line": 1998,
+      "text": "        \"cuda:0\""
+    },
+    {
+      "line": 2004,
+      "text": "        torch.cuda.get_device_name("
+    },
+    {
+      "line": 2027,
+      "text": "    seed = int("
+    },
+    {
+      "line": 2031,
+      "text": "            \"seed\""
+    },
+    {
+      "line": 2083,
+      "text": "    set_global_determinism("
+    },
+    {
+      "line": 2084,
+      "text": "        seed"
+    },
+    {
+      "line": 2087,
+      "text": "    deterministic_checkpoint = ("
+    },
+    {
+      "line": 2090,
+      "text": "            map_location=device,"
+    },
+    {
+      "line": 2096,
+      "text": "        deterministic_checkpoint["
+    },
+    {
+      "line": 2103,
+      "text": "            \"Frozen deterministic \""
+    },
+    {
+      "line": 2110,
+      "text": "            deterministic_checkpoint["
+    },
+    {
+      "line": 2118,
+      "text": "            \"Frozen deterministic \""
+    },
+    {
+      "line": 2156,
+      "text": "        torch.cuda.get_device_name(0),"
+    },
+    {
+      "line": 2162,
+      "text": "            device=device,"
+    },
+    {
+      "line": 2170,
+      "text": "        \"deterministic_checkpoint_sha256\":"
+    },
+    {
+      "line": 2173,
+      "text": "        \"deterministic_state_dict_sha256\":"
+    },
+    {
+      "line": 2193,
+      "text": "        deterministic_checkpoint["
+    },
+    {
+      "line": 2196,
+      "text": "        device=device,"
+    },
+    {
+      "line": 2199,
+      "text": "    initialize_from_deterministic("
+    },
+    {
+      "line": 2201,
+      "text": "        deterministic_checkpoint["
+    },
+    {
+      "line": 2280,
+      "text": "        device=device,"
+    },
+    {
+      "line": 2295,
+      "text": "                device=device,"
+    },
+    {
+      "line": 2448,
+      "text": "                device=\"cpu\""
+    },
+    {
+      "line": 2452,
+      "text": "        generator.manual_seed("
+    },
+    {
+      "line": 2453,
+      "text": "            seed + epoch"
+    },
+    {
+      "line": 2487,
+      "text": "                    device=device,"
+    },
+    {
+      "line": 2587,
+      "text": "        torch.cuda.synchronize()"
+    },
+    {
+      "line": 2606,
+      "text": "                device=device,"
+    },
+    {
+      "line": 2786,
+      "text": "        map_location=device,"
+    },
+    {
+      "line": 2803,
+      "text": "        deterministic_checkpoint["
+    },
+    {
+      "line": 2806,
+      "text": "        device=device,"
+    },
+    {
+      "line": 2840,
+      "text": "            device=device,"
+    },
+    {
+      "line": 2907,
+      "text": "            device=device,"
+    },
+    {
+      "line": 2914,
+      "text": "            map_location=device,"
+    },
+    {
+      "line": 2921,
+      "text": "            deterministic_checkpoint["
+    },
+    {
+      "line": 2924,
+      "text": "            device=device,"
+    },
+    {
+      "line": 2941,
+      "text": "            device=device,"
+    },
+    {
+      "line": 3083,
+      "text": "            \"deterministic_checkpoint_sha256\":"
+    },
+    {
+      "line": 3099,
+      "text": "            \"seed\":"
+    },
+    {
+      "line": 3100,
+      "text": "                seed,"
+    },
+    {
+      "line": 3102,
+      "text": "            \"device\":"
+    },
+    {
+      "line": 3103,
+      "text": "                str(device),"
+    },
+    {
+      "line": 3106,
+      "text": "                torch.cuda"
+    },
+    {
+      "line": 3107,
+      "text": "                .get_device_name(0),"
+    },
+    {
+      "line": 3307,
+      "text": "                  \"the deterministic GRU.\\n\""
+    },
+    {
+      "line": 3321,
+      "text": "                  \"frozen deterministic Block4.3 \""
+    },
+    {
+      "line": 3561,
+      "text": "        \"cuda oom\""
+    }
+  ],
+  "development_route_hits": [
+    {
+      "line": 28,
+      "text": "    covariance_from_scale_tril,"
+    },
+    {
+      "line": 29,
+      "text": "    denormalize_gaussian,"
+    },
+    {
+      "line": 71,
+      "text": "DEV_CACHE = ("
+    },
+    {
+      "line": 791,
+      "text": "def build_gaussian_model("
+    },
+    {
+      "line": 845,
+      "text": "    batch_size=1024,"
+    },
+    {
+      "line": 907,
+      "text": "    with torch.inference_mode():"
+    },
+    {
+      "line": 911,
+      "text": "            batch_size,"
+    },
+    {
+      "line": 917,
+      "text": "                batch_size,"
+    },
+    {
+      "line": 932,
+      "text": "            output = model("
+    },
+    {
+      "line": 944,
+      "text": "            ) = denormalize_gaussian("
+    },
+    {
+      "line": 1044,
+      "text": "                covariance_from_scale_tril("
+    },
+    {
+      "line": 1426,
+      "text": "def probabilistic_prediction_sha256("
+    },
+    {
+      "line": 1449,
+      "text": "    with torch.inference_mode():"
+    },
+    {
+      "line": 1474,
+      "text": "            output = model("
+    },
+    {
+      "line": 1714,
+      "text": "        DEV_CACHE,"
+    },
+    {
+      "line": 1832,
+      "text": "            DEV_CACHE"
+    },
+    {
+      "line": 2035,
+      "text": "    batch_size = int("
+    },
+    {
+      "line": 2039,
+      "text": "            \"batch_size\""
+    },
+    {
+      "line": 2127,
+      "text": "        DEV_CACHE"
+    },
+    {
+      "line": 2183,
+      "text": "                DEV_CACHE"
+    },
+    {
+      "line": 2192,
+      "text": "    model = build_gaussian_model("
+    },
+    {
+      "line": 2472,
+      "text": "            batch_size,"
+    },
+    {
+      "line": 2476,
+      "text": "                start + batch_size,"
+    },
+    {
+      "line": 2495,
+      "text": "            output = model("
+    },
+    {
+      "line": 2802,
+      "text": "    best_model = build_gaussian_model("
+    },
+    {
+      "line": 2903,
+      "text": "        probabilistic_prediction_sha256("
+    },
+    {
+      "line": 2920,
+      "text": "        build_gaussian_model("
+    },
+    {
+      "line": 2937,
+      "text": "        probabilistic_prediction_sha256("
+    },
+    {
+      "line": 3112,
+      "text": "            \"batch_size\":"
+    },
+    {
+      "line": 3113,
+      "text": "                batch_size,"
+    },
+    {
+      "line": 3207,
+      "text": "            \"prediction_sha256\":"
+    }
+  ],
+  "frozen_prediction_sha256": "a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a",
+  "prediction_hash_calls": [
+    {
+      "call_source": "probabilistic_prediction_sha256(\n            best_model,\n            dev_arrays,\n            normalizer,\n            device=device,\n        )",
+      "line": 2903,
+      "window": {
+        "end_line": 2927,
+        "lines": [
+          {
+            "line": 2885,
+            "text": "        \"TYPE_CYCLIST\","
+          },
+          {
+            "line": 2886,
+            "text": "    ):"
+          },
+          {
+            "line": 2887,
+            "text": "        if required_class not in ("
+          },
+          {
+            "line": 2888,
+            "text": "            final_development["
+          },
+          {
+            "line": 2889,
+            "text": "                \"class_planar_ADE_m\""
+          },
+          {
+            "line": 2890,
+            "text": "            ]"
+          },
+          {
+            "line": 2891,
+            "text": "        ):"
+          },
+          {
+            "line": 2892,
+            "text": "            raise RuntimeError("
+          },
+          {
+            "line": 2893,
+            "text": "                \"Final development \""
+          },
+          {
+            "line": 2894,
+            "text": "                f\"metrics lack \""
+          },
+          {
+            "line": 2895,
+            "text": "                f\"{required_class}.\""
+          },
+          {
+            "line": 2896,
+            "text": "            )"
+          },
+          {
+            "line": 2897,
+            "text": ""
+          },
+          {
+            "line": 2898,
+            "text": "    # --------------------------------------------------------"
+          },
+          {
+            "line": 2899,
+            "text": "    # Exact probabilistic inference repeat."
+          },
+          {
+            "line": 2900,
+            "text": "    # --------------------------------------------------------"
+          },
+          {
+            "line": 2901,
+            "text": ""
+          },
+          {
+            "line": 2902,
+            "text": "    inference_sha_a = ("
+          },
+          {
+            "line": 2903,
+            "text": "        probabilistic_prediction_sha256("
+          },
+          {
+            "line": 2904,
+            "text": "            best_model,"
+          },
+          {
+            "line": 2905,
+            "text": "            dev_arrays,"
+          },
+          {
+            "line": 2906,
+            "text": "            normalizer,"
+          },
+          {
+            "line": 2907,
+            "text": "            device=device,"
+          },
+          {
+            "line": 2908,
+            "text": "        )"
+          },
+          {
+            "line": 2909,
+            "text": "    )"
+          },
+          {
+            "line": 2910,
+            "text": ""
+          },
+          {
+            "line": 2911,
+            "text": "    repeat_checkpoint = ("
+          },
+          {
+            "line": 2912,
+            "text": "        torch.load("
+          },
+          {
+            "line": 2913,
+            "text": "            CHECKPOINT,"
+          },
+          {
+            "line": 2914,
+            "text": "            map_location=device,"
+          },
+          {
+            "line": 2915,
+            "text": "            weights_only=False,"
+          },
+          {
+            "line": 2916,
+            "text": "        )"
+          },
+          {
+            "line": 2917,
+            "text": "    )"
+          },
+          {
+            "line": 2918,
+            "text": ""
+          },
+          {
+            "line": 2919,
+            "text": "    repeat_model = ("
+          },
+          {
+            "line": 2920,
+            "text": "        build_gaussian_model("
+          },
+          {
+            "line": 2921,
+            "text": "            deterministic_checkpoint["
+          },
+          {
+            "line": 2922,
+            "text": "                \"configuration\""
+          },
+          {
+            "line": 2923,
+            "text": "            ],"
+          },
+          {
+            "line": 2924,
+            "text": "            device=device,"
+          },
+          {
+            "line": 2925,
+            "text": "        )"
+          },
+          {
+            "line": 2926,
+            "text": "    )"
+          },
+          {
+            "line": 2927,
+            "text": ""
+          }
+        ],
+        "start_line": 2885
+      }
+    },
+    {
+      "call_source": "probabilistic_prediction_sha256(\n            repeat_model,\n            dev_arrays,\n            normalizer,\n            device=device,\n        )",
+      "line": 2937,
+      "window": {
+        "end_line": 2961,
+        "lines": [
+          {
+            "line": 2919,
+            "text": "    repeat_model = ("
+          },
+          {
+            "line": 2920,
+            "text": "        build_gaussian_model("
+          },
+          {
+            "line": 2921,
+            "text": "            deterministic_checkpoint["
+          },
+          {
+            "line": 2922,
+            "text": "                \"configuration\""
+          },
+          {
+            "line": 2923,
+            "text": "            ],"
+          },
+          {
+            "line": 2924,
+            "text": "            device=device,"
+          },
+          {
+            "line": 2925,
+            "text": "        )"
+          },
+          {
+            "line": 2926,
+            "text": "    )"
+          },
+          {
+            "line": 2927,
+            "text": ""
+          },
+          {
+            "line": 2928,
+            "text": "    repeat_model.load_state_dict("
+          },
+          {
+            "line": 2929,
+            "text": "        repeat_checkpoint["
+          },
+          {
+            "line": 2930,
+            "text": "            \"state_dict\""
+          },
+          {
+            "line": 2931,
+            "text": "        ]"
+          },
+          {
+            "line": 2932,
+            "text": "    )"
+          },
+          {
+            "line": 2933,
+            "text": ""
+          },
+          {
+            "line": 2934,
+            "text": "    repeat_model.eval()"
+          },
+          {
+            "line": 2935,
+            "text": ""
+          },
+          {
+            "line": 2936,
+            "text": "    inference_sha_b = ("
+          },
+          {
+            "line": 2937,
+            "text": "        probabilistic_prediction_sha256("
+          },
+          {
+            "line": 2938,
+            "text": "            repeat_model,"
+          },
+          {
+            "line": 2939,
+            "text": "            dev_arrays,"
+          },
+          {
+            "line": 2940,
+            "text": "            normalizer,"
+          },
+          {
+            "line": 2941,
+            "text": "            device=device,"
+          },
+          {
+            "line": 2942,
+            "text": "        )"
+          },
+          {
+            "line": 2943,
+            "text": "    )"
+          },
+          {
+            "line": 2944,
+            "text": ""
+          },
+          {
+            "line": 2945,
+            "text": "    if ("
+          },
+          {
+            "line": 2946,
+            "text": "        inference_sha_a"
+          },
+          {
+            "line": 2947,
+            "text": "        !="
+          },
+          {
+            "line": 2948,
+            "text": "        inference_sha_b"
+          },
+          {
+            "line": 2949,
+            "text": "    ):"
+          },
+          {
+            "line": 2950,
+            "text": "        raise RuntimeError("
+          },
+          {
+            "line": 2951,
+            "text": "            \"Frozen Gaussian checkpoint \""
+          },
+          {
+            "line": 2952,
+            "text": "            \"inference is not exactly \""
+          },
+          {
+            "line": 2953,
+            "text": "            \"repeatable.\""
+          },
+          {
+            "line": 2954,
+            "text": "        )"
+          },
+          {
+            "line": 2955,
+            "text": ""
+          },
+          {
+            "line": 2956,
+            "text": "    print()"
+          },
+          {
+            "line": 2957,
+            "text": "    print("
+          },
+          {
+            "line": 2958,
+            "text": "        \"exact probabilistic \""
+          },
+          {
+            "line": 2959,
+            "text": "        \"inference repeat = PASS\""
+          },
+          {
+            "line": 2960,
+            "text": "    )"
+          },
+          {
+            "line": 2961,
+            "text": "    print("
+          }
+        ],
+        "start_line": 2919
+      }
+    }
+  ],
+  "scientific_execution": {
+    "Stage4_modified": false,
+    "dataset_scan": false,
+    "formal_N120_read": false,
+    "model_forward": false,
+    "recalibration": false,
+    "training": false
+  },
+  "status": "PASS_READ_ONLY_FORENSIC_AUDIT",
+  "training_script": {
+    "path": "/home/agni/waymo/iscai_stage4/scripts/run_block44_gaussian_training.py",
+    "sha256": "6b4be296fb9d93f81d10b353a37b3427b63e437e6f123b10950db07697457218"
+  }
+}

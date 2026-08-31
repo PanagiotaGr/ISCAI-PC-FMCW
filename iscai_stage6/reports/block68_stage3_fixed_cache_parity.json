@@ -1,0 +1,76 @@
+{
+  "Stage1_replay": {
+    "TYPE_CYCLIST": {
+      "absolute_delta": 0.0,
+      "empty_valid_oracle": 0,
+      "invalid_future": 10,
+      "mean_iou": 0.2451696448623915,
+      "scored_actor_horizons": 182,
+      "target_mean_iou": 0.2451696448623915
+    },
+    "TYPE_PEDESTRIAN": {
+      "absolute_delta": 1.1102230246251565e-16,
+      "empty_valid_oracle": 6,
+      "invalid_future": 28,
+      "mean_iou": 0.25486530932489315,
+      "scored_actor_horizons": 412,
+      "target_mean_iou": 0.25486530932489326
+    },
+    "TYPE_VEHICLE": {
+      "absolute_delta": 1.1102230246251565e-16,
+      "empty_valid_oracle": 40,
+      "invalid_future": 57,
+      "mean_iou": 0.4427790877815939,
+      "scored_actor_horizons": 2819,
+      "target_mean_iou": 0.442779087781594
+    }
+  },
+  "Stage2_replay": {
+    "TYPE_CYCLIST": {
+      "dilation_input": "additional_class_margin_m_only",
+      "iou_absolute_delta": 0.0,
+      "mean_iou": 0.2229309135285922,
+      "mean_overmask": 0.0016067678450553896,
+      "overmask_absolute_delta": 2.168404344971009e-19,
+      "scored_actor_horizons": 182,
+      "target_mean_iou": 0.2229309135285922,
+      "target_mean_overmask": 0.0016067678450553899
+    },
+    "TYPE_PEDESTRIAN": {
+      "dilation_input": "additional_class_margin_m_only",
+      "iou_absolute_delta": 8.326672684688674e-17,
+      "mean_iou": 0.2203062708475233,
+      "mean_overmask": 0.0009210846442456827,
+      "overmask_absolute_delta": 7.589415207398531e-19,
+      "scored_actor_horizons": 412,
+      "target_mean_iou": 0.22030627084752338,
+      "target_mean_overmask": 0.0009210846442456835
+    },
+    "TYPE_VEHICLE": {
+      "dilation_input": "additional_class_margin_m_only",
+      "iou_absolute_delta": 1.6653345369377348e-16,
+      "mean_iou": 0.4191809551565131,
+      "mean_overmask": 0.00322630705303162,
+      "overmask_absolute_delta": 2.168404344971009e-18,
+      "scored_actor_horizons": 2819,
+      "target_mean_iou": 0.41918095515651327,
+      "target_mean_overmask": 0.003226307053031618
+    }
+  },
+  "Stage6_regression": 224,
+  "block": "6.8_stage3_execution_part1",
+  "development_scenarios": 120,
+  "fixed_cache_freeze": {
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage3_fixed_cache/stage3_fixed_cache_freeze.json",
+    "sha256": "6733ba1641afc341910bd5cc822a034103585706f32db4758d606b7bf2bf786d"
+  },
+  "formal_evaluation": false,
+  "manifest": {
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage3_fixed_cache/stage3_fixed_cache_manifest.jsonl",
+    "sha256": "9607f5bd6022da5471167650f652556dca8381b241adf0b7faaf06bd27edc041"
+  },
+  "next": "execute exactly 3270 frozen Stage-3 class-floor candidates using only this fixed cache and the already-frozen Stage-3 scoring contract",
+  "predictive_actors": 877,
+  "stage": 6,
+  "status": "PASS_STAGE3_FIXED_CACHE_PARITY_FROZEN"
+}

@@ -1,0 +1,125 @@
+{
+  "PDF_compliance": "PASS",
+  "PDF_requirement_evidence_matrix": [
+    {
+      "pass": true,
+      "requirement": "receiver-aware angular posterior"
+    },
+    {
+      "pass": true,
+      "requirement": "codebooks 16/32/64"
+    },
+    {
+      "pass": true,
+      "requirement": "adaptive Top-K targets 90/95/97.5/99%"
+    },
+    {
+      "pass": true,
+      "requirement": "full 3x3x4x4 adaptive evaluation matrix"
+    },
+    {
+      "pass": true,
+      "requirement": "requested empirical coverage"
+    },
+    {
+      "pass": true,
+      "requirement": "reduced overhead vs fixed/exhaustive"
+    },
+    {
+      "pass": true,
+      "requirement": "optical pointing/gain/power/SNR/DBPSK/effective-rate chain"
+    },
+    {
+      "pass": true,
+      "requirement": "latency-aware controller"
+    },
+    {
+      "pass": true,
+      "requirement": "no formal parameter selection/tuning"
+    },
+    {
+      "pass": true,
+      "requirement": "future truth is evaluator-only"
+    },
+    {
+      "pass": true,
+      "requirement": "tracks_to_predict not receiver selector"
+    },
+    {
+      "pass": true,
+      "requirement": "formal science reproducible"
+    },
+    {
+      "pass": true,
+      "requirement": "V2 structural no-free-probe/latency/optical/recovery evidence"
+    }
+  ],
+  "Stage6_allowed": true,
+  "V7_invalidation": {
+    "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/final_reconciliation_v1/v7_nonauthoritative_invalidation.json",
+    "sha256": "522c92868efe96b282bf06050895af779cdbfcb5ffc07f9c7cc7b691b4888df3"
+  },
+  "authoritative_scientific_evidence": {
+    "formal_evaluation": "/home/agni/waymo/iscai_stage5/reports/block58_formal_evaluation.json",
+    "formal_evaluation_sha256": "76c23c21e667cf5acec1a6b1273256b915f8c12d0bba6417459e56c27203fc55",
+    "prefrozen_acceptance": "/home/agni/waymo/iscai_stage5/reports/block58_prefreeze_acceptance.json",
+    "prefrozen_acceptance_sha256": "dd8a583c2a5dbcbfdbdcb79311301215a9890495d88d3331bc96574277b682d3",
+    "reconciled_gate": "/home/agni/waymo/iscai_stage5/reports/block58_part2_reconciled_gate.json",
+    "reconciled_gate_sha256": "e8010fea3938b70fe1afc4674698f5ae04677ee021449f510ea1c158e35ae63b",
+    "reproducibility": "/home/agni/waymo/iscai_stage5/reports/block59_reproducibility.json",
+    "reproducibility_sha256": "980bfbd2007ed798742bd7c36b5e8b6bcd0e808590c0dc5d9608db1ec6211845"
+  },
+  "authority_rule": "Use the pre-existing frozen and reproducible Block58 scientific evaluation; use FullPDF-V2 work only for additional structural/provenance evidence. V7 is non-authoritative because its decision construction violates the frozen Stage4 coordinate contract.",
+  "completion_metrics": {
+    "empirical_probability_coverage": 0.9959473150962512,
+    "overhead_reduction_vs_exhaustive": 0.865216565349544,
+    "overhead_reduction_vs_fixed_or_exhaustive": "PASS",
+    "requested_coverage": "PASS"
+  },
+  "coordinate_contract_defect": {
+    "V2_checker_observed_binding": "gaussian_mean_H0_m[h] -> receiver_samples_h0(actor_mean_h0_m=...)",
+    "frozen_Stage4_semantics": "metric-H0 future displacement mean",
+    "missing_required_composition": "origin_H0_m + gaussian_mean_H0_m[h]",
+    "parameter_tuning": false,
+    "scientific_interpretation": "V7 decisions do not instantiate the frozen Stage4->Stage5 coordinate contract",
+    "status": "PROVEN"
+  },
+  "evaluated_space": {
+    "adaptive_strata": 144,
+    "codebooks": [
+      16,
+      32,
+      64
+    ],
+    "formal_scenarios": 120,
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "probability_targets": [
+      0.9,
+      0.95,
+      0.975,
+      0.99
+    ],
+    "receiver_geometry_modes": [
+      "centroid",
+      "known",
+      "uncertain"
+    ]
+  },
+  "formal_outcomes_reused_for_parameter_selection": false,
+  "post_outcome_tuning": false,
+  "regression": {
+    "log": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/final_reconciliation_v1/stage5_regression_271.log",
+    "log_sha256": "d4da9026d1b747cc292a47e582aa85bd52b1bde856ecee1718b72db48ba7c54a",
+    "status": "PASS",
+    "tests": 271
+  },
+  "scientific_rerun": false,
+  "stage": 5,
+  "status": "PASS_RECONCILED_FINAL_AUTHORITY",
+  "version": "fullpdf_v2"
+}

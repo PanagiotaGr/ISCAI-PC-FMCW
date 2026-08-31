@@ -1,0 +1,133 @@
+============================================================
+STAGE 5 — BLOCK 5.0 PART 2/2
+EXACT CONTRACT FREEZE
+============================================================
+
+============================================================
+A. PART1 CONTINUITY
+============================================================
+Block5.0 Part1             = PASS
+training/inference          = NO
+upstream modified           = NO
+
+============================================================
+B. FROZEN UPSTREAM RECHECK
+============================================================
+Stage4 closure               = PASS
+Stage4 handoff               = PASS
+Stage4 freeze                = PASS
+Stage4 reproducibility       = PASS
+Gaussian checkpoint          = PASS
+normalization                = PASS
+calibrator                   = PASS
+formal manifest              = PASS
+PDF certification            = PASS
+Waymo NOTICE                 = PASS
+Part-A frozen reference      = PASS
+
+============================================================
+C. EXACT PART-A NOTEBOOK SOURCE FREEZE
+============================================================
+Part-A notebook          = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+notebook SHA256          = b5a80a6d3441de6d571db4f65b4a43ed4052cc2b3ccba935ad31b5dd51316ef3
+notebook cells           = 77
+numeric assignments      = 142
+non-Python parse cells   = 0
+carrier_frequency_Hz      = PASS | fc = 193400000000000.0
+waveform_bandwidth_Hz     = PASS | B = 10000000000.0
+chirp_duration_s          = PASS | T_chirp = 1e-05
+data_rate_bps             = PASS | data_rate = 1000000000.0
+sample_period_s           = PASS | Ts = 1e-09
+N_fast                    = PASS | N_fast = 131072.0
+M_chirps                  = PASS | M_chirps = 64.0
+
+============================================================
+D. PART-A OPTICAL / DPSK EVIDENCE-CELL FREEZE
+============================================================
+DPSK                            = PASS | cells = [9, 10, 12, 13, 14, 15, 16, 17, 22, 63]
+BER                             = PASS | cells = [16, 17, 29, 31, 35, 63, 64, 65]
+optical_gain_or_received_power  = PASS | cells = [65]
+effective_rate                  = STAGE5 DERIVED / NOT REQUIRED IN PART-A SOURCE
+effective-rate Part-A source hits = 0
+effective-rate provenance = Stage5_derived_from_frozen_PartA_link_quantities_raw_data_rate_and_beam_probing_overhead
+effective-rate formula    = MUST_FREEZE_IN_BLOCK5.6_BEFORE_FORMAL
+
+Part-A source contract SHA256 = 80a06892e1721e28e2599c20acc29c9bea44fd74e256b8af7eadd02416600fca
+
+============================================================
+E. STAGE1 RECEIVER-GEOMETRY CONTRACT
+============================================================
+module                    = iscai_stage1.geometry.receiver
+source                    = /home/agni/waymo/iscai_stage1/src/iscai_stage1/geometry/receiver.py
+function signature        = (actor: 'ActorAnchorStateW', T_H0_from_W: 'RigidTransform', config: 'ReceiverGeometryConfig') -> 'ReceiverGeometryH0'
+config class              = ReceiverGeometryConfig
+receiver offset mean      = SUPPORTED PASS
+receiver covariance       = SUPPORTED PASS
+Stage5 conceptual modes   = ['centroid_baseline', 'known_receiver_offset', 'uncertain_receiver_offset']
+
+============================================================
+F. CANONICAL STAGE5 STRUCTURAL CONTRACT
+============================================================
+default posterior         = calibrated_Gaussian_GRU
+primary receiver policy   = nearest_causal_vehicle_ahead
+receiver modes            = ['centroid_baseline', 'known_receiver_offset', 'uncertain_receiver_offset']
+horizons s                = [0.1, 0.3, 0.5, 1.0]
+codebook sizes            = [16, 32, 64]
+probability masses        = [0.9, 0.95, 0.975, 0.99]
+nominal mass target       = 0.95
+optical chain             = ['pointing_error', 'optical_beam_gain', 'received_power', 'SNR', 'DPSK_BER', 'effective_rate']
+formal N                  = 120
+formal tuning             = NO
+acceptance requirements   = ['adaptive_TopK_approximately_respects_requested_coverage', 'adaptive_TopK_reduces_overhead_vs_fixed_or_exhaustive_probing']
+development fields pending= 11
+Stage6+ out-of-scope      = ['predictive_class_aware_ADB', 'illumination_pixel_controller', 'joint_beam_ADB_tradeoff_evaluation', 'full_joint_beam_ADB_end_to_end_latency', 'Stage7_failure_slice_analysis', 'Stage7_statistical_confidence_intervals', 'DeepSense_external_mmWave_validation']
+contract SHA256           = 04fd32e4bc6e160f2627f465a7820c74e19ca2e1a1f47f23ed1884f842cb7db4
+
+============================================================
+G. CONTRACT READBACK / ANTI-LEAKAGE
+============================================================
+tracks_to_predict selector = NO PASS
+future truth selector      = NO PASS
+future GT heading          = NO PASS
+formal tuning              = NO PASS
+formal policy selection    = NO PASS
+formal threshold selection = NO PASS
+arbitrary optical model    = NO PASS
+dev freeze before formal   = YES PASS
+
+============================================================
+BLOCK 5.0 PART 2/2 GATE
+============================================================
+Part1 continuity             = PASS
+frozen upstream hashes       = PASS
+Part-A notebook source       = FROZEN
+Part-A core constants        = PASS
+Part-A DPSK evidence         = PASS
+Part-A BER evidence          = PASS
+Part-A optical power/gain    = PASS
+effective-rate provenance    = STAGE5 DERIVED PASS
+effective-rate formula       = FREEZE IN BLOCK5.6 BEFORE FORMAL
+receiver geometry route      = PASS
+Stage5 structural contract   = FROZEN
+primary receiver policy      = NEAREST CAUSAL VEHICLE AHEAD
+receiver modes               = CENTROID / KNOWN / UNCERTAIN
+codebooks                    = 16 / 32 / 64
+Top-K mass targets           = 90 / 95 / 97.5 / 99 %
+nominal mass target          = 95 %
+formal N=120                 = EVALUATION ONLY
+formal tuning                = NO
+tracks_to_predict selector   = NO
+future truth selector        = NO
+Stage4 retraining            = NO
+Stage4 recalibration         = NO
+Stage6+ scope pulled forward = NO
+training/inference           = NO
+upstream modified            = NO
+contract SHA256              = 04fd32e4bc6e160f2627f465a7820c74e19ca2e1a1f47f23ed1884f842cb7db4
+Part-A contract SHA256       = 80a06892e1721e28e2599c20acc29c9bea44fd74e256b8af7eadd02416600fca
+implementation files         = 8
+implementation SHA256        = f92a4112ef9c23b5db4c24260e18b2e1da2749c50ac125f623101e45d688ab02
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage5/reports/block50_contract_freeze.json
+next = BLOCK 5.1
+terminal remains open = YES

@@ -1,0 +1,828 @@
+============================================================
+STAGE 6 — BLOCK 6.8
+DEVELOPMENT CLASS-AWARE POLICY-SELECTION RUNTIME BIND
+EXACT INTEGRATION ROUTE / NO P_OCC ARRAY OPEN
+============================================================
+
+===== A. EXACT FROZEN BOUNDARY =====
+prereg                 = EXACT PASS
+final_script           = EXACT PASS
+replay_contract        = EXACT PASS
+part3c_closure         = EXACT PASS
+part3c_freeze          = EXACT PASS
+pocc_manifest          = EXACT PASS
+predictive_matches     = EXACT PASS
+ni_delta               = EXACT PASS
+acceptance             = EXACT PASS
+timestamp              = EXACT PASS
+P_occ arrays             = NOT OPENED
+predictive performance   = NOT COMPUTED
+numeric policy selected  = NO
+formal evaluation        = NO
+
+===== B. PART3C NUMERIC-SELECTION STATUS =====
+Part3C closure numeric_policy_selected = FALSE
+Part3C freeze  numeric_policy_selected = FALSE
+formal outcomes read                  = FALSE
+interpretation = DEVELOPMENT SELECTION STILL PENDING
+
+===== C. PART3C FINAL INTEGRATION OPERATOR CALLS =====
+
+threshold_occupancy_counts_strict_k @ L3056
+ containing function = None
+ positional = ['counts']
+ keywords   = {'k': "smoke_tuple['gamma_k']", 'sample_count': 'N_MC'}
+
+compute_class_aware_margin @ L3109
+ containing function = None
+ positional = ['actor_class']
+ keywords   = {'current_position_H0_m': "posterior['latest_position_H0_m']", 'mean_displacement_H0_m': "posterior['mean_displacement_H0_m'][h]", 'covariance_H0_m2': "posterior['calibrated_predictive_covariance_H0_m2'][h]", 'horizon_s': 'float(tau)', 'base_margin_m': "smoke_tuple['base_margin_m']", 'uncertainty_multiplier': "smoke_tuple['uncertainty_multiplier']", 'motion_multiplier': 'motion_multiplier'}
+
+angular_margin_cells @ L3138
+ containing function = None
+ positional = []
+ keywords   = {'total_margin_m': "margin['total_lateral_margin_m'] if isinstance(margin, dict) else margin.total_lateral_margin_m", 'predicted_range_m': "margin['predicted_range_m'] if isinstance(margin, dict) else margin.predicted_range_m", 'theta_step_rad': 'THETA_STEP_RAD'}
+
+dilate_mask_theta @ L3208
+ containing function = None
+ positional = ['np.asarray(binary[h:h + 1], dtype=bool)']
+ keywords   = {'dilation_cells': 'int(cells)'}
+
+predictive_mask_to_illumination @ L3226
+ containing function = None
+ positional = ['dilated']
+ keywords   = {'range_centers_m': 'RANGE_CENTERS_M', 'intensity_floor': 'float(intensity_floor)'}
+
+compose_class_aware_illumination @ L3263
+ containing function = None
+ positional = []
+ keywords   = {'class_illumination': 'class_illumination', 'class_active_masks': 'active_masks', 'class_floors': 'floors'}
+
+temporal_smooth_schedule @ L3310
+ containing function = None
+ positional = ['raw']
+ keywords   = {'current_illumination': 'current_illumination', 'horizons_s': 'tuple((float(value) for value in HORIZONS_S))', 'time_constant_s': "smoke_tuple['smoothing_time_constant_s']"}
+
+apply_actuation_rate_limit @ L3327
+ containing function = None
+ positional = ['smoothed']
+ keywords   = {'current_illumination': 'current_illumination', 'horizons_s': 'tuple((float(value) for value in HORIZONS_S))', 'rho_dim_per_s': "smoke_tuple['rho_dim_per_s']", 'rho_bright_per_s': "smoke_tuple['rho_bright_per_s']", 'vru_floor_guard': 'vru_guard'}
+
+===== D. PART3C FINAL SCIENTIFIC INTEGRATION EXCERPT =====
+L02956: 
+L02957:         "cyclist_motion_multiplier":
+L02958:             0.25,
+L02959: 
+L02960:         "vehicle_floor":
+L02961:             0.0,
+L02962: 
+L02963:         "pedestrian_floor":
+L02964:             0.05,
+L02965: 
+L02966:         "cyclist_floor":
+L02967:             0.05,
+L02968: 
+L02969:         "smoothing_time_constant_s":
+L02970:             0.05,
+L02971: 
+L02972:         "rho_dim_per_s":
+L02973:             1.0,
+L02974: 
+L02975:         "rho_bright_per_s":
+L02976:             1.0,
+L02977: 
+L02978:         "selection_status":
+L02979:             "NOT_SELECTED_STRUCTURAL_SMOKE_ONLY",
+L02980:     }
+L02981: 
+L02982:     class_names = (
+L02983:         TYPE_VEHICLE,
+L02984:         TYPE_PEDESTRIAN,
+L02985:         TYPE_CYCLIST,
+L02986:     )
+L02987: 
+L02988:     smoke_results = []
+L02989: 
+L02990:     for actor_class in class_names:
+L02991:         manifest = next(
+L02992:             record
+L02993:             for record in manifest_records
+L02994:             if record[
+L02995:                 "object_type"
+L02996:             ]
+L02997:             ==
+L02998:             actor_class
+L02999:         )
+L03000: 
+L03001:         scenario_id = str(
+L03002:             manifest[
+L03003:                 "scenario_id"
+L03004:             ]
+L03005:         )
+L03006: 
+L03007:         prediction_id = str(
+L03008:             manifest[
+L03009:                 "prediction_id"
+L03010:             ]
+L03011:         )
+L03012: 
+L03013:         match_key = (
+L03014:             scenario_id,
+L03015:             prediction_id,
+L03016:             int(
+L03017:                 manifest[
+L03018:                     "cohort_index"
+L03019:                 ]
+L03020:             ),
+L03021:             int(
+L03022:                 manifest[
+L03023:                     "actor_box_index"
+L03024:                 ]
+L03025:             ),
+L03026:         )
+L03027: 
+L03028:         posterior = posterior_index[
+L03029:             (
+L03030:                 scenario_id,
+L03031:                 prediction_id,
+L03032:             )
+L03033:         ]
+L03034: 
+L03035:         require(
+L03036:             match_key
+L03037:             in
+L03038:             match_index,
+L03039:             (
+L03040:                 "Smoke actor missing current match: "
+L03041:                 f"{match_key}"
+L03042:             ),
+L03043:         )
+L03044: 
+L03045:         counts = np.load(
+L03046:             Path(
+L03047:                 manifest[
+L03048:                     "occupancy_counts_path"
+L03049:                 ]
+L03050:             ),
+L03051:             allow_pickle=False,
+L03052:             mmap_mode="r",
+L03053:         )
+L03054: 
+L03055:         binary = (
+L03056:             threshold_occupancy_counts_strict_k(
+L03057:                 counts,
+L03058:                 k=smoke_tuple[
+L03059:                     "gamma_k"
+L03060:                 ],
+L03061:                 sample_count=N_MC,
+L03062:             )
+L03063:         )
+L03064: 
+L03065:         per_horizon_masks = []
+L03066: 
+L03067:         margin_cells = []
+L03068: 
+L03069:         margin_records = []
+L03070: 
+L03071:         if actor_class == TYPE_VEHICLE:
+L03072:             motion_multiplier = (
+L03073:                 smoke_tuple[
+L03074:                     "vehicle_motion_multiplier"
+L03075:                 ]
+L03076:             )
+L03077: 
+L03078:             intensity_floor = (
+L03079:                 smoke_tuple[
+L03080:                     "vehicle_floor"
+L03081:                 ]
+L03082:             )
+L03083: 
+L03084:         elif actor_class == TYPE_CYCLIST:
+L03085:             motion_multiplier = (
+L03086:                 smoke_tuple[
+L03087:                     "cyclist_motion_multiplier"
+L03088:                 ]
+L03089:             )
+L03090: 
+L03091:             intensity_floor = (
+L03092:                 smoke_tuple[
+L03093:                     "cyclist_floor"
+L03094:                 ]
+L03095:             )
+L03096: 
+L03097:         else:
+L03098:             motion_multiplier = 0.0
+L03099: 
+L03100:             intensity_floor = (
+L03101:                 smoke_tuple[
+L03102:                     "pedestrian_floor"
+L03103:                 ]
+L03104:             )
+L03105: 
+L03106:         for h, tau in enumerate(
+L03107:             HORIZONS_S
+L03108:         ):
+L03109:             margin = compute_class_aware_margin(
+L03110:                 actor_class,
+L03111:                 current_position_H0_m=
+L03112:                     posterior[
+L03113:                         "latest_position_H0_m"
+L03114:                     ],
+L03115:                 mean_displacement_H0_m=
+L03116:                     posterior[
+L03117:                         "mean_displacement_H0_m"
+L03118:                     ][h],
+L03119:                 covariance_H0_m2=
+L03120:                     posterior[
+L03121:                         "calibrated_predictive_covariance_H0_m2"
+L03122:                     ][h],
+L03123:                 horizon_s=float(
+L03124:                     tau
+L03125:                 ),
+L03126:                 base_margin_m=
+L03127:                     smoke_tuple[
+L03128:                         "base_margin_m"
+L03129:                     ],
+L03130:                 uncertainty_multiplier=
+L03131:                     smoke_tuple[
+L03132:                         "uncertainty_multiplier"
+L03133:                     ],
+L03134:                 motion_multiplier=
+L03135:                     motion_multiplier,
+L03136:             )
+L03137: 
+L03138:             cells = angular_margin_cells(
+L03139:                 total_margin_m=
+L03140:                     margin[
+L03141:                         "total_lateral_margin_m"
+L03142:                     ]
+L03143:                     if isinstance(
+L03144:                         margin,
+L03145:                         dict
+L03146:                     )
+L03147:                     else
+L03148:                     margin.total_lateral_margin_m,
+L03149: 
+L03150:                 predicted_range_m=
+L03151:                     margin[
+L03152:                         "predicted_range_m"
+L03153:                     ]
+L03154:                     if isinstance(
+L03155:                         margin,
+L03156:                         dict
+L03157:                     )
+L03158:                     else
+L03159:                     margin.predicted_range_m,
+L03160: 
+L03161:                 theta_step_rad=
+L03162:                     THETA_STEP_RAD,
+L03163:             )
+L03164: 
+L03165:             margin_cells.append(
+L03166:                 int(cells)
+L03167:             )
+L03168: 
+L03169:             margin_records.append(
+L03170:                 {
+L03171:                     "horizon_s":
+L03172:                         float(
+L03173:                             tau
+L03174:                         ),
+L03175: 
+L03176:                     "dilation_cells":
+L03177:                         int(cells),
+L03178: 
+L03179:                     "additional_margin_m":
+L03180:                         float(
+L03181:                             margin[
+L03182:                                 "additional_class_margin_m"
+L03183:                             ]
+L03184:                             if isinstance(
+L03185:                                 margin,
+L03186:                                 dict
+L03187:                             )
+L03188:                             else
+L03189:                             margin.additional_class_margin_m
+L03190:                         ),
+L03191: 
+L03192:                     "total_margin_m":
+L03193:                         float(
+L03194:                             margin[
+L03195:                                 "total_lateral_margin_m"
+L03196:                             ]
+L03197:                             if isinstance(
+L03198:                                 margin,
+L03199:                                 dict
+L03200:                             )
+L03201:                             else
+L03202:                             margin.total_lateral_margin_m
+L03203:                         ),
+L03204:                 }
+L03205:             )
+L03206: 
+L03207:             per_horizon_masks.append(
+L03208:                 dilate_mask_theta(
+L03209:                     np.asarray(
+L03210:                         binary[
+L03211:                             h:h+1
+L03212:                         ],
+L03213:                         dtype=bool,
+L03214:                     ),
+L03215:                     dilation_cells=
+L03216:                         int(cells),
+L03217:                 )[0]
+L03218:             )
+L03219: 
+L03220:         dilated = np.stack(
+L03221:             per_horizon_masks,
+L03222:             axis=0,
+L03223:         )
+L03224: 
+L03225:         illumination = (
+L03226:             predictive_mask_to_illumination(
+L03227:                 dilated,
+L03228:                 range_centers_m=
+L03229:                     RANGE_CENTERS_M,
+L03230:                 intensity_floor=
+L03231:                     float(
+L03232:                         intensity_floor
+L03233:                     ),
+L03234:             )
+L03235:         )
+L03236: 
+L03237:         class_illumination = {
+L03238:             actor_class:
+L03239:                 illumination,
+L03240:         }
+L03241: 
+L03242:         if actor_class in (
+L03243:             TYPE_PEDESTRIAN,
+L03244:             TYPE_CYCLIST,
+L03245:         ):
+L03246:             active_masks = {
+L03247:                 actor_class:
+L03248:                     dilated,
+L03249:             }
+L03250: 
+L03251:             floors = {
+L03252:                 actor_class:
+L03253:                     float(
+L03254:                         intensity_floor
+L03255:                     ),
+L03256:             }
+L03257: 
+L03258:         else:
+L03259:             active_masks = {}
+L03260:             floors = {}
+L03261: 
+L03262:         composition = (
+L03263:             compose_class_aware_illumination(
+L03264:                 class_illumination=
+L03265:                     class_illumination,
+L03266: 
+L03267:                 class_active_masks=
+L03268:                     active_masks,
+L03269: 
+L03270:                 class_floors=
+L03271:                     floors,
+L03272:             )
+L03273:         )
+L03274: 
+L03275:         raw = (
+L03276:             composition[
+L03277:                 "raw_class_aware_illumination"
+L03278:             ]
+L03279:             if isinstance(
+L03280:                 composition,
+L03281:                 dict
+L03282:             )
+L03283:             else
+L03284:             composition.raw_class_aware_illumination
+L03285:         )
+L03286: 
+L03287:         vru_guard = (
+L03288:             composition[
+L03289:                 "vru_floor_guard"
+L03290:             ]
+L03291:             if isinstance(
+L03292:                 composition,
+L03293:                 dict
+L03294:             )
+L03295:             else
+L03296:             composition.vru_floor_guard
+L03297:         )
+L03298: 
+L03299:         # Neutral causal all-on state is used ONLY for
+L03300:         # operator-chain plumbing smoke; no objective metric
+L03301:         # is evaluated from this tuple.
+L03302:         current_illumination = np.ones(
+L03303:             (
+L03304:                 501,
+L03305:                 301,
+L03306:             ),
+L03307:             dtype=np.float64,
+L03308:         )
+L03309: 
+L03310:         smoothed = temporal_smooth_schedule(
+L03311:             raw,
+L03312:             current_illumination=
+L03313:                 current_illumination,
+L03314:             horizons_s=
+L03315:                 tuple(
+L03316:                     float(value)
+L03317:                     for value in
+L03318:                     HORIZONS_S
+L03319:                 ),
+L03320:             time_constant_s=
+L03321:                 smoke_tuple[
+L03322:                     "smoothing_time_constant_s"
+L03323:                 ],
+L03324:         )
+L03325: 
+L03326:         rate_limited = (
+L03327:             apply_actuation_rate_limit(
+L03328:                 smoothed,
+L03329:                 current_illumination=
+L03330:                     current_illumination,
+L03331:                 horizons_s=
+L03332:                     tuple(
+L03333:                         float(value)
+L03334:                         for value in
+L03335:                         HORIZONS_S
+L03336:                     ),
+L03337:                 rho_dim_per_s=
+L03338:                     smoke_tuple[
+L03339:                         "rho_dim_per_s"
+L03340:                     ],
+L03341:                 rho_bright_per_s=
+L03342:                     smoke_tuple[
+L03343:                         "rho_bright_per_s"
+L03344:                     ],
+L03345:                 vru_floor_guard=
+L03346:                     vru_guard,
+L03347:             )
+L03348:         )
+L03349: 
+L03350:         final_map = (
+L03351:             rate_limited[
+L03352:                 "illumination"
+L03353:             ]
+L03354:             if isinstance(
+L03355:                 rate_limited,
+L03356:                 dict
+L03357:             )
+L03358:             else
+L03359:             rate_limited.illumination
+L03360:         )
+L03361: 
+L03362:         override_fraction = (
+L03363:             rate_limited[
+L03364:                 "safety_override_fraction"
+L03365:             ]
+L03366:             if isinstance(
+L03367:                 rate_limited,
+L03368:                 dict
+L03369:             )
+L03370:             else
+L03371:             rate_limited.safety_override_fraction
+L03372:         )
+L03373: 
+L03374:         require(
+L03375:             final_map.shape
+L03376:             ==
+L03377:             (
+L03378:                 4,
+L03379:                 501,
+L03380:                 301,
+L03381:             ),
+L03382:             (
+L03383:                 "Integrated output shape mismatch "
+L03384:                 f"for {actor_class}"
+L03385:             ),
+L03386:         )
+L03387: 
+L03388:         require(
+L03389:             np.all(
+L03390:                 np.isfinite(
+L03391:                     final_map
+L03392:                 )
+L03393:             ),
+L03394:             (
+L03395:                 "Integrated output non-finite "
+L03396:                 f"for {actor_class}"
+L03397:             ),
+L03398:         )
+L03399: 
+L03400:         require(
+L03401:             float(
+L03402:                 np.min(
+L03403:                     final_map
+L03404:                 )
+L03405:             )
+L03406:             >=
+L03407:             0.0
+L03408:             and
+L03409:             float(
+L03410:                 np.max(
+L03411:                     final_map
+L03412:                 )
+L03413:             )
+L03414:             <=
+L03415:             1.0,
+L03416:             (
+L03417:                 "Integrated output outside [0,1] "
+L03418:                 f"for {actor_class}"
+L03419:             ),
+L03420:         )
+L03421: 
+L03422:         if actor_class in (
+L03423:             TYPE_PEDESTRIAN,
+L03424:             TYPE_CYCLIST,
+L03425:         ):
+L03426:             active_final = final_map[
+L03427:                 dilated
+L03428:             ]
+L03429: 
+L03430:             require(
+L03431:                 active_final.size > 0,
+L03432:                 (
+L03433:                     "VRU integration smoke has no "
+L03434:                     "active predictive cells."
+L03435:                 ),
+L03436:             )
+L03437: 
+L03438:             require(
+L03439:                 float(
+L03440:                     np.min(
+L03441:                         active_final
+L03442:                     )
+L03443:                 )
+L03444:                 >=
+L03445:                 float(
+L03446:                     intensity_floor
+L03447:                 )
+
+===== E. OPERATOR-ARGUMENT VARIABLE BINDINGS =====
+argument identifiers = ['HORIZONS_S', 'N_MC', 'RANGE_CENTERS_M', 'THETA_STEP_RAD', 'active_masks', 'actor_class', 'binary', 'bool', 'cells', 'class_illumination', 'counts', 'current_illumination', 'dict', 'dilated', 'float', 'floors', 'h', 'int', 'intensity_floor', 'isinstance', 'margin', 'motion_multiplier', 'np', 'posterior', 'raw', 'smoke_tuple', 'smoothed', 'tau', 'tuple', 'value', 'vru_guard']
+
+L00191 N_MC = 8192
+L00194 HORIZONS_S = np.asarray([0.1, 0.3, 0.5, 1.0], dtype=np.float64)
+L00213 RANGE_CENTERS_M = np.linspace(0.0, 150.0, 301, dtype=np.float64)
+L00220 THETA_STEP_RAD = float(THETA_CENTERS_RAD[1] - THETA_CENTERS_RAD[0])
+L00399 value = line.strip()
+L00426 value = np.ascontiguousarray(np.asarray(array))
+L02226 posterior = posterior_index[scenario_id, prediction_id]
+L02944 smoke_tuple = {'gamma_k': 0, 'base_margin_m': 0.0, 'uncertainty_multiplier': 0.5, 'vehicle_motion_multiplier': 0.05, 'cyclist_motion_multiplier': 0.25, 'vehicle_floor': 0.0, 'pedestrian_floor': 0.05, 'cyclist_floor': 0.05, 'smoothing_time_constant_s': 0.05, 'rho_dim_per_s': 1.0, 'rho_bright_per_s': 1.0, 'selection_status': 'NOT_SELECTED_STRUCTURAL_SMOKE_ONLY'}
+L03028 posterior = posterior_index[scenario_id, prediction_id]
+L03045 counts = np.load(Path(manifest['occupancy_counts_path']), allow_pickle=False, mmap_mode='r')
+L03055 binary = threshold_occupancy_counts_strict_k(counts, k=smoke_tuple['gamma_k'], sample_count=N_MC)
+L03072 motion_multiplier = smoke_tuple['vehicle_motion_multiplier']
+L03078 intensity_floor = smoke_tuple['vehicle_floor']
+L03085 motion_multiplier = smoke_tuple['cyclist_motion_multiplier']
+L03091 intensity_floor = smoke_tuple['cyclist_floor']
+L03098 motion_multiplier = 0.0
+L03100 intensity_floor = smoke_tuple['pedestrian_floor']
+L03109 margin = compute_class_aware_margin(actor_class, current_position_H0_m=posterior['latest_position_H0_m'], mean_displacement_H0_m=posterior['mean_displacement_H0_m'][h], covariance_H0_m2=posterior['calibrated_predictive_covariance_H0_m2'][h], horizon_s=float(tau), base_margin_m=smoke_tuple['base_margin_m'], uncertainty_multiplier=smoke_tuple['uncertainty_multiplier'], motion_multiplier=motion_multiplier)
+L03138 cells = angular_margin_cells(total_margin_m=margin['total_lateral_margin_m'] if isinstance(margin, dict) else margin.total_lateral_margin_m, predicted_range_m=margin['predicted_range_m'] if isinstance(margin, dict) else margin.predicted_range_m, theta_step_rad=THETA_STEP_RAD)
+L03220 dilated = np.stack(per_horizon_masks, axis=0)
+L03237 class_illumination = {actor_class: illumination}
+L03246 active_masks = {actor_class: dilated}
+L03251 floors = {actor_class: float(intensity_floor)}
+L03259 active_masks = {}
+L03260 floors = {}
+L03275 raw = composition['raw_class_aware_illumination'] if isinstance(composition, dict) else composition.raw_class_aware_illumination
+L03287 vru_guard = composition['vru_floor_guard'] if isinstance(composition, dict) else composition.vru_floor_guard
+L03302 current_illumination = np.ones((501, 301), dtype=np.float64)
+L03310 smoothed = temporal_smooth_schedule(raw, current_illumination=current_illumination, horizons_s=tuple((float(value) for value in HORIZONS_S)), time_constant_s=smoke_tuple['smoothing_time_constant_s'])
+
+===== F. DETERMINISTIC REPLAY CONTRACT =====
+frozen_random_route.occupancy_kernel_sha256 = 'd4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e'
+frozen_random_route.sampler = 'exact frozen product-of-horizon Gaussian sampler / PCG64 route'
+persistence.dense_samplewise_arrays_persisted = False
+replay_population.all_classes_replayed = False
+replay_population.eligible_predictive_vehicles = 719
+replay_population.vehicle_only_reason = 'geometry-based front-upper/rear-upper surrogate requirement is vehicle-specific'
+scientific_boundaries.formal_outcomes_read = False
+scientific_boundaries.numeric_policy_selection = False
+scientific_boundaries.policy_sweep = False
+upstream.numeric_freeze.path = '/home/agni/waymo/iscai_stage6/configs/block64_mc_grid_numeric_freeze.json'
+upstream.numeric_freeze.sha256 = '993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73'
+upstream.occupancy_module.path = '/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_occupancy.py'
+upstream.occupancy_module.sha256 = 'd4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e'
+vehicle_surrogate_semantics.controller_primary_occupancy_remains = 'full-box P_occ'
+
+===== G. PART3C FINAL CLOSURE RELEVANT VALUES =====
+PartA_continuity.generic_lateral_margin = 'PRESERVED'
+PartA_continuity.generic_radial_margin = 'PRESERVED'
+deterministic_replay.PRNG_deterministic_replay_executed = True
+deterministic_replay.contract_path = '/home/agni/waymo/iscai_stage6/configs/block66_part3c_part2of2_deterministic_replay_contract.json'
+deterministic_replay.contract_sha256 = 'ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1'
+deterministic_replay.full_box_exact_parity = 'PASS_719_OF_719'
+deterministic_replay.new_random_seed = False
+deterministic_replay.new_stochastic_realization = False
+deterministic_replay.replayed_this_run = 719
+deterministic_replay.reused_from_resumable_cache = 0
+deterministic_replay.same_seed_per_actor = True
+deterministic_replay.sample_count_per_actor = 8192
+deterministic_replay.seed = 20260821
+deterministic_replay.tolerance = None
+deterministic_replay.vehicles = 719
+integration_smoke.formal_outcomes_read = False
+integration_smoke.numeric_policy_selected = False
+integration_smoke.results[0].active_cells_after_margin = 29212
+integration_smoke.results[0].active_cells_before_margin = 23029
+integration_smoke.results[0].margin[0].additional_margin_m = 0.36685084841369864
+integration_smoke.results[0].margin[0].dilation_cells = 29
+integration_smoke.results[0].margin[0].horizon_s = 0.1
+integration_smoke.results[0].margin[0].total_margin_m = 1.3668508484136987
+integration_smoke.results[0].margin[1].additional_margin_m = 0.47324462842014725
+integration_smoke.results[0].margin[1].dilation_cells = 29
+integration_smoke.results[0].margin[1].horizon_s = 0.3
+integration_smoke.results[0].margin[1].total_margin_m = 1.4732446284201473
+integration_smoke.results[0].margin[2].additional_margin_m = 0.6003596645944657
+integration_smoke.results[0].margin[2].dilation_cells = 29
+integration_smoke.results[0].margin[2].horizon_s = 0.5
+integration_smoke.results[0].margin[2].total_margin_m = 1.6003596645944658
+integration_smoke.results[0].margin[3].additional_margin_m = 0.899633746530175
+integration_smoke.results[0].margin[3].dilation_cells = 29
+integration_smoke.results[0].margin[3].horizon_s = 1.0
+integration_smoke.results[0].margin[3].total_margin_m = 1.8996337465301751
+integration_smoke.results[0].rate_limit_safety_override_fraction = 0.0
+integration_smoke.results[1].active_cells_after_margin = 2546
+integration_smoke.results[1].active_cells_before_margin = 1648
+integration_smoke.results[1].margin[0].additional_margin_m = 0.31185064284323866
+integration_smoke.results[1].margin[0].dilation_cells = 11
+integration_smoke.results[1].margin[0].horizon_s = 0.1
+integration_smoke.results[1].margin[0].total_margin_m = 1.3118506428432386
+integration_smoke.results[1].margin[1].additional_margin_m = 0.3453228854355918
+integration_smoke.results[1].margin[1].dilation_cells = 11
+integration_smoke.results[1].margin[1].horizon_s = 0.3
+integration_smoke.results[1].margin[1].total_margin_m = 1.3453228854355919
+integration_smoke.results[1].margin[2].additional_margin_m = 0.37969071663033543
+integration_smoke.results[1].margin[2].dilation_cells = 12
+integration_smoke.results[1].margin[2].horizon_s = 0.5
+integration_smoke.results[1].margin[2].total_margin_m = 1.3796907166303354
+integration_smoke.results[1].margin[3].additional_margin_m = 0.5058511451794291
+integration_smoke.results[1].margin[3].dilation_cells = 13
+integration_smoke.results[1].margin[3].horizon_s = 1.0
+integration_smoke.results[1].margin[3].total_margin_m = 1.5058511451794292
+integration_smoke.results[1].rate_limit_safety_override_fraction = 0.0
+integration_smoke.results[2].active_cells_after_margin = 14727
+integration_smoke.results[2].active_cells_before_margin = 9581
+integration_smoke.results[2].margin[0].additional_margin_m = 0.45468369949315823
+integration_smoke.results[2].margin[0].dilation_cells = 21
+integration_smoke.results[2].margin[0].horizon_s = 0.1
+integration_smoke.results[2].margin[0].total_margin_m = 1.4546836994931582
+integration_smoke.results[2].margin[1].additional_margin_m = 0.5427117427524912
+integration_smoke.results[2].margin[1].dilation_cells = 23
+integration_smoke.results[2].margin[1].horizon_s = 0.3
+integration_smoke.results[2].margin[1].total_margin_m = 1.5427117427524912
+integration_smoke.results[2].margin[2].additional_margin_m = 0.6350353119889571
+integration_smoke.results[2].margin[2].dilation_cells = 24
+integration_smoke.results[2].margin[2].horizon_s = 0.5
+integration_smoke.results[2].margin[2].total_margin_m = 1.6350353119889571
+integration_smoke.results[2].margin[3].additional_margin_m = 0.8693834022671043
+integration_smoke.results[2].margin[3].dilation_cells = 28
+integration_smoke.results[2].margin[3].horizon_s = 1.0
+integration_smoke.results[2].margin[3].total_margin_m = 1.8693834022671043
+integration_smoke.results[2].rate_limit_safety_override_fraction = 0.0
+integration_smoke.tuple.base_margin_m = 0.0
+integration_smoke.tuple.cyclist_floor = 0.05
+integration_smoke.tuple.gamma_k = 0
+integration_smoke.tuple.pedestrian_floor = 0.05
+integration_smoke.tuple.rho_bright_per_s = 1.0
+integration_smoke.tuple.rho_dim_per_s = 1.0
+integration_smoke.tuple.selection_status = 'NOT_SELECTED_STRUCTURAL_SMOKE_ONLY'
+integration_smoke.tuple.smoothing_time_constant_s = 0.05
+integration_smoke.tuple.vehicle_floor = 0.0
+scientific_boundary.formal_outcomes_read = False
+scientific_boundary.formal_tuning = False
+scientific_boundary.numeric_policy_selected = False
+scientific_boundary.objects_of_interest_selection = False
+scientific_boundary.policy_parameter_sweep_executed = False
+scientific_boundary.tracks_to_predict_selection = False
+vehicle_surrogate_evidence.controller_primary_occupancy = 'full-box P_occ'
+vehicle_surrogate_evidence.dense_samplewise_arrays_persisted = False
+vehicle_surrogate_evidence.samplewise_projection_hash_per_actor = True
+
+===== H. P_OCC / PREDICTIVE MATCH SCHEMA ONLY =====
+
+P_occ manifest key paths:
+  actor_box_index
+  actor_rank
+  cohort_index
+  object_type
+  occupancy_counts_path
+  occupancy_counts_sha256
+  prediction_id
+  sample_count
+  scenario_id
+  seed
+  summary
+  summary.has_any_support
+  summary.maximum_count_by_horizon
+  summary.maximum_count_by_horizon[]
+  summary.maximum_probability_by_horizon
+  summary.maximum_probability_by_horizon[]
+  summary.nonzero_cells_by_horizon
+  summary.nonzero_cells_by_horizon[]
+  summary.occupancy_count_mass_by_horizon
+  summary.occupancy_count_mass_by_horizon[]
+  summary.occupancy_probability_mass_by_horizon
+  summary.occupancy_probability_mass_by_horizon[]
+
+predictive-match key paths:
+  actor_box_index
+  association_anchor_distance_m
+  centroid_only
+  cohort_index
+  current_box_H0
+  current_box_H0.center_xyz_H0_m
+  current_box_H0.center_xyz_H0_m[]
+  current_box_H0.height_m
+  current_box_H0.length_m
+  current_box_H0.width_m
+  current_box_H0.yaw_rad
+  current_headlamp_eligible
+  eligibility_geometry
+  eligibility_time
+  future_used_for_eligibility
+  maximum_range_m
+  object_type
+  objects_of_interest_used
+  posterior_key
+  posterior_key.prediction_id
+  posterior_key.scenario_id
+  posterior_sha_source
+  prediction_id
+  route
+  scenario_id
+  theta_domain_deg
+  theta_domain_deg[]
+  tracks_to_predict_used
+
+P_occ ndarray/file payloads dereferenced = NO
+
+===== I. PREREGISTERED STAGE-1 GAMMA SELECTION =====
+{
+  "held_fixed": "no additional class margin; floor not yet selected; no temporal/rate tuning",
+  "objective": "maximize macro mean per-actor/per-horizon full-box mask IoU against constructed development future reference",
+  "tie_break": {
+    "TYPE_CYCLIST": "larger k first (less unnecessary dimming)",
+    "TYPE_PEDESTRIAN": "larger k first (less unnecessary dimming)",
+    "TYPE_VEHICLE": "smaller k first (more protective threshold)"
+  },
+  "vary": "k_c only"
+}
+
+threshold parameterization:
+{
+  "candidate_rule": {
+    "candidates_per_class": 8192,
+    "k_max": 8191,
+    "k_min": 0,
+    "representation": "exact integer occupancy quantum",
+    "step": 1
+  },
+  "equation": "M_i,tau(theta,r) = 1[count_i,tau(theta,r) > k_c]",
+  "equivalent_gamma": "gamma_c = k_c / 8192",
+  "independent_classes": [
+    "TYPE_VEHICLE",
+    "TYPE_PEDESTRIAN",
+    "TYPE_CYCLIST"
+  ],
+  "no_float_grid_search": true,
+  "strict_comparison": ">"
+}
+
+===== J. SCIENTIFIC BOUNDARY =====
+P_occ JSON metadata rows = 3 SCHEMA ONLY
+P_occ arrays             = NOT OPENED
+future oracle metrics    = NOT COMPUTED
+gamma sweep              = NOT EXECUTED
+numeric gamma selected   = NO
+margin/floor sweep       = NO
+temporal/rate sweep      = NO
+predictive performance   = NOT COMPUTED
+formal evaluation        = NO
+Stage6 regression        = 224 / 224 PASS
+
+============================================================
+BLOCK 6.8 DEVELOPMENT-SELECTION RUNTIME BIND — FINAL
+============================================================
+existing numeric policy    = NO
+Part3C integration runtime = EXACT BOUND
+threshold operator         = EXACT BOUND
+margin/dilation route      = EXACT BOUND
+class illumination route   = EXACT BOUND
+temporal/rate route        = EXACT BOUND
+P_occ schema               = BOUND
+P_occ arrays               = NOT OPENED
+Stage-1 gamma protocol     = EXACT PREREG BOUND
+gamma sweep                = NOT YET EXECUTED
+predictive outcomes        = NOT COMPUTED
+formal evaluation          = NO
+Stage6 regression          = 224 / 224 PASS
+STATUS = PASS_DEVELOPMENT_SELECTION_RUNTIME_BOUND
+report = /home/agni/waymo/iscai_stage6/reports/block68_development_selection_runtime_bind.json
+terminal remains open = YES

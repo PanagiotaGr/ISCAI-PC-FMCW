@@ -1,0 +1,12 @@
+===== BLOCK 4.3 PREFLIGHT =====
+Block4.2 upstream        = PASS
+fit/dev manifests        = PASS
+torch                    = 2.13.0+cu132
+CUDA                     = 13.2
+GPU                      = NVIDIA RTX A6000
+CUDA GRU forward         = PASS
+CUDA masked loss         = PASS
+CUDA GRU backward        = PASS
+deterministic policy     = PASS
+full Stage4 regression   = 44 / 44 PASS
+STATUS = PASS

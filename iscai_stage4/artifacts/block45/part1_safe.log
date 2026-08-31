@@ -1,0 +1,58 @@
+============================================================
+STAGE4 BLOCK 4.5 PART 1/2 PREFLIGHT
+============================================================
+
+===== CONTROLLED COMPILE =====
+calibration.py = PASS
+__init__.py = PASS
+test_block45_calibration.py = PASS
+
+Block4.4 frozen upstream = PASS
+Gaussian checkpoint       = PASS
+calibration manifest      = 7209 PASS
+calibration imports       = PASS
+
+synthetic raw ECE          = 0.23658500000000005
+synthetic calibrated ECE   = 0.0014100000000000028
+synthetic variance scales  = (2.010282271206974, 1.990556418575038, 1.9969698658267707, 2.0175296180335147)
+ECE non-worsening          = PASS
+calibrated covariance SPD  = PASS
+
+===== BLOCK4.5 UNIT TESTS =====
+
+............
+----------------------------------------------------------------------
+Ran 12 tests in 0.046s
+
+OK
+
+
+===== FULL STAGE4 REGRESSION =====
+
+........................................................................
+----------------------------------------------------------------------
+Ran 72 tests in 0.255s
+
+OK
+
+
+============================================================
+STAGE4 BLOCK 4.5 PART 1/2 SAFE GATE
+============================================================
+Block4.4 frozen upstream = PASS
+calibration partition     = 7209 FROZEN
+calibration family        = COVARIANCE SCALING
+per-horizon alpha         = PASS
+predictive mean modified  = NO
+measurement R_t modified  = NO
+predictive covariance     = CALIBRATED
+coverage levels           = 50/80/90/95/99
+coverage ECE semantics    = FROZEN
+coverage Brier semantics  = FROZEN
+synthetic ECE gate        = PASS
+SPD after scaling         = PASS
+full Stage4 regression    = 72 / 72 PASS
+real calibration started  = NO
+formal validation used    = NO
+STATUS = PASS
+terminal remains open     = YES

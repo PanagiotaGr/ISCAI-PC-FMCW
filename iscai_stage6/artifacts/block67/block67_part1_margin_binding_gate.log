@@ -1,0 +1,61 @@
+============================================================
+STAGE 6 — BLOCK 6.7 PART 1/2
+CLASS-MARGIN RUNTIME BINDING GATE
+============================================================
+
+===== A. FROZEN CLASS-AWARE POLICY =====
+class_aware_policy SHA = b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b
+frozen policy exact     = PASS
+frozen policy modified  = NO
+
+===== B. RUNTIME BINDING IMPORT =====
+runtime binding import = PASS
+
+===== C. DIRECT m_extra BINDING EXECUTION =====
+TYPE_VEHICLE       | generic=1.000 | m_extra=0.250 | predictive_cells=2 | total_ref_cells=7
+TYPE_PEDESTRIAN    | generic=1.000 | m_extra=0.500 | predictive_cells=3 | total_ref_cells=8
+TYPE_CYCLIST       | generic=1.000 | m_extra=0.750 | predictive_cells=4 | total_ref_cells=9
+
+Part3B dilation input = m_extra ONLY PASS
+Part-A generic margin = PRESERVED ONCE PASS
+double counting       = PROHIBITED PASS
+
+===== D. SOURCE CONTRACT =====
+binding source semantics = PASS
+total margin actuation   = NO
+total margin use         = DIAGNOSTIC ONLY
+
+===== E. BLOCK6.7 TARGETED TESTS =====
+targeted tests = 5 / 5 PASS
+
+===== F. FULL STAGE6 REGRESSION =====
+full Stage6 regression = 171 / 171 PASS
+
+===== G. IMMUTABILITY READBACK =====
+class_aware_policy.py = UNCHANGED
+Blocks6.0–6.6 evidence = UNCHANGED
+Stage5 frozen evidence = UNCHANGED
+
+===== H. STORAGE =====
+free GiB        = 1052.777
+250-GiB reserve = PASS
+
+============================================================
+BLOCK 6.7 PART 1/2 — FINAL
+============================================================
+frozen class-aware policy = EXACT PASS
+runtime margin binding     = PASS
+predictive dilation input  = m_extra ONLY
+Part-A generic margin      = PRESERVED ONCE
+generic margin re-applied  = NO
+total margin actuation     = NO
+vehicle/ped/cyclist smoke  = PASS
+targeted regression        = 5 / 5 PASS
+full Stage6 regression     = 171 / 171 PASS
+development outcomes       = NO
+formal outcomes            = NO
+policy sweep/tuning        = NO
+upstream scientific change = NO
+STATUS = PASS_RUNTIME_BINDING_FROZEN
+report = /home/agni/waymo/iscai_stage6/reports/block67_part1_margin_binding_gate.json
+terminal remains open = YES

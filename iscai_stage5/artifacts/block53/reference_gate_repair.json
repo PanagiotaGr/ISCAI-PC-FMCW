@@ -1,0 +1,34 @@
+{
+  "reference_script": {
+    "backup": "/home/agni/waymo/iscai_stage5/artifacts/block53/run_block53_part2_reference_decision.pre_reference_gate_repair.c659dbe8319f912d.py",
+    "new_sha256": "5563557aa8a8c00666f9097220107ed6bd9cb1d29f954e759abdbf981b56df36",
+    "old_sha256": "c659dbe8319f912d9ca7a8f573cae1b96f7fecd8b07271a49c4295387d91101d",
+    "status": "PATCHED"
+  },
+  "repair_scope": {
+    "reference_evidence_link": "numeric assignment 12.0 linked to f-string assumption annotation by variable name",
+    "safe_controller": "structured reference PASS required before final freeze"
+  },
+  "safe_controller": {
+    "backup": "/home/agni/waymo/iscai_stage5/artifacts/block53/run_block53_part2_safe.pre_reference_gate_repair.f4ddb166ddbfe512.py",
+    "new_sha256": "3f4cc5a21236034a7867ee1240f0a2f5e8fd3a90ba662491761565295c88e2d5",
+    "old_sha256": "f4ddb166ddbfe5124a2802676041fb282bcfbb010a9536248abf8f3a30fea38a",
+    "status": "PATCHED"
+  },
+  "scientific_changes": {
+    "HPBW": false,
+    "P_b": false,
+    "S_b": false,
+    "beam_support": false,
+    "formal_tuning": false,
+    "gain_model": false
+  },
+  "scientific_execution": {
+    "Stage4_inference": false,
+    "formal_N120_read": false,
+    "recalibration": false,
+    "training": false,
+    "upstream_modified": false
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,121 @@
+==============================================================================
+STAGE 6 — BLOCK 6.8
+STAGE-3 EXECUTION PART 2/2
+EXACT 3270 CLASS-FLOOR DEVELOPMENT SWEEP
+RAW CLASS-AWARE ILLUMINATION ONLY
+NO STAGE4 TEMPORAL/RATE / NO PRIMARY ACCEPTANCE / NO FORMAL
+==============================================================================
+
+===== A. EXACT PART-2/2 FROZEN BOUNDARY =====
+prereg                 = EXACT PASS
+stage1                 = EXACT PASS
+stage2                 = EXACT PASS
+stage3_execution       = EXACT PASS
+stage3_scoring         = EXACT PASS
+cache_manifest         = EXACT PASS
+cache_freeze           = EXACT PASS
+class_runtime          = EXACT PASS
+metric_runtime         = EXACT PASS
+evaluator_runtime      = EXACT PASS
+road_roi               = EXACT PASS
+Stage-1 gamma             = IMMUTABLE
+Stage-2 margins           = IMMUTABLE
+fixed scenario cache      = FROZEN
+Stage-4 temporal/rate     = NOT SELECTED
+primary acceptance        = NOT TESTED
+formal evaluation         = NO
+Stage6 pre regression     = 224 / 224 PASS
+
+===== B. AUTHORITATIVE METRIC-KERNEL PARITY =====
+synthetic max abs delta = 0.0
+metric-kernel parity     = PASS
+
+===== C. EXACT 3270 FLOOR CANDIDATES =====
+candidate triplets = 3270 EXACT
+vehicle j          = 0..20
+pedestrian j       = 1..20
+cyclist j          = 1..20
+constraints        = j_vehicle <= j_pedestrian, j_vehicle <= j_cyclist
+selection key      = (max risk, mean risk, overmask, false dimming, j_vehicle, j_pedestrian, j_cyclist)
+
+===== D. FIXED CACHE READBACK =====
+scenario caches = 120 EXACT
+road ROI cells  = 603204
+P_occ reopened  = NO
+WOMD reopened   = NO
+
+===== E. EXACT DEVELOPMENT FLOOR SWEEP =====
+scenario 001/120 f72a05a05035feb8 compressed_cells=194287 3270=PASS
+scenario 010/120 6daa131b25b411e1 compressed_cells=222761 3270=PASS
+scenario 020/120 e697a3e91804731f compressed_cells=270224 3270=PASS
+scenario 030/120 1d879936662232aa compressed_cells=194082 3270=PASS
+scenario 040/120 1b0c763aeef8ba69 compressed_cells=100655 3270=PASS
+scenario 050/120 91b9bd56c1084d03 compressed_cells=127212 3270=PASS
+scenario 060/120 74ca33b01f8adc34 compressed_cells=117010 3270=PASS
+scenario 070/120 9b55dd4a2eb55f33 compressed_cells=220355 3270=PASS
+scenario 080/120 c9d6f61d94824305 compressed_cells=109302 3270=PASS
+scenario 090/120 28e0ea7a2ca646d6 compressed_cells=229488 3270=PASS
+scenario 100/120 5d27f514c439978d compressed_cells=78832 3270=PASS
+scenario 110/120 43cb883b388c851e compressed_cells=92927 3270=PASS
+scenario 120/120 89bda4c79cb0ead4 compressed_cells=154936 3270=PASS
+
+===== F. SCENARIO-MACRO AGGREGATION =====
+candidate scores        = 3270 / 3270
+anchor max parity delta = 2.220446049250313e-16
+winner provisional j    = (3, 20, 20)
+winner provisional floor= (0.15, 1.0, 1.0)
+winner risk max         = 0.19034211182030314
+winner risk mean        = 0.1330510423089161
+runner-up j             = (3, 20, 19)
+
+===== G. AUTHORITATIVE WINNER REPLAY — 120/120 =====
+winner replay 001/120 f72a05a05035feb8 PASS
+winner replay 020/120 e697a3e91804731f PASS
+winner replay 040/120 1b0c763aeef8ba69 PASS
+winner replay 060/120 74ca33b01f8adc34 PASS
+winner replay 080/120 c9d6f61d94824305 PASS
+winner replay 100/120 5d27f514c439978d PASS
+winner replay 120/120 89bda4c79cb0ead4 PASS
+winner authoritative replay = 120 / 120 PASS
+winner max metric delta      = 6.317169010117141e-14
+winner authoritative key     = (0.1903421118203663, 0.13305104230892778, 0.24045481849147782, 0.8815618060922982, 3, 20, 20)
+
+===== H. POST-SELECTION REGRESSION =====
+Stage6 regression = 224 / 224 PASS
+
+===== I. WRITE-ONCE STAGE-3 FLOOR FREEZE =====
+candidate scores SHA = 8bbe092789aa4acc097a11efed2805f2f20f7dcdd7e99a38b0012184e559a2d8
+winner replay SHA    = 2d741cd0b877569e60e00975008c3cfdd6bfd4ad21f0de9a675c9e5a7ff9a114
+Stage-3 freeze SHA   = c8536a1a2f888ebc3310cb900626cf0c8c0c2ca3ce34c2d321120a269c548d00
+
+==============================================================================
+BLOCK 6.8 STAGE-3 EXECUTION PART 2/2 — FINAL
+==============================================================================
+fixed caches                = 120 / 120
+candidate triplets          = 3270 / 3270
+Stage-1 gamma               = IMMUTABLE
+Stage-2 margins             = IMMUTABLE
+vehicle floor j/f           = 3 0.15
+pedestrian floor j/f        = 20 1.0
+cyclist floor j/f           = 20 1.0
+risk max                    = 0.1903421118203663
+risk mean                   = 0.13305104230892778
+vehicle violation           = 0.030582326044826552
+glare exposure              = 0.17856602644140326
+pedestrian visibility       = 0.8874751048792082
+cyclist visibility          = 0.8467601478827491
+road illumination retention = 0.8096578881796337
+over-masking area           = 0.24045481849147782
+false dimming               = 0.8815618060922982
+anchor execution parity     = PASS
+winner authoritative replay = 120 / 120 PASS
+Stage-3 floors              = FROZEN
+Stage-4 temporal/rate       = NOT SELECTED
+primary acceptance gate     = NOT TESTED
+NI bounds                   = IMMUTABLE / UNCHANGED
+formal evaluation           = NO
+Stage6 regression           = 224 / 224 PASS
+free GiB                    = 1052.625
+STATUS = PASS_STAGE3_CLASS_FLOORS_SELECTED_FROZEN
+report = /home/agni/waymo/iscai_stage6/reports/block68_stage3_class_floor_selection.json
+terminal remains open = YES

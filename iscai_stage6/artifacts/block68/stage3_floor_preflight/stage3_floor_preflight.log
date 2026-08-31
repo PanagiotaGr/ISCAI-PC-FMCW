@@ -1,0 +1,135 @@
+============================================================
+STAGE 6 — BLOCK 6.8
+STAGE-3 CLASS-FLOOR EXECUTION PREFLIGHT
+NO FLOOR OUTCOMES / NO FORMAL
+============================================================
+
+===== A. EXACT FROZEN UPSTREAM =====
+prereg                 = EXACT PASS
+stage1                 = EXACT PASS
+stage2                 = EXACT PASS
+class_policy           = EXACT PASS
+evaluator_reference    = EXACT PASS
+evaluator_contract     = EXACT PASS
+road_roi               = EXACT PASS
+vehicle_surrogate      = EXACT PASS
+reconciliation         = EXACT PASS
+Stage-1 gamma     = IMMUTABLE
+Stage-2 margins   = IMMUTABLE
+Stage-3 outcomes  = NOT COMPUTED
+formal evaluation = NO
+
+===== B. EXACT STAGE-3 PREREGISTRATION =====
+vary = CLASS FLOOR TRIPLETS ONLY
+risk vector =
+  vehicle_shadow_zone_violation
+  glare_risk_exposure
+  1-pedestrian_visibility_proxy
+  1-cyclist_visibility_proxy
+  1-road_illumination_retention
+selection = LEXICOGRAPHIC
+weighted sum = FORBIDDEN
+
+===== C. EXACT FLOOR CANDIDATE SPACE =====
+vehicle j      = 0..20
+pedestrian j   = 1..20
+cyclist j      = 1..20
+admissible triplets = 3270 PASS
+
+===== D. IMMUTABLE STAGE1/STAGE2 READBACK =====
+TYPE_VEHICLE k= 980 margin= (0.0, 0.5, 0.05)
+TYPE_PEDESTRIAN k= 499 margin= (0.0, 0.5, 0.0)
+TYPE_CYCLIST k= 557 margin= (0.0, 0.5, 0.25)
+
+===== E. STAGE-3 TERMINAL ILLUMINATION SEMANTICS =====
+Stage-3 terminal map = ClassAwareComposition.raw_class_aware_illumination
+temporal smoothing  = NOT APPLIED DURING STAGE-3 SELECTION
+rate limiting       = NOT APPLIED DURING STAGE-3 SELECTION
+reason              = OWNED BY STAGE-4, NOT YET SELECTED
+
+compose signature = (*, class_illumination: 'Mapping[str, np.ndarray]', class_active_masks: 'Mapping[str, np.ndarray]', class_floors: 'Mapping[str, float]') -> 'ClassAwareComposition'
+smoothing signature = (raw_schedule, *, current_illumination, horizons_s: 'Sequence[float]', time_constant_s: 'float') -> 'np.ndarray'
+rate-limit signature = (smoothed_schedule, *, current_illumination, horizons_s: 'Sequence[float]', rho_dim_per_s: 'float', rho_bright_per_s: 'float', vru_floor_guard=None) -> 'RateLimitedSchedule'
+
+===== F. AUTHORITATIVE STAGE-3 METRIC APIs =====
+
+vehicle_shadow_zone_violation (candidate_mask, vehicle_oracle_region) -> 'float'
+
+glare_risk_exposure (intensity, vehicle_surrogate_reference_region) -> 'float'
+
+pedestrian_visibility_proxy (intensity, pedestrian_future_full_box_region) -> 'float'
+
+cyclist_visibility_proxy (intensity, cyclist_future_full_box_region) -> 'float'
+
+road_illumination_retention (intensity, road_roi) -> 'float'
+
+over_masking_area (candidate_mask, oracle_mask) -> 'float'
+
+false_dimming (intensity, oracle_mask) -> 'float'
+
+metric_semantics.py SHA256 = bf8358b5a7edfe40ffac2718ca7cd5af6e7b5fdb3ff8a2823caad6d0f40f057a
+
+===== G. EXACT EVALUATOR-REFERENCE APIs =====
+EvaluatorReferenceSemantics (oracle_type: 'str', measured_adb_ground_truth: 'bool', controller_future_truth_access: 'bool', parameter_tuning_future_truth_access: 'bool', oracle_grid_semantics: 'str', road_roi_semantics: 'str', final_metric_intensity: 'str') -> None
+Iterable (*args, **kwargs)
+aggregate_class_future_region (actor_regions: 'Iterable[np.ndarray]', *, grid_shape) -> 'np.ndarray'
+aggregate_constructed_oracle_supports (actor_supports: 'Iterable[np.ndarray]', *, grid_shape) -> 'np.ndarray'
+dataclass (cls=None, /, *, init=True, repr=True, eq=True, order=False, unsafe_hash=False, frozen=False, match_args=True, kw_only=False, slots=False, weakref_slot=False)
+frozen_road_roi (grid_shape) -> 'np.ndarray'
+validate_final_metric_illumination (illumination, *, grid_shape) -> 'np.ndarray'
+
+vehicle-region geometry candidates:
+FractionalBoxRegion (x_bounds: 'tuple[float, float]', y_bounds: 'tuple[float, float]', z_bounds: 'tuple[float, float]') -> None
+ProjectedBox (box: 'Box3D', corners: 'ProjectedPoints', centroid: 'ProjectedPoints', theta_center_rad: 'float', theta_span_rad: 'float', theta_min_unwrapped_rad: 'float', theta_max_unwrapped_rad: 'float', ground_range_min_m: 'float', ground_range_max_m: 'float', range_3d_min_m: 'float', range_3d_max_m: 'float', phi_min_rad: 'float', phi_max_rad: 'float', state_source: 'str', orientation_source: 'str', controller_path: 'bool') -> None
+ProjectedPoints (xyz: 'np.ndarray', ground_range_m: 'np.ndarray', range_3d_m: 'np.ndarray', theta_rad: 'np.ndarray', phi_rad: 'np.ndarray') -> None
+ProjectedRegion (region: 'FractionalBoxRegion', points: 'ProjectedPoints', theta_center_rad: 'float', theta_span_rad: 'float', ground_range_min_m: 'float', ground_range_max_m: 'float', phi_min_rad: 'float', phi_max_rad: 'float') -> None
+centroid_only_projection (box: 'Box3D') -> 'ProjectedPoints'
+project_box_to_headlamp (box: 'Box3D', *, state_source: 'str', orientation_source: 'str', controller_path: 'bool' = True) -> 'ProjectedBox'
+project_points_to_headlamp (points_xyz) -> 'ProjectedPoints'
+project_region_to_headlamp (box: 'Box3D', region: 'FractionalBoxRegion') -> 'ProjectedRegion'
+region_corners_headlamp (box: 'Box3D', region: 'FractionalBoxRegion') -> 'np.ndarray'
+
+===== H. FROZEN VEHICLE-SURROGATE / ROAD-ROI EVIDENCE =====
+vehicle surrogate records = 719
+vehicle surrogate role    = FROZEN EVIDENCE
+road ROI artifact         = EXACT PASS
+evaluator contract        = EXACT PASS
+
+road ROI top-level keys = ['actor_dependent', 'all_valid_grid_cells_included', 'block', 'concrete_shape', 'development_outcome_dependent', 'domain', 'formal_outcome_dependent', 'freeze_timing', 'future_truth_dependent', 'project', 'representation', 'rule', 'stage', 'status']
+evaluator contract top-level keys = ['actor_classes', 'authority', 'block', 'constructed_oracle', 'controller_output', 'cyclist_visibility_region', 'data_use_boundary', 'exact_scientific_sources', 'formal_evaluation_allowed', 'freeze_timing', 'horizons_s', 'metric_supports', 'next', 'pedestrian_visibility_region', 'project', 'road_ROI', 'stage', 'status', 'vehicle_reference_region']
+
+===== I. WRITE-ONCE STAGE-3 EXECUTION BINDING =====
+Stage-3 execution binding SHA256 = 28cc6e986d89ac449cce4b5180f3879567e0f6a8bd77a2bd6054fcb262cba091
+
+===== J. FINAL SCIENTIFIC BOUNDARY =====
+Stage-3 floor outcomes    = NOT COMPUTED
+selected floor tuple      = NONE
+P_occ reopened            = NO
+Stage-1 gamma modified    = NO
+Stage-2 margins modified  = NO
+Stage-4 temporal/rate     = NOT SELECTED
+primary acceptance        = NOT TESTED
+formal evaluation         = NO
+Stage6 regression         = 224 / 224 PASS
+
+============================================================
+BLOCK 6.8 STAGE-3 FLOOR EXECUTION PREFLIGHT — FINAL
+============================================================
+Stage-1 gamma             = IMMUTABLE
+Stage-2 margins           = IMMUTABLE
+floor candidate triplets  = 3270 EXACT
+risk-vector components    = 5 EXACT
+selection                 = LEXICOGRAPHIC
+weighted objective        = FORBIDDEN
+Stage-3 terminal map      = raw_class_aware_illumination
+temporal smoothing        = STAGE-4 ONLY
+rate limiting             = STAGE-4 ONLY
+metric APIs               = BOUND
+vehicle surrogate         = 719 RECORDS EXACT
+road ROI                  = EXACT FROZEN
+Stage-3 outcomes          = NOT COMPUTED
+formal evaluation         = NO
+Stage6 regression         = 224 / 224 PASS
+STATUS = PASS_STAGE3_FLOOR_EXECUTION_BOUND
+report = /home/agni/waymo/iscai_stage6/reports/block68_stage3_floor_execution_preflight.json
+terminal remains open = YES

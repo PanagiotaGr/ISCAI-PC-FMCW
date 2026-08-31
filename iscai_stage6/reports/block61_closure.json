@@ -1,0 +1,80 @@
+{
+  "Part1": {
+    "report": "/home/agni/waymo/iscai_stage6/reports/block61_part1_geometry_core.json",
+    "sha256": "d83d2f6baed18ea20dd6ba40ac085cb5dcf206e5c4624df23b3eaaf7073c3346",
+    "status": "PASS_GEOMETRY_CORE"
+  },
+  "Part2": {
+    "integration_contract": "/home/agni/waymo/iscai_stage6/configs/block61_stage1_integration_contract.json",
+    "integration_contract_sha256": "6904ca04125ad451c3e60c1d5f9546b509b0c6c36c792c46e77c17c03845eee5",
+    "real_scene_projection": "/home/agni/waymo/iscai_stage6/artifacts/block61/real_scene_full_box_projection.json",
+    "real_scene_projection_sha256": "5302bca98d2aea374245aefcc48aec0d18da08315ac663ee9ef741b3b176563c",
+    "status": "PASS_STAGE1_REAL_INTEGRATION",
+    "womd_geometry_module": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/womd_geometry.py",
+    "womd_geometry_sha256": "b90f47289bd091474658e3864c4b1ccc8c2fc841aaa38160f38f0b95ece7187c"
+  },
+  "block": "6.1",
+  "execution": {
+    "corpus_scan": false,
+    "formal_evaluation": false,
+    "one_real_scenario": true,
+    "parameter_tuning": false,
+    "predictive_ADB_execution": false,
+    "reactive_ADB_execution": false,
+    "training": false,
+    "trajectory_model_inference": false
+  },
+  "frozen_geometry_contract": {
+    "H0": "front_face_midpoint_surrogate",
+    "axes": "+x forward, +y left, +z up",
+    "box_corners": 8,
+    "centroid_only": false,
+    "class_support": [
+      "vehicle",
+      "pedestrian",
+      "cyclist"
+    ],
+    "communication_codebook_reused": false,
+    "current_causal_heading": true,
+    "full_3D_box_projection": true,
+    "future_GT_controller_use": false,
+    "length_width_height": true,
+    "objects_of_interest_as_ADB_selector": false,
+    "tracks_to_predict_as_ADB_selector": false
+  },
+  "illumination_grid": {
+    "diagnostic_grid_not_scientific": true,
+    "final_numeric_values_frozen": false,
+    "freeze_at": "BLOCK6.8_PRE_FORMAL",
+    "interface": "theta-ground_range",
+    "interface_frozen": true
+  },
+  "next": "Block6.2: static ADB and original Part-A reactive L(theta,r) adapter",
+  "project": "Agni",
+  "real_data_gate": {
+    "Stage1_bearing_consistency": "PASS",
+    "Stage1_center_consistency": "PASS",
+    "class_counts": {
+      "TYPE_VEHICLE": 9
+    },
+    "dataset_scan": false,
+    "exact_record_access": true,
+    "full_box_projection": "PASS",
+    "future_mutation_invariance": "PASS",
+    "metadata_mutation_invariance": "PASS",
+    "scenario_id": "b85e1bd6cc8e74c0",
+    "supported_anchor_valid_actors": 9
+  },
+  "regression": {
+    "Stage6": "PASS",
+    "full_log": "/home/agni/waymo/iscai_stage6/artifacts/block61/block61_full_regression.log"
+  },
+  "stage": 6,
+  "status": "PASS_COMPLETE",
+  "storage": {
+    "free_GiB": 1054.8334732055664,
+    "hard_reserve_GiB": 250.0,
+    "pass": true
+  },
+  "upstream_modified": false
+}

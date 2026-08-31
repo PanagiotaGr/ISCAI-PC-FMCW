@@ -1,0 +1,263 @@
+{
+  "acceptance": {
+    "coverage_tolerance": "TO_BE_PREREGISTERED_ON_DEVELOPMENT_BEFORE_FORMAL",
+    "overhead_comparators": [
+      "fixed_TopK",
+      "exhaustive_sweep"
+    ],
+    "posthoc_redefinition_allowed": false,
+    "requirements": [
+      "adaptive_TopK_approximately_respects_requested_coverage",
+      "adaptive_TopK_reduces_overhead_vs_fixed_or_exhaustive_probing"
+    ]
+  },
+  "adaptive_TopK": {
+    "K_max": "MUST_FREEZE_ON_DEVELOPMENT_BEFORE_FORMAL",
+    "blockage_aware": "OPTIONAL_NOT_STAGE5_CLOSURE_REQUIREMENT",
+    "default_probability_mass": 0.95,
+    "empirical_future_containment_reported": true,
+    "formal_coverage_tolerance": "MUST_FREEZE_ON_DEVELOPMENT_BEFORE_FORMAL",
+    "hysteresis": "MUST_FREEZE_ON_DEVELOPMENT_BEFORE_FORMAL",
+    "local_sweep": "MUST_FREEZE_ON_DEVELOPMENT_BEFORE_FORMAL",
+    "loss_of_lock_fallback": "exhaustive_reacquisition",
+    "mass_and_containment_distinct": true,
+    "reacquisition": "MUST_FREEZE_ON_DEVELOPMENT_BEFORE_FORMAL",
+    "requested_probability_masses": [
+      0.9,
+      0.95,
+      0.975,
+      0.99
+    ],
+    "rule": "smallest_K_whose_ranked_beam_probability_mass_is_at_least_the_requested_target",
+    "selected_posterior_mass_reported": true
+  },
+  "angular_posterior": {
+    "Monte_Carlo_sample_count": "MUST_FREEZE_ON_DEVELOPMENT_BEFORE_FORMAL",
+    "analytic_crosscheck": "Jacobian_Gaussian_known_offset_case",
+    "output": "joint_receiver_range_azimuth_elevation_posterior",
+    "primary_propagation": "deterministic_monte_carlo"
+  },
+  "beam_baselines": [
+    "exhaustive_sweep",
+    "previous_beam_persistence",
+    "geometry_nearest_beam",
+    "fixed_Top1",
+    "fixed_Top3",
+    "fixed_Top5",
+    "oracle_beam_set"
+  ],
+  "codebook": {
+    "angular_support": "MUST_FREEZE_FROM_PARTA_STAGE5_DEVELOPMENT_BEFORE_FORMAL",
+    "beam_probability": "posterior_probability_mass_in_unique_decision_cell",
+    "decision_cells": "non_overlapping_probability_cells",
+    "expected_beam_gain": "posterior_integral_of_physical_beam_gain",
+    "physical_gain_lobes_may_overlap": true,
+    "probability_and_expected_gain_distinct": true,
+    "sizes": [
+      16,
+      32,
+      64
+    ]
+  },
+  "development_freeze": {
+    "fields": [
+      "receiver_eligibility_max_range",
+      "low_speed_heading_threshold",
+      "angular_monte_carlo_sample_count",
+      "codebook_angular_support",
+      "formal_empirical_coverage_tolerance",
+      "K_max",
+      "hysteresis_parameters",
+      "beam_switch_penalty",
+      "local_neighbour_sweep_width",
+      "fallback_parameters",
+      "reacquisition_parameters"
+    ],
+    "must_complete_before_formal": true,
+    "source": "non_formal_development_partition_only"
+  },
+  "formal": {
+    "codebook_selection_allowed": false,
+    "model_selection_allowed": false,
+    "recalibration_allowed": false,
+    "receiver_policy_selection_allowed": false,
+    "role": "evaluation_only",
+    "scenario_count": 120,
+    "threshold_selection_allowed": false,
+    "tuning_allowed": false
+  },
+  "frozen_upstream": {
+    "PartA_source_contract": "/home/agni/waymo/iscai_stage5/artifacts/block50/part_a_source_contract.json",
+    "PartA_source_contract_sha256": "80a06892e1721e28e2599c20acc29c9bea44fd74e256b8af7eadd02416600fca",
+    "hashes": {
+      "Gaussian checkpoint": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f",
+      "PDF certification": "7c94bb9deb37a5eba29c9237bfcf4b0d24e4031d9b1b22a500c5a63730bf0d06",
+      "Part-A frozen reference": "fcdfc0a7b9c14fa9447ceb8563a6f20ac277706223388dc9aa8a1edf416c5e2b",
+      "Stage4 closure": "570da4feb918b1025b5e85cc919360d922b471c468c85b3844f13fb7774e7c2f",
+      "Stage4 freeze": "88e3f290e1f7c1d037684adc132ea8ae78af057b3e3ab564fb29516687eb25e7",
+      "Stage4 handoff": "491bce010d35c2a394f879ecf35ed26ef1de92f7fff1465dcbf46b072a87c6fd",
+      "Stage4 reproducibility": "135a3c60e5a2c4419125fa0daa6d2d55452f923255a04698f0bc1aaca5f474b8",
+      "Waymo NOTICE": "b05a8da05a56b71dbe28cc2e217b26c692b8761ad1d026a6365729a43e26f997",
+      "calibrator": "508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087",
+      "formal manifest": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+      "normalization": "3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6"
+    }
+  },
+  "next_stage": 6,
+  "optical_link": {
+    "PartA_numerical_crosscheck_required": true,
+    "PartA_policy": "reuse_or_numerically_reproduce_frozen_PartA_communication_link_assumptions",
+    "PartA_source_effective_rate_required": false,
+    "chain": [
+      "pointing_error",
+      "optical_beam_gain",
+      "received_power",
+      "SNR",
+      "DPSK_BER",
+      "effective_rate"
+    ],
+    "effective_rate_formula_status": "MUST_FREEZE_IN_BLOCK5.6_BEFORE_FORMAL",
+    "effective_rate_provenance": "Stage5_derived_from_frozen_PartA_link_quantities_raw_data_rate_and_beam_probing_overhead",
+    "new_arbitrary_model_allowed": false,
+    "probing_overhead_affects_effective_rate": true
+  },
+  "out_of_scope": [
+    "predictive_class_aware_ADB",
+    "illumination_pixel_controller",
+    "joint_beam_ADB_tradeoff_evaluation",
+    "full_joint_beam_ADB_end_to_end_latency",
+    "Stage7_failure_slice_analysis",
+    "Stage7_statistical_confidence_intervals",
+    "DeepSense_external_mmWave_validation"
+  ],
+  "receiver_geometry": {
+    "future_GT_heading_controller": false,
+    "future_heading_source": "trajectory_sample_tangent",
+    "low_speed_heading_fallback": "last_causal_heading",
+    "modes": [
+      "centroid_baseline",
+      "known_receiver_offset",
+      "uncertain_receiver_offset"
+    ],
+    "offset_frame": "receiver_vehicle_body_frame",
+    "primary_downstream_mode": "uncertain_receiver_offset",
+    "uncertain_offset_propagation": "joint_with_trajectory_posterior"
+  },
+  "receiver_geometry_upstream": {
+    "config_class": "ReceiverGeometryConfig",
+    "config_signature": "(mode: 'str' = 'centroid_baseline', offset_mean_body_m: 'Vec3' = (0.0, 0.0, 0.0), offset_covariance_body_m2: 'Mat3' = ((0.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0))) -> None",
+    "default_config": {
+      "mode": "centroid_baseline",
+      "offset_covariance_body_m2": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "offset_mean_body_m": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "function_signature": "(actor: 'ActorAnchorStateW', T_H0_from_W: 'RigidTransform', config: 'ReceiverGeometryConfig') -> 'ReceiverGeometryH0'",
+    "module": "iscai_stage1.geometry.receiver",
+    "source_file": "/home/agni/waymo/iscai_stage1/src/iscai_stage1/geometry/receiver.py"
+  },
+  "receiver_selection": {
+    "connectivity_semantics": "constructed_hypothetical_connected_vehicle",
+    "current_causal_availability_required": true,
+    "future_truth_selector": false,
+    "no_eligible_receiver": "explicit_no_link_target",
+    "perfect_track_ID_control_feature": false,
+    "policy_semantics": "select_the_nearest_causally_available_vehicle_ahead_in_the_headlamp_frame_from_the_current_associated_actor_set",
+    "positive_forward_H0_required": true,
+    "primary_policy": "nearest_causal_vehicle_ahead",
+    "tracks_to_predict_selector": false,
+    "vehicle_class_required": true
+  },
+  "required_formal_beam_metrics": [
+    "Top1_hit_rate",
+    "Top3_or_TopK_hit_rate",
+    "average_selected_K",
+    "selected_probability_mass",
+    "empirical_receiver_coverage",
+    "probing_overhead",
+    "overhead_reduction",
+    "beam_gain_loss",
+    "received_power_loss",
+    "SNR_loss",
+    "DPSK_BER",
+    "effective_rate",
+    "effective_rate_loss",
+    "outage_probability",
+    "beam_switching_rate",
+    "reacquisition_latency"
+  ],
+  "required_formal_sweeps": [
+    "prediction_horizon",
+    "codebook_size",
+    "requested_probability_mass",
+    "receiver_geometry_mode",
+    "distance",
+    "uncertainty"
+  ],
+  "required_paper_artifacts": [
+    "receiver_angular_posterior_visualization",
+    "adaptive_beam_set_visualization",
+    "reliability_overhead_curve",
+    "outage_overhead_curve",
+    "BER_curve",
+    "effective_rate_curve",
+    "Pareto_frontier"
+  ],
+  "stage": 5,
+  "status": "STRUCTURAL_CONTRACT_FROZEN",
+  "temporal_controller": {
+    "Stage5_latency_scope": "beam_controller_and_communication_link_latency",
+    "full_joint_beam_ADB_latency_stage": 7,
+    "millisecond_WOMD_GT_claim_allowed": false,
+    "required_components": [
+      "previous_beam_persistence",
+      "hysteresis",
+      "local_neighbour_sweep",
+      "beam_switch_penalty",
+      "widened_fallback",
+      "loss_of_lock_reacquisition"
+    ]
+  },
+  "trajectory_posterior": {
+    "GMM_role": "frozen_multimodal_diagnostic_only",
+    "Stage4_normalization_refit_allowed": false,
+    "Stage4_posthoc_GMM_selection_allowed": false,
+    "Stage4_recalibration_allowed": false,
+    "Stage4_retraining_allowed": false,
+    "calibration_modifies_measurement_R_t": false,
+    "calibration_variance_scale_alpha_h": [
+      1.2347064500315355,
+      1.3451250295202921,
+      1.354822057728461,
+      1.2829700217319266
+    ],
+    "family": "calibrated_Gaussian_GRU",
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "measurement_R_t_is_model_input": true,
+    "predictive_covariance_is_distinct": true
+  }
+}

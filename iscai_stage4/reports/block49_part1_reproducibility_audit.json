@@ -1,0 +1,135 @@
+{
+  "block": "4.9_part_1",
+  "formal_cache_reconstruction": {
+    "cache_contract_sha256": "fa18255195eccca9a5f339c07ab0e3817e89ca8d8a9fa5eb63e8bd2cca5226dc",
+    "eligible_formal_targets": 547,
+    "matched_formal_targets": 494,
+    "merged_shapes": {
+      "det_mean": [
+        494,
+        4,
+        3
+      ],
+      "eligible_class_id": [
+        547
+      ],
+      "eligible_validity": [
+        547,
+        4
+      ],
+      "gaussian_mean": [
+        494,
+        4,
+        3
+      ],
+      "gaussian_scale": [
+        494,
+        4,
+        3,
+        3
+      ],
+      "gmm_logits": [
+        494,
+        3
+      ],
+      "gmm_means": [
+        494,
+        3,
+        4,
+        3
+      ],
+      "gmm_scale": [
+        494,
+        3,
+        4,
+        3,
+        3
+      ],
+      "selected_class_id": [
+        494
+      ],
+      "truth": [
+        494,
+        4,
+        3
+      ],
+      "validity": [
+        494,
+        4
+      ]
+    },
+    "per_scene_prediction_hash_count": 120,
+    "sha256": "fe5cf7e413b8142c0670d05727affd4fa573cf4607665e4a9bda951f1d9bd0d5",
+    "shard_count": 120
+  },
+  "formal_evidence": {
+    "PDF_calibration_measured": true,
+    "PDF_performance_gate": true,
+    "calibrated_Gaussian_ADE_m": 1.9848952833749467,
+    "calibrated_macro_ECE": 0.11165527003334381,
+    "classical_baselines_beaten": [
+      "CA",
+      "CTRV",
+      "CV",
+      "IMM_CV_CA_CTRV",
+      "Kalman_EKF"
+    ],
+    "internal_CV_gate": true,
+    "raw_macro_ECE": 0.18362046536363294
+  },
+  "formal_inference": false,
+  "formal_leakage_contract": "PASS",
+  "frozen_report_chain": {
+    "Block4.3": {
+      "report_file_sha256": "93b00aa6c1aa857e7e019f9f00d7b936560e09b26e7f2f8f7d95acae08fd1c3d",
+      "status": "PASS"
+    },
+    "Block4.4": {
+      "report_file_sha256": "78ccc780a9d753e9619e215fee0e83a706f1607445741b032983e526efd97a54",
+      "status": "PASS"
+    },
+    "Block4.5": {
+      "report_file_sha256": "b59a542d35a9733ef2ae70a51c39a66f44421957950d22786a29848e0e72b3c8",
+      "status": "PASS"
+    },
+    "Block4.6": {
+      "report_file_sha256": "7b87a27ad3fd6e36d0e97486765d1db9b12c9fdeea996e5958e8f236bc535827",
+      "status": "PASS"
+    },
+    "Block4.7": {
+      "report_file_sha256": "143580ee5cdc6845722b2eb0798f977ed093cf99c187742d4feaa3611594148e",
+      "status": "PASS"
+    },
+    "Block4.8": {
+      "report_file_sha256": "402ab3d771e9a3c77de0c091c893e9a0d6ee5826ec52d07d27b919c68276b353",
+      "status": "PASS"
+    }
+  },
+  "implementation": {
+    "file_count": 77,
+    "sha256": "6984cf29a42c6fa8bd66f1105f09c3f19a185d96979b89b277fd1436dee56a4a"
+  },
+  "independent_file_hashes": {
+    "GMM checkpoint": "5aebeaf40d522d58345d424ae2557d6f87e2c02bdc26c23635cc6e3a28cbe3ee",
+    "Gaussian checkpoint": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f",
+    "calibrator": "508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087",
+    "deterministic checkpoint": "5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5",
+    "formal manifest": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "validation manifest": "dc10609ef18a2ba881657eb3da3a3df7a81bdcc8345ecbc2227102ab16b8833c"
+  },
+  "independent_state_hashes": {
+    "GMM state": "3bd803104a5de694b9c6073fa651230e16a08899db14894e0f1fd1e2f11c1a97",
+    "Gaussian state": "1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3",
+    "deterministic state": "d2ffbc03c7cb2826fef2175c95f48725707ec6d791eaeffbd6f59bc507b8595a"
+  },
+  "purpose": "independent_reproducibility_and_artifact_integrity_audit",
+  "recalibration": false,
+  "regression": {
+    "tests_passed": 120,
+    "tests_total": 120
+  },
+  "stage": 4,
+  "status": "PASS",
+  "training": false,
+  "upstream_modified": false
+}

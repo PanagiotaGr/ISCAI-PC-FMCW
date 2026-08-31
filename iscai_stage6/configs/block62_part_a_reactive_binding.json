@@ -1,0 +1,103 @@
+{
+  "TRZ_visualization_geometry": {
+    "front_margin_units": 4.0,
+    "semantic_role": "TRACK_RECONSTRUCTION_VISUALIZATION_GEOMETRY",
+    "source_function": "adb_trz_shadow_geometry_from_xy",
+    "transition_length_units": 8.0,
+    "used_as_control_transition_length": false
+  },
+  "baseline": "original_reactive_ADB",
+  "block": "6.2",
+  "coordinate_conventions": {
+    "H0_to_PartA": {
+      "x_partA_right": "-y_H0_left",
+      "y_partA_forward": "x_H0_forward"
+    },
+    "Part_A": "+y forward, +x right",
+    "Stage6_H0": "+x forward, +y left, +z up",
+    "angle_relation": "theta_partA = -theta_H0",
+    "interval_relation": "[theta_min_A, theta_max_A] -> [-theta_max_A, -theta_min_A]"
+  },
+  "dynamic_angular_geometry": {
+    "delta_theta_deg": 0.0,
+    "effective_half_width_m": 1.95,
+    "epsilon": "deg(atan((target_width_m/2 + lateral_safety_margin_m)/max(target_range,1e-12)))",
+    "fixed_demo_epsilon_deg": 0.75,
+    "fixed_demo_epsilon_used_by_dynamic_path": false,
+    "lateral_safety_margin_m": 1.0,
+    "target_width_m": 1.9,
+    "technical_report_0_745": "DOCUMENTED_ARITHMETIC_TEXT_INCONSISTENCY"
+  },
+  "formal_input_policy": {
+    "WOMD_annotation_smoke": "GEOMETRY_INTEGRATION_ONLY",
+    "formal_input_implemented_here": false,
+    "formal_original_reactive_input": "CAUSAL_TRACK_BASED_PC_FMCW_LIKE_PIPELINE"
+  },
+  "grid": {
+    "Part_A_reference_grid_role": "BASELINE_PARITY_SMOKE_ONLY",
+    "Part_A_reference_range_m": [
+      0.0,
+      180.0,
+      361
+    ],
+    "Part_A_reference_theta_deg": [
+      -25.0,
+      25.0,
+      501
+    ],
+    "formal_common_Stage6_grid_frozen": false,
+    "formal_grid_freeze": "BLOCK6.8_PRE_FORMAL"
+  },
+  "illumination_control_radial_semantics": {
+    "front_margin_m": 4.0,
+    "full_shadow_floor": 0.0,
+    "outside_intensity": 1.0,
+    "r_max": "r_min + 20.0",
+    "r_min": "target_range + 4.0",
+    "raised_cosine": "0.5*(1-cos(pi*u))",
+    "source_function": "adb_intensity_map",
+    "transition_length_m": 20.0
+  },
+  "legacy_original_reactive_scope": {
+    "Stage1_adapter": "iscai_stage1.actors.womd_adapter.adapt_causal_womd_scenario",
+    "actor_box_builder": "build_causal_adb_actor_boxes(scenario=..., adapted=...)",
+    "centroid_center_semantics": "ALLOWED_ONLY_AS_FROZEN_ORIGINAL_REACTIVE_BASELINE",
+    "class_aware_policy": false,
+    "class_field": "object_type",
+    "class_representation": "SYMBOLIC_STRING",
+    "class_source": "object_type_name(track)",
+    "communication_codebook": false,
+    "covariance_input": false,
+    "current_state_only": true,
+    "fixed_vehicle_width": true,
+    "future_input": false,
+    "original_reactive_vehicle_symbol": "TYPE_VEHICLE",
+    "posterior_input": false,
+    "raw_integer_class_comparison": false,
+    "supported_classes": [
+      "TYPE_VEHICLE",
+      "TYPE_PEDESTRIAN",
+      "TYPE_CYCLIST"
+    ],
+    "vehicle_center_based": true
+  },
+  "multiple_targets": {
+    "combination": "elementwise_minimum"
+  },
+  "predictive_Stage6_binding": {
+    "centroid_only_allowed": false,
+    "class_policy_required": true,
+    "full_box_projection_required": true,
+    "implemented_in_Block62": false,
+    "uncertainty_required": true
+  },
+  "project": "Agni",
+  "source_authority": {
+    "notebook": "/home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb",
+    "notebook_sha256": "b5a80a6d3441de6d571db4f65b4a43ed4052cc2b3ccba935ad31b5dd51316ef3",
+    "transitive_audit": "/home/agni/waymo/iscai_stage6/reports/block62_dynamic_dependency_chain_audit.json",
+    "transitive_audit_sha256": "7406e5e0342cee6252a536d63edd77ff909b6acd3eea7e6adb870f99e51796b5"
+  },
+  "stage": 6,
+  "status": "FROZEN_EXACT_PART_A_REACTIVE_BINDING"
+}

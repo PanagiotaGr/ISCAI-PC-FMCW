@@ -1,0 +1,1298 @@
+{
+  "all_required_PDF_ablations_materialized": true,
+  "pairwise": {
+    "actor_only_vs_multi_agent": {
+      "left": "actor_only",
+      "left_ADE_m": 1.9180300180125192,
+      "right": "multi_agent",
+      "right_ADE_m": 1.7834028789863638,
+      "right_minus_left_m": -0.1346271390261553,
+      "support": "same_frozen_development_support"
+    },
+    "no_LiDAR_vs_LiDAR_context": {
+      "left": "no_LiDAR",
+      "left_ADE_m": 2.10103482147523,
+      "right": "LiDAR_context",
+      "right_ADE_m": 2.158902341572603,
+      "right_minus_left_m": 0.05786752009737306,
+      "support": "same_frozen_LiDAR_development_subset"
+    },
+    "no_map_vs_map": {
+      "left": "no_map",
+      "left_ADE_m": 1.7834028789863638,
+      "right": "map",
+      "right_ADE_m": 1.6028416288797862,
+      "right_minus_left_m": -0.18056125010657764,
+      "support": "same_frozen_development_support"
+    },
+    "position_only_vs_PC_FMCW_noisy_radial_velocity": {
+      "left": "position_only",
+      "left_ADE_m": 2.501255577937857,
+      "right": "position_plus_PC_FMCW_noisy_radial_velocity",
+      "right_ADE_m": 2.3084376149322092,
+      "right_minus_left_m": -0.1928179630056479,
+      "support": "same_frozen_development_support"
+    },
+    "position_only_vs_actor_level_LiDAR_features": {
+      "left": "position_only_LiDARsubset",
+      "left_ADE_m": 2.6644857315182553,
+      "right": "position_plus_actor_level_LiDAR_features",
+      "right_ADE_m": 2.6907505133213143,
+      "right_minus_left_m": 0.026264781803059023,
+      "support": "same_frozen_LiDAR_development_subset"
+    },
+    "position_only_vs_annotated_velocity": {
+      "left": "position_only",
+      "left_ADE_m": 2.501255577937857,
+      "right": "position_plus_annotated_velocity",
+      "right_ADE_m": 0.7345462001627747,
+      "right_minus_left_m": -1.7667093777750824,
+      "support": "same_frozen_development_support"
+    },
+    "position_only_vs_geometry_derived_radial_velocity": {
+      "left": "position_only",
+      "left_ADE_m": 2.501255577937857,
+      "right": "position_plus_geometry_derived_radial_velocity",
+      "right_ADE_m": 2.1890241896398615,
+      "right_minus_left_m": -0.3122313882979957,
+      "support": "same_frozen_development_support"
+    },
+    "position_only_vs_measurement_covariance": {
+      "left": "position_only",
+      "left_ADE_m": 2.501255577937857,
+      "right": "position_plus_measurement_covariance",
+      "right_ADE_m": 2.310655075546364,
+      "right_minus_left_m": -0.19060050239149318,
+      "support": "same_frozen_development_support"
+    },
+    "position_only_vs_past_only_estimated_velocity": {
+      "left": "position_only",
+      "left_ADE_m": 2.501255577937857,
+      "right": "position_plus_past_only_estimated_velocity",
+      "right_ADE_m": 2.073296483936948,
+      "right_minus_left_m": -0.42795909400090926,
+      "support": "same_frozen_development_support"
+    }
+  },
+  "required_PDF_ablations": [
+    "position_only",
+    "position_plus_annotated_velocity",
+    "position_plus_past_only_estimated_velocity",
+    "position_plus_geometry_derived_radial_velocity",
+    "position_plus_PC_FMCW_noisy_radial_velocity",
+    "position_plus_measurement_covariance",
+    "position_plus_actor_level_LiDAR_features",
+    "actor_only_vs_multi_agent",
+    "no_map_vs_map",
+    "no_LiDAR_vs_LiDAR_context"
+  ],
+  "semantics": {
+    "LiDAR": "causal annotation-assisted actor-box ablation; intensity is relative proxy only",
+    "LiDAR_primary_sensor_to_track": false,
+    "PC_FMCW_noisy_vr": "actual Stage2 degraded measurement radial_velocity_mps",
+    "annotated_velocity": "historical WOMD annotation upper-bound ablation only",
+    "geometry_vr": "causal radial projection of estimated position/velocity"
+  },
+  "stage": 4,
+  "status": "MATERIALIZED_PRE_FORMAL",
+  "variants": {
+    "LiDAR_context": {
+      "checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/models/deterministic_LiDAR_context.pt",
+      "development": {
+        "ADE_m": 2.158902341572603,
+        "events": 21528
+      },
+      "development_samples": 5685,
+      "fit_samples": 22352,
+      "history": [
+        {
+          "ADE_m": 2.714754975714767,
+          "epoch": 1,
+          "events": 21528,
+          "train_loss": 1.6912687529217114
+        },
+        {
+          "ADE_m": 2.7531400784733835,
+          "epoch": 2,
+          "events": 21528,
+          "train_loss": 1.3188706108114936
+        },
+        {
+          "ADE_m": 2.6968680686199367,
+          "epoch": 3,
+          "events": 21528,
+          "train_loss": 1.1177407503128052
+        },
+        {
+          "ADE_m": 2.5657200070837978,
+          "epoch": 4,
+          "events": 21528,
+          "train_loss": 1.0335710942745209
+        },
+        {
+          "ADE_m": 2.440343725685735,
+          "epoch": 5,
+          "events": 21528,
+          "train_loss": 0.9364847567948428
+        },
+        {
+          "ADE_m": 2.4334524913775084,
+          "epoch": 6,
+          "events": 21528,
+          "train_loss": 0.9088325541127812
+        },
+        {
+          "ADE_m": 2.3530815972222223,
+          "epoch": 7,
+          "events": 21528,
+          "train_loss": 0.8177985521880063
+        },
+        {
+          "ADE_m": 2.34568175929313,
+          "epoch": 8,
+          "events": 21528,
+          "train_loss": 0.7558580406687476
+        },
+        {
+          "ADE_m": 2.2719145469708053,
+          "epoch": 9,
+          "events": 21528,
+          "train_loss": 0.7465577017177235
+        },
+        {
+          "ADE_m": 2.1876100492672332,
+          "epoch": 10,
+          "events": 21528,
+          "train_loss": 0.7519484927708452
+        },
+        {
+          "ADE_m": 2.1903341995743917,
+          "epoch": 11,
+          "events": 21528,
+          "train_loss": 0.6638917374339971
+        },
+        {
+          "ADE_m": 2.158902341572603,
+          "epoch": 12,
+          "events": 21528,
+          "train_loss": 0.6735419976440343
+        }
+      ],
+      "sha256": "b70e54cac767ab68eb24f04760ff8e9ca2c0571d39b5b9d89f9d1882fde6a88b",
+      "training_freeze_sha256": "53d76250a9bc2045e64af1c2541a0101498c548bf754758d5e6862cedfd4ef80",
+      "variant": "LiDAR_context"
+    },
+    "actor_only": {
+      "checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/models/deterministic_actor_only.pt",
+      "development": {
+        "ADE_m": 1.9180300180125192,
+        "events": 43249
+      },
+      "development_samples": 11416,
+      "fit_samples": 93398,
+      "history": [
+        {
+          "ADE_m": 2.6660497264477936,
+          "epoch": 1,
+          "events": 43249,
+          "train_loss": 1.6508078653304303
+        },
+        {
+          "ADE_m": 2.5027785821276214,
+          "epoch": 2,
+          "events": 43249,
+          "train_loss": 1.3845994264050259
+        },
+        {
+          "ADE_m": 2.3378704525908476,
+          "epoch": 3,
+          "events": 43249,
+          "train_loss": 1.3114601256417446
+        },
+        {
+          "ADE_m": 2.148497108382383,
+          "epoch": 4,
+          "events": 43249,
+          "train_loss": 1.2043556072672859
+        },
+        {
+          "ADE_m": 2.0799683015160033,
+          "epoch": 5,
+          "events": 43249,
+          "train_loss": 1.1559216565773136
+        },
+        {
+          "ADE_m": 2.061199654385976,
+          "epoch": 6,
+          "events": 43249,
+          "train_loss": 1.112346445602146
+        },
+        {
+          "ADE_m": 2.0131142674993208,
+          "epoch": 7,
+          "events": 43249,
+          "train_loss": 1.0604405354280941
+        },
+        {
+          "ADE_m": 1.9725045885950758,
+          "epoch": 8,
+          "events": 43249,
+          "train_loss": 0.9886306612218012
+        },
+        {
+          "ADE_m": 2.0062817819171035,
+          "epoch": 9,
+          "events": 43249,
+          "train_loss": 0.9830108037411841
+        },
+        {
+          "ADE_m": 1.9414970385424375,
+          "epoch": 10,
+          "events": 43249,
+          "train_loss": 0.9734161089026863
+        },
+        {
+          "ADE_m": 1.9370416033824482,
+          "epoch": 11,
+          "events": 43249,
+          "train_loss": 0.9195711277221721
+        },
+        {
+          "ADE_m": 1.9180300180125192,
+          "epoch": 12,
+          "events": 43249,
+          "train_loss": 0.9107012755232431
+        }
+      ],
+      "sha256": "9611750aa9f579322e9382bb425825f8795c5f2f3ec4f24330210d3c9e5d52cc",
+      "training_freeze_sha256": "53d76250a9bc2045e64af1c2541a0101498c548bf754758d5e6862cedfd4ef80",
+      "variant": "actor_only"
+    },
+    "map": {
+      "checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/models/deterministic_map.pt",
+      "development": {
+        "ADE_m": 1.6028416288797862,
+        "events": 43249
+      },
+      "development_samples": 11416,
+      "fit_samples": 93398,
+      "history": [
+        {
+          "ADE_m": 2.520791662880753,
+          "epoch": 1,
+          "events": 43249,
+          "train_loss": 1.3738584049412461
+        },
+        {
+          "ADE_m": 2.247044204372861,
+          "epoch": 2,
+          "events": 43249,
+          "train_loss": 1.0219033226940801
+        },
+        {
+          "ADE_m": 2.0429980673099015,
+          "epoch": 3,
+          "events": 43249,
+          "train_loss": 0.9050148425857878
+        },
+        {
+          "ADE_m": 1.9401124723440137,
+          "epoch": 4,
+          "events": 43249,
+          "train_loss": 0.7377802846861667
+        },
+        {
+          "ADE_m": 1.8775181246287849,
+          "epoch": 5,
+          "events": 43249,
+          "train_loss": 0.672676039035203
+        },
+        {
+          "ADE_m": 1.8284084270057184,
+          "epoch": 6,
+          "events": 43249,
+          "train_loss": 0.6275327731677092
+        },
+        {
+          "ADE_m": 1.7954061595896726,
+          "epoch": 7,
+          "events": 43249,
+          "train_loss": 0.5874338661386667
+        },
+        {
+          "ADE_m": 1.788354650812013,
+          "epoch": 8,
+          "events": 43249,
+          "train_loss": 0.5469087443716539
+        },
+        {
+          "ADE_m": 1.7808456994218798,
+          "epoch": 9,
+          "events": 43249,
+          "train_loss": 0.5220260113640561
+        },
+        {
+          "ADE_m": 1.724054052313258,
+          "epoch": 10,
+          "events": 43249,
+          "train_loss": 0.5153466143894717
+        },
+        {
+          "ADE_m": 1.6821561631347328,
+          "epoch": 11,
+          "events": 43249,
+          "train_loss": 0.48278295358673473
+        },
+        {
+          "ADE_m": 1.6861041522681521,
+          "epoch": 12,
+          "events": 43249,
+          "train_loss": 0.46822763173306575
+        },
+        {
+          "ADE_m": 1.6844293808297048,
+          "epoch": 13,
+          "events": 43249,
+          "train_loss": 0.4585708383002568
+        },
+        {
+          "ADE_m": 1.6680104312721646,
+          "epoch": 14,
+          "events": 43249,
+          "train_loss": 0.4568896601434614
+        },
+        {
+          "ADE_m": 1.6346404696947472,
+          "epoch": 15,
+          "events": 43249,
+          "train_loss": 0.43636923067556704
+        },
+        {
+          "ADE_m": 1.6232996298957056,
+          "epoch": 16,
+          "events": 43249,
+          "train_loss": 0.4236353687901315
+        },
+        {
+          "ADE_m": 1.6304186260651439,
+          "epoch": 17,
+          "events": 43249,
+          "train_loss": 0.4216466477659882
+        },
+        {
+          "ADE_m": 1.6067652626587103,
+          "epoch": 18,
+          "events": 43249,
+          "train_loss": 0.40940156009027867
+        },
+        {
+          "ADE_m": 1.6044187587452348,
+          "epoch": 19,
+          "events": 43249,
+          "train_loss": 0.3966858745272694
+        },
+        {
+          "ADE_m": 1.6028416288797862,
+          "epoch": 20,
+          "events": 43249,
+          "train_loss": 0.38779980945782583
+        }
+      ],
+      "sha256": "200c94b2026855709789d4d8b7fbf3cf18b4518b6dbaf2073c29800b1b9b4a2e",
+      "training_freeze_sha256": "53d76250a9bc2045e64af1c2541a0101498c548bf754758d5e6862cedfd4ef80",
+      "variant": "map"
+    },
+    "multi_agent": {
+      "checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/models/deterministic_multi_agent.pt",
+      "development": {
+        "ADE_m": 1.7834028789863638,
+        "events": 43249
+      },
+      "development_samples": 11416,
+      "fit_samples": 93398,
+      "history": [
+        {
+          "ADE_m": 2.585635102970228,
+          "epoch": 1,
+          "events": 43249,
+          "train_loss": 1.3885200000851532
+        },
+        {
+          "ADE_m": 2.2810217867438047,
+          "epoch": 2,
+          "events": 43249,
+          "train_loss": 1.0654617567531397
+        },
+        {
+          "ADE_m": 2.1308424597561144,
+          "epoch": 3,
+          "events": 43249,
+          "train_loss": 0.9653356277226098
+        },
+        {
+          "ADE_m": 2.014156849690979,
+          "epoch": 4,
+          "events": 43249,
+          "train_loss": 0.8191019873150059
+        },
+        {
+          "ADE_m": 1.9707887737695164,
+          "epoch": 5,
+          "events": 43249,
+          "train_loss": 0.760740151659387
+        },
+        {
+          "ADE_m": 1.9358868338628494,
+          "epoch": 6,
+          "events": 43249,
+          "train_loss": 0.7144066751654682
+        },
+        {
+          "ADE_m": 1.8910987735988116,
+          "epoch": 7,
+          "events": 43249,
+          "train_loss": 0.6757661960815471
+        },
+        {
+          "ADE_m": 1.861550110409435,
+          "epoch": 8,
+          "events": 43249,
+          "train_loss": 0.6359612969427161
+        },
+        {
+          "ADE_m": 1.897105200860858,
+          "epoch": 9,
+          "events": 43249,
+          "train_loss": 0.6163217715226887
+        },
+        {
+          "ADE_m": 1.8347973651441,
+          "epoch": 10,
+          "events": 43249,
+          "train_loss": 0.6059592090994934
+        },
+        {
+          "ADE_m": 1.7872943447301528,
+          "epoch": 11,
+          "events": 43249,
+          "train_loss": 0.5632683271593083
+        },
+        {
+          "ADE_m": 1.7834028789863638,
+          "epoch": 12,
+          "events": 43249,
+          "train_loss": 0.5485777223045057
+        }
+      ],
+      "sha256": "a43d52582cf77fa6d8ddbe5514af1d31fffe24e98597beb28378e34a345eae2e",
+      "training_freeze_sha256": "53d76250a9bc2045e64af1c2541a0101498c548bf754758d5e6862cedfd4ef80",
+      "variant": "multi_agent"
+    },
+    "no_LiDAR": {
+      "checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/models/deterministic_no_LiDAR.pt",
+      "development": {
+        "ADE_m": 2.10103482147523,
+        "events": 21528
+      },
+      "development_samples": 5685,
+      "fit_samples": 22352,
+      "history": [
+        {
+          "ADE_m": 2.6931017617318145,
+          "epoch": 1,
+          "events": 21528,
+          "train_loss": 1.683698283000426
+        },
+        {
+          "ADE_m": 2.6980693566227703,
+          "epoch": 2,
+          "events": 21528,
+          "train_loss": 1.3450801887295463
+        },
+        {
+          "ADE_m": 2.6410234636287626,
+          "epoch": 3,
+          "events": 21528,
+          "train_loss": 1.1404849819161675
+        },
+        {
+          "ADE_m": 2.5433346434004553,
+          "epoch": 4,
+          "events": 21528,
+          "train_loss": 1.054751301353628
+        },
+        {
+          "ADE_m": 2.447077552344621,
+          "epoch": 5,
+          "events": 21528,
+          "train_loss": 0.9848495396700773
+        },
+        {
+          "ADE_m": 2.375899741216381,
+          "epoch": 6,
+          "events": 21528,
+          "train_loss": 0.9524834955280478
+        },
+        {
+          "ADE_m": 2.327336351386857,
+          "epoch": 7,
+          "events": 21528,
+          "train_loss": 0.8629664291035045
+        },
+        {
+          "ADE_m": 2.2750882390085008,
+          "epoch": 8,
+          "events": 21528,
+          "train_loss": 0.8085780495947058
+        },
+        {
+          "ADE_m": 2.2659928666663762,
+          "epoch": 9,
+          "events": 21528,
+          "train_loss": 0.7875887087800286
+        },
+        {
+          "ADE_m": 2.1946399111767234,
+          "epoch": 10,
+          "events": 21528,
+          "train_loss": 0.7910800501704216
+        },
+        {
+          "ADE_m": 2.1288480046335008,
+          "epoch": 11,
+          "events": 21528,
+          "train_loss": 0.6976949376138774
+        },
+        {
+          "ADE_m": 2.10103482147523,
+          "epoch": 12,
+          "events": 21528,
+          "train_loss": 0.7000943171707067
+        }
+      ],
+      "sha256": "b5ef2fdc6b8ca7994fe8ab873858353b4ba7dfd6356765a6107d337485240137",
+      "training_freeze_sha256": "53d76250a9bc2045e64af1c2541a0101498c548bf754758d5e6862cedfd4ef80",
+      "variant": "no_LiDAR"
+    },
+    "no_map": {
+      "checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/models/deterministic_no_map.pt",
+      "development": {
+        "ADE_m": 1.7834028789863638,
+        "events": 43249
+      },
+      "development_samples": 11416,
+      "fit_samples": 93398,
+      "history": [
+        {
+          "ADE_m": 2.585635102970228,
+          "epoch": 1,
+          "events": 43249,
+          "train_loss": 1.3885200000851532
+        },
+        {
+          "ADE_m": 2.2810217867438047,
+          "epoch": 2,
+          "events": 43249,
+          "train_loss": 1.0654617567531397
+        },
+        {
+          "ADE_m": 2.1308424597561144,
+          "epoch": 3,
+          "events": 43249,
+          "train_loss": 0.9653356277226098
+        },
+        {
+          "ADE_m": 2.014156849690979,
+          "epoch": 4,
+          "events": 43249,
+          "train_loss": 0.8191019873150059
+        },
+        {
+          "ADE_m": 1.9707887737695164,
+          "epoch": 5,
+          "events": 43249,
+          "train_loss": 0.760740151659387
+        },
+        {
+          "ADE_m": 1.9358868338628494,
+          "epoch": 6,
+          "events": 43249,
+          "train_loss": 0.7144066751654682
+        },
+        {
+          "ADE_m": 1.8910987735988116,
+          "epoch": 7,
+          "events": 43249,
+          "train_loss": 0.6757661960815471
+        },
+        {
+          "ADE_m": 1.861550110409435,
+          "epoch": 8,
+          "events": 43249,
+          "train_loss": 0.6359612969427161
+        },
+        {
+          "ADE_m": 1.897105200860858,
+          "epoch": 9,
+          "events": 43249,
+          "train_loss": 0.6163217715226887
+        },
+        {
+          "ADE_m": 1.8347973651441,
+          "epoch": 10,
+          "events": 43249,
+          "train_loss": 0.6059592090994934
+        },
+        {
+          "ADE_m": 1.7872943447301528,
+          "epoch": 11,
+          "events": 43249,
+          "train_loss": 0.5632683271593083
+        },
+        {
+          "ADE_m": 1.7834028789863638,
+          "epoch": 12,
+          "events": 43249,
+          "train_loss": 0.5485777223045057
+        }
+      ],
+      "sha256": "98942aca9177cb62420765e05d9432261a69e875818a79eb51635fd9d9bd54d6",
+      "training_freeze_sha256": "53d76250a9bc2045e64af1c2541a0101498c548bf754758d5e6862cedfd4ef80",
+      "variant": "no_map"
+    },
+    "position_only": {
+      "checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/models/deterministic_position_only.pt",
+      "development": {
+        "ADE_m": 2.501255577937857,
+        "events": 43249
+      },
+      "development_samples": 11416,
+      "fit_samples": 93398,
+      "history": [
+        {
+          "ADE_m": 2.677426366839768,
+          "epoch": 1,
+          "events": 43249,
+          "train_loss": 1.7573203910243966
+        },
+        {
+          "ADE_m": 2.676791905480293,
+          "epoch": 2,
+          "events": 43249,
+          "train_loss": 1.6065101336911727
+        },
+        {
+          "ADE_m": 2.6708488066559344,
+          "epoch": 3,
+          "events": 43249,
+          "train_loss": 1.5588356113173272
+        },
+        {
+          "ADE_m": 2.6765050971192976,
+          "epoch": 4,
+          "events": 43249,
+          "train_loss": 1.4889493392464892
+        },
+        {
+          "ADE_m": 2.6169129920950125,
+          "epoch": 5,
+          "events": 43249,
+          "train_loss": 1.5015291157967405
+        },
+        {
+          "ADE_m": 2.6094116925030058,
+          "epoch": 6,
+          "events": 43249,
+          "train_loss": 1.4837884499075635
+        },
+        {
+          "ADE_m": 2.5611065034108447,
+          "epoch": 7,
+          "events": 43249,
+          "train_loss": 1.453276018301646
+        },
+        {
+          "ADE_m": 2.5393104171303094,
+          "epoch": 8,
+          "events": 43249,
+          "train_loss": 1.3938031001169173
+        },
+        {
+          "ADE_m": 2.515171542757853,
+          "epoch": 9,
+          "events": 43249,
+          "train_loss": 1.3898886188131865
+        },
+        {
+          "ADE_m": 2.501255577937857,
+          "epoch": 10,
+          "events": 43249,
+          "train_loss": 1.394405820004927
+        },
+        {
+          "ADE_m": 2.506511338683409,
+          "epoch": 11,
+          "events": 43249,
+          "train_loss": 1.3300788435128217
+        },
+        {
+          "ADE_m": 2.50681481955327,
+          "epoch": 12,
+          "events": 43249,
+          "train_loss": 1.3758629137049607
+        }
+      ],
+      "sha256": "8270630057c58ec47e57274c12e27884217d88f735b379230d686faa9a2e27a8",
+      "training_freeze_sha256": "53d76250a9bc2045e64af1c2541a0101498c548bf754758d5e6862cedfd4ef80",
+      "variant": "position_only"
+    },
+    "position_only_LiDARsubset": {
+      "checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/models/deterministic_position_only_LiDARsubset.pt",
+      "development": {
+        "ADE_m": 2.6644857315182553,
+        "events": 21528
+      },
+      "development_samples": 5685,
+      "fit_samples": 22352,
+      "history": [
+        {
+          "ADE_m": 2.673966117527174,
+          "epoch": 1,
+          "events": 21528,
+          "train_loss": 1.8580315736207096
+        },
+        {
+          "ADE_m": 2.669020160517698,
+          "epoch": 2,
+          "events": 21528,
+          "train_loss": 1.634447623382915
+        },
+        {
+          "ADE_m": 2.69256943355746,
+          "epoch": 3,
+          "events": 21528,
+          "train_loss": 1.5903954587199471
+        },
+        {
+          "ADE_m": 2.6644857315182553,
+          "epoch": 4,
+          "events": 21528,
+          "train_loss": 1.6097838201306083
+        },
+        {
+          "ADE_m": 2.689476169116964,
+          "epoch": 5,
+          "events": 21528,
+          "train_loss": 1.565582345832478
+        },
+        {
+          "ADE_m": 2.684864351803465,
+          "epoch": 6,
+          "events": 21528,
+          "train_loss": 1.6155544519424438
+        },
+        {
+          "ADE_m": 2.6913837955946907,
+          "epoch": 7,
+          "events": 21528,
+          "train_loss": 1.5346668687733738
+        },
+        {
+          "ADE_m": 2.7036266631683157,
+          "epoch": 8,
+          "events": 21528,
+          "train_loss": 1.512549863620238
+        },
+        {
+          "ADE_m": 2.6736909263154383,
+          "epoch": 9,
+          "events": 21528,
+          "train_loss": 1.4883992130106145
+        }
+      ],
+      "sha256": "dccad4af3f977f291ab141c42603a6b0d4faf9131d974f54c28621f18c6cbc3d",
+      "training_freeze_sha256": "53d76250a9bc2045e64af1c2541a0101498c548bf754758d5e6862cedfd4ef80",
+      "variant": "position_only_LiDARsubset"
+    },
+    "position_plus_PC_FMCW_noisy_radial_velocity": {
+      "checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/models/deterministic_position_plus_PC_FMCW_noisy_radial_velocity.pt",
+      "development": {
+        "ADE_m": 2.3084376149322092,
+        "events": 43249
+      },
+      "development_samples": 11416,
+      "fit_samples": 93398,
+      "history": [
+        {
+          "ADE_m": 2.703244798199814,
+          "epoch": 1,
+          "events": 43249,
+          "train_loss": 1.7416257760563836
+        },
+        {
+          "ADE_m": 2.6185387494056944,
+          "epoch": 2,
+          "events": 43249,
+          "train_loss": 1.5584698863368216
+        },
+        {
+          "ADE_m": 2.5417842228604637,
+          "epoch": 3,
+          "events": 43249,
+          "train_loss": 1.4965436956921563
+        },
+        {
+          "ADE_m": 2.50336950642103,
+          "epoch": 4,
+          "events": 43249,
+          "train_loss": 1.414198534410508
+        },
+        {
+          "ADE_m": 2.4348768049776077,
+          "epoch": 5,
+          "events": 43249,
+          "train_loss": 1.4146882507319007
+        },
+        {
+          "ADE_m": 2.4161923248044754,
+          "epoch": 6,
+          "events": 43249,
+          "train_loss": 1.3976715050759863
+        },
+        {
+          "ADE_m": 2.4043670451782484,
+          "epoch": 7,
+          "events": 43249,
+          "train_loss": 1.3644151840705039
+        },
+        {
+          "ADE_m": 2.39225146575824,
+          "epoch": 8,
+          "events": 43249,
+          "train_loss": 1.3056082644097793
+        },
+        {
+          "ADE_m": 2.365046980742149,
+          "epoch": 9,
+          "events": 43249,
+          "train_loss": 1.301005718812265
+        },
+        {
+          "ADE_m": 2.3428808533912995,
+          "epoch": 10,
+          "events": 43249,
+          "train_loss": 1.2939923617357765
+        },
+        {
+          "ADE_m": 2.32247497266465,
+          "epoch": 11,
+          "events": 43249,
+          "train_loss": 1.2208529932251393
+        },
+        {
+          "ADE_m": 2.3084376149322092,
+          "epoch": 12,
+          "events": 43249,
+          "train_loss": 1.2504395253019907
+        }
+      ],
+      "sha256": "d9f17efd12cef7ae0d078ce26cc4f88ef1c1ff24b4827a908422986327ed9bac",
+      "training_freeze_sha256": "53d76250a9bc2045e64af1c2541a0101498c548bf754758d5e6862cedfd4ef80",
+      "variant": "position_plus_PC_FMCW_noisy_radial_velocity"
+    },
+    "position_plus_actor_level_LiDAR_features": {
+      "checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/models/deterministic_position_plus_actor_level_LiDAR_features.pt",
+      "development": {
+        "ADE_m": 2.6907505133213143,
+        "events": 21528
+      },
+      "development_samples": 5685,
+      "fit_samples": 22352,
+      "history": [
+        {
+          "ADE_m": 2.6907505133213143,
+          "epoch": 1,
+          "events": 21528,
+          "train_loss": 1.8971193947575309
+        },
+        {
+          "ADE_m": 2.729631767712398,
+          "epoch": 2,
+          "events": 21528,
+          "train_loss": 1.6243289898742328
+        },
+        {
+          "ADE_m": 2.7479827325169546,
+          "epoch": 3,
+          "events": 21528,
+          "train_loss": 1.5374881611628965
+        },
+        {
+          "ADE_m": 2.717012482653405,
+          "epoch": 4,
+          "events": 21528,
+          "train_loss": 1.554039020429958
+        },
+        {
+          "ADE_m": 2.7598458031038064,
+          "epoch": 5,
+          "events": 21528,
+          "train_loss": 1.4914503205906262
+        },
+        {
+          "ADE_m": 2.71846258361204,
+          "epoch": 6,
+          "events": 21528,
+          "train_loss": 1.5341201668435878
+        }
+      ],
+      "sha256": "06a29e59cc9ec2268bd227dd25ba28a27d9b31bc7fb2759b616f8cff0d7cca1a",
+      "training_freeze_sha256": "53d76250a9bc2045e64af1c2541a0101498c548bf754758d5e6862cedfd4ef80",
+      "variant": "position_plus_actor_level_LiDAR_features"
+    },
+    "position_plus_annotated_velocity": {
+      "checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/models/deterministic_position_plus_annotated_velocity.pt",
+      "development": {
+        "ADE_m": 0.7345462001627747,
+        "events": 43249
+      },
+      "development_samples": 11416,
+      "fit_samples": 93398,
+      "history": [
+        {
+          "ADE_m": 1.102156847986189,
+          "epoch": 1,
+          "events": 43249,
+          "train_loss": 1.0246002408650403
+        },
+        {
+          "ADE_m": 0.948189135785654,
+          "epoch": 2,
+          "events": 43249,
+          "train_loss": 0.6483187353024717
+        },
+        {
+          "ADE_m": 0.8513770617348089,
+          "epoch": 3,
+          "events": 43249,
+          "train_loss": 0.5743578006335295
+        },
+        {
+          "ADE_m": 0.8022759078199424,
+          "epoch": 4,
+          "events": 43249,
+          "train_loss": 0.547415084526187
+        },
+        {
+          "ADE_m": 0.7823106920587669,
+          "epoch": 5,
+          "events": 43249,
+          "train_loss": 0.5294796914025083
+        },
+        {
+          "ADE_m": 0.7656181194500613,
+          "epoch": 6,
+          "events": 43249,
+          "train_loss": 0.5153023835088386
+        },
+        {
+          "ADE_m": 0.7614334559103787,
+          "epoch": 7,
+          "events": 43249,
+          "train_loss": 0.5081099805936136
+        },
+        {
+          "ADE_m": 0.7423144137228967,
+          "epoch": 8,
+          "events": 43249,
+          "train_loss": 0.48230057221944217
+        },
+        {
+          "ADE_m": 0.7489400587262947,
+          "epoch": 9,
+          "events": 43249,
+          "train_loss": 0.4950704968692175
+        },
+        {
+          "ADE_m": 0.7507100987206713,
+          "epoch": 10,
+          "events": 43249,
+          "train_loss": 0.47901331091839106
+        },
+        {
+          "ADE_m": 0.7397984553630395,
+          "epoch": 11,
+          "events": 43249,
+          "train_loss": 0.47481170459523225
+        },
+        {
+          "ADE_m": 0.7345462001627747,
+          "epoch": 12,
+          "events": 43249,
+          "train_loss": 0.5147677016714232
+        }
+      ],
+      "sha256": "0311fbf317485e061ef43b67f7dfb3f297504afefaf7a1ad00aee339ba5386df",
+      "training_freeze_sha256": "53d76250a9bc2045e64af1c2541a0101498c548bf754758d5e6862cedfd4ef80",
+      "variant": "position_plus_annotated_velocity"
+    },
+    "position_plus_geometry_derived_radial_velocity": {
+      "checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/models/deterministic_position_plus_geometry_derived_radial_velocity.pt",
+      "development": {
+        "ADE_m": 2.1890241896398615,
+        "events": 43249
+      },
+      "development_samples": 11416,
+      "fit_samples": 93398,
+      "history": [
+        {
+          "ADE_m": 2.6813711326779233,
+          "epoch": 1,
+          "events": 43249,
+          "train_loss": 1.7529486919361386
+        },
+        {
+          "ADE_m": 2.6650691842224674,
+          "epoch": 2,
+          "events": 43249,
+          "train_loss": 1.5979957124574589
+        },
+        {
+          "ADE_m": 2.6394509725613235,
+          "epoch": 3,
+          "events": 43249,
+          "train_loss": 1.5369527092396886
+        },
+        {
+          "ADE_m": 2.6104145776401624,
+          "epoch": 4,
+          "events": 43249,
+          "train_loss": 1.4629968495968262
+        },
+        {
+          "ADE_m": 2.5637268505305038,
+          "epoch": 5,
+          "events": 43249,
+          "train_loss": 1.4607350135761532
+        },
+        {
+          "ADE_m": 2.560885594785248,
+          "epoch": 6,
+          "events": 43249,
+          "train_loss": 1.425947092921356
+        },
+        {
+          "ADE_m": 2.4926422443022527,
+          "epoch": 7,
+          "events": 43249,
+          "train_loss": 1.3891187375360499
+        },
+        {
+          "ADE_m": 2.3850920979567447,
+          "epoch": 8,
+          "events": 43249,
+          "train_loss": 1.3247499879592104
+        },
+        {
+          "ADE_m": 2.3092694001053493,
+          "epoch": 9,
+          "events": 43249,
+          "train_loss": 1.3010289844919423
+        },
+        {
+          "ADE_m": 2.274822901658492,
+          "epoch": 10,
+          "events": 43249,
+          "train_loss": 1.2858451474559762
+        },
+        {
+          "ADE_m": 2.2709737282581677,
+          "epoch": 11,
+          "events": 43249,
+          "train_loss": 1.201213284919822
+        },
+        {
+          "ADE_m": 2.1890241896398615,
+          "epoch": 12,
+          "events": 43249,
+          "train_loss": 1.2301288214537616
+        }
+      ],
+      "sha256": "1cc66f30508ad1466c3f89ab310c9c8ea17f83efd4f615b40419dc62634660be",
+      "training_freeze_sha256": "53d76250a9bc2045e64af1c2541a0101498c548bf754758d5e6862cedfd4ef80",
+      "variant": "position_plus_geometry_derived_radial_velocity"
+    },
+    "position_plus_measurement_covariance": {
+      "checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/models/deterministic_position_plus_measurement_covariance.pt",
+      "development": {
+        "ADE_m": 2.310655075546364,
+        "events": 43249
+      },
+      "development_samples": 11416,
+      "fit_samples": 93398,
+      "history": [
+        {
+          "ADE_m": 2.677624339828486,
+          "epoch": 1,
+          "events": 43249,
+          "train_loss": 1.7014732986200052
+        },
+        {
+          "ADE_m": 2.6895268261260377,
+          "epoch": 2,
+          "events": 43249,
+          "train_loss": 1.4965034606026821
+        },
+        {
+          "ADE_m": 2.687942723273768,
+          "epoch": 3,
+          "events": 43249,
+          "train_loss": 1.4503022627752336
+        },
+        {
+          "ADE_m": 2.65484765205012,
+          "epoch": 4,
+          "events": 43249,
+          "train_loss": 1.3716334104537964
+        },
+        {
+          "ADE_m": 2.604310799522641,
+          "epoch": 5,
+          "events": 43249,
+          "train_loss": 1.3728947082503897
+        },
+        {
+          "ADE_m": 2.589106710514622,
+          "epoch": 6,
+          "events": 43249,
+          "train_loss": 1.3555360201929436
+        },
+        {
+          "ADE_m": 2.527379688895444,
+          "epoch": 7,
+          "events": 43249,
+          "train_loss": 1.3166722492442104
+        },
+        {
+          "ADE_m": 2.501310636449867,
+          "epoch": 8,
+          "events": 43249,
+          "train_loss": 1.251494549662689
+        },
+        {
+          "ADE_m": 2.440692335259016,
+          "epoch": 9,
+          "events": 43249,
+          "train_loss": 1.2509791030258428
+        },
+        {
+          "ADE_m": 2.372518734401735,
+          "epoch": 10,
+          "events": 43249,
+          "train_loss": 1.2394511110144235
+        },
+        {
+          "ADE_m": 2.3607972719790125,
+          "epoch": 11,
+          "events": 43249,
+          "train_loss": 1.179999564840494
+        },
+        {
+          "ADE_m": 2.310655075546364,
+          "epoch": 12,
+          "events": 43249,
+          "train_loss": 1.1866320124089391
+        }
+      ],
+      "sha256": "a4a10594cc7ddcbdb4a18575a49cbcdc87b49bbab79c0eaca48711a2ec7d0104",
+      "training_freeze_sha256": "53d76250a9bc2045e64af1c2541a0101498c548bf754758d5e6862cedfd4ef80",
+      "variant": "position_plus_measurement_covariance"
+    },
+    "position_plus_past_only_estimated_velocity": {
+      "checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/models/deterministic_position_plus_past_only_estimated_velocity.pt",
+      "development": {
+        "ADE_m": 2.073296483936948,
+        "events": 43249
+      },
+      "development_samples": 11416,
+      "fit_samples": 93398,
+      "history": [
+        {
+          "ADE_m": 2.652364086114166,
+          "epoch": 1,
+          "events": 43249,
+          "train_loss": 1.723430521501218
+        },
+        {
+          "ADE_m": 2.5883631510537093,
+          "epoch": 2,
+          "events": 43249,
+          "train_loss": 1.5306681362006183
+        },
+        {
+          "ADE_m": 2.4249402747661075,
+          "epoch": 3,
+          "events": 43249,
+          "train_loss": 1.4648126884887778
+        },
+        {
+          "ADE_m": 2.2940921446070286,
+          "epoch": 4,
+          "events": 43249,
+          "train_loss": 1.3417219460987655
+        },
+        {
+          "ADE_m": 2.2147461761670066,
+          "epoch": 5,
+          "events": 43249,
+          "train_loss": 1.3120698244845281
+        },
+        {
+          "ADE_m": 2.1847978370661387,
+          "epoch": 6,
+          "events": 43249,
+          "train_loss": 1.2755650601100401
+        },
+        {
+          "ADE_m": 2.1627561706854856,
+          "epoch": 7,
+          "events": 43249,
+          "train_loss": 1.2475191722802126
+        },
+        {
+          "ADE_m": 2.1184995194749807,
+          "epoch": 8,
+          "events": 43249,
+          "train_loss": 1.1964321488239726
+        },
+        {
+          "ADE_m": 2.129820057029859,
+          "epoch": 9,
+          "events": 43249,
+          "train_loss": 1.1930656833726851
+        },
+        {
+          "ADE_m": 2.1138162492738273,
+          "epoch": 10,
+          "events": 43249,
+          "train_loss": 1.1897134819968802
+        },
+        {
+          "ADE_m": 2.0851718460072775,
+          "epoch": 11,
+          "events": 43249,
+          "train_loss": 1.122981368192558
+        },
+        {
+          "ADE_m": 2.073296483936948,
+          "epoch": 12,
+          "events": 43249,
+          "train_loss": 1.1559398024460006
+        }
+      ],
+      "sha256": "12a683045d2d38c4a4a72052ded455be6b1f8afd6ff0244c3e711620e2f20ef9",
+      "training_freeze_sha256": "53d76250a9bc2045e64af1c2541a0101498c548bf754758d5e6862cedfd4ef80",
+      "variant": "position_plus_past_only_estimated_velocity"
+    }
+  }
+}

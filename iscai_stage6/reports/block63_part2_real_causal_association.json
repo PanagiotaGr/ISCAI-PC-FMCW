@@ -1,0 +1,191 @@
+{
+  "adb_current_geometry": {
+    "allowed_classes": [
+      "TYPE_VEHICLE",
+      "TYPE_PEDESTRIAN",
+      "TYPE_CYCLIST"
+    ],
+    "box_builder_module": "iscai_stage6.adb.womd_geometry",
+    "box_builder_signature": "(*, scenario: 'Any', adapted: 'Any', allowed_classes: 'frozenset[str]' = frozenset({'TYPE_VEHICLE', 'TYPE_CYCLIST', 'TYPE_PEDESTRIAN'})) -> 'tuple[CausalADBActorBox, ...]'",
+    "box_builder_source": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/womd_geometry.py",
+    "finite_anchor_boxes": 9,
+    "future_box_state_used": false,
+    "invalid_anchor_boxes": 0,
+    "mode": "current_causal_annotation_assisted_box_shape_orientation",
+    "sensor_to_track_claim": false,
+    "total_boxes": 9
+  },
+  "association": {
+    "box_track_id_compared": false,
+    "controller_binding_source": "/home/agni/waymo/iscai_stage6/configs/block63_deterministic_predictive_binding.json",
+    "covariance_gate": false,
+    "distance": "Euclidean_3D_H0",
+    "exact_distance_ties": "unmatched",
+    "forced_global_assignment": false,
+    "free_numeric_hyperparameters": 0,
+    "future_GT_used": false,
+    "hard_distance_threshold": null,
+    "input_box_field": "CausalADBActorBox.stage1_anchor_center_H0_m",
+    "input_predictor_field": "CausalTrackHistory.latest_position_H0_m",
+    "match_count": 6,
+    "matched_anchor_distance_m": {
+      "maximum": 4.205123888107536,
+      "mean": 1.2878342753342906,
+      "minimum": 0.40407694559933527
+    },
+    "pairs_index_only": [
+      {
+        "adb_box_index": 5,
+        "anchor_distance_m": 0.40407694559933527,
+        "predictor_index": 4
+      },
+      {
+        "adb_box_index": 6,
+        "anchor_distance_m": 0.5590862260635352,
+        "predictor_index": 7
+      },
+      {
+        "adb_box_index": 2,
+        "anchor_distance_m": 0.8127317300877248,
+        "predictor_index": 10
+      },
+      {
+        "adb_box_index": 4,
+        "anchor_distance_m": 0.46292404215224037,
+        "predictor_index": 16
+      },
+      {
+        "adb_box_index": 0,
+        "anchor_distance_m": 4.205123888107536,
+        "predictor_index": 19
+      },
+      {
+        "adb_box_index": 7,
+        "anchor_distance_m": 1.2830628199953724,
+        "predictor_index": 24
+      }
+    ],
+    "policy": "reciprocal_unique_nearest_neighbor_current_anchor_H0_3D",
+    "pre_association_class_gate": false,
+    "prediction_id_to_box_id_equality_used": false,
+    "reactive_fallback_count": 3,
+    "reactive_fallback_fraction": 0.3333333333333333,
+    "reference_execution_only": true,
+    "truth_id_used": false,
+    "truth_track_index_used": false,
+    "unmatched_box_count": 3,
+    "unmatched_box_policy": "ORIGINAL_REACTIVE_ADB_FALLBACK",
+    "unmatched_predictor_count": 21,
+    "unmatched_predictor_policy": "IGNORE_FOR_ADB_BOX_CONTROL"
+  },
+  "block": "6.3_part2A_real_causal_association",
+  "deterministic_predictive_binding": {
+    "annotation_box_recentering": false,
+    "centroid_only_projection": false,
+    "full_box_projection": true,
+    "future_center_semantics": "predictor_latest_position_H0_m + metric_H0_mean_displacement",
+    "future_dimensions": "current_causal_L_W_H_held_explicit_across_forecast_horizons",
+    "future_signal": "Gaussian_mean_only",
+    "future_yaw": "frozen_Stage5_predicted_tangent_with_low_speed_carry_forward",
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "predictive_covariance_used": false,
+    "trajectory_family": "calibrated_Gaussian_GRU"
+  },
+  "development_selection": {
+    "class_based_selection": false,
+    "compact_record_offset": 0,
+    "formal_ids_read_only_for_exclusion": true,
+    "formal_outcome_metrics_read": false,
+    "formal_population_size": 120,
+    "frozen_pilot_ids": [
+      "b85e1bd6cc8e74c0",
+      "4d82fec943ddaa44",
+      "bbc29ed5e271f29b"
+    ],
+    "payload_length": 647785,
+    "performance_based_selection": false,
+    "policy": "first frozen Stage1 tiny-pilot scenario not present in frozen formal N120",
+    "selected_in_formal_population": false,
+    "selected_scenario_id": "b85e1bd6cc8e74c0"
+  },
+  "frozen_prerequisites": {
+    "binding": {
+      "pass": true,
+      "path": "/home/agni/waymo/iscai_stage6/configs/block63_deterministic_predictive_binding.json",
+      "sha256": "03903018109e7d5037643381ff71141a5c57f003b8bdc6b9be13bb4304468f67"
+    },
+    "block62_closure": {
+      "pass": true,
+      "path": "/home/agni/waymo/iscai_stage6/reports/block62_closure.json",
+      "sha256": "23b299b4dc6a123ce64a6ab1350b3ed9cb149c8fed176b37e9715d9935704d92"
+    },
+    "formal_manifest": {
+      "pass": true,
+      "path": "/home/agni/waymo/iscai_stage3/artifacts/block38e/formal_validation_120.jsonl",
+      "sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46"
+    },
+    "part1_report": {
+      "pass": true,
+      "path": "/home/agni/waymo/iscai_stage6/reports/block63_part1_deterministic_future_box.json",
+      "sha256": "871c8a81e43048ff2ccf7ef1844ad5433a859ff15b944749e13be9160b08256a"
+    },
+    "pilot_manifest": {
+      "pass": true,
+      "path": "/home/agni/waymo/iscai_stage1/artifacts/stage1a/manifests/tiny_pilot_validation.jsonl",
+      "sha256": "2b6fd3d7e5c411455708d325fc8595af11d99f3fcba4dde621928150695ca859"
+    }
+  },
+  "next_required_step": "Block6.3 Part2B: execute the frozen Stage4 calibrated Gaussian model on these identity-preserving causal histories; retain prediction_id and latest_position_H0_m in memory; use Gaussian mean only for deterministic future full boxes.",
+  "pdf_alignment": {
+    "class_aware_policies_not_claimed_complete": true,
+    "deterministic_predictive_adb_required": true,
+    "probabilistic_masks_not_claimed_complete": true,
+    "stage6_completion_not_claimed": true,
+    "stage6_sequence": "deterministic predictive full-box baseline before probabilistic occupancy and class-aware predictive ADB"
+  },
+  "purpose": "Execute the frozen real causal observation-to-history boundary on a development-only scenario and validate the frozen parameter-free current-anchor association before Gaussian model forward.",
+  "real_causal_route": {
+    "causal_anchor_field": "latest_position_H0_m",
+    "causal_history_count": 27,
+    "causal_timestamp_count": 11,
+    "config_packaging": "two_element_sequence",
+    "future_state_access": false,
+    "latest_observed_frame_max": 10,
+    "objects_of_interest_controller_use": false,
+    "prediction_ids_nonempty": true,
+    "prediction_ids_unique": true,
+    "scenario_current_time_index": 10,
+    "scenario_id": "b85e1bd6cc8e74c0",
+    "source": "frozen Stage2 PC-FMCW-like clean/degraded observation configuration through Stage4 build_real_causal_inputs",
+    "tracks_to_predict_controller_use": false,
+    "truth_id_controller_use": false
+  },
+  "regression": {
+    "log": "/home/agni/waymo/iscai_stage6/artifacts/block63/block63_part2_stage6_regression.log",
+    "log_sha256": "fe335742e3121a0cff551d6c6c262177b70d010deec36dd9ff3b5bbd8856fd6d",
+    "pass": true,
+    "return_code": 0,
+    "test_count": 98
+  },
+  "scientific_execution": {
+    "dataset_access": true,
+    "dataset_scope": "one_frozen_development_pilot_record",
+    "formal_evaluation": false,
+    "formal_results_used_for_parameter_selection": false,
+    "model_forward": false,
+    "parameter_tuning": false,
+    "recalibration": false,
+    "retraining": false,
+    "stage2_observation_execution": true,
+    "stage4_causal_history_materialization": true,
+    "training": false,
+    "upstream_modified": false
+  },
+  "stage": 6,
+  "status": "PASS_REAL_CAUSAL_ASSOCIATION_EXECUTED"
+}

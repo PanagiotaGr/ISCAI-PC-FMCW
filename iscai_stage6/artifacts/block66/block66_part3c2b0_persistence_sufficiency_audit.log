@@ -1,0 +1,151 @@
+==============================================================================
+BLOCK 6.6 PART3C/2B0 — SURROGATE PERSISTENCE SUFFICIENCY AUDIT
+==============================================================================
+
+===== A. IMMUTABLE UPSTREAM SEAL =====
+Part3C/2A report                    = EXACT PASS
+Part3C/2A handoff                   = EXACT PASS
+Part3C/1 report                     = EXACT PASS
+class_aware_policy.py               = EXACT PASS
+P_occ manifest                      = EXACT PASS
+eligible predictive matches         = EXACT PASS
+Part2C/2B P_occ report              = EXACT PASS
+Part2B posterior census             = EXACT PASS
+P_occ persistence contract          = EXACT PASS
+Part2C/2B runner current SHA256 = ac257ec2305bf18790855704167548c2d6f16136ef97a81944b2b751ced4a7ff
+
+===== B. EXHAUSTIVE P_OCC CACHE INVENTORY =====
+total files = 1754
+.npy files  = 877
+.json files = 877
+other files = 0
+
+===== C. SAMPLEWISE-PERSISTENCE METADATA PROOF =====
+distinct metadata key paths = 50
+maximum JSON size bytes = 2770
+samplewise trajectory/heading/box key paths = []
+
+metadata top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'frozen_seals', 'full_box_semantics', 'grid_shape', 'horizons_s', 'object_type', 'occupancy_counts', 'policy_boundary', 'posterior_family', 'prediction_id', 'probability', 'rasterization_semantics', 'same_seed_per_actor', 'sample_count', 'scenario_id', 'seed', 'status', 'summary']
+samplewise forecast persisted in P_occ cache = False
+
+===== D. PART2C/2B RUNNER PERSISTENCE AUDIT =====
+
+line 438 | save
+np.save(
+            handle,
+            array,
+            allow_pickle=False,
+        )
+
+line 1922 | build_stochastic_future_full_boxes
+build_stochastic_future_full_boxes(
+                prediction,
+                actor_box,
+                sample_count=N_MC,
+                seed=MC_SEED,
+            )
+
+line 1955 | estimate_actor_occupancy_probability
+estimate_actor_occupancy_probability(
+                forecast,
+                grid,
+            )
+
+runner source markers = {
+  "build_stochastic_future_full_boxes": true,
+  "estimate_actor_occupancy_probability": true,
+  "heading_samples_rad": false,
+  "occupancy_counts": true,
+  "trajectory_samples_H0_m": false
+}
+
+===== E. PERSISTENCE CONTRACT =====
+{
+  "block": "6.6-Part2C/2B",
+  "canonical_persisted_statistic": "occupancy_counts",
+  "class_policy_applied": false,
+  "compression": "NONE_NPY",
+  "dtype": "uint32",
+  "formal_outcomes_read": false,
+  "gamma_applied": false,
+  "grid_shape": [
+    501,
+    301
+  ],
+  "lossless_reason": "public_kernel_returns_uint32_counts_and_8192_equals_2_pow_13",
+  "probability_definition": "P_occ = occupancy_counts / 8192",
+  "probability_persisted_separately": false,
+  "probability_reconstruction_lossless": true,
+  "quantization": false,
+  "same_seed_per_actor": true,
+  "sample_count": 8192,
+  "scientific_kernel_modified": false,
+  "seed": 20260821,
+  "shape_per_actor": [
+    4,
+    501,
+    301
+  ],
+  "stage": 6,
+  "status": "FROZEN_BEFORE_FIRST_PART2C2B_ACTOR_SAMPLE",
+  "uint16_downcast": false
+}
+
+===== F. FROZEN POSTERIOR REPLAY INPUT ROUTE =====
+posterior path = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_identity_safe_gaussian_posterior.jsonl
+posterior SHA256 = f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd
+posterior records = 6925
+posterior common keys = ['calibrated_predictive_covariance_H0_m2', 'cohort_index', 'future_GT_used', 'horizons_s', 'latest_position_H0_m', 'mean_calibration', 'mean_displacement_H0_m', 'objects_of_interest_used', 'posterior_family', 'prediction_id', 'raw_predictive_covariance_H0_m2', 'scenario_id', 'tracks_to_predict_used', 'truth_id_used', 'variance_scale_alpha_h']
+
+===== G. EXACT REPLAY JOIN SUFFICIENCY =====
+vehicle predictive actors = 719
+877/877 manifest -> posterior join = PASS
+877/877 manifest -> current_box join = PASS
+
+example vehicle key = ('f72a05a05035feb8', 's3trk-000027', 0, 0)
+example current_box_H0 keys = ['center_xyz_H0_m', 'height_m', 'length_m', 'width_m', 'yaw_rad']
+example posterior replay inputs = {'calibrated_predictive_covariance_H0_m2': 'list', 'latest_position_H0_m': 'list', 'mean_displacement_H0_m': 'list', 'prediction_id': 'str', 'scenario_id': 'str'}
+
+===== H. SCIENTIFIC ROUTE CLASSIFICATION =====
+samplewise samples persisted = False
+exact-cache subregion reconstruction possible = False
+frozen deterministic replay inputs complete = True
+replay executed in this audit = NO
+surrogate occupancy materialized = NO
+authoritative next-route status = REQUIRES_PRE_SWEEP_DETERMINISTIC_REPLAY_ADDENDUM
+
+===== I. FRESH STAGE6 REGRESSION =====
+......................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 166 tests in 0.175s
+
+OK
+Stage6 regression = PASS | 166
+
+===== J. PART3C/2B0 REPORT + HANDOFF =====
+report = /home/agni/waymo/iscai_stage6/reports/block66_part3c2b0_persistence_sufficiency_audit.json
+report SHA256 = 2f4fedacaf306b936e96448ea19fb315f9e6db7a95afb3607618099153c38b8d
+handoff = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3c2b0_to_part3c2b1_handoff.json
+handoff SHA256 = 1eeb2ca77dfd8068465a3d0d5f88843dec528c76c3729f8f690b6ca377d89e64
+
+==============================================================================
+BLOCK 6.6 PART3C/2B0 — FINAL
+==============================================================================
+STATUS = PASS_SURROGATE_PERSISTENCE_SUFFICIENCY_AUDITED
+cache .npy/.json           = 877 / 877
+samplewise forecast cached = False
+posterior replay route      = COMPLETE
+manifest -> posterior       = PASS | 877/877
+manifest -> current box     = PASS | 877/877
+predictive vehicles         = 719
+replay executed             = NO
+surrogate materialized      = NO
+policy sweep                = NO
+numeric policy selected     = NO
+formal outcomes read        = NO
+Stage6 regression           = PASS | 166
+NEXT ROUTE = REQUIRES_PRE_SWEEP_DETERMINISTIC_REPLAY_ADDENDUM
+report SHA256               = 2f4fedacaf306b936e96448ea19fb315f9e6db7a95afb3607618099153c38b8d
+handoff SHA256              = 1eeb2ca77dfd8068465a3d0d5f88843dec528c76c3729f8f690b6ca377d89e64
+terminal remains open = YES
+==============================================================================

@@ -1,0 +1,31 @@
+{
+  "Part1": {
+    "report": "/home/agni/waymo/iscai_stage6/reports/block67_part1_margin_binding_gate.json",
+    "sha256": "80c35d2aa5cd7fea1e54f7a6cb52b8bb0f28f36632ca66e6500f992dcff6d5cf",
+    "status": "PASS_RUNTIME_BINDING_FROZEN"
+  },
+  "Part2": {
+    "report": "/home/agni/waymo/iscai_stage6/reports/block67_part2_baseline_metric_gate.json",
+    "sha256": "2cb4289a2b8cfa2e7c346b17c0fee0d814aca525d1b03fbdeb21d922cfbaba28",
+    "status": "PASS_BASELINE_METRIC_CONTRACT_FROZEN"
+  },
+  "block": "6.7",
+  "formal_evaluation_started": false,
+  "formal_parameter_tuning": false,
+  "frozen_scientific_contract": {
+    "ADB_baselines": 7,
+    "ADB_metrics": 12,
+    "Part_A_generic_margin_reapplied": false,
+    "class_margin_runtime_binding": "m_extra_only",
+    "metric_formula_freeze": "BLOCK6.8",
+    "oracle": "CONSTRUCTED_EVALUATOR_ONLY"
+  },
+  "full_stage6_regression": {
+    "status": "PASS",
+    "tests": 181
+  },
+  "project": "Agni",
+  "stage": 6,
+  "status": "PASS_COMPLETE",
+  "upstream_modified": false
+}

@@ -1,0 +1,31 @@
+{
+  "N_MC_8192_executed": false,
+  "after": {
+    "parser": "Ran N tests",
+    "regression_command": "python -m unittest discover -s <Stage6 tests> -p test_*.py",
+    "runner_sha256": "990427860e83977eadda43862baa38e844269b7e1dcfb8f058ebc045661c908f"
+  },
+  "association_changed": false,
+  "before": {
+    "parser": "(N passed)",
+    "regression_command": "python -m pytest -q <Stage6 tests>",
+    "runner_sha256": "3025525f9cc30a7728e24c2777206262d59ed2c6f8787ba71024fe39a1d9fcd2"
+  },
+  "block": "6.6-Part2B",
+  "calibration_changed": false,
+  "classification": "TOOLING_ONLY_NOT_SCIENTIFIC",
+  "cohort_changed": false,
+  "formal_outcomes_read": false,
+  "model_changed": false,
+  "normalization_changed": false,
+  "pre_repair_scientific_seal": {
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2b_pre_unittest_scientific_seal.json",
+    "sha256": "a9a52556c14d21d1cf4955de87dc93fbcad27d5943407dae9c7ffce94013367a"
+  },
+  "pytest_installed_or_modified": false,
+  "repair": "regression_harness",
+  "scene_cache_changed": false,
+  "scientific_outputs_changed": false,
+  "stage": 6,
+  "status": "PASS_UNITTEST_REGRESSION_HARNESS_REPAIRED"
+}

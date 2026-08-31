@@ -1,0 +1,72 @@
+{
+  "PDF_scope": {
+    "class_agnostic_predictive_ADB": false,
+    "class_aware_predictive_ADB": false,
+    "deterministic_predictive_ADB": false,
+    "final_Stage6_completion_gate_evaluated": false,
+    "oracle_future_ADB": false,
+    "original_reactive_baseline_ready": true,
+    "predictive_full_box": false,
+    "uncertainty_aware_predictive_ADB": false
+  },
+  "binding": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block62_part_a_reactive_binding.json",
+    "sha256": "a9773e94de81c1d2d081ddb7264f062690c761057ee8dc2c303b1c0e7f6554b0"
+  },
+  "block": "6.2",
+  "causality": {
+    "future_mutation_invariant": true,
+    "future_states": false,
+    "objects_of_interest": false,
+    "tracks_to_predict": false
+  },
+  "execution": {
+    "corpus_scan": false,
+    "formal_evaluation": false,
+    "parameter_tuning": false,
+    "training": false,
+    "trajectory_model_inference": false
+  },
+  "formal_policy": {
+    "formal_common_grid_frozen": false,
+    "formal_original_reactive_input": "CAUSAL_TRACK_BASED_PC_FMCW_LIKE",
+    "formal_parameter_tuning": false,
+    "grid_freeze": "BLOCK6.8_PRE_FORMAL"
+  },
+  "implementation": {
+    "H0_to_PartA_conversion": true,
+    "TRZ_visual_transition_units": 8.0,
+    "control_transition_length_m": 20.0,
+    "control_visual_transition_conflated": false,
+    "dynamic_uses_fixed_epsilon": false,
+    "exact_dynamic_width_margin_geometry": true,
+    "fixed_demo_epsilon_deg": 0.75,
+    "module": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/part_a_reactive.py",
+    "module_sha256": "19f80f325aebc03b5257ca3c0408d1ddea1ac3a8ff4ad875914224584e2ef173",
+    "multi_actor_minimum": true,
+    "original_reactive_ADB": "IMPLEMENTED",
+    "static_ADB": "IMPLEMENTED"
+  },
+  "next": "Block6.3 deterministic predictive future full-box projection",
+  "part": "2/2",
+  "project": "Agni",
+  "real_smoke": {
+    "annotation_role": "GEOMETRY_INTEGRATION_ONLY",
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block62/block62_real_causal_reactive_smoke.json",
+    "scenario_id": "b85e1bd6cc8e74c0",
+    "sha256": "f8d84cf63804da1581ff751a965f6f066d0f90038ce66f961fab45d00f9d95e3",
+    "vehicle_count": 9
+  },
+  "regression": {
+    "Stage6": "PASS",
+    "log": "/home/agni/waymo/iscai_stage6/artifacts/block62/block62_part2_full_stage6_regression.log"
+  },
+  "source_parity": {
+    "pass": true,
+    "real_scene_max_abs_error": 0.0,
+    "synthetic_max_abs_error": 0.0
+  },
+  "stage": 6,
+  "status": "PASS_EXACT_ORIGINAL_REACTIVE_ADB",
+  "upstream_modified": false
+}

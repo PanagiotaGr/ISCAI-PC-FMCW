@@ -1,0 +1,43 @@
+{
+  "aliases": {
+    "nearest_connected_vehicle_ahead": "nearest_causal_vehicle_ahead"
+  },
+  "available_policies": [
+    "preceding_connected_vehicle",
+    "nearest_causal_vehicle_ahead",
+    "oncoming_connected_vehicle",
+    "fixed_causal_target",
+    "highest_expected_link_utility"
+  ],
+  "block": "5.1",
+  "existing_receiver_candidate_modified": false,
+  "existing_receiver_policy_json_modified": false,
+  "existing_stage3_receiver_bridge_modified": false,
+  "formal_policy": {
+    "primary": "nearest_causal_vehicle_ahead",
+    "selection_on_formal_results": false
+  },
+  "leakage_guards": {
+    "formal_N120_read": false,
+    "future_truth_receiver_selector": false,
+    "perfect_WOMD_track_ID_control_feature": false,
+    "realized_future_link_utility": false,
+    "tracks_to_predict_receiver_selector": false
+  },
+  "policy_specific_metadata": {
+    "fields": [
+      "association_key",
+      "causal_is_preceding",
+      "causal_is_oncoming",
+      "current_heading_h0_rad",
+      "expected_link_utility"
+    ],
+    "future_ground_truth": false,
+    "predictor_numeric_feature": false,
+    "representation": "causal_sidecar_aligned_to_existing_candidate_order"
+  },
+  "primary_policy": "nearest_causal_vehicle_ahead",
+  "primary_policy_changed": false,
+  "repair": "configurable_receiver_policy_registry",
+  "status": "FROZEN_BLOCK51_REPAIR"
+}

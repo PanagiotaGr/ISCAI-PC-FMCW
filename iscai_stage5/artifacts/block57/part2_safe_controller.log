@@ -1,0 +1,140 @@
+============================================================
+BLOCK 5.7 PART 2/2 — SAFE EXECUTION
+============================================================
+
+===== CONTROLLED COMPILE =====
+beam_latency.py = PASS
+test_block57_latency_controller.py = PASS
+run_block57_part2_freeze.py = PASS
+run_block57_part2_safe.py = PASS
+
+===== BLOCK5.7 UNIT TESTS =====
+
+....................
+----------------------------------------------------------------------
+Ran 20 tests in 0.001s
+
+OK
+
+Block5.7 tests = 20 / 20 PASS
+
+===== PRE-FREEZE FULL STAGE5 REGRESSION =====
+
+..................................................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 226 tests in 0.071s
+
+OK
+
+pre-freeze Stage5 regression = 226 / 226 PASS
+
+===== FINAL BLOCK5.7 FREEZE =====
+============================================================
+STAGE 5 — BLOCK 5.7 PART 2/2
+TIMING / LATENCY-AWARE CONTROLLER FREEZE
+============================================================
+
+===== A. FROZEN CONTINUITY =====
+Block5.6                 = COMPLETE / FROZEN
+historical implementation = PASS
+optical policy SHA       = PASS
+Part1 timing audit       = PASS
+
+===== B. EXACT TIMING SOURCE RESOLUTION =====
+Part-A Tchirp             = 10 us EXACT
+Part-A assignment count   = 1
+WOMD timestamp interval   = 100 ms VERIFIED
+Stage0 timing-test SHA    = 4d1b478bf181c55035bffc358a62992c55327db4906117247c595155f42f0877
+
+===== C. TBEAM / TFRAME FREEZE =====
+Tbeam                    = 10 us FROZEN
+Tbeam classification     = CONSTRUCTED ONE-CHIRP PROBE BASELINE
+Tbeam measured training  = NO
+Tframe                   = 100 ms FROZEN
+Tframe classification    = WOMD SCENE/CONTROLLER ACCOUNTING CYCLE
+Tframe measured optical frame = NO
+
+===== D. BEAM-PROBING OVERHEAD =====
+16 beams: overhead=0.1600% zero-BER Reff=998.400 Mbps
+32 beams: overhead=0.3200% zero-BER Reff=996.800 Mbps
+64 beams: overhead=0.6400% zero-BER Reff=993.600 Mbps
+
+===== E. LATENCY-AWARE CONTROLLER CONTRACT =====
+tau_total formula         = tau_total_equals_sensing_plus_preprocessing_plus_tracking_plus_inference_plus_beam_probing_plus_actuation
+tau_inference split       = PREDICTOR + BEAM SELECTION
+data loading in tau_total = NO / REPORTED SEPARATELY
+prediction target         = t + tau_total EXACT
+sub-100ms state source    = CAUSAL MODEL-BASED REFINEMENT
+annotated ms GT           = NO
+100ms online deadline     = EXPLICIT
+
+===== F. RUNTIME INSTRUMENTATION CONTRACT =====
+clock                     = time.perf_counter_ns
+GPU timing                = synchronize_before_and_after_GPU_segment
+measure separately        = DATA LOAD / PREPROCESS / TRACK / PREDICTOR / BEAM SELECT
+beam probing latency      = K * 10 us
+actuation latency         = EXPLICIT COMPONENT
+full Stage5 runtime       = FORMAL MEASUREMENT IN BLOCK5.8
+
+============================================================
+BLOCK 5.7 PART 2/2 GATE
+============================================================
+Part1 timing audit          = PASS
+Part-A Tchirp               = 10 us VERIFIED
+Tbeam                       = 10 us FROZEN
+Tbeam provenance            = CONSTRUCTED ONE-CHIRP PROBE
+WOMD scene interval         = 100 ms VERIFIED
+Tframe                      = 100 ms FROZEN
+Tframe optical measurement  = NO
+effective-rate timings      = FULLY FROZEN
+latency target              = t + tau_total
+sub-100ms annotated GT      = NO
+runtime instrumentation     = FROZEN
+formal runtime measurement  = BLOCK5.8
+formal N=120 used           = NO
+Stage4 inference            = NO
+training/recalibration      = NO
+policy SHA256               = aa04f2e73da591b87f2ab2e962d1b69c1bad645c043c0d15970dbf0990080ed0
+implementation files        = 84
+implementation SHA256       = ee5afade5b566f030bb286e030b6a6b685113410651cccf6d294f67760255ee9
+STATUS = PASS
+Block5.7 = COMPLETE / FROZEN
+report = /home/agni/waymo/iscai_stage5/reports/block57_latency_controller.json
+next = BLOCK 5.8
+terminal remains open = YES
+
+Block5.7 freeze raw code = 0
+
+===== FINAL FULL STAGE5 REGRESSION =====
+
+..................................................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 226 tests in 0.074s
+
+OK
+
+final Stage5 regression = 226 / 226 PASS
+
+============================================================
+BLOCK 5.7 FINAL
+============================================================
+Part-A Tchirp              = 10 us VERIFIED
+Tbeam                      = 10 us FROZEN
+Tbeam semantics            = ONE-CHIRP PROBE BASELINE
+WOMD scene interval        = 100 ms VERIFIED
+Tframe                     = 100 ms FROZEN
+Tframe optical measurement = NO
+effective-rate timing      = FULLY FROZEN
+prediction target           = t + tau_total
+sub-100ms annotated GT      = NO
+latency instrumentation     = FROZEN
+formal runtime measurement  = BLOCK5.8
+formal N=120 used           = NO
+Stage4 inference            = NO
+Stage5 regression           = 226 / 226 PASS
+policy SHA256               = aa04f2e73da591b87f2ab2e962d1b69c1bad645c043c0d15970dbf0990080ed0
+implementation SHA256       = ee5afade5b566f030bb286e030b6a6b685113410651cccf6d294f67760255ee9
+scientific STATUS           = PASS
+Block5.7                    = COMPLETE / FROZEN
+next                        = BLOCK 5.8
+terminal remains open       = YES

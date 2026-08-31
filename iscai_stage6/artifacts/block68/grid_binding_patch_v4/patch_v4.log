@@ -1,0 +1,75 @@
+============================================================
+BLOCK 6.8 PART2B PART1 GRID PATCH V4
+WHOLE-RUNNER + OLD-FUNCTION SHA SEALED
+RUNNER-ONLY REPAIR / NO SCIENTIFIC CHANGE
+============================================================
+
+===== A. EXACT PRE-PATCH STATE =====
+whole-runner SHA = EXACT PASS
+grid-binding SHA = EXACT PASS
+
+===== B. PRE-SCIENTIFIC-OUTPUT BOUNDARY =====
+reactive maps       = ABSENT
+decision ledger     = ABSENT
+decision report     = ABSENT
+performance outcomes= NOT READ
+future truth        = NOT READ
+
+===== C. EXACT AST TARGET =====
+resolve_grid count = 1
+resolve_grid lines = 461..722
+old function SHA   = EXACT PASS
+
+===== D. VERIFIED BACKUP =====
+backup SHA = EXACT PASS
+
+===== E. BUILD SINGLE-FUNCTION REPLACEMENT =====
+whole-file syntax    = PASS
+binding filename AST = PASS
+binding SHA AST      = PASS
+binding status AST   = PASS
+heuristic resolver   = REMOVED
+other top-level functions = BYTE-EXACT PASS
+
+===== F. TRANSACTIONAL PATCH =====
+patched runner compile = PASS
+Stage6 regression      = 224 / 224 PASS
+
+===== G. POST-PATCH READBACK =====
+post-patch AST binding = PASS
+post-patch runner SHA  = c7bedc46e1dc687258b6d81790f54a3c05d7d2e55da8b7e681bd379d1058579e
+
+===== H. SCIENTIFIC BOUNDARY =====
+scientific parameter edit = NO
+controller/metric edit    = NO
+reactive performance      = NOT READ
+predictive performance    = NOT READ
+future truth              = NOT READ
+P_occ content             = NOT OPENED
+exact NI deltas           = NOT COMPUTED
+
+============================================================
+BLOCK 6.8 PART2B PART1 GRID PATCH V4 — FINAL
+============================================================
+whole-runner pre SHA       = EXACT PASS
+old resolve_grid SHA       = EXACT PASS
+AST resolve_grid target    = UNIQUE
+binding path validation    = SEMANTIC AST PASS
+binding SHA validation     = SEMANTIC AST PASS
+all other functions        = BYTE-EXACT PASS
+frozen grid binding        = EXACT PASS
+resolve_grid repair        = APPLIED
+heuristic grid discovery   = DISABLED
+numeric invention          = NO
+scientific parameter edit  = NO
+controller/metric edit     = NO
+reactive performance       = NOT READ
+predictive performance     = NOT READ
+future truth               = NOT READ
+P_occ content              = NOT OPENED
+exact NI deltas            = NOT COMPUTED
+Stage6 regression          = 224 / 224 PASS
+patched runner SHA256      = c7bedc46e1dc687258b6d81790f54a3c05d7d2e55da8b7e681bd379d1058579e
+STATUS = PASS_PART2B_PART1_GRID_BINDING_PATCHED_V4
+report = /home/agni/waymo/iscai_stage6/reports/block68_part2b_part1_grid_binding_patch_v4.json
+terminal remains open = YES

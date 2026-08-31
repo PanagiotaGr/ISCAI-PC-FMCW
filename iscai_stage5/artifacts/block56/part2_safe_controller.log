@@ -1,0 +1,140 @@
+============================================================
+BLOCK 5.6 PART 2/2 — SAFE EXECUTION
+============================================================
+
+===== CONTROLLED COMPILE =====
+optical_link.py = PASS
+test_block56_optical_link.py = PASS
+run_block56_part2_freeze.py = PASS
+run_block56_part2_safe.py = PASS
+
+===== BLOCK5.6 UNIT TESTS =====
+
+....................
+----------------------------------------------------------------------
+Ran 20 tests in 0.001s
+
+OK
+
+Block5.6 tests = 20 / 20 PASS
+
+===== PRE-FREEZE FULL STAGE5 REGRESSION =====
+
+..............................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 206 tests in 0.084s
+
+OK
+
+pre-freeze Stage5 regression = 206 / 206 PASS
+
+===== FINAL BLOCK5.6 FREEZE =====
+============================================================
+STAGE 5 — BLOCK 5.6 PART 2/2
+OPTICAL LINK + DPSK + EFFECTIVE-RATE FREEZE
+============================================================
+
+===== A. FROZEN CONTINUITY =====
+Block5.5                   = COMPLETE / FROZEN
+adaptive policy SHA        = PASS
+codebook policy SHA        = PASS
+Part-A source audit        = PASS
+Part-A effective_rate      = NOT DEFINED
+
+===== B. H0 / HEADLAMP FRAME RESOLUTION =====
+H0 semantic                 = HEADLAMP SURROGATE FRAME
+baseline translation        = [L_SDC/2, 0, 0]
+baseline rotation           = IDENTITY
+configurable extrinsic      = YES
+second H0->headlamp transform = NO
+
+===== C. PART-A COMMUNICATION ANCHOR =====
+raw data rate               = 1.0 Gbps
+reference signal power      = 1 NORMALIZED
+reference noise power       = 0.01 NORMALIZED
+reference SNR               = 100 = 20 dB
+absolute optical Watts      = NOT CLAIMED
+
+===== D. POINTING -> GAIN -> POWER -> SNR -> BER =====
+Gopt model                  = CONSTRUCTED STAGE5 2-D GAUSSIAN
+HPBW azimuth                = CODEBOOK CELL WIDTH
+HPBW elevation              = SAME BASELINE WIDTH
+Lgeo baseline               = 1
+Latm baseline               = 1
+additional Lpoint baseline  = 1
+aligned normalized PRX       = 1 PASS
+aligned SNR                  = 20 dB PASS
+DPSK BER model              = 0.5 exp(-SNR)
+Part-A measured BER curve   = NO
+
+===== E. EFFECTIVE-RATE FREEZE =====
+Reff formula                 = Rraw*(1-BER)*max(0,1-K*Tbeam/Tframe)
+raw link rate                = 1 Gbps
+K                            = ACTUAL PROBED BEAM COUNT
+Tbeam numeric freeze         = BLOCK5.7
+Tframe numeric freeze        = BLOCK5.7
+formula frozen before formal = YES
+
+============================================================
+BLOCK 5.6 PART 2/2 GATE
+============================================================
+H0 transmitter/headlamp frame = RESOLVED
+second headlamp extrinsic      = NO
+Part-A raw rate                = 1 Gbps FROZEN
+Part-A reference SNR           = 20 dB FROZEN
+received power units           = NORMALIZED / NOT WATTS
+pointing -> Gopt               = PASS
+Gopt provenance                = CONSTRUCTED STAGE5
+Gopt -> PRX -> SNR             = PASS
+SNR -> DPSK BER                = PASS
+BER -> effective rate          = PASS
+effective-rate formula         = FROZEN
+Tbeam/Tframe values            = BLOCK5.7
+formal N=120 used              = NO
+Stage4 inference               = NO
+training/recalibration         = NO
+policy SHA256                  = 2075f0d0f3128af94c5d5ed99f0da4dba87e08ace69de542bec4c9dd4454302b
+implementation files           = 77
+implementation SHA256          = 75647e018841a65760b122d619dd11f9cd5e74e551ece0f64ea19e6189486df9
+STATUS = PASS
+Block5.6 = COMPLETE / FROZEN
+report = /home/agni/waymo/iscai_stage5/reports/block56_optical_link.json
+next = BLOCK 5.7
+terminal remains open = YES
+
+Block5.6 freeze raw code = 0
+
+===== FINAL FULL STAGE5 REGRESSION =====
+
+..............................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 206 tests in 0.076s
+
+OK
+
+final Stage5 regression = 206 / 206 PASS
+
+============================================================
+BLOCK 5.6 FINAL
+============================================================
+H0 transmitter/headlamp frame = FROZEN / RESOLVED
+second headlamp extrinsic      = NO
+Part-A raw rate                = 1 Gbps
+Part-A AWGN reference SNR      = 20 dB
+received power                 = NORMALIZED PART-A UNITS
+absolute Watt claim            = NO
+pointing -> Gopt               = FROZEN
+Gopt                           = CONSTRUCTED STAGE5 2-D GAUSSIAN
+Gopt -> PRX -> SNR             = FROZEN
+SNR -> DPSK BER                = FROZEN
+effective-rate formula         = FROZEN
+Tbeam/Tframe numeric values    = BLOCK5.7
+formal N=120 used              = NO
+Stage4 inference               = NO
+Stage5 regression              = 206 / 206 PASS
+policy SHA256                  = 2075f0d0f3128af94c5d5ed99f0da4dba87e08ace69de542bec4c9dd4454302b
+implementation SHA256          = 75647e018841a65760b122d619dd11f9cd5e74e551ece0f64ea19e6189486df9
+scientific STATUS              = PASS
+Block5.6                       = COMPLETE / FROZEN
+next                           = BLOCK 5.7
+terminal remains open          = YES

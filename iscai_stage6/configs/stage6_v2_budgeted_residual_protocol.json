@@ -1,0 +1,70 @@
+{
+  "PDF_alignment": {
+    "Part_A_L_theta_r_preserved": true,
+    "VRU_visibility_guard": true,
+    "actuation_rate_validity_preserved": true,
+    "class_aware": true,
+    "future_probabilistic_region": true,
+    "raised_cosine_preserved": true,
+    "temporal_smoothing_preserved": true
+  },
+  "controller": {
+    "VRU_guard": "exclude spatial cells protected by the existing class-aware VRU floor guard",
+    "extra_predictive_support_budget_fraction": 0.02,
+    "future_GT_controller_input": false,
+    "grid_cells": 150801,
+    "maximum_extra_spatial_cells": 3016,
+    "name": "causal_budgeted_predictive_residual_ADB",
+    "oracle_controller_input": false,
+    "predictive_candidate": "V1 class-aware post-temporal-smoothing post-actuation-rate-limit illumination",
+    "ranking": [
+      "deeper predictive dimming first",
+      "more horizon persistence second",
+      "canonical flat actuator index third"
+    ],
+    "reactive_base": "frozen original_reactive_ADB t0 map",
+    "temporal_semantics": "each spatial cell is either held at the causal reactive t0 value or keeps its complete V1 post-rate-limit sequence",
+    "tracks_to_predict_control_input": false
+  },
+  "evaluation": {
+    "Stage6_PDF_completion_gate": "four frozen safety/completion criteria",
+    "development_population": "same frozen Stage6 120-scenario development cohort",
+    "formal_population_read": false,
+    "note": "The separate formal-N=120 choice is an internal implementation-continuity choice, not a literal PDF Stage6 completion requirement. V2 is frozen after this development evaluation; no later Stage6 retuning is permitted."
+  },
+  "final_Stage5_authority": {
+    "Stage5_PDF_scope": "PASS_100_PERCENT",
+    "certificate_sha256": "f91a0d21ed752b1e1e67096ca8af1ea061145869605525b232f6bccf1c26efe1",
+    "closure_sha256": "e376a9274826f80b7ffcf6d031c0f44c792cb025a44a4675e95ded467e526e34",
+    "handoff_sha256": "ac6564dbfe537f39fe70e7f2e92a7b2a5509aa3285d1037983924714bca36124"
+  },
+  "hard_overmask_guarantee": {
+    "metric": "|D \\ O| / |full actuator grid|",
+    "proof": "D_V2(h) is a subset of D_reactive union E; |E| <= floor(0.02*N_grid), therefore overmask_V2(h)-overmask_reactive(h) <= |E|/N_grid <= 0.02 for every horizon.",
+    "same_old_NI_bound": 0.02
+  },
+  "methodological_boundary": {
+    "Stage4_recalibration": false,
+    "Stage4_retraining": false,
+    "Stage5_scientific_result_modified": false,
+    "V1_acceptance_threshold_changed": false,
+    "V1_negative_result_preserved": true,
+    "V1_relabelled_as_PASS": false,
+    "V2_designed_after_V1_development_failure": true,
+    "formal_outcomes_used_for_V2_design": false
+  },
+  "stage": 6,
+  "status": "FROZEN_BEFORE_STAGE6_V2_EXECUTION",
+  "trajectory_posterior": {
+    "absolute_position_semantics": "latest_position_H0_m + mean_displacement_H0_m",
+    "recalibration": false,
+    "source": "frozen calibrated Stage4 Gaussian GRU"
+  },
+  "unchanged_acceptance": {
+    "cyclist": "predictive_mean - reactive_mean >= -0.05",
+    "overmask": "predictive_mean - reactive_mean <= 0.02",
+    "pedestrian": "predictive_mean - reactive_mean >= -0.05",
+    "vehicle": "predictive_mean < reactive_mean"
+  },
+  "version": "Stage6-V2-budgeted-residual"
+}

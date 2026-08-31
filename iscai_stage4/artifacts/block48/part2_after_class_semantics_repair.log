@@ -1,0 +1,167 @@
+============================================================
+BLOCK 4.8 PART 2/2 — SAFE CONTROLLER
+============================================================
+
+===== CONTROLLED COMPILE =====
+formal_runtime.py = PASS
+test_block48_formal_runtime.py = PASS
+run_block48_formal_evaluation.py = PASS
+
+===== NEW PART2 UNIT TESTS =====
+
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+OK
+
+
+===== PRE-FORMAL FULL REGRESSION =====
+
+..................................................................................................................
+----------------------------------------------------------------------
+Ran 114 tests in 0.407s
+
+OK
+
+pre-formal regression = 114 / 114 PASS
+
+===== FROZEN FORMAL N=120 RUN =====
+============================================================
+STAGE 4 — BLOCK 4.8 FROZEN FORMAL N=120 EVALUATION
+============================================================
+formal manifest N          = 120 PASS
+formal manifest SHA        = PASS
+validation manifest        = /home/agni/waymo/iscai_data_prep/manifests/selected_validation.jsonl
+validation manifest rows   = 44097
+all formal IDs resolvable = PASS
+Stage3 formal run SHA      = PASS
+fit-only normalization     = PASS
+formal training            = NO
+formal model selection     = NO
+formal calibration fit     = NO
+
+deterministic class        = iscai_stage4.ml.deterministic_gru.DeterministicTrajectoryGRU
+deterministic state load   = PASS
+Gaussian state load        = PASS
+GMM state load             = PASS
+
+===== FORMAL SAMPLE SCHEMA PROBE =====
+probe scenario             = cfd33c593d645bf5
+truth-index metadata source= sample.truth_track_index
+all causal predictions     = 50
+eligible formal targets    = 6
+matched formal targets     = 5
+tracks_to_predict access   = AFTER PREDICTION PASS
+
+============================================================
+FORMAL N=120 NEURAL INFERENCE CACHE
+============================================================
+formal: 10/120 | matched=48 | eligible=55 | reused=1
+formal: 20/120 | matched=99 | eligible=113 | reused=1
+formal: 30/120 | matched=152 | eligible=172 | reused=1
+formal: 40/120 | matched=197 | eligible=219 | reused=1
+formal: 50/120 | matched=254 | eligible=278 | reused=1
+formal: 60/120 | matched=298 | eligible=328 | reused=1
+formal: 70/120 | matched=342 | eligible=375 | reused=1
+formal: 80/120 | matched=391 | eligible=428 | reused=1
+formal: 90/120 | matched=413 | eligible=455 | reused=1
+formal: 100/120 | matched=436 | eligible=481 | reused=1
+formal: 110/120 | matched=467 | eligible=518 | reused=1
+formal: 120/120 | matched=494 | eligible=547 | reused=1
+
+matched formal targets     = 494
+eligible formal targets    = 547
+merged formal output SHA   = fe5cf7e413b8142c0670d05727affd4fa573cf4607665e4a9bda951f1d9bd0d5
+
+===== EXACT FORMAL INFERENCE REPEAT =====
+formal inference repeat    = 4 / 4 PASS
+
+============================================================
+STAGE4 BLOCK 4.8 FORMAL GATE
+============================================================
+formal scenarios              = 120 / 120
+formal manifest SHA           = PASS
+Stage3 formal run SHA         = PASS
+tracks_to_predict after pred  = PASS
+formal training               = NO
+formal model selection        = NO
+formal recalibration          = NO
+
+TARGET AVAILABILITY
+eligible formal targets      = 547
+matched neural targets       = 494
+matched-target recall        = 0.903108
+
+NEURAL FORMAL METRICS
+deterministic ADE m          = 1.9778
+Gaussian ADE m               = 1.984895
+Gaussian 1.0s FDE m          = 3.319814
+GMM mixture ADE m            = 1.973987
+GMM MAP ADE m                = 1.97697
+GMM minADE m                 = 1.750128
+GMM minFDE @1.0s m           = 2.896436
+
+FORMAL GAUSSIAN CALIBRATION
+raw NLL                     = 4.157605
+calibrated NLL              = 3.684827
+raw macro ECE               = 0.18362
+calibrated macro ECE        = 0.111655
+formal ECE non-worsening    = PASS
+raw Brier                   = 0.239782
+calibrated Brier            = 0.194132
+
+CALIBRATED FORMAL COVERAGE
+coverage 50%                    = 0.451220
+coverage 80%                    = 0.673272
+coverage 90%                    = 0.751524
+coverage 95%                    = 0.811484
+coverage 99%                    = 0.894309
+
+FROZEN CLASSICAL ADE
+Multidimensional_Hough = 1.614700 m
+CTRV         = 6.453930 m
+CV           = 9.538706 m
+IMM_CV_CA_CTRV = 11.232591 m
+Kalman_EKF   = 12.373488 m
+CA           = 42.494382 m
+
+probabilistic baselines beaten = ['CA', 'CTRV', 'CV', 'IMM_CV_CA_CTRV', 'Kalman_EKF']
+PDF beats >=1 classical       = PASS
+internal Gaussian < CV gate   = PASS
+calibration measured          = PASS
+PDF Stage4 evidence current   = PASS
+
+formal inference repeat       = 4 / 4 PASS
+formal output content SHA     = fe5cf7e413b8142c0670d05727affd4fa573cf4607665e4a9bda951f1d9bd0d5
+full Stage4 regression        = 114 / 114 PASS
+free GiB                      = 1055.069
+implementation files          = 74
+implementation SHA256         = f21abaed100d1337ad95e6005298727ab5e103d10d3a173b7d2e561d886dc88d
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage4/reports/block48_formal_evaluation.json
+
+===== BLOCK 4.8 FINAL =====
+frozen formal N=120           = EVALUATED
+same degraded interface       = PASS
+deterministic GRU             = EVALUATED
+raw Gaussian                  = EVALUATED
+calibrated Gaussian           = EVALUATED
+GMM                           = EVALUATED
+class/horizon metrics         = MEASURED
+formal calibration            = MEASURED
+classical comparison          = FROZEN REPORT
+formal leakage                = NONE
+checkpoint/model selection    = NONE
+regression                    = 114 / 114
+implementation SHA            = f21abaed100d1337ad95e6005298727ab5e103d10d3a173b7d2e561d886dc88d
+log closure                   = PASS
+
+formal runner raw process code = 0
+
+============================================================
+BLOCK 4.8 PART 2/2 SAFE CONTROLLER
+============================================================
+scientific STATUS = PASS
+Block4.8 evaluation = COMPLETE
+terminal remains open = YES

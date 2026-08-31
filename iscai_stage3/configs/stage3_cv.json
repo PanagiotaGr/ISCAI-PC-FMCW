@@ -1,0 +1,39 @@
+{
+  "stage": 3,
+  "block": "3.2",
+
+  "baseline": "constant_velocity",
+
+  "input": {
+    "source": "stage2_noisy_associated_detections",
+    "position_source": "range_azimuth_elevation",
+    "velocity_source": "strict_backward_position_difference",
+    "annotated_womd_velocity": false,
+    "future_information": false
+  },
+
+  "coordinates": {
+    "instantaneous_measurement_frame": "Ht",
+    "state_and_prediction_frame": "H0",
+    "motion_compensation": "Ht_to_W_to_H0",
+    "uses_frozen_stage1_rigid_transforms": true
+  },
+
+  "measurement_uncertainty": {
+    "stage2_R_t_used": true,
+    "position_covariance": "J_R_JT",
+    "covariance_rotated_to_H0": true,
+    "velocity_covariance_from_backward_difference": true
+  },
+
+  "prediction_horizons_s": [
+    0.1,
+    0.3,
+    0.5,
+    1.0
+  ],
+
+  "sub_100ms_ground_truth_claim": false,
+
+  "status": "FROZEN_BEFORE_FORMAL_VALIDATION"
+}

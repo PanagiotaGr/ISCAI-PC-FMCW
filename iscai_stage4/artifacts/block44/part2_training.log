@@ -1,0 +1,86 @@
+============================================================
+STAGE 4 — BLOCK 4.4 GAUSSIAN PROBABILISTIC TRAINING
+============================================================
+Block4.4 Part1          = PASS
+Block4.3 frozen         = PASS
+fit samples             = 114906
+development samples     = 13682
+cache regeneration      = NO
+normalization           = FIT ONLY
+GPU                     = NVIDIA RTX A6000
+
+===== INITIAL GAUSSIAN EVALUATION =====
+initialized dev NLL      = 4.984338414030667
+initialized dev ADE m    = 1.60545472380686
+epoch 01 | trainNLL=1.160563 | devNLL=3.928298 | devADE=1.630267 m | bestNLL=3.928298 | bestEpoch=1 | patience=0/4
+epoch 02 | trainNLL=0.599018 | devNLL=3.563509 | devADE=1.599212 m | bestNLL=3.563509 | bestEpoch=2 | patience=0/4
+epoch 03 | trainNLL=0.419706 | devNLL=3.353871 | devADE=1.588034 m | bestNLL=3.353871 | bestEpoch=3 | patience=0/4
+epoch 04 | trainNLL=0.310324 | devNLL=3.298578 | devADE=1.583235 m | bestNLL=3.298578 | bestEpoch=4 | patience=0/4
+epoch 05 | trainNLL=0.213228 | devNLL=3.295392 | devADE=1.582677 m | bestNLL=3.295392 | bestEpoch=5 | patience=0/4
+epoch 06 | trainNLL=0.144837 | devNLL=3.231760 | devADE=1.577493 m | bestNLL=3.231760 | bestEpoch=6 | patience=0/4
+epoch 07 | trainNLL=0.076877 | devNLL=3.194740 | devADE=1.565230 m | bestNLL=3.194740 | bestEpoch=7 | patience=0/4
+epoch 08 | trainNLL=0.056250 | devNLL=3.191708 | devADE=1.556096 m | bestNLL=3.191708 | bestEpoch=8 | patience=0/4
+epoch 09 | trainNLL=-0.016764 | devNLL=3.191012 | devADE=1.556408 m | bestNLL=3.191012 | bestEpoch=9 | patience=0/4
+epoch 10 | trainNLL=-0.023342 | devNLL=3.184414 | devADE=1.554960 m | bestNLL=3.184414 | bestEpoch=10 | patience=0/4
+epoch 11 | trainNLL=-0.101233 | devNLL=3.155285 | devADE=1.550661 m | bestNLL=3.155285 | bestEpoch=11 | patience=0/4
+epoch 12 | trainNLL=-0.142011 | devNLL=3.153939 | devADE=1.547783 m | bestNLL=3.153939 | bestEpoch=12 | patience=0/4
+epoch 13 | trainNLL=-0.174768 | devNLL=3.198550 | devADE=1.543558 m | bestNLL=3.153939 | bestEpoch=12 | patience=1/4
+epoch 14 | trainNLL=-0.204499 | devNLL=3.154437 | devADE=1.547238 m | bestNLL=3.153939 | bestEpoch=12 | patience=2/4
+epoch 15 | trainNLL=-0.233215 | devNLL=3.165706 | devADE=1.537347 m | bestNLL=3.153939 | bestEpoch=12 | patience=3/4
+epoch 16 | trainNLL=-0.267063 | devNLL=3.175194 | devADE=1.537399 m | bestNLL=3.153939 | bestEpoch=12 | patience=4/4
+early stopping = TRIGGERED
+
+exact probabilistic inference repeat = PASS
+probabilistic prediction SHA256 = a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a
+
+============================================================
+STAGE4 BLOCK 4.4 GATE
+============================================================
+fit/dev cache reuse        = PASS
+fit-only normalization     = PASS
+measurement R_t            = INPUT
+predictive covariance      = LEARNED OUTPUT
+uncertainty separation     = PASS
+Gaussian family            = FULL 3D
+covariance SPD failures    = 0
+initialized dev NLL        = 4.984338
+best raw dev NLL           = 3.153939
+NLL improved               = PASS
+best raw dev ADE m         = 1.547783
+best raw dev 1.0s error m  = 2.362456
+best epoch                 = 12
+class dev ADE              = {'TYPE_CYCLIST': 1.6158116307248171, 'TYPE_PEDESTRIAN': 0.9868421535187432, 'TYPE_VEHICLE': 1.5874928289013388}
+
+RAW COVERAGE BEFORE CALIBRATION
+coverage 50%                  = 0.514165
+coverage 80%                  = 0.722979
+coverage 90%                  = 0.798698
+coverage 95%                  = 0.845084
+coverage 99%                  = 0.907769
+
+checkpoint SHA256          = 49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f
+state_dict SHA256          = 1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3
+probabilistic inference SHA= a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a
+exact inference repeat     = PASS
+calibration applied        = NO
+formal validation used     = NO
+full Stage4 regression     = 60 / 60 PASS
+free GiB                   = 1055.131
+implementation files       = 40
+implementation SHA256      = b9ea474443d3a54235f09cd4e2b616374b37456f2b9e080f5334f76f4dd7c432
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage4/reports/block44_gaussian_gru.json
+
+===== BLOCK 4.4 FINAL =====
+Gaussian probabilistic GRU = PASS
+full SPD covariance        = PASS
+Gaussian NLL training      = PASS
+measurement/predictive UQ  = SEPARATE
+raw coverage measured      = PASS
+calibration                = NOT YET
+future leakage             = NONE
+checkpoint freeze          = PASS
+exact inference repeat     = PASS
+regression                 = 60 / 60
+implementation SHA         = b9ea474443d3a54235f09cd4e2b616374b37456f2b9e080f5334f76f4dd7c432
+log closure                = PASS

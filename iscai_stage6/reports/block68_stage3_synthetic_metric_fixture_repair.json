@@ -1,0 +1,43 @@
+{
+  "block": "6.8_stage3_synthetic_metric_fixture_repair",
+  "diagnosis": {
+    "authoritative_overmask_semantics": "|D\\O| / |full actuator grid|",
+    "exact_fast_explanation": "10 / 603204",
+    "failed_synthetic_grid_cells": 24,
+    "failure_type": "synthetic_test_fixture_domain_mismatch",
+    "observed_authority": 0.4166666666666667,
+    "observed_fast": 1.6578139402258606e-05,
+    "production_grid_cells": 603204,
+    "production_scientific_failure": false,
+    "repair": "run synthetic parity fixture on the exact frozen production grid shape"
+  },
+  "next": "rerun identical Stage3 Part2/2; synthetic parity must pass before the 3270 development sweep starts",
+  "production_semantics_preserved": {
+    "GRID_CELL_COUNT_denominator": true,
+    "Stage3_scoring_contract": true,
+    "authoritative_metric_runtime": true,
+    "candidate_space": true,
+    "compressed_metrics": true,
+    "lexicographic_comparator": true
+  },
+  "regression": 224,
+  "runner": {
+    "backup_path": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage3_floor_selection/synthetic_parity_repair/run_block68_stage3_floor_selection_part2of2.pre_synthetic_fixture_fix.py",
+    "backup_sha256": "47a90e2606db2742ebe95e58d0abf4e1d9e6be1388924673da468eddb271b479",
+    "patch_scope": "synthetic_metric_parity function only",
+    "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_stage3_floor_selection_part2of2.py",
+    "post_patch_sha256": "0b351f8cd7f4d51ff259b5a9132f012ffe3b58ea3fdc420d912d2db76dd459e4",
+    "pre_patch_sha256": "47a90e2606db2742ebe95e58d0abf4e1d9e6be1388924673da468eddb271b479"
+  },
+  "scientific_boundary": {
+    "NI_bounds_modified": false,
+    "Stage3_candidate_sweep_started": false,
+    "Stage3_floor_outcomes_computed": false,
+    "Stage3_floor_selected": false,
+    "Stage4_temporal_rate_selected": false,
+    "formal_evaluation": false,
+    "primary_acceptance_tested": false
+  },
+  "stage": 6,
+  "status": "PASS_STAGE3_SYNTHETIC_METRIC_FIXTURE_REPAIRED"
+}

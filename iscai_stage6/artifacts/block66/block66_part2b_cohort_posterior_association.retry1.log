@@ -1,0 +1,221 @@
+============================================================================
+BLOCK 6.6 PART2B — RESUMABLE DEVELOPMENT POSTERIOR + ASSOCIATION CENSUS
+============================================================================
+
+===== A. IMMUTABLE FROZEN SEAL =====
+cohort                       = EXACT PASS
+part2a                       = EXACT PASS
+gaussian_checkpoint          = EXACT PASS
+architecture_checkpoint      = EXACT PASS
+normalization                = EXACT PASS
+calibrator                   = EXACT PASS
+association_module           = EXACT PASS
+womd_geometry_module         = EXACT PASS
+storage reserve             = PASS
+
+===== B. FROZEN DEVELOPMENT COHORT =====
+cohort scenarios            = 120
+unique scenario IDs         = PASS
+partition                   = DEVELOPMENT
+formal outcomes             = NOT READ
+
+===== C. EXACT FROZEN RUNTIME IMPORTS =====
+CalibrationNormalizer       = calibration_runtime
+Gaussian model builder      = calibration_runtime
+Gaussian metric math        = gaussian_math
+covariance calibration      = angular_monte_carlo
+association                 = reciprocal unique nearest anchor
+association threshold       = NONE
+association class gate      = NONE
+
+===== D. FROZEN GAUSSIAN RUNTIME =====
+device                      = cuda:0
+GPU                         = NVIDIA RTX A6000
+Gaussian parameters         = 48484
+Gaussian predictive weights = Block4.4 FROZEN
+architecture metadata       = Block4.3 FROZEN
+normalization               = FIT-ONLY FROZEN
+mean calibration            = UNCHANGED
+covariance alpha            = [1.2347064500315355, 1.3451250295202921, 1.354822057728461, 1.2829700217319266]
+
+===== E. FROZEN CAUSAL INPUT CONFIG =====
+Stage2 configs              = LOADED FROZEN
+future labels               = NOT REQUESTED
+truth/perfect ID            = NOT USED
+tracks_to_predict           = NOT USED
+
+===== F. RESUMABLE 120-SCENARIO EXECUTION =====
+[001/120] f72a05a05035feb8 | hist= 43 | boxes= 24 | match= 21 | fallback=  3 | 0.51s
+[002/120] 217d94b9231ed401 | hist= 63 | boxes= 49 | match= 40 | fallback=  9 | 0.24s
+[003/120] 6ccad5b8230fdfaf | hist= 71 | boxes= 59 | match= 47 | fallback= 12 | 0.51s
+[004/120] 78249f8856cb2c57 | hist= 59 | boxes= 43 | match= 34 | fallback=  9 | 0.20s
+[005/120] 63e96200cbac4d62 | hist= 54 | boxes= 31 | match= 26 | fallback=  5 | 0.23s
+[006/120] d6a50bc55ce5f19e | hist= 59 | boxes= 40 | match= 31 | fallback=  9 | 0.19s
+[007/120] 418c1e982b7921eb | hist=112 | boxes=103 | match= 82 | fallback= 21 | 0.45s
+[008/120] e970e71b3969f6a8 | hist= 73 | boxes= 49 | match= 42 | fallback=  7 | 0.30s
+[009/120] 65d6cd8b194260e3 | hist= 50 | boxes= 41 | match= 33 | fallback=  8 | 0.21s
+[010/120] 6daa131b25b411e1 | hist= 53 | boxes= 29 | match= 25 | fallback=  4 | 0.27s
+[011/120] 87ed599ac076981a | hist= 99 | boxes= 99 | match= 71 | fallback= 28 | 0.37s
+[012/120] b6d332d8e9bc222c | hist= 35 | boxes= 13 | match= 13 | fallback=  0 | 0.12s
+[013/120] 4c4f377a1c147f8e | hist= 48 | boxes= 29 | match= 25 | fallback=  4 | 0.29s
+[014/120] 3efb1c80ff9f199d | hist= 50 | boxes= 25 | match= 23 | fallback=  2 | 0.34s
+[015/120] c490bf21464a12e9 | hist= 24 | boxes= 10 | match= 10 | fallback=  0 | 0.19s
+[016/120] 94fc609eb2e9d4bf | hist= 51 | boxes= 37 | match= 31 | fallback=  6 | 0.19s
+[017/120] 78edfc551a37bffd | hist= 88 | boxes= 58 | match= 50 | fallback=  8 | 0.37s
+[018/120] 30971820b847eb66 | hist= 50 | boxes= 29 | match= 22 | fallback=  7 | 0.11s
+[019/120] c78d67433bfd4c8c | hist= 53 | boxes= 32 | match= 25 | fallback=  7 | 0.20s
+[020/120] e697a3e91804731f | hist= 62 | boxes= 44 | match= 34 | fallback= 10 | 0.18s
+[021/120] c4abc55d4bca0cb1 | hist= 56 | boxes= 38 | match= 30 | fallback=  8 | 0.16s
+[022/120] 42f94f9b67c492f9 | hist= 76 | boxes= 48 | match= 43 | fallback=  5 | 0.27s
+[023/120] 1eddd4cef7183af3 | hist= 49 | boxes= 33 | match= 26 | fallback=  7 | 0.16s
+[024/120] 100cf1362ccf12b6 | hist= 22 | boxes=  8 | match=  7 | fallback=  1 | 0.09s
+[025/120] 4f6961c554812aa1 | hist= 32 | boxes= 14 | match= 10 | fallback=  4 | 0.09s
+[026/120] 26dfc0c284135c2b | hist= 60 | boxes= 40 | match= 30 | fallback= 10 | 0.16s
+[027/120] 95090c818ae21276 | hist= 64 | boxes= 47 | match= 31 | fallback= 16 | 0.23s
+[028/120] 1fcc11fbaef870af | hist= 40 | boxes= 24 | match= 22 | fallback=  2 | 0.15s
+[029/120] 7257f334476484c9 | hist= 68 | boxes= 59 | match= 39 | fallback= 20 | 0.27s
+[030/120] 1d879936662232aa | hist= 64 | boxes= 38 | match= 35 | fallback=  3 | 0.22s
+[031/120] bfa57d47562271ae | hist= 27 | boxes= 13 | match= 11 | fallback=  2 | 0.08s
+[032/120] b8679dd1d710dc89 | hist= 59 | boxes= 31 | match= 29 | fallback=  2 | 0.21s
+[033/120] 9a163c3f9ebe2638 | hist= 69 | boxes= 47 | match= 39 | fallback=  8 | 0.33s
+[034/120] 77c49a651a2d544 | hist= 81 | boxes= 72 | match= 58 | fallback= 14 | 0.28s
+[035/120] 972c0423e1895025 | hist= 55 | boxes= 32 | match= 27 | fallback=  5 | 0.30s
+[036/120] 9417fbd3c38ba139 | hist= 92 | boxes= 84 | match= 63 | fallback= 21 | 0.45s
+[037/120] fc359b7b231404cc | hist= 90 | boxes= 73 | match= 57 | fallback= 16 | 0.32s
+[038/120] 5bf5ced093dfd342 | hist= 26 | boxes=  4 | match=  4 | fallback=  0 | 0.11s
+[039/120] 5615a357b42afca7 | hist= 54 | boxes= 36 | match= 26 | fallback= 10 | 0.27s
+[040/120] 1b0c763aeef8ba69 | hist= 65 | boxes= 50 | match= 37 | fallback= 13 | 0.27s
+[041/120] a6432ee002f8046d | hist= 88 | boxes= 80 | match= 61 | fallback= 19 | 0.34s
+[042/120] 96a1481dc541512 | hist= 37 | boxes= 20 | match= 19 | fallback=  1 | 0.13s
+[043/120] 664363d04fabb36a | hist= 63 | boxes= 59 | match= 39 | fallback= 20 | 0.29s
+[044/120] 941d04605eef0369 | hist= 88 | boxes= 89 | match= 66 | fallback= 23 | 0.40s
+[045/120] 97bc53b662ba6242 | hist= 58 | boxes= 37 | match= 25 | fallback= 12 | 0.19s
+[046/120] 7dd29b1a494b86d | hist= 68 | boxes= 45 | match= 42 | fallback=  3 | 0.38s
+[047/120] ad9fba22e5ceeffc | hist= 72 | boxes= 51 | match= 44 | fallback=  7 | 0.26s
+[048/120] c29548d27dbc1820 | hist= 92 | boxes= 96 | match= 62 | fallback= 34 | 0.34s
+[049/120] 1d14acf963febc80 | hist= 52 | boxes= 36 | match= 31 | fallback=  5 | 0.22s
+[050/120] 91b9bd56c1084d03 | hist= 38 | boxes= 21 | match= 17 | fallback=  4 | 0.18s
+[051/120] 3577c657003ea5de | hist= 75 | boxes= 62 | match= 50 | fallback= 12 | 0.40s
+[052/120] 8e890dd54af4ede9 | hist= 45 | boxes= 24 | match= 21 | fallback=  3 | 0.24s
+[053/120] 43dd5c65c678aced | hist= 76 | boxes= 59 | match= 49 | fallback= 10 | 0.33s
+[054/120] 36d56590663993da | hist=111 | boxes=120 | match= 81 | fallback= 39 | 0.36s
+[055/120] 6fe5e19d4a29c9a7 | hist= 56 | boxes= 43 | match= 36 | fallback=  7 | 0.19s
+[056/120] 2cfd77c90dc3f042 | hist= 58 | boxes= 24 | match= 23 | fallback=  1 | 0.20s
+[057/120] 51061211593a5c3a | hist= 63 | boxes= 52 | match= 40 | fallback= 12 | 0.22s
+[058/120] a3f66f03ee1159f7 | hist=114 | boxes=118 | match= 82 | fallback= 36 | 0.43s
+[059/120] 8d720725f5d480f1 | hist= 51 | boxes= 31 | match= 30 | fallback=  1 | 0.21s
+[060/120] 74ca33b01f8adc34 | hist= 61 | boxes= 40 | match= 35 | fallback=  5 | 0.31s
+[061/120] 5cd171137f548ee5 | hist= 75 | boxes= 49 | match= 41 | fallback=  8 | 0.28s
+[062/120] 20ef67765531728d | hist= 45 | boxes= 36 | match= 26 | fallback= 10 | 0.20s
+[063/120] ec189f632b1d6e8e | hist= 63 | boxes= 48 | match= 34 | fallback= 14 | 0.17s
+[064/120] b5e59eca7dcf8a90 | hist= 47 | boxes= 30 | match= 19 | fallback= 11 | 0.17s
+[065/120] 70bbf1819647d8c7 | hist= 43 | boxes= 24 | match= 22 | fallback=  2 | 0.14s
+[066/120] aa5a13fc3f401cb1 | hist= 22 | boxes=  7 | match=  5 | fallback=  2 | 0.13s
+[067/120] 22cd37cf6c061bd | hist=103 | boxes= 87 | match= 71 | fallback= 16 | 0.46s
+[068/120] 1295af2fe5e0331d | hist= 72 | boxes= 58 | match= 49 | fallback=  9 | 0.28s
+[069/120] 1c72de5c85a9dd5f | hist= 36 | boxes= 13 | match= 12 | fallback=  1 | 0.11s
+[070/120] 9b55dd4a2eb55f33 | hist= 76 | boxes= 64 | match= 50 | fallback= 14 | 0.61s
+[071/120] efe6683f082a3633 | hist= 97 | boxes= 95 | match= 67 | fallback= 28 | 0.34s
+[072/120] e0dd62ab14c75750 | hist= 62 | boxes= 46 | match= 38 | fallback=  8 | 0.16s
+[073/120] cdb7952aba3bda75 | hist=105 | boxes= 88 | match= 66 | fallback= 22 | 0.43s
+[074/120] 78ddaf2505ba466b | hist= 55 | boxes= 48 | match= 34 | fallback= 14 | 0.22sTraceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block66_part2b_cohort_posterior_association.py", line 4030, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block66_part2b_cohort_posterior_association.py", line 3466, in main
+    require(
+    ~~~~~~~^
+        regression.returncode
+        ^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block66_part2b_cohort_posterior_association.py", line 197, in require
+    raise RuntimeError(
+        message
+    )
+RuntimeError: Fresh Stage6 regression failed.
+
+[075/120] fec7326515422b1f | hist= 40 | boxes= 27 | match= 20 | fallback=  7 | 0.16s
+[076/120] e4496bda8f11b875 | hist= 72 | boxes= 51 | match= 42 | fallback=  9 | 0.36s
+[077/120] 15557e328704e016 | hist= 57 | boxes= 37 | match= 29 | fallback=  8 | 0.20s
+[078/120] 3470e259c2ed99f0 | hist= 28 | boxes= 16 | match= 11 | fallback=  5 | 0.18s
+[079/120] ba84a1a387730a63 | hist=109 | boxes=124 | match= 84 | fallback= 40 | 0.40s
+[080/120] c9d6f61d94824305 | hist= 66 | boxes= 53 | match= 42 | fallback= 11 | 0.23s
+[081/120] 395ff370ecfc2abd | hist= 38 | boxes= 21 | match= 20 | fallback=  1 | 0.19s
+[082/120] 9315db40e0b126b8 | hist= 53 | boxes= 36 | match= 32 | fallback=  4 | 0.23s
+[083/120] 1d01f68576828447 | hist= 38 | boxes= 21 | match= 19 | fallback=  2 | 0.09s
+[084/120] ea803c5fdc919dcb | hist= 97 | boxes= 89 | match= 63 | fallback= 26 | 0.66s
+[085/120] 35d41b1ef1460a1a | hist= 43 | boxes= 19 | match= 18 | fallback=  1 | 0.52s
+[086/120] b66168b7cf95bf84 | hist= 54 | boxes= 35 | match= 26 | fallback=  9 | 0.21s
+[087/120] e82bc4b58b4c83e8 | hist= 41 | boxes= 20 | match= 19 | fallback=  1 | 0.14s
+[088/120] b1ea359dde6d8df4 | hist= 51 | boxes= 35 | match= 27 | fallback=  8 | 0.22s
+[089/120] 86e464cce07317e1 | hist= 57 | boxes= 51 | match= 41 | fallback= 10 | 0.17s
+[090/120] 28e0ea7a2ca646d6 | hist= 83 | boxes= 68 | match= 51 | fallback= 17 | 0.50s
+[091/120] e2327d18c0b1d73d | hist= 66 | boxes= 51 | match= 43 | fallback=  8 | 0.33s
+[092/120] e704fc04e258e505 | hist= 67 | boxes= 38 | match= 31 | fallback=  7 | 0.42s
+[093/120] 191c1f905fd631ad | hist= 41 | boxes= 23 | match= 21 | fallback=  2 | 0.13s
+[094/120] a3a1a2a0fbbc95e9 | hist= 38 | boxes= 16 | match= 11 | fallback=  5 | 0.17s
+[095/120] 8a1c6aac44f9bd7e | hist= 40 | boxes= 23 | match= 21 | fallback=  2 | 0.15s
+[096/120] b58677c7f2933ea6 | hist= 40 | boxes= 23 | match= 20 | fallback=  3 | 0.17s
+[097/120] d016957a325c7eeb | hist= 33 | boxes= 15 | match= 12 | fallback=  3 | 0.14s
+[098/120] 2eb24d7fe448063e | hist= 77 | boxes= 57 | match= 47 | fallback= 10 | 0.28s
+[099/120] eb0293da64c344cb | hist= 32 | boxes= 17 | match= 15 | fallback=  2 | 0.16s
+[100/120] 5d27f514c439978d | hist= 29 | boxes=  9 | match=  8 | fallback=  1 | 0.15s
+[101/120] 4252985934cfdf28 | hist= 67 | boxes= 49 | match= 41 | fallback=  8 | 0.38s
+[102/120] 86c5b063a876a3a4 | hist= 35 | boxes= 20 | match= 14 | fallback=  6 | 0.13s
+[103/120] a5545794899ee131 | hist= 34 | boxes= 12 | match= 10 | fallback=  2 | 0.17s
+[104/120] b05b39c8abae6d7 | hist= 57 | boxes= 41 | match= 33 | fallback=  8 | 0.30s
+[105/120] e0eef68de47eee18 | hist= 37 | boxes=  9 | match=  8 | fallback=  1 | 0.24s
+[106/120] 298b525580018a99 | hist= 69 | boxes= 56 | match= 46 | fallback= 10 | 0.46s
+[107/120] 33279d83114b73dc | hist= 30 | boxes=  7 | match=  5 | fallback=  2 | 0.10s
+[108/120] 81a3a56be49c4406 | hist= 35 | boxes= 18 | match= 17 | fallback=  1 | 0.13s
+[109/120] 6a8abea31441b640 | hist= 56 | boxes= 30 | match= 28 | fallback=  2 | 0.37s
+[110/120] 43cb883b388c851e | hist= 51 | boxes= 30 | match= 26 | fallback=  4 | 0.31s
+[111/120] fb0916c764d46f22 | hist= 55 | boxes= 43 | match= 33 | fallback= 10 | 0.15s
+[112/120] 145c37f2e1aab934 | hist= 32 | boxes= 17 | match= 16 | fallback=  1 | 0.25s
+[113/120] 6d87bd01ab9ebc8c | hist= 34 | boxes= 20 | match= 19 | fallback=  1 | 0.16s
+[114/120] 726dc0be0b1ff3ac | hist= 48 | boxes= 22 | match= 20 | fallback=  2 | 0.33s
+[115/120] c26ea67a45fa79c2 | hist= 56 | boxes= 37 | match= 29 | fallback=  8 | 0.26s
+[116/120] 3bd80f6f6f6ac8d | hist= 60 | boxes= 46 | match= 38 | fallback=  8 | 0.21s
+[117/120] a7aa5ad4a9d9a71a | hist= 53 | boxes= 45 | match= 35 | fallback= 10 | 0.32s
+[118/120] 5490d8b8a4f13cd0 | hist= 38 | boxes= 24 | match= 19 | fallback=  5 | 0.19s
+[119/120] 111ba9e426732e40 | hist= 36 | boxes= 22 | match= 18 | fallback=  4 | 0.29s
+[120/120] 89bda4c79cb0ead4 | hist= 39 | boxes= 13 | match= 13 | fallback=  0 | 0.29s
+
+===== G. CACHE COMPLETENESS =====
+complete scene artifacts    = 120/120 PASS
+executed this run           = 120
+reused from cache           = 0
+
+===== H. DETERMINISTIC CONSOLIDATION =====
+posterior records           = 6925
+causal ADB boxes            = 4971
+association matches         = 3937
+reactive fallback boxes     = 1034
+unmatched predictors        = 2988
+boxes by class              = {'TYPE_VEHICLE': 4350, 'TYPE_PEDESTRIAN': 525, 'TYPE_CYCLIST': 96}
+matches by class            = {'TYPE_VEHICLE': 3500, 'TYPE_PEDESTRIAN': 358, 'TYPE_CYCLIST': 79}
+fallback by class           = {'TYPE_VEHICLE': 850, 'TYPE_PEDESTRIAN': 167, 'TYPE_CYCLIST': 17}
+all classes matched somewhere = True
+
+===== I. FRESH STAGE6 REGRESSION =====
+/home/agni/waymo/iscai_stage1/.venv_lidar/bin/python: No module named pytest
+
+
+============================================================================
+BLOCK 6.6 PART2B — CONTROLLED BLOCK
+============================================================================
+exception = RuntimeError Fresh Stage6 regression failed.
+
+
+resumable per-scene cache = PRESERVED
+cohort membership modified = NO
+training/recalibration     = NO / NO
+N_MC=8192 executed         = NO
+class policy frozen        = NO
+formal outcomes read       = NO
+terminal remains open      = YES
+============================================================================

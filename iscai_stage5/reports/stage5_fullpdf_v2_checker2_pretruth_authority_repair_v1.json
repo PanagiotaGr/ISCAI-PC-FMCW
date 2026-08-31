@@ -1,0 +1,56 @@
+{
+  "Stage4_change": false,
+  "Stage6_allowed": false,
+  "authority_amendment_sha256": "78696af2bddf432e6c85fb50574bf246f607dccea568ac1f94d058b5152f9a3a",
+  "authority_chain": {
+    "checker_property_repair_seal_sha256": "1da2f7f5731c5574c3c4fcb0ec2a216296f338fd1cc5adcfbd2125bde85b3548",
+    "history_manifest_sha256": "a66ff847a08b865cb3b3f31090a4ea71dfbd9ab00fbe24a4cc3f241494a88004",
+    "receiver_binding_seal_sha256": "b2c2035ee7839ceef3d8bf6039d5d181c993b5fac32113eca3df2723ef6c7c65"
+  },
+  "authority_seal_sha256": "78be461e8f66f964f024acacb8f979be96febff7fdf761a4158de6fe3dcf7591",
+  "changed_lines": [
+    72
+  ],
+  "evaluator_truth_used_for_repair": false,
+  "formal_V3_executed": false,
+  "formal_checker_semantics_change": false,
+  "formal_outcome_used_for_repair": false,
+  "new_checker2_sha256": "5e77d678af188d3f0b34b84ab53ddc78fc1b2921c6bea573dd9722c439c63599",
+  "new_pretruth_seal": {
+    "created_only_by_Checker2": true,
+    "exists_before_formal": false,
+    "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/checker2_pretruth_seal_superseding_v3.json"
+  },
+  "old_checker2_sha256": "bca973ed50e97510ec9c7e2022e39b0033643eed89c9599843519fb83898db04",
+  "old_pretruth_seal": {
+    "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/checker2_pretruth_seal.json",
+    "preserved": true,
+    "sha256": "44b1ba5bd702f8081f4e7e8c07a9139ccaa9e588ec938851b652d05c82693803"
+  },
+  "old_vs_current_seal_core_diff_keys": [
+    "hashes.frozen_checker",
+    "prior_formal_report_opaque_sha256"
+  ],
+  "protocol_change": false,
+  "recalibration": false,
+  "receiver_binding_change": false,
+  "regression": {
+    "log": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/checker2_pretruth_authority_repair_v1/stage5_regression_271.log",
+    "log_sha256": "58d3ed9cd65526ae4b51689529022d7a8ce50af83ef7da72e7496a92e61dc961",
+    "status": "PASS",
+    "tests": 271
+  },
+  "retraining": false,
+  "runtime_change": false,
+  "scientific_change": false,
+  "scope": "checker harness authority/path only",
+  "source_change": {
+    "new": "checker2_pretruth_seal_superseding_v3.json",
+    "old": "checker2_pretruth_seal.json"
+  },
+  "stage": 5,
+  "status": "PASS_READY_FOR_ONE_SHOT_FORMAL_V3",
+  "training": false,
+  "tuning": false,
+  "version": "fullpdf_v2"
+}

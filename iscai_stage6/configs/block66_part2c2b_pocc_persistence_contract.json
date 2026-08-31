@@ -1,0 +1,30 @@
+{
+  "block": "6.6-Part2C/2B",
+  "canonical_persisted_statistic": "occupancy_counts",
+  "class_policy_applied": false,
+  "compression": "NONE_NPY",
+  "dtype": "uint32",
+  "formal_outcomes_read": false,
+  "gamma_applied": false,
+  "grid_shape": [
+    501,
+    301
+  ],
+  "lossless_reason": "public_kernel_returns_uint32_counts_and_8192_equals_2_pow_13",
+  "probability_definition": "P_occ = occupancy_counts / 8192",
+  "probability_persisted_separately": false,
+  "probability_reconstruction_lossless": true,
+  "quantization": false,
+  "same_seed_per_actor": true,
+  "sample_count": 8192,
+  "scientific_kernel_modified": false,
+  "seed": 20260821,
+  "shape_per_actor": [
+    4,
+    501,
+    301
+  ],
+  "stage": 6,
+  "status": "FROZEN_BEFORE_FIRST_PART2C2B_ACTOR_SAMPLE",
+  "uint16_downcast": false
+}

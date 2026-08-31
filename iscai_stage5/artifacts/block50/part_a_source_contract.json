@@ -1,0 +1,263 @@
+{
+  "PartA_source_effective_rate_required": false,
+  "PartA_source_may_be_modified": false,
+  "Stage5_link_adapter_policy": "reuse_or_numerically_reproduce_frozen_PartA_link_assumptions",
+  "communication_evidence_cells": {
+    "BER": [
+      {
+        "cell_index": 16,
+        "cell_type": "code",
+        "matched_tokens": [
+          "ber",
+          "bit error"
+        ],
+        "source_preview": "# ============================================================ # Communication / DPSK receiver branch - Cell 4 # ============================================================ # Raw differential product from FFT-extracted carrier coefficients. comm_diff_raw = comm_carrier_coeffs[1:] * np.conj(comm_carrier_coeffs[:-1]) # Carrier phase rotation between adjacent symbol centers. comm_symbol_dn = np.diff(comm_symbol_center_sample) comm_mu_unwrapped = np.unwrap(2.0 * np.pi * comm_carrier_cycles_per_samp",
+        "source_sha256": "a8c41f507d3e87c6d2bac6072c971927c2762422b4d3510d96eaabb44b0d25b0"
+      },
+      {
+        "cell_index": 17,
+        "cell_type": "code",
+        "matched_tokens": [
+          "ber"
+        ],
+        "source_preview": "# ============================================================ # Communication / DPSK receiver branch - Cell 5 # ============================================================ comm_preview_bits = min(96, comm_bits_reference.size, comm_bits_hat.size) fig, axes = plt.subplots(1, 2, figsize=(12, 4.5)) # ------------------------------------------------------------ # Plot 1: transmitted vs recovered bits # ------------------------------------------------------------ axes[0].step( np.arange(comm_preview",
+        "source_sha256": "5b221ceb7fd87293fb8e490953f27fb29fd06450fe627f59eccc1f193fbaa90c"
+      },
+      {
+        "cell_index": 29,
+        "cell_type": "code",
+        "matched_tokens": [
+          "ber"
+        ],
+        "source_preview": "# ============================================================ # Module 3 - Cell 14 # ============================================================ def summarize_peak_results(results): range_errors = np.array([r[\"range_error_m\"] for r in results]) doppler_errors = np.array([r[\"doppler_error_Hz\"] for r in results]) peak_values_db = np.array([r[\"peak_dB\"] for r in results]) summary = { \"num_targets\": len(results), \"mean_abs_range_error_m\": np.nanmean(np.abs(range_errors)), \"max_abs_range_error_m\": ",
+        "source_sha256": "4174ff25098711be39f6da0d7d3958a5b894100a7cb362be839166b44b6d436e"
+      },
+      {
+        "cell_index": 31,
+        "cell_type": "code",
+        "matched_tokens": [
+          "ber"
+        ],
+        "source_preview": "m2_paper_reported_range_error_cm = PAPER_REPORTED_RANGE_ERROR_CM fig, axes = plt.subplots(1, 2, figsize=(10, 4)) # ------------------------------------------------------------ # Range CRLB # ------------------------------------------------------------ axes[0].semilogy( m2_crlb_snr_db, m2_crlb_range_std_cm, marker=\"o\", linewidth=1.5, label=\"Eq. (7) range CRLB\" ) axes[0].axhline( m2_paper_reported_range_error_cm, linestyle=\"--\", linewidth=1.2, label=\"Paper reference: 3.8 cm\" ) axes[0].set_title(\"P",
+        "source_sha256": "7b348e42c2f7770952305f223bfeeddc5eaab9de6ded59be479c2c1d00a4ccd8"
+      },
+      {
+        "cell_index": 35,
+        "cell_type": "code",
+        "matched_tokens": [
+          "ber"
+        ],
+        "source_preview": "# ============================================================ # CA-CFAR - Cell 3 # ============================================================ from scipy import ndimage def cfar_component_peaks(detection_mask, power_map, min_size=3, connectivity=2): \"\"\" Group neighboring CA-CFAR detections into connected components and keep the strongest power cell from each component. This is standard connected-component labeling: binary CFAR mask -> components/blobs -> peak per blob It does NOT force the num",
+        "source_sha256": "77504bc548ea1a269e93505c864a64b7f03b5f32fffd89cdfeb4620a39b99225"
+      },
+      {
+        "cell_index": 63,
+        "cell_type": "code",
+        "matched_tokens": [
+          "ber"
+        ],
+        "source_preview": "# ============================================================ # Presentation-only plots - DPSK symbol timing preview # Uses the DPSK sequence already generated in Module 2. # ============================================================ # We only visualize a small number of symbols. # A full 10 us chirp at 1 Gbps contains about 10,000 symbols. dpsk_preview_symbol_count = 24 dpsk_preview_chirp_index = 0 dpsk_preview_bits = dpsk_bits[dpsk_preview_chirp_index, :dpsk_preview_symbol_count] dpsk_previ",
+        "source_sha256": "7e359c38431d6192e6ee0720db49c7089715fab7a59c717156539910c157637e"
+      },
+      {
+        "cell_index": 64,
+        "cell_type": "code",
+        "matched_tokens": [
+          "ber"
+        ],
+        "source_preview": "# ============================================================ # Presentation-only plots - DPSK communication recovery # Uses the validated Module 2 receiver outputs. No second receiver is simulated here. # ============================================================ presentation_comm_bit_count = min(80, comm_bits_reference.size, comm_bits_hat.size) presentation_comm_bit_index = np.arange(presentation_comm_bit_count) presentation_comm_fig, presentation_comm_axes = plt.subplots(1, 2, figsize=(12,",
+        "source_sha256": "947bc195e9cf4fc5faac860b2973c2028a949a32bfbc21199b1d3b6a45fd0b03"
+      },
+      {
+        "cell_index": 65,
+        "cell_type": "markdown",
+        "matched_tokens": [
+          "ber"
+        ],
+        "source_preview": "![image.png](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA3sAAAJ7CAYAAABauohXAAAgAElEQVR4Xuy9CZhVxbX+/ZpOcCDBSDAaUGlJkElBIiiKCEYJ3CARhNaA8yUQUFG8YACJbWiCooKCOBCQgAMSaEESxA+COAQRFf2jICCi2A4YDUQBRbQNyVe1p7OHqj2cqU+ffvt5uLl2713Dr4Zdb61Vqw76r/gBf0iABEiABEiABEiABEiABEiABIqKwEEUe0XVnqwMCZAACZAACZAACZAACZAACRgEKPbYEUiABEiABEiABEiABEiABEigCAlQ7BVho7JKJEACJEACJEACJEACJEACJECxxz5AAiRAAiRAAiRAAiRAAiRAAkVIgGKvCBuVVSIBEiABEiABEiABEiABEiABij32ARIgARIgARIgARIgARIgARIoQgIUe0XYqKwSCZAACZAACZAACZAACZAACVDssQ+QA",
+        "source_sha256": "cefc12e7984c784a1801c4b676009fc99bbfb053cb99a5c37f1b5d1b627153e2"
+      }
+    ],
+    "DPSK": [
+      {
+        "cell_index": 9,
+        "cell_type": "code",
+        "matched_tokens": [
+          "dpsk"
+        ],
+        "source_preview": "# ============================================================ # Module 3 - Cell 1 # ============================================================ B_sim = B S_sim = B_sim / T_chirp print(\"Module 2 full-waveform sampling\") print(\"--------------------------------\") print(f\"Paper bandwidth B : {B/1e9:.3f} GHz\") print(f\"Module 2 bandwidth B_sim : {B_sim/1e9:.3f} GHz\") print(f\"Chirp duration T_chirp : {T_chirp*1e6:.3f} us\") print(f\"N_fast : {N_fast}\") print(f\"Effective fs_fast : {fs_fast/1e9:.3f} GHz\"",
+        "source_sha256": "f93b9fede225889b2ec146ad9e621d3ae04577d6a5835ee1a08cbe10a72f2e7c"
+      },
+      {
+        "cell_index": 10,
+        "cell_type": "code",
+        "matched_tokens": [
+          "dpsk"
+        ],
+        "source_preview": "# ============================================================ # Module 3 - Cell 2 # ============================================================ # Generate random DPSK symbols dpsk_bits = rng.integers(0, 2, size=(M_chirps, num_symbols_per_chirp)) # Differential phase increments [rad] phase_increments = np.pi * dpsk_bits # Cumulative DPSK phase sequence per symbol [rad]. phase_symbols = np.mod(np.cumsum(phase_increments, axis=1), 2.0 * np.pi) # Map fast-time samples to DPSK symbol indices symbol",
+        "source_sha256": "439c94d9be578f4da42dea90d900aaf4515ef747e3baecd0b713e5f1e32e578b"
+      },
+      {
+        "cell_index": 12,
+        "cell_type": "markdown",
+        "matched_tokens": [
+          "dpsk"
+        ],
+        "source_preview": "### DPSK",
+        "source_sha256": "ce9a40e5dc32058238dbcf25bb51d2568636d39fde6eafea75e6425282f9d658"
+      },
+      {
+        "cell_index": 13,
+        "cell_type": "code",
+        "matched_tokens": [
+          "dpsk"
+        ],
+        "source_preview": "# ============================================================ # Communication / DPSK receiver branch - Cell 1 # ============================================================ comm_num_symbols = int(np.floor(T_chirp / Ts)) comm_symbol_edges = np.searchsorted(t_fast, np.arange(comm_num_symbols + 1) * Ts, side=\"left\") comm_symbol_start_idx = comm_symbol_edges[:-1] comm_symbol_stop_idx = comm_symbol_edges[1:] # Keep only valid symbol intervals valid = comm_symbol_stop_idx > comm_symbol_start_idx comm",
+        "source_sha256": "314295603302ff72eccdda5f11e199b76d4e1a17017cd085a300cd5da924fb77"
+      },
+      {
+        "cell_index": 14,
+        "cell_type": "code",
+        "matched_tokens": [
+          "dpsk"
+        ],
+        "source_preview": "# ============================================================ # Communication / DPSK receiver branch - Cell 2 # ============================================================ comm_tx_waveform = s_tx[comm_chirp_index] comm_signal_power = np.mean(np.abs(comm_tx_waveform) ** 2) comm_noise_power = comm_signal_power / (10.0 ** (comm_rx_snr_db / 10.0)) comm_rng = np.random.default_rng(comm_noise_seed) comm_noise = np.sqrt(comm_noise_power / 2.0) * ( comm_rng.standard_normal(comm_tx_waveform.shape) + 1j",
+        "source_sha256": "eac3d6df40da52c6a8fb1757639967f612074f7e30034896a8960866d87b0125"
+      },
+      {
+        "cell_index": 15,
+        "cell_type": "code",
+        "matched_tokens": [
+          "dpsk"
+        ],
+        "source_preview": "# ============================================================ # Communication / DPSK receiver branch - Cell 3 # ============================================================ comm_fft_len = 1 << int(np.ceil(np.log2(comm_fft_zeropad_factor * comm_symbol_lengths.max()))) comm_carrier_bins = [0] * comm_num_symbols comm_carrier_freq_hz = np.zeros(comm_num_symbols) comm_carrier_cycles_per_sample = np.zeros(comm_num_symbols) comm_carrier_coeffs = np.zeros(comm_num_symbols, complex) for k in range(comm_",
+        "source_sha256": "2cef314574e5015177b11c9e40b882e33ebb2fb67095732ba127da8778e827d1"
+      },
+      {
+        "cell_index": 16,
+        "cell_type": "code",
+        "matched_tokens": [
+          "dpsk"
+        ],
+        "source_preview": "# ============================================================ # Communication / DPSK receiver branch - Cell 4 # ============================================================ # Raw differential product from FFT-extracted carrier coefficients. comm_diff_raw = comm_carrier_coeffs[1:] * np.conj(comm_carrier_coeffs[:-1]) # Carrier phase rotation between adjacent symbol centers. comm_symbol_dn = np.diff(comm_symbol_center_sample) comm_mu_unwrapped = np.unwrap(2.0 * np.pi * comm_carrier_cycles_per_samp",
+        "source_sha256": "a8c41f507d3e87c6d2bac6072c971927c2762422b4d3510d96eaabb44b0d25b0"
+      },
+      {
+        "cell_index": 17,
+        "cell_type": "code",
+        "matched_tokens": [
+          "dpsk"
+        ],
+        "source_preview": "# ============================================================ # Communication / DPSK receiver branch - Cell 5 # ============================================================ comm_preview_bits = min(96, comm_bits_reference.size, comm_bits_hat.size) fig, axes = plt.subplots(1, 2, figsize=(12, 4.5)) # ------------------------------------------------------------ # Plot 1: transmitted vs recovered bits # ------------------------------------------------------------ axes[0].step( np.arange(comm_preview",
+        "source_sha256": "5b221ceb7fd87293fb8e490953f27fb29fd06450fe627f59eccc1f193fbaa90c"
+      },
+      {
+        "cell_index": 22,
+        "cell_type": "code",
+        "matched_tokens": [
+          "dpsk"
+        ],
+        "source_preview": "# ============================================================ # Module 3 - Cell 7 # ============================================================ def compensate_if_components(if_components, delayed_code_components): \"\"\"Remove the delayed DPSK phase code from each target component\"\"\" compensated_components = [] for if_i, delayed_code_i in zip(if_components, delayed_code_components): if_comp_i = if_i * np.exp(-1j * delayed_code_i) compensated_components.append(if_comp_i) if_comp_total = np.sum(com",
+        "source_sha256": "4226c53f405684b1181ab65f3f9031cae5a29d2b58a00afcb0da33f05534b55c"
+      },
+      {
+        "cell_index": 63,
+        "cell_type": "code",
+        "matched_tokens": [
+          "dpsk"
+        ],
+        "source_preview": "# ============================================================ # Presentation-only plots - DPSK symbol timing preview # Uses the DPSK sequence already generated in Module 2. # ============================================================ # We only visualize a small number of symbols. # A full 10 us chirp at 1 Gbps contains about 10,000 symbols. dpsk_preview_symbol_count = 24 dpsk_preview_chirp_index = 0 dpsk_preview_bits = dpsk_bits[dpsk_preview_chirp_index, :dpsk_preview_symbol_count] dpsk_previ",
+        "source_sha256": "7e359c38431d6192e6ee0720db49c7089715fab7a59c717156539910c157637e"
+      },
+      {
+        "cell_index": 64,
+        "cell_type": "code",
+        "matched_tokens": [
+          "dpsk"
+        ],
+        "source_preview": "# ============================================================ # Presentation-only plots - DPSK communication recovery # Uses the validated Module 2 receiver outputs. No second receiver is simulated here. # ============================================================ presentation_comm_bit_count = min(80, comm_bits_reference.size, comm_bits_hat.size) presentation_comm_bit_index = np.arange(presentation_comm_bit_count) presentation_comm_fig, presentation_comm_axes = plt.subplots(1, 2, figsize=(12,",
+        "source_sha256": "947bc195e9cf4fc5faac860b2973c2028a949a32bfbc21199b1d3b6a45fd0b03"
+      }
+    ],
+    "effective_rate": [],
+    "optical_gain_or_received_power": [
+      {
+        "cell_index": 65,
+        "cell_type": "markdown",
+        "matched_tokens": [
+          "prx"
+        ],
+        "source_preview": "![image.png](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA3sAAAJ7CAYAAABauohXAAAgAElEQVR4Xuy9CZhVxbX+/ZpOcCDBSDAaUGlJkElBIiiKCEYJ3CARhNaA8yUQUFG8YACJbWiCooKCOBCQgAMSaEESxA+COAQRFf2jICCi2A4YDUQBRbQNyVe1p7OHqj2cqU+ffvt5uLl2713Dr4Zdb61Vqw76r/gBf0iABEiABEiABEiABEiABEiABIqKwEEUe0XVnqwMCZAACZAACZAACZAACZAACRgEKPbYEUiABEiABEiABEiABEiABEigCAlQ7BVho7JKJEACJEACJEACJEACJEACJECxxz5AAiRAAiRAAiRAAiRAAiRAAkVIgGKvCBuVVSIBEiABEiABEiABEiABEiABij32ARIgARIgARIgARIgARIgARIoQgIUe0XYqKwSCZAACZAACZAACZAACZAACVDssQ+QA",
+        "source_sha256": "cefc12e7984c784a1801c4b676009fc99bbfb053cb99a5c37f1b5d1b627153e2"
+      }
+    ]
+  },
+  "core_numeric_constants": {
+    "M_chirps": {
+      "cell_index": 4,
+      "expected_value": 64.0,
+      "line": 5,
+      "resolved_value": 64.0,
+      "resolved_variable": "M_chirps",
+      "source": "M_chirps = 64"
+    },
+    "N_fast": {
+      "cell_index": 4,
+      "expected_value": 131072.0,
+      "line": 4,
+      "resolved_value": 131072.0,
+      "resolved_variable": "N_fast",
+      "source": "N_fast = 131_072"
+    },
+    "carrier_frequency_Hz": {
+      "cell_index": 3,
+      "expected_value": 193400000000000.0,
+      "line": 12,
+      "resolved_value": 193400000000000.0,
+      "resolved_variable": "fc",
+      "source": "fc = 193.4e12"
+    },
+    "chirp_duration_s": {
+      "cell_index": 3,
+      "expected_value": 1e-05,
+      "line": 14,
+      "resolved_value": 1e-05,
+      "resolved_variable": "T_chirp",
+      "source": "T_chirp = 10e-6"
+    },
+    "data_rate_bps": {
+      "cell_index": 3,
+      "expected_value": 1000000000.0,
+      "line": 15,
+      "resolved_value": 1000000000.0,
+      "resolved_variable": "data_rate",
+      "source": "data_rate = 1e9"
+    },
+    "sample_period_s": {
+      "cell_index": 3,
+      "expected_value": 1e-09,
+      "line": 21,
+      "resolved_value": 1e-09,
+      "resolved_variable": "Ts",
+      "source": "Ts = 1.0 / Rs"
+    },
+    "waveform_bandwidth_Hz": {
+      "cell_index": 3,
+      "expected_value": 10000000000.0,
+      "line": 13,
+      "resolved_value": 10000000000.0,
+      "resolved_variable": "B",
+      "source": "B = 10e9"
+    }
+  },
+  "effective_rate_formula_status": "MUST_FREEZE_IN_BLOCK5.6_BEFORE_FORMAL",
+  "effective_rate_provenance": "Stage5_derived_from_frozen_PartA_link_quantities_raw_data_rate_and_beam_probing_overhead",
+  "effective_rate_source_hits": 0,
+  "exact_numerical_link_adapter": "TO_BE_IMPLEMENTED_AND_CROSSCHECKED_IN_BLOCK5.6",
+  "frozen_Stage0_reference": "/home/agni/waymo/iscai_stage0/reports/stage0/part_a_frozen_reference.json",
+  "frozen_Stage0_reference_sha256": "fcdfc0a7b9c14fa9447ceb8563a6f20ac277706223388dc9aa8a1edf416c5e2b",
+  "new_arbitrary_optical_model_allowed": false,
+  "source_notebook": "/home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb",
+  "source_notebook_sha256": "b5a80a6d3441de6d571db4f65b4a43ed4052cc2b3ccba935ad31b5dd51316ef3",
+  "status": "FROZEN_SOURCE_EVIDENCE"
+}

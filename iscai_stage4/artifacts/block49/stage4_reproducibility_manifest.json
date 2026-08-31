@@ -1,0 +1,118 @@
+{
+  "block": "4.9",
+  "calibration": {
+    "content_sha256": "90ff6b8fd7aab56eec0a7915af30868ad3e5b966a114acab6a048a901ecc7da0",
+    "file_sha256": "508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087",
+    "fitted_on": "frozen_calibration_partition_only",
+    "formal_refit": false,
+    "method": "per_horizon_covariance_scaling"
+  },
+  "environment": {
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "GPU": "NVIDIA RTX A6000",
+    "deterministic_algorithms": true,
+    "numpy": "2.5.1",
+    "python": "3.13.5",
+    "torch": "2.13.0+cu132",
+    "torch_cuda": "13.2"
+  },
+  "formal_evidence": {
+    "PDF_calibration_measured": true,
+    "PDF_performance_gate": true,
+    "calibrated_Gaussian_ADE_m": 1.9848952833749467,
+    "calibrated_macro_ECE": 0.11165527003334381,
+    "classical_baselines_beaten": [
+      "CA",
+      "CTRV",
+      "CV",
+      "IMM_CV_CA_CTRV",
+      "Kalman_EKF"
+    ],
+    "internal_CV_gate": true,
+    "raw_macro_ECE": 0.18362046536363294
+  },
+  "formal_population": {
+    "N": 120,
+    "canonical_validation_manifest_sha256": "dc10609ef18a2ba881657eb3da3a3df7a81bdcc8345ecbc2227102ab16b8833c",
+    "eligible_targets": 547,
+    "formal_manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "formal_output_content_sha256": "fe5cf7e413b8142c0670d05727affd4fa573cf4607665e4a9bda951f1d9bd0d5",
+    "matched_targets": 494
+  },
+  "fresh_process_reproducibility": {
+    "exact_prediction_SHA_matches": true,
+    "independent_python_processes": 4,
+    "probe_count": 4,
+    "probe_plan_sha256": "ac16063f47979361391c013f418744c40c9f6b6d4e1caa94dff87b68b7609813",
+    "results": [
+      {
+        "prediction_sha256": "d92330d0e37e0c8d79f76f7bb166b5baf88570cc37f896713c72da4175aea204",
+        "rank": 1,
+        "scenario_id": "cfd33c593d645bf5",
+        "supervised_samples": 50
+      },
+      {
+        "prediction_sha256": "a2970314b5d701f82330e09d79de952f4558728c17b6f05b9a04fc2e2c5a0d93",
+        "rank": 2,
+        "scenario_id": "b90adbf772ab2317",
+        "supervised_samples": 24
+      },
+      {
+        "prediction_sha256": "41e01d0ea53ba2edfc3f3ed5de58a675c8dfc8628aad27c3c44e576ea7301c5e",
+        "rank": 3,
+        "scenario_id": "b3078e2d1e2a6ed4",
+        "supervised_samples": 32
+      },
+      {
+        "prediction_sha256": "6bac4231f2ca41ced8ce31b0e153b9644cdeb0f6f8612d2a03958a5cc9a18846",
+        "rank": 4,
+        "scenario_id": "765006a780597dad",
+        "supervised_samples": 12
+      }
+    ],
+    "selection_rule": "first_four_nonempty_formal_scenes_in_frozen_manifest_order",
+    "strict_state_loads": true,
+    "tracks_to_predict_accessed": false
+  },
+  "frozen_models": {
+    "GMM_GRU": {
+      "architecture_configuration_sha256": "f6345594e4c4cf2a76a3410c75fe254ac0b8fdf437b60a25145e3977921a4c6e",
+      "checkpoint_sha256": "5aebeaf40d522d58345d424ae2557d6f87e2c02bdc26c23635cc6e3a28cbe3ee",
+      "experiment_configuration_sha256": "80c44471884409f0ff6003a92731fb78ae59d00caa542f3b09e852f55186d3c1",
+      "state_dict_sha256": "3bd803104a5de694b9c6073fa651230e16a08899db14894e0f1fd1e2f11c1a97"
+    },
+    "Gaussian_GRU": {
+      "checkpoint_sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f",
+      "embedded_configuration_sha256": "aad379edb86a90cac9d5c685bcfd50a6cca0b8616b89b603c2dd9b9bf162a7ae",
+      "state_dict_sha256": "1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3"
+    },
+    "deterministic_GRU": {
+      "checkpoint_sha256": "5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5",
+      "embedded_configuration_sha256": "f6345594e4c4cf2a76a3410c75fe254ac0b8fdf437b60a25145e3977921a4c6e",
+      "state_dict_sha256": "d2ffbc03c7cb2826fef2175c95f48725707ec6d791eaeffbd6f59bc507b8595a"
+    }
+  },
+  "implementation": {
+    "file_count": 82,
+    "sha256": "e1c779c05155dd86794f405a8567c994f0acac617015f717944e5ff6868491cd"
+  },
+  "leakage": {
+    "formal_calibrator_fit": false,
+    "formal_model_selection": false,
+    "formal_normalization_fit": false,
+    "formal_training": false,
+    "future_model_input": false,
+    "tracks_to_predict_model_input": false
+  },
+  "normalization": {
+    "content_sha256": "3943a5029032157323b9351ecae489cdc78e216ab9819036eae68864279af7da",
+    "file_sha256": "3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6",
+    "source": "fit_only"
+  },
+  "regression": {
+    "tests_passed": 124,
+    "tests_total": 124
+  },
+  "stage": 4,
+  "status": "FROZEN_REPRODUCIBLE"
+}

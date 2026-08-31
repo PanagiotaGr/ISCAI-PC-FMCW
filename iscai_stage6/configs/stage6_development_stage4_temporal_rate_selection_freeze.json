@@ -1,0 +1,169 @@
+{
+  "I_prev": {
+    "all_on_smoke": false,
+    "future_information": false,
+    "maps_path": "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_t0_maps.npy",
+    "maps_sha256": "7c5d63c76c3d9ef74adbbd7a68e3ce7483b1dd80fd262cba06f6ce1909994993",
+    "scenario_binding_path": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage4_preoutcome/stage4_current_state_scenario_binding.jsonl",
+    "scenario_binding_sha256": "3a1c689484fdbd8dbf763cfb0a52b3a987a5930a236fe9692f0b084cb178387d",
+    "semantic": "already-issued current causal frozen Part-A t0 actuator map"
+  },
+  "block": "6.8_development_stage4_temporal_rate_selection",
+  "candidate_space": {
+    "candidate_count": 60,
+    "rate_constraint": "rho_dim_per_s >= rho_bright_per_s",
+    "rate_pair_count": 15,
+    "rate_values_per_s": [
+      1,
+      2,
+      4,
+      8,
+      16
+    ],
+    "time_constants_ms": [
+      50,
+      100,
+      200,
+      400
+    ]
+  },
+  "development_only": true,
+  "execution_integrity": {
+    "Stage3_raw_handoff_max_abs_delta": 4.440892098500626e-16,
+    "Stage3_raw_handoff_replay": "PASS",
+    "winner_authoritative_max_abs_delta": 2.220446049250313e-16,
+    "winner_authoritative_replay": "PASS_120_OF_120"
+  },
+  "formal_outcomes_read": false,
+  "next": "Run frozen primary development acceptance gate exactly once against original_reactive_ADB; no parameter modification permitted.",
+  "outputs": {
+    "candidate_scores": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage4_temporal_rate_selection/block68_stage4_candidate_scores.jsonl",
+      "records": 60,
+      "sha256": "7bd4d3ccd9e7782bd6861b0b86b3e6c55597f7db52eaf4a5183b4feff89d2bff"
+    },
+    "winner_scenarios": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage4_temporal_rate_selection/block68_stage4_winner_scenario_metrics.jsonl",
+      "records": 120,
+      "sha256": "51ddaa6b14187bfb61e8fa338dbbad042b3df56aec043ee55562cf163e7626bc"
+    }
+  },
+  "runner_up": {
+    "rho_bright_per_s": 1,
+    "rho_dim_per_s": 1,
+    "selection_key": [
+      0.18301787333110295,
+      0.11754944754813494,
+      0.13306208560368765,
+      0.2884080399555264,
+      0.0007905147622805332,
+      0.2652174886108181,
+      100,
+      1,
+      1
+    ],
+    "time_constant_ms": 100
+  },
+  "runtime": {
+    "VRU_guard": "ClassAwareComposition.vru_floor_guard",
+    "final": "RateLimitedSchedule.illumination",
+    "rate_limit": "apply_actuation_rate_limit",
+    "raw": "ClassAwareComposition.raw_class_aware_illumination",
+    "smoothing": "temporal_smooth_schedule"
+  },
+  "scientific_boundary": {
+    "NI_bounds_modified": false,
+    "Stage1_modified": false,
+    "Stage2_modified": false,
+    "Stage3_modified": false,
+    "Stage4_winner_selected": true,
+    "formal_evaluation": false,
+    "post_outcome_retuning_allowed": false,
+    "primary_acceptance_tested": false
+  },
+  "selected": {
+    "finite_scenario_support": {
+      "cyclist_visibility_proxy": 37,
+      "false_dimming": 120,
+      "flicker_change_rate": 120,
+      "glare_risk_exposure": 115,
+      "over_masking_area": 120,
+      "pedestrian_visibility_proxy": 45,
+      "rate_limit_safety_override_fraction": 120,
+      "road_illumination_retention": 120,
+      "temporal_mean_absolute_change_rate": 120,
+      "vehicle_shadow_zone_violation": 115
+    },
+    "metrics": {
+      "cyclist_visibility_proxy": 0.8869782482483739,
+      "false_dimming": 0.8950426311911264,
+      "flicker_change_rate": 0.2884080399555264,
+      "glare_risk_exposure": 0.16592350592128355,
+      "over_masking_area": 0.26521748861081823,
+      "pedestrian_visibility_proxy": 0.8992267609505494,
+      "rate_limit_safety_override_fraction": 0.000790514762280533,
+      "road_illumination_retention": 0.819016469056411,
+      "temporal_mean_absolute_change_rate": 0.1220827769737544,
+      "vehicle_shadow_zone_violation": 0.013116180708780553
+    },
+    "rho_bright_per_s": 1,
+    "rho_dim_per_s": 1,
+    "safety_risk_vector": {
+      "1-cyclist_visibility_proxy": 0.1130217517516261,
+      "1-pedestrian_visibility_proxy": 0.10077323904945057,
+      "1-road_illumination_retention": 0.180983530943589,
+      "glare_risk_exposure": 0.16592350592128355,
+      "vehicle_shadow_zone_violation": 0.013116180708780553
+    },
+    "selection_key": [
+      0.180983530943589,
+      0.11476364167494595,
+      0.1220827769737544,
+      0.2884080399555264,
+      0.000790514762280533,
+      0.26521748861081823,
+      200,
+      1,
+      1
+    ],
+    "time_constant_ms": 200,
+    "time_constant_s": 0.2
+  },
+  "selection_semantics": {
+    "epsilon_tolerance": null,
+    "round_before_comparison": false,
+    "safety_risk_vector": [
+      "vehicle_shadow_zone_violation",
+      "glare_risk_exposure",
+      "1-pedestrian_visibility_proxy",
+      "1-cyclist_visibility_proxy",
+      "1-road_illumination_retention"
+    ],
+    "scenario_aggregation": "equal development-scenario macro over finite authoritative metric values",
+    "selection_key": "(max risk, mean risk, temporal mean_absolute_change_rate, flicker_change_rate, rate_limit_safety_override_fraction, over_masking_area, time_constant_ms, rho_dim_per_s, rho_bright_per_s)",
+    "weighted_sum": false
+  },
+  "stage": 6,
+  "status": "FROZEN_STAGE4_TEMPORAL_RATE_BEFORE_PRIMARY_ACCEPTANCE_GATE",
+  "upstream_policy": {
+    "Stage1_gamma": "IMMUTABLE",
+    "Stage2_margins": "IMMUTABLE",
+    "Stage3_cyclist_floor": 1.0,
+    "Stage3_floors": "IMMUTABLE",
+    "Stage3_pedestrian_floor": 1.0,
+    "Stage3_vehicle_floor": 0.15
+  },
+  "upstream_seals": {
+    "cache_freeze": "6733ba1641afc341910bd5cc822a034103585706f32db4758d606b7bf2bf786d",
+    "cache_manifest": "9607f5bd6022da5471167650f652556dca8381b241adf0b7faaf06bd27edc041",
+    "class_runtime": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b",
+    "current_binding": "3a1c689484fdbd8dbf763cfb0a52b3a987a5930a236fe9692f0b084cb178387d",
+    "evaluator_runtime": "2015136fdcbfe3f837bcba5a2ee05578a4d8a01c4ecfd52e4dfac9f864349891",
+    "metric_runtime": "bf8358b5a7edfe40ffac2718ca7cd5af6e7b5fdb3ff8a2823caad6d0f40f057a",
+    "road_roi": "832f4bc3215fe585fee781080c98b2928157f26e8a66d22f428f15604afb75e0",
+    "stage3_freeze": "c8536a1a2f888ebc3310cb900626cf0c8c0c2ca3ce34c2d321120a269c548d00",
+    "stage4_prefreeze": "f8a0850610e4cee4984b668d5f7046c4ec6a5f873b28f645776d5f3a5ced2717",
+    "stage4_prefreeze_report": "0e9462d9a811f4df9283a90fa74f303e6b41c817fce44e0fbcf39658ed69aa8e",
+    "t0_maps": "7c5d63c76c3d9ef74adbbd7a68e3ce7483b1dd80fd262cba06f6ce1909994993"
+  }
+}

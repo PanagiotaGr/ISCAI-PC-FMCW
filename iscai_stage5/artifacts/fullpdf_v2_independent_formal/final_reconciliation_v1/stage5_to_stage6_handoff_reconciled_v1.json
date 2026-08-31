@@ -1,0 +1,45 @@
+{
+  "Stage5": "COMPLETE_FROZEN_FULLPDF_V2_RECONCILED",
+  "Stage6_allowed": true,
+  "Stage6_modified_by_this_script": false,
+  "Stage6_preexisting_artifacts_detected": true,
+  "claims": {
+    "FMCW": "PC_FMCW_sensor_in_loop_not_measured_pointwise_Doppler",
+    "optical": "normalized_constructed_optical_surrogate_not_measured_link",
+    "traffic": "real_WOMD_traffic"
+  },
+  "codebooks": [
+    16,
+    32,
+    64
+  ],
+  "final_Stage5_closure": {
+    "path": "/home/agni/waymo/iscai_stage5/reports/stage5_fullpdf_v2_final_closure_reconciled_v1.json",
+    "sha256": "e376a9274826f80b7ffcf6d031c0f44c792cb025a44a4675e95ded467e526e34"
+  },
+  "from_stage": 5,
+  "post_outcome_tuning": false,
+  "probability_targets": [
+    0.9,
+    0.95,
+    0.975,
+    0.99
+  ],
+  "receiver_geometry_modes": [
+    "centroid",
+    "known",
+    "uncertain"
+  ],
+  "scientific_authority": {
+    "Block58_formal_evaluation": "/home/agni/waymo/iscai_stage5/reports/block58_formal_evaluation.json",
+    "Block58_formal_evaluation_sha256": "76c23c21e667cf5acec1a6b1273256b915f8c12d0bba6417459e56c27203fc55",
+    "Block59_reproducibility_sha256": "980bfbd2007ed798742bd7c36b5e8b6bcd0e808590c0dc5d9608db1ec6211845"
+  },
+  "status": "FROZEN_RECONCILED_HANDOFF_READY",
+  "to_stage": 6,
+  "trajectory_posterior": {
+    "Stage5_recalibration": false,
+    "model": "calibrated_Gaussian_GRU"
+  },
+  "version": "fullpdf_v2"
+}

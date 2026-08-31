@@ -1,0 +1,87 @@
+{
+  "stage": 3,
+  "block": "3.6",
+
+  "baseline": "Multidimensional Hough Transform",
+
+  "part_a_continuity": {
+    "frozen_commit": "44d62e3478e3818d1757b00971890f844cb032f7",
+    "part_a_parameter_space": "rho_theta_spatial_line_hough",
+    "part_a_raw_voting": true,
+    "part_a_accumulator": true,
+    "part_a_peak_extraction": true,
+    "part_a_final_AND_logic_validation": true,
+    "part_a_contains_rolling_window_non_linear_case": true
+  },
+
+  "stage3_adaptation": {
+    "input": "raw_unlabeled_stage2_detections",
+    "estimated_association_used": false,
+    "parameter_space": [
+      "x_anchor",
+      "y_anchor",
+      "vx",
+      "vy"
+    ],
+    "anchor": "last_causal_observation_time",
+    "canonical_position_frame": "H0",
+    "measurement_frame": "Ht",
+    "stage1_motion_compensation": true
+  },
+
+  "velocity_grid_mps": {
+    "min": -30.0,
+    "max": 30.0,
+    "step": 2.0
+  },
+
+  "anchor_position_bin_m": 1.0,
+
+  "uncertainty_aware_voting": {
+    "enabled": true,
+    "position_covariance_source": "Stage2_R_t_propagated_to_H0",
+    "position_vote_neighbor_bins": 1,
+    "position_vote_floor_m": 0.75,
+    "radial_velocity_used": true,
+    "radial_velocity_variance_source": "Stage2_R_t",
+    "radial_velocity_floor_mps": 2.0,
+    "radial_velocity_gate_sigma": 4.0
+  },
+
+  "accumulator": {
+    "representation": "sparse_4D",
+    "maximum_one_effective_vote_per_frame_per_cell": true,
+    "minimum_vote_frames": 3,
+    "peak_NMS": true,
+    "maximum_peaks": 16
+  },
+
+  "final_AND_logic": {
+    "minimum_support_frames": 3,
+    "minimum_time_span_s": 0.2,
+    "maximum_missing_gap_frames": 2,
+    "spatial_gate_sigma": 3.0,
+    "radial_gate_sigma": 4.0,
+    "refit": "weighted_linear_xyz_vs_time",
+    "duplicate_suppression": true
+  },
+
+  "information_policy": {
+    "truth_used": false,
+    "actor_identity_used": false,
+    "detection_key_matching_used": false,
+    "actor_class_used": false,
+    "future_information_used": false
+  },
+
+  "prediction_horizons_s": [
+    0.1,
+    0.3,
+    0.5,
+    1.0
+  ],
+
+  "formal_validation_tuning": false,
+
+  "status": "FROZEN_BEFORE_FORMAL_VALIDATION"
+}

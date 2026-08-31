@@ -1,0 +1,46 @@
+{
+  "block": "6.0",
+  "causality": {
+    "Stage4_recalibration": false,
+    "Stage4_retraining": false,
+    "communication_receiver_only_ADB": false,
+    "future_GT_controller_input": false,
+    "tracks_to_predict_ADB_selector": false
+  },
+  "contract": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/stage6_contract.json",
+    "sha256": "6b2ee6454f876c3658d4d308b827202cd31dd7c77bf96c38e6c6da70e6573675",
+    "status": "FROZEN_PREIMPLEMENTATION_CONTRACT"
+  },
+  "formal_evaluation": false,
+  "inference": false,
+  "next": "Block6.0 Part2: exact Part-A ADB source/reference audit, reactive-ADB adapter contract and final Block6.0 closure",
+  "parameter_tuning": false,
+  "part": "1/2",
+  "project": "Agni",
+  "regression": {
+    "block60_contract_tests": "PASS"
+  },
+  "scientific_ADB_implementation_started": false,
+  "stage": 6,
+  "status": "PASS_CONTRACT_FROZEN",
+  "storage": {
+    "free_GiB": 1044.851821899414,
+    "hard_reserve_GiB": 250.0,
+    "pass": true
+  },
+  "strict_PDF_audit": "PASS_100_PERCENT_STAGE6_PLAN_COVERAGE",
+  "training": false,
+  "upstream": {
+    "Part_A_git_commit": "44d62e3478e3818d1757b00971890f844cb032f7",
+    "Part_A_reference_sha256": "fcdfc0a7b9c14fa9447ceb8563a6f20ac277706223388dc9aa8a1edf416c5e2b",
+    "Stage4": "COMPLETE_FROZEN",
+    "Stage5": "COMPLETE_FROZEN",
+    "Stage5_closure_sha256": "c83731948749f3ca20742aaac6b7474f53c755cbc8209dd31db969d229f60610",
+    "Stage5_freeze_sha256": "af9612205f190a04d9da565a98a0449f4ed98f53027b6f971b8457f73bd70913",
+    "Stage5_handoff_sha256": "c900ccbd63e7c680af28ed5cd8046f408463eceb7ce943b324b266dda73500eb",
+    "formal_manifest_N": 120,
+    "formal_manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46"
+  },
+  "upstream_modified": false
+}

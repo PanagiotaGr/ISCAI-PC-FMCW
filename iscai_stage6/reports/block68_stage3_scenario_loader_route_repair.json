@@ -1,0 +1,35 @@
+{
+  "block": "6.8_stage3_scenario_loader_route_repair",
+  "diagnosis": {
+    "actual_frozen_semantic": "motion_shard is a frozen shard identifier resolved by the established Stage-4 read_training_scenario(cohort_row) route",
+    "directory_prefix_invented": false,
+    "failure_type": "non_scientific_path_resolution_assumption",
+    "obsolete_assumption": "cohort motion_shard must itself be an absolute filesystem path"
+  },
+  "next": "rerun the same Stage-3 execution Part 1/2 fixed-cache parity runner",
+  "preserved_repairs": {
+    "posterior_total_cardinality_not_required": true,
+    "selected_posterior_keys_required": 877
+  },
+  "regression": 224,
+  "runner": {
+    "backup_path": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage3_fixed_cache/scenario_loader_repair/run_block68_stage3_fixed_cache_parity.pre_scenario_loader_fix.py",
+    "backup_sha256": "1cb25fe7264daa59b8734cf7bfea7baa01fa2dc1610a2c9aa30d31a753a2d25e",
+    "patch_scope": "scenario loading/path resolution only",
+    "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_stage3_fixed_cache_parity.py",
+    "post_patch_sha256": "5c4952829354d8f2dc090d514bc1144f1fb42b530214233add5601073791833f",
+    "pre_patch_sha256": "1cb25fe7264daa59b8734cf7bfea7baa01fa2dc1610a2c9aa30d31a753a2d25e"
+  },
+  "scientific_boundary": {
+    "Stage1_modified": false,
+    "Stage2_modified": false,
+    "Stage3_floor_outcomes_computed": false,
+    "Stage3_floor_selected": false,
+    "Stage3_scoring_modified": false,
+    "Stage4_temporal_rate_selected": false,
+    "formal_evaluation": false,
+    "primary_acceptance_tested": false
+  },
+  "stage": 6,
+  "status": "PASS_STAGE3_SCENARIO_LOADER_ROUTE_REPAIRED"
+}

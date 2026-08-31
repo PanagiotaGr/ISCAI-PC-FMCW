@@ -1,0 +1,5969 @@
+{
+  "Stage6_regression": 224,
+  "block": "6.8_class_aware_runtime_delegation_discovery",
+  "candidate_filenames_only": [
+    {
+      "path": "configs/block64_mc_grid_numeric_freeze.json",
+      "sha256": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73",
+      "size_bytes": 3331
+    },
+    {
+      "path": "configs/block65_class_agnostic_gamma_freeze.json",
+      "sha256": "e307a217d45c044588f6fd32257291c6ae95ef8c86bf305de69ebab7a45a5992",
+      "size_bytes": 1099
+    },
+    {
+      "path": "configs/block65_class_agnostic_gamma_preregistration.json",
+      "sha256": "bec7749511d37b01a39967864cfb3259f0c506d16f3b825d3d33d06b8819f02d",
+      "size_bytes": 1236
+    },
+    {
+      "path": "configs/block66_development_cohort_selection_preregistration.json",
+      "sha256": "498888381e5ab9dd2f14db59cec6661beac22368e31088d6326fe76190bd4081",
+      "size_bytes": 1097
+    },
+    {
+      "path": "configs/block66_part3b_class_aware_policy_preregistration.json",
+      "sha256": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e",
+      "size_bytes": 23474
+    },
+    {
+      "path": "configs/block66_part3c_part2of2_deterministic_replay_contract.json",
+      "sha256": "ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1",
+      "size_bytes": 6390
+    },
+    {
+      "path": "configs/stage6_metric_freeze_protocol.json",
+      "sha256": "409fbb2785e4ff13f29fdff96c91d608c245e009fcbb86ce57099d6a4e1815c9",
+      "size_bytes": 5875
+    },
+    {
+      "path": "configs/stage6_noninferiority_bound_selection_rule.json",
+      "sha256": "b5c0f40725e26578a4739f0582e4467ec48b72db8bb077d13862cc83dee98d24",
+      "size_bytes": 2758
+    },
+    {
+      "path": "configs/stage6_preformal_primary_acceptance_policy.json",
+      "sha256": "e103466b1a6eb62be4e6746029147cbda9671b05130acba5210a3ab7328e6b81",
+      "size_bytes": 1170
+    },
+    {
+      "path": "artifacts/block66/block66_development_cohort_freeze_manifest.json",
+      "sha256": "42b8238388af96de950b9dfa8ec62ef51acea9f192160c40b93922e9acca1854",
+      "size_bytes": 1516
+    },
+    {
+      "path": "artifacts/block66/block66_part1b_development_cohort_freeze.log",
+      "sha256": "3bffdf31e37a06ef6d16e4b61d9e661969c03a604fdca889098afd4eea9e33d1",
+      "size_bytes": 4158
+    },
+    {
+      "path": "artifacts/block66/block66_part1b_to_part2_handoff.json",
+      "sha256": "9b97ced36cd892850edf0adc52886255bf38e70c25290fe095ce0171deb40c95",
+      "size_bytes": 1725
+    },
+    {
+      "path": "artifacts/block66/block66_part2c1_headlamp_eligibility_freeze_manifest.json",
+      "sha256": "2d9dcd668b6b07824793a4773430edf98ce4e96311f7cf756b2947520468efc0",
+      "size_bytes": 2284
+    },
+    {
+      "path": "artifacts/block66/block66_part2c1_to_part2c2_handoff.json",
+      "sha256": "9610565cadb8a21622ffc82557e5d0e9ce0279b4796ecfba158eb5e808d3f175",
+      "size_bytes": 1710
+    },
+    {
+      "path": "artifacts/block66/block66_part2c2b_pocc_freeze_manifest.json",
+      "sha256": "b0df9df17c6008f9bdf3a993d08b103dc694607be90abe3307bc8d4877f9f6a7",
+      "size_bytes": 2100
+    },
+    {
+      "path": "artifacts/block66/block66_part2c2b_to_part3_handoff.json",
+      "sha256": "c727fa4a9aef6b782e229dc9bb6c64f850716cff637472c4493827711314d6ab",
+      "size_bytes": 2178
+    },
+    {
+      "path": "artifacts/block66/block66_part3a3_to_part3b_handoff.json",
+      "sha256": "0067239bf65d32d7bd40fdd33c02b74aff509265e8a86070a3d2a0ed404cb1ee",
+      "size_bytes": 1734
+    },
+    {
+      "path": "artifacts/block66/block66_part3b_preregistration_freeze_manifest.json",
+      "sha256": "a1d13bced062c2f2303b7166ab4f8b24f1ff17a236950dc569dcf16c580108c1",
+      "size_bytes": 4014
+    },
+    {
+      "path": "artifacts/block66/block66_part3b_to_part3c_handoff.json",
+      "sha256": "60874c8a4d9c8feae5e800f89168e2807a9c859c37dab0577186055e82ad5163",
+      "size_bytes": 1618
+    },
+    {
+      "path": "artifacts/block66/block66_part3c1_class_aware_runtime.log",
+      "sha256": "ad280956e0e21666881b6320debaa3bfe5fb930759d987dc6efa133e5c36f58c",
+      "size_bytes": 7740
+    },
+    {
+      "path": "artifacts/block66/block66_part3c1_to_part3c2_handoff.json",
+      "sha256": "5dccff7f48403bffcb3eab2f787bb09f96a4cce41a5e8c286050026fea58f813",
+      "size_bytes": 1092
+    },
+    {
+      "path": "artifacts/block66/block66_part3c2a_surrogate_route_audit.log",
+      "sha256": "e05497778980a07f426ab9143617643e6748518a91193437ec709b81b8c18c10",
+      "size_bytes": 20053
+    },
+    {
+      "path": "artifacts/block66/block66_part3c2a_to_part3c2b_handoff.json",
+      "sha256": "620d8d13b4f0ee04fdde627a698efe24c42d43b362c19a227eea4d7e0e35cc5e",
+      "size_bytes": 716
+    },
+    {
+      "path": "artifacts/block66/block66_part3c2b0_persistence_sufficiency_audit.log",
+      "sha256": "6a90afe2786c0756cdd929c2998569263b32ade5bb4c7d5254bab6a010f6b940",
+      "size_bytes": 6411
+    },
+    {
+      "path": "artifacts/block66/block66_part3c2b0_to_part3c2b1_handoff.json",
+      "sha256": "1eeb2ca77dfd8068465a3d0d5f88843dec528c76c3729f8f690b6ca377d89e64",
+      "size_bytes": 619
+    },
+    {
+      "path": "artifacts/block66/block66_part3c_final_freeze_manifest.json",
+      "sha256": "880c2efb0895f463aaf3350eed7730389a5871651d7ad6091cef052d95434738",
+      "size_bytes": 1596
+    },
+    {
+      "path": "artifacts/block66/block66_part3c_part2of2_final.log",
+      "sha256": "6c3b22d4f3d41dfdb100f03f65b329e0d8f271c44bbf1308bd54e4e9bd6a2814",
+      "size_bytes": 11578
+    },
+    {
+      "path": "artifacts/block66/block66_part3c_to_block67_handoff.json",
+      "sha256": "859e4d936c9e0eb04f35925382c7fa3aa86c91e1d2ff85beb86bb27e77ca4b5d",
+      "size_bytes": 1353
+    },
+    {
+      "path": "artifacts/block66/block66_part3c_vehicle_surrogate_evidence.jsonl",
+      "sha256": "bfe8eb6d8b605d58f9b99d8097744b71b99ecb9ed9fd169191222375f31bc826",
+      "size_bytes": 2421780
+    },
+    {
+      "path": "reports/block60_part1_handoff_contract.json",
+      "sha256": "4a1adbc757d39fdf1e25d76fe3ec48cda49fcebe37c2d257814671d9633339bd",
+      "size_bytes": 1764
+    },
+    {
+      "path": "reports/block63_binding_freeze.json",
+      "sha256": "6e73e58eb4a28390360e965b33582b6b430dff149f97696494e9d504d1e0d84a",
+      "size_bytes": 1191
+    },
+    {
+      "path": "reports/block63_causal_association_policy_audit.json",
+      "sha256": "ecc25a7d3280354c1365bf6021b8230064461571da262eefb80dd35048fa741a",
+      "size_bytes": 3145
+    },
+    {
+      "path": "reports/block64_part2b2_development_numeric_freeze.json",
+      "sha256": "06cb2487cc097a5df5b7f4966dded8509fa4771b70755146180cc13d1e64333f",
+      "size_bytes": 3458
+    },
+    {
+      "path": "reports/block65_part2a_gamma_curve.json",
+      "sha256": "93948ca4c0c14f2503b503426432d3bddf9a201de2e5a51b9db2f441c2e5ba3f",
+      "size_bytes": 2320
+    },
+    {
+      "path": "reports/block65_part2b_gamma_freeze_real_mask_smoke.json",
+      "sha256": "2473921ce335057599b1235c9dcbc6f0495cf7736de4fbfad202c9493c45b179",
+      "size_bytes": 2540
+    },
+    {
+      "path": "reports/block66_part1b_development_cohort_freeze.json",
+      "sha256": "3a965b4ef3c451e7526608f2b5ceb5a151eb08caf922a25f1b25a1ec5a12f5f0",
+      "size_bytes": 2562
+    },
+    {
+      "path": "reports/block66_part3a2_executable_policy_capability_resolution.json",
+      "sha256": "4dc5f7dfb27c8cc2b448a3a861a0805b7ae5ec3e5347a513e9612dd47a6b1327",
+      "size_bytes": 4540
+    },
+    {
+      "path": "reports/block66_part3a_class_policy_surface_audit.json",
+      "sha256": "da71343ed7744e15ce2335f59f2eaa1db6a47cb1b24af22993239f731c40a9c7",
+      "size_bytes": 258427
+    },
+    {
+      "path": "reports/block66_part3b_class_aware_policy_preregistration.json",
+      "sha256": "1bf01b44a1cd842a1e1bf78f094da9dbb50c622ff895161851e901e1d36a53ac",
+      "size_bytes": 1728
+    },
+    {
+      "path": "reports/block66_part3c1_class_aware_runtime.json",
+      "sha256": "ef4c18367dfe26ceac3a7f55f725f5450c7a3a0fd28811aa565472d9b06073a2",
+      "size_bytes": 2181
+    },
+    {
+      "path": "reports/block66_part3c2a_vehicle_surrogate_route_binding_audit.json",
+      "sha256": "e2372c70d353f7122a91e514853ac1e823245e5ca1cfbf6d9eac5673ad550026",
+      "size_bytes": 18047
+    },
+    {
+      "path": "reports/block66_part3c2b0_persistence_sufficiency_audit.json",
+      "sha256": "2f4fedacaf306b936e96448ea19fb315f9e6db7a95afb3607618099153c38b8d",
+      "size_bytes": 4810
+    },
+    {
+      "path": "reports/block66_part3c_final_closure.json",
+      "sha256": "8413fd646a1bf18e15c12bf0441d1ddb1ea72ed142703020ac0d2c77dba0bb29",
+      "size_bytes": 8122
+    },
+    {
+      "path": "reports/block67_part1_margin_binding_gate.json",
+      "sha256": "80c35d2aa5cd7fea1e54f7a6cb52b8bb0f28f36632ca66e6500f992dcff6d5cf",
+      "size_bytes": 2327
+    },
+    {
+      "path": "reports/block68_evaluator_reference_contract_freeze.json",
+      "sha256": "5885424d164a058a151c50dd663acec4da7aeba66a56d5e0191c777682e113a8",
+      "size_bytes": 3128
+    },
+    {
+      "path": "reports/block68_noninferiority_bound_rule_freeze.json",
+      "sha256": "289f9369735566daa2344a90cb312d4c06ede76b73827f07e408855c4e06ce6b",
+      "size_bytes": 3189
+    },
+    {
+      "path": "reports/block68_part1_metric_freeze_gate.json",
+      "sha256": "84240cb7699cb279668eeb959e3f313352e0bf294adb6d53fe62bb828884b3a1",
+      "size_bytes": 1539
+    },
+    {
+      "path": "reports/block68_reactive_decision_ledger_freeze.json",
+      "sha256": "6ca868dbdf13e8a675813d4af2d3c814ce5297155126e5124ac452131670903b",
+      "size_bytes": 4526
+    },
+    {
+      "path": "reports/block68_reactive_development_scoring_freeze.json",
+      "sha256": "0fc8089bdfbf20eb5e187e71a6a736fefea59b3aac6b34ff373237016d8473f9",
+      "size_bytes": 3931
+    },
+    {
+      "path": "reports/block68_reactive_only_ni_delta_freeze.json",
+      "sha256": "821c845c5be2a60722d09d3a58160dafd08cb7cba6626e238a37a58eca661c9c",
+      "size_bytes": 4319
+    }
+  ],
+  "final_freeze": {
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3c_final_freeze_manifest.json",
+    "referenced_paths": [
+      {
+        "key_path": "Part3B_preregistration.path",
+        "value": "/home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json"
+      },
+      {
+        "key_path": "class_aware_runtime.path",
+        "value": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/class_aware_policy.py"
+      },
+      {
+        "key_path": "closure.path",
+        "value": "/home/agni/waymo/iscai_stage6/reports/block66_part3c_final_closure.json"
+      },
+      {
+        "key_path": "deterministic_replay_contract.path",
+        "value": "/home/agni/waymo/iscai_stage6/configs/block66_part3c_part2of2_deterministic_replay_contract.json"
+      },
+      {
+        "key_path": "vehicle_surrogate_evidence.path",
+        "value": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3c_vehicle_surrogate_evidence.jsonl"
+      }
+    ],
+    "schema_paths": [
+      "Part3B_preregistration",
+      "Part3B_preregistration.path",
+      "Part3B_preregistration.sha256",
+      "Stage6_regression",
+      "block",
+      "class_aware_runtime",
+      "class_aware_runtime.path",
+      "class_aware_runtime.sha256",
+      "closure",
+      "closure.path",
+      "closure.sha256",
+      "deterministic_replay_contract",
+      "deterministic_replay_contract.path",
+      "deterministic_replay_contract.sha256",
+      "formal_outcomes_read",
+      "full_box_parity",
+      "numeric_policy_selected",
+      "prohibited_after_freeze_before_Block6_7",
+      "prohibited_after_freeze_before_Block6_7[]",
+      "stage",
+      "status",
+      "vehicle_surrogate_evidence",
+      "vehicle_surrogate_evidence.path",
+      "vehicle_surrogate_evidence.sha256"
+    ],
+    "sha256": "880c2efb0895f463aaf3350eed7730389a5871651d7ad6091cef052d95434738"
+  },
+  "handoff": {
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3c1_to_part3c2_handoff.json",
+    "referenced_paths": [
+      {
+        "key_path": "runtime_module.path",
+        "value": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/class_aware_policy.py"
+      }
+    ],
+    "schema_paths": [
+      "Part3C2_allowed",
+      "Part3C2_allowed[]",
+      "Part3C2_forbidden",
+      "Part3C2_forbidden[]",
+      "formal_outcomes_read",
+      "from",
+      "numeric_policy_selected",
+      "runtime_module",
+      "runtime_module.path",
+      "runtime_module.sha256",
+      "stage",
+      "status",
+      "to"
+    ],
+    "sha256": "5dccff7f48403bffcb3eab2f787bb09f96a4cce41a5e8c286050026fea58f813"
+  },
+  "next": "bind exact selected policy from the specific frozen runtime/helper/artifact identified by this discovery",
+  "part3c1": {
+    "calls": [
+      {
+        "call": "Path",
+        "line": 13
+      },
+      {
+        "call": "bool",
+        "line": 2447
+      },
+      {
+        "call": "ControlledBlock",
+        "line": 2448
+      },
+      {
+        "call": "str",
+        "line": 2449
+      },
+      {
+        "call": "hashlib.sha256",
+        "line": 2456
+      },
+      {
+        "call": "path.open",
+        "line": 2458
+      },
+      {
+        "call": "handle.read",
+        "line": 2462
+      },
+      {
+        "call": "digest.update",
+        "line": 2469
+      },
+      {
+        "call": "digest.hexdigest",
+        "line": 2473
+      },
+      {
+        "call": "require",
+        "line": 2481
+      },
+      {
+        "call": "path.is_file",
+        "line": 2482
+      },
+      {
+        "call": "sha256_file",
+        "line": 2486
+      },
+      {
+        "call": "require",
+        "line": 2490
+      },
+      {
+        "call": "print",
+        "line": 2498
+      },
+      {
+        "call": "textwrap.dedent(text).lstrip().encode",
+        "line": 2509
+      },
+      {
+        "call": "textwrap.dedent(text).lstrip",
+        "line": 2509
+      },
+      {
+        "call": "textwrap.dedent",
+        "line": 2509
+      },
+      {
+        "call": "path.parent.mkdir",
+        "line": 2515
+      },
+      {
+        "call": "path.exists",
+        "line": 2520
+      },
+      {
+        "call": "require",
+        "line": 2521
+      },
+      {
+        "call": "path.read_bytes",
+        "line": 2522
+      },
+      {
+        "call": "path.with_suffix",
+        "line": 2532
+      },
+      {
+        "call": "temporary.write_bytes",
+        "line": 2536
+      },
+      {
+        "call": "temporary.replace",
+        "line": 2540
+      },
+      {
+        "call": "sha256_file",
+        "line": 2544
+      },
+      {
+        "call": "(json.dumps(payload, sort_keys=True, indent=2, ensure_ascii=False, allow_nan=False) + '\\n').encode",
+        "line": 2553
+      },
+      {
+        "call": "json.dumps",
+        "line": 2554
+      },
+      {
+        "call": "path.parent.mkdir",
+        "line": 2567
+      },
+      {
+        "call": "path.exists",
+        "line": 2572
+      },
+      {
+        "call": "require",
+        "line": 2573
+      },
+      {
+        "call": "path.read_bytes",
+        "line": 2574
+      },
+      {
+        "call": "path.with_suffix",
+        "line": 2584
+      },
+      {
+        "call": "temporary.write_bytes",
+        "line": 2588
+      },
+      {
+        "call": "temporary.replace",
+        "line": 2592
+      },
+      {
+        "call": "sha256_file",
+        "line": 2596
+      },
+      {
+        "call": "subprocess.run",
+        "line": 2604
+      },
+      {
+        "call": "str",
+        "line": 2606
+      },
+      {
+        "call": "int",
+        "line": 2616
+      },
+      {
+        "call": "print",
+        "line": 2626
+      },
+      {
+        "call": "print",
+        "line": 2627
+      },
+      {
+        "call": "print",
+        "line": 2631
+      },
+      {
+        "call": "print",
+        "line": 2637
+      },
+      {
+        "call": "print",
+        "line": 2638
+      },
+      {
+        "call": "exact_seal",
+        "line": 2642
+      },
+      {
+        "call": "exact_seal",
+        "line": 2650
+      },
+      {
+        "call": "exact_seal",
+        "line": 2658
+      },
+      {
+        "call": "exact_seal",
+        "line": 2666
+      },
+      {
+        "call": "exact_seal",
+        "line": 2675
+      },
+      {
+        "call": "exact_seal",
+        "line": 2683
+      },
+      {
+        "call": "exact_seal",
+        "line": 2691
+      },
+      {
+        "call": "json.loads",
+        "line": 2699
+      },
+      {
+        "call": "PART3B_PREREG.read_text",
+        "line": 2700
+      },
+      {
+        "call": "require",
+        "line": 2705
+      },
+      {
+        "call": "require",
+        "line": 2718
+      },
+      {
+        "call": "print",
+        "line": 2730
+      },
+      {
+        "call": "print",
+        "line": 2734
+      },
+      {
+        "call": "print",
+        "line": 2742
+      },
+      {
+        "call": "print",
+        "line": 2743
+      },
+      {
+        "call": "write_new_exact",
+        "line": 2747
+      },
+      {
+        "call": "print",
+        "line": 2752
+      },
+      {
+        "call": "print",
+        "line": 2757
+      },
+      {
+        "call": "print",
+        "line": 2762
+      },
+      {
+        "call": "print",
+        "line": 2770
+      },
+      {
+        "call": "print",
+        "line": 2771
+      },
+      {
+        "call": "write_new_exact",
+        "line": 2775
+      },
+      {
+        "call": "print",
+        "line": 2780
+      },
+      {
+        "call": "print",
+        "line": 2785
+      },
+      {
+        "call": "print",
+        "line": 2794
+      },
+      {
+        "call": "print",
+        "line": 2795
+      },
+      {
+        "call": "run",
+        "line": 2799
+      },
+      {
+        "call": "str",
+        "line": 2804
+      },
+      {
+        "call": "str",
+        "line": 2807
+      },
+      {
+        "call": "print",
+        "line": 2813
+      },
+      {
+        "call": "require",
+        "line": 2819
+      },
+      {
+        "call": "print",
+        "line": 2828
+      },
+      {
+        "call": "print",
+        "line": 2836
+      },
+      {
+        "call": "print",
+        "line": 2837
+      },
+      {
+        "call": "run",
+        "line": 2841
+      },
+      {
+        "call": "print",
+        "line": 2854
+      },
+      {
+        "call": "require",
+        "line": 2860
+      },
+      {
+        "call": "re.search",
+        "line": 2871
+      },
+      {
+        "call": "require",
+        "line": 2878
+      },
+      {
+        "call": "int",
+        "line": 2887
+      },
+      {
+        "call": "focused_match.group",
+        "line": 2888
+      },
+      {
+        "call": "require",
+        "line": 2891
+      },
+      {
+        "call": "print",
+        "line": 2901
+      },
+      {
+        "call": "print",
+        "line": 2910
+      },
+      {
+        "call": "print",
+        "line": 2911
+      },
+      {
+        "call": "print",
+        "line": 2938
+      },
+      {
+        "call": "print",
+        "line": 2944
+      },
+      {
+        "call": "print",
+        "line": 2948
+      },
+      {
+        "call": "print",
+        "line": 2952
+      },
+      {
+        "call": "print",
+        "line": 2956
+      },
+      {
+        "call": "print",
+        "line": 2960
+      },
+      {
+        "call": "print",
+        "line": 2964
+      },
+      {
+        "call": "print",
+        "line": 2972
+      },
+      {
+        "call": "print",
+        "line": 2973
+      },
+      {
+        "call": "exact_seal",
+        "line": 2977
+      },
+      {
+        "call": "exact_seal",
+        "line": 2985
+      },
+      {
+        "call": "exact_seal",
+        "line": 2993
+      },
+      {
+        "call": "print",
+        "line": 3001
+      },
+      {
+        "call": "print",
+        "line": 3009
+      },
+      {
+        "call": "print",
+        "line": 3010
+      },
+      {
+        "call": "run",
+        "line": 3014
+      },
+      {
+        "call": "str",
+        "line": 3021
+      },
+      {
+        "call": "print",
+        "line": 3030
+      },
+      {
+        "call": "'\\n'.join",
+        "line": 3031
+      },
+      {
+        "call": "regression['output'].splitlines",
+        "line": 3032
+      },
+      {
+        "call": "require",
+        "line": 3040
+      },
+      {
+        "call": "re.search",
+        "line": 3049
+      },
+      {
+        "call": "require",
+        "line": 3056
+      },
+      {
+        "call": "int",
+        "line": 3065
+      },
+      {
+        "call": "regression_match.group",
+        "line": 3066
+      },
+      {
+        "call": "require",
+        "line": 3069
+      },
+      {
+        "call": "print",
+        "line": 3080
+      },
+      {
+        "call": "print",
+        "line": 3089
+      },
+      {
+        "call": "print",
+        "line": 3090
+      },
+      {
+        "call": "str",
+        "line": 3109
+      },
+      {
+        "call": "str",
+        "line": 3121
+      },
+      {
+        "call": "str",
+        "line": 3137
+      },
+      {
+        "call": "write_json_once",
+        "line": 3238
+      },
+      {
+        "call": "str",
+        "line": 3261
+      },
+      {
+        "call": "write_json_once",
+        "line": 3308
+      },
+      {
+        "call": "print",
+        "line": 3313
+      },
+      {
+        "call": "print",
+        "line": 3318
+      },
+      {
+        "call": "print",
+        "line": 3323
+      },
+      {
+        "call": "print",
+        "line": 3328
+      },
+      {
+        "call": "print",
+        "line": 3337
+      },
+      {
+        "call": "print",
+        "line": 3338
+      },
+      {
+        "call": "print",
+        "line": 3339
+      },
+      {
+        "call": "print",
+        "line": 3342
+      },
+      {
+        "call": "print",
+        "line": 3344
+      },
+      {
+        "call": "print",
+        "line": 3349
+      },
+      {
+        "call": "print",
+        "line": 3353
+      },
+      {
+        "call": "print",
+        "line": 3357
+      },
+      {
+        "call": "print",
+        "line": 3361
+      },
+      {
+        "call": "print",
+        "line": 3365
+      },
+      {
+        "call": "print",
+        "line": 3369
+      },
+      {
+        "call": "print",
+        "line": 3373
+      },
+      {
+        "call": "print",
+        "line": 3377
+      },
+      {
+        "call": "print",
+        "line": 3381
+      },
+      {
+        "call": "print",
+        "line": 3385
+      },
+      {
+        "call": "print",
+        "line": 3389
+      },
+      {
+        "call": "print",
+        "line": 3393
+      },
+      {
+        "call": "print",
+        "line": 3398
+      },
+      {
+        "call": "print",
+        "line": 3403
+      },
+      {
+        "call": "print",
+        "line": 3407
+      },
+      {
+        "call": "print",
+        "line": 3411
+      },
+      {
+        "call": "print",
+        "line": 3415
+      },
+      {
+        "call": "print",
+        "line": 3419
+      },
+      {
+        "call": "print",
+        "line": 3423
+      },
+      {
+        "call": "print",
+        "line": 3428
+      },
+      {
+        "call": "print",
+        "line": 3433
+      },
+      {
+        "call": "print",
+        "line": 3438
+      },
+      {
+        "call": "print",
+        "line": 3443
+      },
+      {
+        "call": "print",
+        "line": 3448
+      },
+      {
+        "call": "print",
+        "line": 3452
+      },
+      {
+        "call": "print",
+        "line": 3456
+      },
+      {
+        "call": "print",
+        "line": 3457
+      },
+      {
+        "call": "print",
+        "line": 3458
+      },
+      {
+        "call": "print",
+        "line": 3461
+      },
+      {
+        "call": "print",
+        "line": 3463
+      },
+      {
+        "call": "type",
+        "line": 3465
+      },
+      {
+        "call": "str",
+        "line": 3466
+      },
+      {
+        "call": "print",
+        "line": 3469
+      },
+      {
+        "call": "traceback.print_exc",
+        "line": 3470
+      },
+      {
+        "call": "print",
+        "line": 3474
+      },
+      {
+        "call": "print",
+        "line": 3475
+      },
+      {
+        "call": "print",
+        "line": 3479
+      },
+      {
+        "call": "print",
+        "line": 3483
+      },
+      {
+        "call": "print",
+        "line": 3487
+      },
+      {
+        "call": "print",
+        "line": 3491
+      },
+      {
+        "call": "print",
+        "line": 3495
+      }
+    ],
+    "imports": [
+      {
+        "asname": null,
+        "kind": "from",
+        "level": 0,
+        "line": 1,
+        "module": "__future__",
+        "name": "annotations"
+      },
+      {
+        "asname": null,
+        "kind": "import",
+        "line": 3,
+        "module": "hashlib",
+        "name": null
+      },
+      {
+        "asname": null,
+        "kind": "import",
+        "line": 4,
+        "module": "json",
+        "name": null
+      },
+      {
+        "asname": null,
+        "kind": "from",
+        "level": 0,
+        "line": 5,
+        "module": "pathlib",
+        "name": "Path"
+      },
+      {
+        "asname": null,
+        "kind": "import",
+        "line": 6,
+        "module": "re",
+        "name": null
+      },
+      {
+        "asname": null,
+        "kind": "import",
+        "line": 7,
+        "module": "subprocess",
+        "name": null
+      },
+      {
+        "asname": null,
+        "kind": "import",
+        "line": 8,
+        "module": "sys",
+        "name": null
+      },
+      {
+        "asname": null,
+        "kind": "import",
+        "line": 9,
+        "module": "textwrap",
+        "name": null
+      },
+      {
+        "asname": null,
+        "kind": "import",
+        "line": 10,
+        "module": "traceback",
+        "name": null
+      },
+      {
+        "asname": null,
+        "kind": "from",
+        "level": 0,
+        "line": 2915,
+        "module": "iscai_stage6.adb.class_aware_policy",
+        "name": "angular_margin_cells"
+      },
+      {
+        "asname": null,
+        "kind": "from",
+        "level": 0,
+        "line": 2915,
+        "module": "iscai_stage6.adb.class_aware_policy",
+        "name": "apply_actuation_rate_limit"
+      },
+      {
+        "asname": null,
+        "kind": "from",
+        "level": 0,
+        "line": 2915,
+        "module": "iscai_stage6.adb.class_aware_policy",
+        "name": "compose_class_aware_illumination"
+      },
+      {
+        "asname": null,
+        "kind": "from",
+        "level": 0,
+        "line": 2915,
+        "module": "iscai_stage6.adb.class_aware_policy",
+        "name": "compute_class_aware_margin"
+      },
+      {
+        "asname": null,
+        "kind": "from",
+        "level": 0,
+        "line": 2915,
+        "module": "iscai_stage6.adb.class_aware_policy",
+        "name": "dilate_mask_theta"
+      },
+      {
+        "asname": null,
+        "kind": "from",
+        "level": 0,
+        "line": 2915,
+        "module": "iscai_stage6.adb.class_aware_policy",
+        "name": "predictive_mask_to_illumination"
+      },
+      {
+        "asname": null,
+        "kind": "from",
+        "level": 0,
+        "line": 2915,
+        "module": "iscai_stage6.adb.class_aware_policy",
+        "name": "temporal_smooth_schedule"
+      },
+      {
+        "asname": null,
+        "kind": "from",
+        "level": 0,
+        "line": 2915,
+        "module": "iscai_stage6.adb.class_aware_policy",
+        "name": "threshold_occupancy_counts_strict_k"
+      }
+    ],
+    "path": "/home/agni/waymo/iscai_stage6/scripts/run_block66_part3c1_class_aware_runtime.py",
+    "policy_selection_source_context": [
+      {
+        "line": 17,
+        "text": "    S6"
+      },
+      {
+        "line": 18,
+        "text": "    / \"src/iscai_stage6/adb/\""
+      },
+      {
+        "line": 19,
+        "text": "      \"class_aware_policy.py\""
+      },
+      {
+        "line": 20,
+        "text": ")"
+      },
+      {
+        "line": 21,
+        "text": ""
+      },
+      {
+        "line": 23,
+        "text": "    S6"
+      },
+      {
+        "line": 24,
+        "text": "    / \"tests/\""
+      },
+      {
+        "line": 25,
+        "text": "      \"test_block66_part3c1_class_aware_policy.py\""
+      },
+      {
+        "line": 26,
+        "text": ")"
+      },
+      {
+        "line": 27,
+        "text": ""
+      },
+      {
+        "line": 29,
+        "text": "    S6"
+      },
+      {
+        "line": 30,
+        "text": "    / \"reports/\""
+      },
+      {
+        "line": 31,
+        "text": "      \"block66_part3c1_class_aware_runtime.json\""
+      },
+      {
+        "line": 32,
+        "text": ")"
+      },
+      {
+        "line": 33,
+        "text": ""
+      },
+      {
+        "line": 35,
+        "text": "    S6"
+      },
+      {
+        "line": 36,
+        "text": "    / \"artifacts/block66/\""
+      },
+      {
+        "line": 37,
+        "text": "      \"block66_part3c1_to_part3c2_handoff.json\""
+      },
+      {
+        "line": 38,
+        "text": ")"
+      },
+      {
+        "line": 39,
+        "text": ""
+      },
+      {
+        "line": 41,
+        "text": "    S6"
+      },
+      {
+        "line": 42,
+        "text": "    / \"configs/\""
+      },
+      {
+        "line": 43,
+        "text": "      \"block66_part3b_class_aware_policy_preregistration.json\""
+      },
+      {
+        "line": 44,
+        "text": ")"
+      },
+      {
+        "line": 45,
+        "text": ""
+      },
+      {
+        "line": 47,
+        "text": "    S6"
+      },
+      {
+        "line": 48,
+        "text": "    / \"reports/\""
+      },
+      {
+        "line": 49,
+        "text": "      \"block66_part3b_class_aware_policy_preregistration.json\""
+      },
+      {
+        "line": 50,
+        "text": ")"
+      },
+      {
+        "line": 51,
+        "text": ""
+      },
+      {
+        "line": 59,
+        "text": "    S6"
+      },
+      {
+        "line": 60,
+        "text": "    / \"artifacts/block66/\""
+      },
+      {
+        "line": 61,
+        "text": "      \"block66_part3b_to_part3c_handoff.json\""
+      },
+      {
+        "line": 62,
+        "text": ")"
+      },
+      {
+        "line": 63,
+        "text": ""
+      },
+      {
+        "line": 141,
+        "text": "    PART_A_CONTROL_TRANSITION_LENGTH_M,"
+      },
+      {
+        "line": 142,
+        "text": "    PART_A_EPS,"
+      },
+      {
+        "line": 143,
+        "text": "    PART_A_LATERAL_SAFETY_MARGIN_M,"
+      },
+      {
+        "line": 144,
+        "text": "    PART_A_RADIAL_SAFETY_MARGIN_M,"
+      },
+      {
+        "line": 145,
+        "text": ")"
+      },
+      {
+        "line": 146,
+        "text": ""
+      },
+      {
+        "line": 158,
+        "text": ""
+      },
+      {
+        "line": 159,
+        "text": "@dataclass(frozen=True)"
+      },
+      {
+        "line": 160,
+        "text": "class MarginComputation:"
+      },
+      {
+        "line": 161,
+        "text": "    actor_class: str"
+      },
+      {
+        "line": 162,
+        "text": "    predicted_center_H0_xy_m: tuple[float, float]"
+      },
+      {
+        "line": 165,
+        "text": "    closing_speed_mps: float"
+      },
+      {
+        "line": 166,
+        "text": "    cyclist_lateral_rate_mps: float"
+      },
+      {
+        "line": 167,
+        "text": "    part_a_generic_lateral_margin_m: float"
+      },
+      {
+        "line": 168,
+        "text": "    additional_class_margin_m: float"
+      },
+      {
+        "line": 169,
+        "text": "    total_lateral_margin_m: float"
+      },
+      {
+        "line": 170,
+        "text": ""
+      },
+      {
+        "line": 171,
+        "text": ""
+      },
+      {
+        "line": 173,
+        "text": "class ClassAwareComposition:"
+      },
+      {
+        "line": 174,
+        "text": "    illumination_minimum: np.ndarray"
+      },
+      {
+        "line": 175,
+        "text": "    vru_floor_guard: np.ndarray"
+      },
+      {
+        "line": 176,
+        "text": "    raw_class_aware_illumination: np.ndarray"
+      },
+      {
+        "line": 177,
+        "text": "    semantics: str = ("
+      },
+      {
+        "line": 178,
+        "text": "        \"minimum_actor_intensity_then_spatial_VRU_floor_guard\""
+      },
+      {
+        "line": 179,
+        "text": "    )"
+      },
+      {
+        "line": 180,
+        "text": ""
+      },
+      {
+        "line": 187,
+        "text": "    safety_override_fraction: float"
+      },
+      {
+        "line": 188,
+        "text": "    semantics: str = ("
+      },
+      {
+        "line": 189,
+        "text": "        \"finite_dim_bright_rate_limit_then_VRU_floor_projection\""
+      },
+      {
+        "line": 190,
+        "text": "    )"
+      },
+      {
+        "line": 191,
+        "text": ""
+      },
+      {
+        "line": 302,
+        "text": ""
+      },
+      {
+        "line": 303,
+        "text": ""
+      },
+      {
+        "line": 304,
+        "text": "def threshold_occupancy_counts_strict_k("
+      },
+      {
+        "line": 305,
+        "text": "    occupancy_counts,"
+      },
+      {
+        "line": 306,
+        "text": "    *,"
+      },
+      {
+        "line": 309,
+        "text": ") -> np.ndarray:"
+      },
+      {
+        "line": 310,
+        "text": "    \"\"\""
+      },
+      {
+        "line": 311,
+        "text": "    Exact preregistered occupancy threshold:"
+      },
+      {
+        "line": 312,
+        "text": ""
+      },
+      {
+        "line": 313,
+        "text": "        M = 1[count > k]"
+      },
+      {
+        "line": 314,
+        "text": ""
+      },
+      {
+        "line": 315,
+        "text": "    This avoids any float threshold ambiguity."
+      },
+      {
+        "line": 316,
+        "text": "    \"\"\""
+      },
+      {
+        "line": 317,
+        "text": ""
+      },
+      {
+        "line": 374,
+        "text": ""
+      },
+      {
+        "line": 375,
+        "text": ""
+      },
+      {
+        "line": 376,
+        "text": "def compute_class_aware_margin("
+      },
+      {
+        "line": 377,
+        "text": "    actor_class: str,"
+      },
+      {
+        "line": 378,
+        "text": "    *,"
+      },
+      {
+        "line": 381,
+        "text": "    covariance_H0_m2,"
+      },
+      {
+        "line": 382,
+        "text": "    horizon_s: float,"
+      },
+      {
+        "line": 383,
+        "text": "    base_margin_m: float,"
+      },
+      {
+        "line": 384,
+        "text": "    uncertainty_multiplier: float,"
+      },
+      {
+        "line": 385,
+        "text": "    motion_multiplier: float = 0.0,"
+      },
+      {
+        "line": 386,
+        "text": ") -> MarginComputation:"
+      },
+      {
+        "line": 387,
+        "text": "    \"\"\""
+      },
+      {
+        "line": 388,
+        "text": "    Preregistered class-aware predictive margin."
+      },
+      {
+        "line": 389,
+        "text": ""
+      },
+      {
+        "line": 390,
+        "text": "    The frozen Part-A generic 1 m lateral safety margin is"
+      },
+      {
+        "line": 391,
+        "text": "    preserved and the class-aware term is ADDITIONAL."
+      },
+      {
+        "line": 392,
+        "text": ""
+      },
+      {
+        "line": 425,
+        "text": ""
+      },
+      {
+        "line": 426,
+        "text": "    base = _finite_scalar("
+      },
+      {
+        "line": 427,
+        "text": "        base_margin_m,"
+      },
+      {
+        "line": 428,
+        "text": "        name=\"base_margin_m\","
+      },
+      {
+        "line": 429,
+        "text": "    )"
+      },
+      {
+        "line": 430,
+        "text": ""
+      },
+      {
+        "line": 446,
+        "text": "    if base < 0.0:"
+      },
+      {
+        "line": 447,
+        "text": "        raise ValueError("
+      },
+      {
+        "line": 448,
+        "text": "            \"base_margin_m must be >= 0\""
+      },
+      {
+        "line": 449,
+        "text": "        )"
+      },
+      {
+        "line": 450,
+        "text": ""
+      },
+      {
+        "line": 595,
+        "text": "        )"
+      },
+      {
+        "line": 596,
+        "text": ""
+      },
+      {
+        "line": 597,
+        "text": "    generic_margin = float("
+      },
+      {
+        "line": 598,
+        "text": "        PART_A_LATERAL_SAFETY_MARGIN_M"
+      },
+      {
+        "line": 599,
+        "text": "    )"
+      },
+      {
+        "line": 600,
+        "text": ""
+      },
+      {
+        "line": 601,
+        "text": "    total_margin = ("
+      },
+      {
+        "line": 602,
+        "text": "        generic_margin"
+      },
+      {
+        "line": 603,
+        "text": "        +"
+      },
+      {
+        "line": 604,
+        "text": "        additional"
+      },
+      {
+        "line": 605,
+        "text": "    )"
+      },
+      {
+        "line": 606,
+        "text": ""
+      },
+      {
+        "line": 607,
+        "text": "    return MarginComputation("
+      },
+      {
+        "line": 608,
+        "text": "        actor_class=cls,"
+      },
+      {
+        "line": 609,
+        "text": ""
+      },
+      {
+        "line": 633,
+        "text": "        ),"
+      },
+      {
+        "line": 634,
+        "text": ""
+      },
+      {
+        "line": 635,
+        "text": "        part_a_generic_lateral_margin_m=float("
+      },
+      {
+        "line": 636,
+        "text": "            generic_margin"
+      },
+      {
+        "line": 637,
+        "text": "        ),"
+      },
+      {
+        "line": 638,
+        "text": ""
+      },
+      {
+        "line": 639,
+        "text": "        additional_class_margin_m=float("
+      },
+      {
+        "line": 640,
+        "text": "            additional"
+      },
+      {
+        "line": 641,
+        "text": "        ),"
+      },
+      {
+        "line": 642,
+        "text": ""
+      },
+      {
+        "line": 643,
+        "text": "        total_lateral_margin_m=float("
+      },
+      {
+        "line": 644,
+        "text": "            total_margin"
+      },
+      {
+        "line": 645,
+        "text": "        ),"
+      },
+      {
+        "line": 646,
+        "text": "    )"
+      },
+      {
+        "line": 647,
+        "text": ""
+      },
+      {
+        "line": 648,
+        "text": ""
+      },
+      {
+        "line": 649,
+        "text": "def angular_margin_cells("
+      },
+      {
+        "line": 650,
+        "text": "    *,"
+      },
+      {
+        "line": 651,
+        "text": "    total_margin_m: float,"
+      },
+      {
+        "line": 652,
+        "text": "    predicted_range_m: float,"
+      },
+      {
+        "line": 653,
+        "text": "    theta_step_rad: float,"
+      },
+      {
+        "line": 658,
+        "text": "    \"\"\""
+      },
+      {
+        "line": 659,
+        "text": ""
+      },
+      {
+        "line": 660,
+        "text": "    margin = _finite_scalar("
+      },
+      {
+        "line": 661,
+        "text": "        total_margin_m,"
+      },
+      {
+        "line": 662,
+        "text": "        name=\"total_margin_m\","
+      },
+      {
+        "line": 663,
+        "text": "    )"
+      },
+      {
+        "line": 664,
+        "text": ""
+      },
+      {
+        "line": 673,
+        "text": "    )"
+      },
+      {
+        "line": 674,
+        "text": ""
+      },
+      {
+        "line": 675,
+        "text": "    if margin < 0.0:"
+      },
+      {
+        "line": 676,
+        "text": "        raise ValueError("
+      },
+      {
+        "line": 677,
+        "text": "            \"total_margin_m must be >= 0\""
+      },
+      {
+        "line": 678,
+        "text": "        )"
+      },
+      {
+        "line": 679,
+        "text": ""
+      },
+      {
+        "line": 689,
+        "text": ""
+      },
+      {
+        "line": 690,
+        "text": "    delta_theta = math.atan2("
+      },
+      {
+        "line": 691,
+        "text": "        margin,"
+      },
+      {
+        "line": 692,
+        "text": "        max("
+      },
+      {
+        "line": 693,
+        "text": "            actor_range,"
+      },
+      {
+        "line": 787,
+        "text": "    *,"
+      },
+      {
+        "line": 788,
+        "text": "    range_centers_m,"
+      },
+      {
+        "line": 789,
+        "text": "    intensity_floor: float,"
+      },
+      {
+        "line": 790,
+        "text": ") -> np.ndarray:"
+      },
+      {
+        "line": 791,
+        "text": "    \"\"\""
+      },
+      {
+        "line": 844,
+        "text": "        )"
+      },
+      {
+        "line": 845,
+        "text": ""
+      },
+      {
+        "line": 846,
+        "text": "    floor = _finite_scalar("
+      },
+      {
+        "line": 847,
+        "text": "        intensity_floor,"
+      },
+      {
+        "line": 848,
+        "text": "        name=\"intensity_floor\","
+      },
+      {
+        "line": 849,
+        "text": "    )"
+      },
+      {
+        "line": 850,
+        "text": ""
+      },
+      {
+        "line": 851,
+        "text": "    if not ("
+      },
+      {
+        "line": 852,
+        "text": "        0.0 <= floor <= 1.0"
+      },
+      {
+        "line": 853,
+        "text": "    ):"
+      },
+      {
+        "line": 854,
+        "text": "        raise ValueError("
+      },
+      {
+        "line": 855,
+        "text": "            \"intensity_floor must lie in [0,1]\""
+      },
+      {
+        "line": 856,
+        "text": "        )"
+      },
+      {
+        "line": 857,
+        "text": ""
+      },
+      {
+        "line": 861,
+        "text": "    )"
+      },
+      {
+        "line": 862,
+        "text": ""
+      },
+      {
+        "line": 863,
+        "text": "    radial_margin = float("
+      },
+      {
+        "line": 864,
+        "text": "        PART_A_RADIAL_SAFETY_MARGIN_M"
+      },
+      {
+        "line": 865,
+        "text": "    )"
+      },
+      {
+        "line": 866,
+        "text": ""
+      },
+      {
+        "line": 905,
+        "text": "                r_far"
+      },
+      {
+        "line": 906,
+        "text": "                +"
+      },
+      {
+        "line": 907,
+        "text": "                radial_margin"
+      },
+      {
+        "line": 908,
+        "text": "            )"
+      },
+      {
+        "line": 909,
+        "text": ""
+      },
+      {
+        "line": 925,
+        "text": "                    r_transition_end_m="
+      },
+      {
+        "line": 926,
+        "text": "                        r_transition_end,"
+      },
+      {
+        "line": 927,
+        "text": "                    intensity_floor="
+      },
+      {
+        "line": 928,
+        "text": "                        floor,"
+      },
+      {
+        "line": 929,
+        "text": "                )"
+      },
+      {
+        "line": 930,
+        "text": "            )"
+      },
+      {
+        "line": 933,
+        "text": ""
+      },
+      {
+        "line": 934,
+        "text": ""
+      },
+      {
+        "line": 935,
+        "text": "def compose_class_aware_illumination("
+      },
+      {
+        "line": 936,
+        "text": "    *,"
+      },
+      {
+        "line": 937,
+        "text": "    class_illumination: Mapping["
+      },
+      {
+        "line": 943,
+        "text": "        np.ndarray,"
+      },
+      {
+        "line": 944,
+        "text": "    ],"
+      },
+      {
+        "line": 945,
+        "text": "    class_floors: Mapping["
+      },
+      {
+        "line": 946,
+        "text": "        str,"
+      },
+      {
+        "line": 947,
+        "text": "        float,"
+      },
+      {
+        "line": 955,
+        "text": "      F_vru(cell) ="
+      },
+      {
+        "line": 956,
+        "text": "          max("
+      },
+      {
+        "line": 957,
+        "text": "              pedestrian floor if pedestrian active,"
+      },
+      {
+        "line": 958,
+        "text": "              cyclist floor if cyclist active,"
+      },
+      {
+        "line": 959,
+        "text": "              0"
+      },
+      {
+        "line": 960,
+        "text": "          )"
+      },
+      {
+        "line": 963,
+        "text": ""
+      },
+      {
+        "line": 964,
+        "text": "    Thus a vehicle cannot force an overlapping VRU cell below"
+      },
+      {
+        "line": 965,
+        "text": "    the active VRU's non-blackout floor."
+      },
+      {
+        "line": 966,
+        "text": "    \"\"\""
+      },
+      {
+        "line": 967,
+        "text": ""
+      },
+      {
+        "line": 1051,
+        "text": "            )"
+      },
+      {
+        "line": 1052,
+        "text": ""
+      },
+      {
+        "line": 1053,
+        "text": "        if vru_class not in class_floors:"
+      },
+      {
+        "line": 1054,
+        "text": "            raise ValueError("
+      },
+      {
+        "line": 1055,
+        "text": "                f\"missing floor for {vru_class}\""
+      },
+      {
+        "line": 1056,
+        "text": "            )"
+      },
+      {
+        "line": 1057,
+        "text": ""
+      },
+      {
+        "line": 1068,
+        "text": "            )"
+      },
+      {
+        "line": 1069,
+        "text": ""
+      },
+      {
+        "line": 1070,
+        "text": "        floor = _finite_scalar("
+      },
+      {
+        "line": 1071,
+        "text": "            class_floors["
+      },
+      {
+        "line": 1072,
+        "text": "                vru_class"
+      },
+      {
+        "line": 1073,
+        "text": "            ],"
+      },
+      {
+        "line": 1074,
+        "text": "            name=f\"{vru_class}_floor\","
+      },
+      {
+        "line": 1075,
+        "text": "        )"
+      },
+      {
+        "line": 1076,
+        "text": ""
+      },
+      {
+        "line": 1077,
+        "text": "        if not ("
+      },
+      {
+        "line": 1078,
+        "text": "            0.0 < floor <= 1.0"
+      },
+      {
+        "line": 1079,
+        "text": "        ):"
+      },
+      {
+        "line": 1080,
+        "text": "            raise ValueError("
+      },
+      {
+        "line": 1081,
+        "text": "                \"VRU floors must satisfy 0 < floor <= 1\""
+      },
+      {
+        "line": 1082,
+        "text": "            )"
+      },
+      {
+        "line": 1083,
+        "text": ""
+      },
+      {
+        "line": 1086,
+        "text": "            np.where("
+      },
+      {
+        "line": 1087,
+        "text": "                active,"
+      },
+      {
+        "line": 1088,
+        "text": "                floor,"
+      },
+      {
+        "line": 1089,
+        "text": "                0.0,"
+      },
+      {
+        "line": 1090,
+        "text": "            ),"
+      },
+      {
+        "line": 1103,
+        "text": "            ),"
+      },
+      {
+        "line": 1104,
+        "text": ""
+      },
+      {
+        "line": 1105,
+        "text": "        vru_floor_guard="
+      },
+      {
+        "line": 1106,
+        "text": "            np.asarray("
+      },
+      {
+        "line": 1107,
+        "text": "                vru_guard,"
+      },
+      {
+        "line": 1109,
+        "text": "            ),"
+      },
+      {
+        "line": 1110,
+        "text": ""
+      },
+      {
+        "line": 1111,
+        "text": "        raw_class_aware_illumination="
+      },
+      {
+        "line": 1112,
+        "text": "            np.asarray("
+      },
+      {
+        "line": 1113,
+        "text": "                raw,"
+      },
+      {
+        "line": 1122,
+        "text": "    current_illumination,"
+      },
+      {
+        "line": 1123,
+        "text": "    horizons_s: Sequence[float],"
+      },
+      {
+        "line": 1124,
+        "text": "    time_constant_s: float,"
+      },
+      {
+        "line": 1125,
+        "text": ") -> np.ndarray:"
+      },
+      {
+        "line": 1126,
+        "text": "    \"\"\""
+      },
+      {
+        "line": 1127,
+        "text": "    Frozen causal smoothing equation:"
+      },
+      {
+        "line": 1128,
+        "text": ""
+      },
+      {
+        "line": 1129,
+        "text": "        alpha_h = 1-exp(-dt_h/T)"
+      },
+      {
+        "line": 1152,
+        "text": ""
+      },
+      {
+        "line": 1153,
+        "text": "    T = _finite_scalar("
+      },
+      {
+        "line": 1154,
+        "text": "        time_constant_s,"
+      },
+      {
+        "line": 1155,
+        "text": "        name=\"time_constant_s\","
+      },
+      {
+        "line": 1156,
+        "text": "    )"
+      },
+      {
+        "line": 1157,
+        "text": ""
+      },
+      {
+        "line": 1203,
+        "text": "    if T <= 0.0:"
+      },
+      {
+        "line": 1204,
+        "text": "        raise ValueError("
+      },
+      {
+        "line": 1205,
+        "text": "            \"time_constant_s must be > 0\""
+      },
+      {
+        "line": 1206,
+        "text": "        )"
+      },
+      {
+        "line": 1207,
+        "text": ""
+      },
+      {
+        "line": 1283,
+        "text": ""
+      },
+      {
+        "line": 1284,
+        "text": ""
+      },
+      {
+        "line": 1285,
+        "text": "def apply_actuation_rate_limit("
+      },
+      {
+        "line": 1286,
+        "text": "    smoothed_schedule,"
+      },
+      {
+        "line": 1287,
+        "text": "    *,"
+      },
+      {
+        "line": 1288,
+        "text": "    current_illumination,"
+      },
+      {
+        "line": 1289,
+        "text": "    horizons_s: Sequence[float],"
+      },
+      {
+        "line": 1290,
+        "text": "    rho_dim_per_s: float,"
+      },
+      {
+        "line": 1291,
+        "text": "    rho_bright_per_s: float,"
+      },
+      {
+        "line": 1292,
+        "text": "    vru_floor_guard=None,"
+      },
+      {
+        "line": 1293,
+        "text": ") -> RateLimitedSchedule:"
+      },
+      {
+        "line": 1294,
+        "text": "    \"\"\""
+      },
+      {
+        "line": 1297,
+        "text": "        I_rate = clip("
+      },
+      {
+        "line": 1298,
+        "text": "            I_smooth,"
+      },
+      {
+        "line": 1299,
+        "text": "            I_prev-rho_dim*dt,"
+      },
+      {
+        "line": 1300,
+        "text": "            I_prev+rho_bright*dt"
+      },
+      {
+        "line": 1301,
+        "text": "        )"
+      },
+      {
+        "line": 1302,
+        "text": ""
+      },
+      {
+        "line": 1303,
+        "text": "    Then the active VRU floor is re-applied and every cell"
+      },
+      {
+        "line": 1304,
+        "text": "    changed by this safety projection is counted."
+      },
+      {
+        "line": 1305,
+        "text": "    \"\"\""
+      },
+      {
+        "line": 1323,
+        "text": "    )"
+      },
+      {
+        "line": 1324,
+        "text": ""
+      },
+      {
+        "line": 1325,
+        "text": "    rho_dim = _finite_scalar("
+      },
+      {
+        "line": 1326,
+        "text": "        rho_dim_per_s,"
+      },
+      {
+        "line": 1327,
+        "text": "        name=\"rho_dim_per_s\","
+      },
+      {
+        "line": 1328,
+        "text": "    )"
+      },
+      {
+        "line": 1329,
+        "text": ""
+      },
+      {
+        "line": 1330,
+        "text": "    rho_bright = _finite_scalar("
+      },
+      {
+        "line": 1331,
+        "text": "        rho_bright_per_s,"
+      },
+      {
+        "line": 1332,
+        "text": "        name=\"rho_bright_per_s\","
+      },
+      {
+        "line": 1333,
+        "text": "    )"
+      },
+      {
+        "line": 1334,
+        "text": ""
+      },
+      {
+        "line": 1352,
+        "text": ""
+      },
+      {
+        "line": 1353,
+        "text": "    if ("
+      },
+      {
+        "line": 1354,
+        "text": "        rho_dim <= 0.0"
+      },
+      {
+        "line": 1355,
+        "text": "        or"
+      },
+      {
+        "line": 1356,
+        "text": "        rho_bright <= 0.0"
+      },
+      {
+        "line": 1357,
+        "text": "    ):"
+      },
+      {
+        "line": 1358,
+        "text": "        raise ValueError("
+      },
+      {
+        "line": 1360,
+        "text": "        )"
+      },
+      {
+        "line": 1361,
+        "text": ""
+      },
+      {
+        "line": 1362,
+        "text": "    if rho_dim < rho_bright:"
+      },
+      {
+        "line": 1363,
+        "text": "        raise ValueError("
+      },
+      {
+        "line": 1364,
+        "text": "            \"rho_dim_per_s must be >= rho_bright_per_s\""
+      },
+      {
+        "line": 1365,
+        "text": "        )"
+      },
+      {
+        "line": 1366,
+        "text": ""
+      },
+      {
+        "line": 1383,
+        "text": "        )"
+      },
+      {
+        "line": 1384,
+        "text": ""
+      },
+      {
+        "line": 1385,
+        "text": "    if vru_floor_guard is None:"
+      },
+      {
+        "line": 1386,
+        "text": "        guard = np.zeros_like("
+      },
+      {
+        "line": 1387,
+        "text": "            smooth,"
+      },
+      {
+        "line": 1391,
+        "text": "    else:"
+      },
+      {
+        "line": 1392,
+        "text": "        guard = np.asarray("
+      },
+      {
+        "line": 1393,
+        "text": "            vru_floor_guard,"
+      },
+      {
+        "line": 1394,
+        "text": "            dtype=np.float64,"
+      },
+      {
+        "line": 1395,
+        "text": "        )"
+      },
+      {
+        "line": 1397,
+        "text": "        if guard.shape != smooth.shape:"
+      },
+      {
+        "line": 1398,
+        "text": "            raise ValueError("
+      },
+      {
+        "line": 1399,
+        "text": "                \"vru_floor_guard shape mismatch\""
+      },
+      {
+        "line": 1400,
+        "text": "            )"
+      },
+      {
+        "line": 1401,
+        "text": ""
+      },
+      {
+        "line": 1406,
+        "text": "        ):"
+      },
+      {
+        "line": 1407,
+        "text": "            raise ValueError("
+      },
+      {
+        "line": 1408,
+        "text": "                \"vru_floor_guard must lie in [0,1]\""
+      },
+      {
+        "line": 1409,
+        "text": "            )"
+      },
+      {
+        "line": 1410,
+        "text": ""
+      },
+      {
+        "line": 1435,
+        "text": "            previous"
+      },
+      {
+        "line": 1436,
+        "text": "            -"
+      },
+      {
+        "line": 1437,
+        "text": "            rho_dim"
+      },
+      {
+        "line": 1438,
+        "text": "            *"
+      },
+      {
+        "line": 1439,
+        "text": "            dt,"
+      },
+      {
+        "line": 1444,
+        "text": "            previous"
+      },
+      {
+        "line": 1445,
+        "text": "            +"
+      },
+      {
+        "line": 1446,
+        "text": "            rho_bright"
+      },
+      {
+        "line": 1447,
+        "text": "            *"
+      },
+      {
+        "line": 1448,
+        "text": "            dt,"
+      },
+      {
+        "line": 1528,
+        "text": "import numpy as np"
+      },
+      {
+        "line": 1529,
+        "text": ""
+      },
+      {
+        "line": 1530,
+        "text": "from iscai_stage6.adb.class_aware_policy import ("
+      },
+      {
+        "line": 1531,
+        "text": "    TYPE_CYCLIST,"
+      },
+      {
+        "line": 1532,
+        "text": "    TYPE_PEDESTRIAN,"
+      },
+      {
+        "line": 1533,
+        "text": "    TYPE_VEHICLE,"
+      },
+      {
+        "line": 1534,
+        "text": "    angular_margin_cells,"
+      },
+      {
+        "line": 1535,
+        "text": "    apply_actuation_rate_limit,"
+      },
+      {
+        "line": 1536,
+        "text": "    compose_class_aware_illumination,"
+      },
+      {
+        "line": 1537,
+        "text": "    compute_class_aware_margin,"
+      },
+      {
+        "line": 1538,
+        "text": "    dilate_mask_theta,"
+      },
+      {
+        "line": 1539,
+        "text": "    predictive_mask_to_illumination,"
+      },
+      {
+        "line": 1540,
+        "text": "    temporal_smooth_schedule,"
+      },
+      {
+        "line": 1541,
+        "text": "    threshold_occupancy_counts_strict_k,"
+      },
+      {
+        "line": 1542,
+        "text": ")"
+      },
+      {
+        "line": 1543,
+        "text": "from iscai_stage6.adb.part_a_reactive import ("
+      },
+      {
+        "line": 1544,
+        "text": "    PART_A_LATERAL_SAFETY_MARGIN_M,"
+      },
+      {
+        "line": 1545,
+        "text": ")"
+      },
+      {
+        "line": 1546,
+        "text": ""
+      },
+      {
+        "line": 1547,
+        "text": ""
+      },
+      {
+        "line": 1548,
+        "text": "class StrictThresholdTests(unittest.TestCase):"
+      },
+      {
+        "line": 1549,
+        "text": ""
+      },
+      {
+        "line": 1550,
+        "text": "    def test_strict_k_boundary(self):"
+      },
+      {
+        "line": 1555,
+        "text": ""
+      },
+      {
+        "line": 1556,
+        "text": "        result = ("
+      },
+      {
+        "line": 1557,
+        "text": "            threshold_occupancy_counts_strict_k("
+      },
+      {
+        "line": 1558,
+        "text": "                counts,"
+      },
+      {
+        "line": 1559,
+        "text": "                k=1,"
+      },
+      {
+        "line": 1582,
+        "text": ""
+      },
+      {
+        "line": 1583,
+        "text": "        result = ("
+      },
+      {
+        "line": 1584,
+        "text": "            threshold_occupancy_counts_strict_k("
+      },
+      {
+        "line": 1585,
+        "text": "                counts,"
+      },
+      {
+        "line": 1586,
+        "text": "                k=0,"
+      },
+      {
+        "line": 1601,
+        "text": "            ValueError"
+      },
+      {
+        "line": 1602,
+        "text": "        ):"
+      },
+      {
+        "line": 1603,
+        "text": "            threshold_occupancy_counts_strict_k("
+      },
+      {
+        "line": 1604,
+        "text": "                np.zeros("
+      },
+      {
+        "line": 1605,
+        "text": "                    3,"
+      },
+      {
+        "line": 1610,
+        "text": ""
+      },
+      {
+        "line": 1611,
+        "text": ""
+      },
+      {
+        "line": 1612,
+        "text": "class MarginTests(unittest.TestCase):"
+      },
+      {
+        "line": 1613,
+        "text": ""
+      },
+      {
+        "line": 1614,
+        "text": "    def test_vehicle_uncertainty_and_closing(self):"
+      },
+      {
+        "line": 1615,
+        "text": "        result = compute_class_aware_margin("
+      },
+      {
+        "line": 1616,
+        "text": "            TYPE_VEHICLE,"
+      },
+      {
+        "line": 1617,
+        "text": "            current_position_H0_m=("
+      },
+      {
+        "line": 1633,
+        "text": "            ),"
+      },
+      {
+        "line": 1634,
+        "text": "            horizon_s=0.5,"
+      },
+      {
+        "line": 1635,
+        "text": "            base_margin_m=0.5,"
+      },
+      {
+        "line": 1636,
+        "text": "            uncertainty_multiplier=1.0,"
+      },
+      {
+        "line": 1637,
+        "text": "            motion_multiplier=0.1,"
+      },
+      {
+        "line": 1651,
+        "text": ""
+      },
+      {
+        "line": 1652,
+        "text": "        self.assertAlmostEqual("
+      },
+      {
+        "line": 1653,
+        "text": "            result.additional_class_margin_m,"
+      },
+      {
+        "line": 1654,
+        "text": "            2.7,"
+      },
+      {
+        "line": 1655,
+        "text": "            places=12,"
+      },
+      {
+        "line": 1657,
+        "text": ""
+      },
+      {
+        "line": 1658,
+        "text": "        self.assertAlmostEqual("
+      },
+      {
+        "line": 1659,
+        "text": "            result.total_lateral_margin_m,"
+      },
+      {
+        "line": 1660,
+        "text": "            ("
+      },
+      {
+        "line": 1661,
+        "text": "                float("
+      },
+      {
+        "line": 1662,
+        "text": "                    PART_A_LATERAL_SAFETY_MARGIN_M"
+      },
+      {
+        "line": 1663,
+        "text": "                )"
+      },
+      {
+        "line": 1664,
+        "text": "                +"
+      },
+      {
+        "line": 1669,
+        "text": ""
+      },
+      {
+        "line": 1670,
+        "text": "    def test_pedestrian_has_no_motion_term(self):"
+      },
+      {
+        "line": 1671,
+        "text": "        first = compute_class_aware_margin("
+      },
+      {
+        "line": 1672,
+        "text": "            TYPE_PEDESTRIAN,"
+      },
+      {
+        "line": 1673,
+        "text": "            current_position_H0_m=("
+      },
+      {
+        "line": 1683,
+        "text": "            ),"
+      },
+      {
+        "line": 1684,
+        "text": "            horizon_s=0.5,"
+      },
+      {
+        "line": 1685,
+        "text": "            base_margin_m=0.25,"
+      },
+      {
+        "line": 1686,
+        "text": "            uncertainty_multiplier=2.0,"
+      },
+      {
+        "line": 1687,
+        "text": "            motion_multiplier=0.0,"
+      },
+      {
+        "line": 1688,
+        "text": "        )"
+      },
+      {
+        "line": 1689,
+        "text": ""
+      },
+      {
+        "line": 1690,
+        "text": "        second = compute_class_aware_margin("
+      },
+      {
+        "line": 1691,
+        "text": "            TYPE_PEDESTRIAN,"
+      },
+      {
+        "line": 1692,
+        "text": "            current_position_H0_m=("
+      },
+      {
+        "line": 1702,
+        "text": "            ),"
+      },
+      {
+        "line": 1703,
+        "text": "            horizon_s=0.5,"
+      },
+      {
+        "line": 1704,
+        "text": "            base_margin_m=0.25,"
+      },
+      {
+        "line": 1705,
+        "text": "            uncertainty_multiplier=2.0,"
+      },
+      {
+        "line": 1706,
+        "text": "            motion_multiplier=99.0,"
+      },
+      {
+        "line": 1708,
+        "text": ""
+      },
+      {
+        "line": 1709,
+        "text": "        self.assertAlmostEqual("
+      },
+      {
+        "line": 1710,
+        "text": "            first.additional_class_margin_m,"
+      },
+      {
+        "line": 1711,
+        "text": "            second.additional_class_margin_m,"
+      },
+      {
+        "line": 1712,
+        "text": "            places=12,"
+      },
+      {
+        "line": 1713,
+        "text": "        )"
+      },
+      {
+        "line": 1714,
+        "text": ""
+      },
+      {
+        "line": 1715,
+        "text": "    def test_cyclist_lateral_response(self):"
+      },
+      {
+        "line": 1716,
+        "text": "        result = compute_class_aware_margin("
+      },
+      {
+        "line": 1717,
+        "text": "            TYPE_CYCLIST,"
+      },
+      {
+        "line": 1718,
+        "text": "            current_position_H0_m=("
+      },
+      {
+        "line": 1728,
+        "text": "            ),"
+      },
+      {
+        "line": 1729,
+        "text": "            horizon_s=0.5,"
+      },
+      {
+        "line": 1730,
+        "text": "            base_margin_m=0.0,"
+      },
+      {
+        "line": 1731,
+        "text": "            uncertainty_multiplier=1.0,"
+      },
+      {
+        "line": 1732,
+        "text": "            motion_multiplier=0.5,"
+      },
+      {
+        "line": 1740,
+        "text": ""
+      },
+      {
+        "line": 1741,
+        "text": "        self.assertAlmostEqual("
+      },
+      {
+        "line": 1742,
+        "text": "            result.additional_class_margin_m,"
+      },
+      {
+        "line": 1743,
+        "text": "            2.0,"
+      },
+      {
+        "line": 1744,
+        "text": "            places=12,"
+      },
+      {
+        "line": 1749,
+        "text": "            ValueError"
+      },
+      {
+        "line": 1750,
+        "text": "        ):"
+      },
+      {
+        "line": 1751,
+        "text": "            compute_class_aware_margin("
+      },
+      {
+        "line": 1752,
+        "text": "                \"TYPE_UNKNOWN\","
+      },
+      {
+        "line": 1753,
+        "text": "                current_position_H0_m=("
+      },
+      {
+        "line": 1763,
+        "text": "                ),"
+      },
+      {
+        "line": 1764,
+        "text": "                horizon_s=0.1,"
+      },
+      {
+        "line": 1765,
+        "text": "                base_margin_m=0.0,"
+      },
+      {
+        "line": 1766,
+        "text": "                uncertainty_multiplier=1.0,"
+      },
+      {
+        "line": 1767,
+        "text": "            )"
+      },
+      {
+        "line": 1768,
+        "text": ""
+      },
+      {
+        "line": 1769,
+        "text": "    def test_angular_margin_uses_ceil(self):"
+      },
+      {
+        "line": 1770,
+        "text": "        cells = angular_margin_cells("
+      },
+      {
+        "line": 1771,
+        "text": "            total_margin_m=1.0,"
+      },
+      {
+        "line": 1772,
+        "text": "            predicted_range_m=10.0,"
+      },
+      {
+        "line": 1773,
+        "text": "            theta_step_rad=0.01,"
+      },
+      {
+        "line": 1899,
+        "text": "            mask,"
+      },
+      {
+        "line": 1900,
+        "text": "            range_centers_m=ranges,"
+      },
+      {
+        "line": 1901,
+        "text": "            intensity_floor=0.2,"
+      },
+      {
+        "line": 1902,
+        "text": "        )"
+      },
+      {
+        "line": 1903,
+        "text": ""
+      },
+      {
+        "line": 1929,
+        "text": "        )"
+      },
+      {
+        "line": 1930,
+        "text": ""
+      },
+      {
+        "line": 1931,
+        "text": "    def test_predictive_illumination_uses_nonzero_floor(self):"
+      },
+      {
+        "line": 1932,
+        "text": "        mask = np.zeros("
+      },
+      {
+        "line": 1933,
+        "text": "            ("
+      },
+      {
+        "line": 1957,
+        "text": "            mask,"
+      },
+      {
+        "line": 1958,
+        "text": "            range_centers_m=ranges,"
+      },
+      {
+        "line": 1959,
+        "text": "            intensity_floor=0.4,"
+      },
+      {
+        "line": 1960,
+        "text": "        )"
+      },
+      {
+        "line": 1961,
+        "text": ""
+      },
+      {
+        "line": 1985,
+        "text": "        )"
+      },
+      {
+        "line": 1986,
+        "text": ""
+      },
+      {
+        "line": 1987,
+        "text": "        result = compose_class_aware_illumination("
+      },
+      {
+        "line": 1988,
+        "text": "            class_illumination={"
+      },
+      {
+        "line": 1989,
+        "text": "                TYPE_VEHICLE:"
+      },
+      {
+        "line": 1991,
+        "text": "            },"
+      },
+      {
+        "line": 1992,
+        "text": "            class_active_masks={},"
+      },
+      {
+        "line": 1993,
+        "text": "            class_floors={},"
+      },
+      {
+        "line": 1994,
+        "text": "        )"
+      },
+      {
+        "line": 1995,
+        "text": ""
+      },
+      {
+        "line": 1996,
+        "text": "        np.testing.assert_allclose("
+      },
+      {
+        "line": 1997,
+        "text": "            result.raw_class_aware_illumination,"
+      },
+      {
+        "line": 1998,
+        "text": "            vehicle,"
+      },
+      {
+        "line": 1999,
+        "text": "            rtol=0.0,"
+      },
+      {
+        "line": 2001,
+        "text": "        )"
+      },
+      {
+        "line": 2002,
+        "text": ""
+      },
+      {
+        "line": 2003,
+        "text": "    def test_pedestrian_floor_overrides_vehicle_blackout(self):"
+      },
+      {
+        "line": 2004,
+        "text": "        vehicle = np.zeros("
+      },
+      {
+        "line": 2005,
+        "text": "            ("
+      },
+      {
+        "line": 2031,
+        "text": "        )"
+      },
+      {
+        "line": 2032,
+        "text": ""
+      },
+      {
+        "line": 2033,
+        "text": "        result = compose_class_aware_illumination("
+      },
+      {
+        "line": 2034,
+        "text": "            class_illumination={"
+      },
+      {
+        "line": 2035,
+        "text": "                TYPE_VEHICLE:"
+      },
+      {
+        "line": 2045,
+        "text": "            },"
+      },
+      {
+        "line": 2046,
+        "text": ""
+      },
+      {
+        "line": 2047,
+        "text": "            class_floors={"
+      },
+      {
+        "line": 2048,
+        "text": "                TYPE_PEDESTRIAN:"
+      },
+      {
+        "line": 2049,
+        "text": "                    0.4,"
+      },
+      {
+        "line": 2053,
+        "text": "        self.assertAlmostEqual("
+      },
+      {
+        "line": 2054,
+        "text": "            float("
+      },
+      {
+        "line": 2055,
+        "text": "                result.raw_class_aware_illumination["
+      },
+      {
+        "line": 2056,
+        "text": "                    0,"
+      },
+      {
+        "line": 2057,
+        "text": "                    0,"
+      },
+      {
+        "line": 2065,
+        "text": "        self.assertAlmostEqual("
+      },
+      {
+        "line": 2066,
+        "text": "            float("
+      },
+      {
+        "line": 2067,
+        "text": "                result.raw_class_aware_illumination["
+      },
+      {
+        "line": 2068,
+        "text": "                    0,"
+      },
+      {
+        "line": 2069,
+        "text": "                    0,"
+      },
+      {
+        "line": 2075,
+        "text": "        )"
+      },
+      {
+        "line": 2076,
+        "text": ""
+      },
+      {
+        "line": 2077,
+        "text": "    def test_maximum_active_vru_floor_wins(self):"
+      },
+      {
+        "line": 2078,
+        "text": "        shape = ("
+      },
+      {
+        "line": 2079,
+        "text": "            1,"
+      },
+      {
+        "line": 2087,
+        "text": "        )"
+      },
+      {
+        "line": 2088,
+        "text": ""
+      },
+      {
+        "line": 2089,
+        "text": "        result = compose_class_aware_illumination("
+      },
+      {
+        "line": 2090,
+        "text": "            class_illumination={"
+      },
+      {
+        "line": 2091,
+        "text": "                TYPE_VEHICLE:"
+      },
+      {
+        "line": 2113,
+        "text": "            },"
+      },
+      {
+        "line": 2114,
+        "text": ""
+      },
+      {
+        "line": 2115,
+        "text": "            class_floors={"
+      },
+      {
+        "line": 2116,
+        "text": "                TYPE_PEDESTRIAN:"
+      },
+      {
+        "line": 2117,
+        "text": "                    0.3,"
+      },
+      {
+        "line": 2124,
+        "text": "        self.assertAlmostEqual("
+      },
+      {
+        "line": 2125,
+        "text": "            float("
+      },
+      {
+        "line": 2126,
+        "text": "                result.raw_class_aware_illumination["
+      },
+      {
+        "line": 2127,
+        "text": "                    0,"
+      },
+      {
+        "line": 2128,
+        "text": "                    0,"
+      },
+      {
+        "line": 2137,
+        "text": "class TemporalTests(unittest.TestCase):"
+      },
+      {
+        "line": 2138,
+        "text": ""
+      },
+      {
+        "line": 2139,
+        "text": "    def test_temporal_smoothing_exact_first_step(self):"
+      },
+      {
+        "line": 2140,
+        "text": "        raw = np.ones("
+      },
+      {
+        "line": 2141,
+        "text": "            ("
+      },
+      {
+        "line": 2159,
+        "text": "                0.1,"
+      },
+      {
+        "line": 2160,
+        "text": "            ),"
+      },
+      {
+        "line": 2161,
+        "text": "            time_constant_s=0.1,"
+      },
+      {
+        "line": 2162,
+        "text": "        )"
+      },
+      {
+        "line": 2163,
+        "text": ""
+      },
+      {
+        "line": 2182,
+        "text": "        )"
+      },
+      {
+        "line": 2183,
+        "text": ""
+      },
+      {
+        "line": 2184,
+        "text": "    def test_temporal_smoothing_is_recursive(self):"
+      },
+      {
+        "line": 2185,
+        "text": "        raw = np.asarray("
+      },
+      {
+        "line": 2186,
+        "text": "            ["
+      },
+      {
+        "line": 2212,
+        "text": "                0.3,"
+      },
+      {
+        "line": 2213,
+        "text": "            ),"
+      },
+      {
+        "line": 2214,
+        "text": "            time_constant_s=0.2,"
+      },
+      {
+        "line": 2215,
+        "text": "        )"
+      },
+      {
+        "line": 2216,
+        "text": ""
+      },
+      {
+        "line": 2284,
+        "text": "        )"
+      },
+      {
+        "line": 2285,
+        "text": ""
+      },
+      {
+        "line": 2286,
+        "text": "        result = apply_actuation_rate_limit("
+      },
+      {
+        "line": 2287,
+        "text": "            smooth,"
+      },
+      {
+        "line": 2288,
+        "text": "            current_illumination=current,"
+      },
+      {
+        "line": 2290,
+        "text": "                0.1,"
+      },
+      {
+        "line": 2291,
+        "text": "            ),"
+      },
+      {
+        "line": 2292,
+        "text": "            rho_dim_per_s=2.0,"
+      },
+      {
+        "line": 2293,
+        "text": "            rho_bright_per_s=1.0,"
+      },
+      {
+        "line": 2294,
+        "text": "        )"
+      },
+      {
+        "line": 2295,
+        "text": ""
+      },
+      {
+        "line": 2322,
+        "text": "        )"
+      },
+      {
+        "line": 2323,
+        "text": ""
+      },
+      {
+        "line": 2324,
+        "text": "        result = apply_actuation_rate_limit("
+      },
+      {
+        "line": 2325,
+        "text": "            smooth,"
+      },
+      {
+        "line": 2326,
+        "text": "            current_illumination=current,"
+      },
+      {
+        "line": 2328,
+        "text": "                0.1,"
+      },
+      {
+        "line": 2329,
+        "text": "            ),"
+      },
+      {
+        "line": 2330,
+        "text": "            rho_dim_per_s=2.0,"
+      },
+      {
+        "line": 2331,
+        "text": "            rho_bright_per_s=1.0,"
+      },
+      {
+        "line": 2332,
+        "text": "        )"
+      },
+      {
+        "line": 2333,
+        "text": ""
+      },
+      {
+        "line": 2344,
+        "text": "        )"
+      },
+      {
+        "line": 2345,
+        "text": ""
+      },
+      {
+        "line": 2346,
+        "text": "    def test_vru_floor_safety_override_is_counted(self):"
+      },
+      {
+        "line": 2347,
+        "text": "        smooth = np.zeros("
+      },
+      {
+        "line": 2348,
+        "text": "            ("
+      },
+      {
+        "line": 2371,
+        "text": "        )"
+      },
+      {
+        "line": 2372,
+        "text": ""
+      },
+      {
+        "line": 2373,
+        "text": "        result = apply_actuation_rate_limit("
+      },
+      {
+        "line": 2374,
+        "text": "            smooth,"
+      },
+      {
+        "line": 2375,
+        "text": "            current_illumination=current,"
+      },
+      {
+        "line": 2377,
+        "text": "                0.1,"
+      },
+      {
+        "line": 2378,
+        "text": "            ),"
+      },
+      {
+        "line": 2379,
+        "text": "            rho_dim_per_s=2.0,"
+      },
+      {
+        "line": 2380,
+        "text": "            rho_bright_per_s=1.0,"
+      },
+      {
+        "line": 2381,
+        "text": "            vru_floor_guard=guard,"
+      },
+      {
+        "line": 2382,
+        "text": "        )"
+      },
+      {
+        "line": 2383,
+        "text": ""
+      },
+      {
+        "line": 2409,
+        "text": "            ValueError"
+      },
+      {
+        "line": 2410,
+        "text": "        ):"
+      },
+      {
+        "line": 2411,
+        "text": "            apply_actuation_rate_limit("
+      },
+      {
+        "line": 2412,
+        "text": "                np.zeros("
+      },
+      {
+        "line": 2413,
+        "text": "                    ("
+      },
+      {
+        "line": 2427,
+        "text": "                    0.1,"
+      },
+      {
+        "line": 2428,
+        "text": "                ),"
+      },
+      {
+        "line": 2429,
+        "text": "                rho_dim_per_s=1.0,"
+      },
+      {
+        "line": 2430,
+        "text": "                rho_bright_per_s=2.0,"
+      },
+      {
+        "line": 2431,
+        "text": "            )"
+      },
+      {
+        "line": 2432,
+        "text": ""
+      },
+      {
+        "line": 2524,
+        "text": "            data,"
+      },
+      {
+        "line": 2525,
+        "text": "            ("
+      },
+      {
+        "line": 2526,
+        "text": "                \"Existing Part3C/1 implementation \""
+      },
+      {
+        "line": 2527,
+        "text": "                f\"differs and will not be overwritten: {path}\""
+      },
+      {
+        "line": 2528,
+        "text": "            ),"
+      },
+      {
+        "line": 2626,
+        "text": "    print(\"=\" * 78)"
+      },
+      {
+        "line": 2627,
+        "text": "    print("
+      },
+      {
+        "line": 2628,
+        "text": "        \"BLOCK 6.6 PART3C/1 \u2014 \""
+      },
+      {
+        "line": 2629,
+        "text": "        \"PREREGISTERED CLASS-AWARE RUNTIME OPERATORS\""
+      },
+      {
+        "line": 2630,
+        "text": "    )"
+      },
+      {
+        "line": 2669,
+        "text": "            \"part3b_handoff\""
+      },
+      {
+        "line": 2670,
+        "text": "        ],"
+      },
+      {
+        "line": 2671,
+        "text": "        \"Part3B -> Part3C handoff\","
+      },
+      {
+        "line": 2672,
+        "text": "    )"
+      },
+      {
+        "line": 2673,
+        "text": ""
+      },
+      {
+        "line": 2707,
+        "text": "            \"scientific_boundary\""
+      },
+      {
+        "line": 2708,
+        "text": "        ]["
+      },
+      {
+        "line": 2709,
+        "text": "            \"numeric_policy_selected\""
+      },
+      {
+        "line": 2710,
+        "text": "        ]"
+      },
+      {
+        "line": 2711,
+        "text": "        is False,"
+      },
+      {
+        "line": 2712,
+        "text": "        ("
+      },
+      {
+        "line": 2713,
+        "text": "            \"Part3B unexpectedly selected \""
+      },
+      {
+        "line": 2714,
+        "text": "            \"numeric policy.\""
+      },
+      {
+        "line": 2715,
+        "text": "        ),"
+      },
+      {
+        "line": 2716,
+        "text": "    )"
+      },
+      {
+        "line": 2729,
+        "text": ""
+      },
+      {
+        "line": 2730,
+        "text": "    print("
+      },
+      {
+        "line": 2731,
+        "text": "        \"numeric policy selection = FORBIDDEN\""
+      },
+      {
+        "line": 2732,
+        "text": "    )"
+      },
+      {
+        "line": 2733,
+        "text": ""
+      },
+      {
+        "line": 2770,
+        "text": "    print()"
+      },
+      {
+        "line": 2771,
+        "text": "    print("
+      },
+      {
+        "line": 2772,
+        "text": "        \"===== C. WRITE PART3C/1 OPERATOR TESTS =====\""
+      },
+      {
+        "line": 2773,
+        "text": "    )"
+      },
+      {
+        "line": 2774,
+        "text": ""
+      },
+      {
+        "line": 2823,
+        "text": "        =="
+      },
+      {
+        "line": 2824,
+        "text": "        0,"
+      },
+      {
+        "line": 2825,
+        "text": "        \"Part3C/1 compile failed.\","
+      },
+      {
+        "line": 2826,
+        "text": "    )"
+      },
+      {
+        "line": 2827,
+        "text": ""
+      },
+      {
+        "line": 2836,
+        "text": "    print()"
+      },
+      {
+        "line": 2837,
+        "text": "    print("
+      },
+      {
+        "line": 2838,
+        "text": "        \"===== E. FOCUSED PART3C/1 UNIT TESTS =====\""
+      },
+      {
+        "line": 2839,
+        "text": "    )"
+      },
+      {
+        "line": 2840,
+        "text": ""
+      },
+      {
+        "line": 2847,
+        "text": "            ("
+      },
+      {
+        "line": 2848,
+        "text": "                \"tests.\""
+      },
+      {
+        "line": 2849,
+        "text": "                \"test_block66_part3c1_class_aware_policy\""
+      },
+      {
+        "line": 2850,
+        "text": "            ),"
+      },
+      {
+        "line": 2851,
+        "text": "        ]"
+      },
+      {
+        "line": 2865,
+        "text": "        0,"
+      },
+      {
+        "line": 2866,
+        "text": "        ("
+      },
+      {
+        "line": 2867,
+        "text": "            \"Focused Part3C/1 tests failed.\""
+      },
+      {
+        "line": 2868,
+        "text": "        ),"
+      },
+      {
+        "line": 2869,
+        "text": "    )"
+      },
+      {
+        "line": 2895,
+        "text": "        ("
+      },
+      {
+        "line": 2896,
+        "text": "            \"Expected exactly 21 new \""
+      },
+      {
+        "line": 2897,
+        "text": "            f\"Part3C/1 tests, got {focused_count}.\""
+      },
+      {
+        "line": 2898,
+        "text": "        ),"
+      },
+      {
+        "line": 2899,
+        "text": "    )"
+      },
+      {
+        "line": 2913,
+        "text": "    )"
+      },
+      {
+        "line": 2914,
+        "text": ""
+      },
+      {
+        "line": 2915,
+        "text": "    from iscai_stage6.adb.class_aware_policy import ("
+      },
+      {
+        "line": 2916,
+        "text": "        angular_margin_cells,"
+      },
+      {
+        "line": 2917,
+        "text": "        apply_actuation_rate_limit,"
+      },
+      {
+        "line": 2918,
+        "text": "        compose_class_aware_illumination,"
+      },
+      {
+        "line": 2919,
+        "text": "        compute_class_aware_margin,"
+      },
+      {
+        "line": 2920,
+        "text": "        dilate_mask_theta,"
+      },
+      {
+        "line": 2921,
+        "text": "        predictive_mask_to_illumination,"
+      },
+      {
+        "line": 2922,
+        "text": "        temporal_smooth_schedule,"
+      },
+      {
+        "line": 2923,
+        "text": "        threshold_occupancy_counts_strict_k,"
+      },
+      {
+        "line": 2924,
+        "text": "    )"
+      },
+      {
+        "line": 2925,
+        "text": ""
+      },
+      {
+        "line": 2926,
+        "text": "    callables = ("
+      },
+      {
+        "line": 2927,
+        "text": "        threshold_occupancy_counts_strict_k,"
+      },
+      {
+        "line": 2928,
+        "text": "        compute_class_aware_margin,"
+      },
+      {
+        "line": 2929,
+        "text": "        angular_margin_cells,"
+      },
+      {
+        "line": 2930,
+        "text": "        dilate_mask_theta,"
+      },
+      {
+        "line": 2931,
+        "text": "        predictive_mask_to_illumination,"
+      },
+      {
+        "line": 2932,
+        "text": "        compose_class_aware_illumination,"
+      },
+      {
+        "line": 2933,
+        "text": "        temporal_smooth_schedule,"
+      },
+      {
+        "line": 2934,
+        "text": "        apply_actuation_rate_limit,"
+      },
+      {
+        "line": 2935,
+        "text": "    )"
+      },
+      {
+        "line": 2936,
+        "text": ""
+      },
+      {
+        "line": 2947,
+        "text": ""
+      },
+      {
+        "line": 2948,
+        "text": "    print("
+      },
+      {
+        "line": 2949,
+        "text": "        \"predictive margin       = IMPLEMENTED\""
+      },
+      {
+        "line": 2950,
+        "text": "    )"
+      },
+      {
+        "line": 2951,
+        "text": ""
+      },
+      {
+        "line": 2959,
+        "text": ""
+      },
+      {
+        "line": 2960,
+        "text": "    print("
+      },
+      {
+        "line": 2961,
+        "text": "        \"temporal smoothing      = IMPLEMENTED\""
+      },
+      {
+        "line": 2962,
+        "text": "    )"
+      },
+      {
+        "line": 2963,
+        "text": ""
+      },
+      {
+        "line": 3089,
+        "text": "    print()"
+      },
+      {
+        "line": 3090,
+        "text": "    print("
+      },
+      {
+        "line": 3091,
+        "text": "        \"===== I. PART3C/1 REPORT + HANDOFF =====\""
+      },
+      {
+        "line": 3092,
+        "text": "    )"
+      },
+      {
+        "line": 3093,
+        "text": ""
+      },
+      {
+        "line": 3097,
+        "text": ""
+      },
+      {
+        "line": 3098,
+        "text": "        \"block\":"
+      },
+      {
+        "line": 3099,
+        "text": "            \"6.6-Part3C/1\","
+      },
+      {
+        "line": 3100,
+        "text": ""
+      },
+      {
+        "line": 3101,
+        "text": "        \"status\":"
+      },
+      {
+        "line": 3102,
+        "text": "            ("
+      },
+      {
+        "line": 3103,
+        "text": "                \"PASS_PREREGISTERED_CLASS_AWARE_\""
+      },
+      {
+        "line": 3104,
+        "text": "                \"RUNTIME_OPERATORS_IMPLEMENTED\""
+      },
+      {
+        "line": 3105,
+        "text": "            ),"
+      },
+      {
+        "line": 3150,
+        "text": ""
+      },
+      {
+        "line": 3151,
+        "text": "        \"implemented_runtime_components\": ["
+      },
+      {
+        "line": 3152,
+        "text": "            \"exact_strict_integer_k_threshold\","
+      },
+      {
+        "line": 3153,
+        "text": "            \"class_aware_predictive_margin_operator\","
+      },
+      {
+        "line": 3154,
+        "text": "            \"theta_only_predictive_mask_dilation\","
+      },
+      {
+        "line": 3155,
+        "text": "            ("
+      },
+      {
+        "line": 3157,
+        "text": "                \"PartA_raised_cosine_illumination\""
+      },
+      {
+        "line": 3158,
+        "text": "            ),"
+      },
+      {
+        "line": 3159,
+        "text": "            \"class_aware_policy_composition\","
+      },
+      {
+        "line": 3160,
+        "text": "            \"spatial_VRU_floor_guard\","
+      },
+      {
+        "line": 3161,
+        "text": "            \"class_overlap_priority_rule\","
+      },
+      {
+        "line": 3162,
+        "text": "            \"temporal_smoothing_operator\","
+      },
+      {
+        "line": 3163,
+        "text": "            \"actuation_rate_limit_operator\","
+      },
+      {
+        "line": 3164,
+        "text": "            \"rate_limit_safety_override_accounting\","
+      },
+      {
+        "line": 3165,
+        "text": "        ],"
+      },
+      {
+        "line": 3166,
+        "text": ""
+      },
+      {
+        "line": 3169,
+        "text": "                True,"
+      },
+      {
+        "line": 3170,
+        "text": ""
+      },
+      {
+        "line": 3171,
+        "text": "            \"generic_lateral_margin_preserved\":"
+      },
+      {
+        "line": 3172,
+        "text": "                True,"
+      },
+      {
+        "line": 3173,
+        "text": ""
+      },
+      {
+        "line": 3174,
+        "text": "            \"generic_radial_margin_preserved\":"
+      },
+      {
+        "line": 3175,
+        "text": "                True,"
+      },
+      {
+        "line": 3176,
+        "text": ""
+      },
+      {
+        "line": 3194,
+        "text": ""
+      },
+      {
+        "line": 3195,
+        "text": "        \"scientific_boundary\": {"
+      },
+      {
+        "line": 3196,
+        "text": "            \"policy_sweep_executed\":"
+      },
+      {
+        "line": 3197,
+        "text": "                False,"
+      },
+      {
+        "line": 3198,
+        "text": ""
+      },
+      {
+        "line": 3199,
+        "text": "            \"numeric_gamma_selected\":"
+      },
+      {
+        "line": 3200,
+        "text": "                False,"
+      },
+      {
+        "line": 3201,
+        "text": ""
+      },
+      {
+        "line": 3202,
+        "text": "            \"numeric_margin_selected\":"
+      },
+      {
+        "line": 3203,
+        "text": "                False,"
+      },
+      {
+        "line": 3204,
+        "text": ""
+      },
+      {
+        "line": 3205,
+        "text": "            \"numeric_floor_selected\":"
+      },
+      {
+        "line": 3206,
+        "text": "                False,"
+      },
+      {
+        "line": 3207,
+        "text": ""
+      },
+      {
+        "line": 3208,
+        "text": "            \"numeric_smoothing_selected\":"
+      },
+      {
+        "line": 3209,
+        "text": "                False,"
+      },
+      {
+        "line": 3210,
+        "text": ""
+      },
+      {
+        "line": 3211,
+        "text": "            \"numeric_rate_selected\":"
+      },
+      {
+        "line": 3212,
+        "text": "                False,"
+      },
+      {
+        "line": 3213,
+        "text": ""
+      },
+      {
+        "line": 3230,
+        "text": "        \"next\":"
+      },
+      {
+        "line": 3231,
+        "text": "            ("
+      },
+      {
+        "line": 3232,
+        "text": "                \"BLOCK6.6_PART3C2_MATERIALIZE_\""
+      },
+      {
+        "line": 3233,
+        "text": "                \"VEHICLE_GEOMETRY_SURROGATE_EVIDENCE_\""
+      },
+      {
+        "line": 3234,
+        "text": "                \"AND_INTEGRATION_SMOKE_WITHOUT_SWEEP\""
+      },
+      {
+        "line": 3246,
+        "text": ""
+      },
+      {
+        "line": 3247,
+        "text": "        \"from\":"
+      },
+      {
+        "line": 3248,
+        "text": "            \"6.6-Part3C/1\","
+      },
+      {
+        "line": 3249,
+        "text": ""
+      },
+      {
+        "line": 3250,
+        "text": "        \"to\":"
+      },
+      {
+        "line": 3251,
+        "text": "            \"6.6-Part3C/2\","
+      },
+      {
+        "line": 3252,
+        "text": ""
+      },
+      {
+        "line": 3253,
+        "text": "        \"status\":"
+      },
+      {
+        "line": 3267,
+        "text": "        },"
+      },
+      {
+        "line": 3268,
+        "text": ""
+      },
+      {
+        "line": 3269,
+        "text": "        \"Part3C2_allowed\": ["
+      },
+      {
+        "line": 3270,
+        "text": "            ("
+      },
+      {
+        "line": 3271,
+        "text": "                \"use the frozen N8192 development \""
+      },
+      {
+        "line": 3285,
+        "text": "        ],"
+      },
+      {
+        "line": 3286,
+        "text": ""
+      },
+      {
+        "line": 3287,
+        "text": "        \"Part3C2_forbidden\": ["
+      },
+      {
+        "line": 3288,
+        "text": "            \"class-policy parameter sweep\","
+      },
+      {
+        "line": 3289,
+        "text": "            \"numeric policy selection\","
+      },
+      {
+        "line": 3290,
+        "text": "            \"formal outcome read\","
+      },
+      {
+        "line": 3291,
+        "text": "            \"formal tuning\","
+      },
+      {
+        "line": 3299,
+        "text": "        ],"
+      },
+      {
+        "line": 3300,
+        "text": ""
+      },
+      {
+        "line": 3301,
+        "text": "        \"numeric_policy_selected\":"
+      },
+      {
+        "line": 3302,
+        "text": "            False,"
+      },
+      {
+        "line": 3303,
+        "text": ""
+      },
+      {
+        "line": 3338,
+        "text": "    print(\"=\" * 78)"
+      },
+      {
+        "line": 3339,
+        "text": "    print("
+      },
+      {
+        "line": 3340,
+        "text": "        \"BLOCK 6.6 PART3C/1 \u2014 FINAL\""
+      },
+      {
+        "line": 3341,
+        "text": "    )"
+      },
+      {
+        "line": 3342,
+        "text": "    print(\"=\" * 78)"
+      },
+      {
+        "line": 3344,
+        "text": "    print("
+      },
+      {
+        "line": 3345,
+        "text": "        \"STATUS = \""
+      },
+      {
+        "line": 3346,
+        "text": "        \"PASS_PREREGISTERED_CLASS_AWARE_RUNTIME_OPERATORS_IMPLEMENTED\""
+      },
+      {
+        "line": 3347,
+        "text": "    )"
+      },
+      {
+        "line": 3348,
+        "text": ""
+      },
+      {
+        "line": 3349,
+        "text": "    print("
+      },
+      {
+        "line": 3350,
+        "text": "        \"strict integer-k threshold = IMPLEMENTED\""
+      },
+      {
+        "line": 3351,
+        "text": "    )"
+      },
+      {
+        "line": 3352,
+        "text": ""
+      },
+      {
+        "line": 3353,
+        "text": "    print("
+      },
+      {
+        "line": 3354,
+        "text": "        \"predictive class margin    = IMPLEMENTED\""
+      },
+      {
+        "line": 3355,
+        "text": "    )"
+      },
+      {
+        "line": 3356,
+        "text": ""
+      },
+      {
+        "line": 3357,
+        "text": "    print("
+      },
+      {
+        "line": 3358,
+        "text": "        \"Part-A generic margin      = PRESERVED\""
+      },
+      {
+        "line": 3359,
+        "text": "    )"
+      },
+      {
+        "line": 3360,
+        "text": ""
+      },
+      {
+        "line": 3372,
+        "text": ""
+      },
+      {
+        "line": 3373,
+        "text": "    print("
+      },
+      {
+        "line": 3374,
+        "text": "        \"VRU overlap floor guard    = IMPLEMENTED\""
+      },
+      {
+        "line": 3375,
+        "text": "    )"
+      },
+      {
+        "line": 3376,
+        "text": ""
+      },
+      {
+        "line": 3377,
+        "text": "    print("
+      },
+      {
+        "line": 3378,
+        "text": "        \"temporal smoothing         = IMPLEMENTED\""
+      },
+      {
+        "line": 3379,
+        "text": "    )"
+      },
+      {
+        "line": 3380,
+        "text": ""
+      },
+      {
+        "line": 3402,
+        "text": ""
+      },
+      {
+        "line": 3403,
+        "text": "    print("
+      },
+      {
+        "line": 3404,
+        "text": "        \"policy sweep executed      = NO\""
+      },
+      {
+        "line": 3405,
+        "text": "    )"
+      },
+      {
+        "line": 3406,
+        "text": ""
+      },
+      {
+        "line": 3407,
+        "text": "    print("
+      },
+      {
+        "line": 3408,
+        "text": "        \"numeric policy selected    = NO\""
+      },
+      {
+        "line": 3409,
+        "text": "    )"
+      },
+      {
+        "line": 3410,
+        "text": ""
+      },
+      {
+        "line": 3442,
+        "text": ""
+      },
+      {
+        "line": 3443,
+        "text": "    print("
+      },
+      {
+        "line": 3444,
+        "text": "        \"NEXT = BLOCK6.6 PART3C/2 \""
+      },
+      {
+        "line": 3445,
+        "text": "        \"VEHICLE SURROGATE EVIDENCE + INTEGRATION\""
+      },
+      {
+        "line": 3446,
+        "text": "    )"
+      },
+      {
+        "line": 3457,
+        "text": "    print(\"=\" * 78)"
+      },
+      {
+        "line": 3458,
+        "text": "    print("
+      },
+      {
+        "line": 3459,
+        "text": "        \"BLOCK6.6 PART3C/1 \u2014 CONTROLLED BLOCK\""
+      },
+      {
+        "line": 3460,
+        "text": "    )"
+      },
+      {
+        "line": 3461,
+        "text": "    print(\"=\" * 78)"
+      },
+      {
+        "line": 3482,
+        "text": ""
+      },
+      {
+        "line": 3483,
+        "text": "    print("
+      },
+      {
+        "line": 3484,
+        "text": "        \"policy sweep executed          = NO\""
+      },
+      {
+        "line": 3485,
+        "text": "    )"
+      },
+      {
+        "line": 3486,
+        "text": ""
+      },
+      {
+        "line": 3487,
+        "text": "    print("
+      },
+      {
+        "line": 3488,
+        "text": "        \"numeric policy selected        = NO\""
+      },
+      {
+        "line": 3489,
+        "text": "    )"
+      },
+      {
+        "line": 3490,
+        "text": ""
+      }
+    ],
+    "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c"
+  },
+  "runtime_symbol_hits": [
+    {
+      "line": 176,
+      "path": "src/iscai_stage6/adb/class_aware_policy.py",
+      "sha256": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "def threshold_occupancy_counts_strict_k("
+    },
+    {
+      "line": 248,
+      "path": "src/iscai_stage6/adb/class_aware_policy.py",
+      "sha256": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b",
+      "symbol": "compute_class_aware_margin",
+      "text": "def compute_class_aware_margin("
+    },
+    {
+      "line": 521,
+      "path": "src/iscai_stage6/adb/class_aware_policy.py",
+      "sha256": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b",
+      "symbol": "angular_margin_cells",
+      "text": "def angular_margin_cells("
+    },
+    {
+      "line": 579,
+      "path": "src/iscai_stage6/adb/class_aware_policy.py",
+      "sha256": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b",
+      "symbol": "dilate_mask_theta",
+      "text": "def dilate_mask_theta("
+    },
+    {
+      "line": 657,
+      "path": "src/iscai_stage6/adb/class_aware_policy.py",
+      "sha256": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "def predictive_mask_to_illumination("
+    },
+    {
+      "line": 807,
+      "path": "src/iscai_stage6/adb/class_aware_policy.py",
+      "sha256": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b",
+      "symbol": "compose_class_aware_illumination",
+      "text": "def compose_class_aware_illumination("
+    },
+    {
+      "line": 991,
+      "path": "src/iscai_stage6/adb/class_aware_policy.py",
+      "sha256": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b",
+      "symbol": "temporal_smooth_schedule",
+      "text": "def temporal_smooth_schedule("
+    },
+    {
+      "line": 1157,
+      "path": "src/iscai_stage6/adb/class_aware_policy.py",
+      "sha256": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "def apply_actuation_rate_limit("
+    },
+    {
+      "line": 78,
+      "path": "src/iscai_stage6/adb/class_margin_binding.py",
+      "sha256": "8e6c12d5ff00903e0572b14494d665cc379e912a76d80b28c517233c834e4dd5",
+      "symbol": "bind_predictive_class_margin",
+      "text": "def bind_predictive_class_margin("
+    },
+    {
+      "line": 8,
+      "path": "src/iscai_stage6/adb/class_margin_binding.py",
+      "sha256": "8e6c12d5ff00903e0572b14494d665cc379e912a76d80b28c517233c834e4dd5",
+      "symbol": "angular_margin_cells",
+      "text": "angular_margin_cells,"
+    },
+    {
+      "line": 87,
+      "path": "src/iscai_stage6/adb/class_margin_binding.py",
+      "sha256": "8e6c12d5ff00903e0572b14494d665cc379e912a76d80b28c517233c834e4dd5",
+      "symbol": "angular_margin_cells",
+      "text": "The argument name of `angular_margin_cells` is"
+    },
+    {
+      "line": 186,
+      "path": "src/iscai_stage6/adb/class_margin_binding.py",
+      "sha256": "8e6c12d5ff00903e0572b14494d665cc379e912a76d80b28c517233c834e4dd5",
+      "symbol": "angular_margin_cells",
+      "text": "predictive_cells = angular_margin_cells("
+    },
+    {
+      "line": 193,
+      "path": "src/iscai_stage6/adb/class_margin_binding.py",
+      "sha256": "8e6c12d5ff00903e0572b14494d665cc379e912a76d80b28c517233c834e4dd5",
+      "symbol": "angular_margin_cells",
+      "text": "total_reference_cells = angular_margin_cells("
+    },
+    {
+      "line": 240,
+      "path": "src/iscai_stage6/adb/predictive_mask.py",
+      "sha256": "239611ddb1cc21b9ddd46962eb561e58e0d1474be58878f9c79c256ba1940575",
+      "symbol": "threshold_actor_occupancy",
+      "text": "def threshold_actor_occupancy("
+    },
+    {
+      "line": 524,
+      "path": "src/iscai_stage6/adb/predictive_mask.py",
+      "sha256": "239611ddb1cc21b9ddd46962eb561e58e0d1474be58878f9c79c256ba1940575",
+      "symbol": "threshold_actor_occupancy",
+      "text": "threshold_actor_occupancy("
+    },
+    {
+      "line": 370,
+      "path": "scripts/run_block65_part1_parameterized_mask_kernel.py",
+      "sha256": "648356c04007e280794f77541e04f3437bc535fa44a35c14c77b293a93bcfa9c",
+      "symbol": "threshold_actor_occupancy",
+      "text": "def threshold_actor_occupancy("
+    },
+    {
+      "line": 654,
+      "path": "scripts/run_block65_part1_parameterized_mask_kernel.py",
+      "sha256": "648356c04007e280794f77541e04f3437bc535fa44a35c14c77b293a93bcfa9c",
+      "symbol": "threshold_actor_occupancy",
+      "text": "threshold_actor_occupancy("
+    },
+    {
+      "line": 760,
+      "path": "scripts/run_block65_part1_parameterized_mask_kernel.py",
+      "sha256": "648356c04007e280794f77541e04f3437bc535fa44a35c14c77b293a93bcfa9c",
+      "symbol": "threshold_actor_occupancy",
+      "text": "threshold_actor_occupancy,"
+    },
+    {
+      "line": 856,
+      "path": "scripts/run_block65_part1_parameterized_mask_kernel.py",
+      "sha256": "648356c04007e280794f77541e04f3437bc535fa44a35c14c77b293a93bcfa9c",
+      "symbol": "threshold_actor_occupancy",
+      "text": "result = threshold_actor_occupancy("
+    },
+    {
+      "line": 891,
+      "path": "scripts/run_block65_part1_parameterized_mask_kernel.py",
+      "sha256": "648356c04007e280794f77541e04f3437bc535fa44a35c14c77b293a93bcfa9c",
+      "symbol": "threshold_actor_occupancy",
+      "text": "result = threshold_actor_occupancy("
+    },
+    {
+      "line": 918,
+      "path": "scripts/run_block65_part1_parameterized_mask_kernel.py",
+      "sha256": "648356c04007e280794f77541e04f3437bc535fa44a35c14c77b293a93bcfa9c",
+      "symbol": "threshold_actor_occupancy",
+      "text": "result = threshold_actor_occupancy("
+    },
+    {
+      "line": 947,
+      "path": "scripts/run_block65_part1_parameterized_mask_kernel.py",
+      "sha256": "648356c04007e280794f77541e04f3437bc535fa44a35c14c77b293a93bcfa9c",
+      "symbol": "threshold_actor_occupancy",
+      "text": "result = threshold_actor_occupancy("
+    },
+    {
+      "line": 978,
+      "path": "scripts/run_block65_part1_parameterized_mask_kernel.py",
+      "sha256": "648356c04007e280794f77541e04f3437bc535fa44a35c14c77b293a93bcfa9c",
+      "symbol": "threshold_actor_occupancy",
+      "text": "threshold_actor_occupancy("
+    },
+    {
+      "line": 986,
+      "path": "scripts/run_block65_part1_parameterized_mask_kernel.py",
+      "sha256": "648356c04007e280794f77541e04f3437bc535fa44a35c14c77b293a93bcfa9c",
+      "symbol": "threshold_actor_occupancy",
+      "text": "result = threshold_actor_occupancy("
+    },
+    {
+      "line": 1170,
+      "path": "scripts/run_block65_part1_parameterized_mask_kernel.py",
+      "sha256": "648356c04007e280794f77541e04f3437bc535fa44a35c14c77b293a93bcfa9c",
+      "symbol": "threshold_actor_occupancy",
+      "text": "m1 = threshold_actor_occupancy("
+    },
+    {
+      "line": 1178,
+      "path": "scripts/run_block65_part1_parameterized_mask_kernel.py",
+      "sha256": "648356c04007e280794f77541e04f3437bc535fa44a35c14c77b293a93bcfa9c",
+      "symbol": "threshold_actor_occupancy",
+      "text": "m2 = threshold_actor_occupancy("
+    },
+    {
+      "line": 1421,
+      "path": "scripts/run_block65_part1_parameterized_mask_kernel.py",
+      "sha256": "648356c04007e280794f77541e04f3437bc535fa44a35c14c77b293a93bcfa9c",
+      "symbol": "threshold_actor_occupancy",
+      "text": "threshold_actor_occupancy"
+    },
+    {
+      "line": 1437,
+      "path": "scripts/run_block65_part1_parameterized_mask_kernel.py",
+      "sha256": "648356c04007e280794f77541e04f3437bc535fa44a35c14c77b293a93bcfa9c",
+      "symbol": "threshold_actor_occupancy",
+      "text": "threshold_actor_occupancy,"
+    },
+    {
+      "line": 1253,
+      "path": "scripts/run_block65_part2a_gamma_preregistration_curve.py",
+      "sha256": "ffb6ddc5fb4146454bce7feda69c51b51098046193ecf8f2cdcc1526bf0b96cf",
+      "symbol": "threshold_actor_occupancy",
+      "text": "threshold_actor_occupancy,"
+    },
+    {
+      "line": 1301,
+      "path": "scripts/run_block65_part2a_gamma_preregistration_curve.py",
+      "sha256": "ffb6ddc5fb4146454bce7feda69c51b51098046193ecf8f2cdcc1526bf0b96cf",
+      "symbol": "threshold_actor_occupancy",
+      "text": "threshold_actor_occupancy("
+    },
+    {
+      "line": 1625,
+      "path": "scripts/run_block65_part2a_gamma_preregistration_curve.py",
+      "sha256": "ffb6ddc5fb4146454bce7feda69c51b51098046193ecf8f2cdcc1526bf0b96cf",
+      "symbol": "threshold_actor_occupancy",
+      "text": "\"threshold_actor_occupancy\":"
+    },
+    {
+      "line": 598,
+      "path": "scripts/run_block66_part3b_preregistration.py",
+      "sha256": "fe31d519019fd24445cf39fd7a8fc0dcc37f240f181fbb726c2bb207825e789d",
+      "symbol": "threshold_actor_occupancy",
+      "text": "threshold_actor_occupancy,"
+    },
+    {
+      "line": 623,
+      "path": "scripts/run_block66_part3b_preregistration.py",
+      "sha256": "fe31d519019fd24445cf39fd7a8fc0dcc37f240f181fbb726c2bb207825e789d",
+      "symbol": "threshold_actor_occupancy",
+      "text": "\"threshold_actor_occupancy =\","
+    },
+    {
+      "line": 625,
+      "path": "scripts/run_block66_part3b_preregistration.py",
+      "sha256": "fe31d519019fd24445cf39fd7a8fc0dcc37f240f181fbb726c2bb207825e789d",
+      "symbol": "threshold_actor_occupancy",
+      "text": "threshold_actor_occupancy"
+    },
+    {
+      "line": 304,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "def threshold_occupancy_counts_strict_k("
+    },
+    {
+      "line": 1541,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "threshold_occupancy_counts_strict_k,"
+    },
+    {
+      "line": 1557,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "threshold_occupancy_counts_strict_k("
+    },
+    {
+      "line": 1584,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "threshold_occupancy_counts_strict_k("
+    },
+    {
+      "line": 1603,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "threshold_occupancy_counts_strict_k("
+    },
+    {
+      "line": 2923,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "threshold_occupancy_counts_strict_k,"
+    },
+    {
+      "line": 2927,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "threshold_occupancy_counts_strict_k,"
+    },
+    {
+      "line": 376,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "compute_class_aware_margin",
+      "text": "def compute_class_aware_margin("
+    },
+    {
+      "line": 1537,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "compute_class_aware_margin",
+      "text": "compute_class_aware_margin,"
+    },
+    {
+      "line": 1615,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "compute_class_aware_margin",
+      "text": "result = compute_class_aware_margin("
+    },
+    {
+      "line": 1671,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "compute_class_aware_margin",
+      "text": "first = compute_class_aware_margin("
+    },
+    {
+      "line": 1690,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "compute_class_aware_margin",
+      "text": "second = compute_class_aware_margin("
+    },
+    {
+      "line": 1716,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "compute_class_aware_margin",
+      "text": "result = compute_class_aware_margin("
+    },
+    {
+      "line": 1751,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "compute_class_aware_margin",
+      "text": "compute_class_aware_margin("
+    },
+    {
+      "line": 2919,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "compute_class_aware_margin",
+      "text": "compute_class_aware_margin,"
+    },
+    {
+      "line": 2928,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "compute_class_aware_margin",
+      "text": "compute_class_aware_margin,"
+    },
+    {
+      "line": 649,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "angular_margin_cells",
+      "text": "def angular_margin_cells("
+    },
+    {
+      "line": 1534,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "angular_margin_cells",
+      "text": "angular_margin_cells,"
+    },
+    {
+      "line": 1770,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "angular_margin_cells",
+      "text": "cells = angular_margin_cells("
+    },
+    {
+      "line": 2916,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "angular_margin_cells",
+      "text": "angular_margin_cells,"
+    },
+    {
+      "line": 2929,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "angular_margin_cells",
+      "text": "angular_margin_cells,"
+    },
+    {
+      "line": 707,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "dilate_mask_theta",
+      "text": "def dilate_mask_theta("
+    },
+    {
+      "line": 1538,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "dilate_mask_theta",
+      "text": "dilate_mask_theta,"
+    },
+    {
+      "line": 1811,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "dilate_mask_theta",
+      "text": "result = dilate_mask_theta("
+    },
+    {
+      "line": 1847,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "dilate_mask_theta",
+      "text": "result = dilate_mask_theta("
+    },
+    {
+      "line": 2920,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "dilate_mask_theta",
+      "text": "dilate_mask_theta,"
+    },
+    {
+      "line": 2930,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "dilate_mask_theta",
+      "text": "dilate_mask_theta,"
+    },
+    {
+      "line": 785,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "def predictive_mask_to_illumination("
+    },
+    {
+      "line": 1539,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "predictive_mask_to_illumination,"
+    },
+    {
+      "line": 1898,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "output = predictive_mask_to_illumination("
+    },
+    {
+      "line": 1956,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "output = predictive_mask_to_illumination("
+    },
+    {
+      "line": 2921,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "predictive_mask_to_illumination,"
+    },
+    {
+      "line": 2931,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "predictive_mask_to_illumination,"
+    },
+    {
+      "line": 935,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "compose_class_aware_illumination",
+      "text": "def compose_class_aware_illumination("
+    },
+    {
+      "line": 1536,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "compose_class_aware_illumination",
+      "text": "compose_class_aware_illumination,"
+    },
+    {
+      "line": 1987,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "compose_class_aware_illumination",
+      "text": "result = compose_class_aware_illumination("
+    },
+    {
+      "line": 2033,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "compose_class_aware_illumination",
+      "text": "result = compose_class_aware_illumination("
+    },
+    {
+      "line": 2089,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "compose_class_aware_illumination",
+      "text": "result = compose_class_aware_illumination("
+    },
+    {
+      "line": 2918,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "compose_class_aware_illumination",
+      "text": "compose_class_aware_illumination,"
+    },
+    {
+      "line": 2932,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "compose_class_aware_illumination",
+      "text": "compose_class_aware_illumination,"
+    },
+    {
+      "line": 1119,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "temporal_smooth_schedule",
+      "text": "def temporal_smooth_schedule("
+    },
+    {
+      "line": 1540,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "temporal_smooth_schedule",
+      "text": "temporal_smooth_schedule,"
+    },
+    {
+      "line": 2155,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "temporal_smooth_schedule",
+      "text": "output = temporal_smooth_schedule("
+    },
+    {
+      "line": 2207,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "temporal_smooth_schedule",
+      "text": "output = temporal_smooth_schedule("
+    },
+    {
+      "line": 2922,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "temporal_smooth_schedule",
+      "text": "temporal_smooth_schedule,"
+    },
+    {
+      "line": 2933,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "temporal_smooth_schedule",
+      "text": "temporal_smooth_schedule,"
+    },
+    {
+      "line": 1285,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "def apply_actuation_rate_limit("
+    },
+    {
+      "line": 1535,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "apply_actuation_rate_limit,"
+    },
+    {
+      "line": 2286,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "result = apply_actuation_rate_limit("
+    },
+    {
+      "line": 2324,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "result = apply_actuation_rate_limit("
+    },
+    {
+      "line": 2373,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "result = apply_actuation_rate_limit("
+    },
+    {
+      "line": 2411,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "apply_actuation_rate_limit("
+    },
+    {
+      "line": 2917,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "apply_actuation_rate_limit,"
+    },
+    {
+      "line": 2934,
+      "path": "scripts/run_block66_part3c1_class_aware_runtime.py",
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "apply_actuation_rate_limit,"
+    },
+    {
+      "line": 1704,
+      "path": "scripts/run_block66_part3c_part2of2_final.py",
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "threshold_occupancy_counts_strict_k,"
+    },
+    {
+      "line": 3056,
+      "path": "scripts/run_block66_part3c_part2of2_final.py",
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "threshold_occupancy_counts_strict_k("
+    },
+    {
+      "line": 1700,
+      "path": "scripts/run_block66_part3c_part2of2_final.py",
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+      "symbol": "compute_class_aware_margin",
+      "text": "compute_class_aware_margin,"
+    },
+    {
+      "line": 3109,
+      "path": "scripts/run_block66_part3c_part2of2_final.py",
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+      "symbol": "compute_class_aware_margin",
+      "text": "margin = compute_class_aware_margin("
+    },
+    {
+      "line": 1697,
+      "path": "scripts/run_block66_part3c_part2of2_final.py",
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+      "symbol": "angular_margin_cells",
+      "text": "angular_margin_cells,"
+    },
+    {
+      "line": 3138,
+      "path": "scripts/run_block66_part3c_part2of2_final.py",
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+      "symbol": "angular_margin_cells",
+      "text": "cells = angular_margin_cells("
+    },
+    {
+      "line": 1701,
+      "path": "scripts/run_block66_part3c_part2of2_final.py",
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+      "symbol": "dilate_mask_theta",
+      "text": "dilate_mask_theta,"
+    },
+    {
+      "line": 3208,
+      "path": "scripts/run_block66_part3c_part2of2_final.py",
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+      "symbol": "dilate_mask_theta",
+      "text": "dilate_mask_theta("
+    },
+    {
+      "line": 1702,
+      "path": "scripts/run_block66_part3c_part2of2_final.py",
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "predictive_mask_to_illumination,"
+    },
+    {
+      "line": 3226,
+      "path": "scripts/run_block66_part3c_part2of2_final.py",
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "predictive_mask_to_illumination("
+    },
+    {
+      "line": 1699,
+      "path": "scripts/run_block66_part3c_part2of2_final.py",
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+      "symbol": "compose_class_aware_illumination",
+      "text": "compose_class_aware_illumination,"
+    },
+    {
+      "line": 3263,
+      "path": "scripts/run_block66_part3c_part2of2_final.py",
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+      "symbol": "compose_class_aware_illumination",
+      "text": "compose_class_aware_illumination("
+    },
+    {
+      "line": 1703,
+      "path": "scripts/run_block66_part3c_part2of2_final.py",
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+      "symbol": "temporal_smooth_schedule",
+      "text": "temporal_smooth_schedule,"
+    },
+    {
+      "line": 3310,
+      "path": "scripts/run_block66_part3c_part2of2_final.py",
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+      "symbol": "temporal_smooth_schedule",
+      "text": "smoothed = temporal_smooth_schedule("
+    },
+    {
+      "line": 1698,
+      "path": "scripts/run_block66_part3c_part2of2_final.py",
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "apply_actuation_rate_limit,"
+    },
+    {
+      "line": 3327,
+      "path": "scripts/run_block66_part3c_part2of2_final.py",
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "apply_actuation_rate_limit("
+    },
+    {
+      "line": 338,
+      "path": "scripts/run_block67_part1_margin_binding_gate.py",
+      "sha256": "5aba29d21ef51036c233630388533f54f0590bdd281af7d2e7e9b8c5a481baa9",
+      "symbol": "bind_predictive_class_margin",
+      "text": "bind_predictive_class_margin,"
+    },
+    {
+      "line": 418,
+      "path": "scripts/run_block67_part1_margin_binding_gate.py",
+      "sha256": "5aba29d21ef51036c233630388533f54f0590bdd281af7d2e7e9b8c5a481baa9",
+      "symbol": "bind_predictive_class_margin",
+      "text": "bind_predictive_class_margin("
+    },
+    {
+      "line": 334,
+      "path": "scripts/run_block67_part1_margin_binding_gate.py",
+      "sha256": "5aba29d21ef51036c233630388533f54f0590bdd281af7d2e7e9b8c5a481baa9",
+      "symbol": "angular_margin_cells",
+      "text": "angular_margin_cells,"
+    },
+    {
+      "line": 425,
+      "path": "scripts/run_block67_part1_margin_binding_gate.py",
+      "sha256": "5aba29d21ef51036c233630388533f54f0590bdd281af7d2e7e9b8c5a481baa9",
+      "symbol": "angular_margin_cells",
+      "text": "angular_margin_cells("
+    },
+    {
+      "line": 435,
+      "path": "scripts/run_block67_part1_margin_binding_gate.py",
+      "sha256": "5aba29d21ef51036c233630388533f54f0590bdd281af7d2e7e9b8c5a481baa9",
+      "symbol": "angular_margin_cells",
+      "text": "angular_margin_cells("
+    },
+    {
+      "line": 672,
+      "path": "scripts/run_block67_part1of2_binding_preflight.py",
+      "sha256": "d09a607f12b039ab1a0e79de0847b4fdcf87a65333d0e08fab8c274efb76eada",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "\"threshold_occupancy_counts_strict_k\","
+    },
+    {
+      "line": 673,
+      "path": "scripts/run_block67_part1of2_binding_preflight.py",
+      "sha256": "d09a607f12b039ab1a0e79de0847b4fdcf87a65333d0e08fab8c274efb76eada",
+      "symbol": "compute_class_aware_margin",
+      "text": "\"compute_class_aware_margin\","
+    },
+    {
+      "line": 674,
+      "path": "scripts/run_block67_part1of2_binding_preflight.py",
+      "sha256": "d09a607f12b039ab1a0e79de0847b4fdcf87a65333d0e08fab8c274efb76eada",
+      "symbol": "angular_margin_cells",
+      "text": "\"angular_margin_cells\","
+    },
+    {
+      "line": 675,
+      "path": "scripts/run_block67_part1of2_binding_preflight.py",
+      "sha256": "d09a607f12b039ab1a0e79de0847b4fdcf87a65333d0e08fab8c274efb76eada",
+      "symbol": "dilate_mask_theta",
+      "text": "\"dilate_mask_theta\","
+    },
+    {
+      "line": 289,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "\"threshold_occupancy_counts_strict_k\","
+    },
+    {
+      "line": 1008,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "\"threshold_occupancy_counts_strict_k\""
+    },
+    {
+      "line": 1080,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "threshold_occupancy_counts_strict_k,"
+    },
+    {
+      "line": 1083,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "threshold_occupancy_counts_strict_k = None"
+    },
+    {
+      "line": 1094,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "threshold_occupancy_counts_strict_k"
+    },
+    {
+      "line": 1099,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "threshold_occupancy_counts_strict_k,"
+    },
+    {
+      "line": 290,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "threshold_actor_occupancy",
+      "text": "\"threshold_actor_occupancy\","
+    },
+    {
+      "line": 1011,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "threshold_actor_occupancy",
+      "text": "\"threshold_actor_occupancy\""
+    },
+    {
+      "line": 291,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "compute_class_aware_margin",
+      "text": "\"compute_class_aware_margin\","
+    },
+    {
+      "line": 1073,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "compute_class_aware_margin",
+      "text": "compute_class_aware_margin,"
+    },
+    {
+      "line": 1086,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "compute_class_aware_margin",
+      "text": "compute_class_aware_margin,"
+    },
+    {
+      "line": 292,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "bind_predictive_class_margin",
+      "text": "\"bind_predictive_class_margin\","
+    },
+    {
+      "line": 293,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "angular_margin_cells",
+      "text": "\"angular_margin_cells\","
+    },
+    {
+      "line": 294,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "dilate_mask_theta",
+      "text": "\"dilate_mask_theta\","
+    },
+    {
+      "line": 295,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "\"predictive_mask_to_illumination\","
+    },
+    {
+      "line": 1074,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "predictive_mask_to_illumination,"
+    },
+    {
+      "line": 1087,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "predictive_mask_to_illumination,"
+    },
+    {
+      "line": 1308,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "\"predictive_mask_to_illumination\","
+    },
+    {
+      "line": 296,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "compose_class_aware_illumination",
+      "text": "\"compose_class_aware_illumination\","
+    },
+    {
+      "line": 991,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "compose_class_aware_illumination",
+      "text": "\"compose_class_aware_illumination\","
+    },
+    {
+      "line": 1072,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "compose_class_aware_illumination",
+      "text": "compose_class_aware_illumination,"
+    },
+    {
+      "line": 1088,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "compose_class_aware_illumination",
+      "text": "compose_class_aware_illumination,"
+    },
+    {
+      "line": 1309,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "compose_class_aware_illumination",
+      "text": "\"compose_class_aware_illumination\","
+    },
+    {
+      "line": 297,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "temporal_smooth_schedule",
+      "text": "\"temporal_smooth_schedule\","
+    },
+    {
+      "line": 992,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "temporal_smooth_schedule",
+      "text": "\"temporal_smooth_schedule\","
+    },
+    {
+      "line": 1075,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "temporal_smooth_schedule",
+      "text": "temporal_smooth_schedule,"
+    },
+    {
+      "line": 1089,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "temporal_smooth_schedule",
+      "text": "temporal_smooth_schedule,"
+    },
+    {
+      "line": 1311,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "temporal_smooth_schedule",
+      "text": "\"temporal_smooth_schedule\","
+    },
+    {
+      "line": 298,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "\"apply_actuation_rate_limit\","
+    },
+    {
+      "line": 993,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "\"apply_actuation_rate_limit\","
+    },
+    {
+      "line": 1071,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "apply_actuation_rate_limit,"
+    },
+    {
+      "line": 1090,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "apply_actuation_rate_limit,"
+    },
+    {
+      "line": 1312,
+      "path": "scripts/run_block68_class_aware_frozen_policy_binding.py",
+      "sha256": "41086d10733b218f3fef1ec1e3e6d1e798fb87e0c6e75c82ef6e190819638822",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "\"apply_actuation_rate_limit\","
+    },
+    {
+      "line": 100,
+      "path": "scripts/run_block68_class_aware_runtime_delegation_discovery.py",
+      "sha256": "ac1b605a8ddf5645fb48243d753d73c370689243cca94fd0b026d0478e1e2c95",
+      "symbol": "threshold_occupancy_counts_strict_k",
+      "text": "\"threshold_occupancy_counts_strict_k\","
+    },
+    {
+      "line": 101,
+      "path": "scripts/run_block68_class_aware_runtime_delegation_discovery.py",
+      "sha256": "ac1b605a8ddf5645fb48243d753d73c370689243cca94fd0b026d0478e1e2c95",
+      "symbol": "threshold_actor_occupancy",
+      "text": "\"threshold_actor_occupancy\","
+    },
+    {
+      "line": 102,
+      "path": "scripts/run_block68_class_aware_runtime_delegation_discovery.py",
+      "sha256": "ac1b605a8ddf5645fb48243d753d73c370689243cca94fd0b026d0478e1e2c95",
+      "symbol": "compute_class_aware_margin",
+      "text": "\"compute_class_aware_margin\","
+    },
+    {
+      "line": 103,
+      "path": "scripts/run_block68_class_aware_runtime_delegation_discovery.py",
+      "sha256": "ac1b605a8ddf5645fb48243d753d73c370689243cca94fd0b026d0478e1e2c95",
+      "symbol": "bind_predictive_class_margin",
+      "text": "\"bind_predictive_class_margin\","
+    },
+    {
+      "line": 104,
+      "path": "scripts/run_block68_class_aware_runtime_delegation_discovery.py",
+      "sha256": "ac1b605a8ddf5645fb48243d753d73c370689243cca94fd0b026d0478e1e2c95",
+      "symbol": "angular_margin_cells",
+      "text": "\"angular_margin_cells\","
+    },
+    {
+      "line": 105,
+      "path": "scripts/run_block68_class_aware_runtime_delegation_discovery.py",
+      "sha256": "ac1b605a8ddf5645fb48243d753d73c370689243cca94fd0b026d0478e1e2c95",
+      "symbol": "dilate_mask_theta",
+      "text": "\"dilate_mask_theta\","
+    },
+    {
+      "line": 106,
+      "path": "scripts/run_block68_class_aware_runtime_delegation_discovery.py",
+      "sha256": "ac1b605a8ddf5645fb48243d753d73c370689243cca94fd0b026d0478e1e2c95",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "\"predictive_mask_to_illumination\","
+    },
+    {
+      "line": 107,
+      "path": "scripts/run_block68_class_aware_runtime_delegation_discovery.py",
+      "sha256": "ac1b605a8ddf5645fb48243d753d73c370689243cca94fd0b026d0478e1e2c95",
+      "symbol": "compose_class_aware_illumination",
+      "text": "\"compose_class_aware_illumination\","
+    },
+    {
+      "line": 108,
+      "path": "scripts/run_block68_class_aware_runtime_delegation_discovery.py",
+      "sha256": "ac1b605a8ddf5645fb48243d753d73c370689243cca94fd0b026d0478e1e2c95",
+      "symbol": "temporal_smooth_schedule",
+      "text": "\"temporal_smooth_schedule\","
+    },
+    {
+      "line": 109,
+      "path": "scripts/run_block68_class_aware_runtime_delegation_discovery.py",
+      "sha256": "ac1b605a8ddf5645fb48243d753d73c370689243cca94fd0b026d0478e1e2c95",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "\"apply_actuation_rate_limit\","
+    },
+    {
+      "line": 454,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "compose_class_aware_illumination",
+      "text": "compose_class_aware_illumination,"
+    },
+    {
+      "line": 538,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "compose_class_aware_illumination",
+      "text": "compose_class_aware_illumination"
+    },
+    {
+      "line": 680,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "compose_class_aware_illumination",
+      "text": "compose_class_aware_illumination("
+    },
+    {
+      "line": 455,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "temporal_smooth_schedule",
+      "text": "temporal_smooth_schedule,"
+    },
+    {
+      "line": 544,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "temporal_smooth_schedule",
+      "text": "temporal_smooth_schedule"
+    },
+    {
+      "line": 559,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "temporal_smooth_schedule",
+      "text": "\"temporal_smooth_schedule \""
+    },
+    {
+      "line": 626,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "temporal_smooth_schedule",
+      "text": "\"    -> temporal_smooth_schedule\""
+    },
+    {
+      "line": 731,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "temporal_smooth_schedule",
+      "text": "temporal_smooth_schedule("
+    },
+    {
+      "line": 895,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "temporal_smooth_schedule",
+      "text": "\"temporal_smooth_schedule\","
+    },
+    {
+      "line": 1341,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "temporal_smooth_schedule",
+      "text": "\"temporal_smooth_schedule\""
+    },
+    {
+      "line": 453,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "apply_actuation_rate_limit,"
+    },
+    {
+      "line": 550,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "apply_actuation_rate_limit"
+    },
+    {
+      "line": 569,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "\"apply_actuation_rate_limit \""
+    },
+    {
+      "line": 579,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "apply_actuation_rate_limit"
+    },
+    {
+      "line": 630,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "\"    -> apply_actuation_rate_limit\""
+    },
+    {
+      "line": 768,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "apply_actuation_rate_limit("
+    },
+    {
+      "line": 898,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "\"apply_actuation_rate_limit\","
+    },
+    {
+      "line": 1346,
+      "path": "scripts/run_block68_exact_evaluator_binding_repair.py",
+      "sha256": "b34f8a38e92ef7a3e39334d1cfcb276135041d6372aa559076cdea7da3fda7e6",
+      "symbol": "apply_actuation_rate_limit",
+      "text": "\"apply_actuation_rate_limit\""
+    },
+    {
+      "line": 813,
+      "path": "scripts/run_block68_final_illumination_route_extract.py",
+      "sha256": "1688967f65eb0782be2b6bb68d621166aef5e2f36fff616fc3d527fba3bb9fda",
+      "symbol": "compose_class_aware_illumination",
+      "text": "\"compose_class_aware_illumination\""
+    },
+    {
+      "line": 817,
+      "path": "scripts/run_block68_final_illumination_route_extract.py",
+      "sha256": "1688967f65eb0782be2b6bb68d621166aef5e2f36fff616fc3d527fba3bb9fda",
+      "symbol": "compose_class_aware_illumination",
+      "text": "\"compose_class_aware_illumination \""
+    },
+    {
+      "line": 841,
+      "path": "scripts/run_block68_final_illumination_route_extract.py",
+      "sha256": "1688967f65eb0782be2b6bb68d621166aef5e2f36fff616fc3d527fba3bb9fda",
+      "symbol": "compose_class_aware_illumination",
+      "text": "\"compose_class_aware_illumination\","
+    },
+    {
+      "line": 823,
+      "path": "scripts/run_block68_final_illumination_route_extract.py",
+      "sha256": "1688967f65eb0782be2b6bb68d621166aef5e2f36fff616fc3d527fba3bb9fda",
+      "symbol": "temporal_smooth_schedule",
+      "text": "\"temporal_smooth_schedule\""
+    },
+    {
+      "line": 827,
+      "path": "scripts/run_block68_final_illumination_route_extract.py",
+      "sha256": "1688967f65eb0782be2b6bb68d621166aef5e2f36fff616fc3d527fba3bb9fda",
+      "symbol": "temporal_smooth_schedule",
+      "text": "\"temporal_smooth_schedule missing.\""
+    },
+    {
+      "line": 842,
+      "path": "scripts/run_block68_final_illumination_route_extract.py",
+      "sha256": "1688967f65eb0782be2b6bb68d621166aef5e2f36fff616fc3d527fba3bb9fda",
+      "symbol": "temporal_smooth_schedule",
+      "text": "\"temporal_smooth_schedule\","
+    },
+    {
+      "line": 829,
+      "path": "scripts/run_block68_part2_exact_evaluator_runtime_bind.py",
+      "sha256": "4034afa93c47ca2efa74460cc6f5404788c6b77aaa2a4b40f0c26083635ce97a",
+      "symbol": "threshold_actor_occupancy",
+      "text": "threshold_actor_occupancy,"
+    },
+    {
+      "line": 862,
+      "path": "scripts/run_block68_part2_exact_evaluator_runtime_bind.py",
+      "sha256": "4034afa93c47ca2efa74460cc6f5404788c6b77aaa2a4b40f0c26083635ce97a",
+      "symbol": "threshold_actor_occupancy",
+      "text": "\"threshold_actor_occupancy\":"
+    },
+    {
+      "line": 864,
+      "path": "scripts/run_block68_part2_exact_evaluator_runtime_bind.py",
+      "sha256": "4034afa93c47ca2efa74460cc6f5404788c6b77aaa2a4b40f0c26083635ce97a",
+      "symbol": "threshold_actor_occupancy",
+      "text": "threshold_actor_occupancy"
+    },
+    {
+      "line": 821,
+      "path": "scripts/run_block68_part2_exact_evaluator_runtime_bind.py",
+      "sha256": "4034afa93c47ca2efa74460cc6f5404788c6b77aaa2a4b40f0c26083635ce97a",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "predictive_mask_to_illumination,"
+    },
+    {
+      "line": 852,
+      "path": "scripts/run_block68_part2_exact_evaluator_runtime_bind.py",
+      "sha256": "4034afa93c47ca2efa74460cc6f5404788c6b77aaa2a4b40f0c26083635ce97a",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "\"predictive_mask_to_illumination\":"
+    },
+    {
+      "line": 854,
+      "path": "scripts/run_block68_part2_exact_evaluator_runtime_bind.py",
+      "sha256": "4034afa93c47ca2efa74460cc6f5404788c6b77aaa2a4b40f0c26083635ce97a",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "predictive_mask_to_illumination"
+    },
+    {
+      "line": 1433,
+      "path": "scripts/run_block68_part2_exact_evaluator_runtime_bind.py",
+      "sha256": "4034afa93c47ca2efa74460cc6f5404788c6b77aaa2a4b40f0c26083635ce97a",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "\"predictive_mask_to_illumination\""
+    },
+    {
+      "line": 1871,
+      "path": "scripts/run_block68_part2_exact_evaluator_runtime_bind.py",
+      "sha256": "4034afa93c47ca2efa74460cc6f5404788c6b77aaa2a4b40f0c26083635ce97a",
+      "symbol": "predictive_mask_to_illumination",
+      "text": "\"predictive_mask_to_illumination\":"
+    },
+    {
+      "line": 820,
+      "path": "scripts/run_block68_part2_exact_evaluator_runtime_bind.py",
+      "sha256": "4034afa93c47ca2efa74460cc6f5404788c6b77aaa2a4b40f0c26083635ce97a",
+      "symbol": "compose_class_aware_illumination",
+      "text": "compose_class_aware_illumination,"
+    },
+    {
+      "line": 857,
+      "path": "scripts/run_block68_part2_exact_evaluator_runtime_bind.py",
+      "sha256": "4034afa93c47ca2efa74460cc6f5404788c6b77aaa2a4b40f0c26083635ce97a",
+      "symbol": "compose_class_aware_illumination",
+      "text": "\"compose_class_aware_illumination\":"
+    },
+    {
+      "line": 859,
+      "path": "scripts/run_block68_part2_exact_evaluator_runtime_bind.py",
+      "sha256": "4034afa93c47ca2efa74460cc6f5404788c6b77aaa2a4b40f0c26083635ce97a",
+      "symbol": "compose_class_aware_illumination",
+      "text": "compose_class_aware_illumination"
+    },
+    {
+      "line": 1443,
+      "path": "scripts/run_block68_part2_exact_evaluator_runtime_bind.py",
+      "sha256": "4034afa93c47ca2efa74460cc6f5404788c6b77aaa2a4b40f0c26083635ce97a",
+      "symbol": "compose_class_aware_illumination",
+      "text": "\"compose_class_aware_illumination\""
+    },
+    {
+      "line": 1874,
+      "path": "scripts/run_block68_part2_exact_evaluator_runtime_bind.py",
+      "sha256": "4034afa93c47ca2efa74460cc6f5404788c6b77aaa2a4b40f0c26083635ce97a",
+      "symbol": "compose_class_aware_illumination",
+      "text": "\"compose_class_aware_illumination\":"
+    }
+  ],
+  "scientific_boundary": {
+    "P_occ_opened": false,
+    "acceptance_tested": false,
+    "formal_content_opened": false,
+    "formal_evaluation": false,
+    "policy_tuning": false,
+    "predictive_performance_computed": false,
+    "selected_policy_artifact_content_newly_opened": false
+  },
+  "stage": 6,
+  "status": "PASS_CLASS_AWARE_RUNTIME_DELEGATION_DISCOVERY_ONLY"
+}

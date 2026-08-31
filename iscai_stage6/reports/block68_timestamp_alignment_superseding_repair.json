@@ -1,0 +1,43 @@
+{
+  "block": "6.8_timestamp_alignment_superseding_repair",
+  "diagnosis": {
+    "affected_scenarios": 2,
+    "interpolation_required": false,
+    "nearest_observation_sufficient": true,
+    "original_fixed_offsets_universally_valid": false,
+    "timestamp_tolerance_relaxation_required": false
+  },
+  "next": "rerun same reactive-only evaluator to compute exactly the three reactive NI-bound metrics",
+  "regression": {
+    "status": "PASS",
+    "tests": 224
+  },
+  "runner": {
+    "backup_path": "/home/agni/waymo/iscai_stage6/artifacts/block68/timestamp_alignment_superseding/run_block68_reactive_only_ni_delta_freeze.pre_superseding_patch.py",
+    "backup_sha256": "35fedb5ac974140626ec64ab95ff142328366a77bffeb2815bce16e4953249dd",
+    "patch_scope": "timestamp resolution only",
+    "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_reactive_only_ni_delta_freeze.py",
+    "post_patch_sha256": "dd58b1de2f01331d69b28726831039b87df8771ae4a4818b7d6c35e56d367e02",
+    "pre_patch_sha256": "35fedb5ac974140626ec64ab95ff142328366a77bffeb2815bce16e4953249dd"
+  },
+  "scientific_boundary": {
+    "NI_deltas_computed": false,
+    "P_occ_opened": false,
+    "controller_policy_tuning": false,
+    "formal_evaluation": false,
+    "future_GT_already_opened": true,
+    "future_GT_role": "evaluator_only",
+    "predictive_performance_computed": false,
+    "reactive_metric_values_computed": false
+  },
+  "stage": 6,
+  "status": "PASS_SUPERSEDING_TIMESTAMP_ALIGNMENT_FROZEN",
+  "superseding_alignment": {
+    "error_threshold": null,
+    "interpolation": false,
+    "path": "/home/agni/waymo/iscai_stage6/configs/stage6_reactive_future_truth_timestamp_alignment_superseding.json",
+    "selection": "nearest observed timestamp to each nominal physical horizon",
+    "sha256": "51a3b56a119467001a9f4617e1e19dc82c548c0a30c79fc9c4a9c1f5ef27bf56",
+    "tie_break": "earliest index"
+  }
+}

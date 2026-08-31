@@ -1,0 +1,112 @@
+============================================================
+BLOCK 5.3 PART 2/2 — SAFE EXECUTION
+============================================================
+
+===== CONTROLLED COMPILE =====
+beam_directional_gain.py = PASS
+test_block53_part2_frozen_codebook.py = PASS
+run_block53_part2_reference_decision.py = PASS
+run_block53_part2_freeze.py = PASS
+run_block53_part2_safe.py = PASS
+
+===== BLOCK5.3 PART2 UNIT TESTS =====
+
+..................
+----------------------------------------------------------------------
+Ran 18 tests in 0.016s
+
+OK
+
+Block5.3 Part2 tests = 18 / 18 PASS
+
+===== PRE-FREEZE FULL STAGE5 REGRESSION =====
+
+............................................................................................................
+----------------------------------------------------------------------
+Ran 108 tests in 0.070s
+
+OK
+
+pre-freeze Stage5 regression = 108 / 108 PASS
+
+===== PART-A REFERENCE DECISION =====
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage5/scripts/run_block53_part2_reference_decision.py", line 329, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage5/scripts/run_block53_part2_reference_decision.py", line 177, in main
+    require(
+    ~~~~~~~^
+        fov_assumption_hits,
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage5/scripts/run_block53_part2_reference_decision.py", line 33, in require
+    raise RuntimeError(
+        message
+    )
+RuntimeError: Could not verify Part-A labels the +/-12 deg headlamp FOV as an assumption.
+============================================================
+BLOCK 5.3 PART 2 — PART-A REFERENCE DECISION
+============================================================
+
+============================================================
+PART-A REFERENCE DECISION = BLOCKED
+============================================================
+exception = RuntimeError Could not verify Part-A labels the +/-12 deg headlamp FOV as an assumption.
+
+formal N=120 used = NO
+Stage4 inference = NO
+terminal remains open = YES
+
+reference-decision raw code = 0
+
+===== FINAL BLOCK5.3 FREEZE =====
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage5/scripts/run_block53_part2_freeze.py", line 1216, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage5/scripts/run_block53_part2_freeze.py", line 244, in main
+    require(
+    ~~~~~~~^
+        not missing,
+        ^^^^^^^^^^^^
+    ...<6 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage5/scripts/run_block53_part2_freeze.py", line 71, in require
+    raise RuntimeError(
+        message
+    )
+RuntimeError: Missing Block5.3 prerequisite(s): /home/agni/waymo/iscai_stage5/artifacts/block53/parta_beam_reference_decision.json
+============================================================
+STAGE 5 — BLOCK 5.3 PART 2/2
+FROZEN DIRECTIONAL CODEBOOK + GAIN CONTRACT
+============================================================
+
+============================================================
+BLOCK 5.3 PART 2/2 = BLOCKED
+============================================================
+exception = RuntimeError Missing Block5.3 prerequisite(s): /home/agni/waymo/iscai_stage5/artifacts/block53/parta_beam_reference_decision.json
+
+formal N=120 used = NO
+Stage4 inference = NO
+training/recalibration = NO
+terminal remains open = YES
+
+Block5.3 freeze raw code = 0
+
+============================================================
+BLOCK 5.3 PART 2/2 SAFE CONTROLLER
+============================================================
+STATUS = BLOCKED
+phase = structured_report
+reason = Block5.3 final report was not written.
+formal N=120 used = NO
+Stage4 inference = NO
+terminal remains open = YES

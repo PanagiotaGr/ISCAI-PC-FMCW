@@ -1,0 +1,63 @@
+{
+  "anti_posthoc_guards": {
+    "bound_rule_modification_after_development_metrics": false,
+    "bound_rule_modification_after_formal_metrics": false,
+    "formal_parameter_tuning": false,
+    "if_support_requirement_fails": "BLOCK_STAGE6; do not lower support requirement after seeing outcomes",
+    "predictive_values_must_not_enter_delta_function": true
+  },
+  "block": "6.8",
+  "bound_derivation": {
+    "absolute_cap": 0.05,
+    "absolute_floor": 0.02,
+    "confidence_interval_claim": false,
+    "final_delta": "clip(raw_delta, 0.02, 0.05)",
+    "interpretation": "pre-frozen comparator-variability scale, not a CI claim",
+    "raw_delta": "1.96 * standard_error",
+    "sample_standard_deviation": "ddof=1",
+    "source_values": "original_reactive_ADB development values only",
+    "standard_error": "sample_std / sqrt(n)",
+    "units": "absolute normalized metric units",
+    "variability_scale": 1.96
+  },
+  "data_dependency": {
+    "allowed": [
+      "original_reactive_ADB_development_values"
+    ],
+    "class_aware_predictive_values_allowed": false,
+    "constructed_oracle_values_allowed_for_bound_size": false,
+    "formal_values_allowed": false,
+    "other_predictive_baseline_values_allowed": false
+  },
+  "exact_delta_freeze_timing": "after development reactive comparator metrics are computed and before formal evaluation",
+  "formal_evaluation_allowed_after_this_rule_freeze": false,
+  "freeze_timing": "before_any_development_performance_metric",
+  "next": "run actual development-only ADB evaluator, derive the three deltas from reactive-only values, then freeze exact acceptance policy",
+  "noninferiority_metrics": {
+    "cyclist_visibility_proxy": {
+      "direction": "higher_is_better",
+      "formal_rule": "predictive_minus_reactive >= -frozen_delta",
+      "minimum_supported_development_observations": 20
+    },
+    "over_masking_area": {
+      "direction": "lower_is_better",
+      "formal_rule": "predictive_minus_reactive <= frozen_delta",
+      "required_supported_development_observations": 120
+    },
+    "pedestrian_visibility_proxy": {
+      "direction": "higher_is_better",
+      "formal_rule": "predictive_minus_reactive >= -frozen_delta",
+      "minimum_supported_development_observations": 20
+    }
+  },
+  "primary_comparison": "class_aware_predictive_ADB_vs_original_reactive_ADB",
+  "project": "Agni",
+  "purpose": "convert development-only original-reactive comparator variability into fixed formal non-inferiority tolerances without using class-aware predictive outcomes",
+  "stage": 6,
+  "status": "FROZEN_PREOUTCOME_NI_BOUND_SELECTION_RULE",
+  "vehicle_shadow_zone_violation": {
+    "direction": "strict_improvement_required",
+    "formal_rule": "predictive_mean < reactive_mean",
+    "tolerance": null
+  }
+}

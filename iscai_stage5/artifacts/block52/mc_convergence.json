@@ -1,0 +1,857 @@
+{
+  "Stage4_inference_performed_in_this_freeze_run": false,
+  "candidate_sample_counts": [
+    2048,
+    4096,
+    8192
+  ],
+  "case_count": 24,
+  "cases": [
+    {
+      "horizon_index": 0,
+      "sample_index": 0
+    },
+    {
+      "horizon_index": 1,
+      "sample_index": 0
+    },
+    {
+      "horizon_index": 2,
+      "sample_index": 0
+    },
+    {
+      "horizon_index": 3,
+      "sample_index": 0
+    },
+    {
+      "horizon_index": 0,
+      "sample_index": 1
+    },
+    {
+      "horizon_index": 1,
+      "sample_index": 1
+    },
+    {
+      "horizon_index": 2,
+      "sample_index": 1
+    },
+    {
+      "horizon_index": 3,
+      "sample_index": 1
+    },
+    {
+      "horizon_index": 0,
+      "sample_index": 2
+    },
+    {
+      "horizon_index": 1,
+      "sample_index": 2
+    },
+    {
+      "horizon_index": 2,
+      "sample_index": 2
+    },
+    {
+      "horizon_index": 3,
+      "sample_index": 2
+    },
+    {
+      "horizon_index": 0,
+      "sample_index": 4
+    },
+    {
+      "horizon_index": 1,
+      "sample_index": 4
+    },
+    {
+      "horizon_index": 2,
+      "sample_index": 4
+    },
+    {
+      "horizon_index": 3,
+      "sample_index": 4
+    },
+    {
+      "horizon_index": 0,
+      "sample_index": 5
+    },
+    {
+      "horizon_index": 1,
+      "sample_index": 5
+    },
+    {
+      "horizon_index": 2,
+      "sample_index": 5
+    },
+    {
+      "horizon_index": 3,
+      "sample_index": 5
+    },
+    {
+      "horizon_index": 0,
+      "sample_index": 6
+    },
+    {
+      "horizon_index": 1,
+      "sample_index": 6
+    },
+    {
+      "horizon_index": 2,
+      "sample_index": 6
+    },
+    {
+      "horizon_index": 3,
+      "sample_index": 6
+    }
+  ],
+  "development_artifact": {
+    "covariance_key": "calibrated_covariance_H0_m2",
+    "mean_key": "mean_absolute_H0_m",
+    "path": "/home/agni/waymo/iscai_stage5/artifacts/block52/development_gaussian_posterior.npz",
+    "sha256": "39dacd4a1dd83ac9951244328403384421731dcffc1cf01617bcc6c6395460b4"
+  },
+  "formal_data_used": false,
+  "reference_sample_count": 32768,
+  "results": [
+    {
+      "case_count": 24,
+      "metrics": {
+        "azimuth_mean_abs_deg_max": 0.16680297236855662,
+        "azimuth_mean_abs_deg_p95": 0.09305082248181351,
+        "azimuth_std_abs_deg_p95": 0.06321196800364887,
+        "elevation_mean_abs_deg_max": 0.017637384626076818,
+        "elevation_mean_abs_deg_p95": 0.01541634913322651,
+        "elevation_std_abs_deg_p95": 0.008474067117095571,
+        "range_mean_abs_m_p95": 0.044363050813358375
+      },
+      "per_case": [
+        {
+          "azimuth_mean_abs_deg": 0.09479775635730768,
+          "azimuth_std_abs_deg": 0.005055733215020506,
+          "elevation_mean_abs_deg": 0.008006361239668284,
+          "elevation_std_abs_deg": 0.004732668158487473,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.03718077098655215,
+          "sample_index": 0
+        },
+        {
+          "azimuth_mean_abs_deg": 0.08315153052068007,
+          "azimuth_std_abs_deg": 0.05852247883418911,
+          "elevation_mean_abs_deg": 0.0023745754079939614,
+          "elevation_std_abs_deg": 0.0002888988831371468,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.030612374348180538,
+          "sample_index": 0
+        },
+        {
+          "azimuth_mean_abs_deg": 0.033162728515140925,
+          "azimuth_std_abs_deg": 0.06403952491590649,
+          "elevation_mean_abs_deg": 0.017637384626076818,
+          "elevation_std_abs_deg": 0.011759172230831186,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.006309398994474691,
+          "sample_index": 0
+        },
+        {
+          "azimuth_mean_abs_deg": 0.16680297236855662,
+          "azimuth_std_abs_deg": 0.14390696483538706,
+          "elevation_mean_abs_deg": 0.016245440633099496,
+          "elevation_std_abs_deg": 0.00864222034953204,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.03425630181837391,
+          "sample_index": 0
+        },
+        {
+          "azimuth_mean_abs_deg": 0.013651022207862568,
+          "azimuth_std_abs_deg": 0.009600460186239007,
+          "elevation_mean_abs_deg": 0.006299646506642025,
+          "elevation_std_abs_deg": 0.0018339342032763824,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.011557083221248377,
+          "sample_index": 1
+        },
+        {
+          "azimuth_mean_abs_deg": 0.013944517902717418,
+          "azimuth_std_abs_deg": 0.0018032448362507488,
+          "elevation_mean_abs_deg": 0.004896749980579673,
+          "elevation_std_abs_deg": 0.005406850513688404,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.018821901704228594,
+          "sample_index": 1
+        },
+        {
+          "azimuth_mean_abs_deg": 0.04226137831551043,
+          "azimuth_std_abs_deg": 0.03179783178390951,
+          "elevation_mean_abs_deg": 0.003724576794379349,
+          "elevation_std_abs_deg": 0.004637735928580777,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.01758237566885157,
+          "sample_index": 1
+        },
+        {
+          "azimuth_mean_abs_deg": 0.03038528469388596,
+          "azimuth_std_abs_deg": 0.016053027032956028,
+          "elevation_mean_abs_deg": 0.0025137401482236677,
+          "elevation_std_abs_deg": 0.0031227109964058588,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.010925752212315842,
+          "sample_index": 1
+        },
+        {
+          "azimuth_mean_abs_deg": 0.01658221915782007,
+          "azimuth_std_abs_deg": 0.00813468334068451,
+          "elevation_mean_abs_deg": 0.0043222895457499825,
+          "elevation_std_abs_deg": 0.0023665005885036053,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.02129234418138992,
+          "sample_index": 2
+        },
+        {
+          "azimuth_mean_abs_deg": 0.03760776056288678,
+          "azimuth_std_abs_deg": 0.009992817559271339,
+          "elevation_mean_abs_deg": 0.010718163967279667,
+          "elevation_std_abs_deg": 0.0016645279139173384,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.04489844494038664,
+          "sample_index": 2
+        },
+        {
+          "azimuth_mean_abs_deg": 0.07703350495615194,
+          "azimuth_std_abs_deg": 0.00313771979245761,
+          "elevation_mean_abs_deg": 0.004618131596144323,
+          "elevation_std_abs_deg": 5.850249456466992e-05,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.03213565571107324,
+          "sample_index": 2
+        },
+        {
+          "azimuth_mean_abs_deg": 0.05356681728520404,
+          "azimuth_std_abs_deg": 0.027331584609475393,
+          "elevation_mean_abs_deg": 0.0019507801158281692,
+          "elevation_std_abs_deg": 0.0009060830739061994,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.032668933940740885,
+          "sample_index": 2
+        },
+        {
+          "azimuth_mean_abs_deg": 0.024296297499277066,
+          "azimuth_std_abs_deg": 0.010260908737352,
+          "elevation_mean_abs_deg": 0.007249400878865937,
+          "elevation_std_abs_deg": 0.0075211987999555955,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.024031578919107233,
+          "sample_index": 4
+        },
+        {
+          "azimuth_mean_abs_deg": 0.026929668008864246,
+          "azimuth_std_abs_deg": 0.0025426343591094624,
+          "elevation_mean_abs_deg": 0.004863728278438688,
+          "elevation_std_abs_deg": 0.005280113041474918,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.0004025505912821359,
+          "sample_index": 4
+        },
+        {
+          "azimuth_mean_abs_deg": 0.009219466505303538,
+          "azimuth_std_abs_deg": 0.017530301410586303,
+          "elevation_mean_abs_deg": 0.005906051843255614,
+          "elevation_std_abs_deg": 0.003750153037410659,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.003488763833182418,
+          "sample_index": 4
+        },
+        {
+          "azimuth_mean_abs_deg": 0.00933936583542102,
+          "azimuth_std_abs_deg": 0.012462721151936315,
+          "elevation_mean_abs_deg": 0.004079999849743057,
+          "elevation_std_abs_deg": 0.006323212294916066,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.006883845690815349,
+          "sample_index": 4
+        },
+        {
+          "azimuth_mean_abs_deg": 0.011370911078001979,
+          "azimuth_std_abs_deg": 0.023051566839862894,
+          "elevation_mean_abs_deg": 0.002271378520208037,
+          "elevation_std_abs_deg": 0.004107064146099975,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.013726564822306386,
+          "sample_index": 5
+        },
+        {
+          "azimuth_mean_abs_deg": 0.007570775432776929,
+          "azimuth_std_abs_deg": 0.0037933528062485786,
+          "elevation_mean_abs_deg": 0.004050071545274842,
+          "elevation_std_abs_deg": 0.0013336118023557838,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.0015194007530894282,
+          "sample_index": 5
+        },
+        {
+          "azimuth_mean_abs_deg": 0.0012701449574271924,
+          "azimuth_std_abs_deg": 0.02119969109347667,
+          "elevation_mean_abs_deg": 5.1075796549907734e-05,
+          "elevation_std_abs_deg": 0.001738017100666733,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.01743697170691405,
+          "sample_index": 5
+        },
+        {
+          "azimuth_mean_abs_deg": 0.050258367070919255,
+          "azimuth_std_abs_deg": 0.03183458620293461,
+          "elevation_mean_abs_deg": 0.006395252975884635,
+          "elevation_std_abs_deg": 0.00675018878094071,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.041329150760198274,
+          "sample_index": 5
+        },
+        {
+          "azimuth_mean_abs_deg": 0.036312167985188645,
+          "azimuth_std_abs_deg": 0.011199553835879962,
+          "elevation_mean_abs_deg": 0.0032452679205468467,
+          "elevation_std_abs_deg": 8.539175248163647e-05,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.0016078018597482924,
+          "sample_index": 6
+        },
+        {
+          "azimuth_mean_abs_deg": 0.05961587694772808,
+          "azimuth_std_abs_deg": 0.012787763593521084,
+          "elevation_mean_abs_deg": 0.0005496488102590695,
+          "elevation_std_abs_deg": 0.0008932387253402752,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.02277935403221676,
+          "sample_index": 6
+        },
+        {
+          "azimuth_mean_abs_deg": 0.021380502362769886,
+          "azimuth_std_abs_deg": 0.004110019196237094,
+          "elevation_mean_abs_deg": 0.009006349096798056,
+          "elevation_std_abs_deg": 0.004215012490786626,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.019581476251786967,
+          "sample_index": 6
+        },
+        {
+          "azimuth_mean_abs_deg": 0.038161350138235316,
+          "azimuth_std_abs_deg": 0.012521521791131631,
+          "elevation_mean_abs_deg": 0.0018507083219750386,
+          "elevation_std_abs_deg": 0.0010108654521488226,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.06922570857443588,
+          "sample_index": 6
+        }
+      ],
+      "reference_sample_count": 32768,
+      "sample_count": 2048,
+      "status": "PASS",
+      "thresholds": {
+        "azimuth_mean_abs_deg_max": 0.75,
+        "azimuth_mean_abs_deg_p95": 0.25,
+        "azimuth_std_abs_deg_p95": 0.25,
+        "elevation_mean_abs_deg_max": 0.6,
+        "elevation_mean_abs_deg_p95": 0.2,
+        "elevation_std_abs_deg_p95": 0.2,
+        "range_mean_abs_m_p95": 0.1
+      }
+    },
+    {
+      "case_count": 24,
+      "metrics": {
+        "azimuth_mean_abs_deg_max": 0.05132367716302905,
+        "azimuth_mean_abs_deg_p95": 0.04960762960849468,
+        "azimuth_std_abs_deg_p95": 0.03835278358124358,
+        "elevation_mean_abs_deg_max": 0.022148202679289374,
+        "elevation_mean_abs_deg_p95": 0.010685861244409262,
+        "elevation_std_abs_deg_p95": 0.0073469979041569525,
+        "range_mean_abs_m_p95": 0.039024130326358264
+      },
+      "per_case": [
+        {
+          "azimuth_mean_abs_deg": 0.017905141916181783,
+          "azimuth_std_abs_deg": 0.03196832506731261,
+          "elevation_mean_abs_deg": 0.010485860650851043,
+          "elevation_std_abs_deg": 0.004769441966226492,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.03084791357764516,
+          "sample_index": 0
+        },
+        {
+          "azimuth_mean_abs_deg": 0.0285780335283121,
+          "azimuth_std_abs_deg": 0.0012107560246903445,
+          "elevation_mean_abs_deg": 0.0022190734349298016,
+          "elevation_std_abs_deg": 0.0030223091932671435,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.014359527875164702,
+          "sample_index": 0
+        },
+        {
+          "azimuth_mean_abs_deg": 0.004964700754575205,
+          "azimuth_std_abs_deg": 0.023556341811307717,
+          "elevation_mean_abs_deg": 0.022148202679289374,
+          "elevation_std_abs_deg": 0.007772741687463577,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.027080262616678397,
+          "sample_index": 0
+        },
+        {
+          "azimuth_mean_abs_deg": 0.03181366425275541,
+          "azimuth_std_abs_deg": 0.05225477174917149,
+          "elevation_mean_abs_deg": 0.010721155466801888,
+          "elevation_std_abs_deg": 0.004934449798752786,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.0021770996342667104,
+          "sample_index": 0
+        },
+        {
+          "azimuth_mean_abs_deg": 0.020997148863899653,
+          "azimuth_std_abs_deg": 0.0030479659572002177,
+          "elevation_mean_abs_deg": 0.002532258751987221,
+          "elevation_std_abs_deg": 0.000832174518780844,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.00690555005537874,
+          "sample_index": 1
+        },
+        {
+          "azimuth_mean_abs_deg": 0.003662539088320966,
+          "azimuth_std_abs_deg": 0.0037163609407527168,
+          "elevation_mean_abs_deg": 0.0005685824078759494,
+          "elevation_std_abs_deg": 0.0017093720912067171,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.009633532889807839,
+          "sample_index": 1
+        },
+        {
+          "azimuth_mean_abs_deg": 0.01103986354869771,
+          "azimuth_std_abs_deg": 0.01891301409690999,
+          "elevation_mean_abs_deg": 0.003239766856835947,
+          "elevation_std_abs_deg": 0.0025254538435220903,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.006270022579251133,
+          "sample_index": 1
+        },
+        {
+          "azimuth_mean_abs_deg": 0.042428765649768524,
+          "azimuth_std_abs_deg": 0.008145231133425967,
+          "elevation_mean_abs_deg": 0.0014868267236625321,
+          "elevation_std_abs_deg": 0.0025337527598673923,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.00948023416574273,
+          "sample_index": 1
+        },
+        {
+          "azimuth_mean_abs_deg": 0.004728119879348032,
+          "azimuth_std_abs_deg": 0.015949632241850115,
+          "elevation_mean_abs_deg": 0.0025845916235810017,
+          "elevation_std_abs_deg": 0.0009158787923709639,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.013073723140813343,
+          "sample_index": 2
+        },
+        {
+          "azimuth_mean_abs_deg": 0.028050534997589128,
+          "azimuth_std_abs_deg": 0.03212279064338333,
+          "elevation_mean_abs_deg": 0.0019209686216852967,
+          "elevation_std_abs_deg": 0.0014522891681802543,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.0018349890409865566,
+          "sample_index": 2
+        },
+        {
+          "azimuth_mean_abs_deg": 0.05087448795415225,
+          "azimuth_std_abs_deg": 0.013764992247468941,
+          "elevation_mean_abs_deg": 0.003087309606982248,
+          "elevation_std_abs_deg": 2.7118930498807134e-06,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.035436457232059126,
+          "sample_index": 2
+        },
+        {
+          "azimuth_mean_abs_deg": 0.018795123164478778,
+          "azimuth_std_abs_deg": 0.006707290649049916,
+          "elevation_mean_abs_deg": 0.002163473051891947,
+          "elevation_std_abs_deg": 0.003692775051575501,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.039657249107705184,
+          "sample_index": 2
+        },
+        {
+          "azimuth_mean_abs_deg": 0.010416636574905965,
+          "azimuth_std_abs_deg": 0.0032221333448556925,
+          "elevation_mean_abs_deg": 0.002229796231494202,
+          "elevation_std_abs_deg": 0.0016005521493041965,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.025971458048758223,
+          "sample_index": 4
+        },
+        {
+          "azimuth_mean_abs_deg": 0.025151178382895364,
+          "azimuth_std_abs_deg": 0.007656813756498064,
+          "elevation_mean_abs_deg": 0.002327112389671216,
+          "elevation_std_abs_deg": 0.008035029657352182,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.002275271996232675,
+          "sample_index": 4
+        },
+        {
+          "azimuth_mean_abs_deg": 0.0039967527386442206,
+          "azimuth_std_abs_deg": 0.0043976688553164014,
+          "elevation_mean_abs_deg": 0.0031326855327413893,
+          "elevation_std_abs_deg": 0.002204851600051309,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.004679361803638926,
+          "sample_index": 4
+        },
+        {
+          "azimuth_mean_abs_deg": 0.0016678142103206722,
+          "azimuth_std_abs_deg": 0.010900079980833225,
+          "elevation_mean_abs_deg": 0.0016765753644727743,
+          "elevation_std_abs_deg": 0.0047399031610015985,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.0041535560866066135,
+          "sample_index": 4
+        },
+        {
+          "azimuth_mean_abs_deg": 0.014192342197160632,
+          "azimuth_std_abs_deg": 0.007701254816369255,
+          "elevation_mean_abs_deg": 0.0005036548127325194,
+          "elevation_std_abs_deg": 0.0035669459119013133,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.015621070699609163,
+          "sample_index": 5
+        },
+        {
+          "azimuth_mean_abs_deg": 0.010954019534132907,
+          "azimuth_std_abs_deg": 0.0038610146975496637,
+          "elevation_mean_abs_deg": 0.0027427458859546525,
+          "elevation_std_abs_deg": 0.0016523553845523321,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.004782573736093809,
+          "sample_index": 5
+        },
+        {
+          "azimuth_mean_abs_deg": 0.0018402485487185056,
+          "azimuth_std_abs_deg": 0.013373744104667514,
+          "elevation_mean_abs_deg": 0.00020762370475763947,
+          "elevation_std_abs_deg": 0.0016295518895363857,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.005292569537132863,
+          "sample_index": 5
+        },
+        {
+          "azimuth_mean_abs_deg": 0.05132367716302905,
+          "azimuth_std_abs_deg": 0.03945219409968953,
+          "elevation_mean_abs_deg": 0.0030889783255171385,
+          "elevation_std_abs_deg": 0.0025582122577997505,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.03423278198806656,
+          "sample_index": 5
+        },
+        {
+          "azimuth_mean_abs_deg": 0.015565924658993183,
+          "azimuth_std_abs_deg": 0.002517622810275029,
+          "elevation_mean_abs_deg": 0.0027438550668796046,
+          "elevation_std_abs_deg": 0.0008004821813896935,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.005606232355084728,
+          "sample_index": 6
+        },
+        {
+          "azimuth_mean_abs_deg": 0.02776328694453672,
+          "azimuth_std_abs_deg": 0.001976103922294141,
+          "elevation_mean_abs_deg": 0.0019905420481884746,
+          "elevation_std_abs_deg": 0.0007652108894398258,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.00806584999896387,
+          "sample_index": 6
+        },
+        {
+          "azimuth_mean_abs_deg": 0.01129340194717544,
+          "azimuth_std_abs_deg": 0.011642063193726675,
+          "elevation_mean_abs_deg": 0.00012037878304051846,
+          "elevation_std_abs_deg": 0.002016581591296316,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.008680046523302565,
+          "sample_index": 6
+        },
+        {
+          "azimuth_mean_abs_deg": 0.007036771586545325,
+          "azimuth_std_abs_deg": 0.0181113552656667,
+          "elevation_mean_abs_deg": 0.0016176311723608355,
+          "elevation_std_abs_deg": 0.0004429764395825338,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.04505528066737696,
+          "sample_index": 6
+        }
+      ],
+      "reference_sample_count": 32768,
+      "sample_count": 4096,
+      "status": "PASS",
+      "thresholds": {
+        "azimuth_mean_abs_deg_max": 0.75,
+        "azimuth_mean_abs_deg_p95": 0.25,
+        "azimuth_std_abs_deg_p95": 0.25,
+        "elevation_mean_abs_deg_max": 0.6,
+        "elevation_mean_abs_deg_p95": 0.2,
+        "elevation_std_abs_deg_p95": 0.2,
+        "range_mean_abs_m_p95": 0.1
+      }
+    },
+    {
+      "case_count": 24,
+      "metrics": {
+        "azimuth_mean_abs_deg_max": 0.039637470534579895,
+        "azimuth_mean_abs_deg_p95": 0.03027723019461374,
+        "azimuth_std_abs_deg_p95": 0.02354002984575232,
+        "elevation_mean_abs_deg_max": 0.006358500618465607,
+        "elevation_mean_abs_deg_p95": 0.005634120777072151,
+        "elevation_std_abs_deg_p95": 0.004843221357296808,
+        "range_mean_abs_m_p95": 0.020278564852414502
+      },
+      "per_case": [
+        {
+          "azimuth_mean_abs_deg": 0.013075043665194607,
+          "azimuth_std_abs_deg": 0.01969818402314135,
+          "elevation_mean_abs_deg": 0.004876152006863361,
+          "elevation_std_abs_deg": 0.0015197836472745695,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.004600688562376831,
+          "sample_index": 0
+        },
+        {
+          "azimuth_mean_abs_deg": 0.039637470534579895,
+          "azimuth_std_abs_deg": 0.003980954125237671,
+          "elevation_mean_abs_deg": 0.004481895474729166,
+          "elevation_std_abs_deg": 0.0008884443387114548,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.01793657965288986,
+          "sample_index": 0
+        },
+        {
+          "azimuth_mean_abs_deg": 0.031102993848408537,
+          "azimuth_std_abs_deg": 0.024218002637977794,
+          "elevation_mean_abs_deg": 0.006358500618465607,
+          "elevation_std_abs_deg": 0.004964140891005822,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.018914593431709648,
+          "sample_index": 0
+        },
+        {
+          "azimuth_mean_abs_deg": 0.011106291860415852,
+          "azimuth_std_abs_deg": 0.05917634989414265,
+          "elevation_mean_abs_deg": 0.0020239640074611554,
+          "elevation_std_abs_deg": 0.003496243724049793,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.018923585063575388,
+          "sample_index": 0
+        },
+        {
+          "azimuth_mean_abs_deg": 0.01498274909704136,
+          "azimuth_std_abs_deg": 0.004028813587718324,
+          "elevation_mean_abs_deg": 0.0020675344469123797,
+          "elevation_std_abs_deg": 6.336113586783706e-05,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.0058740416808547025,
+          "sample_index": 1
+        },
+        {
+          "azimuth_mean_abs_deg": 0.0019528848229166018,
+          "azimuth_std_abs_deg": 0.009763205356353177,
+          "elevation_mean_abs_deg": 0.0012444474566316033,
+          "elevation_std_abs_deg": 0.003497943823605719,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.005077121769829773,
+          "sample_index": 1
+        },
+        {
+          "azimuth_mean_abs_deg": 0.01272577884548855,
+          "azimuth_std_abs_deg": 0.0037631026582295992,
+          "elevation_mean_abs_deg": 0.004808200807979665,
+          "elevation_std_abs_deg": 0.0005145821922028629,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.012939702921869412,
+          "sample_index": 1
+        },
+        {
+          "azimuth_mean_abs_deg": 0.014182137087907795,
+          "azimuth_std_abs_deg": 0.014484975316545938,
+          "elevation_mean_abs_deg": 0.00031224691893414825,
+          "elevation_std_abs_deg": 0.003061758865057923,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.002679160420171911,
+          "sample_index": 1
+        },
+        {
+          "azimuth_mean_abs_deg": 0.0018838900460814512,
+          "azimuth_std_abs_deg": 0.01764136983252013,
+          "elevation_mean_abs_deg": 0.002771904684469596,
+          "elevation_std_abs_deg": 0.0025493594915131142,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.003817939246054891,
+          "sample_index": 2
+        },
+        {
+          "azimuth_mean_abs_deg": 0.004037451167822325,
+          "azimuth_std_abs_deg": 0.011322709906889713,
+          "elevation_mean_abs_deg": 0.0010744536860089113,
+          "elevation_std_abs_deg": 0.0009967260697838298,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.009564637244508845,
+          "sample_index": 2
+        },
+        {
+          "azimuth_mean_abs_deg": 0.014160345304512361,
+          "azimuth_std_abs_deg": 0.005280026931310762,
+          "elevation_mean_abs_deg": 0.0018168944477078897,
+          "elevation_std_abs_deg": 0.0006464265518974019,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.008641157657862664,
+          "sample_index": 2
+        },
+        {
+          "azimuth_mean_abs_deg": 0.01468079503051207,
+          "azimuth_std_abs_deg": 0.016081274717757107,
+          "elevation_mean_abs_deg": 0.00023909777492094088,
+          "elevation_std_abs_deg": 0.00011303000377057281,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.020590289300869813,
+          "sample_index": 2
+        },
+        {
+          "azimuth_mean_abs_deg": 0.010472946354970364,
+          "azimuth_std_abs_deg": 0.0038475680371842735,
+          "elevation_mean_abs_deg": 0.0029665945958214416,
+          "elevation_std_abs_deg": 0.00010072880719277488,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.00854053873959515,
+          "sample_index": 4
+        },
+        {
+          "azimuth_mean_abs_deg": 0.01994004153755121,
+          "azimuth_std_abs_deg": 0.008530633674484558,
+          "elevation_mean_abs_deg": 0.001161421545218316,
+          "elevation_std_abs_deg": 0.005908870717661025,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.004002086853063247,
+          "sample_index": 4
+        },
+        {
+          "azimuth_mean_abs_deg": 0.010756281273433527,
+          "azimuth_std_abs_deg": 0.002678809044443321,
+          "elevation_mean_abs_deg": 0.00576787997181488,
+          "elevation_std_abs_deg": 0.000631905680531559,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.004272565920629745,
+          "sample_index": 4
+        },
+        {
+          "azimuth_mean_abs_deg": 0.0063320979235530666,
+          "azimuth_std_abs_deg": 0.002307178870302364,
+          "elevation_mean_abs_deg": 0.004010947666704882,
+          "elevation_std_abs_deg": 0.002190023997853207,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.004271210848102669,
+          "sample_index": 4
+        },
+        {
+          "azimuth_mean_abs_deg": 0.009916320575050696,
+          "azimuth_std_abs_deg": 0.00739084110072198,
+          "elevation_mean_abs_deg": 0.0014373467147803937,
+          "elevation_std_abs_deg": 0.0007124721317624616,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.007572534274245868,
+          "sample_index": 5
+        },
+        {
+          "azimuth_mean_abs_deg": 0.0010630542147729851,
+          "azimuth_std_abs_deg": 0.008342184817881276,
+          "elevation_mean_abs_deg": 0.001695614433196067,
+          "elevation_std_abs_deg": 0.0017408756721891702,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.0037503743252571553,
+          "sample_index": 5
+        },
+        {
+          "azimuth_mean_abs_deg": 0.0026790224079825085,
+          "azimuth_std_abs_deg": 0.002943442135510867,
+          "elevation_mean_abs_deg": 0.0009587312704343512,
+          "elevation_std_abs_deg": 0.000995150325847572,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.009758588922252898,
+          "sample_index": 5
+        },
+        {
+          "azimuth_mean_abs_deg": 0.025597902823109978,
+          "azimuth_std_abs_deg": 0.018190008718507716,
+          "elevation_mean_abs_deg": 0.0007406606098486598,
+          "elevation_std_abs_deg": 0.004158010666279069,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.020517678932797878,
+          "sample_index": 5
+        },
+        {
+          "azimuth_mean_abs_deg": 0.008981782221970274,
+          "azimuth_std_abs_deg": 0.0007694950245951057,
+          "elevation_mean_abs_deg": 0.0008502401595864498,
+          "elevation_std_abs_deg": 0.00020721486485078116,
+          "horizon_index": 0,
+          "range_mean_abs_m": 0.005291068379335684,
+          "sample_index": 6
+        },
+        {
+          "azimuth_mean_abs_deg": 0.007618315269144963,
+          "azimuth_std_abs_deg": 0.005981203516823948,
+          "elevation_mean_abs_deg": 0.0006566995865499059,
+          "elevation_std_abs_deg": 0.0005717950584019016,
+          "horizon_index": 1,
+          "range_mean_abs_m": 0.004040002647691665,
+          "sample_index": 6
+        },
+        {
+          "azimuth_mean_abs_deg": 0.011025568086765998,
+          "azimuth_std_abs_deg": 0.008459426532704942,
+          "elevation_mean_abs_deg": 0.0011894464118656577,
+          "elevation_std_abs_deg": 0.0030313482042240774,
+          "horizon_index": 2,
+          "range_mean_abs_m": 0.0031327160868954707,
+          "sample_index": 6
+        },
+        {
+          "azimuth_mean_abs_deg": 0.02140424241419689,
+          "azimuth_std_abs_deg": 0.006298329663968301,
+          "elevation_mean_abs_deg": 0.001525612857839215,
+          "elevation_std_abs_deg": 0.0011633446192604912,
+          "horizon_index": 3,
+          "range_mean_abs_m": 0.017453854724166717,
+          "sample_index": 6
+        }
+      ],
+      "reference_sample_count": 32768,
+      "sample_count": 8192,
+      "status": "PASS",
+      "thresholds": {
+        "azimuth_mean_abs_deg_max": 0.75,
+        "azimuth_mean_abs_deg_p95": 0.25,
+        "azimuth_std_abs_deg_p95": 0.25,
+        "elevation_mean_abs_deg_max": 0.6,
+        "elevation_mean_abs_deg_p95": 0.2,
+        "elevation_std_abs_deg_p95": 0.2,
+        "range_mean_abs_m_p95": 0.1
+      }
+    }
+  ],
+  "selected_sample_count": 2048,
+  "selection_rule": "smallest_preregistered_candidate_passing_all_convergence_thresholds",
+  "source": "Stage5_materialized_from_exact_frozen_Block4.4_development_inference",
+  "source_materialization_used_frozen_Stage4_inference": true,
+  "status": "PASS",
+  "thresholds": {
+    "azimuth_mean_abs_deg_max": 0.75,
+    "azimuth_mean_abs_deg_p95": 0.25,
+    "azimuth_std_abs_deg_p95": 0.25,
+    "elevation_mean_abs_deg_max": 0.6,
+    "elevation_mean_abs_deg_p95": 0.2,
+    "elevation_std_abs_deg_p95": 0.2,
+    "range_mean_abs_m_p95": 0.1
+  }
+}

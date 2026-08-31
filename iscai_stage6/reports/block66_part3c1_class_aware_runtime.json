@@ -1,0 +1,61 @@
+{
+  "Part3B_preregistration": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json",
+    "sha256": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e"
+  },
+  "PartA_continuity": {
+    "generic_lateral_margin_preserved": true,
+    "generic_radial_margin_preserved": true,
+    "original_reactive_baseline_modified": false,
+    "raised_cosine_reused": true
+  },
+  "actuator_boundary": {
+    "axes": [
+      "theta",
+      "range"
+    ],
+    "face_height_pixel_control": false,
+    "vertical_DOF": false
+  },
+  "block": "6.6-Part3C/1",
+  "implementation": {
+    "frozen_PartA_source_modified": false,
+    "new_file": true,
+    "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/class_aware_policy.py",
+    "sha256": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b"
+  },
+  "implemented_runtime_components": [
+    "exact_strict_integer_k_threshold",
+    "class_aware_predictive_margin_operator",
+    "theta_only_predictive_mask_dilation",
+    "predictive_mask_to_preserved_PartA_raised_cosine_illumination",
+    "class_aware_policy_composition",
+    "spatial_VRU_floor_guard",
+    "class_overlap_priority_rule",
+    "temporal_smoothing_operator",
+    "actuation_rate_limit_operator",
+    "rate_limit_safety_override_accounting"
+  ],
+  "next": "BLOCK6.6_PART3C2_MATERIALIZE_VEHICLE_GEOMETRY_SURROGATE_EVIDENCE_AND_INTEGRATION_SMOKE_WITHOUT_SWEEP",
+  "scientific_boundary": {
+    "formal_outcomes_read": false,
+    "new_MC_sampling": false,
+    "new_model_forward": false,
+    "numeric_floor_selected": false,
+    "numeric_gamma_selected": false,
+    "numeric_margin_selected": false,
+    "numeric_rate_selected": false,
+    "numeric_smoothing_selected": false,
+    "policy_sweep_executed": false,
+    "recalibration": false,
+    "training": false
+  },
+  "stage": 6,
+  "status": "PASS_PREREGISTERED_CLASS_AWARE_RUNTIME_OPERATORS_IMPLEMENTED",
+  "tests": {
+    "focused_tests": 21,
+    "full_Stage6_tests": 166,
+    "path": "/home/agni/waymo/iscai_stage6/tests/test_block66_part3c1_class_aware_policy.py",
+    "sha256": "e94b16cf289a5f07edd3490bf4cc2b6ab01f03dfd14f926850d2b6c1ae89490d"
+  }
+}

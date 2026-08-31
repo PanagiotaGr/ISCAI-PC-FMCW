@@ -1,0 +1,137 @@
+========================================================================
+BLOCK 6.6 PART1A — CURRENT-CAUSAL FORWARD-HEADLAMP DEVELOPMENT CENSUS
+========================================================================
+
+===== A. IMMUTABLE UPSTREAM SEAL =====
+Block6.5 handoff             = EXACT PASS
+Block6.6 Part0B report       = EXACT PASS
+Block4.1 split report        = EXACT PASS
+Stage4 development manifest  = EXACT PASS
+formal N120 manifest         = EXACT PASS
+Stage6 grid numeric freeze   = EXACT PASS
+
+Stage6 policy source partition = DEVELOPMENT
+Stage4 calibration partition reused for policy tuning = NO
+
+===== B. DEVELOPMENT PARTITION BOUNDARY =====
+development scenarios = 7208
+formal overlap        = 0
+formal outcomes read  = NO
+
+===== C. FROZEN HEADLAMP DOMAIN =====
+theta domain = [-25,+25] deg
+range domain = [0,150] m
+selection geometry = CONTINUOUS FULL-BOX FOOTPRINT / FINITE SECTOR
+centroid selection = NO
+raster-cell selection = NO
+angular wrap ambiguity = AVOIDED IN CARTESIAN H0
+
+===== D. CURRENT FULL-BOX GEOMETRY SELF-CHECK =====
+front box   = RELEVANT PASS
+behind box  = IRRELEVANT PASS
+beyond box  = IRRELEVANT PASS
+
+===== E. RESUMABLE 7208-SCENARIO CAUSAL SCAN =====
+already completed = 0
+remaining         = 7208
+progress = 250/7208
+progress = 500/7208
+progress = 750/7208
+progress = 1000/7208
+progress = 1250/7208
+progress = 1500/7208
+progress = 1750/7208
+progress = 2000/7208
+progress = 2250/7208
+progress = 2500/7208
+progress = 2750/7208
+progress = 3000/7208
+progress = 3250/7208
+progress = 3500/7208
+progress = 3750/7208
+progress = 4000/7208
+progress = 4250/7208
+progress = 4500/7208
+progress = 4750/7208
+progress = 5000/7208
+progress = 5250/7208
+progress = 5500/7208
+progress = 5750/7208
+progress = 6000/7208
+progress = 6250/7208
+progress = 6500/7208
+progress = 6750/7208
+progress = 7000/7208
+progress = 7208/7208
+
+===== F. COMPLETE HEADLAMP CENSUS =====
+headlamp-relevant scenes by class = {'TYPE_VEHICLE': 6861, 'TYPE_PEDESTRIAN': 1687, 'TYPE_CYCLIST': 504}
+headlamp-relevant actors by class = {'TYPE_VEHICLE': 49150, 'TYPE_PEDESTRIAN': 4558, 'TYPE_CYCLIST': 622}
+headlamp causal strata = {'cyclist': 504, 'none': 286, 'pedestrian_no_cyclist': 1502, 'vehicle_only': 4916}
+
+===== G. HEADLAMP-RELEVANT DEVELOPMENT MANIFEST =====
+eligible scenarios = 6922
+full census SHA256 = a8b6a1f084583552434af9e00c762e363c09f3912b4720573acb9cd4ce34e4cb
+eligible manifest SHA256 = b34340afd615fb92b2cf40bb2795b555c1acaa25b5778d8af7dd5bca8efd4efa
+deterministic examples =
+{
+  "TYPE_CYCLIST": {
+    "headlamp_relevant_counts": {
+      "TYPE_CYCLIST": 1,
+      "TYPE_PEDESTRIAN": 0,
+      "TYPE_VEHICLE": 4
+    },
+    "scenario_id": "f72a05a05035feb8",
+    "selection_hash": "1e4334ce228a632e787057dea86f5367816823c4822c6c464d214d6a4cd7516b"
+  },
+  "TYPE_PEDESTRIAN": {
+    "headlamp_relevant_counts": {
+      "TYPE_CYCLIST": 0,
+      "TYPE_PEDESTRIAN": 11,
+      "TYPE_VEHICLE": 15
+    },
+    "scenario_id": "a6432ee002f8046d",
+    "selection_hash": "1e423739971605a7172a8dff1e04ddfee211a4d0bf89c96413aa9e686f4014c3"
+  },
+  "TYPE_VEHICLE": {
+    "headlamp_relevant_counts": {
+      "TYPE_CYCLIST": 0,
+      "TYPE_PEDESTRIAN": 11,
+      "TYPE_VEHICLE": 15
+    },
+    "scenario_id": "a6432ee002f8046d",
+    "selection_hash": "1e423739971605a7172a8dff1e04ddfee211a4d0bf89c96413aa9e686f4014c3"
+  }
+}
+
+===== H. BLOCK6.6 PART1A REPORT =====
+report = /home/agni/waymo/iscai_stage6/reports/block66_part1a_forward_headlamp_census.json
+report SHA256 = 553188a6d01a890e9a6c2f11e9bbfd2d8426665065c4abcc770fa7e30ca84228
+
+========================================================================
+BLOCK 6.6 PART1A — FINAL
+========================================================================
+STATUS = PASS_CAUSAL_FORWARD_HEADLAMP_DEVELOPMENT_CENSUS
+policy-development source = STAGE4 DEVELOPMENT
+source scenarios          = 7208
+formal overlap            = 0
+current full-box geometry = YES
+centroid-only             = NO
+future selection          = NO
+tracks_to_predict         = NO
+objects_of_interest       = NO
+headlamp scenes/class     = {'TYPE_VEHICLE': 6861, 'TYPE_PEDESTRIAN': 1687, 'TYPE_CYCLIST': 504}
+headlamp actors/class     = {'TYPE_VEHICLE': 49150, 'TYPE_PEDESTRIAN': 4558, 'TYPE_CYCLIST': 622}
+headlamp strata           = {'cyclist': 504, 'none': 286, 'pedestrian_no_cyclist': 1502, 'vehicle_only': 4916}
+eligible scenario count   = 6922
+cohort selected           = NO
+cohort size frozen        = NO
+class policy frozen       = NO
+model forward             = NO
+formal outcomes read      = NO
+full census SHA256        = a8b6a1f084583552434af9e00c762e363c09f3912b4720573acb9cd4ce34e4cb
+eligible manifest SHA256  = b34340afd615fb92b2cf40bb2795b555c1acaa25b5778d8af7dd5bca8efd4efa
+report SHA256             = 553188a6d01a890e9a6c2f11e9bbfd2d8426665065c4abcc770fa7e30ca84228
+NEXT = BLOCK6.6 PART1B DETERMINISTIC CLASS-COVERED COHORT SELECTION
+terminal remains open = YES
+========================================================================

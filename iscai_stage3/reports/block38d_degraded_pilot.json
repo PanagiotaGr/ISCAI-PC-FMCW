@@ -1,0 +1,1177 @@
+{
+  "block": "3.8D",
+  "formal_N": null,
+  "formal_performance_metrics": false,
+  "frozen_stage2_profile": {
+    "clean_config": {
+      "azimuth_std_rad": 0.017453292519943295,
+      "elevation_std_rad": 0.017453292519943295,
+      "sensing_snr_db": 20.0
+    },
+    "degraded_config": {
+      "detection_probability": {
+        "pd_ceiling": 0.95,
+        "pd_floor": 0.05,
+        "snr_midpoint_db": 20.0,
+        "transition_width_db": 2.0
+      },
+      "detection_seed": 20260811,
+      "false_alarms": {
+        "azimuth_max_rad": 3.141592653589793,
+        "azimuth_min_rad": -3.141592653589793,
+        "azimuth_std_rad": 0.08726646259971647,
+        "elevation_max_rad": 0.3,
+        "elevation_min_rad": -0.3,
+        "elevation_std_rad": 0.08726646259971647,
+        "mean_false_alarms_per_frame": 2.0,
+        "radial_velocity_max_mps": 30.0,
+        "radial_velocity_min_mps": -30.0,
+        "radial_velocity_std_mps": 2.0,
+        "range_max_m": 100.0,
+        "range_min_m": 1.0,
+        "range_std_m": 1.0,
+        "seed": 20260812
+      },
+      "gaussian_seed": 20260810
+    },
+    "profile_semantics": "Gaussian measurement corruption + SNR-dependent missed detections + Poisson false alarms + R_t",
+    "source": "/home/agni/waymo/iscai_stage2/scripts/run_stage2_degraded_scene_smoke.py",
+    "source_sha256": "33a6dc4e3019d80fe23d97ee52c3fd1c915e21d272c3883f05888b8c01db925b"
+  },
+  "future_womd_truth_accessed": false,
+  "pilot_result": {
+    "algorithm_detection_count": {
+      "max": 546,
+      "median": 142.5,
+      "min": 27
+    },
+    "anchor_class_totals": {
+      "TYPE_PEDESTRIAN": 52,
+      "TYPE_VEHICLE": 390
+    },
+    "associated_track_count": {
+      "max": 108,
+      "median": 45.5,
+      "min": 16
+    },
+    "failed_scenarios": 0,
+    "methods": {
+      "CA": {
+        "model_runtime_ms_median": 9.664355427958071,
+        "model_runtime_ms_p95": 36.74952394794673,
+        "prediction_count_median": 20.5,
+        "prediction_count_total": 353,
+        "scenarios_with_predictions": 12,
+        "scenarios_with_zero_predictions": 0
+      },
+      "CTRV": {
+        "model_runtime_ms_median": 6.824434967711568,
+        "model_runtime_ms_p95": 25.81907797139138,
+        "prediction_count_median": 20.5,
+        "prediction_count_total": 353,
+        "scenarios_with_predictions": 12,
+        "scenarios_with_zero_predictions": 0
+      },
+      "CV": {
+        "model_runtime_ms_median": 7.486749964300543,
+        "model_runtime_ms_p95": 27.203112025745213,
+        "prediction_count_median": 28.5,
+        "prediction_count_total": 458,
+        "scenarios_with_predictions": 12,
+        "scenarios_with_zero_predictions": 0
+      },
+      "IMM_CV_CA_CTRV": {
+        "model_runtime_ms_median": 174.2575634852983,
+        "model_runtime_ms_p95": 752.6064669946209,
+        "prediction_count_median": 20.5,
+        "prediction_count_total": 353,
+        "scenarios_with_predictions": 12,
+        "scenarios_with_zero_predictions": 0
+      },
+      "Kalman_EKF": {
+        "model_runtime_ms_median": 21.495599939953536,
+        "model_runtime_ms_p95": 92.17077400535345,
+        "prediction_count_median": 28.5,
+        "prediction_count_total": 458,
+        "scenarios_with_predictions": 12,
+        "scenarios_with_zero_predictions": 0
+      },
+      "Multidimensional_Hough": {
+        "model_runtime_ms_median": 4859.823329024948,
+        "model_runtime_ms_p95": 19559.810995007865,
+        "prediction_count_median": 9.5,
+        "prediction_count_total": 110,
+        "scenarios_with_predictions": 12,
+        "scenarios_with_zero_predictions": 0
+      }
+    },
+    "scenario_runtime_ms": {
+      "max": 20723.7813801039,
+      "median": 5125.356565520633,
+      "p95": 20723.7813801039
+    },
+    "successful_scenarios": 12
+  },
+  "purpose": "deterministic runtime and eligibility pilot only",
+  "scenarios": [
+    {
+      "algorithm_detection_count": 27,
+      "algorithm_frames": 11,
+      "anchor_class_inventory": {
+        "TYPE_VEHICLE": 2
+      },
+      "input_immutable": true,
+      "input_sha256_after": "fc50d0c4ab74c9a5bb0647bacc0e679aa5faf8d3d895828fc55de6f70357a924",
+      "input_sha256_before": "fc50d0c4ab74c9a5bb0647bacc0e679aa5faf8d3d895828fc55de6f70357a924",
+      "methods": {
+        "CA": {
+          "association_runtime_ms": 0.8179849246516824,
+          "model_runtime_ms": 1.6661500558257103,
+          "pipeline_runtime_ms": 2.4841349804773927,
+          "prediction_count": 2,
+          "rejected_track_count": 14,
+          "rejection_reasons": {
+            "CA state requires at least three causal observations.": 14
+          }
+        },
+        "CTRV": {
+          "association_runtime_ms": 0.8179849246516824,
+          "model_runtime_ms": 1.2830269988626242,
+          "pipeline_runtime_ms": 2.1010119235143065,
+          "prediction_count": 2,
+          "rejected_track_count": 14,
+          "rejection_reasons": {
+            "CTRV state requires at least three causal observations.": 14
+          }
+        },
+        "CV": {
+          "association_runtime_ms": 0.8179849246516824,
+          "model_runtime_ms": 1.5004019951447845,
+          "pipeline_runtime_ms": 2.318386919796467,
+          "prediction_count": 5,
+          "rejected_track_count": 11,
+          "rejection_reasons": {
+            "CV state requires at least two causal observations.": 11
+          }
+        },
+        "IMM_CV_CA_CTRV": {
+          "association_runtime_ms": 0.8179849246516824,
+          "model_runtime_ms": 16.060000052675605,
+          "pipeline_runtime_ms": 16.877984977327287,
+          "prediction_count": 2,
+          "rejected_track_count": 14,
+          "rejection_reasons": {
+            "IMM requires at least three associated detections.": 14
+          }
+        },
+        "Kalman_EKF": {
+          "association_runtime_ms": 0.8179849246516824,
+          "model_runtime_ms": 3.3407530281692743,
+          "pipeline_runtime_ms": 4.158737952820957,
+          "prediction_count": 5,
+          "rejected_track_count": 11,
+          "rejection_reasons": {
+            "Kalman track requires at least two associated detections.": 11
+          }
+        },
+        "Multidimensional_Hough": {
+          "hough_track_count": 2,
+          "model_runtime_ms": 956.2172719743103,
+          "prediction_count": 2,
+          "rejected_track_count": 0,
+          "rejection_reasons": {}
+        }
+      },
+      "pipeline_success": true,
+      "runtime_ms": {
+        "estimated_association": 0.8179849246516824,
+        "motion_load": 3.935851971618831,
+        "scenario_total": 990.6560559757054,
+        "stage1_stage2_bridge": 4.371620947495103
+      },
+      "scenario_id": "ad5bac333d9d0393",
+      "shared_associated_tracks": 16,
+      "stage2_detection_truth": {
+        "false_alarms": 16,
+        "missed_detection_statuses": 0,
+        "status_tokens": {
+          "false_alarm": 16,
+          "true_detection": 11
+        },
+        "true_detections": 11
+      }
+    },
+    {
+      "algorithm_detection_count": 536,
+      "algorithm_frames": 11,
+      "anchor_class_inventory": {
+        "TYPE_PEDESTRIAN": 11,
+        "TYPE_VEHICLE": 97
+      },
+      "input_immutable": true,
+      "input_sha256_after": "7ee576bf4f19ebe39b2a8b81fda19891ef67469cc869ba9bb28524bf7bb16d9d",
+      "input_sha256_before": "7ee576bf4f19ebe39b2a8b81fda19891ef67469cc869ba9bb28524bf7bb16d9d",
+      "methods": {
+        "CA": {
+          "association_runtime_ms": 83.9639469049871,
+          "model_runtime_ms": 36.728338920511305,
+          "pipeline_runtime_ms": 120.6922858254984,
+          "prediction_count": 81,
+          "rejected_track_count": 17,
+          "rejection_reasons": {
+            "CA state requires at least three causal observations.": 17
+          }
+        },
+        "CTRV": {
+          "association_runtime_ms": 83.9639469049871,
+          "model_runtime_ms": 25.81907797139138,
+          "pipeline_runtime_ms": 109.78302487637848,
+          "prediction_count": 81,
+          "rejected_track_count": 17,
+          "rejection_reasons": {
+            "CTRV state requires at least three causal observations.": 17
+          }
+        },
+        "CV": {
+          "association_runtime_ms": 83.9639469049871,
+          "model_runtime_ms": 27.203112025745213,
+          "pipeline_runtime_ms": 111.16705893073231,
+          "prediction_count": 88,
+          "rejected_track_count": 10,
+          "rejection_reasons": {
+            "CV state requires at least two causal observations.": 10
+          }
+        },
+        "IMM_CV_CA_CTRV": {
+          "association_runtime_ms": 83.9639469049871,
+          "model_runtime_ms": 738.8187750475481,
+          "pipeline_runtime_ms": 822.7827219525352,
+          "prediction_count": 81,
+          "rejected_track_count": 17,
+          "rejection_reasons": {
+            "IMM requires at least three associated detections.": 17
+          }
+        },
+        "Kalman_EKF": {
+          "association_runtime_ms": 83.9639469049871,
+          "model_runtime_ms": 92.17077400535345,
+          "pipeline_runtime_ms": 176.13472091034055,
+          "prediction_count": 88,
+          "rejected_track_count": 10,
+          "rejection_reasons": {
+            "Kalman track requires at least two associated detections.": 10
+          }
+        },
+        "Multidimensional_Hough": {
+          "hough_track_count": 14,
+          "model_runtime_ms": 18779.742429964244,
+          "prediction_count": 14,
+          "rejected_track_count": 0,
+          "rejection_reasons": {}
+        }
+      },
+      "pipeline_success": true,
+      "runtime_ms": {
+        "estimated_association": 83.9639469049871,
+        "motion_load": 1.3951730215921998,
+        "scenario_total": 19894.882944063284,
+        "stage1_stage2_bridge": 96.3183119893074
+      },
+      "scenario_id": "519edc2ca7d94ecd",
+      "shared_associated_tracks": 98,
+      "stage2_detection_truth": {
+        "false_alarms": 18,
+        "missed_detection_statuses": 0,
+        "status_tokens": {
+          "false_alarm": 18,
+          "true_detection": 518
+        },
+        "true_detections": 518
+      }
+    },
+    {
+      "algorithm_detection_count": 229,
+      "algorithm_frames": 11,
+      "anchor_class_inventory": {
+        "TYPE_PEDESTRIAN": 2,
+        "TYPE_VEHICLE": 37
+      },
+      "input_immutable": true,
+      "input_sha256_after": "936c0bde9c3e54ca346d934b3a20ef34ca8c310a713083b1fce6bc091937e26e",
+      "input_sha256_before": "936c0bde9c3e54ca346d934b3a20ef34ca8c310a713083b1fce6bc091937e26e",
+      "methods": {
+        "CA": {
+          "association_runtime_ms": 19.39875108655542,
+          "model_runtime_ms": 15.726791927590966,
+          "pipeline_runtime_ms": 35.12554301414639,
+          "prediction_count": 35,
+          "rejected_track_count": 21,
+          "rejection_reasons": {
+            "CA state requires at least three causal observations.": 21
+          }
+        },
+        "CTRV": {
+          "association_runtime_ms": 19.39875108655542,
+          "model_runtime_ms": 11.116769979707897,
+          "pipeline_runtime_ms": 30.515521066263318,
+          "prediction_count": 35,
+          "rejected_track_count": 21,
+          "rejection_reasons": {
+            "CTRV state requires at least three causal observations.": 21
+          }
+        },
+        "CV": {
+          "association_runtime_ms": 19.39875108655542,
+          "model_runtime_ms": 11.629014974460006,
+          "pipeline_runtime_ms": 31.027766061015427,
+          "prediction_count": 43,
+          "rejected_track_count": 13,
+          "rejection_reasons": {
+            "CV state requires at least two causal observations.": 13
+          }
+        },
+        "IMM_CV_CA_CTRV": {
+          "association_runtime_ms": 19.39875108655542,
+          "model_runtime_ms": 298.4882219461724,
+          "pipeline_runtime_ms": 317.88697303272784,
+          "prediction_count": 35,
+          "rejected_track_count": 21,
+          "rejection_reasons": {
+            "IMM requires at least three associated detections.": 21
+          }
+        },
+        "Kalman_EKF": {
+          "association_runtime_ms": 19.39875108655542,
+          "model_runtime_ms": 37.0106470072642,
+          "pipeline_runtime_ms": 56.40939809381962,
+          "prediction_count": 43,
+          "rejected_track_count": 13,
+          "rejection_reasons": {
+            "Kalman track requires at least two associated detections.": 13
+          }
+        },
+        "Multidimensional_Hough": {
+          "hough_track_count": 12,
+          "model_runtime_ms": 8134.79742500931,
+          "prediction_count": 12,
+          "rejected_track_count": 0,
+          "rejection_reasons": {}
+        }
+      },
+      "pipeline_success": true,
+      "runtime_ms": {
+        "estimated_association": 19.39875108655542,
+        "motion_load": 2.1228169789537787,
+        "scenario_total": 8578.206939040683,
+        "stage1_stage2_bridge": 42.017202940769494
+      },
+      "scenario_id": "c042f73599c9d2c0",
+      "shared_associated_tracks": 56,
+      "stage2_detection_truth": {
+        "false_alarms": 21,
+        "missed_detection_statuses": 0,
+        "status_tokens": {
+          "false_alarm": 21,
+          "true_detection": 208
+        },
+        "true_detections": 208
+      }
+    },
+    {
+      "algorithm_detection_count": 158,
+      "algorithm_frames": 11,
+      "anchor_class_inventory": {
+        "TYPE_VEHICLE": 29
+      },
+      "input_immutable": true,
+      "input_sha256_after": "e183126a537c386e594f080f3a57f5097d1057a070352813d6b907cee25a6c0f",
+      "input_sha256_before": "e183126a537c386e594f080f3a57f5097d1057a070352813d6b907cee25a6c0f",
+      "methods": {
+        "CA": {
+          "association_runtime_ms": 10.340996901504695,
+          "model_runtime_ms": 11.038821889087558,
+          "pipeline_runtime_ms": 21.379818790592253,
+          "prediction_count": 24,
+          "rejected_track_count": 25,
+          "rejection_reasons": {
+            "CA state requires at least three causal observations.": 25
+          }
+        },
+        "CTRV": {
+          "association_runtime_ms": 10.340996901504695,
+          "model_runtime_ms": 7.622162927873433,
+          "pipeline_runtime_ms": 17.963159829378128,
+          "prediction_count": 24,
+          "rejected_track_count": 25,
+          "rejection_reasons": {
+            "CTRV state requires at least three causal observations.": 25
+          }
+        },
+        "CV": {
+          "association_runtime_ms": 10.340996901504695,
+          "model_runtime_ms": 8.291183970868587,
+          "pipeline_runtime_ms": 18.632180872373283,
+          "prediction_count": 31,
+          "rejected_track_count": 18,
+          "rejection_reasons": {
+            "CV state requires at least two causal observations.": 18
+          }
+        },
+        "IMM_CV_CA_CTRV": {
+          "association_runtime_ms": 10.340996901504695,
+          "model_runtime_ms": 194.73700795788318,
+          "pipeline_runtime_ms": 205.07800485938787,
+          "prediction_count": 24,
+          "rejected_track_count": 25,
+          "rejection_reasons": {
+            "IMM requires at least three associated detections.": 25
+          }
+        },
+        "Kalman_EKF": {
+          "association_runtime_ms": 10.340996901504695,
+          "model_runtime_ms": 23.90595991164446,
+          "pipeline_runtime_ms": 34.246956813149154,
+          "prediction_count": 31,
+          "rejected_track_count": 18,
+          "rejection_reasons": {
+            "Kalman track requires at least two associated detections.": 18
+          }
+        },
+        "Multidimensional_Hough": {
+          "hough_track_count": 10,
+          "model_runtime_ms": 5309.097276069224,
+          "prediction_count": 10,
+          "rejected_track_count": 0,
+          "rejection_reasons": {}
+        }
+      },
+      "pipeline_success": true,
+      "runtime_ms": {
+        "estimated_association": 10.340996901504695,
+        "motion_load": 5.486462032422423,
+        "scenario_total": 5603.053872007877,
+        "stage1_stage2_bridge": 28.312742011621594
+      },
+      "scenario_id": "4b9d7c206b984c92",
+      "shared_associated_tracks": 49,
+      "stage2_detection_truth": {
+        "false_alarms": 18,
+        "missed_detection_statuses": 0,
+        "status_tokens": {
+          "false_alarm": 18,
+          "true_detection": 140
+        },
+        "true_detections": 140
+      }
+    },
+    {
+      "algorithm_detection_count": 81,
+      "algorithm_frames": 11,
+      "anchor_class_inventory": {
+        "TYPE_VEHICLE": 14
+      },
+      "input_immutable": true,
+      "input_sha256_after": "d571b22e36103a47efa998a27ba0d3557652f0ab90801f48168d760fad6cd5b2",
+      "input_sha256_before": "d571b22e36103a47efa998a27ba0d3557652f0ab90801f48168d760fad6cd5b2",
+      "methods": {
+        "CA": {
+          "association_runtime_ms": 3.719734027981758,
+          "model_runtime_ms": 5.561821046285331,
+          "pipeline_runtime_ms": 9.28155507426709,
+          "prediction_count": 12,
+          "rejected_track_count": 24,
+          "rejection_reasons": {
+            "CA state requires at least three causal observations.": 24
+          }
+        },
+        "CTRV": {
+          "association_runtime_ms": 3.719734027981758,
+          "model_runtime_ms": 3.919726936146617,
+          "pipeline_runtime_ms": 7.639460964128375,
+          "prediction_count": 12,
+          "rejected_track_count": 24,
+          "rejection_reasons": {
+            "CTRV state requires at least three causal observations.": 24
+          }
+        },
+        "CV": {
+          "association_runtime_ms": 3.719734027981758,
+          "model_runtime_ms": 4.327279981225729,
+          "pipeline_runtime_ms": 8.047014009207487,
+          "prediction_count": 17,
+          "rejected_track_count": 19,
+          "rejection_reasons": {
+            "CV state requires at least two causal observations.": 19
+          }
+        },
+        "IMM_CV_CA_CTRV": {
+          "association_runtime_ms": 3.719734027981758,
+          "model_runtime_ms": 84.00136604905128,
+          "pipeline_runtime_ms": 87.72110007703304,
+          "prediction_count": 12,
+          "rejected_track_count": 24,
+          "rejection_reasons": {
+            "IMM requires at least three associated detections.": 24
+          }
+        },
+        "Kalman_EKF": {
+          "association_runtime_ms": 3.719734027981758,
+          "model_runtime_ms": 10.167800937779248,
+          "pipeline_runtime_ms": 13.887534965761006,
+          "prediction_count": 17,
+          "rejected_track_count": 19,
+          "rejection_reasons": {
+            "Kalman track requires at least two associated detections.": 19
+          }
+        },
+        "Multidimensional_Hough": {
+          "hough_track_count": 8,
+          "model_runtime_ms": 2810.9563760226592,
+          "prediction_count": 8,
+          "rejected_track_count": 0,
+          "rejection_reasons": {}
+        }
+      },
+      "pipeline_success": true,
+      "runtime_ms": {
+        "estimated_association": 3.719734027981758,
+        "motion_load": 3.0488150659948587,
+        "scenario_total": 2944.966359063983,
+        "stage1_stage2_bridge": 16.80658000987023
+      },
+      "scenario_id": "2b13a1b29484b722",
+      "shared_associated_tracks": 36,
+      "stage2_detection_truth": {
+        "false_alarms": 28,
+        "missed_detection_statuses": 0,
+        "status_tokens": {
+          "false_alarm": 28,
+          "true_detection": 53
+        },
+        "true_detections": 53
+      }
+    },
+    {
+      "algorithm_detection_count": 262,
+      "algorithm_frames": 11,
+      "anchor_class_inventory": {
+        "TYPE_VEHICLE": 47
+      },
+      "input_immutable": true,
+      "input_sha256_after": "793bbcee7fad3b803340f74d7f2642f99f0f5dc5bcaace4cfb310dbbedda4862",
+      "input_sha256_before": "793bbcee7fad3b803340f74d7f2642f99f0f5dc5bcaace4cfb310dbbedda4862",
+      "methods": {
+        "CA": {
+          "association_runtime_ms": 24.40824592486024,
+          "model_runtime_ms": 36.74952394794673,
+          "pipeline_runtime_ms": 61.157769872806966,
+          "prediction_count": 41,
+          "rejected_track_count": 36,
+          "rejection_reasons": {
+            "CA state requires at least three causal observations.": 36
+          }
+        },
+        "CTRV": {
+          "association_runtime_ms": 24.40824592486024,
+          "model_runtime_ms": 25.465579004958272,
+          "pipeline_runtime_ms": 49.87382492981851,
+          "prediction_count": 41,
+          "rejected_track_count": 36,
+          "rejection_reasons": {
+            "CTRV state requires at least three causal observations.": 36
+          }
+        },
+        "CV": {
+          "association_runtime_ms": 24.40824592486024,
+          "model_runtime_ms": 26.781519991345704,
+          "pipeline_runtime_ms": 51.18976591620594,
+          "prediction_count": 59,
+          "rejected_track_count": 18,
+          "rejection_reasons": {
+            "CV state requires at least two causal observations.": 18
+          }
+        },
+        "IMM_CV_CA_CTRV": {
+          "association_runtime_ms": 24.40824592486024,
+          "model_runtime_ms": 318.92035400960594,
+          "pipeline_runtime_ms": 343.3285999344662,
+          "prediction_count": 41,
+          "rejected_track_count": 36,
+          "rejection_reasons": {
+            "IMM requires at least three associated detections.": 36
+          }
+        },
+        "Kalman_EKF": {
+          "association_runtime_ms": 24.40824592486024,
+          "model_runtime_ms": 68.72926896903664,
+          "pipeline_runtime_ms": 93.13751489389688,
+          "prediction_count": 59,
+          "rejected_track_count": 18,
+          "rejection_reasons": {
+            "Kalman track requires at least two associated detections.": 18
+          }
+        },
+        "Multidimensional_Hough": {
+          "hough_track_count": 11,
+          "model_runtime_ms": 9094.955918029882,
+          "prediction_count": 11,
+          "rejected_track_count": 0,
+          "rejection_reasons": {}
+        }
+      },
+      "pipeline_success": true,
+      "runtime_ms": {
+        "estimated_association": 24.40824592486024,
+        "motion_load": 5.07923704572022,
+        "scenario_total": 9675.970826065168,
+        "stage1_stage2_bridge": 67.9196419660002
+      },
+      "scenario_id": "6a2967f0489c3f84",
+      "shared_associated_tracks": 77,
+      "stage2_detection_truth": {
+        "false_alarms": 27,
+        "missed_detection_statuses": 0,
+        "status_tokens": {
+          "false_alarm": 27,
+          "true_detection": 235
+        },
+        "true_detections": 235
+      }
+    },
+    {
+      "algorithm_detection_count": 54,
+      "algorithm_frames": 11,
+      "anchor_class_inventory": {
+        "TYPE_VEHICLE": 6
+      },
+      "input_immutable": true,
+      "input_sha256_after": "d142ad9bfadd21b2b315f5d350a42238a7f11dbb8b7e55abbba5ed7e214ec1f6",
+      "input_sha256_before": "d142ad9bfadd21b2b315f5d350a42238a7f11dbb8b7e55abbba5ed7e214ec1f6",
+      "methods": {
+        "CA": {
+          "association_runtime_ms": 1.8904650351032615,
+          "model_runtime_ms": 3.8917659549042583,
+          "pipeline_runtime_ms": 5.78223099000752,
+          "prediction_count": 6,
+          "rejected_track_count": 17,
+          "rejection_reasons": {
+            "CA state requires at least three causal observations.": 17
+          }
+        },
+        "CTRV": {
+          "association_runtime_ms": 1.8904650351032615,
+          "model_runtime_ms": 2.760418108664453,
+          "pipeline_runtime_ms": 4.6508831437677145,
+          "prediction_count": 6,
+          "rejected_track_count": 17,
+          "rejection_reasons": {
+            "CTRV state requires at least three causal observations.": 17
+          }
+        },
+        "CV": {
+          "association_runtime_ms": 1.8904650351032615,
+          "model_runtime_ms": 3.034873981960118,
+          "pipeline_runtime_ms": 4.925339017063379,
+          "prediction_count": 13,
+          "rejected_track_count": 10,
+          "rejection_reasons": {
+            "CV state requires at least two causal observations.": 10
+          }
+        },
+        "IMM_CV_CA_CTRV": {
+          "association_runtime_ms": 1.8904650351032615,
+          "model_runtime_ms": 51.84859107248485,
+          "pipeline_runtime_ms": 53.73905610758811,
+          "prediction_count": 6,
+          "rejected_track_count": 17,
+          "rejection_reasons": {
+            "IMM requires at least three associated detections.": 17
+          }
+        },
+        "Kalman_EKF": {
+          "association_runtime_ms": 1.8904650351032615,
+          "model_runtime_ms": 7.845836109481752,
+          "pipeline_runtime_ms": 9.736301144585013,
+          "prediction_count": 13,
+          "rejected_track_count": 10,
+          "rejection_reasons": {
+            "Kalman track requires at least two associated detections.": 10
+          }
+        },
+        "Multidimensional_Hough": {
+          "hough_track_count": 6,
+          "model_runtime_ms": 1983.5820980370045,
+          "prediction_count": 6,
+          "rejected_track_count": 0,
+          "rejection_reasons": {}
+        }
+      },
+      "pipeline_success": true,
+      "runtime_ms": {
+        "estimated_association": 1.8904650351032615,
+        "motion_load": 2.604517969302833,
+        "scenario_total": 2068.9833940705284,
+        "stage1_stage2_bridge": 9.581135003827512
+      },
+      "scenario_id": "d1157793bddfc351",
+      "shared_associated_tracks": 23,
+      "stage2_detection_truth": {
+        "false_alarms": 22,
+        "missed_detection_statuses": 0,
+        "status_tokens": {
+          "false_alarm": 22,
+          "true_detection": 32
+        },
+        "true_detections": 32
+      }
+    },
+    {
+      "algorithm_detection_count": 203,
+      "algorithm_frames": 11,
+      "anchor_class_inventory": {
+        "TYPE_PEDESTRIAN": 1,
+        "TYPE_VEHICLE": 37
+      },
+      "input_immutable": true,
+      "input_sha256_after": "72ada34d06709ccd5df124c8b133429a50298196a006f8b4255b4a5fb4d8e520",
+      "input_sha256_before": "72ada34d06709ccd5df124c8b133429a50298196a006f8b4255b4a5fb4d8e520",
+      "methods": {
+        "CA": {
+          "association_runtime_ms": 16.460243030451238,
+          "model_runtime_ms": 13.693319982849061,
+          "pipeline_runtime_ms": 30.1535630133003,
+          "prediction_count": 31,
+          "rejected_track_count": 34,
+          "rejection_reasons": {
+            "CA state requires at least three causal observations.": 34
+          }
+        },
+        "CTRV": {
+          "association_runtime_ms": 16.460243030451238,
+          "model_runtime_ms": 9.51634394004941,
+          "pipeline_runtime_ms": 25.976586970500648,
+          "prediction_count": 31,
+          "rejected_track_count": 34,
+          "rejection_reasons": {
+            "CTRV state requires at least three causal observations.": 34
+          }
+        },
+        "CV": {
+          "association_runtime_ms": 16.460243030451238,
+          "model_runtime_ms": 10.711230104789138,
+          "pipeline_runtime_ms": 27.171473135240376,
+          "prediction_count": 47,
+          "rejected_track_count": 18,
+          "rejection_reasons": {
+            "CV state requires at least two causal observations.": 18
+          }
+        },
+        "IMM_CV_CA_CTRV": {
+          "association_runtime_ms": 16.460243030451238,
+          "model_runtime_ms": 236.5562740014866,
+          "pipeline_runtime_ms": 253.01651703193784,
+          "prediction_count": 31,
+          "rejected_track_count": 34,
+          "rejection_reasons": {
+            "IMM requires at least three associated detections.": 34
+          }
+        },
+        "Kalman_EKF": {
+          "association_runtime_ms": 16.460243030451238,
+          "model_runtime_ms": 29.968622024171054,
+          "pipeline_runtime_ms": 46.42886505462229,
+          "prediction_count": 47,
+          "rejected_track_count": 18,
+          "rejection_reasons": {
+            "Kalman track requires at least two associated detections.": 18
+          }
+        },
+        "Multidimensional_Hough": {
+          "hough_track_count": 12,
+          "model_runtime_ms": 6987.8930719569325,
+          "prediction_count": 12,
+          "rejected_track_count": 0,
+          "rejection_reasons": {}
+        }
+      },
+      "pipeline_success": true,
+      "runtime_ms": {
+        "estimated_association": 16.460243030451238,
+        "motion_load": 5.658627022057772,
+        "scenario_total": 7354.902272927575,
+        "stage1_stage2_bridge": 39.40239001531154
+      },
+      "scenario_id": "1535f217b4ad8bb8",
+      "shared_associated_tracks": 65,
+      "stage2_detection_truth": {
+        "false_alarms": 18,
+        "missed_detection_statuses": 0,
+        "status_tokens": {
+          "false_alarm": 18,
+          "true_detection": 185
+        },
+        "true_detections": 185
+      }
+    },
+    {
+      "algorithm_detection_count": 127,
+      "algorithm_frames": 11,
+      "anchor_class_inventory": {
+        "TYPE_PEDESTRIAN": 2,
+        "TYPE_VEHICLE": 17
+      },
+      "input_immutable": true,
+      "input_sha256_after": "1e5a1a0ff87603038bfbafc756b5d35568ed660be62f9f5ba6552a2c5f836b63",
+      "input_sha256_before": "1e5a1a0ff87603038bfbafc756b5d35568ed660be62f9f5ba6552a2c5f836b63",
+      "methods": {
+        "CA": {
+          "association_runtime_ms": 7.76879396289587,
+          "model_runtime_ms": 8.289888966828585,
+          "pipeline_runtime_ms": 16.058682929724455,
+          "prediction_count": 17,
+          "rejected_track_count": 21,
+          "rejection_reasons": {
+            "CA state requires at least three causal observations.": 21
+          }
+        },
+        "CTRV": {
+          "association_runtime_ms": 7.76879396289587,
+          "model_runtime_ms": 6.026707007549703,
+          "pipeline_runtime_ms": 13.795500970445573,
+          "prediction_count": 17,
+          "rejected_track_count": 21,
+          "rejection_reasons": {
+            "CTRV state requires at least three causal observations.": 21
+          }
+        },
+        "CV": {
+          "association_runtime_ms": 7.76879396289587,
+          "model_runtime_ms": 6.682315957732499,
+          "pipeline_runtime_ms": 14.451109920628369,
+          "prediction_count": 25,
+          "rejected_track_count": 13,
+          "rejection_reasons": {
+            "CV state requires at least two causal observations.": 13
+          }
+        },
+        "IMM_CV_CA_CTRV": {
+          "association_runtime_ms": 7.76879396289587,
+          "model_runtime_ms": 153.77811901271343,
+          "pipeline_runtime_ms": 161.5469129756093,
+          "prediction_count": 17,
+          "rejected_track_count": 21,
+          "rejection_reasons": {
+            "IMM requires at least three associated detections.": 21
+          }
+        },
+        "Kalman_EKF": {
+          "association_runtime_ms": 7.76879396289587,
+          "model_runtime_ms": 19.085239968262613,
+          "pipeline_runtime_ms": 26.854033931158483,
+          "prediction_count": 25,
+          "rejected_track_count": 13,
+          "rejection_reasons": {
+            "Kalman track requires at least two associated detections.": 13
+          }
+        },
+        "Multidimensional_Hough": {
+          "hough_track_count": 9,
+          "model_runtime_ms": 4410.5493819806725,
+          "prediction_count": 9,
+          "rejected_track_count": 0,
+          "rejection_reasons": {}
+        }
+      },
+      "pipeline_success": true,
+      "runtime_ms": {
+        "estimated_association": 7.76879396289587,
+        "motion_load": 5.911596934311092,
+        "scenario_total": 4647.659259033389,
+        "stage1_stage2_bridge": 25.842845090664923
+      },
+      "scenario_id": "8908e26708c4634f",
+      "shared_associated_tracks": 38,
+      "stage2_detection_truth": {
+        "false_alarms": 28,
+        "missed_detection_statuses": 0,
+        "status_tokens": {
+          "false_alarm": 28,
+          "true_detection": 99
+        },
+        "true_detections": 99
+      }
+    },
+    {
+      "algorithm_detection_count": 546,
+      "algorithm_frames": 11,
+      "anchor_class_inventory": {
+        "TYPE_PEDESTRIAN": 36,
+        "TYPE_VEHICLE": 75
+      },
+      "input_immutable": true,
+      "input_sha256_after": "b9c3467aaa9ce1f6c32ada51e33c546719f9ede05759179f07b73169dcdceb85",
+      "input_sha256_before": "b9c3467aaa9ce1f6c32ada51e33c546719f9ede05759179f07b73169dcdceb85",
+      "methods": {
+        "CA": {
+          "association_runtime_ms": 87.69668801687658,
+          "model_runtime_ms": 36.67044104076922,
+          "pipeline_runtime_ms": 124.3671290576458,
+          "prediction_count": 83,
+          "rejected_track_count": 25,
+          "rejection_reasons": {
+            "CA state requires at least three causal observations.": 25
+          }
+        },
+        "CTRV": {
+          "association_runtime_ms": 87.69668801687658,
+          "model_runtime_ms": 25.30876500532031,
+          "pipeline_runtime_ms": 113.00545302219689,
+          "prediction_count": 83,
+          "rejected_track_count": 25,
+          "rejection_reasons": {
+            "CTRV state requires at least three causal observations.": 25
+          }
+        },
+        "CV": {
+          "association_runtime_ms": 87.69668801687658,
+          "model_runtime_ms": 27.037731022574008,
+          "pipeline_runtime_ms": 114.73441903945059,
+          "prediction_count": 93,
+          "rejected_track_count": 15,
+          "rejection_reasons": {
+            "CV state requires at least two causal observations.": 15
+          }
+        },
+        "IMM_CV_CA_CTRV": {
+          "association_runtime_ms": 87.69668801687658,
+          "model_runtime_ms": 752.6064669946209,
+          "pipeline_runtime_ms": 840.3031550114974,
+          "prediction_count": 83,
+          "rejected_track_count": 25,
+          "rejection_reasons": {
+            "IMM requires at least three associated detections.": 25
+          }
+        },
+        "Kalman_EKF": {
+          "association_runtime_ms": 87.69668801687658,
+          "model_runtime_ms": 91.34814701974392,
+          "pipeline_runtime_ms": 179.0448350366205,
+          "prediction_count": 93,
+          "rejected_track_count": 15,
+          "rejection_reasons": {
+            "Kalman track requires at least two associated detections.": 15
+          }
+        },
+        "Multidimensional_Hough": {
+          "hough_track_count": 13,
+          "model_runtime_ms": 19559.810995007865,
+          "prediction_count": 13,
+          "rejected_track_count": 0,
+          "rejection_reasons": {}
+        }
+      },
+      "pipeline_success": true,
+      "runtime_ms": {
+        "estimated_association": 87.69668801687658,
+        "motion_load": 2.06494505982846,
+        "scenario_total": 20723.7813801039,
+        "stage1_stage2_bridge": 128.73731390573084
+      },
+      "scenario_id": "4166583f6c066f3c",
+      "shared_associated_tracks": 108,
+      "stage2_detection_truth": {
+        "false_alarms": 23,
+        "missed_detection_statuses": 0,
+        "status_tokens": {
+          "false_alarm": 23,
+          "true_detection": 523
+        },
+        "true_detections": 523
+      }
+    },
+    {
+      "algorithm_detection_count": 43,
+      "algorithm_frames": 11,
+      "anchor_class_inventory": {
+        "TYPE_VEHICLE": 6
+      },
+      "input_immutable": true,
+      "input_sha256_after": "12c8d81a0f85e238b8d6def069c76d9b87a6b2f91e2a9b208f00d748241ab42a",
+      "input_sha256_before": "12c8d81a0f85e238b8d6def069c76d9b87a6b2f91e2a9b208f00d748241ab42a",
+      "methods": {
+        "CA": {
+          "association_runtime_ms": 1.3273580698296428,
+          "model_runtime_ms": 2.7379400562494993,
+          "pipeline_runtime_ms": 4.065298126079142,
+          "prediction_count": 5,
+          "rejected_track_count": 14,
+          "rejection_reasons": {
+            "CA state requires at least three causal observations.": 14
+          }
+        },
+        "CTRV": {
+          "association_runtime_ms": 1.3273580698296428,
+          "model_runtime_ms": 2.0365769742056727,
+          "pipeline_runtime_ms": 3.3639350440353155,
+          "prediction_count": 5,
+          "rejected_track_count": 14,
+          "rejection_reasons": {
+            "CTRV state requires at least three causal observations.": 14
+          }
+        },
+        "CV": {
+          "association_runtime_ms": 1.3273580698296428,
+          "model_runtime_ms": 2.3461689706891775,
+          "pipeline_runtime_ms": 3.6735270405188203,
+          "prediction_count": 11,
+          "rejected_track_count": 8,
+          "rejection_reasons": {
+            "CV state requires at least two causal observations.": 8
+          }
+        },
+        "IMM_CV_CA_CTRV": {
+          "association_runtime_ms": 1.3273580698296428,
+          "model_runtime_ms": 36.28472599666566,
+          "pipeline_runtime_ms": 37.6120840664953,
+          "prediction_count": 5,
+          "rejected_track_count": 14,
+          "rejection_reasons": {
+            "IMM requires at least three associated detections.": 14
+          }
+        },
+        "Kalman_EKF": {
+          "association_runtime_ms": 1.3273580698296428,
+          "model_runtime_ms": 5.653062020428479,
+          "pipeline_runtime_ms": 6.9804200902581215,
+          "prediction_count": 11,
+          "rejected_track_count": 8,
+          "rejection_reasons": {
+            "Kalman track requires at least two associated detections.": 8
+          }
+        },
+        "Multidimensional_Hough": {
+          "hough_track_count": 7,
+          "model_runtime_ms": 1490.9111890010536,
+          "prediction_count": 7,
+          "rejected_track_count": 0,
+          "rejection_reasons": {}
+        }
+      },
+      "pipeline_success": true,
+      "runtime_ms": {
+        "estimated_association": 1.3273580698296428,
+        "motion_load": 2.546314033679664,
+        "scenario_total": 1552.8590710600838,
+        "stage1_stage2_bridge": 7.383458083495498
+      },
+      "scenario_id": "897d46a8be22618c",
+      "shared_associated_tracks": 19,
+      "stage2_detection_truth": {
+        "false_alarms": 16,
+        "missed_detection_statuses": 0,
+        "status_tokens": {
+          "false_alarm": 16,
+          "true_detection": 27
+        },
+        "true_detections": 27
+      }
+    },
+    {
+      "algorithm_detection_count": 108,
+      "algorithm_frames": 11,
+      "anchor_class_inventory": {
+        "TYPE_VEHICLE": 23
+      },
+      "input_immutable": true,
+      "input_sha256_after": "562389ac325cceb9270c386d495eff390ec41de0e3850d0bcb0e383ad332670b",
+      "input_sha256_before": "562389ac325cceb9270c386d495eff390ec41de0e3850d0bcb0e383ad332670b",
+      "methods": {
+        "CA": {
+          "association_runtime_ms": 5.903605953790247,
+          "model_runtime_ms": 7.318838033825159,
+          "pipeline_runtime_ms": 13.222443987615407,
+          "prediction_count": 16,
+          "rejected_track_count": 26,
+          "rejection_reasons": {
+            "CA state requires at least three causal observations.": 26
+          }
+        },
+        "CTRV": {
+          "association_runtime_ms": 5.903605953790247,
+          "model_runtime_ms": 5.1075860392302275,
+          "pipeline_runtime_ms": 11.011191993020475,
+          "prediction_count": 16,
+          "rejected_track_count": 26,
+          "rejection_reasons": {
+            "CTRV state requires at least three causal observations.": 26
+          }
+        },
+        "CV": {
+          "association_runtime_ms": 5.903605953790247,
+          "model_runtime_ms": 5.740772001445293,
+          "pipeline_runtime_ms": 11.64437795523554,
+          "prediction_count": 26,
+          "rejected_track_count": 16,
+          "rejection_reasons": {
+            "CV state requires at least two causal observations.": 16
+          }
+        },
+        "IMM_CV_CA_CTRV": {
+          "association_runtime_ms": 5.903605953790247,
+          "model_runtime_ms": 114.17463200632483,
+          "pipeline_runtime_ms": 120.07823796011508,
+          "prediction_count": 16,
+          "rejected_track_count": 26,
+          "rejection_reasons": {
+            "IMM requires at least three associated detections.": 26
+          }
+        },
+        "Kalman_EKF": {
+          "association_runtime_ms": 5.903605953790247,
+          "model_runtime_ms": 14.777267933823168,
+          "pipeline_runtime_ms": 20.680873887613416,
+          "prediction_count": 26,
+          "rejected_track_count": 16,
+          "rejection_reasons": {
+            "Kalman track requires at least two associated detections.": 16
+          }
+        },
+        "Multidimensional_Hough": {
+          "hough_track_count": 6,
+          "model_runtime_ms": 3619.238605024293,
+          "prediction_count": 6,
+          "rejected_track_count": 0,
+          "rejection_reasons": {}
+        }
+      },
+      "pipeline_success": true,
+      "runtime_ms": {
+        "estimated_association": 5.903605953790247,
+        "motion_load": 4.063726053573191,
+        "scenario_total": 3802.915233070962,
+        "stage1_stage2_bridge": 23.520349990576506
+      },
+      "scenario_id": "95fcffded584a656",
+      "shared_associated_tracks": 42,
+      "stage2_detection_truth": {
+        "false_alarms": 13,
+        "missed_detection_statuses": 0,
+        "status_tokens": {
+          "false_alarm": 13,
+          "true_detection": 95
+        },
+        "true_detections": 95
+      }
+    }
+  ],
+  "selection": {
+    "candidate_count": 12,
+    "future_based": false,
+    "performance_based": false,
+    "pilot_manifest": "/home/agni/waymo/iscai_stage3/artifacts/block38d/pilot_candidates.jsonl",
+    "pilot_manifest_sha256": "6f0c383eac6df2e5eb49d033c40d2c3e4094d09423996864cafe918fd4e4c772",
+    "policy": "ascending_sha256_scenario_id"
+  },
+  "stage": 3,
+  "status": "PASS"
+}

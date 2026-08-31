@@ -1,0 +1,206 @@
+{
+  "acceptance": {
+    "formal_outcomes_used_for_threshold_selection": false,
+    "formal_posthoc_tuning": false,
+    "must_not_uncontrollably_increase_over_masking": true,
+    "must_not_uncontrollably_reduce_VRU_visibility": true,
+    "must_reduce_vehicle_shadow_zone_violation": true,
+    "primary_comparison": "class-aware predictive ADB vs original reactive ADB",
+    "uncontrolled_degradation_numeric_bounds": "FREEZE_ON_DEVELOPMENT_BEFORE_FORMAL"
+  },
+  "adb_actor_population": {
+    "classes": [
+      "vehicle",
+      "pedestrian",
+      "cyclist"
+    ],
+    "communication_receiver_only": false,
+    "ego_included": false,
+    "future_track_duration_as_selector": false,
+    "future_truth_for_controller": false,
+    "future_truth_for_scoring_or_oracle_after_decision": true,
+    "future_validity_as_selector": false,
+    "policy": "all causal anchor-valid ADB-relevant actors within frozen headlamp FOV/range",
+    "tracks_to_predict_as_control_selector": false,
+    "tracks_to_predict_only": false
+  },
+  "adb_baselines": {
+    "artificial_algorithm_difference_for_label_only": false,
+    "comparison_framework": "factorial_and_explicit_mapping",
+    "overlapping_baseline_semantics_disclosed": true,
+    "required_pdf_labels": [
+      "static_ADB",
+      "original_reactive_ADB",
+      "deterministic_predictive_ADB",
+      "uncertainty_aware_predictive_ADB",
+      "class_agnostic_predictive_ADB",
+      "class_aware_predictive_ADB",
+      "oracle_future_ADB"
+    ],
+    "same_grid_and_Part_A_intensity_model_for_fairness": true
+  },
+  "adb_metrics": {
+    "energy_metric_definition_frozen_before_formal": true,
+    "oracle_semantics": "CONSTRUCTED_REFERENCE_NOT_MEASURED_GT",
+    "required": [
+      "mask_IoU_with_constructed_oracle_future_mask",
+      "vehicle_shadow_zone_violation",
+      "glare_risk_exposure",
+      "over_masking_area",
+      "road_illumination_retention",
+      "pedestrian_visibility_proxy",
+      "cyclist_visibility_proxy",
+      "false_dimming",
+      "temporal_smoothness",
+      "flicker_change_rate",
+      "energy_consumption",
+      "actuation_latency"
+    ],
+    "road_ROI_definition_frozen_before_formal": true,
+    "separate_reporting": [
+      "vehicle_glare_protection",
+      "pedestrian_visibility",
+      "cyclist_visibility",
+      "total_illuminated_road_retention"
+    ],
+    "visibility_proxy_definitions_frozen_before_formal": true
+  },
+  "block": "6.0",
+  "class_policies": {
+    "allowed_policy_differences": [
+      "dimming_depth",
+      "intensity_floor",
+      "confidence_threshold",
+      "temporal_smoothing",
+      "safety_priority"
+    ],
+    "class_awareness_not_margin_only": true,
+    "cyclist": {
+      "body_and_vehicle_visibility": true,
+      "crossing_trajectory_handling": true,
+      "glare_protection_without_detection_loss": true,
+      "larger_lateral_maneuver_margin": true,
+      "motorcyclist_semantics": "use dataset-supported cyclist umbrella when no independent motorcyclist class exists; do not invent a label"
+    },
+    "pedestrian": {
+      "body_road_visibility_preserved": true,
+      "distinct_minimum_intensity_floor": true,
+      "full_blackout_forbidden": true,
+      "larger_lateral_uncertainty_margin": true,
+      "partial_dimming_or_face_height_protection": true
+    },
+    "vehicle": {
+      "closing_speed_dependent_margin": true,
+      "oncoming": true,
+      "preceding": true,
+      "stronger_glare_protection": true,
+      "uncertainty_dependent_margin": true,
+      "vehicle_specific_margin": true,
+      "windshield_mirror_relevant_region": true
+    }
+  },
+  "contract_version": "stage6_strict_pdf_audited_v1",
+  "deliverables": {
+    "Stage6_candidate_failure_scene_ids_may_be_saved": true,
+    "ablation_evaluation_scripts": true,
+    "configuration_files": true,
+    "failure_case_statistics": "STAGE7",
+    "implementation_log": true,
+    "paper_ready": [
+      "reactive_vs_predictive_ADB",
+      "class_aware_masks",
+      "ADB_safety_overmask_curves",
+      "ADB_ablation_table"
+    ],
+    "predictive_class_aware_ADB_controller": true,
+    "tests": true
+  },
+  "experimental_modes": {
+    "GMM_posthoc_selection": false,
+    "Stage4_recalibration": false,
+    "Stage4_retraining": false,
+    "formal_parameter_tuning": false,
+    "oracle_track_mode": "UPPER_BOUND_DIAGNOSTIC_ONLY",
+    "primary": "frozen calibrated posterior from track-based PC-FMCW-like observation mode",
+    "sensor_to_track_mode": "OPTIONAL_EXTENSION"
+  },
+  "geometry": {
+    "actor_width_height": true,
+    "box_corners": true,
+    "centroid_only": false,
+    "class_margin": true,
+    "closing_speed_policy": "current filtered state and/or predicted samples only",
+    "dimension_policy": "anchor/current causal dimensions with frozen fallback",
+    "future_box_dimensions_from_GT": false,
+    "future_heading_from_GT": false,
+    "orientation_policy": "causal current orientation or predicted trajectory tangent with frozen low-speed fallback",
+    "predictive_covariance": true,
+    "receiver_driver_relevant_region": true,
+    "relevant_region_semantics": "constructed box-based surrogate when dataset has no windshield/mirror annotation",
+    "vehicle_closing_speed_from_future_GT": false
+  },
+  "latency_and_resources": {
+    "Stage6_required": [
+      "ADB_generation_latency",
+      "ADB_actuation_latency",
+      "ADB_controller_memory_footprint",
+      "ADB_controller_parameter_count",
+      "ADB_controller_FLOPs_or_not_applicable_analytic_declaration"
+    ],
+    "full_joint_total_frame_latency": "STAGE7",
+    "one_to_ten_ms_WOMD_GT_claim_allowed": false
+  },
+  "occupancy": {
+    "aggregate_mask": "M_tau = 1 - product_i(1 - M_i_tau)",
+    "deterministic_reproducible_sampling": true,
+    "mask_kept_distinct_from_intensity": true,
+    "per_actor_binary_mask": "M_i_tau(theta,r) = 1[P_occ_i(theta,r,tau) > gamma]",
+    "probability_kept_distinct_from_mask": true,
+    "representation": "P_occ(theta,r,tau,c)",
+    "required_horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "sampling_count_frozen_before_formal": true
+  },
+  "part_a_illumination": {
+    "actuation_rate_limits": true,
+    "angular_shadow_zones": true,
+    "arbitrary_replacement_of_ADB_model": false,
+    "exact_adapter_validation": "BLOCK6.0_PART2",
+    "minimum_illumination_floor": true,
+    "preserve_L_theta_r": true,
+    "radial_thresholds": true,
+    "raised_cosine_transitions": true,
+    "temporal_smoothing": true
+  },
+  "project": "Agni",
+  "scope": {
+    "DeepSense": "STAGE8",
+    "communication_and_ADB_actuators": "SEPARATE",
+    "communication_beam_controller": "FROZEN_STAGE5_NOT_MODIFIED",
+    "full_joint_end_to_end_latency": "STAGE7",
+    "objective": "reactive and predictive class-aware ADB",
+    "predictive_ADB": "STAGE6",
+    "scientific_change": "current deterministic region -> future probabilistic region",
+    "shared_posterior_joint_evaluation": "STAGE7",
+    "statistical_failure_slice_analysis": "STAGE7"
+  },
+  "stage": 6,
+  "status": "FROZEN_PREIMPLEMENTATION_CONTRACT",
+  "upstream": {
+    "Part_A_git_commit": "44d62e3478e3818d1757b00971890f844cb032f7",
+    "Part_A_reference_sha256": "fcdfc0a7b9c14fa9447ceb8563a6f20ac277706223388dc9aa8a1edf416c5e2b",
+    "Stage4_status": "COMPLETE_FROZEN",
+    "Stage5_closure_sha256": "c83731948749f3ca20742aaac6b7474f53c755cbc8209dd31db969d229f60610",
+    "Stage5_freeze_sha256": "af9612205f190a04d9da565a98a0449f4ed98f53027b6f971b8457f73bd70913",
+    "Stage5_handoff_sha256": "c900ccbd63e7c680af28ed5cd8046f408463eceb7ce943b324b266dda73500eb",
+    "Stage5_status": "COMPLETE_FROZEN",
+    "formal_N_semantics": "implementation continuity choice; not a literal Stage6 PDF N requirement",
+    "formal_manifest_N": 120,
+    "formal_manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "trajectory_posterior": "calibrated_Gaussian_GRU"
+  }
+}

@@ -1,0 +1,78 @@
+============================================================
+STAGE 6 — BLOCK 6.2 PART 1/2
+STATIC ADB + PART-A REACTIVE L(theta,r) KERNEL
+============================================================
+
+===== A. FROZEN PREREQUISITES =====
+Block6.1 closure        = EXACT PASS
+Part-A source audit     = EXACT PASS
+reactive adapter contract= EXACT PASS
+Stage6 strict contract  = EXACT PASS
+Stage5 closure          = UNCHANGED PASS
+
+===== B. PART-A L(theta,r) KERNEL =====
+illumination.py = WRITTEN
+adb/__init__.py = UPDATED_BLOCK62
+
+===== C. BLOCK6.2 PART1 CONTRACT =====
+contract = WRITTEN
+contract SHA256 = df4cf1e8fd18f3bc9cd48cbae4a6c2091e37313cbc1a5b2cefe48bd340eb5d60
+
+===== D. STATIC / REACTIVE UNIT TESTS =====
+test file = WRITTEN
+
+===== E. CONTROLLED COMPILE =====
+illumination/tests compile = PASS
+
+===== F. PART-A EQUATION SMOKE =====
+floor=0 Part-A formula = EXACT PASS
+max equation error     = 0.0
+static ADB map        = PASS
+reactive ADB map      = PASS
+normalized intensity  = [0,1] PASS
+multi-region minimum  = ACTIVE
+diagnostic grid only  = YES
+
+===== G. REACTIVE BASELINE SCOPE GATE =====
+current deterministic only = PASS
+predictive posterior input  = NO
+future GT input             = NO
+communication codebook      = NO
+class-aware policy          = DEFERRED
+
+===== H. FULL STAGE6 REGRESSION =====
+Ran 64 tests in 0.043s
+OK
+
+===== I. IMMUTABILITY / STORAGE =====
+Block6.1 closure       = UNCHANGED
+Part-A frozen evidence = UNCHANGED
+Stage5 closure         = UNCHANGED
+free GiB               = 1054.833
+250-GiB reserve        = PASS
+
+===== J. BLOCK6.2 PART1 REPORT =====
+report SHA256 = 865c81eeb689a1b0c7e41b08117c9197c19e5cac76de147a07898b17c2224477
+
+============================================================
+BLOCK 6.2 PART 1/2 — FINAL
+============================================================
+Block6.1 prerequisite     = EXACT PASS
+static ADB baseline       = IMPLEMENTED PASS
+Part-A L(theta,r) kernel  = IMPLEMENTED PASS
+floor=0 paper equation    = EXACT PASS
+radial thresholds         = PASS
+angular shadow zones      = PASS
+raised-cosine transition  = PASS
+minimum-floor support     = PASS
+multi-actor combination   = ELEMENTWISE MIN PASS
+reactive future input     = NO
+communication codebook    = NOT REUSED
+exact Part-A parameters   = DEFERRED TO PART2
+predictive/class-aware    = NOT STARTED
+Stage6 regression         = PASS
+upstream modified         = NO
+training/inference        = NO
+STATUS = PASS_STATIC_REACTIVE_KERNEL
+report = /home/agni/waymo/iscai_stage6/reports/block62_part1_static_reactive_kernel.json
+terminal remains open = YES

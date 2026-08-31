@@ -1,0 +1,61 @@
+{
+  "Stage4_CLASS_ID_TO_NAME": {
+    "0": "TYPE_VEHICLE",
+    "1": "TYPE_PEDESTRIAN",
+    "2": "TYPE_CYCLIST",
+    "3": "OTHER"
+  },
+  "all_semantic_classes_match": true,
+  "block": "4.8_class_semantics_discovery",
+  "diagnosis": "NUMERIC_ENCODING_DIFFERENCE_ONLY",
+  "first_semantic_mismatches": [],
+  "neural_inference_started": false,
+  "numeric_mismatch_count": 106,
+  "numeric_pair_counts": [
+    {
+      "Stage4_class_id": 0,
+      "WOMD_object_type": 1,
+      "count": 96
+    },
+    {
+      "Stage4_class_id": 1,
+      "WOMD_object_type": 2,
+      "count": 6
+    },
+    {
+      "Stage4_class_id": 2,
+      "WOMD_object_type": 3,
+      "count": 4
+    }
+  ],
+  "purpose": "determine_whether_Stage4_class_id_and_WOMD_object_type_share_the_same_numeric_encoding",
+  "recalibration": false,
+  "scenarios_examined": 3,
+  "semantic_mismatch_count": 0,
+  "semantic_pair_counts": [
+    {
+      "Stage4": "CYCLIST",
+      "WOMD": "CYCLIST",
+      "count": 4
+    },
+    {
+      "Stage4": "PEDESTRIAN",
+      "WOMD": "PEDESTRIAN",
+      "count": 6
+    },
+    {
+      "Stage4": "VEHICLE",
+      "WOMD": "VEHICLE",
+      "count": 96
+    }
+  ],
+  "stage": 4,
+  "status": "PASS",
+  "supervised_samples_examined": 106,
+  "tracks_to_predict_accessed": false,
+  "training": false,
+  "truth_index_sources": {
+    "sample.truth_track_index": 106
+  },
+  "upstream_modified": false
+}

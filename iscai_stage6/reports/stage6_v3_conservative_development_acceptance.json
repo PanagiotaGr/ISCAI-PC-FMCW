@@ -1,0 +1,120 @@
+{
+  "available_full_ADB_metric_summary": {
+    "cyclist_visibility_proxy": {
+      "mean": 0.7399150268168908,
+      "n": 37
+    },
+    "energy_consumption": {
+      "mean": null,
+      "n": 0
+    },
+    "false_dimming": {
+      "mean": 0.8781831644710564,
+      "n": 120
+    },
+    "flicker_change_rate": {
+      "mean": 0.009403396971284452,
+      "n": 120
+    },
+    "glare_risk_exposure": {
+      "mean": 0.0949782232853472,
+      "n": 115
+    },
+    "mask_IoU_with_constructed_oracle_future_mask": {
+      "mean": null,
+      "n": 0
+    },
+    "over_masking_area": {
+      "mean": 0.201618399413797,
+      "n": 120
+    },
+    "pedestrian_visibility_proxy": {
+      "mean": 0.6170516212443563,
+      "n": 45
+    },
+    "road_illumination_retention": {
+      "mean": 0.8171252155614439,
+      "n": 120
+    },
+    "temporal_mean_absolute_change_rate": {
+      "mean": 0.008245457009828615,
+      "n": 120
+    },
+    "temporal_smoothness": {
+      "mean": null,
+      "n": 0
+    },
+    "vehicle_shadow_zone_violation": {
+      "mean": 0.07308317791689012,
+      "n": 115
+    }
+  },
+  "deltas_predictive_minus_reactive": {
+    "cyclist_visibility_proxy": 0.0011013061141894598,
+    "over_masking_area": 0.012993793697212458,
+    "pedestrian_visibility_proxy": 0.0470977548125735,
+    "vehicle_shadow_zone_violation": -0.02172930332318994
+  },
+  "hard_overmask_budget": {
+    "fraction": 0.01,
+    "grid_cells": 150801,
+    "guarantee": "extra binary dim support over reactive cannot exceed frozen 0.02 full-grid bound",
+    "max_extra_spatial_cells": 1508
+  },
+  "historical_V1_preserved": {
+    "path": "/home/agni/waymo/iscai_stage6/reports/stage6_final_scientific_closure_v1.json",
+    "sha256": "e36a007e4c95b0732eb7505d784fa46c1c06e135cc2dddde636ac0f73c4c1e17",
+    "status": "NEGATIVE_RESULT_PRESERVED"
+  },
+  "overall_pass": true,
+  "predictive_V2": {
+    "cyclist_visibility_proxy": 0.7399150268168908,
+    "over_masking_area": 0.201618399413797,
+    "pedestrian_visibility_proxy": 0.6170516212443563,
+    "vehicle_shadow_zone_violation": 0.07308317791689012
+  },
+  "protocol": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/stage6_v3_conservative_budget_protocol.json",
+    "sha256": "d748e6bae34de723b95181b29d3af6759aa8df48e0dea6229b39d7bfa55b984f"
+  },
+  "reactive": {
+    "cyclist_visibility_proxy": 0.7388137207027013,
+    "over_masking_area": 0.18862460571658454,
+    "pedestrian_visibility_proxy": 0.5699538664317828,
+    "vehicle_shadow_zone_violation": 0.09481248124008006
+  },
+  "runtime_statistics": {
+    "projection_latency": {
+      "calls": 7320,
+      "max_s": 0.005211804993450642,
+      "mean_s": 0.0033076429321962446,
+      "median_s": 0.0032752915285527706,
+      "p95_s": 0.003587140399031341
+    },
+    "selected_extra_cell_count": {
+      "calls": 7320,
+      "max": 1508,
+      "mean": 1432.6
+    }
+  },
+  "scientific_boundary": {
+    "Stage4_recalibrated": false,
+    "Stage4_retrained": false,
+    "V1_result_deleted": false,
+    "V1_result_relabelled": false,
+    "V1_threshold_modified": false,
+    "V3_method_lineage_from_V1_and_V2_development": true,
+    "formal_population_read": false,
+    "future_GT_used_for_controller": false,
+    "oracle_used_for_controller": false
+  },
+  "stage": 6,
+  "status": "PASS_STAGE6_V3_DEVELOPMENT_ACCEPTANCE_FROZEN",
+  "unchanged_acceptance_gates": {
+    "cyclist_visibility_noninferiority": true,
+    "overmask_noninferiority": true,
+    "pedestrian_visibility_noninferiority": true,
+    "vehicle_strict_improvement": true
+  },
+  "version": "Stage6-V3-conservative-budgeted-residual"
+}

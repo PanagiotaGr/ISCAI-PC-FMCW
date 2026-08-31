@@ -1,0 +1,59 @@
+{
+  "anti_leakage": {
+    "future_GT_for_reactive_controller": false,
+    "future_observation_for_reactive_controller": false,
+    "future_track_duration_as_actor_selector": false,
+    "future_validity_as_actor_selector": false,
+    "oracle_for_reactive_controller": false,
+    "tracks_to_predict_as_control_selector": false
+  },
+  "block": "6.8_Part2A",
+  "bound_freeze_boundary": {
+    "cyclist_visibility_delta_source": "reactive supported development values only",
+    "formal_values_may_set_delta": false,
+    "over_masking_delta_source": "reactive development values only",
+    "pedestrian_visibility_delta_source": "reactive supported development values only",
+    "predictive_values_may_set_delta": false
+  },
+  "formal_evaluation_allowed_after_this_freeze": false,
+  "freeze_timing": "before_any_reactive_or_predictive_development_metric",
+  "metric_binding": {
+    "I_final": "held current Part-A reactive illumination schedule",
+    "binary_dim_support": "D_tau = [I_final_tau < 1.0]",
+    "metric_authority": "reconciled earliest Block6.6 pre-outcome preregistration",
+    "metric_runtime_modified": false,
+    "strict_less_than_one": true
+  },
+  "next": "run actual reactive-only development evaluation, compute three reactive-only NI deltas, and freeze exact formal acceptance policy before any predictive development outcome is used for bound size",
+  "oracle_boundary": {
+    "actor_population_selector": false,
+    "bound_size_input": false,
+    "constructed_future_reference": true,
+    "controller_input": false,
+    "future_truth_role": "evaluator_only_after_controller_decision",
+    "measured_ADB_ground_truth": false
+  },
+  "original_reactive_ADB": {
+    "base_illumination_source": "frozen_PartA_current_state_reactive_illumination_map",
+    "controller_state_source": "current_causal_state_t0_only",
+    "future_controller_refresh": false,
+    "future_input": false,
+    "future_reobservation": false,
+    "future_scoring_schedule": "repeat_the_already_made_t0_reactive_illumination_map_unchanged_at_each_frozen_horizon",
+    "future_truth_controller_input": false,
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "interpretation": "single_decision_future_evaluation; not closed_loop future re-observation",
+    "oracle_controller_input": false,
+    "posterior_input": false
+  },
+  "project": "Agni",
+  "scientific_change": "evaluator representation only; no controller or policy modification",
+  "scientific_role": "bind original_reactive_ADB current-state Part-A action to the four-horizon single-decision Stage6 evaluator",
+  "stage": 6,
+  "status": "FROZEN_PREOUTCOME_REACTIVE_SCORING_SEMANTICS"
+}

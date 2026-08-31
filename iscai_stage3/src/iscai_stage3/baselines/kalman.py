@@ -1,69 +1,152 @@
 from __future__ import annotations
 
-from typing import Tuple
+from dataclasses import dataclass
+from math import isfinite
+
+from iscai_stage3.filters.kalman_ekf import (
+    KalmanConfig,
+    KalmanState,
+    predict_kalman_state,
+)
 
 
-Vec3 = Tuple[
+Vec3 = tuple[
     float,
     float,
     float,
 ]
 
+Matrix3 = tuple[
+    tuple[float, float, float],
+    tuple[float, float, float],
+    tuple[float, float, float],
+]
 
-def predict_kalman_cv(
-    position: Vec3,
-    velocity: Vec3,
-    horizon_s: float,
-    dt: float,
-    process_noise: float = 0.1,
-) -> tuple[Vec3, ...]:
-    """
-    Lightweight Kalman CV prediction baseline.
 
-    State:
-        [x,y,z,vx,vy,vz]
+@dataclass(frozen=True)
+class KalmanPredictionPoint:
+    horizon_s: float
+    timestamp_s: float
 
-    Prediction only.
-    No future observations.
-    """
+    position_H0_m: Vec3
+    position_covariance_H0_m2: Matrix3
 
-    if horizon_s <= 0:
+
+@dataclass(frozen=True)
+class KalmanPrediction:
+    track_id: str
+    anchor_timestamp_s: float
+
+    points: tuple[
+        KalmanPredictionPoint,
+        ...
+    ]
+
+    model: str = "CV_EKF"
+
+    truth_used: bool = False
+    annotated_velocity_used: bool = False
+    future_information_used: bool = False
+
+
+def predict_kalman(
+    *,
+    track_id: str,
+    state: KalmanState,
+    horizons_s: tuple[
+        float,
+        ...
+    ],
+    config: KalmanConfig | None = None,
+) -> KalmanPrediction:
+    if config is None:
+        config = KalmanConfig()
+
+    if not horizons_s:
         raise ValueError(
-            "Invalid horizon."
+            "At least one Kalman prediction "
+            "horizon is required."
         )
 
-    if dt <= 0:
-        raise ValueError(
-            "Invalid timestep."
+    previous = None
+    points = []
+
+    for value in horizons_s:
+        tau = float(value)
+
+        if not isfinite(tau):
+            raise ValueError(
+                "Kalman horizons must "
+                "be finite."
+            )
+
+        if tau <= 0.0:
+            raise ValueError(
+                "Kalman horizons must "
+                "be positive."
+            )
+
+        if (
+            previous is not None
+            and tau <= previous
+        ):
+            raise ValueError(
+                "Kalman horizons must be "
+                "strictly increasing."
+            )
+
+        predicted = predict_kalman_state(
+            state,
+            target_timestamp_s=(
+                state.timestamp_s
+                +
+                tau
+            ),
+            config=config,
         )
 
-    if process_noise < 0:
-        raise ValueError(
-            "Negative process noise."
-        )
+        P = predicted.covariance_6x6
 
-    x, y, z = position
-    vx, vy, vz = velocity
-
-    predictions = []
-
-    t = dt
-
-    while t <= horizon_s:
-
-        # prediction step
-        x = x + vx * dt
-        y = y + vy * dt
-        z = z + vz * dt
-
-        predictions.append(
-            (
-                x,
-                y,
-                z,
+        points.append(
+            KalmanPredictionPoint(
+                horizon_s=tau,
+                timestamp_s=(
+                    predicted.timestamp_s
+                ),
+                position_H0_m=(
+                    predicted.mean_6[0],
+                    predicted.mean_6[1],
+                    predicted.mean_6[2],
+                ),
+                position_covariance_H0_m2=(
+                    (
+                        P[0][0],
+                        P[0][1],
+                        P[0][2],
+                    ),
+                    (
+                        P[1][0],
+                        P[1][1],
+                        P[1][2],
+                    ),
+                    (
+                        P[2][0],
+                        P[2][1],
+                        P[2][2],
+                    ),
+                ),
             )
         )
 
-        t += dt
+        previous = tau
 
-    return tuple(predictions)
+    return KalmanPrediction(
+        track_id=track_id,
+        anchor_timestamp_s=(
+            state.timestamp_s
+        ),
+        points=tuple(points),
+        truth_used=False,
+        annotated_velocity_used=False,
+        future_information_used=False,
+    )

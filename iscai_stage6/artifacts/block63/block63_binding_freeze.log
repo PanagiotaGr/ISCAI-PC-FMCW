@@ -1,0 +1,95 @@
+============================================================
+STAGE 6 — BLOCK 6.3 BINDING FREEZE
+DETERMINISTIC SHARED-MEAN FUTURE FULL-BOX POLICY
+============================================================
+
+===== A. EXACT AUDIT-CHAIN SEAL =====
+block62            = EXACT PASS
+interface          = EXACT PASS
+exact_route        = EXACT PASS
+identity           = EXACT PASS
+association        = EXACT PASS
+Block6.2 prerequisite        = PASS
+direct safe actor ID         = NOT AVAILABLE
+new Stage6 association design= REQUIRED
+
+===== B. PARAMETER-FREE CAUSAL ASSOCIATION =====
+association = RECIPROCAL UNIQUE NEAREST 3D H0
+hard distance threshold = NONE
+covariance association gate = NO
+pre-association class gate = NO
+forced assignment = NO
+exact ties = UNMATCHED
+unmatched box = ORIGINAL REACTIVE FALLBACK
+new numeric hyperparameter = NONE
+
+===== C. DETERMINISTIC SHARED-TRAJECTORY BINDING =====
+trajectory family = calibrated Gaussian GRU
+deterministic signal = MEAN ONLY
+mean semantics = METRIC H0 DISPLACEMENT
+future center = PREDICTOR ANCHOR + MEAN DISPLACEMENT
+snap/recenter to WOMD box = NO
+predictive covariance in deterministic mask = NO
+
+===== D. FUTURE FULL-BOX BINDING =====
+future dimensions = CURRENT CAUSAL L/W/H HELD
+future yaw = STAGE5 TANGENT RULE
+low-speed seed = CURRENT CAUSAL BOX YAW
+future GT heading = NO
+full 8-corner projection = REQUIRED
+centroid-only projection = FORBIDDEN
+
+===== E. BLOCK6.3 SCOPE BOUNDARIES =====
+probabilistic occupancy = DEFERRED
+class-aware policy = DEFERRED
+smoothing/rate limits = DEFERRED
+communication codebook = NOT REUSED
+formal grid = NOT FROZEN
+
+===== F. DEVELOPMENT VALIDATION RULE =====
+policy selected using formal N120 = NO
+development validation required = YES
+truth metadata = EVALUATOR ONLY
+posthoc formal tuning = FORBIDDEN
+
+binding artifact = WRITTEN
+binding path = /home/agni/waymo/iscai_stage6/configs/block63_deterministic_predictive_binding.json
+binding SHA256 = 03903018109e7d5037643381ff71141a5c57f003b8bdc6b9be13bb4304468f67
+
+===== G. FROZEN BINDING SEMANTIC CHECK =====
+association has free numeric threshold = NO
+forced identity = NO
+annotation recentering = NO
+deterministic covariance use = NO
+full-box corners = PASS
+
+===== H. IMMUTABILITY =====
+Block6.2 = UNCHANGED
+Block6.3 audits = UNCHANGED
+Stage3–5 scientific code = UNCHANGED
+
+freeze report = WRITTEN
+report path = /home/agni/waymo/iscai_stage6/reports/block63_binding_freeze.json
+report SHA256 = 6e73e58eb4a28390360e965b33582b6b430dff149f97696494e9d504d1e0d84a
+
+============================================================
+BLOCK 6.3 BINDING FREEZE — FINAL
+============================================================
+actor association          = RECIPROCAL UNIQUE NEAREST H0
+association threshold      = NONE
+forced assignment          = NO
+perfect actor identity     = NO
+unmatched ADB actor        = ORIGINAL REACTIVE FALLBACK
+deterministic trajectory   = SHARED GAUSSIAN MEAN
+future center              = PREDICTOR ANCHOR + MEAN
+annotation recentering     = NO
+future yaw                 = STAGE5 TANGENT RULE
+future dimensions          = CURRENT CAUSAL L/W/H
+future projection          = FULL 8-CORNER BOX
+predictive covariance      = NOT USED IN BLOCK6.3
+class-aware policy         = NOT STARTED
+formal grid                = NOT FROZEN
+development validation     = REQUIRED BEFORE FORMAL
+formal tuning              = FORBIDDEN
+STATUS = PASS_READY_FOR_BLOCK63_PART1
+terminal remains open = YES

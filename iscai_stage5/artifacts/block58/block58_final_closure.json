@@ -1,0 +1,107 @@
+{
+  "acceptance": {
+    "coverage": "PASS",
+    "coverage_test_count": 12,
+    "nominal_primary_overhead_reduction_vs_exhaustive": 0.865216565349544,
+    "nominal_primary_probability_coverage": 0.9959473150962512,
+    "nominal_primary_probing_overhead_fraction": 0.00046970618034447825,
+    "overhead_reduction": "PASS",
+    "overhead_test_count": 3,
+    "stage5_block58_acceptance": "PASS"
+  },
+  "block": "5.8",
+  "block510_final_stage5_closure_completed": false,
+  "block59_reproducibility_completed": false,
+  "next": "Block 5.9 exact reproducibility freeze",
+  "phase": "post_formal_acceptance_closure",
+  "provenance": {
+    "acceptance_policy": {
+      "path": "/home/agni/waymo/iscai_stage5/configs/formal_stage5_acceptance_policy.json",
+      "sha256": "a89dcc3c785933632b547d73dae96696e3b63ebd19b46e73b7b0602fa0da313f"
+    },
+    "formal_cache": {
+      "combined_manifest_sha256": "55b8622cfc6b90c619a98127237a2f1ad2d6f45cc9b5aed4086894f71fb0a981",
+      "path": "/home/agni/waymo/iscai_stage5/artifacts/block58/formal_clean_cache",
+      "scenario_file_count": 120
+    },
+    "formal_input_route_audit": {
+      "path": "/home/agni/waymo/iscai_stage5/artifacts/block58/formal_input_route_audit.json",
+      "sha256": "34e6bdf16b66054423db22ba53d1b35e76d811693fae6045d721a3987229db8a"
+    },
+    "formal_manifest": {
+      "path": "/home/agni/waymo/iscai_stage3/artifacts/block38e/formal_validation_120.jsonl",
+      "sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46"
+    },
+    "formal_merged_records": {
+      "path": "/home/agni/waymo/iscai_stage5/artifacts/block58/formal_clean_records.jsonl",
+      "sha256": "b45c23d407bce2a10cb74db03b856773171470edaaa8770c2f032e974081800a"
+    },
+    "formal_report": {
+      "path": "/home/agni/waymo/iscai_stage5/reports/block58_formal_evaluation.json",
+      "sha256": "76c23c21e667cf5acec1a6b1273256b915f8c12d0bba6417459e56c27203fc55"
+    },
+    "prefreeze_report": {
+      "path": "/home/agni/waymo/iscai_stage5/reports/block58_prefreeze_acceptance.json",
+      "sha256": "dd8a583c2a5dbcbfdbdcb79311301215a9890495d88d3331bc96574277b682d3"
+    },
+    "prior_part2_gate_artifact": {
+      "mtime_ns": 1787317826754739490,
+      "path": "/home/agni/waymo/iscai_stage5/reports/block58_part2_formal_gate.json",
+      "reason": "RuntimeError: Part1 does not prove frozen 16/32/64 codebooks.",
+      "role": "retained_prior_attempt_artifact_noncanonical_for_current_successful_run",
+      "sha256": "c3502b3cf486dd407d41a3f035b1fcdcea357202dcc827a1530ae574c6135634",
+      "status": "BLOCKED",
+      "successful_formal_report_mtime_ns": 1787318877417374123
+    }
+  },
+  "receiver_availability": {
+    "eligible_receiver_scenarios": 120,
+    "formal_scenarios": 120,
+    "no_eligible_receiver_scenarios": 0,
+    "selected_receiver_prediction_available": 83,
+    "selected_receiver_prediction_unavailable": 37,
+    "valid_future_receiver_endpoints": {
+      "0.1": 83,
+      "0.3": 82,
+      "0.5": 82,
+      "1.0": 82
+    }
+  },
+  "scientific_contract": {
+    "codebooks": [
+      16,
+      32,
+      64
+    ],
+    "formal_parameter_tuning": false,
+    "formal_population_N": 120,
+    "future_truth": "evaluator_only_after_controller_decision",
+    "future_truth_receiver_selector": false,
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "nominal_acceptance_q": 0.95,
+    "post_hoc_threshold_or_codebook_tuning": false,
+    "primary_acceptance_geometry": "uncertain",
+    "receiver_geometry_modes": [
+      "centroid",
+      "known",
+      "uncertain"
+    ],
+    "receiver_policy": "nearest_causal_vehicle_ahead",
+    "reported_probability_mass_targets": [
+      0.9,
+      0.95,
+      0.975,
+      0.99
+    ],
+    "same_immutable_Stage3_4_population": true,
+    "tracks_to_predict_receiver_selector": false
+  },
+  "stage": 5,
+  "stage5_overall_closed": false,
+  "status": "PASS_FROZEN"
+}

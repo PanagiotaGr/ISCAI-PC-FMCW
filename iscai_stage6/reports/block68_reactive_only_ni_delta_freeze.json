@@ -1,0 +1,108 @@
+{
+  "NI_summaries": {
+    "cyclist_visibility_proxy": {
+      "clip_lower": 0.02,
+      "clip_upper": 0.05,
+      "delta_uses_predictive_values": false,
+      "fixed_variability_scale": 1.96,
+      "frozen_delta": 0.05,
+      "n": 40,
+      "raw_delta": 0.10894235094138646,
+      "reactive_mean": 0.7388137207027012,
+      "reactive_sample_std_ddof1": 0.3515366965593572,
+      "reactive_standard_error": 0.05558283211295228
+    },
+    "over_masking_area": {
+      "clip_lower": 0.02,
+      "clip_upper": 0.05,
+      "delta_uses_predictive_values": false,
+      "fixed_variability_scale": 1.96,
+      "frozen_delta": 0.02,
+      "n": 120,
+      "raw_delta": 0.015373617294697004,
+      "reactive_mean": 0.1886246057165846,
+      "reactive_sample_std_ddof1": 0.08592323451792956,
+      "reactive_standard_error": 0.007843682293212757
+    },
+    "pedestrian_visibility_proxy": {
+      "clip_lower": 0.02,
+      "clip_upper": 0.05,
+      "delta_uses_predictive_values": false,
+      "fixed_variability_scale": 1.96,
+      "frozen_delta": 0.05,
+      "n": 54,
+      "raw_delta": 0.11015308032177311,
+      "reactive_mean": 0.5699538664317829,
+      "reactive_sample_std_ddof1": 0.4129880209961553,
+      "reactive_standard_error": 0.05620055118457812
+    }
+  },
+  "block": "6.8_reactive_only_NI_delta_freeze",
+  "development_scenarios": 120,
+  "frozen_inputs": {
+    "cohort": "57440e3d976e7aeff44811b5eeb075dc56e0e0e070a3832ec72d354253b998c9",
+    "evaluator_contract": "c9ff0390820a3c37702fb391ba603244fffcf7c03c476045b590aa483e89bd7e",
+    "geometry_bind_report": "d5737f95ded6ea1d7f49670c589fc15cc80531b62038707198d4ea7b5fd393bd",
+    "geometry_module": "f6e6cc0dd362338eeeaae9d8e25947434a3e7c64b350f0baf81a79a46159f94e",
+    "grid_binding": "be5145fe60a941e7906639916cfa384d5674dc29f294f5a42e12c962bc4df4bc",
+    "ledger": "ac2b954571cdd0166bbcfa5bb8b2956785d1e132288dbe4af7fe2d55adeafcaa",
+    "ni_runtime": "3c67a7f152359710cb24db1a6e01c4b580728e6480b7c5d8f9c40a41349cf1cd",
+    "reactive_freeze_report": "6ca868dbdf13e8a675813d4af2d3c814ce5297155126e5124ac452131670903b",
+    "superseding_timestamp_alignment": "51a3b56a119467001a9f4617e1e19dc82c548c0a30c79fc9c4a9c1f5ef27bf56",
+    "t0_maps": "7c5d63c76c3d9ef74adbbd7a68e3ce7483b1dd80fd262cba06f6ce1909994993"
+  },
+  "future_evaluator": {
+    "future_track_duration_used_as_selector": false,
+    "future_validity_used_as_selector": false,
+    "invalid_actor_horizon_states": 149,
+    "nonempty_actor_horizon_supports": 4296,
+    "valid_actor_horizon_states": 4347
+  },
+  "next": "development-only class-aware predictive ADB evaluation; frozen NI deltas MUST NOT change",
+  "outputs": {
+    "acceptance_policy": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_preformal_primary_acceptance_policy.json",
+      "sha256": "e103466b1a6eb62be4e6746029147cbda9671b05130acba5210a3ab7328e6b81"
+    },
+    "delta_freeze": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_exact_noninferiority_deltas.json",
+      "sha256": "a77e548e060c314dd98a7220b0f9ed3aebd5d1978eb70f456b82920e792a29d4"
+    },
+    "preoutcome_contract": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_reactive_future_truth_scoring_contract.json",
+      "sha256": "8364c7cdfa4b66d820823c804d45905a207f77f66b53f06a6383e7722b8a9970"
+    },
+    "raw_values": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_reactive_only_ni_values.jsonl",
+      "sha256": "3a81d6d39b29a2d30247f30f06f0e02bedd47ecc754a0eb550611947f6e9b0d5"
+    }
+  },
+  "regression": {
+    "post": 224,
+    "pre": 224
+  },
+  "scientific_boundary": {
+    "P_occ_opened": false,
+    "computed_metrics": [
+      "over_masking_area",
+      "pedestrian_visibility_proxy",
+      "cyclist_visibility_proxy"
+    ],
+    "controller_policy_tuning": false,
+    "formal_content_opened": false,
+    "formal_evaluation": false,
+    "future_truth_opened": true,
+    "future_truth_role": "REACTIVE_EVALUATOR_ONLY_AFTER_T0_DECISION",
+    "predictive_performance_computed": false,
+    "reactive_performance_computed": true,
+    "vehicle_shadow_zone_violation_computed": false
+  },
+  "selected_t0_actor_count": 1124,
+  "stage": 6,
+  "status": "PASS_REACTIVE_ONLY_NI_DELTAS_FROZEN",
+  "storage": {
+    "free_GiB": 1052.6347465515137,
+    "hard_reserve_GiB": 250.0,
+    "reserve_pass": true
+  }
+}

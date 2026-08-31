@@ -1,0 +1,238 @@
+{
+  "block": "4.2",
+  "causality": {
+    "future_mutation_causal_scene": true,
+    "future_mutation_labels_changed": true,
+    "future_mutation_model_payload": true,
+    "future_mutation_stage2_hash": true,
+    "future_used_for_supervision_pairing": false,
+    "future_validity_model_input": false,
+    "objects_of_interest_model_input": false,
+    "perfect_track_id_numeric_feature": false,
+    "tracks_to_predict_model_input": false
+  },
+  "context": {
+    "LiDAR_actor_features": false,
+    "map_context_dim": 10,
+    "maximum_neighbors": 8,
+    "multi_agent_neighbors": true,
+    "static_map_context": true
+  },
+  "implementation": {
+    "file_count": 15,
+    "sha256": "4f6ef90bd3455bf55f100561d66ef93549d8472112b85fce45930ec169f89fd0"
+  },
+  "measurement_uncertainty": {
+    "distinct_from_predictive_uncertainty": true,
+    "reaches_neural_features": true,
+    "source": "Stage2 R_t propagated to H0 through frozen Stage3 geometry"
+  },
+  "real_pilot": {
+    "map_context_nonzero_samples": 350,
+    "neighbor_slots_used": 2800,
+    "partition_sample_counts": {
+      "calibration": 60,
+      "development": 137,
+      "fit": 153
+    },
+    "real_covariance_rows": 1708,
+    "real_observed_rows": 1708,
+    "runtime_s": 2.117110126069747,
+    "sample_classes": {
+      "TYPE_CYCLIST": 2,
+      "TYPE_PEDESTRIAN": 38,
+      "TYPE_VEHICLE": 310
+    },
+    "scenario_count": 12,
+    "scenarios": [
+      {
+        "associated_tracks": 65,
+        "causal_histories": 65,
+        "causal_scene_sha256": "b71bb76faa4928a5805db51e501dd298970fa4397ba5b29b2f0e15cd50b243b2",
+        "label_sha256": "2a6e5fb41b1a5d00524ebb50c14e7a719cbdd1275d9ff3f71a98ce7fd97b8b66",
+        "model_payload_sha256": "453b9b909f5d274ea6a3662be367b153bd7618defabc04e25def22d1e7d359c1",
+        "partition": "fit",
+        "sample_classes": {
+          "TYPE_PEDESTRIAN": 2,
+          "TYPE_VEHICLE": 36
+        },
+        "scenario_id": "1b36cc10cd8010a7",
+        "stage2_algorithm_sha256": "b1794011336fadb319e98c1492ea47152cc53a9992001172baa8d6362268c792",
+        "supervised_samples": 38
+      },
+      {
+        "associated_tracks": 42,
+        "causal_histories": 42,
+        "causal_scene_sha256": "775cd298777f6578a61773ef53a87361105711412df34e8c4c20507b14c2d20c",
+        "label_sha256": "ace18d748e33b80e20ccca0132dcf271ca746654e30dfed120bffbdbf6ddde19",
+        "model_payload_sha256": "e1e4bc31c994691237d061b2eea7b65943bb8f2f4e2982001fb5d2c9e02b6eb3",
+        "partition": "fit",
+        "sample_classes": {
+          "TYPE_PEDESTRIAN": 3,
+          "TYPE_VEHICLE": 22
+        },
+        "scenario_id": "920852d493f207db",
+        "stage2_algorithm_sha256": "1057f06545aa53cc7a24e578c4d4e1ed2f16f01e9dddfbb20d13d67863c121e1",
+        "supervised_samples": 25
+      },
+      {
+        "associated_tracks": 92,
+        "causal_histories": 92,
+        "causal_scene_sha256": "fcc87afdcc7e87ecb945aab6cf8f8e6356fce601dafc1790cf0e3c03689d151c",
+        "label_sha256": "d5207639e60b21ecdf55b6bc4efa188bc54ca74e48e18f59dd5c709a8eeb1019",
+        "model_payload_sha256": "81b8cde3c23869942b5da20b85a2902e5afbeb96c4bba847252654c39971e6eb",
+        "partition": "fit",
+        "sample_classes": {
+          "TYPE_PEDESTRIAN": 2,
+          "TYPE_VEHICLE": 66
+        },
+        "scenario_id": "e028ce4cb092b6da",
+        "stage2_algorithm_sha256": "48df1fec795d0525d2a67f5fe8c0fdf6a3e89249425c2aca1ea861fbc14f0ebf",
+        "supervised_samples": 68
+      },
+      {
+        "associated_tracks": 42,
+        "causal_histories": 42,
+        "causal_scene_sha256": "aa35686c67fdadbf596990ab50fe05d2e3e33d2d5d41a246b51de6715b6be029",
+        "label_sha256": "5c5079a36dbc96e96ddaa7d7268f047670565c9b5bee0c7d2ab422143ca3f42b",
+        "model_payload_sha256": "19e10dcd9f52035bf6f878908e00efe05e3ac315273b650de3e8298729e0aa18",
+        "partition": "fit",
+        "sample_classes": {
+          "TYPE_VEHICLE": 22
+        },
+        "scenario_id": "a5a29654bd91f634",
+        "stage2_algorithm_sha256": "45e90586eb40954b2b03916c966f212fbc4bc38dc0651fa3e7366f29e76dcccc",
+        "supervised_samples": 22
+      },
+      {
+        "associated_tracks": 88,
+        "causal_histories": 88,
+        "causal_scene_sha256": "326e73025d4358bde051ee2804244a1c0e4ed5d79d59db0830c940a80b42afb7",
+        "label_sha256": "d83f1a78f2e514529f8eaec43c73081bed8d0a73a2a62febd3d36b1b44b7129d",
+        "model_payload_sha256": "3882e36ee9cb97d5c34053bd94e9d37133c593568850502d31ddddfb9b2ad53c",
+        "partition": "development",
+        "sample_classes": {
+          "TYPE_PEDESTRIAN": 27,
+          "TYPE_VEHICLE": 39
+        },
+        "scenario_id": "a6432ee002f8046d",
+        "stage2_algorithm_sha256": "0da884c8835a5d958b171aa0df17a7dff4b975d1822a4f0a651cb9cf1e1c2070",
+        "supervised_samples": 66
+      },
+      {
+        "associated_tracks": 38,
+        "causal_histories": 38,
+        "causal_scene_sha256": "e374af0f3d18a84bc1715888dfc742e4bb6c4847bb450a6fc6b1dee7e57832af",
+        "label_sha256": "35038a779b6aaef5cf87515699f268bdc08fda04476c501bc2419ab0b9af6d48",
+        "model_payload_sha256": "b9e16601b5938b4259e405227f7f42172fc00f4a090f9f29576bc9a1d88ff482",
+        "partition": "development",
+        "sample_classes": {
+          "TYPE_PEDESTRIAN": 1,
+          "TYPE_VEHICLE": 19
+        },
+        "scenario_id": "395ff370ecfc2abd",
+        "stage2_algorithm_sha256": "64412a5ce10e26c4f9e1dce818d9d113c994362ab503d94a8d3ee218d4131fbc",
+        "supervised_samples": 20
+      },
+      {
+        "associated_tracks": 37,
+        "causal_histories": 37,
+        "causal_scene_sha256": "a60b5472e716748dd409aac6af439dca8f01304c1a9f133b21ed6ec538fe9e2d",
+        "label_sha256": "011b13327846afcb99dc7c51e0edd9facbdf698e74e032caaefda6d680d5c03f",
+        "model_payload_sha256": "f63952379ad89214a189a6a9dcc39b6e56af94e19f4811967513c8e638024d12",
+        "partition": "development",
+        "sample_classes": {
+          "TYPE_PEDESTRIAN": 2,
+          "TYPE_VEHICLE": 18
+        },
+        "scenario_id": "96a1481dc541512",
+        "stage2_algorithm_sha256": "8f0700b7396968903afa3787b5a8b366d27601fb4345b7075c0fc6821d3e994f",
+        "supervised_samples": 20
+      },
+      {
+        "associated_tracks": 53,
+        "causal_histories": 53,
+        "causal_scene_sha256": "0452771d48f21f5eb56d29697fc271666d44b5560a7ef1df57d3c6777bca3c77",
+        "label_sha256": "44cd37e22b5199cdb0ac34c96d504d1089464e71e1fd260200c3296d9d3ad0a5",
+        "model_payload_sha256": "dee21b3df2c555b15644dcc97cd429c765e4726823e35cc05361b9022938aa8c",
+        "partition": "development",
+        "sample_classes": {
+          "TYPE_VEHICLE": 31
+        },
+        "scenario_id": "9315db40e0b126b8",
+        "stage2_algorithm_sha256": "d5872528fbd2124d58fc1987395e992f21463e711f46fc4aeb65b7a60e17bb16",
+        "supervised_samples": 31
+      },
+      {
+        "associated_tracks": 34,
+        "causal_histories": 34,
+        "causal_scene_sha256": "d2c9d2606bddd743c6f0da1ad4668ef47799002217c9c87f1e95c56c82becf7e",
+        "label_sha256": "2305908ee8102108d059626b75a5c61ae6f21943e54e1503b83a90d0c46f0472",
+        "model_payload_sha256": "98b45e4fd97b106bc86e0e4a52dd03b85ce79126a0f256e531ddd7e4499c63e4",
+        "partition": "calibration",
+        "sample_classes": {
+          "TYPE_CYCLIST": 2,
+          "TYPE_VEHICLE": 6
+        },
+        "scenario_id": "2e60163c2043b42",
+        "stage2_algorithm_sha256": "99b4af8c13804caaa722f722277aefebc25a985ad2ad1e5333e2b255058031fe",
+        "supervised_samples": 8
+      },
+      {
+        "associated_tracks": 41,
+        "causal_histories": 41,
+        "causal_scene_sha256": "72d09d8570f2ff1174eb725666517dbb1d938e54545518471f6424f56a1e069f",
+        "label_sha256": "055f5341a08bb25ea7cc7c3bf2be9987fd0ba0fe43abf80e84ba550625f4ea87",
+        "model_payload_sha256": "f4857525bb5539afcf43e3be29959bb6ce0383fe984b684a945ec6f20dc00a49",
+        "partition": "calibration",
+        "sample_classes": {
+          "TYPE_VEHICLE": 20
+        },
+        "scenario_id": "9459aae11b14776e",
+        "stage2_algorithm_sha256": "484157e06e285299cdc6ad5f3f4b3f7c9a505ef1d5858374c58f898f4a899389",
+        "supervised_samples": 20
+      },
+      {
+        "associated_tracks": 36,
+        "causal_histories": 36,
+        "causal_scene_sha256": "79394fad51a5997e751b56747dc4571904565222965806097b2d8bb50cc1316e",
+        "label_sha256": "69982e8b6c1c776d1cb30639ef0912baab130ce125cd32263f8839cda5a70aca",
+        "model_payload_sha256": "1362bf834279d80bc821e122c44ca54cc8a979166d820066e07deaab203154f6",
+        "partition": "calibration",
+        "sample_classes": {
+          "TYPE_VEHICLE": 21
+        },
+        "scenario_id": "1b16dae15c452539",
+        "stage2_algorithm_sha256": "e2853731df4786c4ca6d1e9a06c667224ec5c742858badf62ff560fec90b8ff5",
+        "supervised_samples": 21
+      },
+      {
+        "associated_tracks": 29,
+        "causal_histories": 29,
+        "causal_scene_sha256": "89def9efb8e1e4770fd9db9c1fa0aae45baf49f00fc4dba411d0e296fd26b958",
+        "label_sha256": "dfd208ace7154fc974db28abf47fe7d234346309738368e787312fc08f10b6c8",
+        "model_payload_sha256": "402c90406e1e433ec28c4d82e700826023f27369b057f3bcf6d6651dd1c81b86",
+        "partition": "calibration",
+        "sample_classes": {
+          "TYPE_PEDESTRIAN": 1,
+          "TYPE_VEHICLE": 10
+        },
+        "scenario_id": "658e89b3313fd9fa",
+        "stage2_algorithm_sha256": "e4d9069eda6b221e622606cca15e849a4d6ef3bb99e1ed80f5295537c4bb2477",
+        "supervised_samples": 11
+      }
+    ]
+  },
+  "regression": {
+    "pass": true,
+    "tests_passed": 34,
+    "tests_total": 34
+  },
+  "stage": 4,
+  "status": "PASS",
+  "storage": {
+    "free_gib": 1056.5500259399414,
+    "hard_reserve_gib": 250.0,
+    "pass": true
+  }
+}

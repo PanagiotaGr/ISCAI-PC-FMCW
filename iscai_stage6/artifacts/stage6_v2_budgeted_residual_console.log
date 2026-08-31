@@ -1,0 +1,52 @@
+==============================================================================
+STAGE 6 — BLOCK 6.8
+DEVELOPMENT STAGE-4 TEMPORAL/RATE SELECTION
+EXACT 60-CANDIDATE AUTHORITATIVE SWEEP
+STAGE1+2+3 IMMUTABLE / NO PRIMARY ACCEPTANCE / NO FORMAL
+==============================================================================
+existing Stage-4 temporal/rate freeze = EXACT PASS
+STATUS = PASS_STAGE4_TEMPORAL_RATE_SELECTED_FROZEN
+==============================================================================
+STAGE 6 — BLOCK 6.8
+DEVELOPMENT STAGE-4 TEMPORAL/RATE SELECTION
+EXACT 60-CANDIDATE AUTHORITATIVE SWEEP
+STAGE1+2+3 IMMUTABLE / NO PRIMARY ACCEPTANCE / NO FORMAL
+==============================================================================
+
+===== A. EXACT FROZEN SELECTION BOUNDARY =====
+stage4_prefreeze         = EXACT PASS
+stage4_prefreeze_report  = EXACT PASS
+current_binding          = EXACT PASS
+t0_maps                  = EXACT PASS
+stage3_freeze            = EXACT PASS
+cache_manifest           = EXACT PASS
+cache_freeze             = EXACT PASS
+class_runtime            = EXACT PASS
+metric_runtime           = EXACT PASS
+evaluator_runtime        = EXACT PASS
+road_roi                 = EXACT PASS
+Stage-1 gamma         = IMMUTABLE
+Stage-2 margins       = IMMUTABLE
+Stage-3 floors        = IMMUTABLE
+primary acceptance    = NOT TESTED
+formal evaluation     = NO
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_stage6_v2_budgeted_residual_finalize.py", line 1026, in <module>
+    rc = engine.main()
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block68_stage4_temporal_rate_selection.py", line 1503, in main
+    tests_pre = run_regression()
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block68_stage4_temporal_rate_selection.py", line 504, in run_regression
+    require(
+    ~~~~~~~^
+        count
+        ^^^^^
+    ...<5 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block68_stage4_temporal_rate_selection.py", line 256, in require
+    raise RuntimeError(
+        message
+    )
+RuntimeError: Expected 224 tests; observed 229.

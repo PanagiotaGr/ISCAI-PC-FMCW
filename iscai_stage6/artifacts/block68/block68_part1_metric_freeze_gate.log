@@ -1,0 +1,85 @@
+============================================================
+STAGE 6 — BLOCK 6.8 PART 1/2
+NUMERICAL ADB METRIC SEMANTICS FREEZE
+============================================================
+
+===== A. BLOCK6.7 CONTINUITY =====
+Block6.7 status         = PASS_COMPLETE
+previous Stage6 tests   = 181
+baseline matrix         = 7 / 7 FROZEN
+metric interface        = 12 / 12 FROZEN
+
+===== B. FROZEN METRIC PROTOCOL =====
+mandatory metrics       = 12 / 12 PASS
+formula provenance      = IMPLEMENTATION CHOICE
+frozen before formal    = PASS
+formal allowed now      = NO
+
+===== C. NUMERICAL METRIC RUNTIME =====
+metric labels exact     = PASS
+runtime imports         = PASS
+flicker delta threshold = 0.10 FROZEN
+
+===== D. NUMERICAL SMOKE =====
+mask_IoU                          = 0.500000
+vehicle_shadow_zone_violation     = 0.000000
+glare_risk_exposure               = 0.250000
+over_masking_area                 = 0.250000
+road_illumination_retention       = 0.475000
+pedestrian_visibility_proxy       = 0.800000
+cyclist_visibility_proxy          = 0.600000
+false_dimming                     = 0.366667
+temporal_smoothness               = 0.987500
+flicker_change_rate               = 0.125000
+energy_consumption                = 0.466667
+actuation_latency_mean_ms         = 2.500000
+all numerical metrics   = FINITE PASS
+
+===== E. PRE-FORMAL ACCEPTANCE SEMANTICS =====
+primary comparison      = PREDICTIVE vs REACTIVE
+vehicle violation gate  = STRICT IMPROVEMENT
+overmask delta          = NOT YET / DEVELOPMENT ONLY
+ped visibility delta    = NOT YET / DEVELOPMENT ONLY
+cyclist visibility delta= NOT YET / DEVELOPMENT ONLY
+formal outcomes         = FORBIDDEN FOR BOUND SELECTION
+
+===== F. BLOCK6.8 PART1 TARGETED TESTS =====
+targeted tests = 15 / 15 PASS
+
+===== G. FULL STAGE6 REGRESSION =====
+full Stage6 regression = 196 / 196 PASS
+
+===== H. IMMUTABILITY READBACK =====
+Stage5 frozen evidence = UNCHANGED
+Blocks6.0–6.7 evidence = UNCHANGED
+Stage6 strict contract  = UNCHANGED
+
+===== I. STORAGE =====
+free GiB        = 1052.776
+250-GiB reserve = PASS
+
+===== J. BLOCK6.8 PART1 FREEZE =====
+metric protocol SHA256 = c12b95c24ba64f48ac8dc3890fa550613ea597875f6a5a759762b88629623ac0
+metric runtime SHA256  = fdca66a1a9af74d24baaafe4e17d12acdb2db538e037503aba6ee04684eac362
+
+============================================================
+BLOCK 6.8 PART 1/2 — FINAL
+============================================================
+ADB metric formulas       = 12 / 12 FROZEN
+formula provenance        = PRE-FORMAL IMPLEMENTATION CHOICE
+constructed oracle        = EVALUATOR ONLY
+measured ADB ground truth = NO
+mask/intensity semantics  = FROZEN
+road/actor ROI interfaces = FROZEN
+flicker threshold         = 0.10 FROZEN
+vehicle violation gate    = STRICT IMPROVEMENT
+overmask/VRU bounds       = NOT YET / PART2 DEVELOPMENT ONLY
+formal evaluation allowed = NO
+development outcomes read = NO
+formal outcomes read      = NO
+targeted regression       = 15 / 15 PASS
+full Stage6 regression    = 196 / 196 PASS
+upstream modified         = NO
+STATUS = PASS_METRIC_SEMANTICS_FROZEN
+report = /home/agni/waymo/iscai_stage6/reports/block68_part1_metric_freeze_gate.json
+terminal remains open = YES

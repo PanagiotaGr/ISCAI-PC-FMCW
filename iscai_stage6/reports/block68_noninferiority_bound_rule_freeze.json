@@ -1,0 +1,64 @@
+{
+  "block": "6.8",
+  "formal_evaluation_allowed": false,
+  "freeze_timing": "before_any_development_performance_metric",
+  "frozen_outputs": {
+    "config": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_noninferiority_bound_selection_rule.json",
+      "sha256": "b5c0f40725e26578a4739f0582e4467ec48b72db8bb077d13862cc83dee98d24"
+    },
+    "module": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/noninferiority_bounds.py",
+      "sha256": "3c67a7f152359710cb24db1a6e01c4b580728e6480b7c5d8f9c40a41349cf1cd"
+    },
+    "test": {
+      "path": "/home/agni/waymo/iscai_stage6/tests/test_block68_noninferiority_bound_rule.py",
+      "sha256": "784cd31ea0e9d887a95e5a03fbbe65f0a55463b57690294c86ea977d651bb393"
+    }
+  },
+  "next": "actual development-only reactive and class-aware predictive ADB metric execution; derive exact three deltas using the frozen reactive-only rule; freeze formal acceptance policy before Block6.9",
+  "project": "Agni",
+  "regression": {
+    "post": 217,
+    "pre": 209,
+    "status": "PASS",
+    "targeted": 8
+  },
+  "rule": {
+    "VRU_min_support": 20,
+    "cap": 0.05,
+    "floor": 0.02,
+    "overmask_required_support": 120,
+    "scale": 1.96,
+    "source": "original_reactive_ADB_development_only"
+  },
+  "scientific_boundary": {
+    "development_metric_values_read": false,
+    "exact_deltas_computed": false,
+    "formal_content_opened": false,
+    "formal_evaluation": false,
+    "formal_outcomes_read": false,
+    "parameter_tuning": false,
+    "policy_tuning": false,
+    "predictive_outcomes_read": false,
+    "reactive_outcomes_read": false
+  },
+  "stage": 6,
+  "status": "PASS_NI_BOUND_SELECTION_RULE_FROZEN",
+  "storage": {
+    "free_GiB": 1052.7730102539062,
+    "pass": true,
+    "reserve_GiB": 250.0
+  },
+  "upstream": {
+    "/home/agni/waymo/iscai_stage6/artifacts/block68/frozen_road_roi_definition.json": "832f4bc3215fe585fee781080c98b2928157f26e8a66d22f428f15604afb75e0",
+    "/home/agni/waymo/iscai_stage6/configs/stage6_evaluator_reference_contract.json": "c9ff0390820a3c37702fb391ba603244fffcf7c03c476045b590aa483e89bd7e",
+    "/home/agni/waymo/iscai_stage6/configs/stage6_metric_freeze_protocol.json": "409fbb2785e4ff13f29fdff96c91d608c245e009fcbb86ce57099d6a4e1815c9",
+    "/home/agni/waymo/iscai_stage6/reports/block68_evaluator_reference_contract_freeze.json": "5885424d164a058a151c50dd663acec4da7aeba66a56d5e0191c777682e113a8",
+    "/home/agni/waymo/iscai_stage6/reports/block68_exact_evaluator_binding_repair.json": "1505c780423efbe27735c3729b95a18c3da2093f49826bd96cbfad8fdce5d5f1",
+    "/home/agni/waymo/iscai_stage6/reports/block68_preoutcome_metric_reconciliation.json": "077a89fa5163f8862a3a5b7489d98929d9ae3e160ed9e030eb75f42a91d48f9f",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/baseline_metric_contract.py": "39518597079f65d556ee8f0fd3b00ce525319623c9eb8a83f6e3c608954213e9",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/evaluator_reference.py": "2015136fdcbfe3f837bcba5a2ee05578a4d8a01c4ecfd52e4dfac9f864349891",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/metric_semantics.py": "bf8358b5a7edfe40ffac2718ca7cd5af6e7b5fdb3ff8a2823caad6d0f40f057a"
+  }
+}

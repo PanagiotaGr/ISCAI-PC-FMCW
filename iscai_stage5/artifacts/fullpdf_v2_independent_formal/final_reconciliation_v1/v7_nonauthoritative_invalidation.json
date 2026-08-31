@@ -1,0 +1,40 @@
+{
+  "V7": {
+    "G16_requested_coverage": false,
+    "G17_overhead_reduction": false,
+    "decision_ledger_sha256": "751703975b3fc837cc1cf660cf1321db5768323d6cf2fbef524d05a3dbb48af4",
+    "evaluator_rows": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/final_formal_v7_finish/evaluator_rows.jsonl",
+    "evaluator_rows_sha256": "15db5689628b99543b26dd1cc074a8b86b2793387b8a40c52de6412ef7c79bb5",
+    "formal_summary": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/final_formal_v7_finish/formal_summary.json",
+    "formal_summary_sha256": "f9f7094fa6bd4fc277c0b3bbc2aae5a8821e5bfccb97ab2f8d5c472f3bc16334",
+    "pathological_K_plus_1_over_K_signature_strata": 144,
+    "scientific_report": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/final_formal_v7_finish/scientific_report.json",
+    "scientific_report_sha256": "359df204b19118debd5eced6c08fee74cc9f2fcccbe42a760805c50b270c2121"
+  },
+  "V7_artifacts_preserved": true,
+  "V7_scientific_outputs_deleted": false,
+  "V7_scientific_outputs_modified": false,
+  "acceptance_harness_secondary_issue": {
+    "V2_checker": "all-strata conjunction with empirical >= requested_mass and overhead < 1 in every stratum",
+    "V2_protocol_completion": [
+      "requested_empirical_coverage",
+      "reduced_overhead_vs_fixed_or_exhaustive"
+    ],
+    "frozen_preoutcome_policy": "one_sided_exact_binomial_lower_tail_consistency_with_requested_q",
+    "threshold_or_policy_changed_by_reconciliation": false
+  },
+  "controller_rerun": false,
+  "invalidation_basis": {
+    "V2_checker_observed_binding": "gaussian_mean_H0_m[h] -> receiver_samples_h0(actor_mean_h0_m=...)",
+    "frozen_Stage4_semantics": "metric-H0 future displacement mean",
+    "missing_required_composition": "origin_H0_m + gaussian_mean_H0_m[h]",
+    "parameter_tuning": false,
+    "scientific_interpretation": "V7 decisions do not instantiate the frozen Stage4->Stage5 coordinate contract",
+    "status": "PROVEN"
+  },
+  "post_outcome_tuning": false,
+  "scientific_rerun": false,
+  "stage": 5,
+  "status": "INVALIDATED_NONAUTHORITATIVE_COORDINATE_BINDING_DEFECT",
+  "version": "fullpdf_v2"
+}

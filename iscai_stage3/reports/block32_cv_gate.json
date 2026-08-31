@@ -1,0 +1,52 @@
+{
+  "baseline": "constant_velocity",
+  "block": "3.2",
+  "closed_form_gate": {
+    "actor_H0_x_m": [
+      10.0,
+      11.0
+    ],
+    "expected_velocity_x_mps": 10.0,
+    "headlamp_world_x_m": [
+      0.0,
+      1.0
+    ],
+    "recovered_velocity_x_mps": 10.0,
+    "relative_range_m": [
+      10.0,
+      10.0
+    ],
+    "status": "PASS"
+  },
+  "coordinates": {
+    "canonical_state_frame": "H0",
+    "conversion": "Ht -> W -> H0",
+    "frozen_stage1_transform_api": "PASS",
+    "measurement_frame": "Ht"
+  },
+  "formal_real_validation_metrics": "DEFERRED_TO_STAGE3_EVALUATION_BLOCK",
+  "implementation": {
+    "files": 37,
+    "sha256": "3326f0f7eb72ef2ced05a225719fa3afb12f1ca4e235d6609961dfb5a3416bb6"
+  },
+  "input": {
+    "annotated_velocity_used": false,
+    "future_information_used": false,
+    "source": "Stage2 noisy algorithm-facing detections after estimated association"
+  },
+  "measurement_uncertainty": {
+    "Stage2_R_t_preserved": true,
+    "covariance_rotated_to_H0": true,
+    "spherical_to_cartesian": "Jacobian propagation",
+    "state_covariance_generated": true
+  },
+  "prediction_horizons_s": [
+    0.1,
+    0.3,
+    0.5,
+    1.0
+  ],
+  "stage": 3,
+  "status": "PASS",
+  "sub_100ms_ground_truth_claim": false
+}

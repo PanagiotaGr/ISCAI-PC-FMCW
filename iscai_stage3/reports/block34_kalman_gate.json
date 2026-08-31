@@ -1,0 +1,64 @@
+{
+  "baseline": "CV_EKF",
+  "block": "3.4",
+  "closed_form_gate": {
+    "actor_velocity_x_mps": 15.0,
+    "expected_actor_vx_mps": 15.0,
+    "expected_actor_x_m": 14.5,
+    "recovered_actor_vx_mps": 15.0,
+    "recovered_actor_x_m": 14.5,
+    "relative_radial_velocity_mps": 5.0,
+    "sensor_velocity_x_mps": 10.0,
+    "status": "PASS"
+  },
+  "filter": {
+    "deterministic": true,
+    "joseph_covariance_update": true,
+    "real_measurement_updates": 2
+  },
+  "formal_real_validation_metrics": "DEFERRED_TO_COMMON_STAGE3_EVALUATION_BLOCK",
+  "implementation": {
+    "files": 52,
+    "sha256": "b76d6e289334711e425a3c769af57b4305ff3e6187652d590b8258dc458168ae"
+  },
+  "information_policy": {
+    "annotated_velocity_used": false,
+    "future_information_used": false,
+    "truth_used": false
+  },
+  "measurement_model": {
+    "analytic_jacobian": true,
+    "azimuth_innovation_wrapping": true,
+    "frame": "Ht",
+    "moving_sensor_velocity": "strict_adjacent_pose_difference",
+    "nonlinear": true,
+    "vector": [
+      "range",
+      "radial_velocity",
+      "azimuth",
+      "elevation"
+    ]
+  },
+  "measurement_uncertainty": {
+    "fixed_R_replacement": false,
+    "full_stage2_R_t_used": true
+  },
+  "process_model": {
+    "model": "CV",
+    "process_covariance": "continuous_white_acceleration"
+  },
+  "stage": 3,
+  "state": {
+    "dimension": 6,
+    "frame": "H0",
+    "order": [
+      "px",
+      "py",
+      "pz",
+      "vx",
+      "vy",
+      "vz"
+    ]
+  },
+  "status": "PASS"
+}

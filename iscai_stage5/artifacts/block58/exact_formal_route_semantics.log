@@ -1,0 +1,1659 @@
+===== CONTROLLED COMPILE =====
+resolve_exact_formal_route_semantics.py = PASS
+
+===== READ-ONLY ROUTE EXTRACTION =====
+============================================================
+BLOCK 5.8 PART 2/2 — PRE-EXECUTION FORMAL ROUTE LOCK
+EXACT SAMPLE-LEVEL SEMANTIC RESOLUTION
+============================================================
+formal N=120 artifact read = YES — SCHEMA/ROUTE ONLY
+formal performance metrics = NO
+Stage4 inference           = NO
+Stage5 formal controller   = NOT RUN
+training/recalibration     = NO
+post-hoc tuning            = NO
+
+===== A. IMMUTABLE FORMAL ARTIFACTS =====
+formal manifest SHA       = PASS
+formal N                  = 120
+merged neural output SHA  = PASS
+cache manifest SHA        = PASS
+
+===== B. FORMAL MANIFEST IDENTITY CONTRACT =====
+row count = 120
+keys = ['anchor_class_counts', 'compact_record_offset', 'degraded_outcome_used', 'formal_rank', 'formal_selection_policy', 'future_used', 'performance_used', 'scenario_id', 'selection_hash', 'source_shard', 'stratum', 'stratum_rank']
+identity preview = [{'scenario_id': 'cfd33c593d645bf5', 'source_shard': '/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00030-of-00150', 'compact_record_offset': 8396022, 'selection_hash': '0021a46ed3fb1c08471876e4d92ecc4387ba05a76fdbbf53282ace145e0f9217'}, {'scenario_id': 'b90adbf772ab2317', 'source_shard': '/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00057-of-00150', 'compact_record_offset': 6645751, 'selection_hash': '00271cbc286f9d753b6eedb10c3c5840efa12f37c078b36e4416450f78425adc'}, {'scenario_id': 'b3078e2d1e2a6ed4', 'source_shard': '/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00114-of-00150', 'compact_record_offset': 167974331, 'selection_hash': '003079c6ef78b22bb8e33ccbe7270ddab013a3c5e0b433e4cc6501ffa7e9002d'}]
+
+============================================================
+C. FORMAL_NEURAL_OUTPUTS.NPZ EXACT SCHEMA
+============================================================
+path = /home/agni/waymo/iscai_stage4/artifacts/block48/formal_neural_outputs.npz
+SHA256 = a3e8af17962a28a533070db23e53cee10571d13ab641c74b9db21e79c9a5c8c9
+first-dimension frequencies = {494: 9, 547: 2}
+
+KEY / SHAPE / DTYPE
+selected_class_id = (494,) int64
+truth = (494, 4, 3) float32
+validity = (494, 4) bool
+det_mean = (494, 4, 3) float32
+gaussian_mean = (494, 4, 3) float32
+gaussian_scale = (494, 4, 3, 3) float32
+gmm_logits = (494, 3) float32
+gmm_means = (494, 3, 4, 3) float32
+gmm_scale = (494, 3, 4, 3, 3) float32
+eligible_class_id = (547,) int64
+eligible_validity = (547, 4) bool
+
+IDENTITY PREVIEWS
+selected_class_id = [2, 1, 0, 0, 1, {'unique_count': 3}]
+eligible_class_id = [1, 1, 2, 0, 0, {'unique_count': 3}]
+
+SEMANTIC KEY GROUPS
+scenario_identity = []
+track_identity = []
+Gaussian_mean = ['gaussian_mean']
+Gaussian_scale_or_covariance = ['gaussian_scale']
+calibration_explicit = []
+anchor_or_current_H0 = []
+class_identity = ['selected_class_id', 'eligible_class_id']
+
+============================================================
+D. PER-SCENE FORMAL CACHE SCHEMA
+============================================================
+cache shard count = 120
+
+============================================================
+CACHE SHARD 001_cfd33c593d645bf5.npz
+============================================================
+path = /home/agni/waymo/iscai_stage4/artifacts/block48/cache/001_cfd33c593d645bf5.npz
+SHA256 = 7d17b778cf2fd17b4ca11b36513ba7051cf1de68d94fc23a03d3842478bb5cb5
+first-dimension frequencies = {5: 10, 6: 3}
+
+KEY / SHAPE / DTYPE
+scenario_id = () <U16
+cache_contract_sha256 = () <U64
+all_prediction_sha256 = () <U64
+truth_index_source = () <U24
+selected_truth_index = (5,) int64
+selected_class_id = (5,) int64
+truth = (5, 4, 3) float32
+validity = (5, 4) bool
+det_mean = (5, 4, 3) float32
+gaussian_mean = (5, 4, 3) float32
+gaussian_scale = (5, 4, 3, 3) float32
+gmm_logits = (5, 3) float32
+gmm_means = (5, 3, 4, 3) float32
+gmm_scale = (5, 3, 4, 3, 3) float32
+eligible_truth_index = (6,) int64
+eligible_class_id = (6,) int64
+eligible_validity = (6, 4) bool
+all_supervised_prediction_count = () int64
+matched_formal_target_count = () int64
+eligible_formal_target_count = () int64
+tracks_to_predict_accessed_after_prediction = () bool
+
+IDENTITY PREVIEWS
+selected_class_id = [2, 1, 0, 0, 1, {'unique_count': 3}]
+eligible_class_id = [1, 1, 2, 0, 0, {'unique_count': 3}]
+
+============================================================
+CACHE SHARD 061_b8eaf5beb401fdf7.npz
+============================================================
+path = /home/agni/waymo/iscai_stage4/artifacts/block48/cache/061_b8eaf5beb401fdf7.npz
+SHA256 = 6645013042f24a1860c760bf9cf63f3dd366711eef3dcf3611a05ac46ccfc1d1
+first-dimension frequencies = {5: 13}
+
+KEY / SHAPE / DTYPE
+scenario_id = () <U16
+cache_contract_sha256 = () <U64
+all_prediction_sha256 = () <U64
+truth_index_source = () <U24
+selected_truth_index = (5,) int64
+selected_class_id = (5,) int64
+truth = (5, 4, 3) float32
+validity = (5, 4) bool
+det_mean = (5, 4, 3) float32
+gaussian_mean = (5, 4, 3) float32
+gaussian_scale = (5, 4, 3, 3) float32
+gmm_logits = (5, 3) float32
+gmm_means = (5, 3, 4, 3) float32
+gmm_scale = (5, 3, 4, 3, 3) float32
+eligible_truth_index = (5,) int64
+eligible_class_id = (5,) int64
+eligible_validity = (5, 4) bool
+all_supervised_prediction_count = () int64
+matched_formal_target_count = () int64
+eligible_formal_target_count = () int64
+tracks_to_predict_accessed_after_prediction = () bool
+
+IDENTITY PREVIEWS
+selected_class_id = [0, 0, 1, 1, 0, {'unique_count': 2}]
+eligible_class_id = [1, 1, 0, 0, 0, {'unique_count': 2}]
+
+============================================================
+CACHE SHARD 120_9813d165b07551c0.npz
+============================================================
+path = /home/agni/waymo/iscai_stage4/artifacts/block48/cache/120_9813d165b07551c0.npz
+SHA256 = a2d87e9cf0609bc5c57633b47792158cf34a7e624b86233f8e18be7eddaf802c
+first-dimension frequencies = {1: 13}
+
+KEY / SHAPE / DTYPE
+scenario_id = () <U16
+cache_contract_sha256 = () <U64
+all_prediction_sha256 = () <U64
+truth_index_source = () <U24
+selected_truth_index = (1,) int64
+selected_class_id = (1,) int64
+truth = (1, 4, 3) float32
+validity = (1, 4) bool
+det_mean = (1, 4, 3) float32
+gaussian_mean = (1, 4, 3) float32
+gaussian_scale = (1, 4, 3, 3) float32
+gmm_logits = (1, 3) float32
+gmm_means = (1, 3, 4, 3) float32
+gmm_scale = (1, 3, 4, 3, 3) float32
+eligible_truth_index = (1,) int64
+eligible_class_id = (1,) int64
+eligible_validity = (1, 4) bool
+all_supervised_prediction_count = () int64
+matched_formal_target_count = () int64
+eligible_formal_target_count = () int64
+tracks_to_predict_accessed_after_prediction = () bool
+
+IDENTITY PREVIEWS
+selected_class_id = [0, {'unique_count': 1}]
+eligible_class_id = [0, {'unique_count': 1}]
+
+============================================================
+E. FORMAL CACHE MANIFEST SEMANTICS
+============================================================
+cache_contract_sha256 = fa18255195eccca9a5f339c07ab0e3817e89ca8d8a9fa5eb63e8bd2cca5226dc
+formal_scenarios = 120
+reused_scenarios = 1
+scenarios = <list length=120>
+summary.all_supervised_predictions = 3511
+summary.eligible_formal_targets = 547
+summary.eligible_namespace = <list length=547>
+summary.formal_scenarios = 120
+summary.matched_formal_targets = 494
+summary.matched_namespace = <list length=494>
+summary.merged_content_sha256 = fe5cf7e413b8142c0670d05727affd4fa573cf4607665e4a9bda951f1d9bd0d5
+summary.merged_file_sha256 = a3e8af17962a28a533070db23e53cee10571d13ab641c74b9db21e79c9a5c8c9
+summary.truth_index_sources[0] = sample.truth_track_index
+tracks_to_predict_accessed_after_prediction = True
+validation_manifest_sha256 = dc10609ef18a2ba881657eb3da3a3df7a81bdcc8345ecbc2227102ab16b8833c
+
+============================================================
+F. BLOCK4.8 CREATION / CALIBRATION / SAVE WINDOWS
+============================================================
+
+[BLOCK48 1] lines 1245-1274
+1245:                     ],
+1246:                     batch[
+1247:                         "map_context"
+1248:                     ],
+1249:                 )
+1250:             )
+1251: 
+1252:             # Prediction hash is computed BEFORE
+1253:             # tracks_to_predict is accessed.
+1254:             all_prediction_sha = (
+1255:                 tensor_bundle_sha256(
+1256:                     (
+1257:                         (
+1258:                             "det",
+1259:                             det_normalized,
+1260:                         ),
+1261:                         (
+1262:                             "gaussian_mean",
+1263:                             Gaussian_output.mean,
+1264:                         ),
+1265:                         (
+1266:                             "gaussian_scale",
+1267:                             Gaussian_output.scale_tril,
+1268:                         ),
+1269:                         (
+1270:                             "gmm_logits",
+1271:                             GMM_output.mixture_logits,
+1272:                         ),
+1273:                         (
+1274:                             "gmm_means",
+
+[BLOCK48 2] lines 1294-1312
+1294:                 normalizer.label_mean[
+1295:                     None,
+1296:                     :,
+1297:                     :
+1298:                 ]
+1299:             )
+1300: 
+1301:             (
+1302:                 Gaussian_mean_metric,
+1303:                 Gaussian_scale_metric,
+1304:             ) = denormalize_gaussian(
+1305:                 Gaussian_output.mean,
+1306:                 Gaussian_output.scale_tril,
+1307:                 normalizer.label_mean,
+1308:                 normalizer.label_std,
+1309:             )
+1310: 
+1311:             (
+1312:                 GMM_means_metric,
+
+[BLOCK48 3] lines 1360-1387
+1360:             .cpu()
+1361:             .numpy()
+1362:             .astype(
+1363:                 np.float32,
+1364:                 copy=False,
+1365:             )
+1366:         )
+1367: 
+1368:         Gaussian_mean_metric = (
+1369:             Gaussian_mean_metric.detach()
+1370:             .cpu()
+1371:             .numpy()
+1372:             .astype(
+1373:                 np.float32,
+1374:                 copy=False,
+1375:             )
+1376:         )
+1377: 
+1378:         Gaussian_scale_metric = (
+1379:             Gaussian_scale_metric.detach()
+1380:             .cpu()
+1381:             .numpy()
+1382:             .astype(
+1383:                 np.float32,
+1384:                 copy=False,
+1385:             )
+1386:         )
+1387: 
+
+[BLOCK48 4] lines 1446-1468
+1446:             ),
+1447:             dtype=np.int64,
+1448:         )
+1449: 
+1450:         det_metric = np.zeros_like(
+1451:             truth_all
+1452:         )
+1453: 
+1454:         Gaussian_mean_metric = (
+1455:             np.zeros_like(
+1456:                 truth_all
+1457:             )
+1458:         )
+1459: 
+1460:         Gaussian_scale_metric = (
+1461:             np.zeros(
+1462:                 (
+1463:                     0,
+1464:                     4,
+1465:                     3,
+1466:                     3,
+1467:                 ),
+1468:                 dtype=np.float32,
+
+[BLOCK48 5] lines 1498-1519
+1498:             dtype=np.float32,
+1499:         )
+1500: 
+1501:     # ========================================================
+1502:     # Evaluator target metadata accessed only AFTER all
+1503:     # neural predictions above have already been generated.
+1504:     # ========================================================
+1505: 
+1506:     eligible = eligible_formal_targets(
+1507:         scenario
+1508:     )
+1509: 
+1510:     # eligible_formal_targets() correctly reads the
+1511:     # evaluator-only WOMD tracks_to_predict metadata, but
+1512:     # its class_id values are raw WOMD object_type integers.
+1513:     # Convert them into the frozen Stage4 internal class-ID
+1514:     # domain before any class-specific aggregation.
+1515:     eligible[
+1516:         "class_id"
+1517:     ] = np.asarray(
+1518:         [
+1519:             stage4_class_id_for_womd_track(
+
+[BLOCK48 6] lines 1674-1696
+1674:                 selected_mask
+1675:             ],
+1676: 
+1677:         "det_mean":
+1678:             det_metric[
+1679:                 selected_mask
+1680:             ],
+1681: 
+1682:         "gaussian_mean":
+1683:             Gaussian_mean_metric[
+1684:                 selected_mask
+1685:             ],
+1686: 
+1687:         "gaussian_scale":
+1688:             Gaussian_scale_metric[
+1689:                 selected_mask
+1690:             ],
+1691: 
+1692:         "gmm_logits":
+1693:             GMM_logits[
+1694:                 selected_mask
+1695:             ],
+1696: 
+
+[BLOCK48 7] lines 1735-1760
+1735:             int(
+1736:                 len(
+1737:                     eligible[
+1738:                         "track_index"
+1739:                     ]
+1740:                 )
+1741:             ),
+1742: 
+1743:         "tracks_to_predict_accessed_after_prediction":
+1744:             True,
+1745:     }
+1746: 
+1747: 
+1748: def save_scene_shard(
+1749:     rank,
+1750:     payload,
+1751: ):
+1752:     path = cache_path(
+1753:         rank,
+1754:         payload[
+1755:             "scenario_id"
+1756:         ],
+1757:     )
+1758: 
+1759:     atomic_npz(
+1760:         path,
+
+[BLOCK48 8] lines 1808-1832
+1808:         ),
+1809: 
+1810:         det_mean=(
+1811:             payload[
+1812:                 "det_mean"
+1813:             ]
+1814:         ),
+1815: 
+1816:         gaussian_mean=(
+1817:             payload[
+1818:                 "gaussian_mean"
+1819:             ]
+1820:         ),
+1821: 
+1822:         gaussian_scale=(
+1823:             payload[
+1824:                 "gaussian_scale"
+1825:             ]
+1826:         ),
+1827: 
+1828:         gmm_logits=(
+1829:             payload[
+1830:                 "gmm_logits"
+1831:             ]
+1832:         ),
+
+[BLOCK48 9] lines 1877-1893
+1877: 
+1878:         eligible_formal_target_count=np.asarray(
+1879:             payload[
+1880:                 "eligible_formal_target_count"
+1881:             ],
+1882:             dtype=np.int64,
+1883:         ),
+1884: 
+1885:         tracks_to_predict_accessed_after_prediction=np.asarray(
+1886:             True,
+1887:             dtype=np.bool_,
+1888:         ),
+1889:     )
+1890: 
+1891:     if not validate_shard(
+1892:         path,
+1893:         payload[
+
+[BLOCK48 10] lines 1915-1932
+1915:                     ]
+1916:                 )
+1917:             for key in (
+1918:                 "selected_truth_index",
+1919:                 "selected_class_id",
+1920:                 "truth",
+1921:                 "validity",
+1922:                 "det_mean",
+1923:                 "gaussian_mean",
+1924:                 "gaussian_scale",
+1925:                 "gmm_logits",
+1926:                 "gmm_means",
+1927:                 "gmm_scale",
+1928:                 "eligible_truth_index",
+1929:                 "eligible_class_id",
+1930:                 "eligible_validity",
+1931:             )
+1932:         } | {
+
+[BLOCK48 11] lines 1970-1987
+1970: def merge_shards(
+1971:     formal_rows,
+1972: ):
+1973:     keys = (
+1974:         "selected_class_id",
+1975:         "truth",
+1976:         "validity",
+1977:         "det_mean",
+1978:         "gaussian_mean",
+1979:         "gaussian_scale",
+1980:         "gmm_logits",
+1981:         "gmm_means",
+1982:         "gmm_scale",
+1983:         "eligible_class_id",
+1984:         "eligible_validity",
+1985:     )
+1986: 
+1987:     parts = {
+
+[BLOCK48 12] lines 1997-2013
+1997:     prediction_hashes = []
+1998: 
+1999:     truth_index_sources = set()
+2000: 
+2001:     for rank, row in enumerate(
+2002:         formal_rows,
+2003:         start=1,
+2004:     ):
+2005:         path = cache_path(
+2006:             rank,
+2007:             row[
+2008:                 "scenario_id"
+2009:             ],
+2010:         )
+2011: 
+2012:         if not validate_shard(
+2013:             path,
+
+[BLOCK48 13] lines 2076-2112
+2076:             "truth_index_source"
+2077:         ]:
+2078:             truth_index_sources.add(
+2079:                 shard[
+2080:                     "truth_index_source"
+2081:                 ]
+2082:             )
+2083: 
+2084:     merged = {
+2085:         key:
+2086:             np.concatenate(
+2087:                 parts[
+2088:                     key
+2089:                 ],
+2090:                 axis=0,
+2091:             )
+2092:         for key in keys
+2093:     }
+2094: 
+2095:     atomic_npz(
+2096:         MERGED,
+2097:         **merged,
+2098:     )
+2099: 
+2100:     digest = sha256()
+2101: 
+2102:     for key in keys:
+2103:         array = np.ascontiguousarray(
+2104:             merged[
+2105:                 key
+2106:             ]
+2107:         )
+2108: 
+2109:         digest.update(
+2110:             key.encode(
+2111:                 "utf-8"
+2112:             )
+
+[BLOCK48 14] lines 2127-2177
+2127:     for value in prediction_hashes:
+2128:         digest.update(
+2129:             value.encode(
+2130:                 "ascii"
+2131:             )
+2132:         )
+2133: 
+2134:     return (
+2135:         merged,
+2136:         {
+2137:             "formal_scenarios":
+2138:                 120,
+2139: 
+2140:             "all_supervised_predictions":
+2141:                 total_supervised,
+2142: 
+2143:             "matched_formal_targets":
+2144:                 len(
+2145:                     scenario_namespace_matched
+2146:                 ),
+2147: 
+2148:             "eligible_formal_targets":
+2149:                 len(
+2150:                     scenario_namespace_eligible
+2151:                 ),
+2152: 
+2153:             "matched_namespace":
+2154:                 scenario_namespace_matched,
+2155: 
+2156:             "eligible_namespace":
+2157:                 scenario_namespace_eligible,
+2158: 
+2159:             "truth_index_sources":
+2160:                 sorted(
+2161:                     truth_index_sources
+2162:                 ),
+2163: 
+2164:             "merged_file_sha256":
+2165:                 file_sha256(
+2166:                     MERGED
+2167:                 ),
+2168: 
+2169:             "merged_content_sha256":
+2170:                 digest.hexdigest(),
+2171:         },
+2172:     )
+2173: 
+2174: 
+2175: def classical_metrics(
+2176:     Stage3_payload,
+2177: ):
+
+[BLOCK48 15] lines 2269-2285
+2269: 
+2270:     required = (
+2271:         PART1,
+2272:         BLOCK47,
+2273:         FORMAL_MANIFEST,
+2274:         STAGE3_FORMAL_REPORT,
+2275:         DET_CHECKPOINT,
+2276:         GAUSSIAN_CHECKPOINT,
+2277:         CALIBRATOR,
+2278:         GMM_CHECKPOINT,
+2279:         NORMALIZATION,
+2280:     )
+2281: 
+2282:     missing = [
+2283:         str(
+2284:             path
+2285:         )
+
+[BLOCK48 16] lines 2367-2385
+2367:             "deterministic checkpoint",
+2368:         ),
+2369:         (
+2370:             GAUSSIAN_CHECKPOINT,
+2371:             EXPECTED_GAUSSIAN_SHA,
+2372:             "Gaussian checkpoint",
+2373:         ),
+2374:         (
+2375:             CALIBRATOR,
+2376:             EXPECTED_CALIBRATOR_SHA,
+2377:             "calibrator",
+2378:         ),
+2379:         (
+2380:             GMM_CHECKPOINT,
+2381:             EXPECTED_GMM_SHA,
+2382:             "GMM checkpoint",
+2383:         ),
+2384:     )
+2385: 
+
+[BLOCK48 17] lines 2479-2495
+2479:     )
+2480:     print(
+2481:         "formal training            = NO"
+2482:     )
+2483:     print(
+2484:         "formal model selection     = NO"
+2485:     )
+2486:     print(
+2487:         "formal calibration fit     = NO"
+2488:     )
+2489: 
+2490:     deterministic_checkpoint = torch.load(
+2491:         DET_CHECKPOINT,
+2492:         map_location=device,
+2493:         weights_only=False,
+2494:     )
+2495: 
+
+[BLOCK48 18] lines 2563-2597
+2563:     print(
+2564:         "Gaussian state load        = PASS"
+2565:     )
+2566:     print(
+2567:         "GMM state load             = PASS"
+2568:     )
+2569: 
+2570:     normalizer = (
+2571:         CalibrationNormalizer(
+2572:             normalization,
+2573:             device=device,
+2574:         )
+2575:     )
+2576: 
+2577:     calibrator = json.loads(
+2578:         CALIBRATOR.read_text(
+2579:             encoding="utf-8"
+2580:         )
+2581:     )
+2582: 
+2583:     variance_scale = tuple(
+2584:         float(
+2585:             value
+2586:         )
+2587:         for value in (
+2588:             calibrator[
+2589:                 "variance_scale"
+2590:             ]
+2591:         )
+2592:     )
+2593: 
+2594:     (
+2595:         clean_config,
+2596:         degraded_config,
+2597:     ) = load_frozen_stage2_configs()
+
+[BLOCK48 19] lines 2677-2693
+2677:     )
+2678:     print(
+2679:         "matched formal targets     =",
+2680:         probe_payload[
+2681:             "matched_formal_target_count"
+2682:         ],
+2683:     )
+2684:     print(
+2685:         "tracks_to_predict access   = AFTER PREDICTION PASS"
+2686:     )
+2687: 
+2688:     # Save probe immediately so it is not recomputed.
+2689:     save_scene_shard(
+2690:         probe_rank,
+2691:         probe_payload,
+2692:     )
+2693: 
+
+[BLOCK48 20] lines 2717-2733
+2717:     for rank, formal_row in enumerate(
+2718:         formal_rows,
+2719:         start=1,
+2720:     ):
+2721:         scenario_id = formal_row[
+2722:             "scenario_id"
+2723:         ]
+2724: 
+2725:         path = cache_path(
+2726:             rank,
+2727:             scenario_id,
+2728:         )
+2729: 
+2730:         if validate_shard(
+2731:             path,
+2732:             scenario_id,
+2733:         ):
+
+[BLOCK48 21] lines 2838-2854
+2838: 
+2839:     cache_runtime_s = (
+2840:         time.perf_counter()
+2841:         -
+2842:         started
+2843:     )
+2844: 
+2845:     (
+2846:         merged,
+2847:         merge_summary,
+2848:     ) = merge_shards(
+2849:         formal_rows
+2850:     )
+2851: 
+2852:     write_json(
+2853:         CACHE_REPORT,
+2854:         {
+
+[BLOCK48 22] lines 2859-2875
+2859:                 "4.8",
+2860: 
+2861:             "formal_scenarios":
+2862:                 120,
+2863: 
+2864:             "resumable":
+2865:                 True,
+2866: 
+2867:             "tracks_to_predict_accessed_after_prediction":
+2868:                 True,
+2869: 
+2870:             "validation_manifest":
+2871:                 str(
+2872:                     validation_manifest_path
+2873:                 ),
+2874: 
+2875:             "validation_manifest_sha256":
+
+[BLOCK48 23] lines 2899-2921
+2899:         "matched formal targets     =",
+2900:         merge_summary[
+2901:             "matched_formal_targets"
+2902:         ],
+2903:     )
+2904:     print(
+2905:         "eligible formal targets    =",
+2906:         merge_summary[
+2907:             "eligible_formal_targets"
+2908:         ],
+2909:     )
+2910:     print(
+2911:         "merged formal output SHA   =",
+2912:         merge_summary[
+2913:             "merged_content_sha256"
+2914:         ],
+2915:     )
+2916: 
+2917:     # ========================================================
+2918:     # Exact repeat on first four non-empty scenes
+2919:     # ========================================================
+2920: 
+2921:     print()
+
+[BLOCK48 24] lines 2925-2941
+2925: 
+2926:     repeated = 0
+2927: 
+2928:     for rank, formal_row in enumerate(
+2929:         formal_rows,
+2930:         start=1,
+2931:     ):
+2932:         shard = load_shard(
+2933:             cache_path(
+2934:                 rank,
+2935:                 formal_row[
+2936:                     "scenario_id"
+2937:                 ],
+2938:             )
+2939:         )
+2940: 
+2941:         if (
+
+[BLOCK48 25] lines 2997-3073
+2997:     print(
+2998:         "formal inference repeat    = 4 / 4 PASS"
+2999:     )
+3000: 
+3001:     # ========================================================
+3002:     # Point-prediction metrics
+3003:     # ========================================================
+3004: 
+3005:     truth = merged[
+3006:         "truth"
+3007:     ]
+3008: 
+3009:     validity = (
+3010:         merged[
+3011:             "validity"
+3012:         ]
+3013:         >
+3014:         0.5
+3015:     )
+3016: 
+3017:     classes = merged[
+3018:         "selected_class_id"
+3019:     ]
+3020: 
+3021:     deterministic_metrics = (
+3022:         trajectory_point_metrics(
+3023:             merged[
+3024:                 "det_mean"
+3025:             ],
+3026:             truth,
+3027:             validity,
+3028:             classes,
+3029:             class_id_to_name=(
+3030:                 CLASS_ID_TO_NAME
+3031:             ),
+3032:         )
+3033:     )
+3034: 
+3035:     Gaussian_point_metrics = (
+3036:         trajectory_point_metrics(
+3037:             merged[
+3038:                 "gaussian_mean"
+3039:             ],
+3040:             truth,
+3041:             validity,
+3042:             classes,
+3043:             class_id_to_name=(
+3044:                 CLASS_ID_TO_NAME
+3045:             ),
+3046:         )
+3047:     )
+3048: 
+3049:     # ========================================================
+3050:     # Raw + calibrated Gaussian probabilistic metrics
+3051:     # ========================================================
+3052: 
+3053:     mean_t = torch.from_numpy(
+3054:         np.asarray(
+3055:             merged[
+3056:                 "gaussian_mean"
+3057:             ],
+3058:             dtype=np.float64,
+3059:         )
+3060:     )
+3061: 
+3062:     scale_t = torch.from_numpy(
+3063:         np.asarray(
+3064:             merged[
+3065:                 "gaussian_scale"
+3066:             ],
+3067:             dtype=np.float64,
+3068:         )
+3069:     )
+3070: 
+3071:     truth_t = torch.from_numpy(
+3072:         np.asarray(
+3073:             truth,
+
+[BLOCK48 26] lines 3095-3185
+3095: 
+3096:     raw_reliability = (
+3097:         reliability_metrics(
+3098:             q,
+3099:             validity,
+3100:         )
+3101:     )
+3102: 
+3103:     calibrated_reliability = (
+3104:         reliability_metrics(
+3105:             q,
+3106:             validity,
+3107:             variance_scale=(
+3108:                 variance_scale
+3109:             ),
+3110:         )
+3111:     )
+3112: 
+3113:     calibrated_nll = (
+3114:         calibrated_nll_per_horizon(
+3115:             raw_nll,
+3116:             q,
+3117:             variance_scale,
+3118:         )
+3119:     )
+3120: 
+3121:     Gaussian_NLL = {
+3122:         "raw":
+3123:             masked_nll_metrics(
+3124:                 raw_nll,
+3125:                 validity,
+3126:             ),
+3127: 
+3128:         "calibrated":
+3129:             masked_nll_metrics(
+3130:                 calibrated_nll,
+3131:                 validity,
+3132:             ),
+3133:     }
+3134: 
+3135:     # Direct calibrated-SPD proof.
+3136:     calibrated_scale_t = (
+3137:         apply_variance_scale(
+3138:             scale_t,
+3139:             variance_scale,
+3140:         )
+3141:     )
+3142: 
+3143:     calibrated_covariance = (
+3144:         calibrated_scale_t
+3145:         @
+3146:         calibrated_scale_t.transpose(
+3147:             -1,
+3148:             -2,
+3149:         )
+3150:     )
+3151: 
+3152:     (
+3153:         _,
+3154:         calibrated_info,
+3155:     ) = torch.linalg.cholesky_ex(
+3156:         calibrated_covariance
+3157:     )
+3158: 
+3159:     if bool(
+3160:         torch.any(
+3161:             calibrated_info != 0
+3162:         )
+3163:     ):
+3164:         raise RuntimeError(
+3165:             "Formal calibrated Gaussian "
+3166:             "covariance lost SPD."
+3167:         )
+3168: 
+3169:     # ========================================================
+3170:     # GMM formal metrics
+3171:     # ========================================================
+3172: 
+3173:     GMM_metrics = gmm_formal_metrics(
+3174:         merged[
+3175:             "gmm_logits"
+3176:         ],
+3177:         merged[
+3178:             "gmm_means"
+3179:         ],
+3180:         truth,
+3181:         validity,
+3182:     )
+3183: 
+3184:     GMM_mix_point = (
+3185:         trajectory_point_metrics(
+
+[BLOCK48 27] lines 3206-3240
+3206:             class_id_to_name=(
+3207:                 CLASS_ID_TO_NAME
+3208:             ),
+3209:         )
+3210:     )
+3211: 
+3212:     gmm_logits_t = torch.from_numpy(
+3213:         np.asarray(
+3214:             merged[
+3215:                 "gmm_logits"
+3216:             ],
+3217:             dtype=np.float64,
+3218:         )
+3219:     )
+3220: 
+3221:     gmm_means_t = torch.from_numpy(
+3222:         np.asarray(
+3223:             merged[
+3224:                 "gmm_means"
+3225:             ],
+3226:             dtype=np.float64,
+3227:         )
+3228:     )
+3229: 
+3230:     gmm_scale_t = torch.from_numpy(
+3231:         np.asarray(
+3232:             merged[
+3233:                 "gmm_scale"
+3234:             ],
+3235:             dtype=np.float64,
+3236:         )
+3237:     )
+3238: 
+3239:     validity_t = torch.from_numpy(
+3240:         validity.astype(
+
+[BLOCK48 28] lines 3345-3361
+3345:         available = int(
+3346:             validity[
+3347:                 :,
+3348:                 h
+3349:             ].sum()
+3350:         )
+3351: 
+3352:         eligible = int(
+3353:             merged[
+3354:                 "eligible_validity"
+3355:             ][
+3356:                 :,
+3357:                 h
+3358:             ].sum()
+3359:         )
+3360: 
+3361:         availability[
+
+[BLOCK48 29] lines 3380-3396
+3380:                     else None
+3381:                 ),
+3382:         }
+3383: 
+3384:     class_availability = {}
+3385: 
+3386:     for class_id in sorted(
+3387:         set(
+3388:             merged[
+3389:                 "eligible_class_id"
+3390:             ].tolist()
+3391:         )
+3392:     ):
+3393:         class_id = int(
+3394:             class_id
+3395:         )
+3396: 
+
+[BLOCK48 30] lines 3398-3414
+3398:             class_id,
+3399:             str(
+3400:                 class_id
+3401:             ),
+3402:         )
+3403: 
+3404:         eligible = int(
+3405:             (
+3406:                 merged[
+3407:                     "eligible_class_id"
+3408:                 ]
+3409:                 ==
+3410:                 class_id
+3411:             ).sum()
+3412:         )
+3413: 
+3414:         matched = int(
+
+[BLOCK48 31] lines 3451-3521
+3451:     )
+3452: 
+3453:     if "CV" not in classical:
+3454:         raise RuntimeError(
+3455:             "Frozen Stage3 formal report "
+3456:             "does not expose CV metrics."
+3457:         )
+3458: 
+3459:     calibrated_Gaussian_ADE = float(
+3460:         Gaussian_point_metrics[
+3461:             "ade_m"
+3462:         ]
+3463:     )
+3464: 
+3465:     beaten = [
+3466:         name
+3467:         for name, metrics
+3468:         in classical.items()
+3469:         if (
+3470:             calibrated_Gaussian_ADE
+3471:             <
+3472:             metrics[
+3473:                 "ade_m"
+3474:             ]
+3475:         )
+3476:     ]
+3477: 
+3478:     PDF_performance_gate = bool(
+3479:         beaten
+3480:     )
+3481: 
+3482:     internal_CV_gate = bool(
+3483:         calibrated_Gaussian_ADE
+3484:         <
+3485:         classical[
+3486:             "CV"
+3487:         ][
+3488:             "ade_m"
+3489:         ]
+3490:     )
+3491: 
+3492:     calibration_measured = True
+3493: 
+3494:     PDF_acceptance = (
+3495:         PDF_performance_gate
+3496:         and
+3497:         calibration_measured
+3498:     )
+3499: 
+3500:     raw_ECE = float(
+3501:         raw_reliability[
+3502:             "coverage_ECE_macro"
+3503:         ]
+3504:     )
+3505: 
+3506:     calibrated_ECE = float(
+3507:         calibrated_reliability[
+3508:             "coverage_ECE_macro"
+3509:         ]
+3510:     )
+3511: 
+3512:     formal_calibration_nonworsening = bool(
+3513:         calibrated_ECE
+3514:         <=
+3515:         raw_ECE
+3516:         +
+3517:         1e-15
+3518:     )
+3519: 
+3520:     # ========================================================
+3521:     # Final regression
+
+[BLOCK48 32] lines 3624-3646
+3624:                 False,
+3625: 
+3626:             "model_selection_on_formal":
+3627:                 False,
+3628: 
+3629:             "normalization_fit_on_formal":
+3630:                 False,
+3631: 
+3632:             "calibrator_fit_on_formal":
+3633:                 False,
+3634: 
+3635:             "tracks_to_predict_model_input":
+3636:                 False,
+3637: 
+3638:             "tracks_to_predict_accessed_after_prediction":
+3639:                 True,
+3640: 
+3641:             "future_model_input":
+3642:                 False,
+3643:         },
+3644: 
+3645:         "observation_interface": {
+3646:             "Stage2":
+
+[BLOCK48 33] lines 3671-3706
+3671:                     Gaussian_NLL[
+3672:                         "raw"
+3673:                     ],
+3674: 
+3675:                 "reliability":
+3676:                     raw_reliability,
+3677:             },
+3678: 
+3679:             "calibrated_Gaussian_GRU": {
+3680:                 "point_metrics":
+3681:                     Gaussian_point_metrics,
+3682: 
+3683:                 "mean_identical_to_raw":
+3684:                     True,
+3685: 
+3686:                 "NLL":
+3687:                     Gaussian_NLL[
+3688:                         "calibrated"
+3689:                     ],
+3690: 
+3691:                 "reliability":
+3692:                     calibrated_reliability,
+3693: 
+3694:                 "covariance_SPD":
+3695:                     True,
+3696: 
+3697:                 "calibrator_sha256":
+3698:                     EXPECTED_CALIBRATOR_SHA,
+3699:             },
+3700: 
+3701:             "GMM_ablation": {
+3702:                 "mixture_mean_point_metrics":
+3703:                     GMM_mix_point,
+3704: 
+3705:                 "MAP_point_metrics":
+3706:                     GMM_map_point,
+
+[BLOCK48 34] lines 3733-3765
+3733:                         "mean_mixture_probability"
+3734:                     ],
+3735: 
+3736:                 "MAP_mode_counts":
+3737:                     GMM_metrics[
+3738:                         "MAP_mode_counts"
+3739:                     ],
+3740: 
+3741:                 "calibrated":
+3742:                     False,
+3743: 
+3744:                 "downstream_selected":
+3745:                     False,
+3746:             },
+3747:         },
+3748: 
+3749:         "classical_frozen_Stage3":
+3750:             classical,
+3751: 
+3752:         "comparison": {
+3753:             "primary_metric":
+3754:                 "planar_ADE_m",
+3755: 
+3756:             "calibrated_Gaussian_ADE_m":
+3757:                 calibrated_Gaussian_ADE,
+3758: 
+3759:             "classical_baselines_beaten":
+3760:                 beaten,
+3761: 
+3762:             "beats_at_least_one_classical":
+3763:                 PDF_performance_gate,
+3764: 
+3765:             "frozen_CV_ADE_m":
+
+[BLOCK48 35] lines 3768-3824
+3768:                 ][
+3769:                     "ade_m"
+3770:                 ],
+3771: 
+3772:             "internal_CV_gate":
+3773:                 internal_CV_gate,
+3774:         },
+3775: 
+3776:         "formal_calibration_generalization": {
+3777:             "raw_macro_ECE":
+3778:                 raw_ECE,
+3779: 
+3780:             "calibrated_macro_ECE":
+3781:                 calibrated_ECE,
+3782: 
+3783:             "ECE_nonworsening":
+3784:                 formal_calibration_nonworsening,
+3785: 
+3786:             "raw_coverage_event_Brier":
+3787:                 raw_reliability[
+3788:                     "coverage_event_Brier"
+3789:                 ],
+3790: 
+3791:             "calibrated_coverage_event_Brier":
+3792:                 calibrated_reliability[
+3793:                     "coverage_event_Brier"
+3794:                 ],
+3795: 
+3796:             "raw_metric_Gaussian_NLL":
+3797:                 Gaussian_NLL[
+3798:                     "raw"
+3799:                 ][
+3800:                     "metric_Gaussian_NLL"
+3801:                 ],
+3802: 
+3803:             "calibrated_metric_Gaussian_NLL":
+3804:                 Gaussian_NLL[
+3805:                     "calibrated"
+3806:                 ][
+3807:                     "metric_Gaussian_NLL"
+3808:                 ],
+3809:         },
+3810: 
+3811:         "Stage4_acceptance_evidence": {
+3812:             "PDF_probabilistic_beats_at_least_one_classical":
+3813:                 PDF_performance_gate,
+3814: 
+3815:             "PDF_calibration_measured":
+3816:                 calibration_measured,
+3817: 
+3818:             "PDF_acceptance_current":
+3819:                 PDF_acceptance,
+3820: 
+3821:             "internal_CV_gate":
+3822:                 internal_CV_gate,
+3823: 
+3824:             "final_closure_decision":
+
+============================================================
+G. STAGE4 ELIGIBLE_FORMAL_TARGETS
+============================================================
+0269: def eligible_formal_targets(
+0270:     scenario,
+0271: ):
+0272:     """
+0273:     Must be called only after prediction generation.
+0274: 
+0275:     Returns target-level evaluator metadata and
+0276:     future-validity at the four frozen horizons.
+0277:     """
+0278: 
+0279:     indices = tracks_to_predict_indices(
+0280:         scenario
+0281:     )
+0282: 
+0283:     current_index = int(
+0284:         scenario.current_time_index
+0285:     )
+0286: 
+0287:     if current_index != 10:
+0288:         raise RuntimeError(
+0289:             "Frozen WOMD current_time_index "
+0290:             f"changed: {current_index}"
+0291:         )
+0292: 
+0293:     classes = []
+0294:     validity = []
+0295: 
+0296:     for index in indices:
+0297:         track = scenario.tracks[
+0298:             index
+0299:         ]
+0300: 
+0301:         classes.append(
+0302:             int(
+0303:                 track.object_type
+0304:             )
+0305:         )
+0306: 
+0307:         row = []
+0308: 
+0309:         for offset in (
+0310:             HORIZON_FRAME_OFFSETS
+0311:         ):
+0312:             state_index = (
+0313:                 current_index
+0314:                 +
+0315:                 offset
+0316:             )
+0317: 
+0318:             valid = (
+0319:                 state_index
+0320:                 <
+0321:                 len(
+0322:                     track.states
+0323:                 )
+0324:                 and
+0325:                 bool(
+0326:                     track.states[
+0327:                         state_index
+0328:                     ].valid
+0329:                 )
+0330:             )
+0331: 
+0332:             row.append(
+0333:                 bool(
+0334:                     valid
+0335:                 )
+0336:             )
+0337: 
+0338:         validity.append(
+0339:             row
+0340:         )
+0341: 
+0342:     return {
+0343:         "track_index":
+0344:             np.asarray(
+0345:                 indices,
+0346:                 dtype=np.int64,
+0347:             ),
+0348: 
+0349:         "class_id":
+0350:             np.asarray(
+0351:                 classes,
+0352:                 dtype=np.int64,
+0353:             ),
+0354: 
+0355:         "validity":
+0356:             np.asarray(
+0357:                 validity,
+0358:                 dtype=np.bool_,
+0359:             ).reshape(
+0360:                 len(
+0361:                     indices
+0362:                 ),
+0363:                 4,
+0364:             ),
+0365:     }
+
+============================================================
+H. STAGE5 FROZEN RECEIVER-SELECTION SOURCE
+============================================================
+
+FILE = /home/agni/waymo/iscai_stage5/src/iscai_stage5/__init__.py
+
+[RECEIVER 1] lines 2-27
+0002: 
+0003: from .contracts import (
+0004:     BEAM_BASELINES,
+0005:     CODEBOOK_SIZES,
+0006:     DEFAULT_PROBABILITY_MASS_TARGET,
+0007:     FORMAL_POPULATION_N,
+0008:     HORIZONS_S,
+0009:     OPTICAL_LINK_CHAIN,
+0010:     PRIMARY_RECEIVER_POLICY,
+0011:     PROBABILITY_MASS_TARGETS,
+0012:     RECEIVER_GEOMETRY_MODES,
+0013:     contract_dict,
+0014: )
+0015: 
+0016: __all__ = [
+0017:     "BEAM_BASELINES",
+0018:     "CODEBOOK_SIZES",
+0019:     "DEFAULT_PROBABILITY_MASS_TARGET",
+0020:     "FORMAL_POPULATION_N",
+0021:     "HORIZONS_S",
+0022:     "OPTICAL_LINK_CHAIN",
+0023:     "PRIMARY_RECEIVER_POLICY",
+0024:     "PROBABILITY_MASS_TARGETS",
+0025:     "RECEIVER_GEOMETRY_MODES",
+0026:     "contract_dict",
+0027: ]
+
+FILE = /home/agni/waymo/iscai_stage5/src/iscai_stage5/contracts.py
+
+[RECEIVER 1] lines 50-70
+0050: # WOMD has no measured V2X/optical-connectivity label.
+0051: # Therefore "connected vehicle" is a declared constructed
+0052: # experimental eligibility assumption, never a dataset claim.
+0053: #
+0054: CONNECTED_VEHICLE_SEMANTICS = (
+0055:     "constructed_hypothetical_connected_vehicle"
+0056: )
+0057: 
+0058: PRIMARY_RECEIVER_POLICY = (
+0059:     "nearest_causal_vehicle_ahead"
+0060: )
+0061: 
+0062: PRIMARY_RECEIVER_POLICY_SEMANTICS = (
+0063:     "select_the_nearest_causally_available_vehicle_"
+0064:     "ahead_in_the_headlamp_frame_from_the_current_"
+0065:     "associated_actor_set"
+0066: )
+0067: 
+0068: PRIMARY_RECEIVER_REQUIRES_VEHICLE_CLASS = True
+0069: 
+0070: PRIMARY_RECEIVER_REQUIRES_CURRENT_CAUSAL_AVAILABILITY = True
+
+[RECEIVER 2] lines 72-88
+0072: PRIMARY_RECEIVER_REQUIRES_POSITIVE_FORWARD_H0 = True
+0073: 
+0074: TRACKS_TO_PREDICT_IS_RECEIVER_SELECTOR = False
+0075: 
+0076: FUTURE_TRUTH_IS_RECEIVER_SELECTOR = False
+0077: 
+0078: PERFECT_TRACK_ID_IS_CONTROL_FEATURE = False
+0079: 
+0080: NO_ELIGIBLE_RECEIVER_POLICY = (
+0081:     "explicit_no_link_target"
+0082: )
+0083: 
+0084: 
+0085: # ============================================================
+0086: # Receiver geometry contract
+0087: # ============================================================
+0088: 
+
+[RECEIVER 3] lines 328-344
+0328: )
+0329: 
+0330: FORMAL_TUNING_ALLOWED = False
+0331: 
+0332: FORMAL_MODEL_SELECTION_ALLOWED = False
+0333: 
+0334: FORMAL_RECALIBRATION_ALLOWED = False
+0335: 
+0336: FORMAL_RECEIVER_POLICY_SELECTION_ALLOWED = False
+0337: 
+0338: FORMAL_CODEBOOK_SELECTION_ALLOWED = False
+0339: 
+0340: FORMAL_THRESHOLD_SELECTION_ALLOWED = False
+0341: 
+0342: 
+0343: # ============================================================
+0344: # Stage5 acceptance
+
+[RECEIVER 4] lines 492-512
+0492:             "Stage4_posthoc_GMM_selection_allowed":
+0493:                 STAGE4_POSTHOC_GMM_SELECTION_ALLOWED,
+0494:         },
+0495: 
+0496:         "receiver_selection": {
+0497:             "connectivity_semantics":
+0498:                 CONNECTED_VEHICLE_SEMANTICS,
+0499: 
+0500:             "primary_policy":
+0501:                 PRIMARY_RECEIVER_POLICY,
+0502: 
+0503:             "policy_semantics":
+0504:                 PRIMARY_RECEIVER_POLICY_SEMANTICS,
+0505: 
+0506:             "vehicle_class_required":
+0507:                 PRIMARY_RECEIVER_REQUIRES_VEHICLE_CLASS,
+0508: 
+0509:             "current_causal_availability_required":
+0510:                 PRIMARY_RECEIVER_REQUIRES_CURRENT_CAUSAL_AVAILABILITY,
+0511: 
+0512:             "positive_forward_H0_required":
+
+[RECEIVER 5] lines 517-533
+0517: 
+0518:             "future_truth_selector":
+0519:                 FUTURE_TRUTH_IS_RECEIVER_SELECTOR,
+0520: 
+0521:             "perfect_track_ID_control_feature":
+0522:                 PERFECT_TRACK_ID_IS_CONTROL_FEATURE,
+0523: 
+0524:             "no_eligible_receiver":
+0525:                 NO_ELIGIBLE_RECEIVER_POLICY,
+0526:         },
+0527: 
+0528:         "receiver_geometry": {
+0529:             "modes":
+0530:                 list(
+0531:                     RECEIVER_GEOMETRY_MODES
+0532:                 ),
+0533: 
+
+[RECEIVER 6] lines 692-709
+0692:                 FORMAL_TUNING_ALLOWED,
+0693: 
+0694:             "model_selection_allowed":
+0695:                 FORMAL_MODEL_SELECTION_ALLOWED,
+0696: 
+0697:             "recalibration_allowed":
+0698:                 FORMAL_RECALIBRATION_ALLOWED,
+0699: 
+0700:             "receiver_policy_selection_allowed":
+0701:                 FORMAL_RECEIVER_POLICY_SELECTION_ALLOWED,
+0702: 
+0703:             "codebook_selection_allowed":
+0704:                 FORMAL_CODEBOOK_SELECTION_ALLOWED,
+0705: 
+0706:             "threshold_selection_allowed":
+0707:                 FORMAL_THRESHOLD_SELECTION_ALLOWED,
+0708:         },
+0709: 
+
+FILE = /home/agni/waymo/iscai_stage5/src/iscai_stage5/receiver_policy.py
+
+[RECEIVER 1] lines 1-17
+0001: from __future__ import annotations
+0002: 
+0003: 
+0004: RECEIVER_POLICY_STATUS = (
+0005:     "FROZEN"
+0006: )
+0007: 
+0008: PRIMARY_POLICY = (
+0009:     "nearest_causal_vehicle_ahead"
+0010: )
+0011: 
+0012: CONNECTIVITY_SEMANTICS = (
+0013:     "constructed_hypothetical_connected_vehicle"
+0014: )
+0015: 
+0016: MINIMUM_FORWARD_H0_M = (
+0017:     0.0
+
+[RECEIVER 2] lines 79-101
+0079:     False
+0080: )
+0081: 
+0082: NO_ELIGIBLE_RECEIVER_STATE = (
+0083:     "NO_ELIGIBLE_RECEIVER"
+0084: )
+0085: 
+0086: 
+0087: def receiver_policy_dict():
+0088:     return {
+0089:         "status":
+0090:             RECEIVER_POLICY_STATUS,
+0091: 
+0092:         "primary_policy":
+0093:             PRIMARY_POLICY,
+0094: 
+0095:         "connectivity_semantics":
+0096:             CONNECTIVITY_SEMANTICS,
+0097: 
+0098:         "minimum_forward_H0_m":
+0099:             MINIMUM_FORWARD_H0_M,
+0100: 
+0101:         "max_planar_range_m":
+
+FILE = /home/agni/waymo/iscai_stage5/src/iscai_stage5/receiver_selection.py
+
+[RECEIVER 1] lines 1-17
+0001: from __future__ import annotations
+0002: 
+0003: from dataclasses import dataclass
+0004: import math
+0005: from typing import Sequence
+0006: 
+0007: 
+0008: PRIMARY_POLICY = (
+0009:     "nearest_causal_vehicle_ahead"
+0010: )
+0011: 
+0012: CONNECTIVITY_SEMANTICS = (
+0013:     "constructed_hypothetical_connected_vehicle"
+0014: )
+0015: 
+0016: NO_ELIGIBLE_RECEIVER = (
+0017:     "NO_ELIGIBLE_RECEIVER"
+
+[RECEIVER 2] lines 90-106
+0090:     planar_range_m: float | None
+0091: 
+0092:     forward_h0_m: float | None
+0093: 
+0094:     lateral_h0_m: float | None
+0095: 
+0096:     eligible_candidate_count: int
+0097: 
+0098:     primary_policy: str = PRIMARY_POLICY
+0099: 
+0100:     connectivity_semantics: str = (
+0101:         CONNECTIVITY_SEMANTICS
+0102:     )
+0103: 
+0104: 
+0105: def normalize_semantic_class(
+0106:     value: str,
+
+============================================================
+I. PRE-FORMAL COVERAGE ACCEPTANCE DEBT
+============================================================
+Block5.2 remaining fields = ['codebook_angular_support', 'formal_empirical_coverage_tolerance', 'K_max', 'hysteresis_parameters', 'beam_switch_penalty', 'local_neighbour_sweep_width', 'fallback_parameters', 'reacquisition_parameters']
+formal empirical coverage tolerance pending = True
+formal empirical coverage metrics computed = NO
+post-hoc threshold selection = NO
+
+============================================================
+BLOCK 5.8 EXACT ROUTE SEMANTICS FINAL
+============================================================
+formal N=120 manifest SHA     = PASS
+formal neural artifact SHA    = PASS
+formal cache manifest SHA     = PASS
+scenario identity key         = False
+track identity key            = False
+Gaussian mean key             = True
+Gaussian scale/covariance key = True
+schema mapping candidate      = False
+coverage tolerance debt       = True
+formal metrics computed       = NO
+Stage4 inference              = NO
+Stage5 formal controller      = NOT RUN
+STATUS = PASS_ROUTE_SEMANTICS_EXTRACTED
+route decision = PENDING SEMANTIC REVIEW
+report = /home/agni/waymo/iscai_stage5/artifacts/block58/exact_formal_route_semantics.json
+terminal remains open = YES
+
+resolver raw code = 0
+terminal remains open = YES

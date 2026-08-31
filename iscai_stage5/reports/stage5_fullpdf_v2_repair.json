@@ -1,0 +1,55 @@
+{
+  "Stage4_calibration_reapplied": false,
+  "Stage4_recalibration": false,
+  "Stage4_retraining": false,
+  "Stage6_allowed": false,
+  "files": {
+    "Stage4_handoff": {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/stage4_to_stage5_handoff_fullpdf_v2.json",
+      "sha256": "7b1d2f8903f8ea27fe7567559a2b868beebe9d834ee0a602155335339f6e204b"
+    },
+    "protocol": {
+      "path": "/home/agni/waymo/iscai_stage5/configs/stage5_fullpdf_v2_protocol.json",
+      "sha256": "91dec3cc3d3a7b72385f012d1d2bfdb8981a497e1344f585d38f3e05f2e4fa5a"
+    },
+    "runtime": {
+      "path": "/home/agni/waymo/iscai_stage5/src/iscai_stage5/fullpdf_v2.py",
+      "sha256": "e57708e9332bb40e84f18270e483d91165e26c149b80e82c8f10b4df44376249"
+    },
+    "tests": {
+      "path": "/home/agni/waymo/iscai_stage5/tests/test_stage5_fullpdf_v2.py",
+      "sha256": "da4fae28efb23356a0154d1503c4b2f1fa9bc3621793f5362469dfdcecd4d702"
+    }
+  },
+  "formal_evaluation_run": false,
+  "full_regression": "PASS",
+  "next": "independent Stage5 Full-PDF V2 formal checker 2/2",
+  "repair": "fullpdf_v2_1_of_2",
+  "repairs": {
+    "adaptive_targets": [
+      0.9,
+      0.95,
+      0.975,
+      0.99
+    ],
+    "all_evaluated_beams_charged": true,
+    "azimuth_edge_clipping": false,
+    "centroid_known_uncertain": true,
+    "exhaustive_loss_of_lock": true,
+    "free_link_probes": false,
+    "hysteresis": true,
+    "known_receiver": "rear_face_center",
+    "latency_contract_retained": true,
+    "local_neighbor_recovery": true,
+    "optical_chain_retained": true,
+    "outside_support_mass_explicit": true,
+    "previous_beam_persistence": true,
+    "receiver_geometry_distinct": true,
+    "receiver_uncertainty_integrated": true,
+    "uncertain_receiver": "uniform_rear_face",
+    "widened_fallback_real_geometry": true
+  },
+  "stage": 5,
+  "status": "REPAIRED_AND_FROZEN_PRE_FORMAL",
+  "targeted_tests": "PASS"
+}

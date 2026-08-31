@@ -1,0 +1,149 @@
+{
+  "block": "6.6-Part3C-Part2of2",
+  "frozen_random_route": {
+    "N_MC": 8192,
+    "full_box_kernel_sha256": "51daeab95713d6e7d2738ced466be4844b73dce70a09138b2b769de880462995",
+    "kernel_modification_permitted": false,
+    "new_seed_permitted": false,
+    "occupancy_kernel_sha256": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e",
+    "posterior_sha256": "f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd",
+    "same_seed_per_actor": true,
+    "sampler": "exact frozen product-of-horizon Gaussian sampler / PCG64 route",
+    "seed": 20260821
+  },
+  "mandatory_pre_use_parity": {
+    "approximate_parity_permitted": false,
+    "rule": "For every replayed vehicle, exact full-box occupancy_counts reconstructed by the frozen kernel MUST be np.array_equal to the already persisted canonical uint32 occupancy_counts.",
+    "stop_on_first_failure": true,
+    "surrogate_evidence_may_be_used_only_after_parity": true,
+    "tolerance": null
+  },
+  "persistence": {
+    "dense_samplewise_arrays_persisted": false,
+    "per_actor_evidence": "deterministic samplewise projection hash + horizon summaries",
+    "working_cache_resumable": true
+  },
+  "reason": "Part2C2B persisted canonical uint32 full-box occupancy counts but did not persist samplewise trajectory/headings. Vehicle subregion evidence therefore requires deterministic reconstruction of the same frozen PRNG realization.",
+  "replay_population": {
+    "all_classes_replayed": false,
+    "eligible_predictive_vehicles": 719,
+    "vehicle_only_reason": "geometry-based front-upper/rear-upper surrogate requirement is vehicle-specific"
+  },
+  "scientific_boundaries": {
+    "formal_outcomes_read": false,
+    "future_GT_controller_input": false,
+    "new_model_forward": false,
+    "new_random_seed": false,
+    "new_stochastic_realization": false,
+    "numeric_policy_selection": false,
+    "policy_sweep": false,
+    "recalibration": false,
+    "retraining": false
+  },
+  "stage": 6,
+  "status": "FROZEN_BEFORE_DETERMINISTIC_VEHICLE_REPLAY",
+  "upstream": {
+    "P_occ_manifest": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c2b_eligible_actor_pocc_manifest.jsonl",
+      "sha256": "c361ed640b91850831d7e7177d89733fedd3e171f5f3111bcd93698c74a4a300"
+    },
+    "Part3B_preregistration": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json",
+      "sha256": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e"
+    },
+    "Part3C1_report": {
+      "path": "/home/agni/waymo/iscai_stage6/reports/block66_part3c1_class_aware_runtime.json",
+      "sha256": "ef4c18367dfe26ceac3a7f55f725f5450c7a3a0fd28811aa565472d9b06073a2"
+    },
+    "Part3C2A_audit": {
+      "path": "/home/agni/waymo/iscai_stage6/reports/block66_part3c2a_vehicle_surrogate_route_binding_audit.json",
+      "sha256": "e2372c70d353f7122a91e514853ac1e823245e5ca1cfbf6d9eac5673ad550026"
+    },
+    "Part3C2B0_audit": {
+      "path": "/home/agni/waymo/iscai_stage6/reports/block66_part3c2b0_persistence_sufficiency_audit.json",
+      "sha256": "2f4fedacaf306b936e96448ea19fb315f9e6db7a95afb3607618099153c38b8d"
+    },
+    "class_aware_module": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/class_aware_policy.py",
+      "sha256": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b"
+    },
+    "class_aware_tests": {
+      "path": "/home/agni/waymo/iscai_stage6/tests/test_block66_part3c1_class_aware_policy.py",
+      "sha256": "e94b16cf289a5f07edd3490bf4cc2b6ab01f03dfd14f926850d2b6c1ae89490d"
+    },
+    "eligible_predictive_matches": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_predictive_matches.jsonl",
+      "sha256": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6"
+    },
+    "fullbox_module": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_full_box.py",
+      "sha256": "51daeab95713d6e7d2738ced466be4844b73dce70a09138b2b769de880462995"
+    },
+    "illumination": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/illumination.py",
+      "sha256": "daeb96029ff6e1720d17cd20d3e8f00155c566eeecec3b3726f4adcc8b05d832"
+    },
+    "numeric_freeze": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/block64_mc_grid_numeric_freeze.json",
+      "sha256": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73"
+    },
+    "occupancy_module": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_occupancy.py",
+      "sha256": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e"
+    },
+    "part_a_reactive": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/part_a_reactive.py",
+      "sha256": "19f80f325aebc03b5257ca3c0408d1ddea1ac3a8ff4ad875914224584e2ef173"
+    },
+    "persistence_contract": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/block66_part2c2b_pocc_persistence_contract.json",
+      "sha256": "2777e25003a2c76d506609130e7927501f15a868fa6ec37dfd192bbb58ea79e5"
+    },
+    "posterior": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_identity_safe_gaussian_posterior.jsonl",
+      "sha256": "f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd"
+    },
+    "predictive_mask": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/predictive_mask.py",
+      "sha256": "239611ddb1cc21b9ddd46962eb561e58e0d1474be58878f9c79c256ba1940575"
+    }
+  },
+  "vehicle_surrogate_semantics": {
+    "actual_mirror_annotation_claim": false,
+    "actual_windshield_annotation_claim": false,
+    "controller_primary_occupancy_remains": "full-box P_occ",
+    "oncoming_fractional_bounds": {
+      "x": [
+        0.0,
+        0.5
+      ],
+      "y": [
+        -0.5,
+        0.5
+      ],
+      "z": [
+        0.0,
+        0.5
+      ]
+    },
+    "oncoming_region": "front-upper geometry surrogate",
+    "oncoming_rule": "cos(predicted_sample_heading_H0_rad) < 0",
+    "preceding_fractional_bounds": {
+      "x": [
+        -0.5,
+        0.0
+      ],
+      "y": [
+        -0.5,
+        0.5
+      ],
+      "z": [
+        0.0,
+        0.5
+      ]
+    },
+    "preceding_region": "rear-upper geometry surrogate",
+    "preceding_rule": "cos(predicted_sample_heading_H0_rad) >= 0",
+    "vertical_pixel_actuation_claim": false
+  }
+}

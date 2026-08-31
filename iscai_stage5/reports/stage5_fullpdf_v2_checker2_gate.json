@@ -1,0 +1,2757 @@
+{
+  "PDF_requirement_evidence_matrix": [
+    {
+      "evidence": "3 receiver modes + already-calibrated Stage4 covariance + receiver uncertainty",
+      "pass": true,
+      "pdf_requirement": "receiver-aware angular posterior"
+    },
+    {
+      "evidence": [
+        16,
+        32,
+        64
+      ],
+      "pass": true,
+      "pdf_requirement": "16/32/64 directional codebooks"
+    },
+    {
+      "evidence": "minimum_beam_set_reaching_requested_mass",
+      "pass": true,
+      "pdf_requirement": "adaptive minimum Top-K probability mass"
+    },
+    {
+      "evidence": [
+        0.9,
+        0.95,
+        0.975,
+        0.99
+      ],
+      "pass": true,
+      "pdf_requirement": "90/95/97.5/99 percent targets"
+    },
+    {
+      "evidence": {
+        "azimuth_clipping": false,
+        "azimuth_support_deg": [
+          -12.0,
+          12.0
+        ],
+        "outside_support_mass": "explicit",
+        "sizes": [
+          16,
+          32,
+          64
+        ],
+        "support_semantics": "constructed_PartA_visualization_FOV_assumption"
+      },
+      "pass": true,
+      "pdf_requirement": "explicit outside-FOV probability"
+    },
+    {
+      "evidence": {
+        "exhaustive_loss_of_lock": true,
+        "hysteresis": true,
+        "local_neighbor_recovery": true,
+        "persistence": true,
+        "widened_fallback": true
+      },
+      "pass": true,
+      "pdf_requirement": "persistence/hysteresis/recovery"
+    },
+    {
+      "evidence": {
+        "formal_free_probe": [],
+        "protocol": {
+          "all_evaluated_beams_charged": true,
+          "coverage_targets": [
+            0.9,
+            0.95,
+            0.975,
+            0.99
+          ],
+          "free_hidden_probes": false,
+          "hysteresis": "retain_previous_primary_if_still_in_current_mass_covering_set",
+          "local_neighbor_sweep": "immediate_adjacent_cells_on_recovery",
+          "loss_of_lock": "full_exhaustive_base_codebook",
+          "nominal": 0.95,
+          "persistence": true,
+          "rule": "minimum_beam_set_reaching_requested_mass",
+          "widened_fallback": "actual_next_coarser_beam_geometry; coarsest_uses_union_of_local_cells"
+        }
+      },
+      "pass": true,
+      "pdf_requirement": "all evaluated beams charged"
+    },
+    {
+      "evidence": {
+        "combo_latency_missing": 144,
+        "probe_count_source": "exact_actual_probe_plan_only"
+      },
+      "pass": false,
+      "pdf_requirement": "latency from actual probing"
+    },
+    {
+      "evidence": {
+        "ber": true,
+        "effective_rate": true,
+        "optical_gain": true,
+        "pointing": true,
+        "received_power": true,
+        "snr": true
+      },
+      "pass": true,
+      "pdf_requirement": "optical pointing→gain→power→SNR→BER→rate"
+    },
+    {
+      "evidence": null,
+      "pass": false,
+      "pdf_requirement": "adaptive requested empirical coverage"
+    },
+    {
+      "evidence": null,
+      "pass": false,
+      "pdf_requirement": "reduced probing overhead"
+    },
+    {
+      "evidence": {
+        "decision_ledger": [
+          {
+            "path": "evidence.G14_decision_ledger_sealed_before_truth.sha256",
+            "sha256": "751703975b3fc837cc1cf660cf1321db5768323d6cf2fbef524d05a3dbb48af4"
+          }
+        ],
+        "exact_repeat": {
+          "path": "gates.G13_two_exact_repeat_causal_decision_passes",
+          "value": true
+        },
+        "future_truth_after": null
+      },
+      "pass": false,
+      "pdf_requirement": "causal exact-repeat decisions before evaluator truth"
+    },
+    {
+      "evidence": {
+        "Stage4_calibration_reapplied": false,
+        "formal_parameter_tuning": false,
+        "runtime_bad_calibrator_calls": []
+      },
+      "pass": true,
+      "pdf_requirement": "no Stage4 recalibration/retraining/formal tuning"
+    },
+    {
+      "evidence": {
+        "expected": 144,
+        "found": 0
+      },
+      "pass": false,
+      "pdf_requirement": "all 3×3×4×4 formal combinations"
+    }
+  ],
+  "Stage6_allowed": false,
+  "formal": {
+    "codebooks": [
+      16,
+      32,
+      64
+    ],
+    "combination_count_evidenced": 0,
+    "combination_count_expected": 144,
+    "decision_ledger_hash_evidence": [
+      {
+        "path": "evidence.G14_decision_ledger_sealed_before_truth.sha256",
+        "sha256": "751703975b3fc837cc1cf660cf1321db5768323d6cf2fbef524d05a3dbb48af4"
+      }
+    ],
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "probability_targets": [
+      0.9,
+      0.95,
+      0.975,
+      0.99
+    ],
+    "receiver_modes": [
+      "centroid",
+      "known",
+      "uncertain"
+    ],
+    "source_report": "/home/agni/waymo/iscai_stage5/reports/stage5_fullpdf_v2_independent_formal_checker.json",
+    "source_report_sha256": "0256f5459572cb92239538cdd4f84502e87516b38ffb42f79698dca9171a553e"
+  },
+  "frozen_inputs": {
+    "Stage4_prediction_ledger": {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/formal_prediction_ledger_run1.jsonl",
+      "sha256": "2dd3c396d5c365677c41b3a0df6344a7c28d423daaa368dbe466bd4b17b4c2a8"
+    },
+    "frozen_checker": {
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_stage5_fullpdf_v2_independent_formal_checker.py",
+      "sha256": "342344902e6b00cb841036dcdc0e54f1e1ba396344fa602864521890f5eb5da5"
+    },
+    "preformal_addendum": {
+      "path": "/home/agni/waymo/iscai_stage5/configs/stage5_fullpdf_v2_preformal_addendum.json",
+      "sha256": "570fbada05c8e8ed71775bbb6eb668f4016dd65c98b09b4f158abeb379eca6aa"
+    },
+    "pretruth_seal": {
+      "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/checker2_pretruth_seal_superseding_v3.json",
+      "sha256": "28209ad30bd0c4acdd62ca6f43205fd24fb943f7df4f9f61bc6f62a7df10a705"
+    },
+    "protocol": {
+      "path": "/home/agni/waymo/iscai_stage5/configs/stage5_fullpdf_v2_protocol.json",
+      "sha256": "91dec3cc3d3a7b72385f012d1d2bfdb8981a497e1344f585d38f3e05f2e4fa5a"
+    },
+    "runtime": {
+      "path": "/home/agni/waymo/iscai_stage5/src/iscai_stage5/fullpdf_v2.py",
+      "sha256": "e57708e9332bb40e84f18270e483d91165e26c149b80e82c8f10b4df44376249"
+    }
+  },
+  "mandatory_failures": [
+    "frozen formal checker process completed",
+    "future truth accessed only after decisions are sealed",
+    "all receiver×codebook×horizon×target combinations evaluated",
+    "empirical coverage measured for every formal combination",
+    "actual charged probing overhead measured for every combination",
+    "beam probing/decision latency measured for every combination",
+    "DPSK BER measured for every combination",
+    "effective optical rate measured for every combination",
+    "frozen requested-coverage acceptance gate passes",
+    "frozen overhead-reduction acceptance gate passes",
+    "PDF: latency from actual probing",
+    "PDF: adaptive requested empirical coverage",
+    "PDF: reduced probing overhead",
+    "PDF: causal exact-repeat decisions before evaluator truth",
+    "PDF: all 3×3×4×4 formal combinations"
+  ],
+  "regression": {
+    "status": "PASS",
+    "tests_expected": 271,
+    "tests_passed": 271
+  },
+  "requirement_matrix": [
+    {
+      "evidence": "/home/agni/waymo/iscai_stage5/src/iscai_stage5/fullpdf_v2.py",
+      "mandatory": true,
+      "requirement": "required path exists: /home/agni/waymo/iscai_stage5/src/iscai_stage5/fullpdf_v2.py",
+      "status": "PASS"
+    },
+    {
+      "evidence": "/home/agni/waymo/iscai_stage5/configs/stage5_fullpdf_v2_protocol.json",
+      "mandatory": true,
+      "requirement": "required path exists: /home/agni/waymo/iscai_stage5/configs/stage5_fullpdf_v2_protocol.json",
+      "status": "PASS"
+    },
+    {
+      "evidence": "/home/agni/waymo/iscai_stage5/configs/stage5_fullpdf_v2_preformal_addendum.json",
+      "mandatory": true,
+      "requirement": "required path exists: /home/agni/waymo/iscai_stage5/configs/stage5_fullpdf_v2_preformal_addendum.json",
+      "status": "PASS"
+    },
+    {
+      "evidence": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/formal_prediction_ledger_run1.jsonl",
+      "mandatory": true,
+      "requirement": "required path exists: /home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/formal_prediction_ledger_run1.jsonl",
+      "status": "PASS"
+    },
+    {
+      "evidence": "/home/agni/waymo/iscai_stage5/scripts/run_stage5_fullpdf_v2_independent_formal_checker.py",
+      "mandatory": true,
+      "requirement": "required path exists: /home/agni/waymo/iscai_stage5/scripts/run_stage5_fullpdf_v2_independent_formal_checker.py",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "actual": "e57708e9332bb40e84f18270e483d91165e26c149b80e82c8f10b4df44376249",
+        "expected": "e57708e9332bb40e84f18270e483d91165e26c149b80e82c8f10b4df44376249"
+      },
+      "mandatory": true,
+      "requirement": "frozen SHA256: runtime",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "actual": "91dec3cc3d3a7b72385f012d1d2bfdb8981a497e1344f585d38f3e05f2e4fa5a",
+        "expected": "91dec3cc3d3a7b72385f012d1d2bfdb8981a497e1344f585d38f3e05f2e4fa5a"
+      },
+      "mandatory": true,
+      "requirement": "frozen SHA256: protocol",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "actual": "2dd3c396d5c365677c41b3a0df6344a7c28d423daaa368dbe466bd4b17b4c2a8",
+        "expected": "2dd3c396d5c365677c41b3a0df6344a7c28d423daaa368dbe466bd4b17b4c2a8"
+      },
+      "mandatory": true,
+      "requirement": "frozen SHA256: ledger",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "actual": "570fbada05c8e8ed71775bbb6eb668f4016dd65c98b09b4f158abeb379eca6aa",
+        "expected": "570fbada05c8e8ed71775bbb6eb668f4016dd65c98b09b4f158abeb379eca6aa"
+      },
+      "mandatory": true,
+      "requirement": "frozen SHA256: addendum",
+      "status": "PASS"
+    },
+    {
+      "evidence": "FROZEN_BEFORE_STAGE5_V2_FORMAL",
+      "mandatory": true,
+      "requirement": "protocol status frozen before V2 formal",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "Stage4_calibration_reapplied": false,
+        "Stage4_closure_sha256": "01dbc5edcb4c67a56f1042655becf2ac04ed4130bb499f8d0aff6349e7cb0b5e",
+        "Stage4_handoff_sha256": "7b1d2f8903f8ea27fe7567559a2b868beebe9d834ee0a602155335339f6e204b",
+        "Stage4_status": "COMPLETE_FROZEN_FULLPDF_V2",
+        "posterior": "calibrated_full_3D_Gaussian_GRU"
+      },
+      "mandatory": true,
+      "requirement": "Stage4 posterior is calibrated 3D Gaussian",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "Stage4_calibration_reapplied": false,
+        "Stage4_closure_sha256": "01dbc5edcb4c67a56f1042655becf2ac04ed4130bb499f8d0aff6349e7cb0b5e",
+        "Stage4_handoff_sha256": "7b1d2f8903f8ea27fe7567559a2b868beebe9d834ee0a602155335339f6e204b",
+        "Stage4_status": "COMPLETE_FROZEN_FULLPDF_V2",
+        "posterior": "calibrated_full_3D_Gaussian_GRU"
+      },
+      "mandatory": true,
+      "requirement": "Stage4 calibration is NOT reapplied",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "declared_assumption": true,
+        "known": "rear_face_center",
+        "known_offset_body": "[-length/2, 0, 0]",
+        "measured_receiver_placement": false,
+        "modes": [
+          "centroid",
+          "known",
+          "uncertain"
+        ],
+        "uncertain_covariance_body": "diag(0,width^2/12,height^2/12)",
+        "uncertain_distribution": "x=-length/2; y~U[-width/2,width/2]; z~U[-height/2,height/2]",
+        "uncertain_mean_body": "[-length/2,0,0]"
+      },
+      "mandatory": true,
+      "requirement": "receiver modes exact",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "azimuth_clipping": false,
+        "azimuth_support_deg": [
+          -12.0,
+          12.0
+        ],
+        "outside_support_mass": "explicit",
+        "sizes": [
+          16,
+          32,
+          64
+        ],
+        "support_semantics": "constructed_PartA_visualization_FOV_assumption"
+      },
+      "mandatory": true,
+      "requirement": "codebooks exact 16/32/64",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "all_evaluated_beams_charged": true,
+        "coverage_targets": [
+          0.9,
+          0.95,
+          0.975,
+          0.99
+        ],
+        "free_hidden_probes": false,
+        "hysteresis": "retain_previous_primary_if_still_in_current_mass_covering_set",
+        "local_neighbor_sweep": "immediate_adjacent_cells_on_recovery",
+        "loss_of_lock": "full_exhaustive_base_codebook",
+        "nominal": 0.95,
+        "persistence": true,
+        "rule": "minimum_beam_set_reaching_requested_mass",
+        "widened_fallback": "actual_next_coarser_beam_geometry; coarsest_uses_union_of_local_cells"
+      },
+      "mandatory": true,
+      "requirement": "probability targets exact",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "azimuth_clipping": false,
+        "azimuth_support_deg": [
+          -12.0,
+          12.0
+        ],
+        "outside_support_mass": "explicit",
+        "sizes": [
+          16,
+          32,
+          64
+        ],
+        "support_semantics": "constructed_PartA_visualization_FOV_assumption"
+      },
+      "mandatory": true,
+      "requirement": "outside-FOV mass explicit; no clipping",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "all_evaluated_beams_charged": true,
+        "coverage_targets": [
+          0.9,
+          0.95,
+          0.975,
+          0.99
+        ],
+        "free_hidden_probes": false,
+        "hysteresis": "retain_previous_primary_if_still_in_current_mass_covering_set",
+        "local_neighbor_sweep": "immediate_adjacent_cells_on_recovery",
+        "loss_of_lock": "full_exhaustive_base_codebook",
+        "nominal": 0.95,
+        "persistence": true,
+        "rule": "minimum_beam_set_reaching_requested_mass",
+        "widened_fallback": "actual_next_coarser_beam_geometry; coarsest_uses_union_of_local_cells"
+      },
+      "mandatory": true,
+      "requirement": "all evaluated beams charged",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "completion": [
+          "requested_empirical_coverage",
+          "reduced_overhead_vs_fixed_or_exhaustive"
+        ],
+        "parameter_tuning_on_formal": false,
+        "run_in_repair": false
+      },
+      "mandatory": true,
+      "requirement": "formal parameter tuning forbidden",
+      "status": "PASS"
+    },
+    {
+      "evidence": [
+        "/home/agni/waymo/iscai_stage4/reports/stage4_fullpdf_v2_final_closure.json"
+      ],
+      "mandatory": true,
+      "requirement": "Stage4 Full-PDF V2 closure provenance hash found",
+      "status": "PASS"
+    },
+    {
+      "evidence": [
+        "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/stage4_to_stage5_handoff_fullpdf_v2.json"
+      ],
+      "mandatory": true,
+      "requirement": "Stage4→Stage5 V2 handoff provenance hash found",
+      "status": "PASS"
+    },
+    {
+      "evidence": [],
+      "mandatory": true,
+      "requirement": "V2 runtime has no second Stage4 calibrator call",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "missing": [],
+        "required": [
+          "already_calibrated_predictive_covariance",
+          "outside_support_probability",
+          "adaptive_topk",
+          "local_neighbor_recovery",
+          "widened_fallback",
+          "exhaustive_loss_of_lock",
+          "best_link_over_probed_beams"
+        ]
+      },
+      "mandatory": true,
+      "requirement": "V2 recovery/no-free-probe runtime mechanisms present",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "bad_rows": [],
+        "rows": 3952
+      },
+      "mandatory": true,
+      "requirement": "Stage4 ledger schema valid",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "failure_count": 0,
+        "failures": []
+      },
+      "mandatory": true,
+      "requirement": "Stage4 causal input contract valid for every ledger row",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "failure_count": 0,
+        "failures": []
+      },
+      "mandatory": true,
+      "requirement": "Stage4 calibrated predictive covariance is finite SPD",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "composite_unique": 3952,
+        "duplicate_composite": 0,
+        "note": "prediction_id alone is intentionally not treated as a global key",
+        "rows": 3952
+      },
+      "mandatory": true,
+      "requirement": "prediction identity uses unique (scenario_id,prediction_id)",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "formal_rank_count": 120,
+        "scenario_count": 120
+      },
+      "mandatory": true,
+      "requirement": "formal ledger spans 120 scenarios",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "expected_tests": 271,
+        "returncode": 0,
+        "tests": 271
+      },
+      "mandatory": true,
+      "requirement": "full Stage5 regression",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "after": "5e77d678af188d3f0b34b84ab53ddc78fc1b2921c6bea573dd9722c439c63599",
+        "before": "5e77d678af188d3f0b34b84ab53ddc78fc1b2921c6bea573dd9722c439c63599"
+      },
+      "mandatory": true,
+      "requirement": "post-formal immutable hash: checker2",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "after": "342344902e6b00cb841036dcdc0e54f1e1ba396344fa602864521890f5eb5da5",
+        "before": "342344902e6b00cb841036dcdc0e54f1e1ba396344fa602864521890f5eb5da5"
+      },
+      "mandatory": true,
+      "requirement": "post-formal immutable hash: frozen_checker",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "after": "e57708e9332bb40e84f18270e483d91165e26c149b80e82c8f10b4df44376249",
+        "before": "e57708e9332bb40e84f18270e483d91165e26c149b80e82c8f10b4df44376249"
+      },
+      "mandatory": true,
+      "requirement": "post-formal immutable hash: runtime",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "after": "91dec3cc3d3a7b72385f012d1d2bfdb8981a497e1344f585d38f3e05f2e4fa5a",
+        "before": "91dec3cc3d3a7b72385f012d1d2bfdb8981a497e1344f585d38f3e05f2e4fa5a"
+      },
+      "mandatory": true,
+      "requirement": "post-formal immutable hash: protocol",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "after": "570fbada05c8e8ed71775bbb6eb668f4016dd65c98b09b4f158abeb379eca6aa",
+        "before": "570fbada05c8e8ed71775bbb6eb668f4016dd65c98b09b4f158abeb379eca6aa"
+      },
+      "mandatory": true,
+      "requirement": "post-formal immutable hash: addendum",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "after": "2dd3c396d5c365677c41b3a0df6344a7c28d423daaa368dbe466bd4b17b4c2a8",
+        "before": "2dd3c396d5c365677c41b3a0df6344a7c28d423daaa368dbe466bd4b17b4c2a8"
+      },
+      "mandatory": true,
+      "requirement": "post-formal immutable hash: ledger",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "actual": "01dbc5edcb4c67a56f1042655becf2ac04ed4130bb499f8d0aff6349e7cb0b5e",
+        "expected": "01dbc5edcb4c67a56f1042655becf2ac04ed4130bb499f8d0aff6349e7cb0b5e"
+      },
+      "mandatory": true,
+      "requirement": "Stage4 frozen upstream unchanged: /home/agni/waymo/iscai_stage4/reports/stage4_fullpdf_v2_final_closure.json",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "actual": "7b1d2f8903f8ea27fe7567559a2b868beebe9d834ee0a602155335339f6e204b",
+        "expected": "7b1d2f8903f8ea27fe7567559a2b868beebe9d834ee0a602155335339f6e204b"
+      },
+      "mandatory": true,
+      "requirement": "Stage4 frozen upstream unchanged: /home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/stage4_to_stage5_handoff_fullpdf_v2.json",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "log": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/checker2_frozen_checker.log",
+        "returncode": 2
+      },
+      "mandatory": true,
+      "requirement": "frozen formal checker process completed",
+      "status": "FAIL"
+    },
+    {
+      "evidence": "/home/agni/waymo/iscai_stage5/reports/stage5_fullpdf_v2_independent_formal_checker.json",
+      "mandatory": true,
+      "requirement": "formal checker report exists",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "path": "gates.G13_two_exact_repeat_causal_decision_passes",
+        "value": true
+      },
+      "mandatory": true,
+      "requirement": "two causal decision passes are exact-repeat",
+      "status": "PASS"
+    },
+    {
+      "evidence": [
+        {
+          "path": "evidence.G14_decision_ledger_sealed_before_truth.sha256",
+          "sha256": "751703975b3fc837cc1cf660cf1321db5768323d6cf2fbef524d05a3dbb48af4"
+        }
+      ],
+      "mandatory": true,
+      "requirement": "decision ledger has cryptographic seal/hash",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "path": "decision_ledger_sealed",
+        "value": true
+      },
+      "mandatory": true,
+      "requirement": "decision ledger sealed before evaluator truth",
+      "status": "PASS"
+    },
+    {
+      "evidence": null,
+      "mandatory": true,
+      "requirement": "future truth accessed only after decisions are sealed",
+      "status": "FAIL"
+    },
+    {
+      "evidence": {
+        "expected": 144,
+        "found": 0,
+        "missing": [
+          [
+            "centroid",
+            16,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.99
+          ],
+          [
+            "known",
+            16,
+            0.1,
+            0.9
+          ],
+          [
+            "known",
+            16,
+            0.1,
+            0.95
+          ]
+        ]
+      },
+      "mandatory": true,
+      "requirement": "all receiver×codebook×horizon×target combinations evaluated",
+      "status": "FAIL"
+    },
+    {
+      "evidence": {
+        "missing": [
+          [
+            "centroid",
+            16,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.99
+          ],
+          [
+            "known",
+            16,
+            0.1,
+            0.9
+          ],
+          [
+            "known",
+            16,
+            0.1,
+            0.95
+          ]
+        ],
+        "missing_count": 144
+      },
+      "mandatory": true,
+      "requirement": "empirical coverage measured for every formal combination",
+      "status": "FAIL"
+    },
+    {
+      "evidence": {
+        "missing": [
+          [
+            "centroid",
+            16,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.99
+          ],
+          [
+            "known",
+            16,
+            0.1,
+            0.9
+          ],
+          [
+            "known",
+            16,
+            0.1,
+            0.95
+          ]
+        ],
+        "missing_count": 144
+      },
+      "mandatory": true,
+      "requirement": "actual charged probing overhead measured for every combination",
+      "status": "FAIL"
+    },
+    {
+      "evidence": {
+        "missing": [
+          [
+            "centroid",
+            16,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.99
+          ],
+          [
+            "known",
+            16,
+            0.1,
+            0.9
+          ],
+          [
+            "known",
+            16,
+            0.1,
+            0.95
+          ]
+        ],
+        "missing_count": 144
+      },
+      "mandatory": true,
+      "requirement": "beam probing/decision latency measured for every combination",
+      "status": "FAIL"
+    },
+    {
+      "evidence": {
+        "missing": [
+          [
+            "centroid",
+            16,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.99
+          ],
+          [
+            "known",
+            16,
+            0.1,
+            0.9
+          ],
+          [
+            "known",
+            16,
+            0.1,
+            0.95
+          ]
+        ],
+        "missing_count": 144
+      },
+      "mandatory": true,
+      "requirement": "DPSK BER measured for every combination",
+      "status": "FAIL"
+    },
+    {
+      "evidence": {
+        "missing": [
+          [
+            "centroid",
+            16,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            16,
+            1.0,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            32,
+            1.0,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.1,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.3,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            0.5,
+            0.99
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.9
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.95
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.975
+          ],
+          [
+            "centroid",
+            64,
+            1.0,
+            0.99
+          ],
+          [
+            "known",
+            16,
+            0.1,
+            0.9
+          ],
+          [
+            "known",
+            16,
+            0.1,
+            0.95
+          ]
+        ],
+        "missing_count": 144
+      },
+      "mandatory": true,
+      "requirement": "effective optical rate measured for every combination",
+      "status": "FAIL"
+    },
+    {
+      "evidence": null,
+      "mandatory": true,
+      "requirement": "frozen requested-coverage acceptance gate passes",
+      "status": "FAIL"
+    },
+    {
+      "evidence": null,
+      "mandatory": true,
+      "requirement": "frozen overhead-reduction acceptance gate passes",
+      "status": "FAIL"
+    },
+    {
+      "evidence": {
+        "explicit_gate": {
+          "path": "evidence.G03_protocol_preoutcome_freeze.adaptive_TopK.all_evaluated_beams_charged",
+          "value": true
+        },
+        "free_probe_values": []
+      },
+      "mandatory": true,
+      "requirement": "no hidden/free evaluated probes",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "exhaustive_loss_of_lock": true,
+        "hysteresis": true,
+        "local_neighbor_recovery": true,
+        "persistence": true,
+        "widened_fallback": true
+      },
+      "mandatory": true,
+      "requirement": "persistence/hysteresis/recovery/fallback mechanisms present and regression-tested",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "ber": true,
+        "effective_rate": true,
+        "optical_gain": true,
+        "pointing": true,
+        "received_power": true,
+        "snr": true
+      },
+      "mandatory": true,
+      "requirement": "full optical pointing→gain→power→SNR→DPSK BER→effective-rate chain evidenced",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "protocol_uncertain_distribution": "x=-length/2; y~U[-width/2,width/2]; z~U[-height/2,height/2]",
+        "receiver_modes": [
+          "centroid",
+          "known",
+          "uncertain"
+        ]
+      },
+      "mandatory": true,
+      "requirement": "uncertain receiver-placement mode formally evaluated",
+      "status": "PASS"
+    },
+    {
+      "evidence": "3 receiver modes + already-calibrated Stage4 covariance + receiver uncertainty",
+      "mandatory": true,
+      "requirement": "PDF: receiver-aware angular posterior",
+      "status": "PASS"
+    },
+    {
+      "evidence": [
+        16,
+        32,
+        64
+      ],
+      "mandatory": true,
+      "requirement": "PDF: 16/32/64 directional codebooks",
+      "status": "PASS"
+    },
+    {
+      "evidence": "minimum_beam_set_reaching_requested_mass",
+      "mandatory": true,
+      "requirement": "PDF: adaptive minimum Top-K probability mass",
+      "status": "PASS"
+    },
+    {
+      "evidence": [
+        0.9,
+        0.95,
+        0.975,
+        0.99
+      ],
+      "mandatory": true,
+      "requirement": "PDF: 90/95/97.5/99 percent targets",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "azimuth_clipping": false,
+        "azimuth_support_deg": [
+          -12.0,
+          12.0
+        ],
+        "outside_support_mass": "explicit",
+        "sizes": [
+          16,
+          32,
+          64
+        ],
+        "support_semantics": "constructed_PartA_visualization_FOV_assumption"
+      },
+      "mandatory": true,
+      "requirement": "PDF: explicit outside-FOV probability",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "exhaustive_loss_of_lock": true,
+        "hysteresis": true,
+        "local_neighbor_recovery": true,
+        "persistence": true,
+        "widened_fallback": true
+      },
+      "mandatory": true,
+      "requirement": "PDF: persistence/hysteresis/recovery",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "formal_free_probe": [],
+        "protocol": {
+          "all_evaluated_beams_charged": true,
+          "coverage_targets": [
+            0.9,
+            0.95,
+            0.975,
+            0.99
+          ],
+          "free_hidden_probes": false,
+          "hysteresis": "retain_previous_primary_if_still_in_current_mass_covering_set",
+          "local_neighbor_sweep": "immediate_adjacent_cells_on_recovery",
+          "loss_of_lock": "full_exhaustive_base_codebook",
+          "nominal": 0.95,
+          "persistence": true,
+          "rule": "minimum_beam_set_reaching_requested_mass",
+          "widened_fallback": "actual_next_coarser_beam_geometry; coarsest_uses_union_of_local_cells"
+        }
+      },
+      "mandatory": true,
+      "requirement": "PDF: all evaluated beams charged",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "combo_latency_missing": 144,
+        "probe_count_source": "exact_actual_probe_plan_only"
+      },
+      "mandatory": true,
+      "requirement": "PDF: latency from actual probing",
+      "status": "FAIL"
+    },
+    {
+      "evidence": {
+        "ber": true,
+        "effective_rate": true,
+        "optical_gain": true,
+        "pointing": true,
+        "received_power": true,
+        "snr": true
+      },
+      "mandatory": true,
+      "requirement": "PDF: optical pointing→gain→power→SNR→BER→rate",
+      "status": "PASS"
+    },
+    {
+      "evidence": null,
+      "mandatory": true,
+      "requirement": "PDF: adaptive requested empirical coverage",
+      "status": "FAIL"
+    },
+    {
+      "evidence": null,
+      "mandatory": true,
+      "requirement": "PDF: reduced probing overhead",
+      "status": "FAIL"
+    },
+    {
+      "evidence": {
+        "decision_ledger": [
+          {
+            "path": "evidence.G14_decision_ledger_sealed_before_truth.sha256",
+            "sha256": "751703975b3fc837cc1cf660cf1321db5768323d6cf2fbef524d05a3dbb48af4"
+          }
+        ],
+        "exact_repeat": {
+          "path": "gates.G13_two_exact_repeat_causal_decision_passes",
+          "value": true
+        },
+        "future_truth_after": null
+      },
+      "mandatory": true,
+      "requirement": "PDF: causal exact-repeat decisions before evaluator truth",
+      "status": "FAIL"
+    },
+    {
+      "evidence": {
+        "Stage4_calibration_reapplied": false,
+        "formal_parameter_tuning": false,
+        "runtime_bad_calibrator_calls": []
+      },
+      "mandatory": true,
+      "requirement": "PDF: no Stage4 recalibration/retraining/formal tuning",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "expected": 144,
+        "found": 0
+      },
+      "mandatory": true,
+      "requirement": "PDF: all 3×3×4×4 formal combinations",
+      "status": "FAIL"
+    }
+  ],
+  "scientific_boundary": {
+    "formal_parameter_tuning": false,
+    "future_truth_before_decision": false,
+    "post_outcome_threshold_change": false,
+    "recalibration": false,
+    "retraining": false,
+    "training": false
+  },
+  "stage": 5,
+  "status": "FAIL_CLOSED_FULLPDF_V2_FORMAL",
+  "version": "fullpdf_v2"
+}

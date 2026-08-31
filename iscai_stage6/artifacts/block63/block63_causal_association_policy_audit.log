@@ -1,0 +1,1051 @@
+============================================================
+STAGE 6 — BLOCK 6.3 CAUSAL ASSOCIATION POLICY AUDIT
+REUSE FROZEN STAGE3 POLICY BEFORE INVENTING A NEW GATE
+============================================================
+
+===== A. FROZEN AUDIT CHAIN =====
+block62            = EXACT PASS
+interface          = EXACT PASS
+exact_route        = EXACT PASS
+identity           = EXACT PASS
+direct safe ID       = NO
+causal anchor route  = REQUIRED
+
+===== B. STAGE3 CAUSAL ASSOCIATION DEFINITIONS =====
+relevant definitions = 3
+
+------------------------------------------------------------
+ClassDef _WorkingTrack | line = 30 | SHA256 = c09926ff9ab5e15a03c7c9cd3e80af1a230bbfad4a7b7652dd7031eacc2e3420
+------------------------------------------------------------
+class _WorkingTrack:
+    track_id: str
+
+    history: list[
+        AssociatedDetection
+    ]
+
+    missed_frames: int = 0
+    terminated: bool = False
+
+------------------------------------------------------------
+FunctionDef _history_for_prediction | line = 41 | SHA256 = d007dfc5e656e0e037a781f93f7be6a060858b700ec062bdd0fd0d76d01744fc
+------------------------------------------------------------
+def _history_for_prediction(
+    track: _WorkingTrack,
+):
+    return tuple(
+        (
+            item.timestamp_s,
+            item.detection,
+        )
+        for item in track.history
+    )
+
+------------------------------------------------------------
+FunctionDef associate_estimated_gnn | line = 53 | SHA256 = f2cac99bad1b0d0bb3f087ced958daa1b923f6ef5f743426d3173454fd45b9c5
+------------------------------------------------------------
+def associate_estimated_gnn(
+    sequence: AlgorithmObservationSequence,
+    *,
+    config: AssociationConfig | None = None,
+) -> EstimatedAssociationResult:
+    """
+    Deterministic gated global nearest-neighbor
+    association.
+
+    IMPORTANT:
+    - uses Stage2 algorithm-facing frames only;
+    - does not read evaluator truth;
+    - detection_key is carried through but is
+      never used in association cost;
+    - Stage3 track IDs are newly generated.
+    """
+
+    if config is None:
+        config = AssociationConfig()
+
+    working_tracks: list[
+        _WorkingTrack
+    ] = []
+
+    frame_outputs = []
+
+    next_track_number = 0
+
+    previous_timestamp = None
+
+    for frame_index, frame in enumerate(
+        sequence.frames
+    ):
+        timestamp = frame_timestamp_s(
+            frame
+        )
+
+        if (
+            previous_timestamp is not None
+            and timestamp <= previous_timestamp
+        ):
+            raise ValueError(
+                "Observation frame timestamps "
+                "must be strictly increasing."
+            )
+
+        previous_timestamp = timestamp
+
+        detections = tuple(
+            snapshot_from_detection(d)
+            for d in frame_detections(
+                frame
+            )
+        )
+
+        active_tracks = [
+            track
+            for track in working_tracks
+            if not track.terminated
+        ]
+
+        candidates = []
+
+        for track_index, track in enumerate(
+            active_tracks
+        ):
+            if not track.history:
+                continue
+
+            last = track.history[-1]
+
+            dt_s = (
+                timestamp
+                -
+                last.timestamp_s
+            )
+
+            if dt_s <= 0.0:
+                raise ValueError(
+                    "Association timestamps "
+                    "must increase."
+                )
+
+            predicted = predict_measurement(
+                history=(
+                    _history_for_prediction(
+                        track
+                    )
+                ),
+                target_timestamp_s=timestamp,
+            )
+
+            for detection_index, detection in enumerate(
+                detections
+            ):
+                score = association_cost(
+                    predicted=predicted,
+                    previous=last.detection,
+                    current=detection,
+                    dt_s=dt_s,
+                    config=config,
+                )
+
+                if not score.feasible:
+                    continue
+
+                candidates.append(
+                    (
+                        score.cost,
+                        track.track_id,
+                        detection_index,
+                        track_index,
+                    )
+                )
+
+        candidates.sort(
+            key=lambda x: (
+                x[0],
+                x[1],
+                x[2],
+            )
+        )
+
+        matched_track_indices = set()
+        matched_detection_indices = set()
+
+        assignments = []
+
+        for (
+            _cost,
+            _track_id,
+            detection_index,
+            track_index,
+        ) in candidates:
+            if (
+                track_index
+                in matched_track_indices
+            ):
+                continue
+
+            if (
+                detection_index
+                in matched_detection_indices
+            ):
+                continue
+
+            track = active_tracks[
+                track_index
+            ]
+
+            associated = AssociatedDetection(
+                track_id=track.track_id,
+                frame_index=frame_index,
+                timestamp_s=timestamp,
+                detection=(
+                    detections[
+                        detection_index
+                    ]
+                ),
+            )
+
+            track.history.append(
+                associated
+            )
+
+            track.missed_frames = 0
+
+            matched_track_indices.add(
+                track_index
+            )
+
+            matched_detection_indices.add(
+                detection_index
+            )
+
+            assignments.append(
+                associated
+            )
+
+        for track_index, track in enumerate(
+            active_tracks
+        ):
+            if (
+                track_index
+                in matched_track_indices
+            ):
+                continue
+
+            track.missed_frames += 1
+
+            if (
+                track.missed_frames
+                >
+                config.max_missed_frames
+            ):
+                track.terminated = True
+
+        for detection_index, detection in enumerate(
+            detections
+        ):
+            if (
+                detection_index
+                in matched_detection_indices
+            ):
+                continue
+
+            track_id = (
+                f"s3trk-"
+                f"{next_track_number:06d}"
+            )
+
+            next_track_number += 1
+
+            associated = AssociatedDetection(
+                track_id=track_id,
+                frame_index=frame_index,
+                timestamp_s=timestamp,
+                detection=detection,
+            )
+
+            new_track = _WorkingTrack(
+                track_id=track_id,
+                history=[associated],
+            )
+
+            working_tracks.append(
+                new_track
+            )
+
+            assignments.append(
+                associated
+            )
+
+        assignments.sort(
+            key=lambda x: x.track_id
+        )
+
+        frame_outputs.append(
+            AssociatedFrame(
+                frame_index=frame_index,
+                timestamp_s=timestamp,
+                detections=tuple(
+                    assignments
+                ),
+            )
+        )
+
+    track_outputs = []
+
+    for track in working_tracks:
+        track_outputs.append(
+            AssociatedTrack(
+                track_id=track.track_id,
+                detections=tuple(
+                    track.history
+                ),
+                terminated=(
+                    track.terminated
+                ),
+            )
+        )
+
+    track_outputs.sort(
+        key=lambda x: x.track_id
+    )
+
+    return EstimatedAssociationResult(
+        scenario_id=sequence.scenario_id,
+        frames=tuple(frame_outputs),
+        tracks=tuple(track_outputs),
+        truth_used=False,
+    )
+
+===== C. ASSOCIATION CONFIG / GATE DEFAULTS =====
+
+CLASS = _WorkingTrack
+missed_frames = 0
+
+===== D. DISTANCE / COVARIANCE GATE CONTEXTS =====
+gate contexts = 1
+
+--- gate context 1 (line 59) ---
+0052: 
+0053: def associate_estimated_gnn(
+0054:     sequence: AlgorithmObservationSequence,
+0055:     *,
+0056:     config: AssociationConfig | None = None,
+0057: ) -> EstimatedAssociationResult:
+0058:     """
+0059:     Deterministic gated global nearest-neighbor
+0060:     association.
+0061: 
+0062:     IMPORTANT:
+0063:     - uses Stage2 algorithm-facing frames only;
+0064:     - does not read evaluator truth;
+0065:     - detection_key is carried through but is
+0066:       never used in association cost;
+
+===== E. STAGE3 ASSOCIATION CAUSALITY GATE =====
+forbidden source tokens = []
+truth/future dependency = NONE PASS
+truth_used=False evidence = True
+
+===== F. ASSOCIATION TEST EVIDENCE =====
+
+--- test_association_boundary.py ---
+
+line 16
+0011: 
+0012: class TestAssociationBoundary(
+0013:     unittest.TestCase
+0014: ):
+0015: 
+0016:     def test_association_has_no_truth_dependency(
+0017:         self,
+0018:     ):
+0019:         forbidden = (
+0020:             "DetectionTruthEntry",
+0021:             "DetectionTruthSidecar",
+
+line 20
+0015: 
+0016:     def test_association_has_no_truth_dependency(
+0017:         self,
+0018:     ):
+0019:         forbidden = (
+0020:             "DetectionTruthEntry",
+0021:             "DetectionTruthSidecar",
+0022:             "EvaluatorTruthSequence",
+0023:             "scenario.tracks",
+0024:             "actor_id",
+0025:             "source_track_id",
+
+line 21
+0016:     def test_association_has_no_truth_dependency(
+0017:         self,
+0018:     ):
+0019:         forbidden = (
+0020:             "DetectionTruthEntry",
+0021:             "DetectionTruthSidecar",
+0022:             "EvaluatorTruthSequence",
+0023:             "scenario.tracks",
+0024:             "actor_id",
+0025:             "source_track_id",
+0026:             "object_type",
+
+line 22
+0017:         self,
+0018:     ):
+0019:         forbidden = (
+0020:             "DetectionTruthEntry",
+0021:             "DetectionTruthSidecar",
+0022:             "EvaluatorTruthSequence",
+0023:             "scenario.tracks",
+0024:             "actor_id",
+0025:             "source_track_id",
+0026:             "object_type",
+0027:         )
+
+--- test_association_covariance.py ---
+
+line 21
+0016: from stage2_test_factory import (
+0017:     make_detection,
+0018: )
+0019: 
+0020: 
+0021: class TestAssociationCovariance(
+0022:     unittest.TestCase
+0023: ):
+0024: 
+0025:     def test_larger_covariance_relaxes_gate(
+0026:         self,
+
+line 25
+0020: 
+0021: class TestAssociationCovariance(
+0022:     unittest.TestCase
+0023: ):
+0024: 
+0025:     def test_larger_covariance_relaxes_gate(
+0026:         self,
+0027:     ):
+0028:         previous = snapshot_from_detection(
+0029:             make_detection(
+0030:                 key="p",
+
+line 65
+0060:         )
+0061: 
+0062:         predicted = PredictedMeasurement(
+0063:             range_m=10.0,
+0064:             radial_velocity_mps=0.0,
+0065:             azimuth_rad=0.0,
+0066:             elevation_rad=0.0,
+0067:         )
+0068: 
+0069:         config = AssociationConfig(
+0070:             base_range_gate_m=0.1,
+
+line 70
+0065:             azimuth_rad=0.0,
+0066:             elevation_rad=0.0,
+0067:         )
+0068: 
+0069:         config = AssociationConfig(
+0070:             base_range_gate_m=0.1,
+0071:             max_range_rate_mps=0.0,
+0072:             base_radial_velocity_gate_mps=1.0,
+0073:             max_radial_acceleration_mps2=0.0,
+0074:             base_azimuth_gate_rad=0.1,
+0075:             max_azimuth_rate_radps=0.0,
+
+line 72
+0067:         )
+0068: 
+0069:         config = AssociationConfig(
+0070:             base_range_gate_m=0.1,
+0071:             max_range_rate_mps=0.0,
+0072:             base_radial_velocity_gate_mps=1.0,
+0073:             max_radial_acceleration_mps2=0.0,
+0074:             base_azimuth_gate_rad=0.1,
+0075:             max_azimuth_rate_radps=0.0,
+0076:             base_elevation_gate_rad=0.1,
+0077:             max_elevation_rate_radps=0.0,
+
+line 74
+0069:         config = AssociationConfig(
+0070:             base_range_gate_m=0.1,
+0071:             max_range_rate_mps=0.0,
+0072:             base_radial_velocity_gate_mps=1.0,
+0073:             max_radial_acceleration_mps2=0.0,
+0074:             base_azimuth_gate_rad=0.1,
+0075:             max_azimuth_rate_radps=0.0,
+0076:             base_elevation_gate_rad=0.1,
+0077:             max_elevation_rate_radps=0.0,
+0078:             covariance_sigma_multiplier=2.0,
+0079:         )
+
+line 75
+0070:             base_range_gate_m=0.1,
+0071:             max_range_rate_mps=0.0,
+0072:             base_radial_velocity_gate_mps=1.0,
+0073:             max_radial_acceleration_mps2=0.0,
+0074:             base_azimuth_gate_rad=0.1,
+0075:             max_azimuth_rate_radps=0.0,
+0076:             base_elevation_gate_rad=0.1,
+0077:             max_elevation_rate_radps=0.0,
+0078:             covariance_sigma_multiplier=2.0,
+0079:         )
+0080: 
+
+line 76
+0071:             max_range_rate_mps=0.0,
+0072:             base_radial_velocity_gate_mps=1.0,
+0073:             max_radial_acceleration_mps2=0.0,
+0074:             base_azimuth_gate_rad=0.1,
+0075:             max_azimuth_rate_radps=0.0,
+0076:             base_elevation_gate_rad=0.1,
+0077:             max_elevation_rate_radps=0.0,
+0078:             covariance_sigma_multiplier=2.0,
+0079:         )
+0080: 
+0081:         low = association_cost(
+
+line 78
+0073:             max_radial_acceleration_mps2=0.0,
+0074:             base_azimuth_gate_rad=0.1,
+0075:             max_azimuth_rate_radps=0.0,
+0076:             base_elevation_gate_rad=0.1,
+0077:             max_elevation_rate_radps=0.0,
+0078:             covariance_sigma_multiplier=2.0,
+0079:         )
+0080: 
+0081:         low = association_cost(
+0082:             predicted=predicted,
+0083:             previous=previous,
+
+--- test_estimated_association.py ---
+
+line 30
+0025: 
+0026: class TestEstimatedAssociation(
+0027:     unittest.TestCase
+0028: ):
+0029: 
+0030:     def test_two_tracks_survive_order_swap(
+0031:         self,
+0032:     ):
+0033:         result = associate_estimated_gnn(
+0034:             sequence(
+0035:                 make_frame(
+
+line 82
+0077:         self.assertEqual(
+0078:             lengths,
+0079:             [2, 2],
+0080:         )
+0081: 
+0082:     def test_detection_key_not_identity(
+0083:         self,
+0084:     ):
+0085:         result = associate_estimated_gnn(
+0086:             sequence(
+0087:                 make_frame(
+
+line 91
+0086:             sequence(
+0087:                 make_frame(
+0088:                     timestamp_s=0.0,
+0089:                     detections=(
+0090:                         make_detection(
+0091:                             key="truth-looking-A",
+0092:                             range_m=15.0,
+0093:                             vr_mps=0.0,
+0094:                             az_rad=0.0,
+0095:                         ),
+0096:                     ),
+
+line 124
+0119:                 result.tracks[0].detections
+0120:             ),
+0121:             2,
+0122:         )
+0123: 
+0124:     def test_false_alarm_creates_short_track(
+0125:         self,
+0126:     ):
+0127:         result = associate_estimated_gnn(
+0128:             sequence(
+0129:                 make_frame(
+
+line 170
+0165:         self.assertEqual(
+0166:             lengths,
+0167:             [1, 2],
+0168:         )
+0169: 
+0170:     def test_track_survives_allowed_gap(
+0171:         self,
+0172:     ):
+0173:         result = associate_estimated_gnn(
+0174:             sequence(
+0175:                 make_frame(
+
+line 219
+0214:                 result.tracks[0].detections
+0215:             ),
+0216:             2,
+0217:         )
+0218: 
+0219:     def test_expired_track_does_not_reconnect(
+0220:         self,
+0221:     ):
+0222:         result = associate_estimated_gnn(
+0223:             sequence(
+0224:                 make_frame(
+
+line 265
+0260:         self.assertEqual(
+0261:             len(result.tracks),
+0262:             2,
+0263:         )
+0264: 
+0265:     def test_azimuth_wrap_associates(
+0266:         self,
+0267:     ):
+0268:         result = associate_estimated_gnn(
+0269:             sequence(
+0270:                 make_frame(
+
+line 305
+0300:         self.assertEqual(
+0301:             len(result.tracks),
+0302:             1,
+0303:         )
+0304: 
+0305:     def test_result_is_deterministic(self):
+0306:         seq = sequence(
+0307:             make_frame(
+0308:                 timestamp_s=0.0,
+0309:                 detections=(
+0310:                     make_detection(
+
+line 355
+0350: 
+0351:         signature_first = [
+0352:             (
+0353:                 track.track_id,
+0354:                 [
+0355:                     item.detection.detection_key
+0356:                     for item in track.detections
+0357:                 ],
+0358:             )
+0359:             for track in first.tracks
+0360:         ]
+
+line 366
+0361: 
+0362:         signature_second = [
+0363:             (
+0364:                 track.track_id,
+0365:                 [
+0366:                     item.detection.detection_key
+0367:                     for item in track.detections
+0368:                 ],
+0369:             )
+0370:             for track in second.tracks
+0371:         ]
+
+line 379
+0374:             signature_first,
+0375:             signature_second,
+0376:         )
+0377: 
+0378:         self.assertFalse(
+0379:             first.truth_used
+0380:         )
+0381: 
+0382: 
+0383: if __name__ == "__main__":
+0384:     unittest.main()
+
+no-truth regression evidence     = True
+covariance-gate regression       = True
+identity-boundary regression     = True
+
+===== G. STAGE4 CAUSAL HISTORY ASSOCIATION INPUTS =====
+
+------------------------------------------------------------
+ClassDef CausalTrackHistory | line = 282
+------------------------------------------------------------
+class CausalTrackHistory:
+    prediction_id: str
+
+    steps: tuple[
+        HistoryStep,
+        ...,
+    ]
+
+    latest_observed_frame_index: int
+    latest_position_H0_m: Vec3
+
+    def __post_init__(self) -> None:
+        if not self.prediction_id:
+            raise ValueError(
+                "prediction_id cannot "
+                "be empty."
+            )
+
+        if len(
+            self.steps
+        ) != HISTORY_STEPS:
+            raise ValueError(
+                "Stage4 history must contain "
+                "exactly 11 causal frames."
+            )
+
+        expected_indices = tuple(
+            range(
+                HISTORY_STEPS
+            )
+        )
+
+        actual_indices = tuple(
+            int(step.frame_index)
+            for step in self.steps
+        )
+
+        if (
+            actual_indices
+            !=
+            expected_indices
+        ):
+            raise ValueError(
+                "History frame grid changed."
+            )
+
+        observed_indices = [
+            step.frame_index
+            for step in self.steps
+            if step.observed
+        ]
+
+        if not observed_indices:
+            raise ValueError(
+                "Causal history contains "
+                "no observations."
+            )
+
+        if (
+            max(observed_indices)
+            !=
+            self.latest_observed_frame_index
+        ):
+            raise ValueError(
+                "latest observed frame mismatch."
+            )
+
+        _finite3(
+            self.latest_position_H0_m
+        )
+
+    @property
+    def observed_count(
+        self,
+    ) -> int:
+        return sum(
+            step.observed
+            for step in self.steps
+        )
+
+    def feature_rows(
+        self,
+    ) -> tuple[
+        tuple[float, ...],
+        ...,
+    ]:
+        return tuple(
+            step.feature_row()
+            for step in self.steps
+        )
+
+------------------------------------------------------------
+FunctionDef _extract_prediction_id | line = 624
+------------------------------------------------------------
+def _extract_prediction_id(
+    associated_track,
+) -> str:
+    for name in (
+        "track_id",
+        "prediction_id",
+        "associated_track_id",
+    ):
+        if hasattr(
+            associated_track,
+            name,
+        ):
+            value = getattr(
+                associated_track,
+                name,
+            )
+
+            if value is not None:
+                value = str(value)
+
+                if value:
+                    return value
+
+    raise RuntimeError(
+        "Cannot resolve associated "
+        "track identifier."
+    )
+
+------------------------------------------------------------
+FunctionDef build_causal_track_history | line = 796
+------------------------------------------------------------
+def build_causal_track_history(
+    associated_track,
+    *,
+    context,
+    timestamps_s: tuple[
+        float,
+        ...,
+    ],
+) -> CausalTrackHistory:
+    if len(
+        timestamps_s
+    ) != HISTORY_STEPS:
+        raise ValueError(
+            "Stage4 requires 11 "
+            "causal timestamps."
+        )
+
+    observations = tuple(
+        cartesianize_associated_track(
+            associated_track,
+            context=context,
+        )
+    )
+
+    if not observations:
+        raise ValueError(
+            "Associated track has no "
+            "Cartesian observations."
+        )
+
+    by_frame = {}
+
+    for observation in observations:
+        frame_index = (
+            _extract_frame_index(
+                observation,
+                timestamps_s=(
+                    timestamps_s
+                ),
+            )
+        )
+
+        by_frame[
+            frame_index
+        ] = (
+            _extract_position(
+                observation
+            ),
+            _extract_covariance(
+                observation
+            ),
+        )
+
+    steps = []
+
+    previous_position = None
+    previous_timestamp = None
+
+    for frame_index, timestamp in (
+        enumerate(
+            timestamps_s
+        )
+    ):
+        if frame_index not in by_frame:
+            steps.append(
+                HistoryStep(
+                    frame_index=frame_index,
+                    timestamp_s=(
+                        float(timestamp)
+                    ),
+                    position_H0_m=(
+                        0.0,
+                        0.0,
+                        0.0,
+                    ),
+                    velocity_H0_mps=(
+                        0.0,
+                        0.0,
+                        0.0,
+                    ),
+                    measurement_covariance_H0_m2=(
+                        _zero_covariance()
+                    ),
+                    observed=False,
+                    velocity_valid=False,
+                )
+            )
+
+            continue
+
+        (
+            position,
+            covariance,
+        ) = by_frame[
+            frame_index
+        ]
+
+        velocity = (
+            0.0,
+            0.0,
+            0.0,
+        )
+
+        velocity_valid = False
+
+        if (
+            previous_position
+            is not None
+            and
+            previous_timestamp
+            is not None
+        ):
+            dt = (
+                float(timestamp)
+                -
+                previous_timestamp
+            )
+
+            if dt <= 0.0:
+                raise RuntimeError(
+                    "Non-positive causal "
+                    "velocity interval."
+                )
+
+            velocity = tuple(
+                (
+                    position[axis]
+                    -
+                    previous_position[axis]
+                )
+                /
+                dt
+                for axis in range(3)
+            )
+
+            velocity_valid = True
+
+        steps.append(
+            HistoryStep(
+                frame_index=frame_index,
+                timestamp_s=(
+                    float(timestamp)
+                ),
+                position_H0_m=(
+                    position
+                ),
+                velocity_H0_mps=(
+                    velocity
+                ),
+                measurement_covariance_H0_m2=(
+                    covariance
+                ),
+                observed=True,
+                velocity_valid=(
+                    velocity_valid
+                ),
+            )
+        )
+
+        previous_position = position
+        previous_timestamp = float(
+            timestamp
+        )
+
+    observed = [
+        step
+        for step in steps
+        if step.observed
+    ]
+
+    latest = observed[-1]
+
+    return CausalTrackHistory(
+        prediction_id=(
+            _extract_prediction_id(
+                associated_track
+            )
+        ),
+        steps=tuple(
+            steps
+        ),
+        latest_observed_frame_index=(
+            latest.frame_index
+        ),
+        latest_position_H0_m=(
+            latest.position_H0_m
+        ),
+    )
+
+prediction_id available      = True
+current causal anchor H0     = True
+
+===== H. STAGE6 ASSOCIATION POLICY OUTCOME =====
+outcome = STAGE3_POLICY_NOT_DIRECTLY_REUSABLE_WITHOUT_NEW_NUMERICS
+new arbitrary distance threshold introduced = NO
+formal population inspected/tuned = NO
+controller truth identity = NO
+
+===== I. PROPOSED BLOCK6.3 BINDING =====
+association = one-to-one current-anchor H0 causal association
+association_gate_authority = STAGE3_POLICY_NOT_DIRECTLY_REUSABLE_WITHOUT_NEW_NUMERICS
+same_class_gate = use symbolic causal actor class when causally available; never truth-side evaluator class
+future_state_use = False
+truth_id_use = False
+truth_track_index_use = False
+tracks_to_predict_use = False
+objects_of_interest_use = False
+perfect_WOMD_track_id_use = False
+deterministic_ADB_trajectory = calibrated Gaussian mean only
+Stage4_mean_semantics = metric_H0_displacement
+future_center = causal_anchor_H0 + Gaussian_mean_displacement_H0
+predictive_covariance_used_in_Block63 = False
+future_yaw = same frozen Stage5 trajectory tangent rule with low-speed causal/predicted carry-forward
+future_GT_heading = False
+box_dimensions = current causal l/w/h propagated unchanged across deterministic forecast horizons; explicit Stage6 implementation assumption because predictor does not output future dimensions
+full_box_corners = True
+centroid_only_projection = False
+formal_grid_freeze = False
+class_aware_policy = False
+probabilistic_mask = False
+
+===== J. IMMUTABILITY =====
+Stage3 = UNCHANGED
+Stage4 = UNCHANGED
+Block6.2 = UNCHANGED
+scientific implementation = UNCHANGED
+
+report = /home/agni/waymo/iscai_stage6/reports/block63_causal_association_policy_audit.json
+report SHA256 = ecc25a7d3280354c1365bf6021b8230064461571da262eefb80dd35048fa741a
+
+============================================================
+BLOCK 6.3 CAUSAL ASSOCIATION POLICY AUDIT — FINAL
+============================================================
+direct perfect identity     = NO
+causal current-anchor route = REQUIRED
+Stage3 association truth use= NO
+Stage3 covariance gate      = NOT PRESENT
+new arbitrary threshold     = NO
+deterministic ADB mean       = CALIBRATED GAUSSIAN MEAN CANDIDATE
+future center semantics      = ANCHOR H0 + METRIC H0 DISPLACEMENT
+future yaw                   = STAGE5 TANGENT / LOW-SPEED CARRY-FORWARD
+future box dimensions        = CURRENT CAUSAL L/W/H HELD EXPLICIT
+future box corners           = REQUIRED
+future GT                    = NO
+formal data/tuning           = NO
+upstream modified            = NO
+STATUS = BLOCKED_ASSOCIATION_POLICY_NEEDS_DEVELOPMENT_DESIGN
+terminal remains open = YES

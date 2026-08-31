@@ -1,0 +1,63 @@
+{
+  "Block6_0": {
+    "closure_sha256": "525cf827b217cc2806bfff6547c5e241b3c9db04d188f7957acea117b309c303",
+    "status": "PASS_COMPLETE"
+  },
+  "block": "6.1",
+  "causality": {
+    "future_GT_controller_path": false,
+    "oracle_evaluator_path_supported": true,
+    "predicted_sample_controller_path": true
+  },
+  "execution": {
+    "dataset_scan": false,
+    "formal_evaluation": false,
+    "parameter_tuning": false,
+    "predictive_ADB_execution": false,
+    "reactive_ADB_execution": false,
+    "training": false,
+    "trajectory_inference": false
+  },
+  "geometry_contract": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block61_geometry_contract.json",
+    "sha256": "f2450e95c1f5f996d4dd06dc316da0c491991c69d5ebec5d499782b96dfed9dc"
+  },
+  "implementation": {
+    "actor_height_retained": true,
+    "centroid_only": false,
+    "communication_codebook_reused": false,
+    "full_box_corner_count": 8,
+    "geometry_module": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/geometry.py",
+    "geometry_sha256": "f6e6cc0dd362338eeeaae9d8e25947434a3e7c64b350f0baf81a79a46159f94e",
+    "grid_module": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/grid.py",
+    "grid_sha256": "89e3c5b2bd93879106e8e4136abcc5ffd8d0e1256fa260600697e5793fd93c37",
+    "relevant_region_support": true
+  },
+  "next": "Block6.1 Part2: frozen Stage1 headlamp transform integration, real causal actor adapter, illumination-grid numeric contract and real-scene projection smoke",
+  "part": "1/2",
+  "project": "Agni",
+  "regression": {
+    "Stage6_tests": "PASS",
+    "fresh_process_smoke": {
+      "centroid_theta_rad": 0.04995839572194276,
+      "corner_count": 8,
+      "ground_range_span_m": 4.673745529934742,
+      "phi_span_rad": 0.09964541632537698,
+      "subregion_corner_count": 8,
+      "theta_span_rad": 0.12306459715285278
+    }
+  },
+  "scientific_grid": {
+    "numeric_bounds_frozen": false,
+    "numeric_resolution_frozen": false,
+    "reason": "pending exact frozen Stage1 headlamp geometry audit in Block6.1 Part2"
+  },
+  "stage": 6,
+  "status": "PASS_GEOMETRY_CORE",
+  "storage": {
+    "free_GiB": 1054.8344345092773,
+    "hard_reserve_GiB": 250.0,
+    "pass": true
+  },
+  "upstream_modified": false
+}

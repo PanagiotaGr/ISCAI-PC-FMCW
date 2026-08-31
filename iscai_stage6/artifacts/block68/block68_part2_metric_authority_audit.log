@@ -1,0 +1,255 @@
+============================================================
+STAGE 6 — BLOCK 6.8 PART 2/2
+PRE-FORMAL METRIC AUTHORITY RECONCILIATION AUDIT
+============================================================
+
+===== A. FROZEN CONTINUITY =====
+Block6.7                = EXACT PASS
+Block6.8 Part1          = EXACT PASS
+Block6.8 preflight      = PASS
+Block6.8 protocol/runtime = EXACT PASS
+
+===== B. SCIENTIFIC OUTCOME BOUNDARY =====
+development outcomes read = NO
+formal outcomes read      = NO
+formal manifest read      = NO
+metric reconciliation     = PRE-OUTCOME
+
+===== C. BLOCK6.6 PREREGISTERED METRIC AUTHORITY =====
+Block6.6 prereg SHA256 = 5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e
+actuation_latency.formula = wall-clock runtime from loaded P_occ/current geometry to final four-horizon illumination schedule
+actuation_latency.units = seconds
+actuation_latency.used_for_policy_selection = False
+binary_dim_support = D_tau = [I_final_tau < 1.0]
+cyclist_visibility_proxy.direction = higher_is_better
+cyclist_visibility_proxy.formula = mean(I_final over future GT cyclist projected full-box footprint cells)
+energy_consumption.direction = reported_not_primary_safety_target
+energy_consumption.formula = mean over horizon/grid of I_final
+energy_consumption.reported_semantics = normalized emitted-light energy proxy, not joules
+false_dimming.direction = lower_is_better
+false_dimming.formula = |D \ O| / |D|; 0 when |D|=0
+flicker_change_rate.direction = lower_is_better
+flicker_change_rate.formula = mean_h(count(I_h != I_prev)/grid_cell_count)
+glare_risk_exposure.direction = lower_is_better
+glare_risk_exposure.formula = mean final normalized intensity over vehicle constructed front-upper/rear-upper surrogate reference cells
+mask_IoU.empty_union = 1.0
+mask_IoU.formula = |D∩O| / |D∪O|
+oracle_dim_support = O_tau = union of constructed future actor shadow supports
+over_masking_area.direction = lower_is_better
+over_masking_area.formula = |D \ O| / |full actuator grid|
+pedestrian_visibility_proxy.direction = higher_is_better
+pedestrian_visibility_proxy.formula = mean(I_final over future GT pedestrian projected full-box footprint cells)
+rate_limit_safety_override_fraction.direction = lower_is_better
+rate_limit_safety_override_fraction.formula = override cells / total actuator-cell transitions
+road_illumination_retention.direction = higher_is_better
+road_illumination_retention.formula = mean(I_final over frozen road ROI)
+temporal_smoothness.direction = lower_is_better
+temporal_smoothness.formula = mean_h(mean_grid(|I_h-I_prev|)/delta_t_h)
+temporal_smoothness.reported_metric = mean_absolute_change_rate
+vehicle_shadow_zone_violation.direction = lower_is_better
+vehicle_shadow_zone_violation.formula = |O_vehicle \ D| / |O_vehicle|
+vehicle_shadow_zone_violation.no_vehicle_cells = NA
+
+===== D. BLOCK6.8 PART1 METRIC PROTOCOL =====
+
+METRIC = actuation_latency
+  direction = lower_is_better
+  summary[0] = mean_ms
+  summary[1] = median_ms
+  summary[2] = p95_ms
+  summary[3] = max_ms
+  negative_samples_allowed = False
+
+METRIC = cyclist_visibility_proxy
+  direction = higher_is_better
+  formula = mean normalized intensity inside frozen cyclist visibility region
+  empty_support = NaN_and_excluded_from_class_aggregate
+
+METRIC = energy_consumption
+  direction = report_tradeoff
+  formula = mean normalized intensity over valid headlamp energy ROI
+  units = fraction_of_full_normalized_optical_energy
+  physical_joule_claim = False
+
+METRIC = false_dimming
+  direction = lower_is_better
+  formula = mean(1-intensity) on road cells outside constructed oracle mask
+
+METRIC = flicker_change_rate
+  direction = lower_is_better
+  formula = fraction of cell transitions with absolute normalized intensity change >= 0.10
+  delta_threshold = 0.1
+
+METRIC = glare_risk_exposure
+  direction = lower_is_better
+  formula = mean normalized intensity inside constructed vehicle protection region
+  empty_vehicle_support = 0.0
+
+METRIC = mask_IoU_with_constructed_oracle_future_mask
+  direction = higher_is_better
+  formula = intersection(candidate_mask, oracle_mask) / union(candidate_mask, oracle_mask)
+  empty_union = 1.0
+
+METRIC = over_masking_area
+  direction = lower_is_better
+  formula = road_roi AND candidate_mask AND NOT oracle_mask divided by road_roi cell count
+
+METRIC = pedestrian_visibility_proxy
+  direction = higher_is_better
+  formula = mean normalized intensity inside frozen pedestrian visibility region
+  empty_support = NaN_and_excluded_from_class_aggregate
+
+METRIC = road_illumination_retention
+  direction = higher_is_better
+  formula = mean normalized intensity inside frozen road ROI
+
+METRIC = temporal_smoothness
+  direction = higher_is_better
+  formula = 1 - mean absolute normalized intensity change between consecutive frames
+
+METRIC = vehicle_shadow_zone_violation
+  direction = lower_is_better
+  formula = missed_required_vehicle_cells / required_vehicle_cells
+  empty_vehicle_support = 0.0
+  empty_support_counted_as_class_observation = False
+
+===== E. PREREGISTRATION CONSISTENCY MATRIX =====
+
+METRIC = mask_IoU_with_constructed_oracle_future_mask
+  Block6.6 formula = |D∩O| / |D∪O|
+  Block6.8 formula = intersection(candidate_mask, oracle_mask) / union(candidate_mask, oracle_mask)
+  formula status   = DIFFERENT
+  Block6.6 direction = None
+  Block6.8 direction = higher_is_better
+  direction status = MISSING_DIRECTION_FIELD
+
+METRIC = vehicle_shadow_zone_violation
+  Block6.6 formula = |O_vehicle \ D| / |O_vehicle|
+  Block6.8 formula = missed_required_vehicle_cells / required_vehicle_cells
+  formula status   = DIFFERENT
+  Block6.6 direction = lower_is_better
+  Block6.8 direction = lower_is_better
+  direction status = SAME
+
+METRIC = glare_risk_exposure
+  Block6.6 formula = mean final normalized intensity over vehicle constructed front-upper/rear-upper surrogate reference cells
+  Block6.8 formula = mean normalized intensity inside constructed vehicle protection region
+  formula status   = DIFFERENT
+  Block6.6 direction = lower_is_better
+  Block6.8 direction = lower_is_better
+  direction status = SAME
+
+METRIC = over_masking_area
+  Block6.6 formula = |D \ O| / |full actuator grid|
+  Block6.8 formula = road_roi AND candidate_mask AND NOT oracle_mask divided by road_roi cell count
+  formula status   = DIFFERENT
+  Block6.6 direction = lower_is_better
+  Block6.8 direction = lower_is_better
+  direction status = SAME
+
+METRIC = road_illumination_retention
+  Block6.6 formula = mean(I_final over frozen road ROI)
+  Block6.8 formula = mean normalized intensity inside frozen road ROI
+  formula status   = DIFFERENT
+  Block6.6 direction = higher_is_better
+  Block6.8 direction = higher_is_better
+  direction status = SAME
+
+METRIC = pedestrian_visibility_proxy
+  Block6.6 formula = mean(I_final over future GT pedestrian projected full-box footprint cells)
+  Block6.8 formula = mean normalized intensity inside frozen pedestrian visibility region
+  formula status   = DIFFERENT
+  Block6.6 direction = higher_is_better
+  Block6.8 direction = higher_is_better
+  direction status = SAME
+
+METRIC = cyclist_visibility_proxy
+  Block6.6 formula = mean(I_final over future GT cyclist projected full-box footprint cells)
+  Block6.8 formula = mean normalized intensity inside frozen cyclist visibility region
+  formula status   = DIFFERENT
+  Block6.6 direction = higher_is_better
+  Block6.8 direction = higher_is_better
+  direction status = SAME
+
+METRIC = false_dimming
+  Block6.6 formula = |D \ O| / |D|; 0 when |D|=0
+  Block6.8 formula = mean(1-intensity) on road cells outside constructed oracle mask
+  formula status   = DIFFERENT
+  Block6.6 direction = lower_is_better
+  Block6.8 direction = lower_is_better
+  direction status = SAME
+
+METRIC = temporal_smoothness
+  Block6.6 formula = mean_h(mean_grid(|I_h-I_prev|)/delta_t_h)
+  Block6.8 formula = 1 - mean absolute normalized intensity change between consecutive frames
+  formula status   = DIFFERENT
+  Block6.6 direction = lower_is_better
+  Block6.8 direction = higher_is_better
+  direction status = DIFFERENT
+
+METRIC = flicker_change_rate
+  Block6.6 formula = mean_h(count(I_h != I_prev)/grid_cell_count)
+  Block6.8 formula = fraction of cell transitions with absolute normalized intensity change >= 0.10
+  formula status   = DIFFERENT
+  Block6.6 direction = lower_is_better
+  Block6.8 direction = lower_is_better
+  direction status = SAME
+
+METRIC = energy_consumption
+  Block6.6 formula = mean over horizon/grid of I_final
+  Block6.8 formula = mean normalized intensity over valid headlamp energy ROI
+  formula status   = DIFFERENT
+  Block6.6 direction = reported_not_primary_safety_target
+  Block6.8 direction = report_tradeoff
+  direction status = DIFFERENT
+
+METRIC = actuation_latency
+  Block6.6 formula = wall-clock runtime from loaded P_occ/current geometry to final four-horizon illumination schedule
+  Block6.8 formula = None
+  formula status   = MISSING_FORMULA_FIELD
+  Block6.6 direction = None
+  Block6.8 direction = lower_is_better
+  direction status = MISSING_DIRECTION_FIELD
+
+formula text mismatches = 11
+formula missing fields  = 1
+direction conflicts     = 2
+
+===== F. KNOWN SEMANTIC CONFLICT CHECK =====
+temporal_smoothness         = CONFLICT
+over_masking_area           = CONFLICT
+false_dimming               = CONFLICT
+flicker_change_rate         = CONFLICT
+
+===== G. PRE-FORMAL AUTHORITY RULE =====
+PDF_role = defines required metric set and Stage6 completion objective; does not uniquely define every numerical metric formula
+earliest_internal_preregistration = /home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json
+earliest_preregistration_precedes_Block68 = True
+development_outcomes_seen_before_reconciliation = False
+formal_outcomes_seen_before_reconciliation = False
+binding_rule = earliest explicit pre-outcome Block6.6 metric preregistration is authoritative unless an explicit scientific amendment is documented before any development/formal outcome inspection
+silent_Block68_override_allowed = False
+recommended_resolution = repair Block6.8 protocol/runtime to preserve Block6.6 preregistered semantics, then rerun regression and only afterwards permit development-bound evaluation
+
+===== H. FULL STAGE6 REGRESSION =====
+Stage6 regression = 196 / 196 PASS
+
+===== I. STORAGE =====
+free GiB        = 1052.776
+250-GiB reserve = PASS
+
+============================================================
+BLOCK 6.8 PART 2/2 — METRIC AUTHORITY AUDIT FINAL
+============================================================
+Block6.6 preregistration = FOUND
+Block6.8 metric freeze   = FOUND
+development outcomes     = NOT READ
+formal outcomes          = NOT READ
+semantic conflicts       = FOUND
+silent override allowed  = NO
+authority                = EARLIEST PRE-OUTCOME PREREGISTRATION
+development evaluation   = STILL BLOCKED
+Stage6 regression        = 196 / 196 PASS
+STATUS = BLOCKED_PREOUTCOME_METRIC_RECONCILIATION_REQUIRED
+report = /home/agni/waymo/iscai_stage6/reports/block68_part2_metric_authority_audit.json
+terminal remains open = YES

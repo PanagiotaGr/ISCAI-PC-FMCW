@@ -1,0 +1,44 @@
+{
+  "block": "6.8_development_selection_status_authority_patch",
+  "diagnosis": {
+    "actual_authority": [
+      "closure.scientific_boundary.numeric_policy_selected",
+      "closure.scientific_boundary.policy_parameter_sweep_executed",
+      "closure.scientific_boundary.formal_outcomes_read",
+      "closure.integration_smoke.numeric_policy_selected",
+      "closure.integration_smoke.development_objective_evaluated",
+      "freeze.numeric_policy_selected",
+      "freeze.formal_outcomes_read"
+    ],
+    "obsolete_assumption": "Part3C final closure must expose top-level numeric_policy_selected",
+    "schema_failure": true,
+    "scientific_failure": false
+  },
+  "next": "rerun development-selection runtime bind against corrected selection-status authority",
+  "regression": 224,
+  "runner": {
+    "backup_path": "/home/agni/waymo/iscai_stage6/artifacts/block68/selection_status_authority_patch/run_block68_development_selection_runtime_bind.pre_status_patch.py",
+    "backup_sha256": "d2b738def29f16b178c9740e515fe4d8cea55fd9b71b2918bab8c6a3faba1067",
+    "patch_scope": "selection-status schema authority gate only",
+    "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_development_selection_runtime_bind.py",
+    "post_patch_sha256": "552f2c5988a9a52958f569316b54c7fdcbdbfdfe50a6d897dba7f3df2456cc87",
+    "pre_patch_sha256": "d2b738def29f16b178c9740e515fe4d8cea55fd9b71b2918bab8c6a3faba1067"
+  },
+  "scientific_boundary": {
+    "P_occ_opened": false,
+    "acceptance_tested": false,
+    "formal_evaluation": false,
+    "gamma_sweep_executed": false,
+    "policy_numeric_change": false,
+    "predictive_performance_computed": false
+  },
+  "semantic_conclusion": {
+    "development_numeric_selection_pending": true,
+    "development_objective_evaluated": false,
+    "formal_outcomes_read": false,
+    "numeric_policy_selected": false,
+    "policy_parameter_sweep_executed": false
+  },
+  "stage": 6,
+  "status": "PASS_SELECTION_STATUS_AUTHORITY_REBOUND"
+}

@@ -1,0 +1,77 @@
+{
+  "stage": 4,
+  "block": "4.3",
+  "status": "PRETRAIN_FROZEN",
+  "purpose": "deterministic_multi_agent_GRU_baseline",
+  "data": {
+    "fit_manifest": "/home/agni/waymo/iscai_stage4/artifacts/block41/fit.jsonl",
+    "development_manifest": "/home/agni/waymo/iscai_stage4/artifacts/block41/development.jsonl",
+    "fit_manifest_sha256": "284a61c877d937deb07137345beaabf3165690138785f9cc41f81655066d5276",
+    "development_manifest_sha256": "e4689698bddd80e58add7267f791aea90ef4bef0309ca18d0d7a9e7e94fe7e5c",
+    "fit_scene_count": 4096,
+    "development_scene_count": 512,
+    "selection_policy": "first_N_records_of_frozen_SHA_ordered_partition_manifest",
+    "selection_uses_future": false,
+    "selection_uses_performance": false,
+    "max_supervised_samples_per_scene": 64,
+    "sample_cap_policy": "ascending_causal_prediction_id_before_future_label_quality_is_considered"
+  },
+  "input": {
+    "history_steps": 11,
+    "feature_dim": 14,
+    "max_neighbors": 8,
+    "map_context_dim": 10,
+    "measurement_covariance_input": true,
+    "multi_agent_context": true,
+    "map_context": true,
+    "perfect_track_id_feature": false,
+    "actor_class_feature": false,
+    "future_validity_feature": false
+  },
+  "normalization": {
+    "source": "fit_only",
+    "history_continuous_features": 12,
+    "missing_rows_excluded_from_statistics": true,
+    "padded_neighbors_excluded_from_statistics": true,
+    "label_space": "future_H0_displacement_from_latest_causal_observed_target_position",
+    "development_statistics_used": false,
+    "calibration_statistics_used": false,
+    "formal_validation_statistics_used": false
+  },
+  "model": {
+    "architecture": "GRU",
+    "target_hidden_dim": 64,
+    "neighbor_hidden_dim": 32,
+    "map_hidden_dim": 32,
+    "fusion_hidden_dim": 128,
+    "output_horizons": 4,
+    "output_dimension_per_horizon": 3,
+    "dropout": 0.0
+  },
+  "training": {
+    "seed": 20260820,
+    "device": "cuda:0",
+    "dtype": "float32",
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.00001,
+    "batch_size": 512,
+    "max_epochs": 20,
+    "early_stopping_patience": 4,
+    "early_stopping_metric": "development_planar_ADE_m",
+    "early_stopping_min_delta_m": 0.0001,
+    "gradient_clip_norm": 5.0,
+    "class_sampler": "equal_total_mass_vehicle_pedestrian_cyclist_plus_0.25_OTHER",
+    "development_sampling": "sequential_all_samples",
+    "mixed_precision": false,
+    "num_workers": 0
+  },
+  "acceptance": {
+    "training_must_improve_over_untrained_development_ADE": true,
+    "all_primary_classes_required_in_fit_cache": true,
+    "all_primary_classes_required_in_development_cache": true,
+    "exact_frozen_checkpoint_inference_repeat": true,
+    "formal_validation_not_used": true,
+    "formal_Stage3_comparison": "deferred_to_block_4.8"
+  }
+}

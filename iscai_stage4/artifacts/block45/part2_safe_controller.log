@@ -1,0 +1,58 @@
+============================================================
+BLOCK 4.5 PART 2/2 — SAFE CONTROLLER
+============================================================
+
+===== CONTROLLED COMPILE =====
+calibration_runtime.py = PASS
+test_block45_runtime.py = PASS
+run_block45_real_calibration.py = PASS
+
+===== NEW PART2 UNIT TESTS =====
+
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.004s
+
+OK
+
+
+===== PRE-SCAN FULL REGRESSION =====
+
+............................................................................
+----------------------------------------------------------------------
+Ran 76 tests in 0.379s
+
+OK
+
+pre-scan regression = 76 / 76 PASS
+
+===== FULL REAL CALIBRATION =====
+============================================================
+STAGE 4 — BLOCK 4.5 REAL CALIBRATION
+============================================================
+
+============================================================
+BLOCK 4.5 PART 2/2 = BLOCKED
+============================================================
+exception = KeyError 'model'
+
+RECOVERY:
+Inspect reports/block45_calibration_failure.json. The full calibration inference cache is resumable and formal validation remains untouched.
+
+Block4.4 modified         = NO
+calibration cache reusable= YES
+development used          = NO
+formal validation used    = NO
+terminal remains open     = YES
+failure report = /home/agni/waymo/iscai_stage4/reports/block45_calibration_failure.json
+
+real-calibration raw process code = 0
+
+============================================================
+BLOCK 4.5 PART 2/2 SAFE CONTROLLER
+============================================================
+STATUS = BLOCKED
+phase = real_calibration
+reason = 'model'
+recovery = Inspect reports/block45_calibration_failure.json. The full calibration inference cache is resumable and formal validation remains untouched.
+terminal remains open = YES

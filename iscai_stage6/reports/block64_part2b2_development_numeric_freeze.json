@@ -1,0 +1,106 @@
+{
+  "block": "6.4-Part2B/2",
+  "config": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block64_mc_grid_numeric_freeze.json",
+    "sha256": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73"
+  },
+  "next": "BLOCK6.5_DEVELOPMENT_GAMMA_AND_MULTI_ACTOR_MASK_AGGREGATION",
+  "numeric_freeze": {
+    "MC_N": 8192,
+    "MC_seed": 20260821,
+    "grid_shape": [
+      501,
+      301
+    ],
+    "range_m": [
+      0.0,
+      150.0,
+      0.5
+    ],
+    "theta_deg": [
+      -25.0,
+      25.0,
+      0.1
+    ]
+  },
+  "regression": {
+    "status": "PASS",
+    "tests": 127
+  },
+  "scientific_execution": {
+    "formal_evaluation": false,
+    "formal_parameter_tuning": false,
+    "new_MC_sampling": false,
+    "new_model_forward": false,
+    "recalibration": false,
+    "training": false
+  },
+  "selection_evidence": {
+    "all_selected_quality_metrics_improve_over_lower_candidates": true,
+    "candidate_metrics": {
+      "2048": {
+        "mean_mass_relative_error": 0.00043141383411403377,
+        "mean_normalized_l1": 0.046085209414047396,
+        "mean_support_iou": 0.740575689961359,
+        "mean_support_mae": 0.0016364311317885137,
+        "sample_count": 2048,
+        "worst_max_abs": 0.0318603515625,
+        "worst_normalized_l1": 0.056339624942798684,
+        "worst_support_mae": 0.001947229593144452
+      },
+      "4096": {
+        "mean_mass_relative_error": 0.00032994395110509504,
+        "mean_normalized_l1": 0.03286620846232582,
+        "mean_support_iou": 0.8145151476793564,
+        "mean_support_mae": 0.0011744810264003114,
+        "sample_count": 4096,
+        "worst_max_abs": 0.01983642578125,
+        "worst_normalized_l1": 0.03969633553946226,
+        "worst_support_mae": 0.0014149345483400856
+      },
+      "8192": {
+        "mean_mass_relative_error": 0.00032007723834683147,
+        "mean_normalized_l1": 0.022853106650183697,
+        "mean_support_iou": 0.8795847061904716,
+        "mean_support_mae": 0.0008147155185110194,
+        "sample_count": 8192,
+        "worst_max_abs": 0.014373779296875,
+        "worst_normalized_l1": 0.027728594328747753,
+        "worst_support_mae": 0.0009769962615921424
+      }
+    },
+    "reference_N": 32768,
+    "reference_active_actors": [
+      2,
+      4
+    ],
+    "reference_inactive_actors": [
+      0,
+      1,
+      3,
+      5
+    ],
+    "selected_candidate": 8192,
+    "zero_support_actors_counted_as_convergence_success": false
+  },
+  "stage": 6,
+  "status": "PASS_BLOCK64_MC_AND_GRID_DEVELOPMENT_NUMERIC_FREEZE",
+  "still_deferred": {
+    "actuation_rate_limits": true,
+    "binary_actor_masks": true,
+    "class_aware_policy": true,
+    "dimming_floors": true,
+    "multi_actor_mask_aggregation": true,
+    "occupancy_gamma": true,
+    "temporal_smoothing": true
+  },
+  "upstream": {
+    "counts_sha256": "ee536151df1b49294ebdeda598d74734083dc90769fd3d70dc8a058142701b7a",
+    "full_box_module_sha256": "51daeab95713d6e7d2738ced466be4844b73dce70a09138b2b769de880462995",
+    "occupancy_module_sha256": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e",
+    "part2a_contract_sha256": "3c61222ca829849ee77b276ff21a199b016b0fe8455b6f4045d4e980f4874ae8",
+    "part2a_report_sha256": "42ba4b5bfd54a4e5b74773f71a5ce2d040021a188dffb336beb2b32fb852b0a3",
+    "part2b1_report_sha256": "57f23aaa55e31967653528157f2d7703fc10b632d353e2b8e25c53c379bc4d1f",
+    "posterior_sha256": "318b22dfc3788195a1432169075d1c8654f0d183337711918db2303b5668f5ea"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "Stage5_final_authority_preserved": true,
+  "Stage6_PDF_completion": "PASS",
+  "Stage7_allowed": true,
+  "V1_negative_result_preserved": true,
+  "V1_threshold_changed": false,
+  "files": {
+    "Stage7_handoff": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/stage6_v3_conservative_budget/stage6_to_stage7_handoff_v3.json",
+      "sha256": "c6be49f3ba651f7e810b1aa48879e8322832268a185e011d6fb93330113de53a"
+    },
+    "V2_engine_report": {
+      "path": "/home/agni/waymo/iscai_stage6/reports/stage6_v3_conservative_temporal_rate_selection.json",
+      "sha256": "a9dbf0ce1cc55d461c41f96851fe755790be8bb8d261dcfac43e774aae1e1b71"
+    },
+    "V2_result": {
+      "path": "/home/agni/waymo/iscai_stage6/reports/stage6_v3_conservative_development_acceptance.json",
+      "sha256": "e76ec51e2ca875c16c2e7a0e168be3b2cc54ac37882bf5ef7e2eea0c33ffef44"
+    },
+    "V2_winner_rows": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/stage6_v3_conservative_budget/development_engine/winner_scenario_metrics.jsonl",
+      "sha256": "f4b6541c7df119105a81c1d07d5fe58fcb715bcba267b3698e91ecbf2eb411ce"
+    },
+    "development_engine": {
+      "modified_on_disk": false,
+      "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_stage4_temporal_rate_selection.py",
+      "sha256": "5ad8662612affff0aa5fbd87af558fd6746f04d3d181b7d38c6e9e9ac59e2697"
+    },
+    "final_closure": {
+      "path": "/home/agni/waymo/iscai_stage6/reports/stage6_final_closure_v3.json",
+      "sha256": "5f5ccb4e35f08565a9bedf69c9735634cb70ee83d93776440d62c9b764e69f00"
+    },
+    "protocol": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_v3_conservative_budget_protocol.json",
+      "sha256": "d748e6bae34de723b95181b29d3af6759aa8df48e0dea6229b39d7bfa55b984f"
+    },
+    "regression_log": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/stage6_v3_conservative_budget/stage6_v3_regression.log",
+      "sha256": "cba653902b1f54c20c79851a012054e751ca1b6d7f416f59c7176b2541ad7b9e"
+    },
+    "runtime": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/budgeted_residual_v2.py",
+      "sha256": "664c52dc3a61a1498b11cf2d6ba0700332f9fe1c711a3d7c7235bac5a0e78985"
+    },
+    "tests": {
+      "path": "/home/agni/waymo/iscai_stage6/tests/test_stage6_v2_budgeted_residual.py",
+      "sha256": "9dffdee4a67c5df9a1649ec1d00928bf5b6ec33bad0444c539213a5a987f28c9"
+    }
+  },
+  "post_outcome_retuning_of_V1": false,
+  "stage": 6,
+  "status": "FINAL_STAGE6_V3_FREEZE_MANIFEST",
+  "version": "Stage6-V3-conservative-budgeted-residual"
+}

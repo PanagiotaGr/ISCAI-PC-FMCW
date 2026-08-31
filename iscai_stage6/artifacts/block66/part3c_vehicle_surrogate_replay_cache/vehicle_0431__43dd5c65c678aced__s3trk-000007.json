@@ -1,0 +1,103 @@
+{
+  "actor_box_index": 15,
+  "actor_rank": 431,
+  "causality": {
+    "future_GT": false,
+    "objects_of_interest": false,
+    "tracks_to_predict": false,
+    "truth_ID": false
+  },
+  "cohort_index": 52,
+  "full_box_parity_exact": true,
+  "full_box_parity_tolerance": null,
+  "geometry_semantics": {
+    "axis": "X_LENGTH_Y_WIDTH",
+    "rotation": "CCW_STANDARD"
+  },
+  "object_type": "TYPE_VEHICLE",
+  "persisted_occupancy_content_sha256": "a63481f96a3aa90527419f13c6256010f9d26adde4ad0d404d60a9cb6a7d6c0f",
+  "persisted_occupancy_file_sha256": "6376a37a32d526b52e97da8d1332d6b5c352d9bf63e3d04449b5aaf0e3d9915c",
+  "persisted_occupancy_path": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0431__43dd5c65c678aced__s3trk-000007.counts.npy",
+  "prediction_id": "s3trk-000007",
+  "recovery_contract_sha256": "ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1",
+  "replayed_occupancy_content_sha256": "a63481f96a3aa90527419f13c6256010f9d26adde4ad0d404d60a9cb6a7d6c0f",
+  "sample_count": 8192,
+  "scenario_id": "43dd5c65c678aced",
+  "seed": 20260821,
+  "status": "PASS_EXACT_REPLAY_AND_SURROGATE_PROJECTION",
+  "vehicle_surrogate": {
+    "heading_samples_sha256": "b0c4ccbad0e604022723043ce2b45f9175a552e04536859eef3f45d116dc0646",
+    "horizon_summaries": [
+      {
+        "angular_span_max_rad": 0.16118187292814207,
+        "angular_span_mean_rad": 0.12227757957385296,
+        "horizon_s": 0.1,
+        "oncoming_fraction": 0.0,
+        "oncoming_samples": 0,
+        "preceding_samples": 8192,
+        "range_far_max_m": 22.41804118775377,
+        "range_far_mean_m": 20.891872171610316,
+        "range_near_mean_m": 18.336029045815067,
+        "range_near_min_m": 16.94330767002067,
+        "sample_count": 8192,
+        "theta_center_mean_rad": -0.037024579665812955,
+        "z_max_mean_m": 0.5833187956950632,
+        "z_min_mean_m": -0.21106747196698514
+      },
+      {
+        "angular_span_max_rad": 0.1591200726322733,
+        "angular_span_mean_rad": 0.12177280216484368,
+        "horizon_s": 0.3,
+        "oncoming_fraction": 0.003662109375,
+        "oncoming_samples": 30,
+        "preceding_samples": 8162,
+        "range_far_max_m": 24.509719187003512,
+        "range_far_mean_m": 22.665755763897813,
+        "range_near_mean_m": 19.940573111480784,
+        "range_near_min_m": 18.0351580808033,
+        "sample_count": 8192,
+        "theta_center_mean_rad": -0.03207190432188472,
+        "z_max_mean_m": 0.5740137036581819,
+        "z_min_mean_m": -0.2203725640038664
+      },
+      {
+        "angular_span_max_rad": 0.14781026254123628,
+        "angular_span_mean_rad": 0.11544608938612191,
+        "horizon_s": 0.5,
+        "oncoming_fraction": 0.0257568359375,
+        "oncoming_samples": 211,
+        "preceding_samples": 7981,
+        "range_far_max_m": 26.7651913203509,
+        "range_far_mean_m": 24.301643427390108,
+        "range_near_mean_m": 21.542785369863548,
+        "range_near_min_m": 18.99421515954974,
+        "sample_count": 8192,
+        "theta_center_mean_rad": -0.02654412174234301,
+        "z_max_mean_m": 0.5934848890838884,
+        "z_min_mean_m": -0.20090137857816004
+      },
+      {
+        "angular_span_max_rad": 0.12984943092631326,
+        "angular_span_mean_rad": 0.0914610636345881,
+        "horizon_s": 1.0,
+        "oncoming_fraction": 0.0010986328125,
+        "oncoming_samples": 9,
+        "preceding_samples": 8183,
+        "range_far_max_m": 32.19687117065075,
+        "range_far_mean_m": 28.203978225042892,
+        "range_near_mean_m": 25.589015913525976,
+        "range_near_min_m": 21.95887791941442,
+        "sample_count": 8192,
+        "theta_center_mean_rad": -0.019824244689768955,
+        "z_max_mean_m": 0.5810631202663912,
+        "z_min_mean_m": -0.21332314739565708
+      }
+    ],
+    "oncoming": "front-upper",
+    "physical_annotation_claim": false,
+    "preceding": "rear-upper",
+    "samplewise_projection_sha256": "adc28dc1cc350a9794f55ab384d45afb8e8968af012da26a973701257d6de542",
+    "trajectory_samples_sha256": "ba82e9b7a9176dcdeafbd0e7b59041d9580747b979748821a27b81aa01971a98",
+    "vertical_actuator_claim": false
+  }
+}

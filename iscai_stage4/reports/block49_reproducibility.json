@@ -1,0 +1,62 @@
+{
+  "block": "4.9",
+  "environment": {
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "GPU": "NVIDIA RTX A6000",
+    "deterministic_algorithms": true,
+    "numpy": "2.5.1",
+    "python": "3.13.5",
+    "torch": "2.13.0+cu132",
+    "torch_cuda": "13.2"
+  },
+  "formal_full_N120_rerun": false,
+  "formal_output_content_sha256": "fe5cf7e413b8142c0670d05727affd4fa573cf4607665e4a9bda951f1d9bd0d5",
+  "fresh_process_reproducibility": {
+    "all_exact": true,
+    "probe_count": 4,
+    "verified": [
+      {
+        "prediction_sha256": "d92330d0e37e0c8d79f76f7bb166b5baf88570cc37f896713c72da4175aea204",
+        "rank": 1,
+        "scenario_id": "cfd33c593d645bf5",
+        "supervised_samples": 50
+      },
+      {
+        "prediction_sha256": "a2970314b5d701f82330e09d79de952f4558728c17b6f05b9a04fc2e2c5a0d93",
+        "rank": 2,
+        "scenario_id": "b90adbf772ab2317",
+        "supervised_samples": 24
+      },
+      {
+        "prediction_sha256": "41e01d0ea53ba2edfc3f3ed5de58a675c8dfc8628aad27c3c44e576ea7301c5e",
+        "rank": 3,
+        "scenario_id": "b3078e2d1e2a6ed4",
+        "supervised_samples": 32
+      },
+      {
+        "prediction_sha256": "6bac4231f2ca41ced8ce31b0e153b9644cdeb0f6f8612d2a03958a5cc9a18846",
+        "rank": 4,
+        "scenario_id": "765006a780597dad",
+        "supervised_samples": 12
+      }
+    ]
+  },
+  "implementation": {
+    "file_count": 82,
+    "sha256": "e1c779c05155dd86794f405a8567c994f0acac617015f717944e5ff6868491cd"
+  },
+  "probe_plan_sha256": "ac16063f47979361391c013f418744c40c9f6b6d4e1caa94dff87b68b7609813",
+  "recalibration": false,
+  "regression": {
+    "tests_passed": 124,
+    "tests_total": 124
+  },
+  "reproducibility_manifest": {
+    "file_sha256": "135a3c60e5a2c4419125fa0daa6d2d55452f923255a04698f0bc1aaca5f474b8",
+    "path": "/home/agni/waymo/iscai_stage4/artifacts/block49/stage4_reproducibility_manifest.json"
+  },
+  "stage": 4,
+  "status": "PASS",
+  "training": false,
+  "upstream_modified": false
+}

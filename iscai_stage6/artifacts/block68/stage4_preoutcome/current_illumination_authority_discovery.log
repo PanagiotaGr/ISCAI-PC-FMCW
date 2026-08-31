@@ -1,0 +1,1073 @@
+==============================================================================
+STAGE 6 — BLOCK 6.8
+STAGE-4 CURRENT-ILLUMINATION AUTHORITY DISCOVERY
+READ ONLY — NO TEMPORAL/RATE OUTCOMES
+==============================================================================
+
+===== A. EXACT FROZEN BOUNDARY =====
+block66_part3b_class_aware_policy_preregistration.json = EXACT PASS
+stage6_development_stage3_class_floor_freeze.json = EXACT PASS
+stage6_reactive_development_scoring_contract.json = EXACT PASS
+Stage-1 gamma          = FROZEN
+Stage-2 margins        = FROZEN
+Stage-3 floors         = FROZEN
+Stage-4 outcomes       = NOT COMPUTED
+Stage-4 winner         = NOT SELECTED
+primary acceptance     = NOT TESTED
+formal evaluation      = NO
+
+===== B. PREREGISTERED STAGE-4 CONTRACT =====
+{
+  "all_class_parameters": "fixed from stages 1-3",
+  "lexicographic_selection": [
+    "minimize maximum normalized safety-risk component",
+    "minimize mean normalized safety-risk component",
+    "minimize temporal mean_absolute_change_rate",
+    "minimize flicker_change_rate",
+    "minimize rate-limit safety-override fraction",
+    "minimize over_masking_area",
+    "canonical temporal/rate tuple"
+  ],
+  "vary": "smoothing time constant and finite dim/bright rate pair"
+}
+
+temporal_smoothing:
+{
+  "candidate_time_constants_ms": [
+    50,
+    100,
+    200,
+    400
+  ],
+  "candidate_values_are_PDF_values": false,
+  "domain": "planned actuation time sequence at tau=[0.1,0.3,0.5,1.0] s",
+  "equation": "alpha_h = 1-exp(-delta_t_h/T); I_smooth_h = alpha_h*I_raw_h + (1-alpha_h)*I_prev",
+  "initial_state": "current causal class-aware reactive illumination generated from exact Part-A geometry; no future information",
+  "zero_smoothing_candidate": false
+}
+
+actuation_rate_limit:
+{
+  "applied_after": "temporal smoothing",
+  "candidate_rates_per_s": [
+    1,
+    2,
+    4,
+    8,
+    16
+  ],
+  "constraint": "rho_dim >= rho_bright; dimming is never slower than brightening",
+  "equation": "I_rate = clip(I_smooth, I_prev-rho_dim*delta_t, I_prev+rho_bright*delta_t)",
+  "finite_rate_required": true,
+  "normalized_intensity_units": "[0,1]",
+  "rate_pair_count": 15,
+  "safety_override_metric": "fraction of actuator cells/time steps where hard VRU floor overrides I_rate",
+  "safety_projection_after_rate_limit": "re-apply active VRU hard floor; record every rate-limit safety override"
+}
+
+===== C. CURRENT-STATE RUNTIME SEMANTICS =====
+
+L00991: def temporal_smooth_schedule(
+L00992:     raw_schedule,
+L00993:     *,
+L00994:     current_illumination,
+L00995:     horizons_s: Sequence[float],
+L00996:     time_constant_s: float,
+L00997: ) -> np.ndarray:
+
+L01001:         alpha_h = 1-exp(-dt_h/T)
+L01002:         I_h = alpha_h*raw_h + (1-alpha_h)*I_prev
+L01003: 
+L01004:     Initial I_prev is current causal illumination.
+L01005:     """
+L01006: 
+L01007:     raw = np.asarray(
+
+L01010:     )
+L01011: 
+L01012:     current = np.asarray(
+L01013:         current_illumination,
+L01014:         dtype=np.float64,
+L01015:     )
+L01016: 
+
+L01035: 
+L01036:     if current.shape != raw.shape[1:]:
+L01037:         raise ValueError(
+L01038:             "current_illumination shape mismatch"
+L01039:         )
+L01040: 
+L01041:     if horizons.shape != (
+
+L01056:         np.isfinite(current)
+L01057:     ):
+L01058:         raise ValueError(
+L01059:             "current_illumination contains non-finite values"
+L01060:         )
+L01061: 
+L01062:     if (
+
+L01157: def apply_actuation_rate_limit(
+L01158:     smoothed_schedule,
+L01159:     *,
+L01160:     current_illumination,
+L01161:     horizons_s: Sequence[float],
+L01162:     rho_dim_per_s: float,
+L01163:     rho_bright_per_s: float,
+
+L01182:     )
+L01183: 
+L01184:     current = np.asarray(
+L01185:         current_illumination,
+L01186:         dtype=np.float64,
+L01187:     )
+L01188: 
+
+L01212: 
+L01213:     if current.shape != smooth.shape[1:]:
+L01214:         raise ValueError(
+L01215:             "current_illumination shape mismatch"
+L01216:         )
+L01217: 
+L01218:     if horizons.shape != (
+
+runtime initial-state contract = CURRENT CAUSAL ILLUMINATION
+
+===== D. STRUCTURAL-SMOKE ALL-ON STATUS =====
+
+/home/agni/waymo/iscai_stage6/scripts/run_block66_part3c_part2of2_final.py SHA256= c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93
+L03297:         )
+L03298: 
+L03299:         # Neutral causal all-on state is used ONLY for
+L03300:         # operator-chain plumbing smoke; no objective metric
+L03301:         # is evaluated from this tuple.
+L03302:         current_illumination = np.ones(
+L03303:             (
+L03304:                 501,
+L03305:                 301,
+L03306:             ),
+L03298: 
+L03299:         # Neutral causal all-on state is used ONLY for
+L03300:         # operator-chain plumbing smoke; no objective metric
+L03301:         # is evaluated from this tuple.
+L03302:         current_illumination = np.ones(
+L03303:             (
+L03304:                 501,
+L03305:                 301,
+L03306:             ),
+L03307:             dtype=np.float64,
+
+all-on smoke state usable for Stage-4 selection = NO
+
+===== E. FROZEN REACTIVE/CURRENT-STATE CONTRACTS =====
+
+/home/agni/waymo/iscai_stage6/configs/stage6_reactive_development_scoring_contract.json SHA256= 454d22a2f067025fd8dde877546b7305c4357000126585c860a4a2d9ef3535d5
+  original_reactive_ADB.controller_state_source = 'current_causal_state_t0_only'
+  original_reactive_ADB.future_scoring_schedule = 'repeat_the_already_made_t0_reactive_illumination_map_unchanged_at_each_frozen_horizon'
+
+/home/agni/waymo/iscai_stage6/reports/block68_reactive_decision_ledger_freeze.json SHA256= 6ca868dbdf13e8a675813d4af2d3c814ce5297155126e5124ac452131670903b
+  frozen_outputs.maps.path = '/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_t0_maps.npy'
+  reactive_decision_semantics.decision_time = 'current_causal_t0'
+  reactive_decision_semantics.future_scoring_schedule = 'hold_t0_action_at_0.1_0.3_0.5_1.0s'
+
+/home/agni/waymo/iscai_stage6/configs/stage6_development_stage3_floor_scoring_semantics.json SHA256= a8bf30b29056562eb303f287acfcca6d8aee011f26a353897f8d18b47325e1b3
+
+/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/reactive_development_scoring.py SHA256= e3114093406da9e4f8088a70cfcf98843055634a6e45ef30e1f3f0420f586d7b
+
+L00031:     return values
+L00032: 
+L00033: 
+L00034: def _validate_current_illumination(
+L00035:     current_illumination,
+L00036: ) -> np.ndarray:
+L00037: 
+
+L00032: 
+L00033: 
+L00034: def _validate_current_illumination(
+L00035:     current_illumination,
+L00036: ) -> np.ndarray:
+L00037: 
+L00038:     current = np.asarray(
+
+L00036: ) -> np.ndarray:
+L00037: 
+L00038:     current = np.asarray(
+L00039:         current_illumination,
+L00040:         dtype=np.float64,
+L00041:     )
+L00042: 
+
+L00042: 
+L00043:     if current.ndim != 2:
+L00044:         raise ValueError(
+L00045:             "current_illumination must be a 2-D "
+L00046:             "[theta,range] Part-A reactive map"
+L00047:         )
+L00048: 
+
+L00043:     if current.ndim != 2:
+L00044:         raise ValueError(
+L00045:             "current_illumination must be a 2-D "
+L00046:             "[theta,range] Part-A reactive map"
+L00047:         )
+L00048: 
+L00049:     if not np.all(
+
+L00050:         np.isfinite(current)
+L00051:     ):
+L00052:         raise ValueError(
+L00053:             "current_illumination contains non-finite values"
+L00054:         )
+L00055: 
+L00056:     if (
+
+L00059:         np.any(current > 1.0)
+L00060:     ):
+L00061:         raise ValueError(
+L00062:             "current_illumination must lie in [0,1]"
+L00063:         )
+L00064: 
+L00065:     return current
+
+L00066: 
+L00067: 
+L00068: def hold_current_reactive_schedule(
+L00069:     current_illumination,
+L00070:     *,
+L00071:     horizons_s: Sequence[float] = (
+L00072:         0.1,
+
+L00079:     Frozen Block6.8 single-decision evaluator semantics.
+L00080: 
+L00081:     The original reactive ADB controller produces one causal
+L00082:     current-state Part-A-style illumination action at t0.
+L00083: 
+L00084:     For future-horizon comparison against predictive ADB,
+L00085:     that already-made action is held unchanged over the four
+
+L00089:     future trajectory, or posterior update enters this
+L00090:     operation.
+L00091: 
+L00092:     This is an evaluator representation of the t0 reactive
+L00093:     decision. It is NOT a simulated closed-loop reactive
+L00094:     controller with future re-observation.
+L00095:     """
+
+L00099:     )
+L00100: 
+L00101:     current = (
+L00102:         _validate_current_illumination(
+L00103:             current_illumination
+L00104:         )
+L00105:     )
+
+L00100: 
+L00101:     current = (
+L00102:         _validate_current_illumination(
+L00103:             current_illumination
+L00104:         )
+L00105:     )
+L00106: 
+
+L00235:             "original_reactive_ADB",
+L00236: 
+L00237:         "decision_time":
+L00238:             "t0_current_causal_state",
+L00239: 
+L00240:         "controller_future_input":
+L00241:             False,
+
+L00262: 
+L00263:         "schedule_semantics":
+L00264:             (
+L00265:                 "hold_t0_current_reactive_PartA_action_"
+L00266:                 "unchanged_across_future_scoring_horizons"
+L00267:             ),
+L00268: 
+
+===== F. REACTIVE DECISION / MAP ARTIFACT DISCOVERY =====
+candidate files = 8
+
+/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_decision_ledger.jsonl | bytes= 850448 | sha256= ac2b954571cdd0166bbcfa5bb8b2956785d1e132288dbe4af7fe2d55adeafcaa
+  rows = 120
+  relevant key paths:
+    original_reactive_ADB.constructed_oracle_input
+    original_reactive_ADB.controller_input_class
+    original_reactive_ADB.decision_time
+    original_reactive_ADB.future_controller_refresh
+    original_reactive_ADB.future_input
+    original_reactive_ADB.future_reobservation
+    original_reactive_ADB.posterior_input
+    original_reactive_ADB.score_schedule
+    original_reactive_ADB.vehicle_center_count
+    original_reactive_ADB.vehicle_centers_H0_m[0][0]
+    original_reactive_ADB.vehicle_centers_H0_m[0][1]
+    original_reactive_ADB.vehicle_centers_H0_m[0][2]
+    original_reactive_ADB.vehicle_centers_H0_m[10][0]
+    original_reactive_ADB.vehicle_centers_H0_m[10][1]
+    original_reactive_ADB.vehicle_centers_H0_m[10][2]
+    original_reactive_ADB.vehicle_centers_H0_m[11][0]
+    original_reactive_ADB.vehicle_centers_H0_m[11][1]
+    original_reactive_ADB.vehicle_centers_H0_m[11][2]
+    original_reactive_ADB.vehicle_centers_H0_m[12][0]
+    original_reactive_ADB.vehicle_centers_H0_m[12][1]
+    original_reactive_ADB.vehicle_centers_H0_m[12][2]
+    original_reactive_ADB.vehicle_centers_H0_m[13][0]
+    original_reactive_ADB.vehicle_centers_H0_m[13][1]
+    original_reactive_ADB.vehicle_centers_H0_m[13][2]
+    original_reactive_ADB.vehicle_centers_H0_m[14][0]
+    original_reactive_ADB.vehicle_centers_H0_m[14][1]
+    original_reactive_ADB.vehicle_centers_H0_m[14][2]
+    original_reactive_ADB.vehicle_centers_H0_m[15][0]
+    original_reactive_ADB.vehicle_centers_H0_m[15][1]
+    original_reactive_ADB.vehicle_centers_H0_m[15][2]
+    original_reactive_ADB.vehicle_centers_H0_m[16][0]
+    original_reactive_ADB.vehicle_centers_H0_m[16][1]
+    original_reactive_ADB.vehicle_centers_H0_m[16][2]
+    original_reactive_ADB.vehicle_centers_H0_m[17][0]
+    original_reactive_ADB.vehicle_centers_H0_m[17][1]
+    original_reactive_ADB.vehicle_centers_H0_m[17][2]
+    original_reactive_ADB.vehicle_centers_H0_m[18][0]
+    original_reactive_ADB.vehicle_centers_H0_m[18][1]
+    original_reactive_ADB.vehicle_centers_H0_m[18][2]
+    original_reactive_ADB.vehicle_centers_H0_m[19][0]
+    original_reactive_ADB.vehicle_centers_H0_m[19][1]
+    original_reactive_ADB.vehicle_centers_H0_m[19][2]
+    original_reactive_ADB.vehicle_centers_H0_m[1][0]
+    original_reactive_ADB.vehicle_centers_H0_m[1][1]
+    original_reactive_ADB.vehicle_centers_H0_m[1][2]
+    original_reactive_ADB.vehicle_centers_H0_m[20][0]
+    original_reactive_ADB.vehicle_centers_H0_m[20][1]
+    original_reactive_ADB.vehicle_centers_H0_m[20][2]
+    original_reactive_ADB.vehicle_centers_H0_m[21][0]
+    original_reactive_ADB.vehicle_centers_H0_m[21][1]
+    original_reactive_ADB.vehicle_centers_H0_m[21][2]
+    original_reactive_ADB.vehicle_centers_H0_m[22][0]
+    original_reactive_ADB.vehicle_centers_H0_m[22][1]
+    original_reactive_ADB.vehicle_centers_H0_m[22][2]
+    original_reactive_ADB.vehicle_centers_H0_m[2][0]
+    original_reactive_ADB.vehicle_centers_H0_m[2][1]
+    original_reactive_ADB.vehicle_centers_H0_m[2][2]
+    original_reactive_ADB.vehicle_centers_H0_m[3][0]
+    original_reactive_ADB.vehicle_centers_H0_m[3][1]
+    original_reactive_ADB.vehicle_centers_H0_m[3][2]
+    original_reactive_ADB.vehicle_centers_H0_m[4][0]
+    original_reactive_ADB.vehicle_centers_H0_m[4][1]
+    original_reactive_ADB.vehicle_centers_H0_m[4][2]
+    original_reactive_ADB.vehicle_centers_H0_m[5][0]
+    original_reactive_ADB.vehicle_centers_H0_m[5][1]
+    original_reactive_ADB.vehicle_centers_H0_m[5][2]
+    original_reactive_ADB.vehicle_centers_H0_m[6][0]
+    original_reactive_ADB.vehicle_centers_H0_m[6][1]
+    original_reactive_ADB.vehicle_centers_H0_m[6][2]
+    original_reactive_ADB.vehicle_centers_H0_m[7][0]
+    original_reactive_ADB.vehicle_centers_H0_m[7][1]
+    original_reactive_ADB.vehicle_centers_H0_m[7][2]
+    original_reactive_ADB.vehicle_centers_H0_m[8][0]
+    original_reactive_ADB.vehicle_centers_H0_m[8][1]
+    original_reactive_ADB.vehicle_centers_H0_m[8][2]
+    original_reactive_ADB.vehicle_centers_H0_m[9][0]
+    original_reactive_ADB.vehicle_centers_H0_m[9][1]
+    original_reactive_ADB.vehicle_centers_H0_m[9][2]
+    selected_adb_actors[0].reactive_control_input
+    selected_adb_actors[10].reactive_control_input
+    selected_adb_actors[11].reactive_control_input
+    selected_adb_actors[12].reactive_control_input
+    selected_adb_actors[13].reactive_control_input
+    selected_adb_actors[14].reactive_control_input
+    selected_adb_actors[15].reactive_control_input
+    selected_adb_actors[16].reactive_control_input
+    selected_adb_actors[17].reactive_control_input
+    selected_adb_actors[18].reactive_control_input
+    selected_adb_actors[19].reactive_control_input
+    selected_adb_actors[1].reactive_control_input
+    selected_adb_actors[20].reactive_control_input
+    selected_adb_actors[21].reactive_control_input
+    selected_adb_actors[22].reactive_control_input
+    selected_adb_actors[23].reactive_control_input
+    selected_adb_actors[24].reactive_control_input
+    selected_adb_actors[25].reactive_control_input
+    selected_adb_actors[26].reactive_control_input
+    selected_adb_actors[27].reactive_control_input
+    selected_adb_actors[28].reactive_control_input
+    selected_adb_actors[29].reactive_control_input
+    selected_adb_actors[2].reactive_control_input
+    selected_adb_actors[30].reactive_control_input
+    selected_adb_actors[31].reactive_control_input
+    selected_adb_actors[3].reactive_control_input
+    selected_adb_actors[4].reactive_control_input
+    selected_adb_actors[5].reactive_control_input
+    selected_adb_actors[6].reactive_control_input
+    selected_adb_actors[7].reactive_control_input
+    selected_adb_actors[8].reactive_control_input
+    selected_adb_actors[9].reactive_control_input
+    t0_map_dtype
+    t0_map_row_index
+    t0_map_sha256
+    t0_map_shape[0]
+    t0_map_shape[1]
+  relevant leaves:
+    row=1 original_reactive_ADB.decision_time='t0_current_causal_anchor'
+    row=1 original_reactive_ADB.score_schedule='hold_t0_action_at_0.1_0.3_0.5_1.0s'
+    row=1 t0_map_dtype='float64'
+    row=1 t0_map_row_index=0
+    row=1 t0_map_sha256='f027640e701e7b1ef1537018c7e45b322802c539b85cac0033669aece3fc3a0f'
+    row=1 t0_map_shape[0]=501
+    row=1 t0_map_shape[1]=301
+    row=2 original_reactive_ADB.decision_time='t0_current_causal_anchor'
+    row=2 original_reactive_ADB.score_schedule='hold_t0_action_at_0.1_0.3_0.5_1.0s'
+    row=2 t0_map_dtype='float64'
+    row=2 t0_map_row_index=1
+    row=2 t0_map_sha256='75e2b831876934f1f6bcaa1edf1a8a86364337a545893d1eb99b837154d873f2'
+    row=2 t0_map_shape[0]=501
+    row=2 t0_map_shape[1]=301
+    row=3 original_reactive_ADB.decision_time='t0_current_causal_anchor'
+    row=3 original_reactive_ADB.score_schedule='hold_t0_action_at_0.1_0.3_0.5_1.0s'
+    row=3 t0_map_dtype='float64'
+    row=3 t0_map_row_index=2
+    row=3 t0_map_sha256='5d21231dd275fa0b21275e7647e0baf44a44afabab74e92058ae76c1bd7103bc'
+    row=3 t0_map_shape[0]=501
+    row=3 t0_map_shape[1]=301
+    row=4 original_reactive_ADB.decision_time='t0_current_causal_anchor'
+    row=4 original_reactive_ADB.score_schedule='hold_t0_action_at_0.1_0.3_0.5_1.0s'
+    row=4 t0_map_dtype='float64'
+    row=4 t0_map_row_index=3
+    row=4 t0_map_sha256='cde7dd7c90e4e04a0085e7eb7014ca543b4ae6c5f00b75a9758d58b60310880e'
+    row=4 t0_map_shape[0]=501
+    row=4 t0_map_shape[1]=301
+    row=5 original_reactive_ADB.decision_time='t0_current_causal_anchor'
+    row=5 original_reactive_ADB.score_schedule='hold_t0_action_at_0.1_0.3_0.5_1.0s'
+
+/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_t0_maps.npy | bytes= 144769088 | sha256= 7c5d63c76c3d9ef74adbbd7a68e3ce7483b1dd80fd262cba06f6ce1909994993
+
+/home/agni/waymo/iscai_stage6/artifacts/block68/block68_part2b_part1_reactive_decision_ledger.log | bytes= 2888 | sha256= 6ce8a7d1b71a7e9acbf60921582b600dbb07be7b39aaaa611a06db254ceceebc
+
+/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch/run_block68_part2b_part1_reactive_decision_ledger.pre_patch.py | bytes= 61901 | sha256= fb9c62a46f2ad238fbbbf9ddb4ce791c02e74b65c66f316e2f586ddbd2bd13d6
+
+/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch_v2/run_block68_part2b_part1_reactive_decision_ledger.pre_v2.py | bytes= 61901 | sha256= fb9c62a46f2ad238fbbbf9ddb4ce791c02e74b65c66f316e2f586ddbd2bd13d6
+
+/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch_v3/run_block68_part2b_part1_reactive_decision_ledger.pre_v3.py | bytes= 61901 | sha256= fb9c62a46f2ad238fbbbf9ddb4ce791c02e74b65c66f316e2f586ddbd2bd13d6
+
+/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch_v4/run_block68_part2b_part1_reactive_decision_ledger.pre_v4.py | bytes= 61901 | sha256= fb9c62a46f2ad238fbbbf9ddb4ce791c02e74b65c66f316e2f586ddbd2bd13d6
+
+/home/agni/waymo/iscai_stage6/reports/block68_reactive_decision_ledger_freeze.json | bytes= 4526 | sha256= 6ca868dbdf13e8a675813d4af2d3c814ce5297155126e5124ac452131670903b
+  frozen_outputs.maps.path = '/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_t0_maps.npy'
+  reactive_decision_semantics.decision_time = 'current_causal_t0'
+  reactive_decision_semantics.future_scoring_schedule = 'hold_t0_action_at_0.1_0.3_0.5_1.0s'
+
+===== G. CURRENT/REACTIVE/MAP FILE INVENTORY =====
+/home/agni/waymo/iscai_stage6/artifacts/block68/block68_final_illumination_route_extract.log | bytes= 16208 | sha256= a810407f71c2315c4817d4f008e7e26f8026335ceca8cababcf79a514985d781
+/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_decision_ledger.jsonl | bytes= 850448 | sha256= ac2b954571cdd0166bbcfa5bb8b2956785d1e132288dbe4af7fe2d55adeafcaa
+/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_t0_maps.npy | bytes= 144769088 | sha256= 7c5d63c76c3d9ef74adbbd7a68e3ce7483b1dd80fd262cba06f6ce1909994993
+/home/agni/waymo/iscai_stage6/artifacts/block68/block68_part2b_part1_reactive_decision_ledger.log | bytes= 2888 | sha256= 6ce8a7d1b71a7e9acbf60921582b600dbb07be7b39aaaa611a06db254ceceebc
+/home/agni/waymo/iscai_stage6/artifacts/block68/block68_reactive_only_ni_delta_freeze.log | bytes= 3896 | sha256= 52f70bdc590a17b1043f947bc5d1c89d65081101cae32bea4401947c0c3ad243
+/home/agni/waymo/iscai_stage6/artifacts/block68/block68_reactive_only_ni_values.jsonl | bytes= 91629 | sha256= 3a81d6d39b29a2d30247f30f06f0e02bedd47ecc754a0eb550611947f6e9b0d5
+/home/agni/waymo/iscai_stage6/artifacts/block68/block68_reactive_scoring_semantics_freeze.log | bytes= 3398 | sha256= bf5557f1379d113982be094c13b93034aee21a3894c366d131fd46e588919f4b
+/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch/run_block68_part2b_part1_reactive_decision_ledger.pre_patch.py | bytes= 61901 | sha256= fb9c62a46f2ad238fbbbf9ddb4ce791c02e74b65c66f316e2f586ddbd2bd13d6
+/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch_v2/run_block68_part2b_part1_reactive_decision_ledger.pre_v2.py | bytes= 61901 | sha256= fb9c62a46f2ad238fbbbf9ddb4ce791c02e74b65c66f316e2f586ddbd2bd13d6
+/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch_v3/run_block68_part2b_part1_reactive_decision_ledger.pre_v3.py | bytes= 61901 | sha256= fb9c62a46f2ad238fbbbf9ddb4ce791c02e74b65c66f316e2f586ddbd2bd13d6
+/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch_v4/run_block68_part2b_part1_reactive_decision_ledger.pre_v4.py | bytes= 61901 | sha256= fb9c62a46f2ad238fbbbf9ddb4ce791c02e74b65c66f316e2f586ddbd2bd13d6
+/home/agni/waymo/iscai_stage6/artifacts/block68/provenance_repair/run_block68_reactive_only_ni_delta_freeze.pre_provenance_patch.py | bytes= 57526 | sha256= 759ea459a228560c9757380b0255a0357c16a4d6965ba0245b24dd5f3b0ec036
+/home/agni/waymo/iscai_stage6/artifacts/block68/stage4_preoutcome/current_illumination_authority_discovery.log | bytes= 16414 | sha256= 62398b3e5f754477cb5e5c526fb86ac85d31a9b3fd69e382d6884167b4f9c564
+/home/agni/waymo/iscai_stage6/artifacts/block68/timestamp_alignment_superseding/run_block68_reactive_only_ni_delta_freeze.pre_superseding_patch.py | bytes= 57491 | sha256= 35fedb5ac974140626ec64ab95ff142328366a77bffeb2815bce16e4953249dd
+/home/agni/waymo/iscai_stage6/configs/block62_part_a_reactive_binding.json | bytes= 3672 | sha256= a9773e94de81c1d2d081ddb7264f062690c761057ee8dc2c303b1c0e7f6554b0
+/home/agni/waymo/iscai_stage6/configs/block62_static_reactive_kernel_contract.json | bytes= 1639 | sha256= df4cf1e8fd18f3bc9cd48cbae4a6c2091e37313cbc1a5b2cefe48bd340eb5d60
+/home/agni/waymo/iscai_stage6/configs/block63_part2_runtime_route_decision.json | bytes= 1126 | sha256= f695e1d91ce3b6fb198b3841bb9a50f1ad2174964c2874839097eb588a61500f
+/home/agni/waymo/iscai_stage6/configs/part_a_reactive_adb_adapter_contract.json | bytes= 3736 | sha256= d552e9d766ec356fbf57079a647a7b3c5e882a6e153c8b9e5f06c8b207539e4c
+/home/agni/waymo/iscai_stage6/configs/stage6_frozen_illumination_grid_runtime_binding.json | bytes= 3293 | sha256= be5145fe60a941e7906639916cfa384d5674dc29f294f5a42e12c962bc4df4bc
+/home/agni/waymo/iscai_stage6/configs/stage6_reactive_development_scoring_contract.json | bytes= 2653 | sha256= 454d22a2f067025fd8dde877546b7305c4357000126585c860a4a2d9ef3535d5
+/home/agni/waymo/iscai_stage6/configs/stage6_reactive_future_truth_scoring_contract.json | bytes= 4894 | sha256= 8364c7cdfa4b66d820823c804d45905a207f77f66b53f06a6383e7722b8a9970
+/home/agni/waymo/iscai_stage6/configs/stage6_reactive_future_truth_timestamp_alignment_amendment.json | bytes= 2054 | sha256= 986174594522f735646eb9c9bccbfce7c167d861c0ae6d13baae53b89786b525
+/home/agni/waymo/iscai_stage6/configs/stage6_reactive_future_truth_timestamp_alignment_superseding.json | bytes= 185371 | sha256= 51a3b56a119467001a9f4617e1e19dc82c548c0a30c79fc9c4a9c1f5ef27bf56
+/home/agni/waymo/iscai_stage6/reports/block62_part1_static_reactive_kernel.json | bytes= 2190 | sha256= 865c81eeb689a1b0c7e41b08117c9197c19e5cac76de147a07898b17c2224477
+/home/agni/waymo/iscai_stage6/reports/block62_part2_exact_part_a_reactive.json | bytes= 2513 | sha256= b9b2eebc55cba4c996732d236455e82b41227e95cad792d6960eafde60bedaeb
+/home/agni/waymo/iscai_stage6/reports/block63_map_context_binding_audit.json | bytes= 248469 | sha256= 697587906d6d0a33ba23cb15c83665595f93151152bfa68310cc996dd262682a
+/home/agni/waymo/iscai_stage6/reports/block66_part0b_development_partition_resolution.json | bytes= 3898 | sha256= 1e7860b9589d7ce62791c5c48802fb06f90e2ccfca5d90b8ec6b528e5e3bb032
+/home/agni/waymo/iscai_stage6/reports/block68_final_illumination_route_extract.json | bytes= 12111 | sha256= cc9ca9028c2b7730b584f23e5f0901d6631e28e967098f791efc843b6840b68a
+/home/agni/waymo/iscai_stage6/reports/block68_reactive_decision_ledger_freeze.json | bytes= 4526 | sha256= 6ca868dbdf13e8a675813d4af2d3c814ce5297155126e5124ac452131670903b
+/home/agni/waymo/iscai_stage6/reports/block68_reactive_development_scoring_freeze.json | bytes= 3931 | sha256= 0fc8089bdfbf20eb5e187e71a6a736fefea59b3aac6b34ff373237016d8473f9
+/home/agni/waymo/iscai_stage6/reports/block68_reactive_only_ni_delta_freeze.json | bytes= 4319 | sha256= 821c845c5be2a60722d09d3a58160dafd08cb7cba6626e238a37a58eca661c9c
+
+===== H. SOURCE TRACE FOR T0/CURRENT MAP PRODUCTION =====
+
+/home/agni/waymo/iscai_stage6/scripts/run_block68_reactive_scoring_semantics_freeze.py | score= 5 | sha256= 90080fe195b5d109c967094b41b49de1edaf65684c0c1fbf1af326ead435f6f3
+
+L00219:     return values
+L00220: 
+L00221: 
+L00222: def _validate_current_illumination(
+L00223:     current_illumination,
+L00224: ) -> np.ndarray:
+L00225: 
+
+L00220: 
+L00221: 
+L00222: def _validate_current_illumination(
+L00223:     current_illumination,
+L00224: ) -> np.ndarray:
+L00225: 
+L00226:     current = np.asarray(
+
+L00224: ) -> np.ndarray:
+L00225: 
+L00226:     current = np.asarray(
+L00227:         current_illumination,
+L00228:         dtype=np.float64,
+L00229:     )
+L00230: 
+
+L00230: 
+L00231:     if current.ndim != 2:
+L00232:         raise ValueError(
+L00233:             "current_illumination must be a 2-D "
+L00234:             "[theta,range] Part-A reactive map"
+L00235:         )
+L00236: 
+
+L00231:     if current.ndim != 2:
+L00232:         raise ValueError(
+L00233:             "current_illumination must be a 2-D "
+L00234:             "[theta,range] Part-A reactive map"
+L00235:         )
+L00236: 
+L00237:     if not np.all(
+
+/home/agni/waymo/iscai_stage6/scripts/run_block68_stage4_current_illumination_authority_discovery.py | score= 5 | sha256= 86efceb8f9b50f8429b737690bffa530c76c2c3e6224368f58e294297469d672
+
+L00056: REPORT = (
+L00057:     S6
+L00058:     / "reports/"
+L00059:       "block68_stage4_current_illumination_authority_discovery.json"
+L00060: )
+L00061: 
+L00062: EXPECTED = {
+
+L00073: EXPECTED_TESTS = 224
+L00074: 
+L00075: SEARCH_TERMS = (
+L00076:     "current_illumination",
+L00077:     "current causal illumination",
+L00078:     "current_causal_illumination",
+L00079:     "t0",
+
+L00076:     "current_illumination",
+L00077:     "current causal illumination",
+L00078:     "current_causal_illumination",
+L00079:     "t0",
+L00080:     "reactive map",
+L00081:     "reactive_map",
+L00082:     "decision map",
+
+L00077:     "current causal illumination",
+L00078:     "current_causal_illumination",
+L00079:     "t0",
+L00080:     "reactive map",
+L00081:     "reactive_map",
+L00082:     "decision map",
+L00083:     "decision_map",
+
+L00079:     "t0",
+L00080:     "reactive map",
+L00081:     "reactive_map",
+L00082:     "decision map",
+L00083:     "decision_map",
+L00084:     "illumination_path",
+L00085:     "map_path",
+
+/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/reactive_development_scoring.py | score= 4 | sha256= e3114093406da9e4f8088a70cfcf98843055634a6e45ef30e1f3f0420f586d7b
+
+L00031:     return values
+L00032: 
+L00033: 
+L00034: def _validate_current_illumination(
+L00035:     current_illumination,
+L00036: ) -> np.ndarray:
+L00037: 
+
+L00032: 
+L00033: 
+L00034: def _validate_current_illumination(
+L00035:     current_illumination,
+L00036: ) -> np.ndarray:
+L00037: 
+L00038:     current = np.asarray(
+
+L00036: ) -> np.ndarray:
+L00037: 
+L00038:     current = np.asarray(
+L00039:         current_illumination,
+L00040:         dtype=np.float64,
+L00041:     )
+L00042: 
+
+L00042: 
+L00043:     if current.ndim != 2:
+L00044:         raise ValueError(
+L00045:             "current_illumination must be a 2-D "
+L00046:             "[theta,range] Part-A reactive map"
+L00047:         )
+L00048: 
+
+L00043:     if current.ndim != 2:
+L00044:         raise ValueError(
+L00045:             "current_illumination must be a 2-D "
+L00046:             "[theta,range] Part-A reactive map"
+L00047:         )
+L00048: 
+L00049:     if not np.all(
+
+/home/agni/waymo/iscai_stage6/scripts/repair_block68_part2b_part1_grid_binding.py | score= 3 | sha256= d0bdf210d9cb9d364c789f7565b7c89fd854de469585239c74ae8ef07e4d2e87
+
+L00054: MAPS = (
+L00055:     S6
+L00056:     / "artifacts/block68/"
+L00057:       "block68_original_reactive_t0_maps.npy"
+L00058: )
+L00059: 
+L00060: LEDGER = (
+
+L01039:     )
+L01040: 
+L01041:     print(
+L01042:         "t0 map artifact       = ABSENT"
+L01043:     )
+L01044: 
+L01045:     print(
+
+/home/agni/waymo/iscai_stage6/scripts/repair_block68_part2b_part1_grid_binding_v2.py | score= 3 | sha256= 5993eb857ea9c4c57cdd7b62536a0597f71343e5a93daa7cf8941c459b591d49
+
+L00047: MAPS = (
+L00048:     S6
+L00049:     / "artifacts/block68/"
+L00050:       "block68_original_reactive_t0_maps.npy"
+L00051: )
+L00052: 
+L00053: LEDGER = (
+
+L00723:     )
+L00724: 
+L00725:     print(
+L00726:         "reactive maps       = ABSENT"
+L00727:     )
+L00728: 
+L00729:     print(
+
+/home/agni/waymo/iscai_stage6/scripts/repair_block68_part2b_part1_grid_binding_v3.py | score= 3 | sha256= b98a57665e817d0d80b5b5a78d4e9253ff9f300cd1cb871f0d550378b5102c55
+
+L00035: MAPS = (
+L00036:     S6
+L00037:     / "artifacts/block68/"
+L00038:       "block68_original_reactive_t0_maps.npy"
+L00039: )
+L00040: 
+L00041: LEDGER = (
+
+L00893:     )
+L00894: 
+L00895:     print(
+L00896:         "t0 maps        = ABSENT"
+L00897:     )
+L00898: 
+L00899:     print(
+
+L01382:         not MAPS.exists(),
+L01383:         (
+L01384:             "Patch unexpectedly generated "
+L01385:             "reactive maps."
+L01386:         ),
+L01387:     )
+L01388: 
+
+/home/agni/waymo/iscai_stage6/scripts/repair_block68_part2b_part1_grid_binding_v4.py | score= 3 | sha256= 8c4845415b107f3630d6e217a285249e6d7af6d7c31a6105aab6584929f304fa
+
+L00035: MAPS = (
+L00036:     S6
+L00037:     / "artifacts/block68/"
+L00038:       "block68_original_reactive_t0_maps.npy"
+L00039: )
+L00040: 
+L00041: LEDGER = (
+
+L00891:     )
+L00892: 
+L00893:     print(
+L00894:         "reactive maps       = ABSENT"
+L00895:     )
+L00896:     print(
+L00897:         "decision ledger     = ABSENT"
+
+L01404:         not MAPS.exists(),
+L01405:         (
+L01406:             "Patcher unexpectedly produced "
+L01407:             "reactive maps."
+L01408:         ),
+L01409:     )
+L01410: 
+
+/home/agni/waymo/iscai_stage6/scripts/repair_block68_reactive_only_future_gt_provenance.py | score= 3 | sha256= 0474dbcd4b6639b01212fab08f1f42e3852f69b326acd1dc669291805f5f21cb
+
+L00041:       "block68_original_reactive_decision_ledger.jsonl"
+L00042: )
+L00043: 
+L00044: T0_MAPS = (
+L00045:     S6
+L00046:     / "artifacts/block68/"
+L00047:       "block68_original_reactive_t0_maps.npy"
+
+L00044: T0_MAPS = (
+L00045:     S6
+L00046:     / "artifacts/block68/"
+L00047:       "block68_original_reactive_t0_maps.npy"
+L00048: )
+L00049: 
+L00050: RAW_VALUES = (
+
+L00100:     "85d1e132288dbe4af7fe2d55adeafcaa"
+L00101: )
+L00102: 
+L00103: EXPECTED_T0_MAPS_SHA = (
+L00104:     "7c5d63c76c3d9ef74adbbd7a68e3ce74"
+L00105:     "83b1dd80fd262cba06f6ce1909994993"
+L00106: )
+
+L01040: 
+L01041:     require(
+L01042:         file_sha(
+L01043:             T0_MAPS
+L01044:         )
+L01045:         ==
+L01046:         EXPECTED_T0_MAPS_SHA,
+
+L01043:             T0_MAPS
+L01044:         )
+L01045:         ==
+L01046:         EXPECTED_T0_MAPS_SHA,
+L01047:         (
+L01048:             "Frozen t0 maps SHA changed."
+L01049:         ),
+
+/home/agni/waymo/iscai_stage6/scripts/run_block66_part3c_part2of2_final.py | score= 3 | sha256= c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93
+
+L03299:         # Neutral causal all-on state is used ONLY for
+L03300:         # operator-chain plumbing smoke; no objective metric
+L03301:         # is evaluated from this tuple.
+L03302:         current_illumination = np.ones(
+L03303:             (
+L03304:                 501,
+L03305:                 301,
+
+L03309: 
+L03310:         smoothed = temporal_smooth_schedule(
+L03311:             raw,
+L03312:             current_illumination=
+L03313:                 current_illumination,
+L03314:             horizons_s=
+L03315:                 tuple(
+
+L03310:         smoothed = temporal_smooth_schedule(
+L03311:             raw,
+L03312:             current_illumination=
+L03313:                 current_illumination,
+L03314:             horizons_s=
+L03315:                 tuple(
+L03316:                     float(value)
+
+L03326:         rate_limited = (
+L03327:             apply_actuation_rate_limit(
+L03328:                 smoothed,
+L03329:                 current_illumination=
+L03330:                     current_illumination,
+L03331:                 horizons_s=
+L03332:                     tuple(
+
+L03327:             apply_actuation_rate_limit(
+L03328:                 smoothed,
+L03329:                 current_illumination=
+L03330:                     current_illumination,
+L03331:                 horizons_s=
+L03332:                     tuple(
+L03333:                         float(value)
+
+/home/agni/waymo/iscai_stage6/scripts/run_block68_part2b_part1_reactive_decision_ledger.py | score= 3 | sha256= c7bedc46e1dc687258b6d81790f54a3c05d7d2e55da8b7e681bd379d1058579e
+
+L00064: MAPS = (
+L00065:     S6
+L00066:     / "artifacts/block68/"
+L00067:       "block68_original_reactive_t0_maps.npy"
+L00068: )
+L00069: 
+L00070: LEDGER = (
+
+L01790: 
+L01791:     print()
+L01792:     print(
+L01793:         "===== E. MATERIALIZE 120 CAUSAL t0 DECISIONS ====="
+L01794:     )
+L01795: 
+L01796:     for path in (
+
+L02113:                 ==
+L02114:                 GRID_SHAPE,
+L02115:                 (
+L02116:                     "Reactive map shape mismatch: "
+L02117:                     f"{scenario_id}"
+L02118:                 ),
+L02119:             )
+
+L02137:                     )
+L02138:                 ),
+L02139:                 (
+L02140:                     "Reactive map invalid: "
+L02141:                     f"{scenario_id}"
+L02142:                 ),
+L02143:             )
+
+L02171:                 ),
+L02172:                 (
+L02173:                     "Reactive scoring helper "
+L02174:                     "did not hold t0 action exactly."
+L02175:                 ),
+L02176:             )
+L02177: 
+
+/home/agni/waymo/iscai_stage6/scripts/run_block68_part2b_part2_geometry_identity_bind.py | score= 3 | sha256= f0bec04d1b43f89d7b9f000127a31ff91318293d57f29df97d6555bc93fedd89
+
+L00023: MAPS = (
+L00024:     S6
+L00025:     / "artifacts/block68/"
+L00026:       "block68_original_reactive_t0_maps.npy"
+L00027: )
+L00028: 
+L00029: REACTIVE_REPORT = (
+
+L00854:         "future truth values read       = NO"
+L00855:     )
+L00856:     print(
+L00857:         "reactive map values analyzed   = NO"
+L00858:     )
+L00859:     print(
+L00860:         "oracle masks materialized      = NO"
+
+L01050:         "frozen reactive ledger      = EXACT PASS"
+L01051:     )
+L01052:     print(
+L01053:         "frozen t0 maps              = EXACT PASS"
+L01054:     )
+L01055:     print(
+L01056:         "scenario identity           = 120 / 120 PASS"
+
+/home/agni/waymo/iscai_stage6/scripts/run_block68_reactive_only_ni_delta_freeze.py | score= 3 | sha256= dd58b1de2f01331d69b28726831039b87df8771ae4a4818b7d6c35e56d367e02
+
+L00044:       "block68_original_reactive_decision_ledger.jsonl"
+L00045: )
+L00046: 
+L00047: T0_MAPS = (
+L00048:     S6
+L00049:     / "artifacts/block68/"
+L00050:       "block68_original_reactive_t0_maps.npy"
+
+L00047: T0_MAPS = (
+L00048:     S6
+L00049:     / "artifacts/block68/"
+L00050:       "block68_original_reactive_t0_maps.npy"
+L00051: )
+L00052: 
+L00053: REACTIVE_FREEZE_REPORT = (
+
+L00115:     "ledger":
+L00116:         "ac2b954571cdd0166bbcfa5bb8b2956785d1e132288dbe4af7fe2d55adeafcaa",
+L00117: 
+L00118:     "t0_maps":
+L00119:         "7c5d63c76c3d9ef74adbbd7a68e3ce7483b1dd80fd262cba06f6ce1909994993",
+L00120: 
+L00121:     "reactive_freeze_report":
+
+L00962:             LEDGER,
+L00963:         ),
+L00964:         (
+L00965:             "t0_maps",
+L00966:             T0_MAPS,
+L00967:         ),
+L00968:         (
+
+L00963:         ),
+L00964:         (
+L00965:             "t0_maps",
+L00966:             T0_MAPS,
+L00967:         ),
+L00968:         (
+L00969:             "reactive_freeze_report",
+
+/home/agni/waymo/iscai_stage6/scripts/repair_block68_reactive_only_timestamp_alignment.py | score= 2 | sha256= 72b963790a0b3e4fa89464fff755ae5c6e92b7360eddacf3df7d5b7b0a566fa1
+
+L00349: 
+L00350:     require(
+L00351:         (
+L00352:             "t1 > t0 "
+L00353:             "for t0, t1 in zip("
+L00354:             "timestamps[:-1], timestamps[1:])"
+L00355:         )
+
+L00350:     require(
+L00351:         (
+L00352:             "t1 > t0 "
+L00353:             "for t0, t1 in zip("
+L00354:             "timestamps[:-1], timestamps[1:])"
+L00355:         )
+L00356:         in
+
+/home/agni/waymo/iscai_stage6/scripts/repair_block68_timestamp_alignment_superseding.py | score= 2 | sha256= 9da346a95e440d79b6f2293086a89a799d94f0a3c992c4511407dea93a4c4402
+
+L01790:             "future truth evaluator-only role",
+L01791:             "future box geometry",
+L01792:             "rasterization",
+L01793:             "reactive t0 action",
+L01794:             "metric semantics",
+L01795:             "NI rule",
+L01796:             "controller",
+
+/home/agni/waymo/iscai_stage6/scripts/run_block62_part1_static_reactive_kernel.py | score= 2 | sha256= b7c71b8d15a2532312e1b67644d3783f3cddd21ad15a9a19958a2256dedc0b29
+
+/home/agni/waymo/iscai_stage6/scripts/run_block62_part2_exact_part_a_reactive.py | score= 2 | sha256= d12ba7baed7117dba8aa26179a602f3dd8d081552d2b061fadc2fe2e2579bb96
+
+L03279:     )
+L03280: 
+L03281:     print(
+L03282:         "reactive map SHA256         =",
+L03283:         array_sha256(
+L03284:             base_map
+L03285:         ),
+
+L03626:             )
+L03627:         ),
+L03628:         (
+L03629:             "Original reactive map "
+L03630:             "exposes predictive/communication input."
+L03631:         ),
+L03632:     )
+
+/home/agni/waymo/iscai_stage6/scripts/run_block66_part1b_development_cohort_freeze.py | score= 2 | sha256= 5c96a8f52b3c5f9fb7784aac8dc32cb9d740bd8ee26419c539131f3eacff4825
+
+L00021:       "block65_to_block66_handoff.json"
+L00022: )
+L00023: 
+L00024: PART0B_REPORT = (
+L00025:     S6
+L00026:     / "reports/"
+L00027:       "block66_part0b_development_partition_resolution.json"
+
+L00024: PART0B_REPORT = (
+L00025:     S6
+L00026:     / "reports/"
+L00027:       "block66_part0b_development_partition_resolution.json"
+L00028: )
+L00029: 
+L00030: PART1A_REPORT = (
+
+L00083:             "188df798e5ac19b4b289418ec5ffe700"
+L00084:         ),
+L00085: 
+L00086:     "part0b_report":
+L00087:         (
+L00088:             "1e7860b9589d7ce62791c5c48802fb06"
+L00089:             "f90e2ccfca5d90b8ec6b528e5e3bb032"
+
+L00454:             "Block6.5 handoff",
+L00455:         ),
+L00456:         (
+L00457:             PART0B_REPORT,
+L00458:             EXPECTED[
+L00459:                 "part0b_report"
+L00460:             ],
+
+L00456:         (
+L00457:             PART0B_REPORT,
+L00458:             EXPECTED[
+L00459:                 "part0b_report"
+L00460:             ],
+L00461:             "Part0B report",
+L00462:         ),
+
+/home/agni/waymo/iscai_stage6/scripts/run_block66_part3b_preregistration.py | score= 2 | sha256= fe31d519019fd24445cf39fd7a8fc0dcc37f240f181fbb726c2bb207825e789d
+
+/home/agni/waymo/iscai_stage6/scripts/run_block66_part3c1_class_aware_runtime.py | score= 2 | sha256= 8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c
+
+L01119: def temporal_smooth_schedule(
+L01120:     raw_schedule,
+L01121:     *,
+L01122:     current_illumination,
+L01123:     horizons_s: Sequence[float],
+L01124:     time_constant_s: float,
+L01125: ) -> np.ndarray:
+
+L01138:     )
+L01139: 
+L01140:     current = np.asarray(
+L01141:         current_illumination,
+L01142:         dtype=np.float64,
+L01143:     )
+L01144: 
+
+L01163: 
+L01164:     if current.shape != raw.shape[1:]:
+L01165:         raise ValueError(
+L01166:             "current_illumination shape mismatch"
+L01167:         )
+L01168: 
+L01169:     if horizons.shape != (
+
+L01184:         np.isfinite(current)
+L01185:     ):
+L01186:         raise ValueError(
+L01187:             "current_illumination contains non-finite values"
+L01188:         )
+L01189: 
+L01190:     if (
+
+L01285: def apply_actuation_rate_limit(
+L01286:     smoothed_schedule,
+L01287:     *,
+L01288:     current_illumination,
+L01289:     horizons_s: Sequence[float],
+L01290:     rho_dim_per_s: float,
+L01291:     rho_bright_per_s: float,
+
+/home/agni/waymo/iscai_stage6/scripts/run_block68_development_selection_runtime_bind.py | score= 2 | sha256= 552f2c5988a9a52958f569316b54c7fdcbdbfdfe50a6d897dba7f3df2456cc87
+
+L00141:     "sample",
+L00142:     "pocc",
+L00143:     "occupancy",
+L00144:     "current_illumination",
+L00145:     "current",
+L00146:     "grid",
+L00147:     "replay",
+
+===== I. AUTHORITY CLASSIFICATION =====
+runtime requires current causal state = YES
+structural all-on is selection authority = NO
+reactive/map candidates discovered = 8
+explicit current-state text hits = ['current causal illumination', 'current_illumination', 'hold_t0']
+
+CLASSIFICATION = CURRENT_STATE_SOURCE_MUST_BE_BOUND_BEFORE_STAGE4_SWEEP
+No Stage-4 tuple may be scored until the exact 2-D I_prev source is identified and frozen.
+
+===== J. FULL STAGE6 REGRESSION =====
+Stage6 regression = 224 / 224 PASS
+
+==============================================================================
+STAGE-4 CURRENT-ILLUMINATION DISCOVERY — FINAL
+==============================================================================
+Stage-1 gamma         = FROZEN
+Stage-2 margins       = FROZEN
+Stage-3 floors        = FROZEN
+runtime I_prev        = CURRENT CAUSAL ILLUMINATION
+all-on smoke state    = NOT SELECTION AUTHORITY
+Stage-4 outcomes      = NOT COMPUTED
+Stage-4 winner        = NOT SELECTED
+primary acceptance    = NOT TESTED
+formal evaluation     = NO
+Stage6 regression     = 224 / 224 PASS
+STATUS = PASS_STAGE4_CURRENT_ILLUMINATION_AUTHORITY_DISCOVERY_ONLY
+report = /home/agni/waymo/iscai_stage6/reports/block68_stage4_current_illumination_authority_discovery.json
+terminal remains open = YES

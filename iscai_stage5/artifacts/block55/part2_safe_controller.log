@@ -1,0 +1,163 @@
+============================================================
+BLOCK 5.5 PART 2/2 — SAFE EXECUTION
+============================================================
+
+===== CONTROLLED COMPILE =====
+adaptive_topk_temporal.py = PASS
+test_block55_part2_temporal_controller.py = PASS
+run_block55_part2_freeze.py = PASS
+run_block55_part2_safe.py = PASS
+
+===== BLOCK5.5 PART2 UNIT TESTS =====
+
+....................
+----------------------------------------------------------------------
+Ran 20 tests in 0.002s
+
+OK
+
+Block5.5 Part2 tests = 20 / 20 PASS
+
+===== PRE-FREEZE FULL STAGE5 REGRESSION =====
+
+..........................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 186 tests in 0.071s
+
+OK
+
+pre-freeze Stage5 regression = 186 / 186 PASS
+
+===== FINAL BLOCK5.5 FREEZE =====
+============================================================
+STAGE 5 — BLOCK 5.5 PART 2/2
+ADAPTIVE TOP-K TEMPORAL / RECOVERY CONTRACT FREEZE
+============================================================
+
+===== A. FROZEN CONTINUITY =====
+Block5.5 Part1          = PASS
+historical Part1 SHA    = PASS
+Block5.4               = COMPLETE / FROZEN
+baseline policy SHA     = PASS
+codebook policy SHA     = PASS
+angular policy SHA      = PASS
+MC sample count         = 2048 FROZEN
+
+===== B. COVERAGE ACCEPTANCE CONTRACT =====
+coverage targets             = 90 / 95 / 97.5 / 99 %
+nominal coverage             = 95 %
+posterior mass tolerance     = 0.00048828125
+tolerance provenance         = 1 / FROZEN MC N
+empirical GT containment     = REPORT SEPARATELY
+
+===== C. KMAX FREEZE =====
+16-beam Kmax = 16 PASS
+32-beam Kmax = 32 PASS
+64-beam Kmax = 64 PASS
+Kmax rule                   = FULL CODEBOOK SIZE
+Kmax tuned on development    = NO
+Kmax can cause false failure = NO
+
+===== D. TEMPORAL HYSTERESIS / PERSISTENCE =====
+hysteresis rule              = PREVIOUS PRIMARY IF STILL IN SET
+coverage set modified         = NO
+numeric hysteresis margin     = NONE
+switch penalty                = UNIT EVENT INDICATOR
+tuned switch weight           = NO
+
+===== E. LOCAL / WIDENED RECOVERY =====
+64-beam recovery contract = PASS
+32-beam recovery contract = PASS
+16-beam recovery contract = PASS
+local neighbor radius        = GRAPH ADJACENCY ONLY
+widened fallback             = 64->32->16
+new beamwidth parameter      = NO
+
+===== F. LOSS-OF-LOCK / EXHAUSTIVE RECOVERY =====
+loss-of-lock trigger         = UNATTAINABLE REQUESTED MASS
+outside-support honesty      = PASS
+recovery                     = WIDENED THEN EXHAUSTIVE
+exhaustive beam set          = ALL CURRENT CODEBOOK BEAMS
+
+===== G. ALL q TARGETS / LEAKAGE =====
+q= 90.0% K=3 mass=0.950000
+q= 95.0% K=3 mass=0.950000
+q= 97.5% K=4 mass=1.000000
+q= 99.0% K=4 mass=1.000000
+formal N=120 used           = NO
+Stage4 inference            = NO
+development tuning          = NO
+training/recalibration      = NO
+future receiver truth       = NO
+oracle controller access    = NO
+optical link                = NOT STARTED
+
+============================================================
+BLOCK 5.5 PART 2/2 GATE
+============================================================
+Part1 continuity            = PASS
+coverage q                  = 90 / 95 / 97.5 / 99 % FROZEN
+nominal q                   = 95 % FROZEN
+posterior mass tolerance    = 1 / 2048 FROZEN
+adaptive rule               = SMALLEST MASS-COVERING SET
+Kmax                        = FULL CODEBOOK SIZE FROZEN
+Kmax 16/32/64               = 16 / 32 / 64
+hysteresis                  = PREVIOUS PRIMARY IF STILL IN SET
+numeric hysteresis margin   = NONE
+local neighbor sweep        = IMMEDIATE GRAPH NEIGHBORS
+widened fallback            = 64 -> 32 -> 16
+loss-of-lock recovery       = WIDENED + EXHAUSTIVE
+switch penalty              = UNIT SWITCH EVENT
+outside-support mass        = EXPLICIT / NOT RENORMALIZED
+false coverage claim        = FORBIDDEN
+formal N=120 used           = NO
+Stage4 inference            = NO
+development/formal tuning   = NO
+optical link                = NOT STARTED
+policy SHA256               = a520f67fd6f74d7c507852cbc4a14c9cd1e043604706ae4aed89f2775dcddf8f
+implementation files        = 70
+implementation SHA256       = a4af90f7463e5ff93c3f6b316188a56bf25758bb1216d465020155fd6c0205ce
+STATUS = PASS
+Block5.5 = COMPLETE / FROZEN
+report = /home/agni/waymo/iscai_stage5/reports/block55_adaptive_topk.json
+next = BLOCK 5.6
+terminal remains open = YES
+
+Block5.5 freeze raw code = 0
+
+===== FINAL FULL STAGE5 REGRESSION =====
+
+..........................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 186 tests in 0.070s
+
+OK
+
+final Stage5 regression = 186 / 186 PASS
+
+============================================================
+BLOCK 5.5 FINAL
+============================================================
+coverage q                  = 90 / 95 / 97.5 / 99 % FROZEN
+nominal q                   = 95 % FROZEN
+posterior mass tolerance    = 1 / 2048 FROZEN
+adaptive selection          = SMALLEST MASS-COVERING SET
+Kmax                        = FULL CODEBOOK SIZE
+Kmax 16 / 32 / 64           = 16 / 32 / 64
+hysteresis                  = PREVIOUS PRIMARY IF STILL IN SET
+numeric hysteresis margin   = NONE
+local neighboring sweep     = IMMEDIATE GRAPH NEIGHBORS
+widened fallback            = 64 -> 32 -> 16
+loss-of-lock exhaustive     = FROZEN
+switch penalty              = UNIT SWITCH EVENT
+outside-support probability = EXPLICIT / NOT RENORMALIZED
+formal N=120 used           = NO
+Stage4 inference            = NO
+development/formal tuning   = NO
+Stage5 regression           = 186 / 186 PASS
+policy SHA256               = a520f67fd6f74d7c507852cbc4a14c9cd1e043604706ae4aed89f2775dcddf8f
+implementation SHA256       = a4af90f7463e5ff93c3f6b316188a56bf25758bb1216d465020155fd6c0205ce
+scientific STATUS           = PASS
+Block5.5                    = COMPLETE / FROZEN
+next                        = BLOCK 5.6
+terminal remains open       = YES

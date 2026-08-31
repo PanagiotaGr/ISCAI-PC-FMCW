@@ -1,0 +1,479 @@
+{
+  "PDF_input_ablation_report": {
+    "all_required_materialized": true,
+    "path": "/home/agni/waymo/iscai_stage4/reports/stage4_fullpdf_v2_ablation_development.json",
+    "sha256": "7fddfd7f1ffce6cdb9233137b033f03a0315fa6bbc0de6cf72ef37a9bcaeb668"
+  },
+  "Stage3_reference": {
+    "formal_manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "formal_run_sha256": "9151ef8714fb710b57b8cc762bb809cebf29b6174d1aeb8dab609b42f6641e7b",
+    "future_truth_assignment": false,
+    "tracks_to_predict_algorithm_input": false
+  },
+  "classical_exact_common_support": {
+    "CA": {
+      "CA_ADE_m": 27.791674710240734,
+      "Gaussian_ADE_m": 1.2298967095374964,
+      "Gaussian_beats_classical": true,
+      "Gaussian_minus_classical_m": -26.56177800070324,
+      "actor_count": 290,
+      "by_horizon": {
+        "0.1": {
+          "CA_ADE_m": 3.0052443267163023,
+          "Gaussian_ADE_m": 0.5794072875415406,
+          "n": 290
+        },
+        "0.3": {
+          "CA_ADE_m": 11.170992738893036,
+          "Gaussian_ADE_m": 0.8960227264849997,
+          "n": 283
+        },
+        "0.5": {
+          "CA_ADE_m": 24.07592523556565,
+          "Gaussian_ADE_m": 1.2533924595548966,
+          "n": 281
+        },
+        "1.0": {
+          "CA_ADE_m": 74.83110529750321,
+          "Gaussian_ADE_m": 2.235445668911294,
+          "n": 275
+        }
+      },
+      "event_count": 1129,
+      "scenario_count": 107
+    },
+    "CTRV": {
+      "CTRV_ADE_m": 4.465217714844737,
+      "Gaussian_ADE_m": 1.2491829363974722,
+      "Gaussian_beats_classical": true,
+      "Gaussian_minus_classical_m": -3.216034778447265,
+      "actor_count": 309,
+      "by_horizon": {
+        "0.1": {
+          "CTRV_ADE_m": 1.8739133703929103,
+          "Gaussian_ADE_m": 0.6077685719947734,
+          "n": 309
+        },
+        "0.3": {
+          "CTRV_ADE_m": 3.4781405745679033,
+          "Gaussian_ADE_m": 0.9196726287479924,
+          "n": 302
+        },
+        "0.5": {
+          "CTRV_ADE_m": 4.844778325947248,
+          "Gaussian_ADE_m": 1.2653940886988935,
+          "n": 299
+        },
+        "1.0": {
+          "CTRV_ADE_m": 7.828090465969542,
+          "Gaussian_ADE_m": 2.2487120045628375,
+          "n": 293
+        }
+      },
+      "event_count": 1203,
+      "scenario_count": 108
+    },
+    "CV": {
+      "CV_ADE_m": 5.840948954946172,
+      "Gaussian_ADE_m": 1.2852425176409317,
+      "Gaussian_beats_classical": true,
+      "Gaussian_minus_classical_m": -4.55570643730524,
+      "actor_count": 332,
+      "by_horizon": {
+        "0.1": {
+          "CV_ADE_m": 1.6499414557161531,
+          "Gaussian_ADE_m": 0.6137522115944872,
+          "n": 331
+        },
+        "0.3": {
+          "CV_ADE_m": 3.86349598979145,
+          "Gaussian_ADE_m": 0.9378515329628548,
+          "n": 323
+        },
+        "0.5": {
+          "CV_ADE_m": 6.215799207536684,
+          "Gaussian_ADE_m": 1.3068572252550683,
+          "n": 320
+        },
+        "1.0": {
+          "CV_ADE_m": 11.94988712533446,
+          "Gaussian_ADE_m": 2.335094674422561,
+          "n": 312
+        }
+      },
+      "event_count": 1286,
+      "scenario_count": 110
+    },
+    "IMM_CV_CA_CTRV": {
+      "Gaussian_ADE_m": 1.2052172681938262,
+      "Gaussian_beats_classical": true,
+      "Gaussian_minus_classical_m": -1.6823102082487977,
+      "IMM_CV_CA_CTRV_ADE_m": 2.887527476442624,
+      "actor_count": 263,
+      "by_horizon": {
+        "0.1": {
+          "Gaussian_ADE_m": 0.6182748868759081,
+          "IMM_CV_CA_CTRV_ADE_m": 1.0934320768515442,
+          "n": 263
+        },
+        "0.3": {
+          "Gaussian_ADE_m": 0.8928991895300188,
+          "IMM_CV_CA_CTRV_ADE_m": 1.9164625720669473,
+          "n": 255
+        },
+        "0.5": {
+          "Gaussian_ADE_m": 1.2207734539075394,
+          "IMM_CV_CA_CTRV_ADE_m": 2.8958141658802217,
+          "n": 250
+        },
+        "1.0": {
+          "Gaussian_ADE_m": 2.1483234563801177,
+          "IMM_CV_CA_CTRV_ADE_m": 5.827678986069065,
+          "n": 244
+        }
+      },
+      "event_count": 1012,
+      "scenario_count": 106
+    },
+    "Kalman_EKF": {
+      "Gaussian_ADE_m": 1.2813200204979278,
+      "Gaussian_beats_classical": true,
+      "Gaussian_minus_classical_m": -1.896642736277832,
+      "Kalman_EKF_ADE_m": 3.17796275677576,
+      "actor_count": 281,
+      "by_horizon": {
+        "0.1": {
+          "Gaussian_ADE_m": 0.6412756539609074,
+          "Kalman_EKF_ADE_m": 1.301237568222785,
+          "n": 280
+        },
+        "0.3": {
+          "Gaussian_ADE_m": 0.939334680594978,
+          "Kalman_EKF_ADE_m": 2.244186038033683,
+          "n": 274
+        },
+        "0.5": {
+          "Gaussian_ADE_m": 1.302138741717225,
+          "Kalman_EKF_ADE_m": 3.2923510896258956,
+          "n": 271
+        },
+        "1.0": {
+          "Gaussian_ADE_m": 2.2975729950733816,
+          "Kalman_EKF_ADE_m": 6.030961370949811,
+          "n": 263
+        }
+      },
+      "event_count": 1088,
+      "scenario_count": 106
+    },
+    "Multidimensional_Hough": {
+      "Gaussian_ADE_m": 1.2166697030635543,
+      "Gaussian_beats_classical": true,
+      "Gaussian_minus_classical_m": -0.08191415836636384,
+      "Multidimensional_Hough_ADE_m": 1.298583861429918,
+      "actor_count": 203,
+      "by_horizon": {
+        "0.1": {
+          "Gaussian_ADE_m": 0.5932758617847809,
+          "Multidimensional_Hough_ADE_m": 0.7479211952446565,
+          "n": 202
+        },
+        "0.3": {
+          "Gaussian_ADE_m": 0.8898386714162133,
+          "Multidimensional_Hough_ADE_m": 1.011522862798131,
+          "n": 196
+        },
+        "0.5": {
+          "Gaussian_ADE_m": 1.244046903549813,
+          "Multidimensional_Hough_ADE_m": 1.289631839864665,
+          "n": 195
+        },
+        "1.0": {
+          "Gaussian_ADE_m": 2.1988286607570147,
+          "Multidimensional_Hough_ADE_m": 2.1988150236984154,
+          "n": 188
+        }
+      },
+      "event_count": 781,
+      "scenario_count": 98
+    }
+  },
+  "formal_metrics": {
+    "GMM_3_component": {
+      "MAP_component_ADE_m": 1.4594952550248341,
+      "mixture_expected_ADE_m": 1.4497276496988638,
+      "trajectory_level_minADE_m": 1.3068499135064755,
+      "trajectory_level_mixture": true
+    },
+    "Gaussian_probabilistic_GRU": {
+      "ADE_m": 1.4541127440701926,
+      "FDE_1s_m": 2.634090548180621,
+      "by_class": {
+        "TYPE_CYCLIST": {
+          "ADE_m": 1.3102809964358186,
+          "events": 80
+        },
+        "TYPE_PEDESTRIAN": {
+          "ADE_m": 0.8454441934903548,
+          "events": 171
+        },
+        "TYPE_VEHICLE": {
+          "ADE_m": 1.5436471065488155,
+          "events": 1291
+        }
+      },
+      "by_horizon": {
+        "0.1": {
+          "mean": 0.6750416331140184,
+          "n": 386
+        },
+        "0.3": {
+          "mean": 1.0331185282328195,
+          "n": 384
+        },
+        "0.5": {
+          "mean": 1.4720189495728069,
+          "n": 386
+        },
+        "1.0": {
+          "mean": 2.634090548180621,
+          "n": 386
+        }
+      },
+      "calibrated": {
+        "NLL": 2.848475218648581,
+        "macro_Brier": 0.16619329177461142,
+        "macro_ECE": 0.08063655008635581,
+        "per_horizon": [
+          {
+            "coverage": {
+              "0.5": 0.5259067357512953,
+              "0.8": 0.7746113989637305,
+              "0.9": 0.8678756476683938,
+              "0.95": 0.917098445595855,
+              "0.99": 0.961139896373057
+            },
+            "horizon_s": 0.1,
+            "n": 386
+          },
+          {
+            "coverage": {
+              "0.5": 0.453125,
+              "0.8": 0.7213541666666666,
+              "0.9": 0.8177083333333334,
+              "0.95": 0.875,
+              "0.99": 0.9557291666666666
+            },
+            "horizon_s": 0.3,
+            "n": 384
+          },
+          {
+            "coverage": {
+              "0.5": 0.43523316062176165,
+              "0.8": 0.6839378238341969,
+              "0.9": 0.7901554404145078,
+              "0.95": 0.8393782383419689,
+              "0.99": 0.9248704663212435
+            },
+            "horizon_s": 0.5,
+            "n": 386
+          },
+          {
+            "coverage": {
+              "0.5": 0.3963730569948187,
+              "0.8": 0.6217616580310881,
+              "0.9": 0.7383419689119171,
+              "0.95": 0.805699481865285,
+              "0.99": 0.8937823834196891
+            },
+            "horizon_s": 1.0,
+            "n": 386
+          }
+        ]
+      },
+      "formal_ECE_improved": true,
+      "formal_NLL_improved": true,
+      "formal_improvement_is_gate": false,
+      "raw_calibration": {
+        "NLL": 3.0727188754779835,
+        "macro_Brier": 0.20765358160621764,
+        "macro_ECE": 0.14379838622625213,
+        "per_horizon": [
+          {
+            "coverage": {
+              "0.5": 0.4792746113989637,
+              "0.8": 0.7409326424870466,
+              "0.9": 0.8393782383419689,
+              "0.95": 0.8860103626943006,
+              "0.99": 0.9430051813471503
+            },
+            "horizon_s": 0.1,
+            "n": 386
+          },
+          {
+            "coverage": {
+              "0.5": 0.3984375,
+              "0.8": 0.6354166666666666,
+              "0.9": 0.7552083333333334,
+              "0.95": 0.8203125,
+              "0.99": 0.9088541666666666
+            },
+            "horizon_s": 0.3,
+            "n": 384
+          },
+          {
+            "coverage": {
+              "0.5": 0.34974093264248707,
+              "0.8": 0.5647668393782384,
+              "0.9": 0.689119170984456,
+              "0.95": 0.7746113989637305,
+              "0.99": 0.8678756476683938
+            },
+            "horizon_s": 0.5,
+            "n": 386
+          },
+          {
+            "coverage": {
+              "0.5": 0.31865284974093266,
+              "0.8": 0.5233160621761658,
+              "0.9": 0.6321243523316062,
+              "0.95": 0.7253886010362695,
+              "0.99": 0.8316062176165803
+            },
+            "horizon_s": 1.0,
+            "n": 386
+          }
+        ]
+      },
+      "reason": "No post-outcome numeric formal calibration threshold was frozen; formal calibration is measured and held-out calibration improvement was established pre-formal."
+    },
+    "deterministic_GRU": {
+      "ADE_m": 1.5366993258446082,
+      "FDE_1s_m": 2.751961991559299,
+      "by_horizon": {
+        "0.1": {
+          "mean": 0.7451477120693479,
+          "n": 386
+        },
+        "0.3": {
+          "mean": 1.1002326874434534,
+          "n": 384
+        },
+        "0.5": {
+          "mean": 1.5471934271332703,
+          "n": 386
+        },
+        "1.0": {
+          "mean": 2.751961991559299,
+          "n": 386
+        }
+      }
+    },
+    "oracle_future_trajectory": {
+      "ADE_m": 0.0,
+      "FDE_1s_m": 0.0,
+      "event_count": 1542,
+      "model_input": false,
+      "role": "EVALUATOR_ONLY_UPPER_BOUND"
+    }
+  },
+  "formal_population": {
+    "actor_horizon_events": 1542,
+    "manifest": "/home/agni/waymo/iscai_stage3/artifacts/block38e/formal_validation_120.jsonl",
+    "manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "prediction_to_truth_matches": 387,
+    "primary_matched_actor_instances": 387,
+    "scenario_count": 120,
+    "scenarios_with_scored_events": 115
+  },
+  "frozen_acceptance_comparator": "CV",
+  "frozen_acceptance_result": {
+    "CV_ADE_m": 5.840948954946172,
+    "Gaussian_ADE_m": 1.2852425176409317,
+    "Gaussian_beats_classical": true,
+    "Gaussian_minus_classical_m": -4.55570643730524,
+    "actor_count": 332,
+    "by_horizon": {
+      "0.1": {
+        "CV_ADE_m": 1.6499414557161531,
+        "Gaussian_ADE_m": 0.6137522115944872,
+        "n": 331
+      },
+      "0.3": {
+        "CV_ADE_m": 3.86349598979145,
+        "Gaussian_ADE_m": 0.9378515329628548,
+        "n": 323
+      },
+      "0.5": {
+        "CV_ADE_m": 6.215799207536684,
+        "Gaussian_ADE_m": 1.3068572252550683,
+        "n": 320
+      },
+      "1.0": {
+        "CV_ADE_m": 11.94988712533446,
+        "Gaussian_ADE_m": 2.335094674422561,
+        "n": 312
+      }
+    },
+    "event_count": 1286,
+    "scenario_count": 110
+  },
+  "heldout_calibration": {
+    "calibrated_macro_ECE": 0.043477497073527,
+    "improved": true,
+    "measurement_R_modified": false,
+    "predictive_mean_modified": false,
+    "raw_macro_ECE": 0.0626280900143112,
+    "source": "calibration_partition_only",
+    "variance_scale": [
+      1.120492160320282,
+      1.2385359406471255,
+      1.3089813590049744,
+      1.2945917248725893
+    ]
+  },
+  "prediction_ledger": {
+    "exact_repeat": true,
+    "run1": {
+      "covariance_SPD_failures": 0,
+      "direct_vr_comparisons": 18381,
+      "direct_vr_max_abs_error": 1.8706014586200581e-06,
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/formal_prediction_ledger_run1.jsonl",
+      "rows": 3952,
+      "runtime_s": 34.96652960777283,
+      "scenario_count": 120,
+      "sha256": "2dd3c396d5c365677c41b3a0df6344a7c28d423daaa368dbe466bd4b17b4c2a8",
+      "single_calibration_identity_max_abs_error": 0.0
+    },
+    "run2": {
+      "covariance_SPD_failures": 0,
+      "direct_vr_comparisons": 18381,
+      "direct_vr_max_abs_error": 1.8706014586200581e-06,
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/formal_prediction_ledger_run2.jsonl",
+      "rows": 3952,
+      "runtime_s": 34.65211081504822,
+      "scenario_count": 120,
+      "sha256": "2dd3c396d5c365677c41b3a0df6344a7c28d423daaa368dbe466bd4b17b4c2a8",
+      "single_calibration_identity_max_abs_error": 0.0
+    },
+    "seal": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/formal_prediction_ledger_seal.json",
+    "seal_sha256": "70c3a7faac2eae160db06d0e7ba227059b3e875dd6e7cd7ba868a3ac7d758cf6"
+  },
+  "protocol": "stage4_full_pdf_compliance_v2",
+  "scientific_execution": {
+    "actual_Stage2_noisy_vr_primary_input": true,
+    "annotated_velocity_primary_input": false,
+    "calibration_applied_once": true,
+    "formal_parameter_tuning": false,
+    "future_truth_model_input": false,
+    "measurement_R_primary_input": true,
+    "measurement_R_separate_from_predictive_covariance": true,
+    "prediction_ledger_sealed_before_evaluator_truth": true,
+    "recalibration": false,
+    "retraining": false,
+    "tracks_to_predict_model_input": false,
+    "training": false
+  },
+  "stage": 4,
+  "status": "FORMAL_EVALUATION_COMPLETE"
+}

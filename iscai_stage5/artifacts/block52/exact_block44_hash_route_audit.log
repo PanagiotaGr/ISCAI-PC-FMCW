@@ -1,0 +1,787 @@
+============================================================
+BLOCK 5.2 — EXACT BLOCK4.4 HASH/INFERENCE ROUTE AUDIT
+============================================================
+model forward executed = NO
+formal N=120 used      = NO
+dataset scan           = NO
+training/recalibration = NO
+Stage4 modified        = NO
+
+============================================================
+A. EXACT BLOCK4.4 FUNCTION / CLASS DEFINITIONS
+============================================================
+
+------------------------------------------------------------
+GaussianNormalizer L431-L784
+------------------------------------------------------------
+class GaussianNormalizer:
+
+    def __init__(
+        self,
+        statistics,
+        *,
+        device,
+    ):
+        self.feature_mean = torch.tensor(
+            statistics[
+                "continuous_feature_mean"
+            ],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        self.feature_std = torch.tensor(
+            statistics[
+                "continuous_feature_std"
+            ],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        self.map_mean = torch.tensor(
+            statistics["map_mean"],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        self.map_std = torch.tensor(
+            statistics["map_std"],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        self.label_mean = torch.tensor(
+            statistics[
+                "label_displacement_mean"
+            ],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        self.label_std = torch.tensor(
+            statistics[
+                "label_displacement_std"
+            ],
+            dtype=torch.float32,
+            device=device,
+        )
+
+        if bool(
+            torch.any(
+                self.feature_std
+                <=
+                0.0
+            )
+        ):
+            raise RuntimeError(
+                "Invalid frozen "
+                "feature std."
+            )
+
+        if bool(
+            torch.any(
+                self.map_std
+                <=
+                0.0
+            )
+        ):
+            raise RuntimeError(
+                "Invalid frozen map std."
+            )
+
+        if bool(
+            torch.any(
+                self.label_std
+                <=
+                0.0
+            )
+        ):
+            raise RuntimeError(
+                "Invalid frozen label std."
+            )
+
+    def prepare(
+        self,
+        arrays,
+        indices,
+        *,
+        device,
+    ):
+        indices = np.asarray(
+            indices,
+            dtype=np.int64,
+        )
+
+        target = torch.from_numpy(
+            np.asarray(
+                arrays["target"][
+                    indices
+                ],
+                dtype=np.float32,
+            )
+        ).to(device)
+
+        neighbors = torch.from_numpy(
+            np.asarray(
+                arrays["neighbors"][
+                    indices
+                ],
+                dtype=np.float32,
+            )
+        ).to(device)
+
+        neighbor_mask = (
+            torch.from_numpy(
+                np.asarray(
+                    arrays[
+                        "neighbor_mask"
+                    ][indices],
+                    dtype=np.float32,
+                )
+            )
+            .to(device)
+        )
+
+        map_context = (
+            torch.from_numpy(
+                np.asarray(
+                    arrays[
+                        "map_context"
+                    ][indices],
+                    dtype=np.float32,
+                )
+            )
+            .to(device)
+        )
+
+        future = torch.from_numpy(
+            np.asarray(
+                arrays["future"][
+                    indices
+                ],
+                dtype=np.float32,
+            )
+        ).to(device)
+
+        future_mask = (
+            torch.from_numpy(
+                np.asarray(
+                    arrays[
+                        "future_mask"
+                    ][indices],
+                    dtype=np.float32,
+                )
+            )
+            .to(device)
+        )
+
+        class_id = (
+            torch.from_numpy(
+                np.asarray(
+                    arrays[
+                        "class_id"
+                    ][indices],
+                    dtype=np.int64,
+                )
+            )
+            .to(device)
+        )
+
+        target_observed = (
+            target[
+                :,
+                :,
+                12:13
+            ]
+        )
+
+        target_continuous = (
+            (
+                target[
+                    :,
+                    :,
+                    :12
+                ]
+                -
+                self.feature_mean
+            )
+            /
+            self.feature_std
+        )
+
+        target_continuous = (
+            target_continuous
+            *
+            target_observed
+        )
+
+        target_normalized = (
+            torch.cat(
+                (
+                    target_continuous,
+                    target[
+                        :,
+                        :,
+                        12:
+                    ],
+                ),
+                dim=-1,
+            )
+        )
+
+        neighbor_observed = (
+            neighbors[
+                :,
+                :,
+                :,
+                12:13
+            ]
+            *
+            neighbor_mask[
+                :,
+                :,
+                None,
+                None
+            ]
+        )
+
+        neighbor_continuous = (
+            (
+                neighbors[
+                    :,
+                    :,
+                    :,
+                    :12
+                ]
+                -
+                self.feature_mean
+            )
+            /
+            self.feature_std
+        )
+
+        neighbor_continuous = (
+            neighbor_continuous
+            *
+            neighbor_observed
+        )
+
+        neighbors_normalized = (
+            torch.cat(
+                (
+                    neighbor_continuous,
+
+                    neighbors[
+                        :,
+                        :,
+                        :,
+                        12:
+                    ]
+                    *
+                    neighbor_mask[
+                        :,
+                        :,
+                        None,
+                        None
+                    ],
+                ),
+                dim=-1,
+            )
+        )
+
+        map_normalized = (
+            (
+                map_context
+                -
+                self.map_mean
+            )
+            /
+            self.map_std
+        )
+
+        origin = (
+            latest_position_torch(
+                target
+            )
+        )
+
+        displacement = (
+            future
+            -
+            origin[
+                :,
+                None,
+                :
+            ]
+        )
+
+        normalized_label = (
+            (
+                displacement
+                -
+                self.label_mean[
+                    None,
+                    :,
+                    :
+                ]
+            )
+            /
+            self.label_std[
+                None,
+                :,
+                :
+            ]
+        )
+
+        normalized_label = (
+            normalized_label
+            *
+            future_mask[
+                :,
+                :,
+                None
+            ]
+        )
+
+        return {
+            "target":
+                target_normalized,
+
+            "neighbors":
+                neighbors_normalized,
+
+            "neighbor_mask":
+                neighbor_mask,
+
+            "map_context":
+                map_normalized,
+
+            "label_normalized":
+                normalized_label,
+
+            "true_displacement":
+                displacement,
+
+            "future_mask":
+                future_mask,
+
+            "class_id":
+                class_id,
+        }
+
+------------------------------------------------------------
+build_gaussian_model L791-L832
+------------------------------------------------------------
+def build_gaussian_model(
+    deterministic_configuration,
+    *,
+    device,
+):
+    section = (
+        deterministic_configuration[
+            "model"
+        ]
+    )
+
+    return (
+        GaussianTrajectoryGRU(
+            target_hidden_dim=int(
+                section[
+                    "target_hidden_dim"
+                ]
+            ),
+
+            neighbor_hidden_dim=int(
+                section[
+                    "neighbor_hidden_dim"
+                ]
+            ),
+
+            map_hidden_dim=int(
+                section[
+                    "map_hidden_dim"
+                ]
+            ),
+
+            fusion_hidden_dim=int(
+                section[
+                    "fusion_hidden_dim"
+                ]
+            ),
+
+            use_neighbors=True,
+            use_map=True,
+        )
+        .to(device)
+    )
+
+------------------------------------------------------------
+probabilistic_prediction_sha256 L1426-L1505
+------------------------------------------------------------
+def probabilistic_prediction_sha256(
+    model,
+    arrays,
+    normalizer,
+    *,
+    device,
+    sample_limit=2048,
+):
+    digest = sha256()
+
+    model.eval()
+
+    count = min(
+        int(
+            arrays[
+                "target"
+            ].shape[0]
+        ),
+        int(
+            sample_limit
+        ),
+    )
+
+    with torch.inference_mode():
+        for start in range(
+            0,
+            count,
+            512,
+        ):
+            stop = min(
+                count,
+                start + 512,
+            )
+
+            indices = np.arange(
+                start,
+                stop,
+                dtype=np.int64,
+            )
+
+            batch = (
+                normalizer.prepare(
+                    arrays,
+                    indices,
+                    device=device,
+                )
+            )
+
+            output = model(
+                batch["target"],
+                batch["neighbors"],
+                batch[
+                    "neighbor_mask"
+                ],
+                batch["map_context"],
+            )
+
+            for tensor in (
+                output.mean,
+                output.scale_tril,
+            ):
+                value = (
+                    tensor
+                    .detach()
+                    .cpu()
+                    .contiguous()
+                    .numpy()
+                    .astype(
+                        np.float32,
+                        copy=False,
+                    )
+                )
+
+                digest.update(
+                    value.tobytes(
+                        order="C"
+                    )
+                )
+
+    return digest.hexdigest()
+
+============================================================
+B. probabilistic_prediction_sha256 CALL SITES
+============================================================
+
+CALL AT LINE 2903
+call = probabilistic_prediction_sha256(
+            best_model,
+            dev_arrays,
+            normalizer,
+            device=device,
+        )
+ 2885:         "TYPE_CYCLIST",
+ 2886:     ):
+ 2887:         if required_class not in (
+ 2888:             final_development[
+ 2889:                 "class_planar_ADE_m"
+ 2890:             ]
+ 2891:         ):
+ 2892:             raise RuntimeError(
+ 2893:                 "Final development "
+ 2894:                 f"metrics lack "
+ 2895:                 f"{required_class}."
+ 2896:             )
+ 2897: 
+ 2898:     # --------------------------------------------------------
+ 2899:     # Exact probabilistic inference repeat.
+ 2900:     # --------------------------------------------------------
+ 2901: 
+ 2902:     inference_sha_a = (
+ 2903:         probabilistic_prediction_sha256(
+ 2904:             best_model,
+ 2905:             dev_arrays,
+ 2906:             normalizer,
+ 2907:             device=device,
+ 2908:         )
+ 2909:     )
+ 2910: 
+ 2911:     repeat_checkpoint = (
+ 2912:         torch.load(
+ 2913:             CHECKPOINT,
+ 2914:             map_location=device,
+ 2915:             weights_only=False,
+ 2916:         )
+ 2917:     )
+ 2918: 
+ 2919:     repeat_model = (
+ 2920:         build_gaussian_model(
+ 2921:             deterministic_checkpoint[
+ 2922:                 "configuration"
+ 2923:             ],
+ 2924:             device=device,
+ 2925:         )
+ 2926:     )
+ 2927: 
+
+CALL AT LINE 2937
+call = probabilistic_prediction_sha256(
+            repeat_model,
+            dev_arrays,
+            normalizer,
+            device=device,
+        )
+ 2919:     repeat_model = (
+ 2920:         build_gaussian_model(
+ 2921:             deterministic_checkpoint[
+ 2922:                 "configuration"
+ 2923:             ],
+ 2924:             device=device,
+ 2925:         )
+ 2926:     )
+ 2927: 
+ 2928:     repeat_model.load_state_dict(
+ 2929:         repeat_checkpoint[
+ 2930:             "state_dict"
+ 2931:         ]
+ 2932:     )
+ 2933: 
+ 2934:     repeat_model.eval()
+ 2935: 
+ 2936:     inference_sha_b = (
+ 2937:         probabilistic_prediction_sha256(
+ 2938:             repeat_model,
+ 2939:             dev_arrays,
+ 2940:             normalizer,
+ 2941:             device=device,
+ 2942:         )
+ 2943:     )
+ 2944: 
+ 2945:     if (
+ 2946:         inference_sha_a
+ 2947:         !=
+ 2948:         inference_sha_b
+ 2949:     ):
+ 2950:         raise RuntimeError(
+ 2951:             "Frozen Gaussian checkpoint "
+ 2952:             "inference is not exactly "
+ 2953:             "repeatable."
+ 2954:         )
+ 2955: 
+ 2956:     print()
+ 2957:     print(
+ 2958:         "exact probabilistic "
+ 2959:         "inference repeat = PASS"
+ 2960:     )
+ 2961:     print(
+
+============================================================
+C. DEVELOPMENT FORWARD / DENORMALIZATION ROUTE
+============================================================
+L  28:     covariance_from_scale_tril,
+L  29:     denormalize_gaussian,
+L  71: DEV_CACHE = (
+L 791: def build_gaussian_model(
+L 845:     batch_size=1024,
+L 907:     with torch.inference_mode():
+L 911:             batch_size,
+L 917:                 batch_size,
+L 932:             output = model(
+L 944:             ) = denormalize_gaussian(
+L1044:                 covariance_from_scale_tril(
+L1426: def probabilistic_prediction_sha256(
+L1449:     with torch.inference_mode():
+L1474:             output = model(
+L1714:         DEV_CACHE,
+L1832:             DEV_CACHE
+L2035:     batch_size = int(
+L2039:             "batch_size"
+L2127:         DEV_CACHE
+L2183:                 DEV_CACHE
+L2192:     model = build_gaussian_model(
+L2472:             batch_size,
+L2476:                 start + batch_size,
+L2495:             output = model(
+L2802:     best_model = build_gaussian_model(
+L2903:         probabilistic_prediction_sha256(
+L2920:         build_gaussian_model(
+L2937:         probabilistic_prediction_sha256(
+L3112:             "batch_size":
+L3113:                 batch_size,
+L3207:             "prediction_sha256":
+
+============================================================
+D. DETERMINISM / DEVICE / SEED ROUTE
+============================================================
+L  31:     initialize_from_deterministic,
+L  34:     set_global_determinism,
+L  53:     / "reports/block43_deterministic_gru.json"
+L  63:     / "artifacts/block43/deterministic_gru.pt"
+L 395:         device=target.device,
+L 421:         device=target.device,
+L 437:         device,
+L 443:             dtype=torch.float32,
+L 444:             device=device,
+L 451:             dtype=torch.float32,
+L 452:             device=device,
+L 457:             dtype=torch.float32,
+L 458:             device=device,
+L 463:             dtype=torch.float32,
+L 464:             device=device,
+L 471:             dtype=torch.float32,
+L 472:             device=device,
+L 479:             dtype=torch.float32,
+L 480:             device=device,
+L 522:         device,
+L 534:                 dtype=np.float32,
+L 536:         ).to(device)
+L 543:                 dtype=np.float32,
+L 545:         ).to(device)
+L 553:                     dtype=np.float32,
+L 556:             .to(device)
+L 565:                     dtype=np.float32,
+L 568:             .to(device)
+L 576:                 dtype=np.float32,
+L 578:         ).to(device)
+L 586:                     dtype=np.float32,
+L 589:             .to(device)
+L 601:             .to(device)
+L 792:     deterministic_configuration,
+L 794:     device,
+L 797:         deterministic_configuration[
+L 831:         .to(device)
+L 844:     device,
+L 854:         dtype=np.float64,
+L 859:         dtype=np.float64,
+L 893:         dtype=np.float64,
+L 929:                 device=device,
+L1431:     device,
+L1470:                     device=device,
+L1494:                         np.float32,
+L1625:     device,
+L1634:             map_location=device,
+L1695:             "the frozen deterministic "
+L1808:             "Frozen deterministic "
+L1982:     if not torch.cuda.is_available():
+L1984:             "CUDA unavailable."
+L1988:         torch.version.cuda
+L1993:             "Frozen CUDA runtime "
+L1997:     device = torch.device(
+L1998:         "cuda:0"
+L2004:         torch.cuda.get_device_name(
+L2027:     seed = int(
+L2031:             "seed"
+L2083:     set_global_determinism(
+L2084:         seed
+L2087:     deterministic_checkpoint = (
+L2090:             map_location=device,
+L2096:         deterministic_checkpoint[
+L2103:             "Frozen deterministic "
+L2110:             deterministic_checkpoint[
+L2118:             "Frozen deterministic "
+L2156:         torch.cuda.get_device_name(0),
+L2162:             device=device,
+L2170:         "deterministic_checkpoint_sha256":
+L2173:         "deterministic_state_dict_sha256":
+L2193:         deterministic_checkpoint[
+L2196:         device=device,
+L2199:     initialize_from_deterministic(
+L2201:         deterministic_checkpoint[
+L2280:         device=device,
+L2295:                 device=device,
+L2448:                 device="cpu"
+L2452:         generator.manual_seed(
+L2453:             seed + epoch
+L2487:                     device=device,
+L2587:         torch.cuda.synchronize()
+L2606:                 device=device,
+L2786:         map_location=device,
+L2803:         deterministic_checkpoint[
+L2806:         device=device,
+L2840:             device=device,
+L2907:             device=device,
+L2914:             map_location=device,
+L2921:             deterministic_checkpoint[
+L2924:             device=device,
+L2941:             device=device,
+L3083:             "deterministic_checkpoint_sha256":
+L3099:             "seed":
+L3100:                 seed,
+L3102:             "device":
+L3103:                 str(device),
+L3106:                 torch.cuda
+L3107:                 .get_device_name(0),
+L3307:                   "the deterministic GRU.\n"
+L3321:                   "frozen deterministic Block4.3 "
+L3561:         "cuda oom"
+
+============================================================
+E. FROZEN HASH / CONFIG EVIDENCE
+============================================================
+training script SHA256 = 6b4be296fb9d93f81d10b353a37b3427b63e437e6f123b10950db07697457218
+config SHA256 = c74e37b7c3b5f496812fb4fcc27fbae4ddba5c35b59a8aeeac54099e5869c891
+frozen prediction SHA256 = a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a
+config training = {
+  "batch_size": 512,
+  "class_sampler": "reuse_Block4.3_equal_primary_class_mass_sampler",
+  "device": "cuda:0",
+  "dtype": "float32",
+  "early_stopping_patience": 4,
+  "early_stopping_primary_metric": "development_metric_Gaussian_NLL",
+  "early_stopping_tiebreaker": "development_planar_ADE_m",
+  "gradient_clip_norm": 5.0,
+  "learning_rate": 0.0005,
+  "max_epochs": 20,
+  "mixed_precision": false,
+  "num_workers": 0,
+  "optimizer": "AdamW",
+  "seed": 20260821,
+  "weight_decay": 1e-05
+}
+
+============================================================
+F. FORENSIC DECISION
+============================================================
+frozen Block4.4 hash function = FOUND
+hash call sites              = 2
+calls runtime prediction_sha256 = True
+hash source mentions metric/denormalized values = False
+batch-size hypothesis alone  = REJECTED
+hash gate relaxation          = FORBIDDEN
+next = reproduce exact frozen Block4.4 hash function + exact preprocessing
+
+STATUS = PASS_READ_ONLY_AUDIT
+report = /home/agni/waymo/iscai_stage5/artifacts/block52/exact_block44_hash_route_audit.json
+model forward executed = NO
+formal N=120 used = NO
+terminal remains open = YES

@@ -1,0 +1,131 @@
+============================================================
+BLOCK 5.2 PART 1/2 — SAFE EXECUTION
+============================================================
+
+===== CONTROLLED COMPILE =====
+angular_posterior.py = PASS
+test_block52_angular_kernel.py = PASS
+run_block52_part1_angular_contract.py = PASS
+run_block52_part1_safe.py = PASS
+
+===== BLOCK5.2 PART1 UNIT TESTS =====
+
+..............
+----------------------------------------------------------------------
+Ran 14 tests in 0.016s
+
+OK
+
+Block5.2 Part1 tests = 14 / 14 PASS
+
+===== PRE-GATE FULL STAGE5 REGRESSION =====
+
+......................................................
+----------------------------------------------------------------------
+Ran 54 tests in 0.017s
+
+OK
+
+pre-gate Stage5 regression = 54 / 54 PASS
+
+===== ANGULAR CONTRACT GATE =====
+============================================================
+STAGE 5 — BLOCK 5.2 PART 1/2
+RECEIVER POSITION → ANGULAR POSTERIOR CONTRACT
+============================================================
+
+===== A. BLOCK5.1 FROZEN CONTINUITY =====
+Block5.1 report          = PASS
+historical implementation= PASS
+receiver policy          = FROZEN PASS
+Stage5 contract          = FROZEN PASS
+
+===== B. RANGE / AZIMUTH / ELEVATION DEFINITIONS =====
+frame                   = H0 PASS
+range                   = sqrt(x²+y²+z²) PASS
+azimuth                 = atan2(y,x) PASS
+elevation               = atan2(z,sqrt(x²+y²)) PASS
+coordinate order        = ['range_m', 'azimuth_rad', 'elevation_rad']
+
+===== C. ANALYTIC JACOBIAN CROSS-CHECK =====
+analytic Jacobian        = PASS
+finite-difference check  = PASS
+max absolute J error     = 1.06181641257308e-09
+
+===== D. RECEIVER-POSITION UNCERTAINTY PROPAGATION =====
+Stage4 predictive covariance = DISTINCT INPUT
+receiver placement covariance = DISTINCT INPUT
+position-level combination     = PASS
+angular covariance             = JΣJᵀ PASS
+angular covariance PSD         = PASS
+minimum eigenvalue             = 0.0009001816628093641
+
+===== E. PRIMARY / CROSS-CHECK METHOD BOUNDARY =====
+primary posterior        = DETERMINISTIC MONTE CARLO
+analytic path            = JACOBIAN CROSS-CHECK ONLY
+analytic scope           = fixed_heading_known_receiver_geometry_or_already_resolved_receiver_position_Gaussian
+MC implemented Part1     = NO
+MC sample count frozen   = NO
+heading fallback frozen  = NO
+
+===== F. FORBIDDEN LEAKAGE SURFACE =====
+tracks_to_predict       = NOT INPUT
+future truth            = NOT INPUT
+oracle angular label    = NOT INPUT
+formal N=120 used       = NO
+Stage4 inference        = NO
+dataset scan            = NO
+
+============================================================
+BLOCK 5.2 PART 1/2 GATE
+============================================================
+Block5.1 frozen continuity = PASS
+H0 range/azimuth/elevation = PASS
+analytic Jacobian           = PASS
+finite-difference validation= PASS
+position covariance PSD     = PASS
+angular covariance PSD      = PASS
+Stage4 predictive UQ        = DISTINCT
+receiver placement UQ       = DISTINCT
+analytic combination        = CROSS-CHECK ONLY
+primary posterior method    = DETERMINISTIC MONTE CARLO
+MC implemented              = NO — PART2
+MC sample count             = DEVELOPMENT PENDING
+low-speed heading threshold = DEVELOPMENT PENDING
+formal N=120 used           = NO
+Stage4 inference            = NO
+beam codebook               = NOT STARTED
+training/recalibration      = NO
+implementation files        = 23
+implementation SHA256       = 9bd121ba2e98a265eb83a727af8d29da945cefc8ebe9eed9499ba5c011c3bc16
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage5/reports/block52_part1_angular_contract.json
+terminal remains open = YES
+
+angular-contract raw code = 0
+
+===== FINAL FULL STAGE5 REGRESSION =====
+
+......................................................
+----------------------------------------------------------------------
+Ran 54 tests in 0.016s
+
+OK
+
+final Stage5 regression = 54 / 54 PASS
+
+============================================================
+BLOCK 5.2 PART 1/2 FINAL
+============================================================
+Block5.1 frozen continuity = PASS
+receiver→angular geometry   = PASS
+analytic Jacobian           = PASS
+analytic covariance path    = PASS
+primary MC path             = NOT YET RUN
+formal data used            = NO
+Stage4 inference            = NO
+beam codebook               = NOT STARTED
+Stage5 regression           = 54 / 54 PASS
+STATUS = PASS
+next = BLOCK 5.2 PART 2/2
+terminal remains open = YES

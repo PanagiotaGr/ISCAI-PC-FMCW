@@ -1,0 +1,159 @@
+============================================================
+BLOCK 5.3 PART 2/2 — SAFE EXECUTION
+============================================================
+
+===== CONTROLLED COMPILE =====
+beam_directional_gain.py = PASS
+test_block53_part2_frozen_codebook.py = PASS
+run_block53_part2_reference_decision.py = PASS
+run_block53_part2_freeze.py = PASS
+run_block53_part2_safe.py = PASS
+
+===== BLOCK5.3 PART2 UNIT TESTS =====
+
+..................
+----------------------------------------------------------------------
+Ran 18 tests in 0.018s
+
+OK
+
+Block5.3 Part2 tests = 18 / 18 PASS
+
+===== PRE-FREEZE FULL STAGE5 REGRESSION =====
+
+............................................................................................................
+----------------------------------------------------------------------
+Ran 108 tests in 0.062s
+
+OK
+
+pre-freeze Stage5 regression = 108 / 108 PASS
+
+===== PART-A REFERENCE DECISION =====
+============================================================
+BLOCK 5.3 PART 2 — PART-A REFERENCE DECISION
+============================================================
+Part-A +/-12 deg FOV value = FOUND
+classification              = VISUALIZATION ASSUMPTION
+paper-given communication FOV = NO
+measured communication FOV    = NO
+usable physical gain pattern  = NO
+Stage5 support route          = CONSTRUCTED REUSE
+Stage5 gain route             = CONSTRUCTED SURROGATE
+formal N=120 used             = NO
+Stage4 inference              = NO
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage5/artifacts/block53/parta_beam_reference_decision.json
+terminal remains open = YES
+
+reference-decision raw code = 0
+reference structured gate = PASS
+
+===== FINAL BLOCK5.3 FREEZE =====
+============================================================
+STAGE 5 — BLOCK 5.3 PART 2/2
+FROZEN DIRECTIONAL CODEBOOK + GAIN CONTRACT
+============================================================
+
+===== A. BLOCK5.3 PART1 CONTINUITY =====
+Part1 status              = PASS
+historical Part1 SHA      = PASS
+beam counts               = 16 / 32 / 64
+
+===== B. PART-A REFERENCE CLASSIFICATION =====
+Part-A half-FOV value     = +/-12 deg
+classification            = VISUALIZATION ASSUMPTION
+paper-given               = NO
+measured                  = NO
+physical comm gain found  = NO
+
+===== C. FROZEN AZIMUTH SUPPORT / CODEBOOKS =====
+16 beams: width = 1.500000 deg PASS
+32 beams: width = 0.750000 deg PASS
+64 beams: width = 0.375000 deg PASS
+support                   = [-12,+12] deg FROZEN
+support provenance        = CONSTRUCTED / REFERENCE-CONSISTENT
+decision cells            = NON-OVERLAPPING
+
+===== D. FROZEN CODEBOOK GAIN-SCORE CONTRACT =====
+gain model                = NORMALIZED GAUSSIAN SURROGATE
+HPBW rule                 = DECISION CELL WIDTH
+adjacent boundary gain    = 0.5 / 0.5 PASS
+physical overlap          = YES
+role                      = CODEBOOK S_b SCORING ONLY
+final optical Gopt        = NOT THIS MODEL
+
+===== E. P_b / S_b FROZEN SEMANTICS =====
+P_b                       = DECISION-CELL POSTERIOR MASS
+S_b                       = E_p[G_b(theta)]
+P_b != S_b                = PASS
+outside-support mass      = EXPLICIT
+
+============================================================
+BLOCK 5.3 PART 2/2 GATE
+============================================================
+Part1 continuity              = PASS
+beam counts                   = 16 / 32 / 64 FROZEN
+azimuth support               = [-12,+12] deg FROZEN
+support classification        = CONSTRUCTED ASSUMPTION
+Part-A paper-given support    = NO
+Part-A measured support       = NO
+decision widths               = 1.5 / 0.75 / 0.375 deg
+P_b                           = POSTERIOR MASS PASS
+outside-support probability   = EXPLICIT
+S_b                           = EXPECTED GAIN PASS
+gain model                    = CONSTRUCTED GAUSSIAN
+HPBW                           = DECISION CELL WIDTH
+adjacent gain overlap          = PASS
+final optical Gopt conflated   = NO
+formal N=120 used              = NO
+Stage4 inference               = NO
+development/formal tuning      = NO
+adaptive Top-K                 = NOT STARTED
+beam policy baselines          = NOT STARTED
+policy SHA256                  = bd94f8609393a7c9fe02762cc4bf38e3a77a90cc31adef5f2e6b06aece4074d7
+implementation files           = 52
+implementation SHA256          = 23dac64bed4ca76438f4303ff354f12c190a1cd5a097b9f3a40008facc23aa53
+STATUS = PASS
+Block5.3 = COMPLETE / FROZEN
+report = /home/agni/waymo/iscai_stage5/reports/block53_codebook_probability.json
+next = BLOCK 5.4
+terminal remains open = YES
+
+Block5.3 freeze raw code = 0
+
+===== FINAL FULL STAGE5 REGRESSION =====
+
+............................................................................................................
+----------------------------------------------------------------------
+Ran 108 tests in 0.063s
+
+OK
+
+final Stage5 regression = 108 / 108 PASS
+
+============================================================
+BLOCK 5.3 FINAL
+============================================================
+16/32/64 codebooks          = FROZEN
+azimuth support             = [-12,+12] deg FROZEN
+support provenance          = CONSTRUCTED STAGE5 ASSUMPTION
+Part-A source status        = VISUALIZATION ASSUMPTION ONLY
+decision widths             = 1.5 / 0.75 / 0.375 deg
+P_b posterior mass          = FROZEN
+outside-support probability = EXPLICIT
+S_b expected gain           = FROZEN / DISTINCT
+gain model                  = CONSTRUCTED GAUSSIAN
+HPBW                        = DECISION CELL WIDTH
+final optical Gopt          = SEPARATE / BLOCK5.6
+formal N=120 used           = NO
+Stage4 inference            = NO
+development/formal tuning   = NO
+adaptive Top-K              = NOT STARTED
+Stage5 regression           = 108 / 108 PASS
+policy SHA256               = bd94f8609393a7c9fe02762cc4bf38e3a77a90cc31adef5f2e6b06aece4074d7
+implementation SHA256       = 23dac64bed4ca76438f4303ff354f12c190a1cd5a097b9f3a40008facc23aa53
+scientific STATUS           = PASS
+Block5.3                    = COMPLETE / FROZEN
+next                        = BLOCK 5.4
+terminal remains open       = YES

@@ -1,0 +1,376 @@
+
+============================================================
+B1. _extract_prediction_id
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py:624
+sha256=df577d4e91a3f32c8d975e1fed2b3eb6b823ac61f03e787faf6e105a7584aa0e
+============================================================
+def _extract_prediction_id(
+    associated_track,
+) -> str:
+    for name in (
+        "track_id",
+        "prediction_id",
+        "associated_track_id",
+    ):
+        if hasattr(
+            associated_track,
+            name,
+        ):
+            value = getattr(
+                associated_track,
+                name,
+            )
+
+            if value is not None:
+                value = str(value)
+
+                if value:
+                    return value
+
+    raise RuntimeError(
+        "Cannot resolve associated "
+        "track identifier."
+    )
+
+============================================================
+B2. build_causal_track_history
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py:796
+sha256=e373b82c49b821f13a13225f079d70ccc7180cb50a693813a5f86add0c7a863d
+============================================================
+def build_causal_track_history(
+    associated_track,
+    *,
+    context,
+    timestamps_s: tuple[
+        float,
+        ...,
+    ],
+) -> CausalTrackHistory:
+    if len(
+        timestamps_s
+    ) != HISTORY_STEPS:
+        raise ValueError(
+            "Stage4 requires 11 "
+            "causal timestamps."
+        )
+
+    observations = tuple(
+        cartesianize_associated_track(
+            associated_track,
+            context=context,
+        )
+    )
+
+    if not observations:
+        raise ValueError(
+            "Associated track has no "
+            "Cartesian observations."
+        )
+
+    by_frame = {}
+
+    for observation in observations:
+        frame_index = (
+            _extract_frame_index(
+                observation,
+                timestamps_s=(
+                    timestamps_s
+                ),
+            )
+        )
+
+        by_frame[
+            frame_index
+        ] = (
+            _extract_position(
+                observation
+            ),
+            _extract_covariance(
+                observation
+            ),
+        )
+
+    steps = []
+
+    previous_position = None
+    previous_timestamp = None
+
+    for frame_index, timestamp in (
+        enumerate(
+            timestamps_s
+        )
+    ):
+        if frame_index not in by_frame:
+            steps.append(
+                HistoryStep(
+                    frame_index=frame_index,
+                    timestamp_s=(
+                        float(timestamp)
+                    ),
+                    position_H0_m=(
+                        0.0,
+                        0.0,
+                        0.0,
+                    ),
+                    velocity_H0_mps=(
+                        0.0,
+                        0.0,
+                        0.0,
+                    ),
+                    measurement_covariance_H0_m2=(
+                        _zero_covariance()
+                    ),
+                    observed=False,
+                    velocity_valid=False,
+                )
+            )
+
+            continue
+
+        (
+            position,
+            covariance,
+        ) = by_frame[
+            frame_index
+        ]
+
+        velocity = (
+            0.0,
+            0.0,
+            0.0,
+        )
+
+        velocity_valid = False
+
+        if (
+            previous_position
+            is not None
+            and
+            previous_timestamp
+            is not None
+        ):
+            dt = (
+                float(timestamp)
+                -
+                previous_timestamp
+            )
+
+            if dt <= 0.0:
+                raise RuntimeError(
+                    "Non-positive causal "
+                    "velocity interval."
+                )
+
+            velocity = tuple(
+                (
+                    position[axis]
+                    -
+                    previous_position[axis]
+                )
+                /
+                dt
+                for axis in range(3)
+            )
+
+            velocity_valid = True
+
+        steps.append(
+            HistoryStep(
+                frame_index=frame_index,
+                timestamp_s=(
+                    float(timestamp)
+                ),
+                position_H0_m=(
+                    position
+                ),
+                velocity_H0_mps=(
+                    velocity
+                ),
+                measurement_covariance_H0_m2=(
+                    covariance
+                ),
+                observed=True,
+                velocity_valid=(
+                    velocity_valid
+                ),
+            )
+        )
+
+        previous_position = position
+        previous_timestamp = float(
+            timestamp
+        )
+
+    observed = [
+        step
+        for step in steps
+        if step.observed
+    ]
+
+    latest = observed[-1]
+
+    return CausalTrackHistory(
+        prediction_id=(
+            _extract_prediction_id(
+                associated_track
+            )
+        ),
+        steps=tuple(
+            steps
+        ),
+        latest_observed_frame_index=(
+            latest.frame_index
+        ),
+        latest_position_H0_m=(
+            latest.position_H0_m
+        ),
+    )
+
+============================================================
+B3. build_causal_scene_inputs
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py:986
+sha256=f2d98461eeaa5ba4a53bc3bcd6480444e758d7a9318c1bfcf52b520bb1889e16
+============================================================
+def build_causal_scene_inputs(
+    associated_tracks,
+    *,
+    scenario_id: str,
+    context,
+    timestamps_s: tuple[
+        float,
+        ...,
+    ],
+) -> CausalSceneInputs:
+    histories = []
+
+    for associated_track in (
+        associated_tracks
+    ):
+        try:
+            history = (
+                build_causal_track_history(
+                    associated_track,
+                    context=context,
+                    timestamps_s=(
+                        timestamps_s
+                    ),
+                )
+            )
+
+        except ValueError:
+            continue
+
+        histories.append(
+            history
+        )
+
+    histories.sort(
+        key=lambda history:
+            history.prediction_id
+    )
+
+    return CausalSceneInputs(
+        scenario_id=scenario_id,
+        timestamps_s=(
+            timestamps_s
+        ),
+        histories=tuple(
+            histories
+        ),
+    )
+
+============================================================
+B4. CausalTrackHistory
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py:282
+sha256=3e3c55e67e5405314701eba295fbaa6a9f4e4988080d8fef013be45dfc45aedf
+============================================================
+class CausalTrackHistory:
+    prediction_id: str
+
+    steps: tuple[
+        HistoryStep,
+        ...,
+    ]
+
+    latest_observed_frame_index: int
+    latest_position_H0_m: Vec3
+
+    def __post_init__(self) -> None:
+        if not self.prediction_id:
+            raise ValueError(
+                "prediction_id cannot "
+                "be empty."
+            )
+
+        if len(
+            self.steps
+        ) != HISTORY_STEPS:
+            raise ValueError(
+                "Stage4 history must contain "
+                "exactly 11 causal frames."
+            )
+
+        expected_indices = tuple(
+            range(
+                HISTORY_STEPS
+            )
+        )
+
+        actual_indices = tuple(
+            int(step.frame_index)
+            for step in self.steps
+        )
+
+        if (
+            actual_indices
+            !=
+            expected_indices
+        ):
+            raise ValueError(
+                "History frame grid changed."
+            )
+
+        observed_indices = [
+            step.frame_index
+            for step in self.steps
+            if step.observed
+        ]
+
+        if not observed_indices:
+            raise ValueError(
+                "Causal history contains "
+                "no observations."
+            )
+
+        if (
+            max(observed_indices)
+            !=
+            self.latest_observed_frame_index
+        ):
+            raise ValueError(
+                "latest observed frame mismatch."
+            )
+
+        _finite3(
+            self.latest_position_H0_m
+        )
+
+    @property
+    def observed_count(
+        self,
+    ) -> int:
+        return sum(
+            step.observed
+            for step in self.steps
+        )
+
+    def feature_rows(
+        self,
+    ) -> tuple[
+        tuple[float, ...],
+        ...,
+    ]:
+        return tuple(
+            step.feature_row()
+            for step in self.steps
+        )

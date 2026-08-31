@@ -1,0 +1,879 @@
+{
+  "audit": "BATCH_POSTERIOR_ROW_BINDING",
+  "block": "6.3",
+  "coordinate_invariant": {
+    "equation": "mean_absolute = anchor[:,None,:] + mean_displacement",
+    "exact_array_equal": false,
+    "max_abs_error": 3.814697265625e-06
+  },
+  "metadata": {
+    "actual_stage4_gaussian_route_audit.json": [
+      {
+        "path": "checkpoint.top_level_summary.development_metrics.keys_preview[0]",
+        "value": "metric_Gaussian_NLL"
+      },
+      {
+        "path": "checkpoint.top_level_summary.development_metrics.keys_preview[1]",
+        "value": "planar_ADE_m"
+      },
+      {
+        "path": "checkpoint.top_level_summary.development_metrics.keys_preview[2]",
+        "value": "horizon_metric_NLL"
+      },
+      {
+        "path": "checkpoint.top_level_summary.development_metrics.keys_preview[3]",
+        "value": "horizon_planar_error_m"
+      },
+      {
+        "path": "checkpoint.top_level_summary.development_metrics.keys_preview[4]",
+        "value": "one_second_planar_error_m"
+      },
+      {
+        "path": "checkpoint.top_level_summary.development_metrics.keys_preview[5]",
+        "value": "class_planar_ADE_m"
+      },
+      {
+        "path": "checkpoint.top_level_summary.development_metrics.keys_preview[6]",
+        "value": "raw_empirical_coverage"
+      },
+      {
+        "path": "checkpoint.top_level_summary.development_metrics.keys_preview[7]",
+        "value": "mean_predictive_std_m"
+      },
+      {
+        "path": "checkpoint.top_level_summary.development_metrics.keys_preview[8]",
+        "value": "valid_actor_horizon_points"
+      },
+      {
+        "path": "checkpoint.top_level_summary.development_metrics.keys_preview[9]",
+        "value": "predictive_covariance_SPD_failures"
+      },
+      {
+        "path": "checkpoint.top_level_summary.development_metrics.length",
+        "value": 10
+      },
+      {
+        "path": "checkpoint.top_level_summary.development_metrics.type",
+        "value": "dict"
+      },
+      {
+        "path": "conclusion.frozen_development_cache",
+        "value": true
+      },
+      {
+        "path": "development_cache.arrays.future.dtype",
+        "value": "float32"
+      },
+      {
+        "path": "development_cache.arrays.future.finite_fraction",
+        "value": 1.0
+      },
+      {
+        "path": "development_cache.arrays.future.size",
+        "value": 164184
+      },
+      {
+        "path": "development_cache.arrays.future_mask.dtype",
+        "value": "float32"
+      },
+      {
+        "path": "development_cache.arrays.future_mask.finite_fraction",
+        "value": 1.0
+      },
+      {
+        "path": "development_cache.arrays.future_mask.size",
+        "value": 54728
+      },
+      {
+        "path": "development_cache.arrays.map_context.dtype",
+        "value": "float32"
+      },
+      {
+        "path": "development_cache.arrays.map_context.finite_fraction",
+        "value": 1.0
+      },
+      {
+        "path": "development_cache.arrays.map_context.size",
+        "value": 136820
+      },
+      {
+        "path": "development_cache.arrays.neighbor_mask.dtype",
+        "value": "float32"
+      },
+      {
+        "path": "development_cache.arrays.neighbor_mask.finite_fraction",
+        "value": 1.0
+      },
+      {
+        "path": "development_cache.arrays.neighbor_mask.size",
+        "value": 109456
+      },
+      {
+        "path": "development_cache.arrays.neighbors.dtype",
+        "value": "float32"
+      },
+      {
+        "path": "development_cache.arrays.neighbors.finite_fraction",
+        "value": 1.0
+      },
+      {
+        "path": "development_cache.arrays.neighbors.size",
+        "value": 16856224
+      },
+      {
+        "path": "development_cache.arrays.target.dtype",
+        "value": "float32"
+      },
+      {
+        "path": "development_cache.arrays.target.finite_fraction",
+        "value": 1.0
+      },
+      {
+        "path": "development_cache.arrays.target.size",
+        "value": 2107028
+      },
+      {
+        "path": "development_cache.path",
+        "value": "/home/agni/waymo/iscai_stage4/artifacts/block43/development_cache.npz"
+      },
+      {
+        "path": "development_cache.sha256",
+        "value": "bc0e5b508df38f6e33d9cb1a6d21d7eaa86d20c91ba09ede6f500d46b87fbcaa"
+      }
+    ],
+    "calibrated_runtime_api_audit.json": [
+      {
+        "path": "coordinate_semantics.Stage4_prediction",
+        "value": "H0_displacement"
+      }
+    ],
+    "dev_posterior_resolver_summary.json": [
+      {
+        "path": "top_candidates[2].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[3].inspection.arrays.scenario_id.dtype",
+        "value": "<U15"
+      },
+      {
+        "path": "top_candidates[4].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[5].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[6].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[7].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[8].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[9].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[10].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[11].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[12].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[13].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[14].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[15].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[16].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[17].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[18].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[19].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[20].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[21].inspection.arrays.scenario_id.dtype",
+        "value": "<U15"
+      },
+      {
+        "path": "top_candidates[22].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[23].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[24].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[25].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[26].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[27].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[28].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      },
+      {
+        "path": "top_candidates[29].inspection.arrays.scenario_id.dtype",
+        "value": "<U16"
+      }
+    ],
+    "development_gaussian_posterior.json": [
+      {
+        "path": "coordinate_semantics.Stage4_prediction",
+        "value": "metric_H0_displacement"
+      },
+      {
+        "path": "frozen_inputs.development_cache.path",
+        "value": "/home/agni/waymo/iscai_stage4/artifacts/block43/development_cache.npz"
+      },
+      {
+        "path": "frozen_inputs.development_cache.sha256",
+        "value": "bc0e5b508df38f6e33d9cb1a6d21d7eaa86d20c91ba09ede6f500d46b87fbcaa"
+      },
+      {
+        "path": "historical_reproduction.sample_limit",
+        "value": 2048
+      },
+      {
+        "path": "posterior.development_N",
+        "value": 13682
+      },
+      {
+        "path": "posterior.full_normalized_prediction_sha256",
+        "value": "8f8e9714fb16d2fc9ffc0a2421e5c5849b4f2239fd7691597ec9dee3eb505549"
+      },
+      {
+        "path": "scientific_execution.development_only",
+        "value": true
+      },
+      {
+        "path": "scientific_execution.model_selection",
+        "value": false
+      }
+    ],
+    "stage4_prediction_coordinate_semantics.json": [
+      {
+        "path": "development_cache.path",
+        "value": "/home/agni/waymo/iscai_stage4/artifacts/block43/development_cache.npz"
+      },
+      {
+        "path": "development_cache.sha256",
+        "value": "bc0e5b508df38f6e33d9cb1a6d21d7eaa86d20c91ba09ede6f500d46b87fbcaa"
+      },
+      {
+        "path": "normalization.payload.development_used",
+        "value": false
+      },
+      {
+        "path": "normalization.payload.missing_history_rows_in_statistics",
+        "value": false
+      }
+    ]
+  },
+  "npz": {
+    "keys": {
+      "alpha": "variance_scale_alpha_h",
+      "anchor": "anchor_position_H0_m",
+      "calibrated_covariance": "calibrated_covariance_H0_m2",
+      "mean_absolute": "mean_absolute_H0_m",
+      "mean_displacement": "mean_displacement_H0_m",
+      "raw_covariance": "raw_covariance_H0_m2"
+    },
+    "path": "/home/agni/waymo/iscai_stage5/artifacts/block52/development_gaussian_posterior.npz",
+    "row_count": 13682,
+    "sha256": "39dacd4a1dd83ac9951244328403384421731dcffc1cf01617bcc6c6395460b4",
+    "shapes": {
+      "alpha": [
+        4
+      ],
+      "anchor": [
+        13682,
+        3
+      ],
+      "calibrated_covariance": [
+        13682,
+        4,
+        3,
+        3
+      ],
+      "mean_absolute": [
+        13682,
+        4,
+        3
+      ],
+      "mean_displacement": [
+        13682,
+        4,
+        3
+      ],
+      "raw_covariance": [
+        13682,
+        4,
+        3,
+        3
+      ]
+    }
+  },
+  "part": "2/2",
+  "project": "Agni",
+  "scope": {
+    "dataset_access": false,
+    "formal_evaluation": false,
+    "model_inference": false,
+    "parameter_tuning": false,
+    "upstream_modified": false
+  },
+  "selector": {
+    "candidates": [],
+    "state": "NO_EXPLICIT_SELECTOR_FOUND",
+    "value": null
+  },
+  "source_contexts": [
+    {
+      "context": "0073:     STAGE4\n0074:     / \"src/iscai_stage4/ml/\"\n0075:       \"calibration_runtime.py\"\n0076: )\n0077: \n0078: OUTPUT = (\n0079:     STAGE5\n0080:     / \"artifacts/block52/\"\n0081:       \"development_gaussian_posterior.npz\"\n0082: )\n0083: \n0084: REPORT = (\n0085:     STAGE5\n0086:     / \"artifacts/block52/\"\n0087:       \"development_gaussian_posterior.json\"\n0088: )\n0089: ",
+      "line": 81,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior.py"
+    },
+    {
+      "context": "0079:     STAGE5\n0080:     / \"artifacts/block52/\"\n0081:       \"development_gaussian_posterior.npz\"\n0082: )\n0083: \n0084: REPORT = (\n0085:     STAGE5\n0086:     / \"artifacts/block52/\"\n0087:       \"development_gaussian_posterior.json\"\n0088: )\n0089: \n0090: \n0091: EXPECTED_DEV_CACHE_SHA = (\n0092:     \"bc0e5b508df38f6e33d9cb1a6d21d7ea\"\n0093:     \"a86d20c91ba09ede6f500d46b87fbcaa\"\n0094: )\n0095: ",
+      "line": 87,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior.py"
+    },
+    {
+      "context": "1644:     temporary = OUTPUT.with_suffix(\n1645:         \".npz.tmp\"\n1646:     )\n1647: \n1648:     with temporary.open(\n1649:         \"wb\"\n1650:     ) as stream:\n1651: \n1652:         np.savez_compressed(\n1653:             stream,\n1654: \n1655:             anchor_position_H0_m=(\n1656:                 anchor\n1657:             ),\n1658: \n1659:             mean_displacement_H0_m=(\n1660:                 metric_mean_np",
+      "line": 1652,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior.py"
+    },
+    {
+      "context": "1647: \n1648:     with temporary.open(\n1649:         \"wb\"\n1650:     ) as stream:\n1651: \n1652:         np.savez_compressed(\n1653:             stream,\n1654: \n1655:             anchor_position_H0_m=(\n1656:                 anchor\n1657:             ),\n1658: \n1659:             mean_displacement_H0_m=(\n1660:                 metric_mean_np\n1661:             ),\n1662: \n1663:             mean_absolute_H0_m=(",
+      "line": 1655,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior.py"
+    },
+    {
+      "context": "1651: \n1652:         np.savez_compressed(\n1653:             stream,\n1654: \n1655:             anchor_position_H0_m=(\n1656:                 anchor\n1657:             ),\n1658: \n1659:             mean_displacement_H0_m=(\n1660:                 metric_mean_np\n1661:             ),\n1662: \n1663:             mean_absolute_H0_m=(\n1664:                 absolute_mean\n1665:             ),\n1666: \n1667:             raw_covariance_H0_m2=(",
+      "line": 1659,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior.py"
+    },
+    {
+      "context": "1655:             anchor_position_H0_m=(\n1656:                 anchor\n1657:             ),\n1658: \n1659:             mean_displacement_H0_m=(\n1660:                 metric_mean_np\n1661:             ),\n1662: \n1663:             mean_absolute_H0_m=(\n1664:                 absolute_mean\n1665:             ),\n1666: \n1667:             raw_covariance_H0_m2=(\n1668:                 raw_covariance_np\n1669:             ),\n1670: \n1671:             calibrated_covariance_H0_m2=(",
+      "line": 1663,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior.py"
+    },
+    {
+      "context": "0077:     STAGE4\n0078:     / \"configs/\"\n0079:       \"stage4_gaussian_gru.json\"\n0080: )\n0081: \n0082: OUTPUT = (\n0083:     STAGE5\n0084:     / \"artifacts/block52/\"\n0085:       \"development_gaussian_posterior.npz\"\n0086: )\n0087: \n0088: REPORT = (\n0089:     STAGE5\n0090:     / \"artifacts/block52/\"\n0091:       \"development_gaussian_posterior.json\"\n0092: )\n0093: ",
+      "line": 85,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py"
+    },
+    {
+      "context": "0083:     STAGE5\n0084:     / \"artifacts/block52/\"\n0085:       \"development_gaussian_posterior.npz\"\n0086: )\n0087: \n0088: REPORT = (\n0089:     STAGE5\n0090:     / \"artifacts/block52/\"\n0091:       \"development_gaussian_posterior.json\"\n0092: )\n0093: \n0094: \n0095: EXPECTED_BLOCK44_PREDICTION_SHA = (\n0096:     \"a0e96b4d9ba051bb3ceb0e1270d592fc\"\n0097:     \"13cfa0b3b4ddeb3dc16ed7a29a82e66a\"\n0098: )\n0099: ",
+      "line": 91,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py"
+    },
+    {
+      "context": "0312:     mean_absolute,\n0313:     raw_covariance,\n0314:     calibrated_covariance,\n0315: ):\n0316:     digest = sha256()\n0317: \n0318:     for name, array in (\n0319:         (\n0320:             \"anchor_position_H0_m\",\n0321:             anchor,\n0322:         ),\n0323:         (\n0324:             \"mean_displacement_H0_m\",\n0325:             mean_displacement,\n0326:         ),\n0327:         (\n0328:             \"mean_absolute_H0_m\",",
+      "line": 320,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py"
+    },
+    {
+      "context": "0316:     digest = sha256()\n0317: \n0318:     for name, array in (\n0319:         (\n0320:             \"anchor_position_H0_m\",\n0321:             anchor,\n0322:         ),\n0323:         (\n0324:             \"mean_displacement_H0_m\",\n0325:             mean_displacement,\n0326:         ),\n0327:         (\n0328:             \"mean_absolute_H0_m\",\n0329:             mean_absolute,\n0330:         ),\n0331:         (\n0332:             \"raw_covariance_H0_m2\",",
+      "line": 324,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py"
+    },
+    {
+      "context": "0320:             \"anchor_position_H0_m\",\n0321:             anchor,\n0322:         ),\n0323:         (\n0324:             \"mean_displacement_H0_m\",\n0325:             mean_displacement,\n0326:         ),\n0327:         (\n0328:             \"mean_absolute_H0_m\",\n0329:             mean_absolute,\n0330:         ),\n0331:         (\n0332:             \"raw_covariance_H0_m2\",\n0333:             raw_covariance,\n0334:         ),\n0335:         (\n0336:             \"calibrated_covariance_H0_m2\",",
+      "line": 328,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py"
+    },
+    {
+      "context": "1483:     temporary = OUTPUT.with_suffix(\n1484:         \".npz.tmp\"\n1485:     )\n1486: \n1487:     with temporary.open(\n1488:         \"wb\"\n1489:     ) as stream:\n1490: \n1491:         np.savez_compressed(\n1492:             stream,\n1493: \n1494:             anchor_position_H0_m=(\n1495:                 anchor_np\n1496:             ),\n1497: \n1498:             mean_displacement_H0_m=(\n1499:                 mean_displacement_np",
+      "line": 1491,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py"
+    },
+    {
+      "context": "1486: \n1487:     with temporary.open(\n1488:         \"wb\"\n1489:     ) as stream:\n1490: \n1491:         np.savez_compressed(\n1492:             stream,\n1493: \n1494:             anchor_position_H0_m=(\n1495:                 anchor_np\n1496:             ),\n1497: \n1498:             mean_displacement_H0_m=(\n1499:                 mean_displacement_np\n1500:             ),\n1501: \n1502:             mean_absolute_H0_m=(",
+      "line": 1494,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py"
+    },
+    {
+      "context": "1490: \n1491:         np.savez_compressed(\n1492:             stream,\n1493: \n1494:             anchor_position_H0_m=(\n1495:                 anchor_np\n1496:             ),\n1497: \n1498:             mean_displacement_H0_m=(\n1499:                 mean_displacement_np\n1500:             ),\n1501: \n1502:             mean_absolute_H0_m=(\n1503:                 mean_absolute_np\n1504:             ),\n1505: \n1506:             raw_covariance_H0_m2=(",
+      "line": 1498,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py"
+    },
+    {
+      "context": "1494:             anchor_position_H0_m=(\n1495:                 anchor_np\n1496:             ),\n1497: \n1498:             mean_displacement_H0_m=(\n1499:                 mean_displacement_np\n1500:             ),\n1501: \n1502:             mean_absolute_H0_m=(\n1503:                 mean_absolute_np\n1504:             ),\n1505: \n1506:             raw_covariance_H0_m2=(\n1507:                 raw_covariance_np\n1508:             ),\n1509: \n1510:             calibrated_covariance_H0_m2=(",
+      "line": 1502,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py"
+    },
+    {
+      "context": "1665:             \"causal_anchor\":\n1666:                 (\n1667:                     \"latest_causal_observed_\"\n1668:                     \"target_position_H0\"\n1669:                 ),\n1670: \n1671:             \"absolute_mean_rule\":\n1672:                 (\n1673:                     \"anchor_position_H0_m\"\n1674:                     \"+\"\n1675:                     \"mean_displacement_H0_m\"\n1676:                 ),\n1677: \n1678:             \"translation_changes_covariance\":\n1679:                 False,\n1680: \n1681:             \"future_truth_used\":",
+      "line": 1673,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py"
+    },
+    {
+      "context": "1667:                     \"latest_causal_observed_\"\n1668:                     \"target_position_H0\"\n1669:                 ),\n1670: \n1671:             \"absolute_mean_rule\":\n1672:                 (\n1673:                     \"anchor_position_H0_m\"\n1674:                     \"+\"\n1675:                     \"mean_displacement_H0_m\"\n1676:                 ),\n1677: \n1678:             \"translation_changes_covariance\":\n1679:                 False,\n1680: \n1681:             \"future_truth_used\":\n1682:                 False,\n1683:         },",
+      "line": 1675,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py"
+    },
+    {
+      "context": "1391:         ==\n1392:         120,\n1393:         (\n1394:             \"Frozen formal manifest \"\n1395:             \"is not N=120.\"\n1396:         ),\n1397:     )\n1398: \n1399:     scenario_ids = [\n1400:         str(\n1401:             row[\n1402:                 \"scenario_id\"\n1403:             ]\n1404:         )\n1405:         for row in formal_rows\n1406:     ]\n1407: ",
+      "line": 1399,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block50_part1_discovery.py"
+    },
+    {
+      "context": "1394:             \"Frozen formal manifest \"\n1395:             \"is not N=120.\"\n1396:         ),\n1397:     )\n1398: \n1399:     scenario_ids = [\n1400:         str(\n1401:             row[\n1402:                 \"scenario_id\"\n1403:             ]\n1404:         )\n1405:         for row in formal_rows\n1406:     ]\n1407: \n1408:     require(\n1409:         len(\n1410:             set(",
+      "line": 1402,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block50_part1_discovery.py"
+    },
+    {
+      "context": "1403:             ]\n1404:         )\n1405:         for row in formal_rows\n1406:     ]\n1407: \n1408:     require(\n1409:         len(\n1410:             set(\n1411:                 scenario_ids\n1412:             )\n1413:         )\n1414:         ==\n1415:         120,\n1416:         (\n1417:             \"Frozen formal manifest \"\n1418:             \"contains duplicate scenarios.\"\n1419:         ),",
+      "line": 1411,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block50_part1_discovery.py"
+    },
+    {
+      "context": "0017:     STAGE5\n0018:     / \"scripts/\"\n0019:       \"materialize_block52_frozen_dev_posterior.py\"\n0020: )\n0021: \n0022: REPORT = (\n0023:     STAGE5\n0024:     / \"artifacts/block52/\"\n0025:       \"development_gaussian_posterior.json\"\n0026: )\n0027: \n0028: ARTIFACT = (\n0029:     STAGE5\n0030:     / \"artifacts/block52/\"\n0031:       \"development_gaussian_posterior.npz\"\n0032: )\n0033: ",
+      "line": 25,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_dev_materialization_safe.py"
+    },
+    {
+      "context": "0023:     STAGE5\n0024:     / \"artifacts/block52/\"\n0025:       \"development_gaussian_posterior.json\"\n0026: )\n0027: \n0028: ARTIFACT = (\n0029:     STAGE5\n0030:     / \"artifacts/block52/\"\n0031:       \"development_gaussian_posterior.npz\"\n0032: )\n0033: \n0034: \n0035: def run_regression():\n0036:     process = subprocess.run(\n0037:         [\n0038:             sys.executable,\n0039:             \"-m\",",
+      "line": 31,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_dev_materialization_safe.py"
+    },
+    {
+      "context": "0017:     STAGE5\n0018:     / \"scripts/\"\n0019:       \"materialize_block52_frozen_dev_posterior_v2.py\"\n0020: )\n0021: \n0022: REPORT = (\n0023:     STAGE5\n0024:     / \"artifacts/block52/\"\n0025:       \"development_gaussian_posterior.json\"\n0026: )\n0027: \n0028: ARTIFACT = (\n0029:     STAGE5\n0030:     / \"artifacts/block52/\"\n0031:       \"development_gaussian_posterior.npz\"\n0032: )\n0033: ",
+      "line": 25,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_dev_materialization_v2_safe.py"
+    },
+    {
+      "context": "0023:     STAGE5\n0024:     / \"artifacts/block52/\"\n0025:       \"development_gaussian_posterior.json\"\n0026: )\n0027: \n0028: ARTIFACT = (\n0029:     STAGE5\n0030:     / \"artifacts/block52/\"\n0031:       \"development_gaussian_posterior.npz\"\n0032: )\n0033: \n0034: \n0035: def blocked(\n0036:     phase,\n0037:     reason,\n0038: ):\n0039:     print()",
+      "line": 31,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_dev_materialization_v2_safe.py"
+    },
+    {
+      "context": "0400: \n0401:     This function performs no model inference and never\n0402:     accesses the formal N=120 population.\n0403:     \"\"\"\n0404: \n0405:     path = (\n0406:         STAGE5\n0407:         / \"artifacts/block52/\"\n0408:           \"development_gaussian_posterior.npz\"\n0409:     )\n0410: \n0411:     report_path = (\n0412:         STAGE5\n0413:         / \"artifacts/block52/\"\n0414:           \"development_gaussian_posterior.json\"\n0415:     )\n0416: ",
+      "line": 408,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "0406:         STAGE5\n0407:         / \"artifacts/block52/\"\n0408:           \"development_gaussian_posterior.npz\"\n0409:     )\n0410: \n0411:     report_path = (\n0412:         STAGE5\n0413:         / \"artifacts/block52/\"\n0414:           \"development_gaussian_posterior.json\"\n0415:     )\n0416: \n0417:     require(\n0418:         path.is_file(),\n0419:         (\n0420:             \"Exact materialized development \"\n0421:             \"posterior is missing.\"\n0422:         ),",
+      "line": 414,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "0648:     )\n0649: \n0650:     with np.load(\n0651:         path,\n0652:         allow_pickle=False,\n0653:     ) as payload:\n0654: \n0655:         required_keys = (\n0656:             \"anchor_position_H0_m\",\n0657:             \"mean_displacement_H0_m\",\n0658:             \"mean_absolute_H0_m\",\n0659:             \"raw_covariance_H0_m2\",\n0660:             \"calibrated_covariance_H0_m2\",\n0661:             \"variance_scale_alpha_h\",\n0662:         )\n0663: \n0664:         missing = [",
+      "line": 656,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "0649: \n0650:     with np.load(\n0651:         path,\n0652:         allow_pickle=False,\n0653:     ) as payload:\n0654: \n0655:         required_keys = (\n0656:             \"anchor_position_H0_m\",\n0657:             \"mean_displacement_H0_m\",\n0658:             \"mean_absolute_H0_m\",\n0659:             \"raw_covariance_H0_m2\",\n0660:             \"calibrated_covariance_H0_m2\",\n0661:             \"variance_scale_alpha_h\",\n0662:         )\n0663: \n0664:         missing = [\n0665:             key",
+      "line": 657,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "0650:     with np.load(\n0651:         path,\n0652:         allow_pickle=False,\n0653:     ) as payload:\n0654: \n0655:         required_keys = (\n0656:             \"anchor_position_H0_m\",\n0657:             \"mean_displacement_H0_m\",\n0658:             \"mean_absolute_H0_m\",\n0659:             \"raw_covariance_H0_m2\",\n0660:             \"calibrated_covariance_H0_m2\",\n0661:             \"variance_scale_alpha_h\",\n0662:         )\n0663: \n0664:         missing = [\n0665:             key\n0666:             for key in required_keys",
+      "line": 658,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "0676:                 \", \".join(\n0677:                     missing\n0678:                 )\n0679:             ),\n0680:         )\n0681: \n0682:         mean = np.asarray(\n0683:             payload[\n0684:                 \"mean_absolute_H0_m\"\n0685:             ]\n0686:         )\n0687: \n0688:         covariance = np.asarray(\n0689:             payload[\n0690:                 \"calibrated_covariance_H0_m2\"\n0691:             ]\n0692:         )",
+      "line": 684,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "0799:     return {\n0800:         \"path\":\n0801:             path,\n0802: \n0803:         \"sha256\":\n0804:             actual_file_sha,\n0805: \n0806:         \"mean_key\":\n0807:             \"mean_absolute_H0_m\",\n0808: \n0809:         \"covariance_key\":\n0810:             \"calibrated_covariance_H0_m2\",\n0811: \n0812:         \"sample_count\":\n0813:             13682,\n0814: \n0815:         \"discovery_score\":",
+      "line": 807,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "0985: \n0986: \n0987: def select_stable_development_cases(\n0988:     means,\n0989:     covariance,\n0990: ):\n0991:     cases = []\n0992: \n0993:     for sample_index in range(\n0994:         means.shape[\n0995:             0\n0996:         ]\n0997:     ):\n0998:         for horizon_index in range(\n0999:             4\n1000:         ):\n1001:             mean = means[",
+      "line": 993,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "0994:         means.shape[\n0995:             0\n0996:         ]\n0997:     ):\n0998:         for horizon_index in range(\n0999:             4\n1000:         ):\n1001:             mean = means[\n1002:                 sample_index,\n1003:                 horizon_index\n1004:             ]\n1005: \n1006:             cov = covariance[\n1007:                 sample_index,\n1008:                 horizon_index\n1009:             ]\n1010: ",
+      "line": 1002,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "0999:             4\n1000:         ):\n1001:             mean = means[\n1002:                 sample_index,\n1003:                 horizon_index\n1004:             ]\n1005: \n1006:             cov = covariance[\n1007:                 sample_index,\n1008:                 horizon_index\n1009:             ]\n1010: \n1011:             horizontal = float(\n1012:                 math.hypot(\n1013:                     float(\n1014:                         mean[\n1015:                             0",
+      "line": 1007,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "1084:                     *\n1085:                     xy_sigma,\n1086:                 )\n1087:             ):\n1088:                 continue\n1089: \n1090:             cases.append(\n1091:                 (\n1092:                     sample_index,\n1093:                     horizon_index,\n1094:                 )\n1095:             )\n1096: \n1097:             if len(\n1098:                 cases\n1099:             ) >= DEVELOPMENT_CASE_COUNT:\n1100:                 return cases",
+      "line": 1092,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "1186: \n1187:         \"range_mean_abs_m\":\n1188:             [],\n1189:     }\n1190: \n1191:     per_case = []\n1192: \n1193:     for case_rank, (\n1194:         sample_index,\n1195:         horizon_index,\n1196:     ) in enumerate(\n1197:         cases\n1198:     ):\n1199:         mean = means[\n1200:             sample_index,\n1201:             horizon_index\n1202:         ]",
+      "line": 1194,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "1192: \n1193:     for case_rank, (\n1194:         sample_index,\n1195:         horizon_index,\n1196:     ) in enumerate(\n1197:         cases\n1198:     ):\n1199:         mean = means[\n1200:             sample_index,\n1201:             horizon_index\n1202:         ]\n1203: \n1204:         cov = covariance[\n1205:             sample_index,\n1206:             horizon_index\n1207:         ]\n1208: ",
+      "line": 1200,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "1197:         cases\n1198:     ):\n1199:         mean = means[\n1200:             sample_index,\n1201:             horizon_index\n1202:         ]\n1203: \n1204:         cov = covariance[\n1205:             sample_index,\n1206:             horizon_index\n1207:         ]\n1208: \n1209:         seed = (\n1210:             MONTE_CARLO_BASE_SEED\n1211:             +\n1212:             10_007\n1213:             *",
+      "line": 1205,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "1320: \n1321:         errors[\n1322:             \"range_mean_abs_m\"\n1323:         ].append(\n1324:             range_mean_error\n1325:         )\n1326: \n1327:         per_case.append({\n1328:             \"sample_index\":\n1329:                 int(\n1330:                     sample_index\n1331:                 ),\n1332: \n1333:             \"horizon_index\":\n1334:                 int(\n1335:                     horizon_index\n1336:                 ),",
+      "line": 1328,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "1322:             \"range_mean_abs_m\"\n1323:         ].append(\n1324:             range_mean_error\n1325:         )\n1326: \n1327:         per_case.append({\n1328:             \"sample_index\":\n1329:                 int(\n1330:                     sample_index\n1331:                 ),\n1332: \n1333:             \"horizon_index\":\n1334:                 int(\n1335:                     horizon_index\n1336:                 ),\n1337: \n1338:             \"azimuth_mean_abs_deg\":",
+      "line": 1330,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "1882:         \"case_count\":\n1883:             len(\n1884:                 cases\n1885:             ),\n1886: \n1887:         \"cases\":\n1888:             [\n1889:                 {\n1890:                     \"sample_index\":\n1891:                         int(\n1892:                             sample_index\n1893:                         ),\n1894: \n1895:                     \"horizon_index\":\n1896:                         int(\n1897:                             horizon_index\n1898:                         ),",
+      "line": 1890,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "1884:                 cases\n1885:             ),\n1886: \n1887:         \"cases\":\n1888:             [\n1889:                 {\n1890:                     \"sample_index\":\n1891:                         int(\n1892:                             sample_index\n1893:                         ),\n1894: \n1895:                     \"horizon_index\":\n1896:                         int(\n1897:                             horizon_index\n1898:                         ),\n1899:                 }\n1900:                 for (",
+      "line": 1892,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "1893:                         ),\n1894: \n1895:                     \"horizon_index\":\n1896:                         int(\n1897:                             horizon_index\n1898:                         ),\n1899:                 }\n1900:                 for (\n1901:                     sample_index,\n1902:                     horizon_index,\n1903:                 ) in cases\n1904:             ],\n1905: \n1906:         \"candidate_sample_counts\":\n1907:             list(\n1908:                 MONTE_CARLO_CANDIDATE_SAMPLE_COUNTS\n1909:             ),",
+      "line": 1901,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py"
+    },
+    {
+      "context": "0045:     STAGE5\n0046:     / \"artifacts/block52/\"\n0047:       \"mc_convergence.json\"\n0048: )\n0049: \n0050: MATERIALIZATION = (\n0051:     STAGE5\n0052:     / \"artifacts/block52/\"\n0053:       \"development_gaussian_posterior.json\"\n0054: )\n0055: \n0056: REFERENCE_AUDIT = (\n0057:     STAGE5\n0058:     / \"artifacts/block53/\"\n0059:       \"parta_beam_reference_audit.json\"\n0060: )\n0061: ",
+      "line": 53,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block53_part1_gate.py"
+    },
+    {
+      "context": "0319:         if line.strip()\n0320:     ]\n0321: \n0322:     if len(rows) != 120:\n0323:         raise RuntimeError(\n0324:             f\"formal population is {len(rows)}, expected 120\"\n0325:         )\n0326: \n0327:     if len({str(x[\"scenario_id\"]) for x in rows}) != 120:\n0328:         raise RuntimeError(\"duplicate formal scenario IDs\")\n0329: \n0330:     return rows\n0331: \n0332: \n0333: def load_normalizer_class():\n0334:     spec = importlib.util.spec_from_file_location(\n0335:         \"_stage4_block44_runtime\",",
+      "line": 327,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py"
+    },
+    {
+      "context": "1544:     receiver_parameters,\n1545:     geometry_modes,\n1546:     vehicle_semantic,\n1547:     codebooks,\n1548:     tbeam,\n1549:     tframe,\n1550:     runner_sha,\n1551: ):\n1552:     scenario_id = str(formal[\"scenario_id\"])\n1553:     cache = CACHE_DIR / f\"{rank:03d}_{scenario_id}.json\"\n1554: \n1555:     if cache.is_file():\n1556:         existing = load_json(cache)\n1557: \n1558:         if (\n1559:             existing.get(\"status\") == \"COMPLETE\"\n1560:             and existing.get(\"runner_sha256\")",
+      "line": 1552,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py"
+    },
+    {
+      "context": "1545:     geometry_modes,\n1546:     vehicle_semantic,\n1547:     codebooks,\n1548:     tbeam,\n1549:     tframe,\n1550:     runner_sha,\n1551: ):\n1552:     scenario_id = str(formal[\"scenario_id\"])\n1553:     cache = CACHE_DIR / f\"{rank:03d}_{scenario_id}.json\"\n1554: \n1555:     if cache.is_file():\n1556:         existing = load_json(cache)\n1557: \n1558:         if (\n1559:             existing.get(\"status\") == \"COMPLETE\"\n1560:             and existing.get(\"runner_sha256\")\n1561:             in (",
+      "line": 1553,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py"
+    },
+    {
+      "context": "1564:             )\n1565:         ):\n1566:             return existing, True\n1567: \n1568:         raise RuntimeError(\n1569:             f\"incompatible existing cache: {cache}\"\n1570:         )\n1571: \n1572:     row = validation_by_id[scenario_id]\n1573: \n1574:     scenario = read_motion_scenario(\n1575:         row,\n1576:         paired_root=PAIRED_ROOT,\n1577:         compact_record_offset=int(\n1578:             formal[\"compact_record_offset\"]\n1579:         ),\n1580:     )",
+      "line": 1572,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py"
+    },
+    {
+      "context": "1667:     )\n1668: \n1669:     base = {\n1670:         \"stage\": 5,\n1671:         \"block\": \"5.8\",\n1672:         \"status\": \"COMPLETE\",\n1673:         \"runner_sha256\": runner_sha,\n1674:         \"rank\": rank,\n1675:         \"scenario_id\": scenario_id,\n1676:         \"receiver_status\": str(selection.status),\n1677:         \"eligible_receiver_count\": int(\n1678:             selection.eligible_candidate_count\n1679:         ),\n1680:         \"selected_receiver\": False,\n1681:         \"selected_prediction_available\": False,\n1682:         \"bridge_max_distance_m\": (\n1683:             max(bridge_distances)",
+      "line": 1675,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py"
+    },
+    {
+      "context": "1771:             trajectory_mean_h0_m=mean,\n1772:             raw_trajectory_covariance_h0_m2=covariance,\n1773:             current_position_h0_m=tuple(center),\n1774:             current_heading_h0_rad=heading,\n1775:             receiver_geometry_mode=geometry_modes[geometry],\n1776:             receiver_offset=angular_offsets[geometry],\n1777:             sample_count=MC_SAMPLES,\n1778:             seed=stable_seed(\n1779:                 scenario_id,\n1780:                 geometry,\n1781:                 \"angular\",\n1782:             ),\n1783:             low_speed_threshold_mps=LOW_SPEED_MPS,\n1784:         )\n1785: \n1786:         angular_runtime = (\n1787:             time.perf_counter_ns() - start",
+      "line": 1779,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py"
+    },
+    {
+      "context": "1905:     track = scenario.tracks[selected[\"track_index\"]]\n1906:     T = transform_h0(\n1907:         built,\n1908:         int(scenario.current_time_index),\n1909:     )\n1910: \n1911:     rng = np.random.default_rng(\n1912:         stable_seed(\n1913:             scenario_id,\n1914:             \"constructed_receiver_truth\",\n1915:         )\n1916:     )\n1917: \n1918:     uncertain_truth_offset = rng.multivariate_normal(\n1919:         mean_offset,\n1920:         cov_offset,\n1921:         check_valid=\"raise\",",
+      "line": 1913,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py"
+    },
+    {
+      "context": "2500:         load_frozen_stage2_configs()\n2501:     )\n2502: \n2503:     validation_rows = read_validation_manifest(\n2504:         VALIDATION_MANIFEST\n2505:     )\n2506: \n2507:     validation_by_id = {\n2508:         str(row.scenario_id): row\n2509:         for row in validation_rows\n2510:     }\n2511: \n2512:     missing = [\n2513:         str(row[\"scenario_id\"])\n2514:         for row in formal_rows\n2515:         if str(row[\"scenario_id\"]) not in validation_by_id\n2516:     ]",
+      "line": 2508,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py"
+    },
+    {
+      "context": "2505:     )\n2506: \n2507:     validation_by_id = {\n2508:         str(row.scenario_id): row\n2509:         for row in validation_rows\n2510:     }\n2511: \n2512:     missing = [\n2513:         str(row[\"scenario_id\"])\n2514:         for row in formal_rows\n2515:         if str(row[\"scenario_id\"]) not in validation_by_id\n2516:     ]\n2517: \n2518:     if missing:\n2519:         raise RuntimeError(\n2520:             f\"formal scenarios missing from canonical validation: \"\n2521:             f\"{missing[:3]}\"",
+      "line": 2513,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py"
+    },
+    {
+      "context": "2507:     validation_by_id = {\n2508:         str(row.scenario_id): row\n2509:         for row in validation_rows\n2510:     }\n2511: \n2512:     missing = [\n2513:         str(row[\"scenario_id\"])\n2514:         for row in formal_rows\n2515:         if str(row[\"scenario_id\"]) not in validation_by_id\n2516:     ]\n2517: \n2518:     if missing:\n2519:         raise RuntimeError(\n2520:             f\"formal scenarios missing from canonical validation: \"\n2521:             f\"{missing[:3]}\"\n2522:         )\n2523: ",
+      "line": 2515,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py"
+    },
+    {
+      "context": "2721: \n2722:     with MERGED.open(\"w\", encoding=\"utf-8\") as f:\n2723:         for scene in scene_results:\n2724:             for row in scene[\"adaptive\"]:\n2725:                 f.write(\n2726:                     json.dumps(\n2727:                         json_safe(\n2728:                             {\n2729:                                 \"scenario_id\": scene[\"scenario_id\"],\n2730:                                 \"type\": \"adaptive\",\n2731:                                 **row,\n2732:                             }\n2733:                         ),\n2734:                         sort_keys=True,\n2735:                         allow_nan=False,\n2736:                     )\n2737:                     + \"\\n\"",
+      "line": 2729,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py"
+    },
+    {
+      "context": "2737:                     + \"\\n\"\n2738:                 )\n2739: \n2740:             for row in scene[\"baselines\"]:\n2741:                 f.write(\n2742:                     json.dumps(\n2743:                         json_safe(\n2744:                             {\n2745:                                 \"scenario_id\": scene[\"scenario_id\"],\n2746:                                 \"type\": \"baseline\",\n2747:                                 **row,\n2748:                             }\n2749:                         ),\n2750:                         sort_keys=True,\n2751:                         allow_nan=False,\n2752:                     )\n2753:                     + \"\\n\"",
+      "line": 2745,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py"
+    },
+    {
+      "context": "0114:     \"scenario\",\n0115:     \"prediction\",\n0116:     \"posterior\",\n0117:     \"gaussian\",\n0118:     \"mean\",\n0119:     \"covariance\",\n0120:     \"tracks_to_predict\",\n0121:     \"np.save\",\n0122:     \"np.savez\",\n0123:     \"artifact\",\n0124:     \"120\",\n0125: )\n0126: \n0127: \n0128: def require(\n0129:     condition,\n0130:     message,",
+      "line": 122,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part1_formal_route_audit.py"
+    },
+    {
+      "context": "0738:     ]\n0739: \n0740:     if len(rows) != FORMAL_N:\n0741:         raise RuntimeError(\n0742:             f\"Formal manifest count changed: \"\n0743:             f\"{len(rows)}\"\n0744:         )\n0745: \n0746:     scenario_ids = [\n0747:         str(\n0748:             row[\n0749:                 \"scenario_id\"\n0750:             ]\n0751:         )\n0752:         for row in rows\n0753:     ]\n0754: ",
+      "line": 746,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "0741:         raise RuntimeError(\n0742:             f\"Formal manifest count changed: \"\n0743:             f\"{len(rows)}\"\n0744:         )\n0745: \n0746:     scenario_ids = [\n0747:         str(\n0748:             row[\n0749:                 \"scenario_id\"\n0750:             ]\n0751:         )\n0752:         for row in rows\n0753:     ]\n0754: \n0755:     if len(\n0756:         set(\n0757:             scenario_ids",
+      "line": 749,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "0749:                 \"scenario_id\"\n0750:             ]\n0751:         )\n0752:         for row in rows\n0753:     ]\n0754: \n0755:     if len(\n0756:         set(\n0757:             scenario_ids\n0758:         )\n0759:     ) != FORMAL_N:\n0760:         raise RuntimeError(\n0761:             \"Formal scenario IDs are not unique.\"\n0762:         )\n0763: \n0764:     return rows\n0765: ",
+      "line": 757,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "1965: # ============================================================\n1966: \n1967: @dataclass\n1968: class ControllerSample:\n1969:     prediction_id: str\n1970:     semantic_class: str\n1971:     model_input: Any\n1972:     history: Any\n1973:     original_sample_index: int\n1974: \n1975: \n1976: def latest_history_heading(\n1977:     history,\n1978:     low_speed_threshold_mps: float,\n1979: ) -> float:\n1980:     steps = tuple(\n1981:         history.steps",
+      "line": 1973,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "2152:             \"Duplicate causal history prediction_id.\"\n2153:         )\n2154: \n2155:     projected = []\n2156: \n2157:     noncausal_mapping_count = 0\n2158:     unknown_class_count = 0\n2159: \n2160:     for sample_index, sample in enumerate(\n2161:         samples\n2162:     ):\n2163:         prediction_id = str(\n2164:             sample.prediction_id\n2165:         )\n2166: \n2167:         history = history_by_id.get(\n2168:             prediction_id",
+      "line": 2160,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "2204:                 continue\n2205: \n2206:         projected.append(\n2207:             ControllerSample(\n2208:                 prediction_id=prediction_id,\n2209:                 semantic_class=semantic_class,\n2210:                 model_input=sample.model_input,\n2211:                 history=history,\n2212:                 original_sample_index=sample_index,\n2213:             )\n2214:         )\n2215: \n2216:     projected.sort(\n2217:         key=lambda row:\n2218:             row.prediction_id\n2219:     )\n2220: ",
+      "line": 2212,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "2304: \n2305:     result = (\n2306:         select_primary_receiver(\n2307:             candidates,\n2308:             receiver_config,\n2309:         )\n2310:     )\n2311: \n2312:     selected_index = (\n2313:         result.selected_candidate_index\n2314:     )\n2315: \n2316:     if selected_index is None:\n2317:         return (\n2318:             result,\n2319:             None,\n2320:         )",
+      "line": 2312,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "2308:             receiver_config,\n2309:         )\n2310:     )\n2311: \n2312:     selected_index = (\n2313:         result.selected_candidate_index\n2314:     )\n2315: \n2316:     if selected_index is None:\n2317:         return (\n2318:             result,\n2319:             None,\n2320:         )\n2321: \n2322:     selected_index = int(\n2323:         selected_index\n2324:     )",
+      "line": 2316,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "2314:     )\n2315: \n2316:     if selected_index is None:\n2317:         return (\n2318:             result,\n2319:             None,\n2320:         )\n2321: \n2322:     selected_index = int(\n2323:         selected_index\n2324:     )\n2325: \n2326:     if not (\n2327:         0\n2328:         <=\n2329:         selected_index\n2330:         <",
+      "line": 2322,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "2315: \n2316:     if selected_index is None:\n2317:         return (\n2318:             result,\n2319:             None,\n2320:         )\n2321: \n2322:     selected_index = int(\n2323:         selected_index\n2324:     )\n2325: \n2326:     if not (\n2327:         0\n2328:         <=\n2329:         selected_index\n2330:         <\n2331:         len(",
+      "line": 2323,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "2321: \n2322:     selected_index = int(\n2323:         selected_index\n2324:     )\n2325: \n2326:     if not (\n2327:         0\n2328:         <=\n2329:         selected_index\n2330:         <\n2331:         len(\n2332:             rows\n2333:         )\n2334:     ):\n2335:         raise RuntimeError(\n2336:             \"Receiver selector returned invalid index.\"\n2337:         )",
+      "line": 2329,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "2334:     ):\n2335:         raise RuntimeError(\n2336:             \"Receiver selector returned invalid index.\"\n2337:         )\n2338: \n2339:     return (\n2340:         result,\n2341:         rows[\n2342:             selected_index\n2343:         ],\n2344:     )\n2345: \n2346: \n2347: # ============================================================\n2348: # Exact Stage4 input tensorization\n2349: # ============================================================\n2350: ",
+      "line": 2342,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "3662:     validation_by_id,\n3663:     clean_config,\n3664:     degraded_config,\n3665:     runtime,\n3666:     parameters,\n3667:     codebooks,\n3668:     run_fingerprint,\n3669: ):\n3670:     scenario_id = str(\n3671:         formal[\n3672:             \"scenario_id\"\n3673:         ]\n3674:     )\n3675: \n3676:     cache_path = (\n3677:         CACHE_DIR\n3678:         /",
+      "line": 3670,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "3664:     degraded_config,\n3665:     runtime,\n3666:     parameters,\n3667:     codebooks,\n3668:     run_fingerprint,\n3669: ):\n3670:     scenario_id = str(\n3671:         formal[\n3672:             \"scenario_id\"\n3673:         ]\n3674:     )\n3675: \n3676:     cache_path = (\n3677:         CACHE_DIR\n3678:         /\n3679:         (\n3680:             f\"{rank:03d}_\"",
+      "line": 3672,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "3673:         ]\n3674:     )\n3675: \n3676:     cache_path = (\n3677:         CACHE_DIR\n3678:         /\n3679:         (\n3680:             f\"{rank:03d}_\"\n3681:             f\"{scenario_id}.json\"\n3682:         )\n3683:     )\n3684: \n3685:     if cache_path.is_file():\n3686:         cached = load_json(\n3687:             cache_path\n3688:         )\n3689: ",
+      "line": 3681,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "3696:             and\n3697:             cached.get(\n3698:                 \"run_fingerprint\"\n3699:             )\n3700:             ==\n3701:             run_fingerprint\n3702:             and\n3703:             cached.get(\n3704:                 \"scenario_id\"\n3705:             )\n3706:             ==\n3707:             scenario_id\n3708:         ):\n3709:             return (\n3710:                 cached,\n3711:                 True,\n3712:             )",
+      "line": 3704,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "3699:             )\n3700:             ==\n3701:             run_fingerprint\n3702:             and\n3703:             cached.get(\n3704:                 \"scenario_id\"\n3705:             )\n3706:             ==\n3707:             scenario_id\n3708:         ):\n3709:             return (\n3710:                 cached,\n3711:                 True,\n3712:             )\n3713: \n3714:         raise RuntimeError(\n3715:             \"Existing Block5.8 scene cache has \"",
+      "line": 3707,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "3714:         raise RuntimeError(\n3715:             \"Existing Block5.8 scene cache has \"\n3716:             \"incompatible fingerprint. \"\n3717:             f\"Move it aside before retrying: {cache_path}\"\n3718:         )\n3719: \n3720:     validation_row = (\n3721:         validation_by_id.get(\n3722:             scenario_id\n3723:         )\n3724:     )\n3725: \n3726:     if validation_row is None:\n3727:         raise RuntimeError(\n3728:             \"Formal scenario absent from \"\n3729:             \"canonical validation manifest.\"\n3730:         )",
+      "line": 3722,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "3766:             formal[\n3767:                 \"compact_record_offset\"\n3768:             ]\n3769:         ),\n3770:     )\n3771: \n3772:     if (\n3773:         str(\n3774:             scenario.scenario_id\n3775:         )\n3776:         !=\n3777:         scenario_id\n3778:     ):\n3779:         raise RuntimeError(\n3780:             \"Physical scenario-ID mismatch.\"\n3781:         )\n3782: ",
+      "line": 3774,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "3769:         ),\n3770:     )\n3771: \n3772:     if (\n3773:         str(\n3774:             scenario.scenario_id\n3775:         )\n3776:         !=\n3777:         scenario_id\n3778:     ):\n3779:         raise RuntimeError(\n3780:             \"Physical scenario-ID mismatch.\"\n3781:         )\n3782: \n3783:     current_index = int(\n3784:         scenario.current_time_index\n3785:     )",
+      "line": 3777,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "3854:         \"status\":\n3855:             \"COMPLETE\",\n3856: \n3857:         \"rank\":\n3858:             int(\n3859:                 rank\n3860:             ),\n3861: \n3862:         \"scenario_id\":\n3863:             scenario_id,\n3864: \n3865:         \"run_fingerprint\":\n3866:             run_fingerprint,\n3867: \n3868:         \"causal_population\": {\n3869:             \"causal_history_count\":\n3870:                 int(",
+      "line": 3862,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "3855:             \"COMPLETE\",\n3856: \n3857:         \"rank\":\n3858:             int(\n3859:                 rank\n3860:             ),\n3861: \n3862:         \"scenario_id\":\n3863:             scenario_id,\n3864: \n3865:         \"run_fingerprint\":\n3866:             run_fingerprint,\n3867: \n3868:         \"causal_population\": {\n3869:             \"causal_history_count\":\n3870:                 int(\n3871:                     projection[",
+      "line": 3863,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "4107:                     parameters[\n4108:                         \"mc_sample_count\"\n4109:                     ]\n4110:                 ),\n4111:                 seed=stable_seed(\n4112:                     parameters[\n4113:                         \"mc_base_seed\"\n4114:                     ],\n4115:                     scenario_id,\n4116:                     mode,\n4117:                     \"posterior\",\n4118:                 ),\n4119:                 low_speed_threshold_mps=float(\n4120:                     parameters[\n4121:                         \"low_speed_threshold_mps\"\n4122:                     ]\n4123:                 ),",
+      "line": 4115,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "4334:     base_result[\n4335:         \"scientific_execution\"\n4336:     ][\n4337:         \"future_truth_access_after_controller_decisions\"\n4338:     ] = True\n4339: \n4340:     original_sample = samples[\n4341:         selected\n4342:         .original_sample_index\n4343:     ]\n4344: \n4345:     truth_resolution = (\n4346:         resolve_sample_truth_track_index(\n4347:             original_sample\n4348:         )\n4349:     )\n4350: ",
+      "line": 4342,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "4393:         ][\n4394:             \"covariance_body_m2\"\n4395:         ],\n4396:         dtype=np.float64,\n4397:     )\n4398: \n4399:     truth_rng = np.random.default_rng(\n4400:         stable_seed(\n4401:             scenario_id,\n4402:             \"formal_receiver_offset_truth\",\n4403:         )\n4404:     )\n4405: \n4406:     uncertain_realization = (\n4407:         truth_rng.multivariate_normal(\n4408:             mean_offset,\n4409:             covariance_offset,",
+      "line": 4401,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "4685:                     oracle_link,\n4686:                 )\n4687:             )\n4688: \n4689:             base_result[\n4690:                 \"baseline_records\"\n4691:             ].append(\n4692:                 {\n4693:                     \"scenario_id\":\n4694:                         scenario_id,\n4695: \n4696:                     \"geometry_mode\":\n4697:                         mode,\n4698: \n4699:                     \"codebook_size\":\n4700:                         beam_count,\n4701: ",
+      "line": 4693,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "4686:                 )\n4687:             )\n4688: \n4689:             base_result[\n4690:                 \"baseline_records\"\n4691:             ].append(\n4692:                 {\n4693:                     \"scenario_id\":\n4694:                         scenario_id,\n4695: \n4696:                     \"geometry_mode\":\n4697:                         mode,\n4698: \n4699:                     \"codebook_size\":\n4700:                         beam_count,\n4701: \n4702:                     \"horizon_s\":",
+      "line": 4694,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "4841:                 else\n4842:                 0\n4843:             )\n4844: \n4845:             base_result[\n4846:                 \"adaptive_records\"\n4847:             ].append(\n4848:                 {\n4849:                     \"scenario_id\":\n4850:                         scenario_id,\n4851: \n4852:                     \"geometry_mode\":\n4853:                         mode,\n4854: \n4855:                     \"codebook_size\":\n4856:                         beam_count,\n4857: ",
+      "line": 4849,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "4842:                 0\n4843:             )\n4844: \n4845:             base_result[\n4846:                 \"adaptive_records\"\n4847:             ].append(\n4848:                 {\n4849:                     \"scenario_id\":\n4850:                         scenario_id,\n4851: \n4852:                     \"geometry_mode\":\n4853:                         mode,\n4854: \n4855:                     \"codebook_size\":\n4856:                         beam_count,\n4857: \n4858:                     \"horizon_s\":",
+      "line": 4850,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "6156:     validation_rows = (\n6157:         read_validation_manifest(\n6158:             VALIDATION_MANIFEST\n6159:         )\n6160:     )\n6161: \n6162:     validation_by_id = {\n6163:         str(\n6164:             row.scenario_id\n6165:         ):\n6166:             row\n6167:         for row in validation_rows\n6168:     }\n6169: \n6170:     runtime = (\n6171:         build_gaussian_runtime()\n6172:     )",
+      "line": 6164,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "6525: \n6526:                 **row,\n6527:             }\n6528:         )\n6529: \n6530:     all_records.sort(\n6531:         key=lambda row: (\n6532:             row[\n6533:                 \"scenario_id\"\n6534:             ],\n6535:             row[\n6536:                 \"geometry_mode\"\n6537:             ],\n6538:             int(\n6539:                 row[\n6540:                     \"codebook_size\"\n6541:                 ]",
+      "line": 6533,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "6573:     deterministic_digest = sha256()\n6574: \n6575:     for result in scene_results:\n6576:         path = (\n6577:             CACHE_DIR\n6578:             /\n6579:             (\n6580:                 f\"{int(result['rank']):03d}_\"\n6581:                 f\"{result['scenario_id']}.json\"\n6582:             )\n6583:         )\n6584: \n6585:         deterministic_payload = (\n6586:             strip_nondeterministic_runtime(\n6587:                 result\n6588:             )\n6589:         )",
+      "line": 6581,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "6608:             {\n6609:                 \"rank\":\n6610:                     int(\n6611:                         result[\n6612:                             \"rank\"\n6613:                         ]\n6614:                     ),\n6615: \n6616:                 \"scenario_id\":\n6617:                     result[\n6618:                         \"scenario_id\"\n6619:                     ],\n6620: \n6621:                 \"path\":\n6622:                     str(\n6623:                         path\n6624:                     ),",
+      "line": 6616,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "6610:                     int(\n6611:                         result[\n6612:                             \"rank\"\n6613:                         ]\n6614:                     ),\n6615: \n6616:                 \"scenario_id\":\n6617:                     result[\n6618:                         \"scenario_id\"\n6619:                     ],\n6620: \n6621:                 \"path\":\n6622:                     str(\n6623:                         path\n6624:                     ),\n6625: \n6626:                 \"sha256\":",
+      "line": 6618,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py"
+    },
+    {
+      "context": "0738:     ]\n0739: \n0740:     if len(rows) != FORMAL_N:\n0741:         raise RuntimeError(\n0742:             f\"Formal manifest count changed: \"\n0743:             f\"{len(rows)}\"\n0744:         )\n0745: \n0746:     scenario_ids = [\n0747:         str(\n0748:             row[\n0749:                 \"scenario_id\"\n0750:             ]\n0751:         )\n0752:         for row in rows\n0753:     ]\n0754: ",
+      "line": 746,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.py"
+    },
+    {
+      "context": "0741:         raise RuntimeError(\n0742:             f\"Formal manifest count changed: \"\n0743:             f\"{len(rows)}\"\n0744:         )\n0745: \n0746:     scenario_ids = [\n0747:         str(\n0748:             row[\n0749:                 \"scenario_id\"\n0750:             ]\n0751:         )\n0752:         for row in rows\n0753:     ]\n0754: \n0755:     if len(\n0756:         set(\n0757:             scenario_ids",
+      "line": 749,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.py"
+    },
+    {
+      "context": "0749:                 \"scenario_id\"\n0750:             ]\n0751:         )\n0752:         for row in rows\n0753:     ]\n0754: \n0755:     if len(\n0756:         set(\n0757:             scenario_ids\n0758:         )\n0759:     ) != FORMAL_N:\n0760:         raise RuntimeError(\n0761:             \"Formal scenario IDs are not unique.\"\n0762:         )\n0763: \n0764:     return rows\n0765: ",
+      "line": 757,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.py"
+    },
+    {
+      "context": "1779: @dataclass\n1780: \n1781: @dataclass\n1782: class ControllerSample:\n1783:     prediction_id: str\n1784:     semantic_class: str\n1785:     model_input: Any | None\n1786:     history: Any\n1787:     original_sample_index: int | None\n1788:     current_available: bool\n1789: \n1790: \n1791: \n1792: def latest_history_heading(\n1793:     history,\n1794:     low_speed_threshold_mps: float,\n1795: ) -> float:",
+      "line": 1787,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.py"
+    },
+    {
+      "context": "2724:         histories\n2725:     ):\n2726:         raise RuntimeError(\n2727:             \"Duplicate causal history prediction_id.\"\n2728:         )\n2729: \n2730:     sample_by_id = {}\n2731: \n2732:     for sample_index, sample in enumerate(\n2733:         samples\n2734:     ):\n2735:         prediction_id = str(\n2736:             sample.prediction_id\n2737:         )\n2738: \n2739:         if prediction_id in sample_by_id:\n2740:             raise RuntimeError(",
+      "line": 2732,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.py"
+    },
+    {
+      "context": "2739:         if prediction_id in sample_by_id:\n2740:             raise RuntimeError(\n2741:                 \"Duplicate supervised sample prediction_id.\"\n2742:             )\n2743: \n2744:         sample_by_id[\n2745:             prediction_id\n2746:         ] = (\n2747:             sample_index,\n2748:             sample,\n2749:         )\n2750: \n2751:     current_histories = []\n2752: \n2753:     for history in histories:\n2754:         latest_index = int(\n2755:             history.latest_observed_frame_index",
+      "line": 2747,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.py"
+    },
+    {
+      "context": "3003:             )\n3004:         )\n3005: \n3006:         sample_entry = sample_by_id.get(\n3007:             prediction_id\n3008:         )\n3009: \n3010:         if sample_entry is None:\n3011:             sample_index = None\n3012:             model_input = None\n3013: \n3014:         else:\n3015:             sample_index, sample = sample_entry\n3016:             model_input = sample.model_input\n3017: \n3018:             try:\n3019:                 supervised_class = str(",
+      "line": 3011,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.py"
+    },
+    {
+      "context": "3007:             prediction_id\n3008:         )\n3009: \n3010:         if sample_entry is None:\n3011:             sample_index = None\n3012:             model_input = None\n3013: \n3014:         else:\n3015:             sample_index, sample = sample_entry\n3016:             model_input = sample.model_input\n3017: \n3018:             try:\n3019:                 supervised_class = str(\n3020:                     normalize_semantic_class(\n3021:                         sample.actor_class\n3022:                     )\n3023:                 )",
+      "line": 3015,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.py"
+    },
+    {
+      "context": "3065:                         )\n3066: \n3067:         rows.append(\n3068:             ControllerSample(\n3069:                 prediction_id=prediction_id,\n3070:                 semantic_class=semantic_class,\n3071:                 model_input=model_input,\n3072:                 history=history,\n3073:                 original_sample_index=sample_index,\n3074:                 current_available=True,\n3075:             )\n3076:         )\n3077: \n3078:     # This is a schema-integrity check, not formal tuning:\n3079:     # the independently causal class path must agree exactly\n3080:     # with the already frozen supervised class metadata on\n3081:     # every overlapping current actor.",
+      "line": 3073,
+      "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.py"
+    }
+  ],
+  "stage": 6,
+  "status": "PASS_BATCH_SCHEMA_BOUND_ROW_PROVENANCE_EXTRACTED"
+}

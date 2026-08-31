@@ -1,0 +1,2410 @@
+{
+  "block": "stage3_block38c_real_one_scenario_integration",
+  "common_tracking_frontend": {
+    "association": "estimated_association",
+    "association_runtime_ms": 2.6191239012405276,
+    "shared_associated_track_count": 10,
+    "track_based_methods": [
+      "CV",
+      "CA",
+      "CTRV",
+      "Kalman_EKF",
+      "IMM_CV_CA_CTRV"
+    ]
+  },
+  "evaluation_reports": {
+    "CA": {
+      "ade_3d_m": 57.424952533748645,
+      "ade_m": 37.49400305598974,
+      "anchor_timestamp_s": 1.00001,
+      "assignment": {
+        "assignment_information": "anchor_truth_only",
+        "future_truth_used_for_assignment": false,
+        "matches": [
+          {
+            "anchor_distance_m": 0.2619841907212425,
+            "prediction_id": "s3trk-000007",
+            "truth_id": "1807"
+          },
+          {
+            "anchor_distance_m": 1.4969621439816954,
+            "prediction_id": "s3trk-000003",
+            "truth_id": "1808"
+          },
+          {
+            "anchor_distance_m": 1.7972583835027356,
+            "prediction_id": "s3trk-000008",
+            "truth_id": "1809"
+          },
+          {
+            "anchor_distance_m": 1.518294124092705,
+            "prediction_id": "s3trk-000002",
+            "truth_id": "1816"
+          },
+          {
+            "anchor_distance_m": 0.7852200898506174,
+            "prediction_id": "s3trk-000005",
+            "truth_id": "1817"
+          },
+          {
+            "anchor_distance_m": 1.1768021118590077,
+            "prediction_id": "s3trk-000000",
+            "truth_id": "1819"
+          },
+          {
+            "anchor_distance_m": 0.9684167520652911,
+            "prediction_id": "s3trk-000001",
+            "truth_id": "1825"
+          },
+          {
+            "anchor_distance_m": 0.9397333873076957,
+            "prediction_id": "s3trk-000009",
+            "truth_id": "1826"
+          }
+        ],
+        "unmatched_prediction_ids": [
+          "s3trk-000006"
+        ],
+        "unmatched_truth_ids": [
+          "1827"
+        ]
+      },
+      "assignment_future_truth_used": false,
+      "false_prediction_count": 1,
+      "fde_3d_m": 156.8830557585494,
+      "fde_m": 101.34130940450497,
+      "horizon_aggregates": [
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 6,
+          "endpoint_miss_rate": 0.6666666666666666,
+          "horizon_s": 0.1,
+          "mean_3d_error_m": 5.101050727379125,
+          "mean_planar_error_m": 3.711660218695907,
+          "rmse_3d_error_m": 5.667839754008754,
+          "rmse_planar_error_m": 4.239741282876079
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 8,
+          "endpoint_miss_rate": 0.8888888888888888,
+          "horizon_s": 0.3,
+          "mean_3d_error_m": 20.846776804440438,
+          "mean_planar_error_m": 14.091604334764964,
+          "rmse_3d_error_m": 23.540407587022447,
+          "rmse_planar_error_m": 16.316840750560672
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 8,
+          "endpoint_miss_rate": 0.8888888888888888,
+          "horizon_s": 0.5,
+          "mean_3d_error_m": 46.86892684462562,
+          "mean_planar_error_m": 30.83143826599311,
+          "rmse_3d_error_m": 53.061583486031395,
+          "rmse_planar_error_m": 35.90301352618454
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 9,
+          "endpoint_miss_rate": 1.0,
+          "horizon_s": 1.0,
+          "mean_3d_error_m": 156.8830557585494,
+          "mean_planar_error_m": 101.34130940450497,
+          "rmse_3d_error_m": 177.75988620988213,
+          "rmse_planar_error_m": 117.64251512069616
+        }
+      ],
+      "horizons_s": [
+        0.1,
+        0.3,
+        0.5,
+        1.0
+      ],
+      "matched_track_count": 8,
+      "method": "CA",
+      "prediction_track_count": 9,
+      "reconstruction_f1": 0.8888888888888888,
+      "reconstruction_precision": 0.8888888888888888,
+      "reconstruction_recall": 0.8888888888888888,
+      "runtime_ms": 8.474545902572572,
+      "scenario_id": "b85e1bd6cc8e74c0",
+      "track_evaluations": [
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 23.375088093757338,
+          "ade_m": 20.498289921047498,
+          "anchor_assignment_error_m": 0.2619841907212425,
+          "fde_3d_m": 64.35675292570208,
+          "fde_m": 56.59364466843393,
+          "horizon_errors": [
+            {
+              "error_3d_m": 1.8749566529311805,
+              "horizon_s": 0.1,
+              "planar_error_m": 1.599707896337062
+            },
+            {
+              "error_3d_m": 8.293936777457152,
+              "horizon_s": 0.3,
+              "planar_error_m": 7.20664938385163
+            },
+            {
+              "error_3d_m": 18.974706018938942,
+              "horizon_s": 0.5,
+              "planar_error_m": 16.59315773556737
+            },
+            {
+              "error_3d_m": 64.35675292570208,
+              "horizon_s": 1.0,
+              "planar_error_m": 56.59364466843393
+            }
+          ],
+          "prediction_id": "s3trk-000007",
+          "truth_id": "1807"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 89.65620552279064,
+          "ade_m": 69.96733777238171,
+          "anchor_assignment_error_m": 1.4969621439816954,
+          "fde_3d_m": 246.2898554514839,
+          "fde_m": 189.00967567324193,
+          "horizon_errors": [
+            {
+              "error_3d_m": 7.527104258075953,
+              "horizon_s": 0.1,
+              "planar_error_m": 6.7674825965986924
+            },
+            {
+              "error_3d_m": 31.99676786717669,
+              "horizon_s": 0.3,
+              "planar_error_m": 26.283988747980747
+            },
+            {
+              "error_3d_m": 72.81109451442605,
+              "horizon_s": 0.5,
+              "planar_error_m": 57.808204071705475
+            },
+            {
+              "error_3d_m": 246.2898554514839,
+              "horizon_s": 1.0,
+              "planar_error_m": 189.00967567324193
+            }
+          ],
+          "prediction_id": "s3trk-000003",
+          "truth_id": "1808"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 96.32670276683744,
+          "ade_m": 69.44753048531123,
+          "anchor_assignment_error_m": 1.7972583835027356,
+          "fde_3d_m": 262.47837664036393,
+          "fde_m": 188.81392704355213,
+          "horizon_errors": [
+            {
+              "error_3d_m": 8.679568529066817,
+              "horizon_s": 0.1,
+              "planar_error_m": 6.434176045363096
+            },
+            {
+              "error_3d_m": 35.26828316305952,
+              "horizon_s": 0.3,
+              "planar_error_m": 25.58695350977116
+            },
+            {
+              "error_3d_m": 78.88058273485952,
+              "horizon_s": 0.5,
+              "planar_error_m": 56.95506534255856
+            },
+            {
+              "error_3d_m": 262.47837664036393,
+              "horizon_s": 1.0,
+              "planar_error_m": 188.81392704355213
+            }
+          ],
+          "prediction_id": "s3trk-000008",
+          "truth_id": "1809"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 52.29270421427047,
+          "ade_m": 40.02902495307501,
+          "anchor_assignment_error_m": 1.518294124092705,
+          "fde_3d_m": 141.02896731432128,
+          "fde_m": 106.77136741626067,
+          "horizon_errors": [
+            {
+              "error_3d_m": 5.265117229288488,
+              "horizon_s": 0.1,
+              "planar_error_m": 4.51455850220846
+            },
+            {
+              "error_3d_m": 19.713441603788883,
+              "horizon_s": 0.3,
+              "planar_error_m": 15.556470698946743
+            },
+            {
+              "error_3d_m": 43.16329070968324,
+              "horizon_s": 0.5,
+              "planar_error_m": 33.27370319488416
+            },
+            {
+              "error_3d_m": 141.02896731432128,
+              "horizon_s": 1.0,
+              "planar_error_m": 106.77136741626067
+            }
+          ],
+          "prediction_id": "s3trk-000002",
+          "truth_id": "1816"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 41.13542915703937,
+          "ade_m": 40.79162193235283,
+          "anchor_assignment_error_m": 0.7852200898506174,
+          "fde_3d_m": 111.53966754911515,
+          "fde_m": 110.91210826574475,
+          "horizon_errors": [
+            {
+              "error_3d_m": 3.80672933940963,
+              "horizon_s": 0.1,
+              "planar_error_m": 3.633156345471525
+            },
+            {
+              "error_3d_m": 15.293732803050483,
+              "horizon_s": 0.3,
+              "planar_error_m": 15.052291824012036
+            },
+            {
+              "error_3d_m": 33.90158693658221,
+              "horizon_s": 0.5,
+              "planar_error_m": 33.56893129418303
+            },
+            {
+              "error_3d_m": 111.53966754911515,
+              "horizon_s": 1.0,
+              "planar_error_m": 110.91210826574475
+            }
+          ],
+          "prediction_id": "s3trk-000005",
+          "truth_id": "1817"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 80.26447163259503,
+          "ade_m": 35.09556096360615,
+          "anchor_assignment_error_m": 1.1768021118590077,
+          "fde_3d_m": 220.26112302377197,
+          "fde_m": 92.45996565261275,
+          "horizon_errors": [
+            {
+              "error_3d_m": 6.622290030076473,
+              "horizon_s": 0.1,
+              "planar_error_m": 4.106029838243454
+            },
+            {
+              "error_3d_m": 28.7694873261592,
+              "horizon_s": 0.3,
+              "planar_error_m": 14.146766862243558
+            },
+            {
+              "error_3d_m": 65.40498615037251,
+              "horizon_s": 0.5,
+              "planar_error_m": 29.66948150132482
+            },
+            {
+              "error_3d_m": 220.26112302377197,
+              "horizon_s": 1.0,
+              "planar_error_m": 92.45996565261275
+            }
+          ],
+          "prediction_id": "s3trk-000000",
+          "truth_id": "1819"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 70.99365413521235,
+          "ade_m": 22.521326285609774,
+          "anchor_assignment_error_m": 0.9684167520652911,
+          "fde_3d_m": 195.06609690689416,
+          "fde_m": 62.2414321357212,
+          "horizon_errors": [
+            {
+              "error_3d_m": 5.828375784837609,
+              "horizon_s": 0.1,
+              "planar_error_m": 1.5703076151296915
+            },
+            {
+              "error_3d_m": 25.341096220443717,
+              "horizon_s": 0.3,
+              "planar_error_m": 7.923295534022787
+            },
+            {
+              "error_3d_m": 57.739047628673944,
+              "horizon_s": 0.5,
+              "planar_error_m": 18.350269857565422
+            },
+            {
+              "error_3d_m": 195.06609690689416,
+              "horizon_s": 1.0,
+              "planar_error_m": 62.2414321357212
+            }
+          ],
+          "prediction_id": "s3trk-000001",
+          "truth_id": "1825"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 5.355364747486493,
+          "ade_m": 1.6013321345336966,
+          "anchor_assignment_error_m": 0.9397333873076957,
+          "fde_3d_m": 14.043606256742716,
+          "fde_m": 3.928354380472408,
+          "horizon_errors": [
+            {
+              "error_3d_m": 1.204263995346845,
+              "horizon_s": 0.1,
+              "planar_error_m": 1.067862910215273
+            },
+            {
+              "error_3d_m": 2.097468674387843,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.9764181172910534
+            },
+            {
+              "error_3d_m": 4.076120063468566,
+              "horizon_s": 0.5,
+              "planar_error_m": 0.43269313015605193
+            },
+            {
+              "error_3d_m": 14.043606256742716,
+              "horizon_s": 1.0,
+              "planar_error_m": 3.928354380472408
+            }
+          ],
+          "prediction_id": "s3trk-000009",
+          "truth_id": "1826"
+        }
+      ],
+      "truth_track_count": 9,
+      "unmatched_truth_count": 1
+    },
+    "CTRV": {
+      "ade_3d_m": 8.672833066724705,
+      "ade_m": 5.922277842779076,
+      "anchor_timestamp_s": 1.00001,
+      "assignment": {
+        "assignment_information": "anchor_truth_only",
+        "future_truth_used_for_assignment": false,
+        "matches": [
+          {
+            "anchor_distance_m": 0.2619841907212425,
+            "prediction_id": "s3trk-000007",
+            "truth_id": "1807"
+          },
+          {
+            "anchor_distance_m": 1.4969621439816954,
+            "prediction_id": "s3trk-000003",
+            "truth_id": "1808"
+          },
+          {
+            "anchor_distance_m": 1.7972583835027356,
+            "prediction_id": "s3trk-000008",
+            "truth_id": "1809"
+          },
+          {
+            "anchor_distance_m": 1.518294124092705,
+            "prediction_id": "s3trk-000002",
+            "truth_id": "1816"
+          },
+          {
+            "anchor_distance_m": 0.7852200898506174,
+            "prediction_id": "s3trk-000005",
+            "truth_id": "1817"
+          },
+          {
+            "anchor_distance_m": 1.1768021118590077,
+            "prediction_id": "s3trk-000000",
+            "truth_id": "1819"
+          },
+          {
+            "anchor_distance_m": 0.9684167520652911,
+            "prediction_id": "s3trk-000001",
+            "truth_id": "1825"
+          },
+          {
+            "anchor_distance_m": 0.9397333873076957,
+            "prediction_id": "s3trk-000009",
+            "truth_id": "1826"
+          }
+        ],
+        "unmatched_prediction_ids": [
+          "s3trk-000006"
+        ],
+        "unmatched_truth_ids": [
+          "1827"
+        ]
+      },
+      "assignment_future_truth_used": false,
+      "false_prediction_count": 1,
+      "fde_3d_m": 16.96692704080322,
+      "fde_m": 11.224478353197783,
+      "horizon_aggregates": [
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 4,
+          "endpoint_miss_rate": 0.4444444444444444,
+          "horizon_s": 0.1,
+          "mean_3d_error_m": 2.8006471819166285,
+          "mean_planar_error_m": 2.1731515124741265,
+          "rmse_3d_error_m": 3.299016071813033,
+          "rmse_planar_error_m": 2.8679536028874084
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 5,
+          "endpoint_miss_rate": 0.5555555555555556,
+          "horizon_s": 0.3,
+          "mean_3d_error_m": 6.188433210174714,
+          "mean_planar_error_m": 4.483351289596864,
+          "rmse_3d_error_m": 7.088965970505906,
+          "rmse_planar_error_m": 5.962700690061062
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 6,
+          "endpoint_miss_rate": 0.6666666666666666,
+          "horizon_s": 0.5,
+          "mean_3d_error_m": 8.735324834004253,
+          "mean_planar_error_m": 5.808130215847529,
+          "rmse_3d_error_m": 9.74878540391449,
+          "rmse_planar_error_m": 7.651358635406425
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 6,
+          "endpoint_miss_rate": 0.6666666666666666,
+          "horizon_s": 1.0,
+          "mean_3d_error_m": 16.96692704080322,
+          "mean_planar_error_m": 11.224478353197783,
+          "rmse_3d_error_m": 19.16935695730204,
+          "rmse_planar_error_m": 15.278930798969947
+        }
+      ],
+      "horizons_s": [
+        0.1,
+        0.3,
+        0.5,
+        1.0
+      ],
+      "matched_track_count": 8,
+      "method": "CTRV",
+      "prediction_track_count": 9,
+      "reconstruction_f1": 0.8888888888888888,
+      "reconstruction_precision": 0.8888888888888888,
+      "reconstruction_recall": 0.8888888888888888,
+      "runtime_ms": 7.131375838071108,
+      "scenario_id": "b85e1bd6cc8e74c0",
+      "track_evaluations": [
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 12.694572259239363,
+          "ade_m": 12.574617718495363,
+          "anchor_assignment_error_m": 0.2619841907212425,
+          "fde_3d_m": 28.83409564284028,
+          "fde_m": 28.63817909863599,
+          "horizon_errors": [
+            {
+              "error_3d_m": 1.6165476654600974,
+              "horizon_s": 0.1,
+              "planar_error_m": 1.5430694941826064
+            },
+            {
+              "error_3d_m": 6.647029275206643,
+              "horizon_s": 0.3,
+              "planar_error_m": 6.550520110870938
+            },
+            {
+              "error_3d_m": 13.680616453450432,
+              "horizon_s": 0.5,
+              "planar_error_m": 13.566702170291919
+            },
+            {
+              "error_3d_m": 28.83409564284028,
+              "horizon_s": 1.0,
+              "planar_error_m": 28.63817909863599
+            }
+          ],
+          "prediction_id": "s3trk-000007",
+          "truth_id": "1807"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 12.168926669086872,
+          "ade_m": 11.879156433787253,
+          "anchor_assignment_error_m": 1.4969621439816954,
+          "fde_3d_m": 21.306899392941464,
+          "fde_m": 20.62425396862167,
+          "horizon_errors": [
+            {
+              "error_3d_m": 5.427153463233989,
+              "horizon_s": 0.1,
+              "planar_error_m": 5.402040309969304
+            },
+            {
+              "error_3d_m": 11.230937508034117,
+              "horizon_s": 0.3,
+              "planar_error_m": 11.11574534542154
+            },
+            {
+              "error_3d_m": 10.710716312137919,
+              "horizon_s": 0.5,
+              "planar_error_m": 10.3745861111365
+            },
+            {
+              "error_3d_m": 21.306899392941464,
+              "horizon_s": 1.0,
+              "planar_error_m": 20.62425396862167
+            }
+          ],
+          "prediction_id": "s3trk-000003",
+          "truth_id": "1808"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 14.437451738565949,
+          "ade_m": 10.690640437915594,
+          "anchor_assignment_error_m": 1.7972583835027356,
+          "fde_3d_m": 27.14073692717511,
+          "fde_m": 19.313927045998632,
+          "horizon_errors": [
+            {
+              "error_3d_m": 5.701141504743068,
+              "horizon_s": 0.1,
+              "planar_error_m": 4.933564249484261
+            },
+            {
+              "error_3d_m": 11.014662555390188,
+              "horizon_s": 0.3,
+              "planar_error_m": 8.919775607639995
+            },
+            {
+              "error_3d_m": 13.893265966955429,
+              "horizon_s": 0.5,
+              "planar_error_m": 9.595294848539483
+            },
+            {
+              "error_3d_m": 27.14073692717511,
+              "horizon_s": 1.0,
+              "planar_error_m": 19.313927045998632
+            }
+          ],
+          "prediction_id": "s3trk-000008",
+          "truth_id": "1809"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 4.844666348038845,
+          "ade_m": 0.5360086375201293,
+          "anchor_assignment_error_m": 1.518294124092705,
+          "fde_3d_m": 9.949264078771407,
+          "fde_m": 1.4066912834444525,
+          "horizon_errors": [
+            {
+              "error_3d_m": 1.225852069187815,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.1759261364607742
+            },
+            {
+              "error_3d_m": 3.141032168375086,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.24091975328474324
+            },
+            {
+              "error_3d_m": 5.062517075821072,
+              "horizon_s": 0.5,
+              "planar_error_m": 0.32049737689054736
+            },
+            {
+              "error_3d_m": 9.949264078771407,
+              "horizon_s": 1.0,
+              "planar_error_m": 1.4066912834444525
+            }
+          ],
+          "prediction_id": "s3trk-000002",
+          "truth_id": "1816"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 3.0013408075685994,
+          "ade_m": 0.6626515474373671,
+          "anchor_assignment_error_m": 0.7852200898506174,
+          "fde_3d_m": 5.54370256143693,
+          "fde_m": 0.5852076405855087,
+          "horizon_errors": [
+            {
+              "error_3d_m": 1.2320912363251924,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.6884735008332276
+            },
+            {
+              "error_3d_m": 2.1333875544104357,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.68846663639385
+            },
+            {
+              "error_3d_m": 3.0961818781018384,
+              "horizon_s": 0.5,
+              "planar_error_m": 0.6884584119368823
+            },
+            {
+              "error_3d_m": 5.54370256143693,
+              "horizon_s": 1.0,
+              "planar_error_m": 0.5852076405855087
+            }
+          ],
+          "prediction_id": "s3trk-000005",
+          "truth_id": "1817"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 11.249796294067387,
+          "ade_m": 8.15379521540204,
+          "anchor_assignment_error_m": 1.1768021118590077,
+          "fde_3d_m": 22.044233734299283,
+          "fde_m": 15.228357996613306,
+          "horizon_errors": [
+            {
+              "error_3d_m": 3.295366730633172,
+              "horizon_s": 0.1,
+              "planar_error_m": 2.726622445736452
+            },
+            {
+              "error_3d_m": 7.6762244326182465,
+              "horizon_s": 0.3,
+              "planar_error_m": 5.840865106118271
+            },
+            {
+              "error_3d_m": 11.98336027871885,
+              "horizon_s": 0.5,
+              "planar_error_m": 8.81933531314013
+            },
+            {
+              "error_3d_m": 22.044233734299283,
+              "horizon_s": 1.0,
+              "planar_error_m": 15.228357996613306
+            }
+          ],
+          "prediction_id": "s3trk-000000",
+          "truth_id": "1819"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 8.581060938219657,
+          "ade_m": 0.5689955634399397,
+          "anchor_assignment_error_m": 0.9684167520652911,
+          "fde_3d_m": 16.91141753287749,
+          "fde_m": 0.1540827488184871,
+          "horizon_errors": [
+            {
+              "error_3d_m": 2.655365466383733,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.7086723161887035
+            },
+            {
+              "error_3d_m": 5.791176684362451,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.7076242251443304
+            },
+            {
+              "error_3d_m": 8.966284069254957,
+              "horizon_s": 0.5,
+              "planar_error_m": 0.7056029636082378
+            },
+            {
+              "error_3d_m": 16.91141753287749,
+              "horizon_s": 1.0,
+              "planar_error_m": 0.1540827488184871
+            }
+          ],
+          "prediction_id": "s3trk-000001",
+          "truth_id": "1825"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 2.4048494790109625,
+          "ade_m": 2.312357188234922,
+          "anchor_assignment_error_m": 0.9397333873076957,
+          "fde_3d_m": 4.005066456083809,
+          "fde_m": 3.8451270428642217,
+          "horizon_errors": [
+            {
+              "error_3d_m": 1.2516593193659633,
+              "horizon_s": 0.1,
+              "planar_error_m": 1.2068436469376822
+            },
+            {
+              "error_3d_m": 1.8730155030005469,
+              "horizon_s": 0.3,
+              "planar_error_m": 1.802893531901244
+            },
+            {
+              "error_3d_m": 2.489656637593531,
+              "horizon_s": 0.5,
+              "planar_error_m": 2.394564531236539
+            },
+            {
+              "error_3d_m": 4.005066456083809,
+              "horizon_s": 1.0,
+              "planar_error_m": 3.8451270428642217
+            }
+          ],
+          "prediction_id": "s3trk-000009",
+          "truth_id": "1826"
+        }
+      ],
+      "truth_track_count": 9,
+      "unmatched_truth_count": 1
+    },
+    "CV": {
+      "ade_3d_m": 8.683884838386208,
+      "ade_m": 6.734692438122628,
+      "anchor_timestamp_s": 1.00001,
+      "assignment": {
+        "assignment_information": "anchor_truth_only",
+        "future_truth_used_for_assignment": false,
+        "matches": [
+          {
+            "anchor_distance_m": 0.2619841907212425,
+            "prediction_id": "s3trk-000007",
+            "truth_id": "1807"
+          },
+          {
+            "anchor_distance_m": 1.4969621439816954,
+            "prediction_id": "s3trk-000003",
+            "truth_id": "1808"
+          },
+          {
+            "anchor_distance_m": 1.7972583835027356,
+            "prediction_id": "s3trk-000008",
+            "truth_id": "1809"
+          },
+          {
+            "anchor_distance_m": 1.518294124092705,
+            "prediction_id": "s3trk-000002",
+            "truth_id": "1816"
+          },
+          {
+            "anchor_distance_m": 0.7852200898506174,
+            "prediction_id": "s3trk-000005",
+            "truth_id": "1817"
+          },
+          {
+            "anchor_distance_m": 1.1768021118590077,
+            "prediction_id": "s3trk-000000",
+            "truth_id": "1819"
+          },
+          {
+            "anchor_distance_m": 0.9684167520652911,
+            "prediction_id": "s3trk-000001",
+            "truth_id": "1825"
+          },
+          {
+            "anchor_distance_m": 0.9397333873076957,
+            "prediction_id": "s3trk-000009",
+            "truth_id": "1826"
+          }
+        ],
+        "unmatched_prediction_ids": [
+          "s3trk-000004",
+          "s3trk-000006"
+        ],
+        "unmatched_truth_ids": [
+          "1827"
+        ]
+      },
+      "assignment_future_truth_used": false,
+      "false_prediction_count": 2,
+      "fde_3d_m": 17.106359157324494,
+      "fde_m": 13.19361380811886,
+      "horizon_aggregates": [
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 5,
+          "endpoint_miss_rate": 0.5555555555555556,
+          "horizon_s": 0.1,
+          "mean_3d_error_m": 2.6798970771932655,
+          "mean_planar_error_m": 2.1265412459491757,
+          "rmse_3d_error_m": 2.918851960936006,
+          "rmse_planar_error_m": 2.421022014789238
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 6,
+          "endpoint_miss_rate": 0.6666666666666666,
+          "horizon_s": 0.3,
+          "mean_3d_error_m": 5.872256993516141,
+          "mean_planar_error_m": 4.579775633673437,
+          "rmse_3d_error_m": 6.45831286253594,
+          "rmse_planar_error_m": 5.1971305562455425
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 9,
+          "endpoint_miss_rate": 1.0,
+          "horizon_s": 0.5,
+          "mean_3d_error_m": 9.077026125510931,
+          "mean_planar_error_m": 7.038839064749041,
+          "rmse_3d_error_m": 10.017223339842985,
+          "rmse_planar_error_m": 7.9905716664283375
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 9,
+          "endpoint_miss_rate": 1.0,
+          "horizon_s": 1.0,
+          "mean_3d_error_m": 17.106359157324494,
+          "mean_planar_error_m": 13.19361380811886,
+          "rmse_3d_error_m": 18.930936632492173,
+          "rmse_planar_error_m": 14.978712961622653
+        }
+      ],
+      "horizons_s": [
+        0.1,
+        0.3,
+        0.5,
+        1.0
+      ],
+      "matched_track_count": 8,
+      "method": "CV",
+      "prediction_track_count": 10,
+      "reconstruction_f1": 0.8421052631578948,
+      "reconstruction_precision": 0.8,
+      "reconstruction_recall": 0.8888888888888888,
+      "runtime_ms": 7.3367549339309335,
+      "scenario_id": "b85e1bd6cc8e74c0",
+      "track_evaluations": [
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 2.9439284775422094,
+          "ade_m": 2.4159147646652492,
+          "anchor_assignment_error_m": 0.2619841907212425,
+          "fde_3d_m": 5.963556920359294,
+          "fde_m": 4.929933233569791,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.817455562124449,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.6603564985829036
+            },
+            {
+              "error_3d_m": 1.9339912707632252,
+              "horizon_s": 0.3,
+              "planar_error_m": 1.5705533333379083
+            },
+            {
+              "error_3d_m": 3.0607101569218695,
+              "horizon_s": 0.5,
+              "planar_error_m": 2.5028159931703935
+            },
+            {
+              "error_3d_m": 5.963556920359294,
+              "horizon_s": 1.0,
+              "planar_error_m": 4.929933233569791
+            }
+          ],
+          "prediction_id": "s3trk-000007",
+          "truth_id": "1807"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 12.567696441269463,
+          "ade_m": 12.306585283114725,
+          "anchor_assignment_error_m": 1.4969621439816954,
+          "fde_3d_m": 24.847445980054136,
+          "fde_m": 24.264613365001015,
+          "horizon_errors": [
+            {
+              "error_3d_m": 3.8080533335202538,
+              "horizon_s": 0.1,
+              "planar_error_m": 3.77217642588139
+            },
+            {
+              "error_3d_m": 8.465237136408605,
+              "horizon_s": 0.3,
+              "planar_error_m": 8.311803477616902
+            },
+            {
+              "error_3d_m": 13.15004931509486,
+              "horizon_s": 0.5,
+              "planar_error_m": 12.877747863959593
+            },
+            {
+              "error_3d_m": 24.847445980054136,
+              "horizon_s": 1.0,
+              "planar_error_m": 24.264613365001015
+            }
+          ],
+          "prediction_id": "s3trk-000003",
+          "truth_id": "1808"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 14.346468866589891,
+          "ade_m": 10.652222240103768,
+          "anchor_assignment_error_m": 1.7972583835027356,
+          "fde_3d_m": 28.237762097835034,
+          "fde_m": 20.827371060264902,
+          "horizon_errors": [
+            {
+              "error_3d_m": 4.4256656714220215,
+              "horizon_s": 0.1,
+              "planar_error_m": 3.379875497986352
+            },
+            {
+              "error_3d_m": 9.720302388308156,
+              "horizon_s": 0.3,
+              "planar_error_m": 7.26112141488379
+            },
+            {
+              "error_3d_m": 15.002145308794356,
+              "horizon_s": 0.5,
+              "planar_error_m": 11.140520987280032
+            },
+            {
+              "error_3d_m": 28.237762097835034,
+              "horizon_s": 1.0,
+              "planar_error_m": 20.827371060264902
+            }
+          ],
+          "prediction_id": "s3trk-000008",
+          "truth_id": "1809"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 9.26523960718047,
+          "ade_m": 7.904372974684217,
+          "anchor_assignment_error_m": 1.518294124092705,
+          "fde_3d_m": 17.933244223672006,
+          "fde_m": 14.986399602427962,
+          "horizon_errors": [
+            {
+              "error_3d_m": 3.093581570383445,
+              "horizon_s": 0.1,
+              "planar_error_m": 2.8457834848375354
+            },
+            {
+              "error_3d_m": 6.367151450520684,
+              "horizon_s": 0.3,
+              "planar_error_m": 5.54369703705238
+            },
+            {
+              "error_3d_m": 9.666981184145751,
+              "horizon_s": 0.5,
+              "planar_error_m": 8.241611774418992
+            },
+            {
+              "error_3d_m": 17.933244223672006,
+              "horizon_s": 1.0,
+              "planar_error_m": 14.986399602427962
+            }
+          ],
+          "prediction_id": "s3trk-000002",
+          "truth_id": "1816"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 7.241283421475546,
+          "ade_m": 6.634888417395795,
+          "anchor_assignment_error_m": 0.7852200898506174,
+          "fde_3d_m": 14.417034559424597,
+          "fde_m": 13.32143818739405,
+          "horizon_errors": [
+            {
+              "error_3d_m": 2.121113534473436,
+              "horizon_s": 0.1,
+              "planar_error_m": 1.8587817442740853
+            },
+            {
+              "error_3d_m": 4.846703019177513,
+              "horizon_s": 0.3,
+              "planar_error_m": 4.406038357551888
+            },
+            {
+              "error_3d_m": 7.580282572826638,
+              "horizon_s": 0.5,
+              "planar_error_m": 6.95329538036316
+            },
+            {
+              "error_3d_m": 14.417034559424597,
+              "horizon_s": 1.0,
+              "planar_error_m": 13.32143818739405
+            }
+          ],
+          "prediction_id": "s3trk-000005",
+          "truth_id": "1817"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 11.653206266912576,
+          "ade_m": 8.715677673375696,
+          "anchor_assignment_error_m": 1.1768021118590077,
+          "fde_3d_m": 23.367067318464734,
+          "fde_m": 17.087260792949245,
+          "horizon_errors": [
+            {
+              "error_3d_m": 3.303124298742479,
+              "horizon_s": 0.1,
+              "planar_error_m": 2.735993093041878
+            },
+            {
+              "error_3d_m": 7.740544433879746,
+              "horizon_s": 0.3,
+              "planar_error_m": 5.925142342662443
+            },
+            {
+              "error_3d_m": 12.202089016563347,
+              "horizon_s": 0.5,
+              "planar_error_m": 9.114314464849217
+            },
+            {
+              "error_3d_m": 23.367067318464734,
+              "horizon_s": 1.0,
+              "planar_error_m": 17.087260792949245
+            }
+          ],
+          "prediction_id": "s3trk-000000",
+          "truth_id": "1819"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 9.029134783012793,
+          "ade_m": 2.91546790379204,
+          "anchor_assignment_error_m": 0.9684167520652911,
+          "fde_3d_m": 18.01990837619467,
+          "fde_m": 6.224531822444012,
+          "horizon_errors": [
+            {
+              "error_3d_m": 2.6178786933079405,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.5518510166201112
+            },
+            {
+              "error_3d_m": 6.026770085595575,
+              "horizon_s": 0.3,
+              "planar_error_m": 1.8124465010414894
+            },
+            {
+              "error_3d_m": 9.451981976952986,
+              "horizon_s": 0.5,
+              "planar_error_m": 3.073042275062547
+            },
+            {
+              "error_3d_m": 18.01990837619467,
+              "horizon_s": 1.0,
+              "planar_error_m": 6.224531822444012
+            }
+          ],
+          "prediction_id": "s3trk-000001",
+          "truth_id": "1825"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 2.4241208431067096,
+          "ade_m": 2.3324102478495354,
+          "anchor_assignment_error_m": 0.9397333873076957,
+          "fde_3d_m": 4.064853782591476,
+          "fde_m": 3.9073624008999035,
+          "horizon_errors": [
+            {
+              "error_3d_m": 1.2523039535720997,
+              "horizon_s": 0.1,
+              "planar_error_m": 1.2075122063691488
+            },
+            {
+              "error_3d_m": 1.8773561634756208,
+              "horizon_s": 0.3,
+              "planar_error_m": 1.8074026052406953
+            },
+            {
+              "error_3d_m": 2.5019694727876414,
+              "horizon_s": 0.5,
+              "planar_error_m": 2.407363778888394
+            },
+            {
+              "error_3d_m": 4.064853782591476,
+              "horizon_s": 1.0,
+              "planar_error_m": 3.9073624008999035
+            }
+          ],
+          "prediction_id": "s3trk-000009",
+          "truth_id": "1826"
+        }
+      ],
+      "truth_track_count": 9,
+      "unmatched_truth_count": 1
+    },
+    "IMM_CV_CA_CTRV": {
+      "ade_3d_m": 2.9617924236649547,
+      "ade_m": 1.6116910812126015,
+      "anchor_timestamp_s": 1.00001,
+      "assignment": {
+        "assignment_information": "anchor_truth_only",
+        "future_truth_used_for_assignment": false,
+        "matches": [
+          {
+            "anchor_distance_m": 0.2619841907212425,
+            "prediction_id": "s3trk-000007",
+            "truth_id": "1807"
+          },
+          {
+            "anchor_distance_m": 1.4969621439816954,
+            "prediction_id": "s3trk-000003",
+            "truth_id": "1808"
+          },
+          {
+            "anchor_distance_m": 1.7972583835027356,
+            "prediction_id": "s3trk-000008",
+            "truth_id": "1809"
+          },
+          {
+            "anchor_distance_m": 1.518294124092705,
+            "prediction_id": "s3trk-000002",
+            "truth_id": "1816"
+          },
+          {
+            "anchor_distance_m": 0.7852200898506174,
+            "prediction_id": "s3trk-000005",
+            "truth_id": "1817"
+          },
+          {
+            "anchor_distance_m": 1.1768021118590077,
+            "prediction_id": "s3trk-000000",
+            "truth_id": "1819"
+          },
+          {
+            "anchor_distance_m": 0.9684167520652911,
+            "prediction_id": "s3trk-000001",
+            "truth_id": "1825"
+          },
+          {
+            "anchor_distance_m": 0.9397333873076957,
+            "prediction_id": "s3trk-000009",
+            "truth_id": "1826"
+          }
+        ],
+        "unmatched_prediction_ids": [
+          "s3trk-000006"
+        ],
+        "unmatched_truth_ids": [
+          "1827"
+        ]
+      },
+      "assignment_future_truth_used": false,
+      "false_prediction_count": 1,
+      "fde_3d_m": 5.673750449332954,
+      "fde_m": 3.193352733078536,
+      "horizon_aggregates": [
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 2,
+          "endpoint_miss_rate": 0.2222222222222222,
+          "horizon_s": 0.1,
+          "mean_3d_error_m": 1.218047753208164,
+          "mean_planar_error_m": 0.6660830533601033,
+          "rmse_3d_error_m": 1.4003809688849713,
+          "rmse_planar_error_m": 0.9110662898695583
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 2,
+          "endpoint_miss_rate": 0.2222222222222222,
+          "horizon_s": 0.3,
+          "mean_3d_error_m": 2.0052234484062055,
+          "mean_planar_error_m": 1.0139389566198325,
+          "rmse_3d_error_m": 2.255615963965499,
+          "rmse_planar_error_m": 1.355559002022121
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 3,
+          "endpoint_miss_rate": 0.3333333333333333,
+          "horizon_s": 0.5,
+          "mean_3d_error_m": 2.9501480437124954,
+          "mean_planar_error_m": 1.573389581791934,
+          "rmse_3d_error_m": 3.2765197388369987,
+          "rmse_planar_error_m": 1.9364551661674707
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 6,
+          "endpoint_miss_rate": 0.6666666666666666,
+          "horizon_s": 1.0,
+          "mean_3d_error_m": 5.673750449332954,
+          "mean_planar_error_m": 3.193352733078536,
+          "rmse_3d_error_m": 6.232394222778258,
+          "rmse_planar_error_m": 3.681374751112724
+        }
+      ],
+      "horizons_s": [
+        0.1,
+        0.3,
+        0.5,
+        1.0
+      ],
+      "matched_track_count": 8,
+      "method": "IMM_CV_CA_CTRV",
+      "prediction_track_count": 9,
+      "reconstruction_f1": 0.8888888888888888,
+      "reconstruction_precision": 0.8888888888888888,
+      "reconstruction_recall": 0.8888888888888888,
+      "runtime_ms": 121.17826892063022,
+      "scenario_id": "b85e1bd6cc8e74c0",
+      "track_evaluations": [
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 0.7334998102251035,
+          "ade_m": 0.6708064815309965,
+          "anchor_assignment_error_m": 0.2619841907212425,
+          "fde_3d_m": 1.6341383924714912,
+          "fde_m": 1.496372232486562,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.16264242608850757,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.15553711113384078
+            },
+            {
+              "error_3d_m": 0.4198600873422921,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.38074941125121614
+            },
+            {
+              "error_3d_m": 0.7173583349981232,
+              "horizon_s": 0.5,
+              "planar_error_m": 0.6505671712523672
+            },
+            {
+              "error_3d_m": 1.6341383924714912,
+              "horizon_s": 1.0,
+              "planar_error_m": 1.496372232486562
+            }
+          ],
+          "prediction_id": "s3trk-000007",
+          "truth_id": "1807"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 4.73526108838095,
+          "ade_m": 1.5850760524452205,
+          "anchor_assignment_error_m": 1.4969621439816954,
+          "fde_3d_m": 8.839938282710376,
+          "fde_m": 3.930928113123518,
+          "horizon_errors": [
+            {
+              "error_3d_m": 1.9934657511316192,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.44730947534408
+            },
+            {
+              "error_3d_m": 3.2908110596568614,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.5066168932223271
+            },
+            {
+              "error_3d_m": 4.816829260024945,
+              "horizon_s": 0.5,
+              "planar_error_m": 1.4554497280909575
+            },
+            {
+              "error_3d_m": 8.839938282710376,
+              "horizon_s": 1.0,
+              "planar_error_m": 3.930928113123518
+            }
+          ],
+          "prediction_id": "s3trk-000003",
+          "truth_id": "1808"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 4.113039881336308,
+          "ade_m": 4.073665240029847,
+          "anchor_assignment_error_m": 1.7972583835027356,
+          "fde_3d_m": 6.83243051065605,
+          "fde_m": 6.827132244787115,
+          "horizon_errors": [
+            {
+              "error_3d_m": 2.2634268955427497,
+              "horizon_s": 0.1,
+              "planar_error_m": 2.1759725750231422
+            },
+            {
+              "error_3d_m": 3.1858839322238026,
+              "horizon_s": 0.3,
+              "planar_error_m": 3.1399948559258943
+            },
+            {
+              "error_3d_m": 4.1704181869226264,
+              "horizon_s": 0.5,
+              "planar_error_m": 4.151561284383234
+            },
+            {
+              "error_3d_m": 6.83243051065605,
+              "horizon_s": 1.0,
+              "planar_error_m": 6.827132244787115
+            }
+          ],
+          "prediction_id": "s3trk-000008",
+          "truth_id": "1809"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 1.7238760443310412,
+          "ade_m": 1.1677231893015332,
+          "anchor_assignment_error_m": 1.518294124092705,
+          "fde_3d_m": 2.9522301010363257,
+          "fde_m": 2.2543292194220586,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.8671058791942686,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.3872308177733394
+            },
+            {
+              "error_3d_m": 1.3059445690659632,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.8065069255146481
+            },
+            {
+              "error_3d_m": 1.7702236280276076,
+              "horizon_s": 0.5,
+              "planar_error_m": 1.2228257944960865
+            },
+            {
+              "error_3d_m": 2.9522301010363257,
+              "horizon_s": 1.0,
+              "planar_error_m": 2.2543292194220586
+            }
+          ],
+          "prediction_id": "s3trk-000002",
+          "truth_id": "1816"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 3.373953070476733,
+          "ade_m": 0.5425077216209983,
+          "anchor_assignment_error_m": 0.7852200898506174,
+          "fde_3d_m": 6.926232371514603,
+          "fde_m": 1.4519790590668533,
+          "horizon_errors": [
+            {
+              "error_3d_m": 1.1617317533385658,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.3557317862226477
+            },
+            {
+              "error_3d_m": 2.1102328438463136,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.07582842281770276
+            },
+            {
+              "error_3d_m": 3.2976153132074493,
+              "horizon_s": 0.5,
+              "planar_error_m": 0.2864916183767894
+            },
+            {
+              "error_3d_m": 6.926232371514603,
+              "horizon_s": 1.0,
+              "planar_error_m": 1.4519790590668533
+            }
+          ],
+          "prediction_id": "s3trk-000005",
+          "truth_id": "1817"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 1.4551926481214024,
+          "ade_m": 1.3509555511319065,
+          "anchor_assignment_error_m": 1.1768021118590077,
+          "fde_3d_m": 3.493310632023487,
+          "fde_m": 3.3034356800368845,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.35566661799657445,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.15012187994736717
+            },
+            {
+              "error_3d_m": 0.6636599109511364,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.6567942361820237
+            },
+            {
+              "error_3d_m": 1.3081334315144115,
+              "horizon_s": 0.5,
+              "planar_error_m": 1.2934704083613504
+            },
+            {
+              "error_3d_m": 3.493310632023487,
+              "horizon_s": 1.0,
+              "planar_error_m": 3.3034356800368845
+            }
+          ],
+          "prediction_id": "s3trk-000000",
+          "truth_id": "1819"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 3.1462682980549124,
+          "ade_m": 1.1130759944622308,
+          "anchor_assignment_error_m": 0.9684167520652911,
+          "fde_3d_m": 5.604305161711828,
+          "fde_m": 1.3692682995720928,
+          "horizon_errors": [
+            {
+              "error_3d_m": 1.5546570708438971,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.8981748644026168
+            },
+            {
+              "error_3d_m": 2.2890604374163708,
+              "horizon_s": 0.3,
+              "planar_error_m": 1.0348390134648204
+            },
+            {
+              "error_3d_m": 3.137050522247553,
+              "horizon_s": 0.5,
+              "planar_error_m": 1.1500218004093934
+            },
+            {
+              "error_3d_m": 5.604305161711828,
+              "horizon_s": 1.0,
+              "planar_error_m": 1.3692682995720928
+            }
+          ],
+          "prediction_id": "s3trk-000001",
+          "truth_id": "1825"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 4.413248548393188,
+          "ade_m": 2.38971841917808,
+          "anchor_assignment_error_m": 0.9397333873076957,
+          "fde_3d_m": 9.10741814253947,
+          "fde_m": 4.9133770161332055,
+          "horizon_errors": [
+            {
+              "error_3d_m": 1.3856856315291288,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.7585859170337925
+            },
+            {
+              "error_3d_m": 2.7763347467469046,
+              "horizon_s": 0.3,
+              "planar_error_m": 1.510181894580027
+            },
+            {
+              "error_3d_m": 4.3835556727572484,
+              "horizon_s": 0.5,
+              "planar_error_m": 2.3767288489652945
+            },
+            {
+              "error_3d_m": 9.10741814253947,
+              "horizon_s": 1.0,
+              "planar_error_m": 4.9133770161332055
+            }
+          ],
+          "prediction_id": "s3trk-000009",
+          "truth_id": "1826"
+        }
+      ],
+      "truth_track_count": 9,
+      "unmatched_truth_count": 1
+    },
+    "Kalman_EKF": {
+      "ade_3d_m": 1.1242397549194132,
+      "ade_m": 0.9384117967623946,
+      "anchor_timestamp_s": 1.00001,
+      "assignment": {
+        "assignment_information": "anchor_truth_only",
+        "future_truth_used_for_assignment": false,
+        "matches": [
+          {
+            "anchor_distance_m": 0.2619841907212425,
+            "prediction_id": "s3trk-000007",
+            "truth_id": "1807"
+          },
+          {
+            "anchor_distance_m": 1.4969621439816954,
+            "prediction_id": "s3trk-000003",
+            "truth_id": "1808"
+          },
+          {
+            "anchor_distance_m": 1.7972583835027356,
+            "prediction_id": "s3trk-000008",
+            "truth_id": "1809"
+          },
+          {
+            "anchor_distance_m": 1.518294124092705,
+            "prediction_id": "s3trk-000002",
+            "truth_id": "1816"
+          },
+          {
+            "anchor_distance_m": 0.7852200898506174,
+            "prediction_id": "s3trk-000005",
+            "truth_id": "1817"
+          },
+          {
+            "anchor_distance_m": 1.1768021118590077,
+            "prediction_id": "s3trk-000000",
+            "truth_id": "1819"
+          },
+          {
+            "anchor_distance_m": 0.9684167520652911,
+            "prediction_id": "s3trk-000001",
+            "truth_id": "1825"
+          },
+          {
+            "anchor_distance_m": 0.9397333873076957,
+            "prediction_id": "s3trk-000009",
+            "truth_id": "1826"
+          }
+        ],
+        "unmatched_prediction_ids": [
+          "s3trk-000004",
+          "s3trk-000006"
+        ],
+        "unmatched_truth_ids": [
+          "1827"
+        ]
+      },
+      "assignment_future_truth_used": false,
+      "false_prediction_count": 2,
+      "fde_3d_m": 1.92971234096209,
+      "fde_m": 1.6394071447911884,
+      "horizon_aggregates": [
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 1,
+          "endpoint_miss_rate": 0.1111111111111111,
+          "horizon_s": 0.1,
+          "mean_3d_error_m": 0.5966224348506788,
+          "mean_planar_error_m": 0.4621395769654412,
+          "rmse_3d_error_m": 0.7225590621625729,
+          "rmse_planar_error_m": 0.557945209405828
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 1,
+          "endpoint_miss_rate": 0.1111111111111111,
+          "horizon_s": 0.3,
+          "mean_3d_error_m": 0.8381898679353386,
+          "mean_planar_error_m": 0.6922313263561485,
+          "rmse_3d_error_m": 0.9989254727454072,
+          "rmse_planar_error_m": 0.888760750813807
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 1,
+          "endpoint_miss_rate": 0.1111111111111111,
+          "horizon_s": 0.5,
+          "mean_3d_error_m": 1.1324343759295459,
+          "mean_planar_error_m": 0.9598691389368001,
+          "rmse_3d_error_m": 1.3584699421338868,
+          "rmse_planar_error_m": 1.2400573497619838
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 4,
+          "endpoint_miss_rate": 0.4444444444444444,
+          "horizon_s": 1.0,
+          "mean_3d_error_m": 1.92971234096209,
+          "mean_planar_error_m": 1.6394071447911884,
+          "rmse_3d_error_m": 2.3446233788031208,
+          "rmse_planar_error_m": 2.1335453155269506
+        }
+      ],
+      "horizons_s": [
+        0.1,
+        0.3,
+        0.5,
+        1.0
+      ],
+      "matched_track_count": 8,
+      "method": "Kalman_EKF",
+      "prediction_track_count": 10,
+      "reconstruction_f1": 0.8421052631578948,
+      "reconstruction_precision": 0.8,
+      "reconstruction_recall": 0.8888888888888888,
+      "runtime_ms": 24.215198936872184,
+      "scenario_id": "b85e1bd6cc8e74c0",
+      "track_evaluations": [
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 0.6131167129288553,
+          "ade_m": 0.5344383167496912,
+          "anchor_assignment_error_m": 0.2619841907212425,
+          "fde_3d_m": 1.2874815592266093,
+          "fde_m": 1.1296376254446245,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.16713405855995214,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.15258699430060596
+            },
+            {
+              "error_3d_m": 0.3837389804868031,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.3284447901556017
+            },
+            {
+              "error_3d_m": 0.6141122534420566,
+              "horizon_s": 0.5,
+              "planar_error_m": 0.5270838570979327
+            },
+            {
+              "error_3d_m": 1.2874815592266093,
+              "horizon_s": 1.0,
+              "planar_error_m": 1.1296376254446245
+            }
+          ],
+          "prediction_id": "s3trk-000007",
+          "truth_id": "1807"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 2.1184094807762603,
+          "ade_m": 1.8519930449122564,
+          "anchor_assignment_error_m": 1.4969621439816954,
+          "fde_3d_m": 3.3450783480898134,
+          "fde_m": 3.323983381361559,
+          "horizon_errors": [
+            {
+              "error_3d_m": 1.3903441907233995,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.8080459487822651
+            },
+            {
+              "error_3d_m": 1.6547137918543253,
+              "horizon_s": 0.3,
+              "planar_error_m": 1.35240570921084
+            },
+            {
+              "error_3d_m": 2.083501592437504,
+              "horizon_s": 0.5,
+              "planar_error_m": 1.9235371402943617
+            },
+            {
+              "error_3d_m": 3.3450783480898134,
+              "horizon_s": 1.0,
+              "planar_error_m": 3.323983381361559
+            }
+          ],
+          "prediction_id": "s3trk-000003",
+          "truth_id": "1808"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 2.09292356446729,
+          "ade_m": 1.8975707048678603,
+          "anchor_assignment_error_m": 1.7972583835027356,
+          "fde_3d_m": 4.125997933258073,
+          "fde_m": 3.5684196413823983,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.7363407280088705,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.7006610989886969
+            },
+            {
+              "error_3d_m": 1.369668737957154,
+              "horizon_s": 0.3,
+              "planar_error_m": 1.3404340484046007
+            },
+            {
+              "error_3d_m": 2.1396868586450624,
+              "horizon_s": 0.5,
+              "planar_error_m": 1.980768030695745
+            },
+            {
+              "error_3d_m": 4.125997933258073,
+              "horizon_s": 1.0,
+              "planar_error_m": 3.5684196413823983
+            }
+          ],
+          "prediction_id": "s3trk-000008",
+          "truth_id": "1809"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 1.9185128051444094,
+          "ade_m": 1.8769187615584688,
+          "anchor_assignment_error_m": 1.518294124092705,
+          "fde_3d_m": 3.1942778777870884,
+          "fde_m": 3.1628189401517797,
+          "horizon_errors": [
+            {
+              "error_3d_m": 1.0133266696204795,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.9585193798545766
+            },
+            {
+              "error_3d_m": 1.4910146470777346,
+              "horizon_s": 0.3,
+              "planar_error_m": 1.4482500281686939
+            },
+            {
+              "error_3d_m": 1.9754320260923348,
+              "horizon_s": 0.5,
+              "planar_error_m": 1.938086698058825
+            },
+            {
+              "error_3d_m": 3.1942778777870884,
+              "horizon_s": 1.0,
+              "planar_error_m": 3.1628189401517797
+            }
+          ],
+          "prediction_id": "s3trk-000002",
+          "truth_id": "1816"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 0.21798694064340177,
+          "ade_m": 0.05566119075567174,
+          "anchor_assignment_error_m": 0.7852200898506174,
+          "fde_3d_m": 0.4167216258439842,
+          "fde_m": 0.0065663776481846995,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.10131548889705676,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.09411009249954179
+            },
+            {
+              "error_3d_m": 0.1410264505262162,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.07201974408822141
+            },
+            {
+              "error_3d_m": 0.21288419730634994,
+              "horizon_s": 0.5,
+              "planar_error_m": 0.049948548786739065
+            },
+            {
+              "error_3d_m": 0.4167216258439842,
+              "horizon_s": 1.0,
+              "planar_error_m": 0.0065663776481846995
+            }
+          ],
+          "prediction_id": "s3trk-000005",
+          "truth_id": "1817"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 0.3910911960134616,
+          "ade_m": 0.3678432526455395,
+          "anchor_assignment_error_m": 1.1768021118590077,
+          "fde_3d_m": 0.4492533629228836,
+          "fde_m": 0.40014827230279554,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.3523181242471889,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.3448743300653541
+            },
+            {
+              "error_3d_m": 0.37132182460725494,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.35705346698449675
+            },
+            {
+              "error_3d_m": 0.3914714722765189,
+              "horizon_s": 0.5,
+              "planar_error_m": 0.3692969412295118
+            },
+            {
+              "error_3d_m": 0.4492533629228836,
+              "horizon_s": 1.0,
+              "planar_error_m": 0.40014827230279554
+            }
+          ],
+          "prediction_id": "s3trk-000000",
+          "truth_id": "1819"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 0.9089432642087756,
+          "ade_m": 0.2542980933795229,
+          "anchor_assignment_error_m": 0.9684167520652911,
+          "fde_3d_m": 1.5317833362950743,
+          "fde_m": 0.6330601334785037,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.5013101810074758,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.1281149008448237
+            },
+            {
+              "error_3d_m": 0.68785423743369,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.04475153628626719
+            },
+            {
+              "error_3d_m": 0.9148253020988619,
+              "horizon_s": 0.5,
+              "planar_error_m": 0.21126580290849717
+            },
+            {
+              "error_3d_m": 1.5317833362950743,
+              "horizon_s": 1.0,
+              "planar_error_m": 0.6330601334785037
+            }
+          ],
+          "prediction_id": "s3trk-000001",
+          "truth_id": "1825"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 0.732934075172852,
+          "ade_m": 0.6685710092301459,
+          "anchor_assignment_error_m": 0.9397333873076957,
+          "fde_3d_m": 1.0871046842731924,
+          "fde_m": 0.890622786559663,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.5108900377410068,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.5102038703876655
+            },
+            {
+              "error_3d_m": 0.6061802735395302,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.5944912875504661
+            },
+            {
+              "error_3d_m": 0.7275613051376788,
+              "horizon_s": 0.5,
+              "planar_error_m": 0.6789660924227892
+            },
+            {
+              "error_3d_m": 1.0871046842731924,
+              "horizon_s": 1.0,
+              "planar_error_m": 0.890622786559663
+            }
+          ],
+          "prediction_id": "s3trk-000009",
+          "truth_id": "1826"
+        }
+      ],
+      "truth_track_count": 9,
+      "unmatched_truth_count": 1
+    },
+    "Multidimensional_Hough": {
+      "ade_3d_m": 0.8881536019397486,
+      "ade_m": 0.7369999583617444,
+      "anchor_timestamp_s": 1.00001,
+      "assignment": {
+        "assignment_information": "anchor_truth_only",
+        "future_truth_used_for_assignment": false,
+        "matches": [
+          {
+            "anchor_distance_m": 0.10602322840740872,
+            "prediction_id": "H001",
+            "truth_id": "1807"
+          },
+          {
+            "anchor_distance_m": 0.4512125304462001,
+            "prediction_id": "H008",
+            "truth_id": "1808"
+          },
+          {
+            "anchor_distance_m": 0.9282832313995365,
+            "prediction_id": "H007",
+            "truth_id": "1809"
+          },
+          {
+            "anchor_distance_m": 0.7798544620727107,
+            "prediction_id": "H004",
+            "truth_id": "1816"
+          },
+          {
+            "anchor_distance_m": 0.10884953687959581,
+            "prediction_id": "H002",
+            "truth_id": "1817"
+          },
+          {
+            "anchor_distance_m": 0.31830643855483615,
+            "prediction_id": "H006",
+            "truth_id": "1819"
+          },
+          {
+            "anchor_distance_m": 0.4995523202672859,
+            "prediction_id": "H005",
+            "truth_id": "1825"
+          },
+          {
+            "anchor_distance_m": 0.5424630209133696,
+            "prediction_id": "H003",
+            "truth_id": "1826"
+          }
+        ],
+        "unmatched_prediction_ids": [],
+        "unmatched_truth_ids": [
+          "1827"
+        ]
+      },
+      "assignment_future_truth_used": false,
+      "false_prediction_count": 0,
+      "fde_3d_m": 1.383375232626312,
+      "fde_m": 1.1458376124570693,
+      "horizon_aggregates": [
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 1,
+          "endpoint_miss_rate": 0.1111111111111111,
+          "horizon_s": 0.1,
+          "mean_3d_error_m": 0.5465399045959548,
+          "mean_planar_error_m": 0.46296135311207687,
+          "rmse_3d_error_m": 0.6348592778719857,
+          "rmse_planar_error_m": 0.5894225743807149
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 1,
+          "endpoint_miss_rate": 0.1111111111111111,
+          "horizon_s": 0.3,
+          "mean_3d_error_m": 0.7188508727076379,
+          "mean_planar_error_m": 0.5936515060844695,
+          "rmse_3d_error_m": 0.8402536765508273,
+          "rmse_planar_error_m": 0.7719778852100534
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 1,
+          "endpoint_miss_rate": 0.1111111111111111,
+          "horizon_s": 0.5,
+          "mean_3d_error_m": 0.9038483978290895,
+          "mean_planar_error_m": 0.7455493617933618,
+          "rmse_3d_error_m": 1.0578585758703039,
+          "rmse_planar_error_m": 0.960785087782369
+        },
+        {
+          "available_predictions": 8,
+          "eligible_truth_tracks": 9,
+          "endpoint_miss_count": 3,
+          "endpoint_miss_rate": 0.3333333333333333,
+          "horizon_s": 1.0,
+          "mean_3d_error_m": 1.383375232626312,
+          "mean_planar_error_m": 1.1458376124570693,
+          "rmse_3d_error_m": 1.6094880461180296,
+          "rmse_planar_error_m": 1.4367946772971802
+        }
+      ],
+      "horizons_s": [
+        0.1,
+        0.3,
+        0.5,
+        1.0
+      ],
+      "matched_track_count": 8,
+      "method": "Multidimensional_Hough",
+      "prediction_track_count": 8,
+      "reconstruction_f1": 0.9411764705882353,
+      "reconstruction_precision": 1.0,
+      "reconstruction_recall": 0.8888888888888888,
+      "runtime_ms": 2967.9351339582354,
+      "scenario_id": "b85e1bd6cc8e74c0",
+      "track_evaluations": [
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 0.22972265002160658,
+          "ade_m": 0.13263010326197877,
+          "anchor_assignment_error_m": 0.10602322840740872,
+          "fde_3d_m": 0.4455942963782393,
+          "fde_m": 0.3395814263120728,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.11860671011974688,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.04947745895995037
+            },
+            {
+              "error_3d_m": 0.15111891479360362,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.057345971964347146
+            },
+            {
+              "error_3d_m": 0.20357067879483656,
+              "horizon_s": 0.5,
+              "planar_error_m": 0.08411555581154478
+            },
+            {
+              "error_3d_m": 0.4455942963782393,
+              "horizon_s": 1.0,
+              "planar_error_m": 0.3395814263120728
+            }
+          ],
+          "prediction_id": "H001",
+          "truth_id": "1807"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 1.018442402102325,
+          "ade_m": 0.9915860113934607,
+          "anchor_assignment_error_m": 0.4512125304462001,
+          "fde_3d_m": 1.694655842672539,
+          "fde_m": 1.612870146451346,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.5573417198973712,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.5544077498510882
+            },
+            {
+              "error_3d_m": 0.7783594939365294,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.7759445496628411
+            },
+            {
+              "error_3d_m": 1.043412551902861,
+              "horizon_s": 0.5,
+              "planar_error_m": 1.0231215996085674
+            },
+            {
+              "error_3d_m": 1.694655842672539,
+              "horizon_s": 1.0,
+              "planar_error_m": 1.612870146451346
+            }
+          ],
+          "prediction_id": "H008",
+          "truth_id": "1808"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 1.8698959683595948,
+          "ade_m": 1.824763620539884,
+          "anchor_assignment_error_m": 0.9282832313995365,
+          "fde_3d_m": 2.940553490362449,
+          "fde_m": 2.829123837758607,
+          "horizon_errors": [
+            {
+              "error_3d_m": 1.106457460470757,
+              "horizon_s": 0.1,
+              "planar_error_m": 1.10309787762286
+            },
+            {
+              "error_3d_m": 1.5103186093988643,
+              "horizon_s": 0.3,
+              "planar_error_m": 1.4907236980997736
+            },
+            {
+              "error_3d_m": 1.9222543132063086,
+              "horizon_s": 0.5,
+              "planar_error_m": 1.876109068678296
+            },
+            {
+              "error_3d_m": 2.940553490362449,
+              "horizon_s": 1.0,
+              "planar_error_m": 2.829123837758607
+            }
+          ],
+          "prediction_id": "H007",
+          "truth_id": "1809"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 1.453420815448778,
+          "ade_m": 1.3864587951496032,
+          "anchor_assignment_error_m": 0.7798544620727107,
+          "fde_3d_m": 2.217681874651211,
+          "fde_m": 2.0589185570171864,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.9152149001353526,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.9061673234381991
+            },
+            {
+              "error_3d_m": 1.1961155715358258,
+              "horizon_s": 0.3,
+              "planar_error_m": 1.1622945656657588
+            },
+            {
+              "error_3d_m": 1.4846709154727227,
+              "horizon_s": 0.5,
+              "planar_error_m": 1.418454734477269
+            },
+            {
+              "error_3d_m": 2.217681874651211,
+              "horizon_s": 1.0,
+              "planar_error_m": 2.0589185570171864
+            }
+          ],
+          "prediction_id": "H004",
+          "truth_id": "1816"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 0.24237277230037052,
+          "ade_m": 0.21293655616478563,
+          "anchor_assignment_error_m": 0.10884953687959581,
+          "fde_3d_m": 0.39932666931566213,
+          "fde_m": 0.32843102262325297,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.13352947558009207,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.1305208281629061
+            },
+            {
+              "error_3d_m": 0.18864059447371886,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.17441333554199492
+            },
+            {
+              "error_3d_m": 0.24799434983200896,
+              "horizon_s": 0.5,
+              "planar_error_m": 0.21838103833098854
+            },
+            {
+              "error_3d_m": 0.39932666931566213,
+              "horizon_s": 1.0,
+              "planar_error_m": 0.32843102262325297
+            }
+          ],
+          "prediction_id": "H002",
+          "truth_id": "1817"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 0.5960797222256383,
+          "ade_m": 0.5508857474209934,
+          "anchor_assignment_error_m": 0.31830643855483615,
+          "fde_3d_m": 0.9039694702152555,
+          "fde_m": 0.8249586249220288,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.37664404084309056,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.3551735054576599
+            },
+            {
+              "error_3d_m": 0.49356614382639313,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.45951186960939944
+            },
+            {
+              "error_3d_m": 0.6101392340178142,
+              "horizon_s": 0.5,
+              "planar_error_m": 0.5638989896948856
+            },
+            {
+              "error_3d_m": 0.9039694702152555,
+              "horizon_s": 1.0,
+              "planar_error_m": 0.8249586249220288
+            }
+          ],
+          "prediction_id": "H006",
+          "truth_id": "1819"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 0.9220761225341704,
+          "ade_m": 0.15933791270256203,
+          "anchor_assignment_error_m": 0.4995523202672859,
+          "fde_3d_m": 1.4236019721235413,
+          "fde_m": 0.3875308801906606,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.57694073610285,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.07278380719084837
+            },
+            {
+              "error_3d_m": 0.750144480237978,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.04094134840453992
+            },
+            {
+              "error_3d_m": 0.9376173016723122,
+              "horizon_s": 0.5,
+              "planar_error_m": 0.13609561502419923
+            },
+            {
+              "error_3d_m": 1.4236019721235413,
+              "horizon_s": 1.0,
+              "planar_error_m": 0.3875308801906606
+            }
+          ],
+          "prediction_id": "H005",
+          "truth_id": "1825"
+        },
+        {
+          "actor_class": "TYPE_VEHICLE",
+          "ade_3d_m": 0.7732183625255049,
+          "ade_m": 0.6374009202606867,
+          "anchor_assignment_error_m": 0.5424630209133696,
+          "fde_3d_m": 1.0416182452915999,
+          "fde_m": 0.7852864043813994,
+          "horizon_errors": [
+            {
+              "error_3d_m": 0.5875841936183777,
+              "horizon_s": 0.1,
+              "planar_error_m": 0.5320622742131028
+            },
+            {
+              "error_3d_m": 0.6825431734581899,
+              "horizon_s": 0.3,
+              "planar_error_m": 0.5880367097271008
+            },
+            {
+              "error_3d_m": 0.7811278377338521,
+              "horizon_s": 0.5,
+              "planar_error_m": 0.644218292721144
+            },
+            {
+              "error_3d_m": 1.0416182452915999,
+              "horizon_s": 1.0,
+              "planar_error_m": 0.7852864043813994
+            }
+          ],
+          "prediction_id": "H003",
+          "truth_id": "1826"
+        }
+      ],
+      "truth_track_count": 9,
+      "unmatched_truth_count": 1
+    }
+  },
+  "evaluator": {
+    "eligibility_rule": "current-time valid non-SDC; future validity not used for eligibility",
+    "eligible_truth_track_count": 9,
+    "future_truth_used_for_algorithm": false,
+    "truth_builder": "build_womd_truth_sidecar",
+    "truth_constructed_only_after_all_predictions": true
+  },
+  "formal_N_frozen": false,
+  "formal_validation": false,
+  "horizons_s": [
+    0.1,
+    0.3,
+    0.5,
+    1.0
+  ],
+  "hough_frontend": {
+    "estimated_association_used": false,
+    "mode": "raw_unlabeled_track_before_detect"
+  },
+  "integration_profile": {
+    "azimuth_std_deg": 1.0,
+    "detection_probability": 1.0,
+    "elevation_std_deg": 1.0,
+    "false_alarms": 0,
+    "formal_degraded_profile": false,
+    "gaussian_measurement_noise": true,
+    "measurement_covariance_R_t": true,
+    "reason": "isolate real end-to-end wiring before formal misses/false-alarm robustness pilot",
+    "sensing_snr_db": 20.0
+  },
+  "methods": {
+    "CA": {
+      "association_runtime_ms": 2.6191239012405276,
+      "prediction_count": 9,
+      "predictor_runtime_ms": 5.855422001332045,
+      "rejected_track_count": 1,
+      "rejection_reasons": {
+        "CA state requires at least three causal observations.": 1
+      },
+      "reported_total_runtime_ms": 8.474545902572572
+    },
+    "CTRV": {
+      "association_runtime_ms": 2.6191239012405276,
+      "prediction_count": 9,
+      "predictor_runtime_ms": 4.51225193683058,
+      "rejected_track_count": 1,
+      "rejection_reasons": {
+        "CTRV state requires at least three causal observations.": 1
+      },
+      "reported_total_runtime_ms": 7.131375838071108
+    },
+    "CV": {
+      "association_runtime_ms": 2.6191239012405276,
+      "prediction_count": 10,
+      "predictor_runtime_ms": 4.717631032690406,
+      "rejected_track_count": 0,
+      "rejection_reasons": {},
+      "reported_total_runtime_ms": 7.3367549339309335
+    },
+    "IMM_CV_CA_CTRV": {
+      "association_runtime_ms": 2.6191239012405276,
+      "prediction_count": 9,
+      "predictor_runtime_ms": 118.55914501938969,
+      "rejected_track_count": 1,
+      "rejection_reasons": {
+        "IMM requires at least three associated detections.": 1
+      },
+      "reported_total_runtime_ms": 121.17826892063022
+    },
+    "Kalman_EKF": {
+      "association_runtime_ms": 2.6191239012405276,
+      "prediction_count": 10,
+      "predictor_runtime_ms": 21.596075035631657,
+      "rejected_track_count": 0,
+      "rejection_reasons": {},
+      "reported_total_runtime_ms": 24.215198936872184
+    },
+    "Multidimensional_Hough": {
+      "accumulator_cells": 129518,
+      "estimated_association_used": false,
+      "future_information_used": false,
+      "hough_track_count": 8,
+      "peak_count": 16,
+      "prediction_count": 8,
+      "runtime_ms": 2967.9351339582354,
+      "truth_used": false
+    }
+  },
+  "observation_pipeline": {
+    "algorithm_input_immutable": true,
+    "algorithm_input_truth_free": true,
+    "causal_frames": 11,
+    "measured_fmcw": false,
+    "path": "real WOMD -> Stage1 causal adapter -> Stage2 ideal -> clean -> degraded -> Stage3 AlgorithmObservationSequence",
+    "stage2_algorithm_sha256_after_prediction": "2e677c8f3ab8f4ec1f9e9a533ee12b4c16101d82f528738af1fd0831898b5beb",
+    "stage2_algorithm_sha256_before": "2e677c8f3ab8f4ec1f9e9a533ee12b4c16101d82f528738af1fd0831898b5beb",
+    "stage2_algorithm_sha256_final": "2e677c8f3ab8f4ec1f9e9a533ee12b4c16101d82f528738af1fd0831898b5beb"
+  },
+  "purpose": "real pipeline integration gate; NOT formal performance evaluation",
+  "scenario_id": "b85e1bd6cc8e74c0",
+  "source": {
+    "canonical_motion_file": "/home/agni/waymo/data/paired_womd_lidar_v1_3_0/validation/motion/paired-from-validation.tfrecord-00000-of-00150",
+    "dataset": "WOMD/WOMD-LiDAR v1.3.0",
+    "raw_waymo_path_used": false,
+    "split": "validation"
+  },
+  "status": "PASS"
+}

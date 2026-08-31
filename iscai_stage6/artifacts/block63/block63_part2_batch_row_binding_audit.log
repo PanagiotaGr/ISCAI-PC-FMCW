@@ -1,0 +1,1551 @@
+============================================================
+STAGE 6 — BLOCK 6.3 PART 2/2
+BATCH POSTERIOR / ROW-BINDING AUDIT
+============================================================
+
+===== A. BLOCK6.3 PART1 SEAL =====
+Part1 report = EXACT PASS
+
+===== B. EXACT DEVELOPMENT POSTERIOR SCHEMA =====
+keys = ('anchor_position_H0_m', 'mean_displacement_H0_m', 'mean_absolute_H0_m', 'raw_covariance_H0_m2', 'calibrated_covariance_H0_m2', 'variance_scale_alpha_h')
+row count = 13682
+anchor_position_H0_m        = (13682, 3) PASS
+mean_displacement_H0_m      = (13682, 4, 3) PASS
+mean_absolute_H0_m          = (13682, 4, 3) PASS
+raw_covariance_H0_m2        = (13682, 4, 3, 3) PASS
+calibrated_covariance_H0_m2 = (13682, 4, 3, 3) PASS
+variance_scale_alpha_h      = (4,) PASS
+
+===== C. BATCH COORDINATE INVARIANT =====
+equation = mean_absolute_H0_m == anchor_position_H0_m[:,None,:] + mean_displacement_H0_m
+exact array equality = False
+max absolute difference = 3.814697265625e-06
+coordinate invariant = PASS
+
+===== D. BLOCK5.2 ROW/RECORD METADATA =====
+
+--- development_gaussian_posterior.json ---
+coordinate_semantics.Stage4_prediction = metric_H0_displacement
+frozen_inputs.development_cache.path = /home/agni/waymo/iscai_stage4/artifacts/block43/development_cache.npz
+frozen_inputs.development_cache.sha256 = bc0e5b508df38f6e33d9cb1a6d21d7eaa86d20c91ba09ede6f500d46b87fbcaa
+historical_reproduction.sample_limit = 2048
+posterior.development_N = 13682
+posterior.full_normalized_prediction_sha256 = 8f8e9714fb16d2fc9ffc0a2421e5c5849b4f2239fd7691597ec9dee3eb505549
+scientific_execution.development_only = True
+scientific_execution.model_selection = False
+
+--- dev_posterior_resolver_summary.json ---
+top_candidates[2].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[3].inspection.arrays.scenario_id.dtype = <U15
+top_candidates[4].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[5].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[6].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[7].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[8].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[9].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[10].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[11].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[12].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[13].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[14].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[15].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[16].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[17].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[18].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[19].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[20].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[21].inspection.arrays.scenario_id.dtype = <U15
+top_candidates[22].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[23].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[24].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[25].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[26].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[27].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[28].inspection.arrays.scenario_id.dtype = <U16
+top_candidates[29].inspection.arrays.scenario_id.dtype = <U16
+
+--- actual_stage4_gaussian_route_audit.json ---
+checkpoint.top_level_summary.development_metrics.keys_preview[0] = metric_Gaussian_NLL
+checkpoint.top_level_summary.development_metrics.keys_preview[1] = planar_ADE_m
+checkpoint.top_level_summary.development_metrics.keys_preview[2] = horizon_metric_NLL
+checkpoint.top_level_summary.development_metrics.keys_preview[3] = horizon_planar_error_m
+checkpoint.top_level_summary.development_metrics.keys_preview[4] = one_second_planar_error_m
+checkpoint.top_level_summary.development_metrics.keys_preview[5] = class_planar_ADE_m
+checkpoint.top_level_summary.development_metrics.keys_preview[6] = raw_empirical_coverage
+checkpoint.top_level_summary.development_metrics.keys_preview[7] = mean_predictive_std_m
+checkpoint.top_level_summary.development_metrics.keys_preview[8] = valid_actor_horizon_points
+checkpoint.top_level_summary.development_metrics.keys_preview[9] = predictive_covariance_SPD_failures
+checkpoint.top_level_summary.development_metrics.length = 10
+checkpoint.top_level_summary.development_metrics.type = dict
+conclusion.frozen_development_cache = True
+development_cache.arrays.future.dtype = float32
+development_cache.arrays.future.finite_fraction = 1.0
+development_cache.arrays.future.size = 164184
+development_cache.arrays.future_mask.dtype = float32
+development_cache.arrays.future_mask.finite_fraction = 1.0
+development_cache.arrays.future_mask.size = 54728
+development_cache.arrays.map_context.dtype = float32
+development_cache.arrays.map_context.finite_fraction = 1.0
+development_cache.arrays.map_context.size = 136820
+development_cache.arrays.neighbor_mask.dtype = float32
+development_cache.arrays.neighbor_mask.finite_fraction = 1.0
+development_cache.arrays.neighbor_mask.size = 109456
+development_cache.arrays.neighbors.dtype = float32
+development_cache.arrays.neighbors.finite_fraction = 1.0
+development_cache.arrays.neighbors.size = 16856224
+development_cache.arrays.target.dtype = float32
+development_cache.arrays.target.finite_fraction = 1.0
+development_cache.arrays.target.size = 2107028
+development_cache.path = /home/agni/waymo/iscai_stage4/artifacts/block43/development_cache.npz
+development_cache.sha256 = bc0e5b508df38f6e33d9cb1a6d21d7eaa86d20c91ba09ede6f500d46b87fbcaa
+
+--- calibrated_runtime_api_audit.json ---
+coordinate_semantics.Stage4_prediction = H0_displacement
+
+--- stage4_prediction_coordinate_semantics.json ---
+development_cache.path = /home/agni/waymo/iscai_stage4/artifacts/block43/development_cache.npz
+development_cache.sha256 = bc0e5b508df38f6e33d9cb1a6d21d7eaa86d20c91ba09ede6f500d46b87fbcaa
+normalization.payload.development_used = False
+normalization.payload.missing_history_rows_in_statistics = False
+
+===== E. EXPLICIT ROW-SELECTOR CANDIDATES =====
+NO EXPLICIT ROW SELECTOR IN JSON METADATA
+
+===== F. BLOCK5.2 MATERIALIZATION / SELECTOR SOURCE =====
+source contexts = 100
+
+--- source context 1 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior.py:81
+0073:     STAGE4
+0074:     / "src/iscai_stage4/ml/"
+0075:       "calibration_runtime.py"
+0076: )
+0077: 
+0078: OUTPUT = (
+0079:     STAGE5
+0080:     / "artifacts/block52/"
+0081:       "development_gaussian_posterior.npz"
+0082: )
+0083: 
+0084: REPORT = (
+0085:     STAGE5
+0086:     / "artifacts/block52/"
+0087:       "development_gaussian_posterior.json"
+0088: )
+0089: 
+
+--- source context 2 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior.py:87
+0079:     STAGE5
+0080:     / "artifacts/block52/"
+0081:       "development_gaussian_posterior.npz"
+0082: )
+0083: 
+0084: REPORT = (
+0085:     STAGE5
+0086:     / "artifacts/block52/"
+0087:       "development_gaussian_posterior.json"
+0088: )
+0089: 
+0090: 
+0091: EXPECTED_DEV_CACHE_SHA = (
+0092:     "bc0e5b508df38f6e33d9cb1a6d21d7ea"
+0093:     "a86d20c91ba09ede6f500d46b87fbcaa"
+0094: )
+0095: 
+
+--- source context 3 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior.py:1652
+1644:     temporary = OUTPUT.with_suffix(
+1645:         ".npz.tmp"
+1646:     )
+1647: 
+1648:     with temporary.open(
+1649:         "wb"
+1650:     ) as stream:
+1651: 
+1652:         np.savez_compressed(
+1653:             stream,
+1654: 
+1655:             anchor_position_H0_m=(
+1656:                 anchor
+1657:             ),
+1658: 
+1659:             mean_displacement_H0_m=(
+1660:                 metric_mean_np
+
+--- source context 4 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior.py:1655
+1647: 
+1648:     with temporary.open(
+1649:         "wb"
+1650:     ) as stream:
+1651: 
+1652:         np.savez_compressed(
+1653:             stream,
+1654: 
+1655:             anchor_position_H0_m=(
+1656:                 anchor
+1657:             ),
+1658: 
+1659:             mean_displacement_H0_m=(
+1660:                 metric_mean_np
+1661:             ),
+1662: 
+1663:             mean_absolute_H0_m=(
+
+--- source context 5 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior.py:1659
+1651: 
+1652:         np.savez_compressed(
+1653:             stream,
+1654: 
+1655:             anchor_position_H0_m=(
+1656:                 anchor
+1657:             ),
+1658: 
+1659:             mean_displacement_H0_m=(
+1660:                 metric_mean_np
+1661:             ),
+1662: 
+1663:             mean_absolute_H0_m=(
+1664:                 absolute_mean
+1665:             ),
+1666: 
+1667:             raw_covariance_H0_m2=(
+
+--- source context 6 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior.py:1663
+1655:             anchor_position_H0_m=(
+1656:                 anchor
+1657:             ),
+1658: 
+1659:             mean_displacement_H0_m=(
+1660:                 metric_mean_np
+1661:             ),
+1662: 
+1663:             mean_absolute_H0_m=(
+1664:                 absolute_mean
+1665:             ),
+1666: 
+1667:             raw_covariance_H0_m2=(
+1668:                 raw_covariance_np
+1669:             ),
+1670: 
+1671:             calibrated_covariance_H0_m2=(
+
+--- source context 7 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py:85
+0077:     STAGE4
+0078:     / "configs/"
+0079:       "stage4_gaussian_gru.json"
+0080: )
+0081: 
+0082: OUTPUT = (
+0083:     STAGE5
+0084:     / "artifacts/block52/"
+0085:       "development_gaussian_posterior.npz"
+0086: )
+0087: 
+0088: REPORT = (
+0089:     STAGE5
+0090:     / "artifacts/block52/"
+0091:       "development_gaussian_posterior.json"
+0092: )
+0093: 
+
+--- source context 8 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py:91
+0083:     STAGE5
+0084:     / "artifacts/block52/"
+0085:       "development_gaussian_posterior.npz"
+0086: )
+0087: 
+0088: REPORT = (
+0089:     STAGE5
+0090:     / "artifacts/block52/"
+0091:       "development_gaussian_posterior.json"
+0092: )
+0093: 
+0094: 
+0095: EXPECTED_BLOCK44_PREDICTION_SHA = (
+0096:     "a0e96b4d9ba051bb3ceb0e1270d592fc"
+0097:     "13cfa0b3b4ddeb3dc16ed7a29a82e66a"
+0098: )
+0099: 
+
+--- source context 9 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py:320
+0312:     mean_absolute,
+0313:     raw_covariance,
+0314:     calibrated_covariance,
+0315: ):
+0316:     digest = sha256()
+0317: 
+0318:     for name, array in (
+0319:         (
+0320:             "anchor_position_H0_m",
+0321:             anchor,
+0322:         ),
+0323:         (
+0324:             "mean_displacement_H0_m",
+0325:             mean_displacement,
+0326:         ),
+0327:         (
+0328:             "mean_absolute_H0_m",
+
+--- source context 10 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py:324
+0316:     digest = sha256()
+0317: 
+0318:     for name, array in (
+0319:         (
+0320:             "anchor_position_H0_m",
+0321:             anchor,
+0322:         ),
+0323:         (
+0324:             "mean_displacement_H0_m",
+0325:             mean_displacement,
+0326:         ),
+0327:         (
+0328:             "mean_absolute_H0_m",
+0329:             mean_absolute,
+0330:         ),
+0331:         (
+0332:             "raw_covariance_H0_m2",
+
+--- source context 11 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py:328
+0320:             "anchor_position_H0_m",
+0321:             anchor,
+0322:         ),
+0323:         (
+0324:             "mean_displacement_H0_m",
+0325:             mean_displacement,
+0326:         ),
+0327:         (
+0328:             "mean_absolute_H0_m",
+0329:             mean_absolute,
+0330:         ),
+0331:         (
+0332:             "raw_covariance_H0_m2",
+0333:             raw_covariance,
+0334:         ),
+0335:         (
+0336:             "calibrated_covariance_H0_m2",
+
+--- source context 12 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py:1491
+1483:     temporary = OUTPUT.with_suffix(
+1484:         ".npz.tmp"
+1485:     )
+1486: 
+1487:     with temporary.open(
+1488:         "wb"
+1489:     ) as stream:
+1490: 
+1491:         np.savez_compressed(
+1492:             stream,
+1493: 
+1494:             anchor_position_H0_m=(
+1495:                 anchor_np
+1496:             ),
+1497: 
+1498:             mean_displacement_H0_m=(
+1499:                 mean_displacement_np
+
+--- source context 13 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py:1494
+1486: 
+1487:     with temporary.open(
+1488:         "wb"
+1489:     ) as stream:
+1490: 
+1491:         np.savez_compressed(
+1492:             stream,
+1493: 
+1494:             anchor_position_H0_m=(
+1495:                 anchor_np
+1496:             ),
+1497: 
+1498:             mean_displacement_H0_m=(
+1499:                 mean_displacement_np
+1500:             ),
+1501: 
+1502:             mean_absolute_H0_m=(
+
+--- source context 14 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py:1498
+1490: 
+1491:         np.savez_compressed(
+1492:             stream,
+1493: 
+1494:             anchor_position_H0_m=(
+1495:                 anchor_np
+1496:             ),
+1497: 
+1498:             mean_displacement_H0_m=(
+1499:                 mean_displacement_np
+1500:             ),
+1501: 
+1502:             mean_absolute_H0_m=(
+1503:                 mean_absolute_np
+1504:             ),
+1505: 
+1506:             raw_covariance_H0_m2=(
+
+--- source context 15 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py:1502
+1494:             anchor_position_H0_m=(
+1495:                 anchor_np
+1496:             ),
+1497: 
+1498:             mean_displacement_H0_m=(
+1499:                 mean_displacement_np
+1500:             ),
+1501: 
+1502:             mean_absolute_H0_m=(
+1503:                 mean_absolute_np
+1504:             ),
+1505: 
+1506:             raw_covariance_H0_m2=(
+1507:                 raw_covariance_np
+1508:             ),
+1509: 
+1510:             calibrated_covariance_H0_m2=(
+
+--- source context 16 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py:1673
+1665:             "causal_anchor":
+1666:                 (
+1667:                     "latest_causal_observed_"
+1668:                     "target_position_H0"
+1669:                 ),
+1670: 
+1671:             "absolute_mean_rule":
+1672:                 (
+1673:                     "anchor_position_H0_m"
+1674:                     "+"
+1675:                     "mean_displacement_H0_m"
+1676:                 ),
+1677: 
+1678:             "translation_changes_covariance":
+1679:                 False,
+1680: 
+1681:             "future_truth_used":
+
+--- source context 17 ---
+/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior_v2.py:1675
+1667:                     "latest_causal_observed_"
+1668:                     "target_position_H0"
+1669:                 ),
+1670: 
+1671:             "absolute_mean_rule":
+1672:                 (
+1673:                     "anchor_position_H0_m"
+1674:                     "+"
+1675:                     "mean_displacement_H0_m"
+1676:                 ),
+1677: 
+1678:             "translation_changes_covariance":
+1679:                 False,
+1680: 
+1681:             "future_truth_used":
+1682:                 False,
+1683:         },
+
+--- source context 18 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block50_part1_discovery.py:1399
+1391:         ==
+1392:         120,
+1393:         (
+1394:             "Frozen formal manifest "
+1395:             "is not N=120."
+1396:         ),
+1397:     )
+1398: 
+1399:     scenario_ids = [
+1400:         str(
+1401:             row[
+1402:                 "scenario_id"
+1403:             ]
+1404:         )
+1405:         for row in formal_rows
+1406:     ]
+1407: 
+
+--- source context 19 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block50_part1_discovery.py:1402
+1394:             "Frozen formal manifest "
+1395:             "is not N=120."
+1396:         ),
+1397:     )
+1398: 
+1399:     scenario_ids = [
+1400:         str(
+1401:             row[
+1402:                 "scenario_id"
+1403:             ]
+1404:         )
+1405:         for row in formal_rows
+1406:     ]
+1407: 
+1408:     require(
+1409:         len(
+1410:             set(
+
+--- source context 20 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block50_part1_discovery.py:1411
+1403:             ]
+1404:         )
+1405:         for row in formal_rows
+1406:     ]
+1407: 
+1408:     require(
+1409:         len(
+1410:             set(
+1411:                 scenario_ids
+1412:             )
+1413:         )
+1414:         ==
+1415:         120,
+1416:         (
+1417:             "Frozen formal manifest "
+1418:             "contains duplicate scenarios."
+1419:         ),
+
+--- source context 21 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_dev_materialization_safe.py:25
+0017:     STAGE5
+0018:     / "scripts/"
+0019:       "materialize_block52_frozen_dev_posterior.py"
+0020: )
+0021: 
+0022: REPORT = (
+0023:     STAGE5
+0024:     / "artifacts/block52/"
+0025:       "development_gaussian_posterior.json"
+0026: )
+0027: 
+0028: ARTIFACT = (
+0029:     STAGE5
+0030:     / "artifacts/block52/"
+0031:       "development_gaussian_posterior.npz"
+0032: )
+0033: 
+
+--- source context 22 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_dev_materialization_safe.py:31
+0023:     STAGE5
+0024:     / "artifacts/block52/"
+0025:       "development_gaussian_posterior.json"
+0026: )
+0027: 
+0028: ARTIFACT = (
+0029:     STAGE5
+0030:     / "artifacts/block52/"
+0031:       "development_gaussian_posterior.npz"
+0032: )
+0033: 
+0034: 
+0035: def run_regression():
+0036:     process = subprocess.run(
+0037:         [
+0038:             sys.executable,
+0039:             "-m",
+
+--- source context 23 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_dev_materialization_v2_safe.py:25
+0017:     STAGE5
+0018:     / "scripts/"
+0019:       "materialize_block52_frozen_dev_posterior_v2.py"
+0020: )
+0021: 
+0022: REPORT = (
+0023:     STAGE5
+0024:     / "artifacts/block52/"
+0025:       "development_gaussian_posterior.json"
+0026: )
+0027: 
+0028: ARTIFACT = (
+0029:     STAGE5
+0030:     / "artifacts/block52/"
+0031:       "development_gaussian_posterior.npz"
+0032: )
+0033: 
+
+--- source context 24 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_dev_materialization_v2_safe.py:31
+0023:     STAGE5
+0024:     / "artifacts/block52/"
+0025:       "development_gaussian_posterior.json"
+0026: )
+0027: 
+0028: ARTIFACT = (
+0029:     STAGE5
+0030:     / "artifacts/block52/"
+0031:       "development_gaussian_posterior.npz"
+0032: )
+0033: 
+0034: 
+0035: def blocked(
+0036:     phase,
+0037:     reason,
+0038: ):
+0039:     print()
+
+--- source context 25 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:408
+0400: 
+0401:     This function performs no model inference and never
+0402:     accesses the formal N=120 population.
+0403:     """
+0404: 
+0405:     path = (
+0406:         STAGE5
+0407:         / "artifacts/block52/"
+0408:           "development_gaussian_posterior.npz"
+0409:     )
+0410: 
+0411:     report_path = (
+0412:         STAGE5
+0413:         / "artifacts/block52/"
+0414:           "development_gaussian_posterior.json"
+0415:     )
+0416: 
+
+--- source context 26 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:414
+0406:         STAGE5
+0407:         / "artifacts/block52/"
+0408:           "development_gaussian_posterior.npz"
+0409:     )
+0410: 
+0411:     report_path = (
+0412:         STAGE5
+0413:         / "artifacts/block52/"
+0414:           "development_gaussian_posterior.json"
+0415:     )
+0416: 
+0417:     require(
+0418:         path.is_file(),
+0419:         (
+0420:             "Exact materialized development "
+0421:             "posterior is missing."
+0422:         ),
+
+--- source context 27 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:656
+0648:     )
+0649: 
+0650:     with np.load(
+0651:         path,
+0652:         allow_pickle=False,
+0653:     ) as payload:
+0654: 
+0655:         required_keys = (
+0656:             "anchor_position_H0_m",
+0657:             "mean_displacement_H0_m",
+0658:             "mean_absolute_H0_m",
+0659:             "raw_covariance_H0_m2",
+0660:             "calibrated_covariance_H0_m2",
+0661:             "variance_scale_alpha_h",
+0662:         )
+0663: 
+0664:         missing = [
+
+--- source context 28 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:657
+0649: 
+0650:     with np.load(
+0651:         path,
+0652:         allow_pickle=False,
+0653:     ) as payload:
+0654: 
+0655:         required_keys = (
+0656:             "anchor_position_H0_m",
+0657:             "mean_displacement_H0_m",
+0658:             "mean_absolute_H0_m",
+0659:             "raw_covariance_H0_m2",
+0660:             "calibrated_covariance_H0_m2",
+0661:             "variance_scale_alpha_h",
+0662:         )
+0663: 
+0664:         missing = [
+0665:             key
+
+--- source context 29 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:658
+0650:     with np.load(
+0651:         path,
+0652:         allow_pickle=False,
+0653:     ) as payload:
+0654: 
+0655:         required_keys = (
+0656:             "anchor_position_H0_m",
+0657:             "mean_displacement_H0_m",
+0658:             "mean_absolute_H0_m",
+0659:             "raw_covariance_H0_m2",
+0660:             "calibrated_covariance_H0_m2",
+0661:             "variance_scale_alpha_h",
+0662:         )
+0663: 
+0664:         missing = [
+0665:             key
+0666:             for key in required_keys
+
+--- source context 30 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:684
+0676:                 ", ".join(
+0677:                     missing
+0678:                 )
+0679:             ),
+0680:         )
+0681: 
+0682:         mean = np.asarray(
+0683:             payload[
+0684:                 "mean_absolute_H0_m"
+0685:             ]
+0686:         )
+0687: 
+0688:         covariance = np.asarray(
+0689:             payload[
+0690:                 "calibrated_covariance_H0_m2"
+0691:             ]
+0692:         )
+
+--- source context 31 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:807
+0799:     return {
+0800:         "path":
+0801:             path,
+0802: 
+0803:         "sha256":
+0804:             actual_file_sha,
+0805: 
+0806:         "mean_key":
+0807:             "mean_absolute_H0_m",
+0808: 
+0809:         "covariance_key":
+0810:             "calibrated_covariance_H0_m2",
+0811: 
+0812:         "sample_count":
+0813:             13682,
+0814: 
+0815:         "discovery_score":
+
+--- source context 32 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:993
+0985: 
+0986: 
+0987: def select_stable_development_cases(
+0988:     means,
+0989:     covariance,
+0990: ):
+0991:     cases = []
+0992: 
+0993:     for sample_index in range(
+0994:         means.shape[
+0995:             0
+0996:         ]
+0997:     ):
+0998:         for horizon_index in range(
+0999:             4
+1000:         ):
+1001:             mean = means[
+
+--- source context 33 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:1002
+0994:         means.shape[
+0995:             0
+0996:         ]
+0997:     ):
+0998:         for horizon_index in range(
+0999:             4
+1000:         ):
+1001:             mean = means[
+1002:                 sample_index,
+1003:                 horizon_index
+1004:             ]
+1005: 
+1006:             cov = covariance[
+1007:                 sample_index,
+1008:                 horizon_index
+1009:             ]
+1010: 
+
+--- source context 34 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:1007
+0999:             4
+1000:         ):
+1001:             mean = means[
+1002:                 sample_index,
+1003:                 horizon_index
+1004:             ]
+1005: 
+1006:             cov = covariance[
+1007:                 sample_index,
+1008:                 horizon_index
+1009:             ]
+1010: 
+1011:             horizontal = float(
+1012:                 math.hypot(
+1013:                     float(
+1014:                         mean[
+1015:                             0
+
+--- source context 35 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:1092
+1084:                     *
+1085:                     xy_sigma,
+1086:                 )
+1087:             ):
+1088:                 continue
+1089: 
+1090:             cases.append(
+1091:                 (
+1092:                     sample_index,
+1093:                     horizon_index,
+1094:                 )
+1095:             )
+1096: 
+1097:             if len(
+1098:                 cases
+1099:             ) >= DEVELOPMENT_CASE_COUNT:
+1100:                 return cases
+
+--- source context 36 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:1194
+1186: 
+1187:         "range_mean_abs_m":
+1188:             [],
+1189:     }
+1190: 
+1191:     per_case = []
+1192: 
+1193:     for case_rank, (
+1194:         sample_index,
+1195:         horizon_index,
+1196:     ) in enumerate(
+1197:         cases
+1198:     ):
+1199:         mean = means[
+1200:             sample_index,
+1201:             horizon_index
+1202:         ]
+
+--- source context 37 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:1200
+1192: 
+1193:     for case_rank, (
+1194:         sample_index,
+1195:         horizon_index,
+1196:     ) in enumerate(
+1197:         cases
+1198:     ):
+1199:         mean = means[
+1200:             sample_index,
+1201:             horizon_index
+1202:         ]
+1203: 
+1204:         cov = covariance[
+1205:             sample_index,
+1206:             horizon_index
+1207:         ]
+1208: 
+
+--- source context 38 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:1205
+1197:         cases
+1198:     ):
+1199:         mean = means[
+1200:             sample_index,
+1201:             horizon_index
+1202:         ]
+1203: 
+1204:         cov = covariance[
+1205:             sample_index,
+1206:             horizon_index
+1207:         ]
+1208: 
+1209:         seed = (
+1210:             MONTE_CARLO_BASE_SEED
+1211:             +
+1212:             10_007
+1213:             *
+
+--- source context 39 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:1328
+1320: 
+1321:         errors[
+1322:             "range_mean_abs_m"
+1323:         ].append(
+1324:             range_mean_error
+1325:         )
+1326: 
+1327:         per_case.append({
+1328:             "sample_index":
+1329:                 int(
+1330:                     sample_index
+1331:                 ),
+1332: 
+1333:             "horizon_index":
+1334:                 int(
+1335:                     horizon_index
+1336:                 ),
+
+--- source context 40 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:1330
+1322:             "range_mean_abs_m"
+1323:         ].append(
+1324:             range_mean_error
+1325:         )
+1326: 
+1327:         per_case.append({
+1328:             "sample_index":
+1329:                 int(
+1330:                     sample_index
+1331:                 ),
+1332: 
+1333:             "horizon_index":
+1334:                 int(
+1335:                     horizon_index
+1336:                 ),
+1337: 
+1338:             "azimuth_mean_abs_deg":
+
+--- source context 41 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:1890
+1882:         "case_count":
+1883:             len(
+1884:                 cases
+1885:             ),
+1886: 
+1887:         "cases":
+1888:             [
+1889:                 {
+1890:                     "sample_index":
+1891:                         int(
+1892:                             sample_index
+1893:                         ),
+1894: 
+1895:                     "horizon_index":
+1896:                         int(
+1897:                             horizon_index
+1898:                         ),
+
+--- source context 42 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:1892
+1884:                 cases
+1885:             ),
+1886: 
+1887:         "cases":
+1888:             [
+1889:                 {
+1890:                     "sample_index":
+1891:                         int(
+1892:                             sample_index
+1893:                         ),
+1894: 
+1895:                     "horizon_index":
+1896:                         int(
+1897:                             horizon_index
+1898:                         ),
+1899:                 }
+1900:                 for (
+
+--- source context 43 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py:1901
+1893:                         ),
+1894: 
+1895:                     "horizon_index":
+1896:                         int(
+1897:                             horizon_index
+1898:                         ),
+1899:                 }
+1900:                 for (
+1901:                     sample_index,
+1902:                     horizon_index,
+1903:                 ) in cases
+1904:             ],
+1905: 
+1906:         "candidate_sample_counts":
+1907:             list(
+1908:                 MONTE_CARLO_CANDIDATE_SAMPLE_COUNTS
+1909:             ),
+
+--- source context 44 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block53_part1_gate.py:53
+0045:     STAGE5
+0046:     / "artifacts/block52/"
+0047:       "mc_convergence.json"
+0048: )
+0049: 
+0050: MATERIALIZATION = (
+0051:     STAGE5
+0052:     / "artifacts/block52/"
+0053:       "development_gaussian_posterior.json"
+0054: )
+0055: 
+0056: REFERENCE_AUDIT = (
+0057:     STAGE5
+0058:     / "artifacts/block53/"
+0059:       "parta_beam_reference_audit.json"
+0060: )
+0061: 
+
+--- source context 45 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py:327
+0319:         if line.strip()
+0320:     ]
+0321: 
+0322:     if len(rows) != 120:
+0323:         raise RuntimeError(
+0324:             f"formal population is {len(rows)}, expected 120"
+0325:         )
+0326: 
+0327:     if len({str(x["scenario_id"]) for x in rows}) != 120:
+0328:         raise RuntimeError("duplicate formal scenario IDs")
+0329: 
+0330:     return rows
+0331: 
+0332: 
+0333: def load_normalizer_class():
+0334:     spec = importlib.util.spec_from_file_location(
+0335:         "_stage4_block44_runtime",
+
+--- source context 46 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py:1552
+1544:     receiver_parameters,
+1545:     geometry_modes,
+1546:     vehicle_semantic,
+1547:     codebooks,
+1548:     tbeam,
+1549:     tframe,
+1550:     runner_sha,
+1551: ):
+1552:     scenario_id = str(formal["scenario_id"])
+1553:     cache = CACHE_DIR / f"{rank:03d}_{scenario_id}.json"
+1554: 
+1555:     if cache.is_file():
+1556:         existing = load_json(cache)
+1557: 
+1558:         if (
+1559:             existing.get("status") == "COMPLETE"
+1560:             and existing.get("runner_sha256")
+
+--- source context 47 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py:1553
+1545:     geometry_modes,
+1546:     vehicle_semantic,
+1547:     codebooks,
+1548:     tbeam,
+1549:     tframe,
+1550:     runner_sha,
+1551: ):
+1552:     scenario_id = str(formal["scenario_id"])
+1553:     cache = CACHE_DIR / f"{rank:03d}_{scenario_id}.json"
+1554: 
+1555:     if cache.is_file():
+1556:         existing = load_json(cache)
+1557: 
+1558:         if (
+1559:             existing.get("status") == "COMPLETE"
+1560:             and existing.get("runner_sha256")
+1561:             in (
+
+--- source context 48 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py:1572
+1564:             )
+1565:         ):
+1566:             return existing, True
+1567: 
+1568:         raise RuntimeError(
+1569:             f"incompatible existing cache: {cache}"
+1570:         )
+1571: 
+1572:     row = validation_by_id[scenario_id]
+1573: 
+1574:     scenario = read_motion_scenario(
+1575:         row,
+1576:         paired_root=PAIRED_ROOT,
+1577:         compact_record_offset=int(
+1578:             formal["compact_record_offset"]
+1579:         ),
+1580:     )
+
+--- source context 49 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py:1675
+1667:     )
+1668: 
+1669:     base = {
+1670:         "stage": 5,
+1671:         "block": "5.8",
+1672:         "status": "COMPLETE",
+1673:         "runner_sha256": runner_sha,
+1674:         "rank": rank,
+1675:         "scenario_id": scenario_id,
+1676:         "receiver_status": str(selection.status),
+1677:         "eligible_receiver_count": int(
+1678:             selection.eligible_candidate_count
+1679:         ),
+1680:         "selected_receiver": False,
+1681:         "selected_prediction_available": False,
+1682:         "bridge_max_distance_m": (
+1683:             max(bridge_distances)
+
+--- source context 50 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py:1779
+1771:             trajectory_mean_h0_m=mean,
+1772:             raw_trajectory_covariance_h0_m2=covariance,
+1773:             current_position_h0_m=tuple(center),
+1774:             current_heading_h0_rad=heading,
+1775:             receiver_geometry_mode=geometry_modes[geometry],
+1776:             receiver_offset=angular_offsets[geometry],
+1777:             sample_count=MC_SAMPLES,
+1778:             seed=stable_seed(
+1779:                 scenario_id,
+1780:                 geometry,
+1781:                 "angular",
+1782:             ),
+1783:             low_speed_threshold_mps=LOW_SPEED_MPS,
+1784:         )
+1785: 
+1786:         angular_runtime = (
+1787:             time.perf_counter_ns() - start
+
+--- source context 51 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py:1913
+1905:     track = scenario.tracks[selected["track_index"]]
+1906:     T = transform_h0(
+1907:         built,
+1908:         int(scenario.current_time_index),
+1909:     )
+1910: 
+1911:     rng = np.random.default_rng(
+1912:         stable_seed(
+1913:             scenario_id,
+1914:             "constructed_receiver_truth",
+1915:         )
+1916:     )
+1917: 
+1918:     uncertain_truth_offset = rng.multivariate_normal(
+1919:         mean_offset,
+1920:         cov_offset,
+1921:         check_valid="raise",
+
+--- source context 52 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py:2508
+2500:         load_frozen_stage2_configs()
+2501:     )
+2502: 
+2503:     validation_rows = read_validation_manifest(
+2504:         VALIDATION_MANIFEST
+2505:     )
+2506: 
+2507:     validation_by_id = {
+2508:         str(row.scenario_id): row
+2509:         for row in validation_rows
+2510:     }
+2511: 
+2512:     missing = [
+2513:         str(row["scenario_id"])
+2514:         for row in formal_rows
+2515:         if str(row["scenario_id"]) not in validation_by_id
+2516:     ]
+
+--- source context 53 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py:2513
+2505:     )
+2506: 
+2507:     validation_by_id = {
+2508:         str(row.scenario_id): row
+2509:         for row in validation_rows
+2510:     }
+2511: 
+2512:     missing = [
+2513:         str(row["scenario_id"])
+2514:         for row in formal_rows
+2515:         if str(row["scenario_id"]) not in validation_by_id
+2516:     ]
+2517: 
+2518:     if missing:
+2519:         raise RuntimeError(
+2520:             f"formal scenarios missing from canonical validation: "
+2521:             f"{missing[:3]}"
+
+--- source context 54 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py:2515
+2507:     validation_by_id = {
+2508:         str(row.scenario_id): row
+2509:         for row in validation_rows
+2510:     }
+2511: 
+2512:     missing = [
+2513:         str(row["scenario_id"])
+2514:         for row in formal_rows
+2515:         if str(row["scenario_id"]) not in validation_by_id
+2516:     ]
+2517: 
+2518:     if missing:
+2519:         raise RuntimeError(
+2520:             f"formal scenarios missing from canonical validation: "
+2521:             f"{missing[:3]}"
+2522:         )
+2523: 
+
+--- source context 55 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py:2729
+2721: 
+2722:     with MERGED.open("w", encoding="utf-8") as f:
+2723:         for scene in scene_results:
+2724:             for row in scene["adaptive"]:
+2725:                 f.write(
+2726:                     json.dumps(
+2727:                         json_safe(
+2728:                             {
+2729:                                 "scenario_id": scene["scenario_id"],
+2730:                                 "type": "adaptive",
+2731:                                 **row,
+2732:                             }
+2733:                         ),
+2734:                         sort_keys=True,
+2735:                         allow_nan=False,
+2736:                     )
+2737:                     + "\n"
+
+--- source context 56 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_formal_clean.py:2745
+2737:                     + "\n"
+2738:                 )
+2739: 
+2740:             for row in scene["baselines"]:
+2741:                 f.write(
+2742:                     json.dumps(
+2743:                         json_safe(
+2744:                             {
+2745:                                 "scenario_id": scene["scenario_id"],
+2746:                                 "type": "baseline",
+2747:                                 **row,
+2748:                             }
+2749:                         ),
+2750:                         sort_keys=True,
+2751:                         allow_nan=False,
+2752:                     )
+2753:                     + "\n"
+
+--- source context 57 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_part1_formal_route_audit.py:122
+0114:     "scenario",
+0115:     "prediction",
+0116:     "posterior",
+0117:     "gaussian",
+0118:     "mean",
+0119:     "covariance",
+0120:     "tracks_to_predict",
+0121:     "np.save",
+0122:     "np.savez",
+0123:     "artifact",
+0124:     "120",
+0125: )
+0126: 
+0127: 
+0128: def require(
+0129:     condition,
+0130:     message,
+
+--- source context 58 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py:746
+0738:     ]
+0739: 
+0740:     if len(rows) != FORMAL_N:
+0741:         raise RuntimeError(
+0742:             f"Formal manifest count changed: "
+0743:             f"{len(rows)}"
+0744:         )
+0745: 
+0746:     scenario_ids = [
+0747:         str(
+0748:             row[
+0749:                 "scenario_id"
+0750:             ]
+0751:         )
+0752:         for row in rows
+0753:     ]
+0754: 
+
+--- source context 59 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py:749
+0741:         raise RuntimeError(
+0742:             f"Formal manifest count changed: "
+0743:             f"{len(rows)}"
+0744:         )
+0745: 
+0746:     scenario_ids = [
+0747:         str(
+0748:             row[
+0749:                 "scenario_id"
+0750:             ]
+0751:         )
+0752:         for row in rows
+0753:     ]
+0754: 
+0755:     if len(
+0756:         set(
+0757:             scenario_ids
+
+--- source context 60 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py:757
+0749:                 "scenario_id"
+0750:             ]
+0751:         )
+0752:         for row in rows
+0753:     ]
+0754: 
+0755:     if len(
+0756:         set(
+0757:             scenario_ids
+0758:         )
+0759:     ) != FORMAL_N:
+0760:         raise RuntimeError(
+0761:             "Formal scenario IDs are not unique."
+0762:         )
+0763: 
+0764:     return rows
+0765: 
+
+--- source context 61 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py:1973
+1965: # ============================================================
+1966: 
+1967: @dataclass
+1968: class ControllerSample:
+1969:     prediction_id: str
+1970:     semantic_class: str
+1971:     model_input: Any
+1972:     history: Any
+1973:     original_sample_index: int
+1974: 
+1975: 
+1976: def latest_history_heading(
+1977:     history,
+1978:     low_speed_threshold_mps: float,
+1979: ) -> float:
+1980:     steps = tuple(
+1981:         history.steps
+
+--- source context 62 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py:2160
+2152:             "Duplicate causal history prediction_id."
+2153:         )
+2154: 
+2155:     projected = []
+2156: 
+2157:     noncausal_mapping_count = 0
+2158:     unknown_class_count = 0
+2159: 
+2160:     for sample_index, sample in enumerate(
+2161:         samples
+2162:     ):
+2163:         prediction_id = str(
+2164:             sample.prediction_id
+2165:         )
+2166: 
+2167:         history = history_by_id.get(
+2168:             prediction_id
+
+--- source context 63 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py:2212
+2204:                 continue
+2205: 
+2206:         projected.append(
+2207:             ControllerSample(
+2208:                 prediction_id=prediction_id,
+2209:                 semantic_class=semantic_class,
+2210:                 model_input=sample.model_input,
+2211:                 history=history,
+2212:                 original_sample_index=sample_index,
+2213:             )
+2214:         )
+2215: 
+2216:     projected.sort(
+2217:         key=lambda row:
+2218:             row.prediction_id
+2219:     )
+2220: 
+
+--- source context 64 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py:2312
+2304: 
+2305:     result = (
+2306:         select_primary_receiver(
+2307:             candidates,
+2308:             receiver_config,
+2309:         )
+2310:     )
+2311: 
+2312:     selected_index = (
+2313:         result.selected_candidate_index
+2314:     )
+2315: 
+2316:     if selected_index is None:
+2317:         return (
+2318:             result,
+2319:             None,
+2320:         )
+
+--- source context 65 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py:2316
+2308:             receiver_config,
+2309:         )
+2310:     )
+2311: 
+2312:     selected_index = (
+2313:         result.selected_candidate_index
+2314:     )
+2315: 
+2316:     if selected_index is None:
+2317:         return (
+2318:             result,
+2319:             None,
+2320:         )
+2321: 
+2322:     selected_index = int(
+2323:         selected_index
+2324:     )
+
+--- source context 66 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py:2322
+2314:     )
+2315: 
+2316:     if selected_index is None:
+2317:         return (
+2318:             result,
+2319:             None,
+2320:         )
+2321: 
+2322:     selected_index = int(
+2323:         selected_index
+2324:     )
+2325: 
+2326:     if not (
+2327:         0
+2328:         <=
+2329:         selected_index
+2330:         <
+
+--- source context 67 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py:2323
+2315: 
+2316:     if selected_index is None:
+2317:         return (
+2318:             result,
+2319:             None,
+2320:         )
+2321: 
+2322:     selected_index = int(
+2323:         selected_index
+2324:     )
+2325: 
+2326:     if not (
+2327:         0
+2328:         <=
+2329:         selected_index
+2330:         <
+2331:         len(
+
+--- source context 68 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py:2329
+2321: 
+2322:     selected_index = int(
+2323:         selected_index
+2324:     )
+2325: 
+2326:     if not (
+2327:         0
+2328:         <=
+2329:         selected_index
+2330:         <
+2331:         len(
+2332:             rows
+2333:         )
+2334:     ):
+2335:         raise RuntimeError(
+2336:             "Receiver selector returned invalid index."
+2337:         )
+
+--- source context 69 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py:2342
+2334:     ):
+2335:         raise RuntimeError(
+2336:             "Receiver selector returned invalid index."
+2337:         )
+2338: 
+2339:     return (
+2340:         result,
+2341:         rows[
+2342:             selected_index
+2343:         ],
+2344:     )
+2345: 
+2346: 
+2347: # ============================================================
+2348: # Exact Stage4 input tensorization
+2349: # ============================================================
+2350: 
+
+--- source context 70 ---
+/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py:3670
+3662:     validation_by_id,
+3663:     clean_config,
+3664:     degraded_config,
+3665:     runtime,
+3666:     parameters,
+3667:     codebooks,
+3668:     run_fingerprint,
+3669: ):
+3670:     scenario_id = str(
+3671:         formal[
+3672:             "scenario_id"
+3673:         ]
+3674:     )
+3675: 
+3676:     cache_path = (
+3677:         CACHE_DIR
+3678:         /
+... 30 additional contexts stored in report
+
+===== G. ROW-BINDING RESOLUTION =====
+batch schema binding = EXACT
+row count = 13682
+selector state = NO_EXPLICIT_SELECTOR_FOUND
+selector value = None
+
+===== H. IMMUTABILITY =====
+Block6.3 Part1 = UNCHANGED
+Stage5 posterior = UNCHANGED
+Block5.2 route evidence = UNCHANGED
+dataset access = NO
+model inference = NO
+formal evaluation = NO
+
+report = /home/agni/waymo/iscai_stage6/reports/block63_part2_batch_row_binding_audit.json
+report SHA256 = a57d848cda03f002e4b16de96314372bf3d985b15568a5b9c06528e035a9311b
+
+============================================================
+BLOCK 6.3 PART 2/2 BATCH-ROW AUDIT — FINAL
+============================================================
+development posterior = BATCHED
+row count             = 13682
+anchor key            = anchor_position_H0_m
+mean key              = mean_displacement_H0_m
+absolute mean key     = mean_absolute_H0_m
+calibrated covariance = calibrated_covariance_H0_m2
+deterministic covariance use = NO
+coordinate equation   = VERIFIED
+row selector state    = NO_EXPLICIT_SELECTOR_FOUND
+arbitrary row selection = FORBIDDEN
+dataset access        = NO
+model inference       = NO
+STATUS = PASS_BATCH_SCHEMA_BOUND_ROW_PROVENANCE_EXTRACTED
+terminal remains open = YES

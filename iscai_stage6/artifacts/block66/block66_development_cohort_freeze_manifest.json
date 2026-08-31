@@ -1,0 +1,33 @@
+{
+  "block": "6.6-Part1B",
+  "cohort": {
+    "N": 120,
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_class_aware_development_cohort_120.jsonl",
+    "sha256": "57440e3d976e7aeff44811b5eeb075dc56e0e0e070a3832ec72d354253b998c9",
+    "strata": {
+      "cyclist": 40,
+      "pedestrian_no_cyclist": 40,
+      "vehicle_only": 40
+    }
+  },
+  "immutable_inputs": {
+    "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part1a_headlamp_census.partial.jsonl": "a8b6a1f084583552434af9e00c762e363c09f3912b4720573acb9cd4ce34e4cb",
+    "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part1a_headlamp_relevant_scenarios.jsonl": "b34340afd615fb92b2cf40bb2795b555c1acaa25b5778d8af7dd5bca8efd4efa",
+    "/home/agni/waymo/iscai_stage6/reports/block66_part1a_forward_headlamp_census.json": "553188a6d01a890e9a6c2f11e9bbfd2d8426665065c4abcc770fa7e30ca84228"
+  },
+  "preregistration": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block66_development_cohort_selection_preregistration.json",
+    "sha256": "498888381e5ab9dd2f14db59cec6661beac22368e31088d6326fe76190bd4081"
+  },
+  "report": {
+    "path": "/home/agni/waymo/iscai_stage6/reports/block66_part1b_development_cohort_freeze.json",
+    "sha256": "3a965b4ef3c451e7526608f2b5ceb5a151eb08caf922a25f1b25a1ec5a12f5f0"
+  },
+  "scientific_lock": {
+    "class_policy_numerics": "NOT_FROZEN",
+    "development_cohort_membership": "FROZEN",
+    "formal_tuning": "FORBIDDEN"
+  },
+  "stage": 6,
+  "status": "BLOCK66_DEVELOPMENT_COHORT_FROZEN"
+}

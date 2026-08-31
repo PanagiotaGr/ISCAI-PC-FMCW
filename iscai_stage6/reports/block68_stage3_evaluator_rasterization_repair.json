@@ -1,0 +1,42 @@
+{
+  "block": "6.8_stage3_evaluator_rasterization_repair",
+  "diagnosis": {
+    "cause": "Part1 fixed-cache evaluator used cell-center-only projected-box rasterization instead of the frozen Stage1/Stage2 cell-extent overlap rasterization",
+    "failure_type": "replay_semantics_mismatch",
+    "observed_failure": {
+      "absolute_delta": 0.010255353536486489,
+      "actual_with_cell_center_raster": 0.43252373424510754,
+      "frozen_target": 0.442779087781594,
+      "metric": "TYPE_VEHICLE Stage1 mean IoU"
+    },
+    "repair": "restore theta half-cell expansion and radial cell-interval overlap exactly"
+  },
+  "next": "rerun identical Stage3 execution Part1 and require Stage1 + Stage2 replay parity",
+  "preserved": {
+    "Stage1_gamma": true,
+    "Stage2_margin": true,
+    "Stage3_scoring_contract": true,
+    "authoritative_scenario_loader": true,
+    "future_GT_provenance": true,
+    "posterior_selected_subset_gate": true,
+    "timestamp_alignment": true
+  },
+  "regression": 224,
+  "runner": {
+    "backup_path": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage3_fixed_cache/rasterization_repair/run_block68_stage3_fixed_cache_parity.pre_half_cell_raster_fix.py",
+    "backup_sha256": "5c4952829354d8f2dc090d514bc1144f1fb42b530214233add5601073791833f",
+    "patch_scope": "raster_projected evaluator support only",
+    "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_stage3_fixed_cache_parity.py",
+    "post_patch_sha256": "66961b9cf6976f4f7d1e9066365b243da8c73e98c5a3e462c0b81f32f473ea7b",
+    "pre_patch_sha256": "5c4952829354d8f2dc090d514bc1144f1fb42b530214233add5601073791833f"
+  },
+  "scientific_boundary": {
+    "Stage3_floor_outcomes_computed": false,
+    "Stage3_floor_selected": false,
+    "Stage4_temporal_rate_selected": false,
+    "formal_evaluation": false,
+    "primary_acceptance_tested": false
+  },
+  "stage": 6,
+  "status": "PASS_STAGE3_EVALUATOR_RASTERIZATION_REPAIRED"
+}

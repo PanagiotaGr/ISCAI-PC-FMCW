@@ -1,0 +1,78 @@
+{
+  "block": "6.6-Part1B",
+  "cohort": {
+    "class_actor_support": {
+      "TYPE_CYCLIST": 56,
+      "TYPE_PEDESTRIAN": 178,
+      "TYPE_VEHICLE": 890
+    },
+    "class_scene_support": {
+      "TYPE_CYCLIST": 40,
+      "TYPE_PEDESTRIAN": 56,
+      "TYPE_VEHICLE": 116
+    },
+    "input_order_invariant": true,
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_class_aware_development_cohort_120.jsonl",
+    "scenario_count": 120,
+    "selection_rule": "ascending_selection_hash_then_scenario_id_within_stratum",
+    "sha256": "57440e3d976e7aeff44811b5eeb075dc56e0e0e070a3832ec72d354253b998c9",
+    "strata": {
+      "cyclist": 40,
+      "pedestrian_no_cyclist": 40,
+      "vehicle_only": 40
+    }
+  },
+  "interpretation": {
+    "40_40_40_is_PDF_literal": false,
+    "40_40_40_role": "implementation_design_continuity_and_balanced_scenario_level_development_coverage",
+    "actor_counts_balanced": false
+  },
+  "next": "BLOCK6.6_PART2_FROZEN_MODEL_POSTERIOR_AND_CAUSAL_ASSOCIATION_ON_DEVELOPMENT_COHORT",
+  "preregistration": {
+    "member_selection_after_preregistration": true,
+    "path": "/home/agni/waymo/iscai_stage6/configs/block66_development_cohort_selection_preregistration.json",
+    "sha256": "498888381e5ab9dd2f14db59cec6661beac22368e31088d6326fe76190bd4081"
+  },
+  "regression": {
+    "status": "PASS",
+    "tests": 145
+  },
+  "scientific_execution": {
+    "formal_evaluation": false,
+    "new_MC_sampling": false,
+    "new_model_forward": false,
+    "recalibration": false,
+    "training": false
+  },
+  "selection_safety": {
+    "centroid_only": false,
+    "current_causal_only": true,
+    "formal_outcomes": false,
+    "full_box_headlamp_relevance": true,
+    "future": false,
+    "model_output": false,
+    "objects_of_interest": false,
+    "performance": false,
+    "tracks_to_predict": false
+  },
+  "source": {
+    "eligible_manifest": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part1a_headlamp_relevant_scenarios.jsonl",
+    "eligible_manifest_sha256": "b34340afd615fb92b2cf40bb2795b555c1acaa25b5778d8af7dd5bca8efd4efa",
+    "eligible_scenarios": 6922,
+    "formal_overlap": 0
+  },
+  "stage": 6,
+  "status": "PASS_CLASS_COVERED_DEVELOPMENT_COHORT_FROZEN",
+  "still_not_frozen": {
+    "actuation_rate_limits": true,
+    "class_priority": true,
+    "class_specific_gamma": true,
+    "cyclist_dimming_floor": true,
+    "cyclist_margin": true,
+    "pedestrian_dimming_floor": true,
+    "pedestrian_margin": true,
+    "temporal_smoothing": true,
+    "vehicle_dimming_floor": true,
+    "vehicle_margin": true
+  }
+}

@@ -1,0 +1,208 @@
+{
+  "block": "6.3_part2B1_frozen_gaussian_causal_forward",
+  "calibration": {
+    "alpha_evidence_paths": [
+      "root.variance_scale"
+    ],
+    "max_covariance_calibration_error": 0.0,
+    "measurement_R_t_modified": false,
+    "predictive_mean_unchanged": true,
+    "variance_scale_alpha_h": [
+      1.2347064500315355,
+      1.3451250295202921,
+      1.354822057728461,
+      1.2829700217319266
+    ]
+  },
+  "deterministic_Block63_contract": {
+    "annotation_recentering": false,
+    "future_GT_used": false,
+    "future_center_next_step": "latest_position_H0_m + mean_displacement_H0_m",
+    "predictive_covariance_used": false,
+    "signal": "Gaussian_mean_only",
+    "source_family": "calibrated_Gaussian_GRU"
+  },
+  "development_route": {
+    "causal_history_count": 27,
+    "compact_record_offset": 0,
+    "formal_evaluation": false,
+    "future_controller_access": false,
+    "payload_length": 647785,
+    "prediction_id_unique": true,
+    "scenario_id": "b85e1bd6cc8e74c0",
+    "stage2_config_packaging": "two_element_sequence"
+  },
+  "frozen_prerequisites": {
+    "calibrator": {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block45/covariance_scaler.json",
+      "sha256": "508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087"
+    },
+    "checkpoint": {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt",
+      "sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f"
+    },
+    "normalization": {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json",
+      "sha256": "3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6"
+    },
+    "part2a": {
+      "path": "/home/agni/waymo/iscai_stage6/reports/block63_part2_real_causal_association.json",
+      "sha256": "71c9d03cc9c1b33dbb371dccd7140d5226494554b6b21df7fbfa19e9f43ba71a"
+    }
+  },
+  "gaussian_runtime": {
+    "checkpoint_state_dict_sha256": "1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3",
+    "coordinate_semantics": "metric_H0_displacement",
+    "covariance_shape": [
+      27,
+      4,
+      3,
+      3
+    ],
+    "device": "cuda",
+    "forward_input_mapping": {
+      "map_context": "map_context",
+      "neighbor_histories": "neighbors",
+      "neighbor_mask": "neighbor_mask",
+      "target_history": "target"
+    },
+    "forward_signature": "(target_history, neighbor_histories, neighbor_mask, map_context) -> 'GaussianTrajectoryOutput'",
+    "mean_shape": [
+      27,
+      4,
+      3
+    ],
+    "model_parameter_count": 48484,
+    "raw_prediction_sha256": "9bb15150300e723ceea94679daff85fc437c7fc8c6aa89c58a2c1b1c19ff9919",
+    "repeated_forward_same_sha256": true,
+    "runtime_first_s": 0.0749378529144451,
+    "runtime_second_s": 0.0006616880418732762
+  },
+  "identity_safe_posterior": {
+    "anonymous_row_selection": false,
+    "causal_anchor_present": true,
+    "digest_sha256": "de6a063cdf99cd2b461bf27592650dfdbc5735859d9693160540467782ec30f0",
+    "jsonl_path": "/home/agni/waymo/iscai_stage6/artifacts/block63/identity_safe_development_gaussian_posterior.jsonl",
+    "jsonl_sha256": "318b22dfc3788195a1432169075d1c8654f0d183337711918db2303b5668f5ea",
+    "npz_path": "/home/agni/waymo/iscai_stage6/artifacts/block63/identity_safe_development_gaussian_posterior.npz",
+    "npz_sha256": "2d35613bfb0bdc7133c5b3e96b4ab28e9cca64340442f9a2ab1bcf9db3aad914",
+    "prediction_identity_present": true,
+    "record_count": 27,
+    "scenario_identity_present": true
+  },
+  "model_input": {
+    "attach_supervision_called": false,
+    "future_labels_read": false,
+    "map_context_shape": [
+      27,
+      10
+    ],
+    "map_context_source": "build_static_map_index_H0(AdaptedScenario.frames.T_H0_from_W) + map_context_summary(CausalTrackHistory.latest_position_H0_m)",
+    "objects_of_interest_used": false,
+    "payload_count": 27,
+    "tracks_to_predict_used": false
+  },
+  "next_required_step": "Block6.3 Part2B/2: consume only the identity-safe Gaussian mean + causal anchor, execute the already-frozen reciprocal association, create 0.1/0.3/0.5/1.0 s full 3-D future boxes, Stage5 tangent yaw, eight-corner headlamp projection, and retain the three unmatched ADB actors on original-reactive fallback.",
+  "normalization": {
+    "normalizer_binding": {
+      "aliases_used": false,
+      "binding_mode": "exact_frozen_statistics_mapping_directly",
+      "calibration_used": false,
+      "constructor_signature": "(statistics, *, device)",
+      "development_used": false,
+      "device": "cuda",
+      "fit_only": true,
+      "intermediate_statistics_class": false,
+      "numeric_defaults_injected": false,
+      "required_statistics_keys": [
+        "continuous_feature_mean",
+        "continuous_feature_std",
+        "map_mean",
+        "map_std",
+        "label_displacement_mean",
+        "label_displacement_std"
+      ],
+      "validation_used": false
+    },
+    "prepare": {
+      "canonical_alias_fallback": false,
+      "class_id_placeholder_shape": [
+        27
+      ],
+      "evaluator_only_placeholder_keys": [
+        "future",
+        "future_mask",
+        "class_id"
+      ],
+      "exact_frozen_prepare_contract": true,
+      "future_mask_placeholder_shape": [
+        27,
+        4
+      ],
+      "future_placeholder_shape": [
+        27,
+        4,
+        3
+      ],
+      "map_context_shape": [
+        27,
+        10
+      ],
+      "model_input_keys": [
+        "target",
+        "neighbors",
+        "neighbor_mask",
+        "map_context"
+      ],
+      "neighbor_mask_shape": [
+        27,
+        8
+      ],
+      "neighbors_shape": [
+        27,
+        8,
+        11,
+        14
+      ],
+      "placeholder_fields_are_model_inputs": false,
+      "placeholder_future_GT": false,
+      "placeholder_truth_class": false,
+      "prepare_source_keys": [
+        "class_id",
+        "future",
+        "future_mask",
+        "map_context",
+        "neighbor_mask",
+        "neighbors",
+        "target"
+      ],
+      "target_shape": [
+        27,
+        11,
+        14
+      ]
+    },
+    "source": "fit_only",
+    "synthetic_placeholder_fields_are_model_inputs": false
+  },
+  "regression": {
+    "log": "/home/agni/waymo/iscai_stage6/artifacts/block63/block63_part2b1_stage6_regression.log",
+    "log_sha256": "e78b1632757c038d05bc5c830af01a1f457f614a82c5a0314d965e4278f2658f",
+    "pass": true,
+    "return_code": 0,
+    "test_count": 98
+  },
+  "scientific_execution": {
+    "actual_model_forward": true,
+    "formal_N120_evaluation": false,
+    "future_GT_controller_use": false,
+    "parameter_tuning": false,
+    "real_causal_observation_route": true,
+    "recalibration": false,
+    "retraining": false,
+    "training": false,
+    "upstream_modified": false
+  },
+  "stage": 6,
+  "status": "PASS_IDENTITY_SAFE_FROZEN_GAUSSIAN_FORWARD"
+}

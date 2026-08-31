@@ -1,0 +1,93 @@
+{
+  "acceptance_boundary": {
+    "NI_deltas_modified": false,
+    "formal_evaluation": false,
+    "primary_acceptance_tested": false
+  },
+  "block": "6.8_development_stage1_class_gamma",
+  "candidate_space": {
+    "equivalent_gamma": "k / 8192",
+    "k_max": 8191,
+    "k_min": 0,
+    "sample_count": 8192,
+    "step": 1,
+    "strict_threshold": "count > k"
+  },
+  "class_order_in_curve_file": [
+    "TYPE_VEHICLE",
+    "TYPE_PEDESTRIAN",
+    "TYPE_CYCLIST"
+  ],
+  "development_only": true,
+  "formal_outcomes_read": false,
+  "immutable_after_this_freeze": [
+    "TYPE_VEHICLE k/gamma",
+    "TYPE_PEDESTRIAN k/gamma",
+    "TYPE_CYCLIST k/gamma"
+  ],
+  "missing_future_semantics": "actor remains in frozen population; invalid future state at a horizon is NA for that actor-horizon objective",
+  "objective": "macro mean per valid actor-horizon full-box mask IoU against constructed future evaluator reference",
+  "selected": {
+    "TYPE_CYCLIST": {
+      "exact_maximizer_count": 1,
+      "gamma_equivalent": 0.0679931640625,
+      "invalid_future_actor_horizon_pairs": 10,
+      "k": 557,
+      "largest_maximizer_k": 557,
+      "objective": 0.2451696448623915,
+      "scored_actor_horizon_pairs": 182,
+      "smallest_maximizer_k": 557,
+      "tie_break": "larger_k_first",
+      "valid_empty_oracle_pairs": 0
+    },
+    "TYPE_PEDESTRIAN": {
+      "exact_maximizer_count": 1,
+      "gamma_equivalent": 0.0609130859375,
+      "invalid_future_actor_horizon_pairs": 28,
+      "k": 499,
+      "largest_maximizer_k": 499,
+      "objective": 0.25486530932489326,
+      "scored_actor_horizon_pairs": 412,
+      "smallest_maximizer_k": 499,
+      "tie_break": "larger_k_first",
+      "valid_empty_oracle_pairs": 6
+    },
+    "TYPE_VEHICLE": {
+      "exact_maximizer_count": 1,
+      "gamma_equivalent": 0.11962890625,
+      "invalid_future_actor_horizon_pairs": 57,
+      "k": 980,
+      "largest_maximizer_k": 980,
+      "objective": 0.442779087781594,
+      "scored_actor_horizon_pairs": 2819,
+      "smallest_maximizer_k": 980,
+      "tie_break": "smaller_k_first",
+      "valid_empty_oracle_pairs": 40
+    }
+  },
+  "stage": 6,
+  "stage1_only": {
+    "actuation_rate_selected": false,
+    "additional_class_margin_selected": false,
+    "class_floor_selected": false,
+    "gamma_selected": true,
+    "temporal_smoothing_selected": false
+  },
+  "status": "FROZEN_STAGE1_CLASS_GAMMA_BEFORE_STAGE2_MARGIN_SELECTION",
+  "upstream_hashes": {
+    "acceptance": "e103466b1a6eb62be4e6746029147cbda9671b05130acba5210a3ab7328e6b81",
+    "cohort": "57440e3d976e7aeff44811b5eeb075dc56e0e0e070a3832ec72d354253b998c9",
+    "geometry_bind": "d5737f95ded6ea1d7f49670c589fc15cc80531b62038707198d4ea7b5fd393bd",
+    "geometry_module": "f6e6cc0dd362338eeeaae9d8e25947434a3e7c64b350f0baf81a79a46159f94e",
+    "grid_binding": "be5145fe60a941e7906639916cfa384d5674dc29f294f5a42e12c962bc4df4bc",
+    "ledger": "ac2b954571cdd0166bbcfa5bb8b2956785d1e132288dbe4af7fe2d55adeafcaa",
+    "ni_delta": "a77e548e060c314dd98a7220b0f9ed3aebd5d1978eb70f456b82920e792a29d4",
+    "pocc_manifest": "c361ed640b91850831d7e7177d89733fedd3e171f5f3111bcd93698c74a4a300",
+    "predictive_matches": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6",
+    "preoutcome": "8364c7cdfa4b66d820823c804d45905a207f77f66b53f06a6383e7722b8a9970",
+    "prereg": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e",
+    "runtime_bind": "ade81658661fd4652fb6c1c6abc88e8b12559f7f06903b729b4a73e6ef3428e8",
+    "timestamp_binding": "51a3b56a119467001a9f4617e1e19dc82c548c0a30c79fc9c4a9c1f5ef27bf56"
+  },
+  "valid_empty_oracle_semantics": "valid future GT outside actuator support remains a scored empty oracle; empty/empty IoU = 1"
+}

@@ -1,0 +1,78 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage5/scripts/run_block510_part1_acceptance_audit.py", line 2052, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage5/scripts/run_block510_part1_acceptance_audit.py", line 956, in main
+    require(
+    ~~~~~~~^
+        has_any(
+        ^^^^^^^^
+    ...<12 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage5/scripts/run_block510_part1_acceptance_audit.py", line 195, in require
+    raise RuntimeError(message)
+RuntimeError: Block5.7 lacks fallback/reacquisition evidence.
+============================================================
+STAGE 5 — BLOCK 5.10 PART 1/2
+FINAL ACCEPTANCE AUDIT BEFORE FREEZE
+============================================================
+
+===== A. STAGES 0–4 / STAGE4 HANDOFF CONTINUITY =====
+Stages0–4 PDF compliance = PASS
+Stage4 closure            = COMPLETE_FROZEN
+Stage4→Stage5 handoff      = EXACT PASS
+formal N=120 manifest      = EXACT PASS
+
+===== B. BLOCKS 5.0 → 5.7 =====
+Block 5.0 = PASS
+Block 5.1 = PASS
+Block 5.2 = PASS
+Block 5.3 = PASS
+Block 5.4 = PASS
+Block 5.5 = PASS
+Block 5.6 = PASS
+Block 5.7 = PASS
+
+===== C. RECEIVER-AWARE POSTERIOR =====
+receiver/angular posterior = PASS
+centroid baseline           = PASS
+known receiver offset       = PASS
+uncertain receiver offset   = PASS
+
+===== D. CODEBOOKS / BEAM PROBABILITIES =====
+16 / 32 / 64 codebooks    = PASS
+beam probability vectors  = EXACT PASS
+
+===== E. REQUIRED BEAM BASELINES =====
+exhaustive                  = PASS
+previous-beam persistence   = PASS
+geometry nearest beam       = PASS
+fixed Top-1                 = PASS
+fixed Top-3                 = PASS
+fixed Top-5                 = PASS
+oracle beam set             = PASS
+blockage-aware Top-K      = OPTIONAL / NOT REQUIRED
+
+===== F. ADAPTIVE TOP-K CONTRACT =====
+q = 0.90                = PASS
+q = 0.95 nominal        = PASS
+q = 0.975               = PASS
+q = 0.99                = PASS
+horizons 0.1/0.3/0.5/1s = PASS
+
+===== G. LATENCY / FALLBACK =====
+
+============================================================
+BLOCK 5.10 PART 1/2 = BLOCKED
+============================================================
+exception = RuntimeError Block5.7 lacks fallback/reacquisition evidence.
+
+training/formal inference = NO
+parameter tuning          = NO
+scientific outputs changed= NO
+Stage5 final freeze       = NO
+Stage6 started            = NO
+terminal remains open     = YES

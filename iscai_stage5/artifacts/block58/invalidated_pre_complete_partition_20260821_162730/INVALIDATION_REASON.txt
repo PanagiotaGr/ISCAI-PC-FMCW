@@ -1,0 +1,16 @@
+Previous Block5.8 formal result invalidated by structural implementation defect.
+
+Frozen Stage5 planning contract requires the primary beam-probability
+decision cells to be unique/non-overlapping and to satisfy sum_b P_b = 1.
+
+The superseded implementation used the finite +/-12 degree physical gain
+sector also as a bounded probability-decision domain, leaving large
+outside_support_mass. Formal exhaustive coverage was therefore limited to
+approximately 24-27 percent independently of codebook size.
+
+Structural repair:
+- physical beam/gain sector unchanged;
+- probability decision cells form a complete edge-extended partition;
+- no posterior mass discarded or renormalized;
+- q, alpha, Stage4 posterior, covariance calibration and receiver policy unchanged;
+- optical link is still evaluated at the actual realized receiver angle.

@@ -1,0 +1,5245 @@
+{
+  "Stage6_regression": 224,
+  "authority": {
+    "current_state_binding_required_before_sweep": true,
+    "runtime_initial_state": "current causal illumination",
+    "structural_smoke_all_on_authoritative_for_selection": false
+  },
+  "block": "6.8_stage4_current_illumination_authority_discovery",
+  "frozen_inputs": {
+    "/home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e",
+    "/home/agni/waymo/iscai_stage6/configs/stage6_development_stage3_class_floor_freeze.json": "c8536a1a2f888ebc3310cb900626cf0c8c0c2ca3ce34c2d321120a269c548d00",
+    "/home/agni/waymo/iscai_stage6/configs/stage6_reactive_development_scoring_contract.json": "454d22a2f067025fd8dde877546b7305c4357000126585c860a4a2d9ef3535d5"
+  },
+  "inventory": [
+    {
+      "bytes": 16208,
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_final_illumination_route_extract.log",
+      "sha256": "a810407f71c2315c4817d4f008e7e26f8026335ceca8cababcf79a514985d781"
+    },
+    {
+      "bytes": 850448,
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_decision_ledger.jsonl",
+      "sha256": "ac2b954571cdd0166bbcfa5bb8b2956785d1e132288dbe4af7fe2d55adeafcaa"
+    },
+    {
+      "bytes": 144769088,
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_t0_maps.npy",
+      "sha256": "7c5d63c76c3d9ef74adbbd7a68e3ce7483b1dd80fd262cba06f6ce1909994993"
+    },
+    {
+      "bytes": 2888,
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_part2b_part1_reactive_decision_ledger.log",
+      "sha256": "6ce8a7d1b71a7e9acbf60921582b600dbb07be7b39aaaa611a06db254ceceebc"
+    },
+    {
+      "bytes": 3896,
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_reactive_only_ni_delta_freeze.log",
+      "sha256": "52f70bdc590a17b1043f947bc5d1c89d65081101cae32bea4401947c0c3ad243"
+    },
+    {
+      "bytes": 91629,
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_reactive_only_ni_values.jsonl",
+      "sha256": "3a81d6d39b29a2d30247f30f06f0e02bedd47ecc754a0eb550611947f6e9b0d5"
+    },
+    {
+      "bytes": 3398,
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_reactive_scoring_semantics_freeze.log",
+      "sha256": "bf5557f1379d113982be094c13b93034aee21a3894c366d131fd46e588919f4b"
+    },
+    {
+      "bytes": 61901,
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch/run_block68_part2b_part1_reactive_decision_ledger.pre_patch.py",
+      "sha256": "fb9c62a46f2ad238fbbbf9ddb4ce791c02e74b65c66f316e2f586ddbd2bd13d6"
+    },
+    {
+      "bytes": 61901,
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch_v2/run_block68_part2b_part1_reactive_decision_ledger.pre_v2.py",
+      "sha256": "fb9c62a46f2ad238fbbbf9ddb4ce791c02e74b65c66f316e2f586ddbd2bd13d6"
+    },
+    {
+      "bytes": 61901,
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch_v3/run_block68_part2b_part1_reactive_decision_ledger.pre_v3.py",
+      "sha256": "fb9c62a46f2ad238fbbbf9ddb4ce791c02e74b65c66f316e2f586ddbd2bd13d6"
+    },
+    {
+      "bytes": 61901,
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch_v4/run_block68_part2b_part1_reactive_decision_ledger.pre_v4.py",
+      "sha256": "fb9c62a46f2ad238fbbbf9ddb4ce791c02e74b65c66f316e2f586ddbd2bd13d6"
+    },
+    {
+      "bytes": 57526,
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/provenance_repair/run_block68_reactive_only_ni_delta_freeze.pre_provenance_patch.py",
+      "sha256": "759ea459a228560c9757380b0255a0357c16a4d6965ba0245b24dd5f3b0ec036"
+    },
+    {
+      "bytes": 16414,
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage4_preoutcome/current_illumination_authority_discovery.log",
+      "sha256": "62398b3e5f754477cb5e5c526fb86ac85d31a9b3fd69e382d6884167b4f9c564"
+    },
+    {
+      "bytes": 57491,
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/timestamp_alignment_superseding/run_block68_reactive_only_ni_delta_freeze.pre_superseding_patch.py",
+      "sha256": "35fedb5ac974140626ec64ab95ff142328366a77bffeb2815bce16e4953249dd"
+    },
+    {
+      "bytes": 3672,
+      "path": "/home/agni/waymo/iscai_stage6/configs/block62_part_a_reactive_binding.json",
+      "sha256": "a9773e94de81c1d2d081ddb7264f062690c761057ee8dc2c303b1c0e7f6554b0"
+    },
+    {
+      "bytes": 1639,
+      "path": "/home/agni/waymo/iscai_stage6/configs/block62_static_reactive_kernel_contract.json",
+      "sha256": "df4cf1e8fd18f3bc9cd48cbae4a6c2091e37313cbc1a5b2cefe48bd340eb5d60"
+    },
+    {
+      "bytes": 1126,
+      "path": "/home/agni/waymo/iscai_stage6/configs/block63_part2_runtime_route_decision.json",
+      "sha256": "f695e1d91ce3b6fb198b3841bb9a50f1ad2174964c2874839097eb588a61500f"
+    },
+    {
+      "bytes": 3736,
+      "path": "/home/agni/waymo/iscai_stage6/configs/part_a_reactive_adb_adapter_contract.json",
+      "sha256": "d552e9d766ec356fbf57079a647a7b3c5e882a6e153c8b9e5f06c8b207539e4c"
+    },
+    {
+      "bytes": 3293,
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_frozen_illumination_grid_runtime_binding.json",
+      "sha256": "be5145fe60a941e7906639916cfa384d5674dc29f294f5a42e12c962bc4df4bc"
+    },
+    {
+      "bytes": 2653,
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_reactive_development_scoring_contract.json",
+      "sha256": "454d22a2f067025fd8dde877546b7305c4357000126585c860a4a2d9ef3535d5"
+    },
+    {
+      "bytes": 4894,
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_reactive_future_truth_scoring_contract.json",
+      "sha256": "8364c7cdfa4b66d820823c804d45905a207f77f66b53f06a6383e7722b8a9970"
+    },
+    {
+      "bytes": 2054,
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_reactive_future_truth_timestamp_alignment_amendment.json",
+      "sha256": "986174594522f735646eb9c9bccbfce7c167d861c0ae6d13baae53b89786b525"
+    },
+    {
+      "bytes": 185371,
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_reactive_future_truth_timestamp_alignment_superseding.json",
+      "sha256": "51a3b56a119467001a9f4617e1e19dc82c548c0a30c79fc9c4a9c1f5ef27bf56"
+    },
+    {
+      "bytes": 2190,
+      "path": "/home/agni/waymo/iscai_stage6/reports/block62_part1_static_reactive_kernel.json",
+      "sha256": "865c81eeb689a1b0c7e41b08117c9197c19e5cac76de147a07898b17c2224477"
+    },
+    {
+      "bytes": 2513,
+      "path": "/home/agni/waymo/iscai_stage6/reports/block62_part2_exact_part_a_reactive.json",
+      "sha256": "b9b2eebc55cba4c996732d236455e82b41227e95cad792d6960eafde60bedaeb"
+    },
+    {
+      "bytes": 248469,
+      "path": "/home/agni/waymo/iscai_stage6/reports/block63_map_context_binding_audit.json",
+      "sha256": "697587906d6d0a33ba23cb15c83665595f93151152bfa68310cc996dd262682a"
+    },
+    {
+      "bytes": 3898,
+      "path": "/home/agni/waymo/iscai_stage6/reports/block66_part0b_development_partition_resolution.json",
+      "sha256": "1e7860b9589d7ce62791c5c48802fb06f90e2ccfca5d90b8ec6b528e5e3bb032"
+    },
+    {
+      "bytes": 12111,
+      "path": "/home/agni/waymo/iscai_stage6/reports/block68_final_illumination_route_extract.json",
+      "sha256": "cc9ca9028c2b7730b584f23e5f0901d6631e28e967098f791efc843b6840b68a"
+    },
+    {
+      "bytes": 4526,
+      "path": "/home/agni/waymo/iscai_stage6/reports/block68_reactive_decision_ledger_freeze.json",
+      "sha256": "6ca868dbdf13e8a675813d4af2d3c814ce5297155126e5124ac452131670903b"
+    },
+    {
+      "bytes": 3931,
+      "path": "/home/agni/waymo/iscai_stage6/reports/block68_reactive_development_scoring_freeze.json",
+      "sha256": "0fc8089bdfbf20eb5e187e71a6a736fefea59b3aac6b34ff373237016d8473f9"
+    },
+    {
+      "bytes": 4319,
+      "path": "/home/agni/waymo/iscai_stage6/reports/block68_reactive_only_ni_delta_freeze.json",
+      "sha256": "821c845c5be2a60722d09d3a58160dafd08cb7cba6626e238a37a58eca661c9c"
+    }
+  ],
+  "json_sources": {
+    "/home/agni/waymo/iscai_stage6/configs/stage6_development_stage3_floor_scoring_semantics.json": {
+      "relevant_leaves": [],
+      "sha256": "a8bf30b29056562eb303f287acfcca6d8aee011f26a353897f8d18b47325e1b3"
+    },
+    "/home/agni/waymo/iscai_stage6/configs/stage6_reactive_development_scoring_contract.json": {
+      "relevant_leaves": [
+        {
+          "key": "original_reactive_ADB.controller_state_source",
+          "value": "current_causal_state_t0_only"
+        },
+        {
+          "key": "original_reactive_ADB.future_scoring_schedule",
+          "value": "repeat_the_already_made_t0_reactive_illumination_map_unchanged_at_each_frozen_horizon"
+        }
+      ],
+      "sha256": "454d22a2f067025fd8dde877546b7305c4357000126585c860a4a2d9ef3535d5"
+    },
+    "/home/agni/waymo/iscai_stage6/reports/block68_reactive_decision_ledger_freeze.json": {
+      "relevant_leaves": [
+        {
+          "key": "frozen_outputs.maps.path",
+          "value": "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_t0_maps.npy"
+        },
+        {
+          "key": "reactive_decision_semantics.decision_time",
+          "value": "current_causal_t0"
+        },
+        {
+          "key": "reactive_decision_semantics.future_scoring_schedule",
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        }
+      ],
+      "sha256": "6ca868dbdf13e8a675813d4af2d3c814ce5297155126e5124ac452131670903b"
+    }
+  },
+  "ledger_details": {
+    "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_decision_ledger.jsonl": {
+      "key_paths": [
+        "block",
+        "causality.P_occ_opened",
+        "causality.future_state_field_access_by_runner",
+        "causality.future_track_duration_selector",
+        "causality.future_truth_scoring",
+        "causality.future_validity_selector",
+        "causality.objects_of_interest_selector",
+        "causality.performance_metric_computed",
+        "causality.tracks_to_predict_selector",
+        "cohort_index",
+        "cohort_rank",
+        "current_time_index",
+        "original_reactive_ADB.constructed_oracle_input",
+        "original_reactive_ADB.controller_input_class",
+        "original_reactive_ADB.decision_time",
+        "original_reactive_ADB.future_controller_refresh",
+        "original_reactive_ADB.future_input",
+        "original_reactive_ADB.future_reobservation",
+        "original_reactive_ADB.posterior_input",
+        "original_reactive_ADB.score_schedule",
+        "original_reactive_ADB.vehicle_center_count",
+        "original_reactive_ADB.vehicle_centers_H0_m[0][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[0][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[0][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[10][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[10][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[10][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[11][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[11][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[11][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[12][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[12][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[12][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[13][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[13][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[13][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[14][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[14][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[14][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[15][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[15][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[15][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[16][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[16][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[16][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[17][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[17][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[17][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[18][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[18][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[18][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[19][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[19][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[19][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[1][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[1][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[1][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[20][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[20][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[20][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[21][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[21][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[21][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[22][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[22][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[22][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[2][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[2][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[2][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[3][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[3][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[3][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[4][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[4][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[4][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[5][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[5][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[5][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[6][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[6][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[6][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[7][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[7][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[7][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[8][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[8][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[8][2]",
+        "original_reactive_ADB.vehicle_centers_H0_m[9][0]",
+        "original_reactive_ADB.vehicle_centers_H0_m[9][1]",
+        "original_reactive_ADB.vehicle_centers_H0_m[9][2]",
+        "scenario_id",
+        "selected_adb_actor_count",
+        "selected_adb_actor_counts.TYPE_CYCLIST",
+        "selected_adb_actor_counts.TYPE_PEDESTRIAN",
+        "selected_adb_actor_counts.TYPE_VEHICLE",
+        "selected_adb_actors[0].actor_box_index",
+        "selected_adb_actors[0].causal_box_future_state_used",
+        "selected_adb_actors[0].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[0].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[0].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[0].current_box_H0.height_m",
+        "selected_adb_actors[0].current_box_H0.length_m",
+        "selected_adb_actors[0].current_box_H0.width_m",
+        "selected_adb_actors[0].current_box_H0.yaw_rad",
+        "selected_adb_actors[0].future_used_for_eligibility",
+        "selected_adb_actors[0].geometry_parity.center_m",
+        "selected_adb_actors[0].geometry_parity.dimension_m",
+        "selected_adb_actors[0].geometry_parity.yaw_rad",
+        "selected_adb_actors[0].object_type",
+        "selected_adb_actors[0].objects_of_interest_used",
+        "selected_adb_actors[0].prediction_id",
+        "selected_adb_actors[0].reactive_control_input",
+        "selected_adb_actors[0].selector_route",
+        "selected_adb_actors[0].track_id",
+        "selected_adb_actors[0].track_index",
+        "selected_adb_actors[0].tracks_to_predict_used",
+        "selected_adb_actors[10].actor_box_index",
+        "selected_adb_actors[10].causal_box_future_state_used",
+        "selected_adb_actors[10].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[10].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[10].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[10].current_box_H0.height_m",
+        "selected_adb_actors[10].current_box_H0.length_m",
+        "selected_adb_actors[10].current_box_H0.width_m",
+        "selected_adb_actors[10].current_box_H0.yaw_rad",
+        "selected_adb_actors[10].future_used_for_eligibility",
+        "selected_adb_actors[10].geometry_parity.center_m",
+        "selected_adb_actors[10].geometry_parity.dimension_m",
+        "selected_adb_actors[10].geometry_parity.yaw_rad",
+        "selected_adb_actors[10].object_type",
+        "selected_adb_actors[10].objects_of_interest_used",
+        "selected_adb_actors[10].prediction_id",
+        "selected_adb_actors[10].reactive_control_input",
+        "selected_adb_actors[10].selector_route",
+        "selected_adb_actors[10].track_id",
+        "selected_adb_actors[10].track_index",
+        "selected_adb_actors[10].tracks_to_predict_used",
+        "selected_adb_actors[11].actor_box_index",
+        "selected_adb_actors[11].causal_box_future_state_used",
+        "selected_adb_actors[11].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[11].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[11].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[11].current_box_H0.height_m",
+        "selected_adb_actors[11].current_box_H0.length_m",
+        "selected_adb_actors[11].current_box_H0.width_m",
+        "selected_adb_actors[11].current_box_H0.yaw_rad",
+        "selected_adb_actors[11].future_used_for_eligibility",
+        "selected_adb_actors[11].geometry_parity.center_m",
+        "selected_adb_actors[11].geometry_parity.dimension_m",
+        "selected_adb_actors[11].geometry_parity.yaw_rad",
+        "selected_adb_actors[11].object_type",
+        "selected_adb_actors[11].objects_of_interest_used",
+        "selected_adb_actors[11].prediction_id",
+        "selected_adb_actors[11].reactive_control_input",
+        "selected_adb_actors[11].selector_route",
+        "selected_adb_actors[11].track_id",
+        "selected_adb_actors[11].track_index",
+        "selected_adb_actors[11].tracks_to_predict_used",
+        "selected_adb_actors[12].actor_box_index",
+        "selected_adb_actors[12].causal_box_future_state_used",
+        "selected_adb_actors[12].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[12].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[12].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[12].current_box_H0.height_m",
+        "selected_adb_actors[12].current_box_H0.length_m",
+        "selected_adb_actors[12].current_box_H0.width_m",
+        "selected_adb_actors[12].current_box_H0.yaw_rad",
+        "selected_adb_actors[12].future_used_for_eligibility",
+        "selected_adb_actors[12].geometry_parity.center_m",
+        "selected_adb_actors[12].geometry_parity.dimension_m",
+        "selected_adb_actors[12].geometry_parity.yaw_rad",
+        "selected_adb_actors[12].object_type",
+        "selected_adb_actors[12].objects_of_interest_used",
+        "selected_adb_actors[12].prediction_id",
+        "selected_adb_actors[12].reactive_control_input",
+        "selected_adb_actors[12].selector_route",
+        "selected_adb_actors[12].track_id",
+        "selected_adb_actors[12].track_index",
+        "selected_adb_actors[12].tracks_to_predict_used",
+        "selected_adb_actors[13].actor_box_index",
+        "selected_adb_actors[13].causal_box_future_state_used",
+        "selected_adb_actors[13].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[13].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[13].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[13].current_box_H0.height_m",
+        "selected_adb_actors[13].current_box_H0.length_m",
+        "selected_adb_actors[13].current_box_H0.width_m",
+        "selected_adb_actors[13].current_box_H0.yaw_rad",
+        "selected_adb_actors[13].future_used_for_eligibility",
+        "selected_adb_actors[13].geometry_parity.center_m",
+        "selected_adb_actors[13].geometry_parity.dimension_m",
+        "selected_adb_actors[13].geometry_parity.yaw_rad",
+        "selected_adb_actors[13].object_type",
+        "selected_adb_actors[13].objects_of_interest_used",
+        "selected_adb_actors[13].prediction_id",
+        "selected_adb_actors[13].reactive_control_input",
+        "selected_adb_actors[13].selector_route",
+        "selected_adb_actors[13].track_id",
+        "selected_adb_actors[13].track_index",
+        "selected_adb_actors[13].tracks_to_predict_used",
+        "selected_adb_actors[14].actor_box_index",
+        "selected_adb_actors[14].causal_box_future_state_used",
+        "selected_adb_actors[14].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[14].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[14].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[14].current_box_H0.height_m",
+        "selected_adb_actors[14].current_box_H0.length_m",
+        "selected_adb_actors[14].current_box_H0.width_m",
+        "selected_adb_actors[14].current_box_H0.yaw_rad",
+        "selected_adb_actors[14].future_used_for_eligibility",
+        "selected_adb_actors[14].geometry_parity.center_m",
+        "selected_adb_actors[14].geometry_parity.dimension_m",
+        "selected_adb_actors[14].geometry_parity.yaw_rad",
+        "selected_adb_actors[14].object_type",
+        "selected_adb_actors[14].objects_of_interest_used",
+        "selected_adb_actors[14].prediction_id",
+        "selected_adb_actors[14].reactive_control_input",
+        "selected_adb_actors[14].selector_route",
+        "selected_adb_actors[14].track_id",
+        "selected_adb_actors[14].track_index",
+        "selected_adb_actors[14].tracks_to_predict_used",
+        "selected_adb_actors[15].actor_box_index",
+        "selected_adb_actors[15].causal_box_future_state_used",
+        "selected_adb_actors[15].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[15].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[15].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[15].current_box_H0.height_m",
+        "selected_adb_actors[15].current_box_H0.length_m",
+        "selected_adb_actors[15].current_box_H0.width_m",
+        "selected_adb_actors[15].current_box_H0.yaw_rad",
+        "selected_adb_actors[15].future_used_for_eligibility",
+        "selected_adb_actors[15].geometry_parity.center_m",
+        "selected_adb_actors[15].geometry_parity.dimension_m",
+        "selected_adb_actors[15].geometry_parity.yaw_rad",
+        "selected_adb_actors[15].object_type",
+        "selected_adb_actors[15].objects_of_interest_used",
+        "selected_adb_actors[15].prediction_id",
+        "selected_adb_actors[15].reactive_control_input",
+        "selected_adb_actors[15].selector_route",
+        "selected_adb_actors[15].track_id",
+        "selected_adb_actors[15].track_index",
+        "selected_adb_actors[15].tracks_to_predict_used",
+        "selected_adb_actors[16].actor_box_index",
+        "selected_adb_actors[16].causal_box_future_state_used",
+        "selected_adb_actors[16].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[16].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[16].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[16].current_box_H0.height_m",
+        "selected_adb_actors[16].current_box_H0.length_m",
+        "selected_adb_actors[16].current_box_H0.width_m",
+        "selected_adb_actors[16].current_box_H0.yaw_rad",
+        "selected_adb_actors[16].future_used_for_eligibility",
+        "selected_adb_actors[16].geometry_parity.center_m",
+        "selected_adb_actors[16].geometry_parity.dimension_m",
+        "selected_adb_actors[16].geometry_parity.yaw_rad",
+        "selected_adb_actors[16].object_type",
+        "selected_adb_actors[16].objects_of_interest_used",
+        "selected_adb_actors[16].prediction_id",
+        "selected_adb_actors[16].reactive_control_input",
+        "selected_adb_actors[16].selector_route",
+        "selected_adb_actors[16].track_id",
+        "selected_adb_actors[16].track_index",
+        "selected_adb_actors[16].tracks_to_predict_used",
+        "selected_adb_actors[17].actor_box_index",
+        "selected_adb_actors[17].causal_box_future_state_used",
+        "selected_adb_actors[17].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[17].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[17].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[17].current_box_H0.height_m",
+        "selected_adb_actors[17].current_box_H0.length_m",
+        "selected_adb_actors[17].current_box_H0.width_m",
+        "selected_adb_actors[17].current_box_H0.yaw_rad",
+        "selected_adb_actors[17].future_used_for_eligibility",
+        "selected_adb_actors[17].geometry_parity.center_m",
+        "selected_adb_actors[17].geometry_parity.dimension_m",
+        "selected_adb_actors[17].geometry_parity.yaw_rad",
+        "selected_adb_actors[17].object_type",
+        "selected_adb_actors[17].objects_of_interest_used",
+        "selected_adb_actors[17].prediction_id",
+        "selected_adb_actors[17].reactive_control_input",
+        "selected_adb_actors[17].selector_route",
+        "selected_adb_actors[17].track_id",
+        "selected_adb_actors[17].track_index",
+        "selected_adb_actors[17].tracks_to_predict_used",
+        "selected_adb_actors[18].actor_box_index",
+        "selected_adb_actors[18].causal_box_future_state_used",
+        "selected_adb_actors[18].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[18].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[18].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[18].current_box_H0.height_m",
+        "selected_adb_actors[18].current_box_H0.length_m",
+        "selected_adb_actors[18].current_box_H0.width_m",
+        "selected_adb_actors[18].current_box_H0.yaw_rad",
+        "selected_adb_actors[18].future_used_for_eligibility",
+        "selected_adb_actors[18].geometry_parity.center_m",
+        "selected_adb_actors[18].geometry_parity.dimension_m",
+        "selected_adb_actors[18].geometry_parity.yaw_rad",
+        "selected_adb_actors[18].object_type",
+        "selected_adb_actors[18].objects_of_interest_used",
+        "selected_adb_actors[18].prediction_id",
+        "selected_adb_actors[18].reactive_control_input",
+        "selected_adb_actors[18].selector_route",
+        "selected_adb_actors[18].track_id",
+        "selected_adb_actors[18].track_index",
+        "selected_adb_actors[18].tracks_to_predict_used",
+        "selected_adb_actors[19].actor_box_index",
+        "selected_adb_actors[19].causal_box_future_state_used",
+        "selected_adb_actors[19].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[19].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[19].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[19].current_box_H0.height_m",
+        "selected_adb_actors[19].current_box_H0.length_m",
+        "selected_adb_actors[19].current_box_H0.width_m",
+        "selected_adb_actors[19].current_box_H0.yaw_rad",
+        "selected_adb_actors[19].future_used_for_eligibility",
+        "selected_adb_actors[19].geometry_parity.center_m",
+        "selected_adb_actors[19].geometry_parity.dimension_m",
+        "selected_adb_actors[19].geometry_parity.yaw_rad",
+        "selected_adb_actors[19].object_type",
+        "selected_adb_actors[19].objects_of_interest_used",
+        "selected_adb_actors[19].prediction_id",
+        "selected_adb_actors[19].reactive_control_input",
+        "selected_adb_actors[19].selector_route",
+        "selected_adb_actors[19].track_id",
+        "selected_adb_actors[19].track_index",
+        "selected_adb_actors[19].tracks_to_predict_used",
+        "selected_adb_actors[1].actor_box_index",
+        "selected_adb_actors[1].causal_box_future_state_used",
+        "selected_adb_actors[1].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[1].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[1].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[1].current_box_H0.height_m",
+        "selected_adb_actors[1].current_box_H0.length_m",
+        "selected_adb_actors[1].current_box_H0.width_m",
+        "selected_adb_actors[1].current_box_H0.yaw_rad",
+        "selected_adb_actors[1].future_used_for_eligibility",
+        "selected_adb_actors[1].geometry_parity.center_m",
+        "selected_adb_actors[1].geometry_parity.dimension_m",
+        "selected_adb_actors[1].geometry_parity.yaw_rad",
+        "selected_adb_actors[1].object_type",
+        "selected_adb_actors[1].objects_of_interest_used",
+        "selected_adb_actors[1].prediction_id",
+        "selected_adb_actors[1].reactive_control_input",
+        "selected_adb_actors[1].selector_route",
+        "selected_adb_actors[1].track_id",
+        "selected_adb_actors[1].track_index",
+        "selected_adb_actors[1].tracks_to_predict_used",
+        "selected_adb_actors[20].actor_box_index",
+        "selected_adb_actors[20].causal_box_future_state_used",
+        "selected_adb_actors[20].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[20].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[20].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[20].current_box_H0.height_m",
+        "selected_adb_actors[20].current_box_H0.length_m",
+        "selected_adb_actors[20].current_box_H0.width_m",
+        "selected_adb_actors[20].current_box_H0.yaw_rad",
+        "selected_adb_actors[20].future_used_for_eligibility",
+        "selected_adb_actors[20].geometry_parity.center_m",
+        "selected_adb_actors[20].geometry_parity.dimension_m",
+        "selected_adb_actors[20].geometry_parity.yaw_rad",
+        "selected_adb_actors[20].object_type",
+        "selected_adb_actors[20].objects_of_interest_used",
+        "selected_adb_actors[20].prediction_id",
+        "selected_adb_actors[20].reactive_control_input",
+        "selected_adb_actors[20].selector_route",
+        "selected_adb_actors[20].track_id",
+        "selected_adb_actors[20].track_index",
+        "selected_adb_actors[20].tracks_to_predict_used",
+        "selected_adb_actors[21].actor_box_index",
+        "selected_adb_actors[21].causal_box_future_state_used",
+        "selected_adb_actors[21].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[21].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[21].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[21].current_box_H0.height_m",
+        "selected_adb_actors[21].current_box_H0.length_m",
+        "selected_adb_actors[21].current_box_H0.width_m",
+        "selected_adb_actors[21].current_box_H0.yaw_rad",
+        "selected_adb_actors[21].future_used_for_eligibility",
+        "selected_adb_actors[21].geometry_parity.center_m",
+        "selected_adb_actors[21].geometry_parity.dimension_m",
+        "selected_adb_actors[21].geometry_parity.yaw_rad",
+        "selected_adb_actors[21].object_type",
+        "selected_adb_actors[21].objects_of_interest_used",
+        "selected_adb_actors[21].prediction_id",
+        "selected_adb_actors[21].reactive_control_input",
+        "selected_adb_actors[21].selector_route",
+        "selected_adb_actors[21].track_id",
+        "selected_adb_actors[21].track_index",
+        "selected_adb_actors[21].tracks_to_predict_used",
+        "selected_adb_actors[22].actor_box_index",
+        "selected_adb_actors[22].causal_box_future_state_used",
+        "selected_adb_actors[22].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[22].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[22].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[22].current_box_H0.height_m",
+        "selected_adb_actors[22].current_box_H0.length_m",
+        "selected_adb_actors[22].current_box_H0.width_m",
+        "selected_adb_actors[22].current_box_H0.yaw_rad",
+        "selected_adb_actors[22].future_used_for_eligibility",
+        "selected_adb_actors[22].geometry_parity.center_m",
+        "selected_adb_actors[22].geometry_parity.dimension_m",
+        "selected_adb_actors[22].geometry_parity.yaw_rad",
+        "selected_adb_actors[22].object_type",
+        "selected_adb_actors[22].objects_of_interest_used",
+        "selected_adb_actors[22].prediction_id",
+        "selected_adb_actors[22].reactive_control_input",
+        "selected_adb_actors[22].selector_route",
+        "selected_adb_actors[22].track_id",
+        "selected_adb_actors[22].track_index",
+        "selected_adb_actors[22].tracks_to_predict_used",
+        "selected_adb_actors[23].actor_box_index",
+        "selected_adb_actors[23].causal_box_future_state_used",
+        "selected_adb_actors[23].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[23].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[23].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[23].current_box_H0.height_m",
+        "selected_adb_actors[23].current_box_H0.length_m",
+        "selected_adb_actors[23].current_box_H0.width_m",
+        "selected_adb_actors[23].current_box_H0.yaw_rad",
+        "selected_adb_actors[23].future_used_for_eligibility",
+        "selected_adb_actors[23].geometry_parity.center_m",
+        "selected_adb_actors[23].geometry_parity.dimension_m",
+        "selected_adb_actors[23].geometry_parity.yaw_rad",
+        "selected_adb_actors[23].object_type",
+        "selected_adb_actors[23].objects_of_interest_used",
+        "selected_adb_actors[23].reactive_control_input",
+        "selected_adb_actors[23].selector_route",
+        "selected_adb_actors[23].track_id",
+        "selected_adb_actors[23].track_index",
+        "selected_adb_actors[23].tracks_to_predict_used",
+        "selected_adb_actors[24].actor_box_index",
+        "selected_adb_actors[24].causal_box_future_state_used",
+        "selected_adb_actors[24].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[24].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[24].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[24].current_box_H0.height_m",
+        "selected_adb_actors[24].current_box_H0.length_m",
+        "selected_adb_actors[24].current_box_H0.width_m",
+        "selected_adb_actors[24].current_box_H0.yaw_rad",
+        "selected_adb_actors[24].future_used_for_eligibility",
+        "selected_adb_actors[24].geometry_parity.center_m",
+        "selected_adb_actors[24].geometry_parity.dimension_m",
+        "selected_adb_actors[24].geometry_parity.yaw_rad",
+        "selected_adb_actors[24].object_type",
+        "selected_adb_actors[24].objects_of_interest_used",
+        "selected_adb_actors[24].prediction_id",
+        "selected_adb_actors[24].reactive_control_input",
+        "selected_adb_actors[24].selector_route",
+        "selected_adb_actors[24].track_id",
+        "selected_adb_actors[24].track_index",
+        "selected_adb_actors[24].tracks_to_predict_used",
+        "selected_adb_actors[25].actor_box_index",
+        "selected_adb_actors[25].causal_box_future_state_used",
+        "selected_adb_actors[25].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[25].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[25].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[25].current_box_H0.height_m",
+        "selected_adb_actors[25].current_box_H0.length_m",
+        "selected_adb_actors[25].current_box_H0.width_m",
+        "selected_adb_actors[25].current_box_H0.yaw_rad",
+        "selected_adb_actors[25].future_used_for_eligibility",
+        "selected_adb_actors[25].geometry_parity.center_m",
+        "selected_adb_actors[25].geometry_parity.dimension_m",
+        "selected_adb_actors[25].geometry_parity.yaw_rad",
+        "selected_adb_actors[25].object_type",
+        "selected_adb_actors[25].objects_of_interest_used",
+        "selected_adb_actors[25].prediction_id",
+        "selected_adb_actors[25].reactive_control_input",
+        "selected_adb_actors[25].selector_route",
+        "selected_adb_actors[25].track_id",
+        "selected_adb_actors[25].track_index",
+        "selected_adb_actors[25].tracks_to_predict_used",
+        "selected_adb_actors[26].actor_box_index",
+        "selected_adb_actors[26].causal_box_future_state_used",
+        "selected_adb_actors[26].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[26].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[26].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[26].current_box_H0.height_m",
+        "selected_adb_actors[26].current_box_H0.length_m",
+        "selected_adb_actors[26].current_box_H0.width_m",
+        "selected_adb_actors[26].current_box_H0.yaw_rad",
+        "selected_adb_actors[26].future_used_for_eligibility",
+        "selected_adb_actors[26].geometry_parity.center_m",
+        "selected_adb_actors[26].geometry_parity.dimension_m",
+        "selected_adb_actors[26].geometry_parity.yaw_rad",
+        "selected_adb_actors[26].object_type",
+        "selected_adb_actors[26].objects_of_interest_used",
+        "selected_adb_actors[26].reactive_control_input",
+        "selected_adb_actors[26].selector_route",
+        "selected_adb_actors[26].track_id",
+        "selected_adb_actors[26].track_index",
+        "selected_adb_actors[26].tracks_to_predict_used",
+        "selected_adb_actors[27].actor_box_index",
+        "selected_adb_actors[27].causal_box_future_state_used",
+        "selected_adb_actors[27].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[27].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[27].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[27].current_box_H0.height_m",
+        "selected_adb_actors[27].current_box_H0.length_m",
+        "selected_adb_actors[27].current_box_H0.width_m",
+        "selected_adb_actors[27].current_box_H0.yaw_rad",
+        "selected_adb_actors[27].future_used_for_eligibility",
+        "selected_adb_actors[27].geometry_parity.center_m",
+        "selected_adb_actors[27].geometry_parity.dimension_m",
+        "selected_adb_actors[27].geometry_parity.yaw_rad",
+        "selected_adb_actors[27].object_type",
+        "selected_adb_actors[27].objects_of_interest_used",
+        "selected_adb_actors[27].prediction_id",
+        "selected_adb_actors[27].reactive_control_input",
+        "selected_adb_actors[27].selector_route",
+        "selected_adb_actors[27].track_id",
+        "selected_adb_actors[27].track_index",
+        "selected_adb_actors[27].tracks_to_predict_used",
+        "selected_adb_actors[28].actor_box_index",
+        "selected_adb_actors[28].causal_box_future_state_used",
+        "selected_adb_actors[28].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[28].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[28].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[28].current_box_H0.height_m",
+        "selected_adb_actors[28].current_box_H0.length_m",
+        "selected_adb_actors[28].current_box_H0.width_m",
+        "selected_adb_actors[28].current_box_H0.yaw_rad",
+        "selected_adb_actors[28].future_used_for_eligibility",
+        "selected_adb_actors[28].geometry_parity.center_m",
+        "selected_adb_actors[28].geometry_parity.dimension_m",
+        "selected_adb_actors[28].geometry_parity.yaw_rad",
+        "selected_adb_actors[28].object_type",
+        "selected_adb_actors[28].objects_of_interest_used",
+        "selected_adb_actors[28].reactive_control_input",
+        "selected_adb_actors[28].selector_route",
+        "selected_adb_actors[28].track_id",
+        "selected_adb_actors[28].track_index",
+        "selected_adb_actors[28].tracks_to_predict_used",
+        "selected_adb_actors[29].actor_box_index",
+        "selected_adb_actors[29].causal_box_future_state_used",
+        "selected_adb_actors[29].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[29].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[29].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[29].current_box_H0.height_m",
+        "selected_adb_actors[29].current_box_H0.length_m",
+        "selected_adb_actors[29].current_box_H0.width_m",
+        "selected_adb_actors[29].current_box_H0.yaw_rad",
+        "selected_adb_actors[29].future_used_for_eligibility",
+        "selected_adb_actors[29].geometry_parity.center_m",
+        "selected_adb_actors[29].geometry_parity.dimension_m",
+        "selected_adb_actors[29].geometry_parity.yaw_rad",
+        "selected_adb_actors[29].object_type",
+        "selected_adb_actors[29].objects_of_interest_used",
+        "selected_adb_actors[29].reactive_control_input",
+        "selected_adb_actors[29].selector_route",
+        "selected_adb_actors[29].track_id",
+        "selected_adb_actors[29].track_index",
+        "selected_adb_actors[29].tracks_to_predict_used",
+        "selected_adb_actors[2].actor_box_index",
+        "selected_adb_actors[2].causal_box_future_state_used",
+        "selected_adb_actors[2].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[2].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[2].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[2].current_box_H0.height_m",
+        "selected_adb_actors[2].current_box_H0.length_m",
+        "selected_adb_actors[2].current_box_H0.width_m",
+        "selected_adb_actors[2].current_box_H0.yaw_rad",
+        "selected_adb_actors[2].future_used_for_eligibility",
+        "selected_adb_actors[2].geometry_parity.center_m",
+        "selected_adb_actors[2].geometry_parity.dimension_m",
+        "selected_adb_actors[2].geometry_parity.yaw_rad",
+        "selected_adb_actors[2].object_type",
+        "selected_adb_actors[2].objects_of_interest_used",
+        "selected_adb_actors[2].prediction_id",
+        "selected_adb_actors[2].reactive_control_input",
+        "selected_adb_actors[2].selector_route",
+        "selected_adb_actors[2].track_id",
+        "selected_adb_actors[2].track_index",
+        "selected_adb_actors[2].tracks_to_predict_used",
+        "selected_adb_actors[30].actor_box_index",
+        "selected_adb_actors[30].causal_box_future_state_used",
+        "selected_adb_actors[30].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[30].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[30].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[30].current_box_H0.height_m",
+        "selected_adb_actors[30].current_box_H0.length_m",
+        "selected_adb_actors[30].current_box_H0.width_m",
+        "selected_adb_actors[30].current_box_H0.yaw_rad",
+        "selected_adb_actors[30].future_used_for_eligibility",
+        "selected_adb_actors[30].geometry_parity.center_m",
+        "selected_adb_actors[30].geometry_parity.dimension_m",
+        "selected_adb_actors[30].geometry_parity.yaw_rad",
+        "selected_adb_actors[30].object_type",
+        "selected_adb_actors[30].objects_of_interest_used",
+        "selected_adb_actors[30].reactive_control_input",
+        "selected_adb_actors[30].selector_route",
+        "selected_adb_actors[30].track_id",
+        "selected_adb_actors[30].track_index",
+        "selected_adb_actors[30].tracks_to_predict_used",
+        "selected_adb_actors[31].actor_box_index",
+        "selected_adb_actors[31].causal_box_future_state_used",
+        "selected_adb_actors[31].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[31].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[31].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[31].current_box_H0.height_m",
+        "selected_adb_actors[31].current_box_H0.length_m",
+        "selected_adb_actors[31].current_box_H0.width_m",
+        "selected_adb_actors[31].current_box_H0.yaw_rad",
+        "selected_adb_actors[31].future_used_for_eligibility",
+        "selected_adb_actors[31].geometry_parity.center_m",
+        "selected_adb_actors[31].geometry_parity.dimension_m",
+        "selected_adb_actors[31].geometry_parity.yaw_rad",
+        "selected_adb_actors[31].object_type",
+        "selected_adb_actors[31].objects_of_interest_used",
+        "selected_adb_actors[31].prediction_id",
+        "selected_adb_actors[31].reactive_control_input",
+        "selected_adb_actors[31].selector_route",
+        "selected_adb_actors[31].track_id",
+        "selected_adb_actors[31].track_index",
+        "selected_adb_actors[31].tracks_to_predict_used",
+        "selected_adb_actors[3].actor_box_index",
+        "selected_adb_actors[3].causal_box_future_state_used",
+        "selected_adb_actors[3].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[3].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[3].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[3].current_box_H0.height_m",
+        "selected_adb_actors[3].current_box_H0.length_m",
+        "selected_adb_actors[3].current_box_H0.width_m",
+        "selected_adb_actors[3].current_box_H0.yaw_rad",
+        "selected_adb_actors[3].future_used_for_eligibility",
+        "selected_adb_actors[3].geometry_parity.center_m",
+        "selected_adb_actors[3].geometry_parity.dimension_m",
+        "selected_adb_actors[3].geometry_parity.yaw_rad",
+        "selected_adb_actors[3].object_type",
+        "selected_adb_actors[3].objects_of_interest_used",
+        "selected_adb_actors[3].prediction_id",
+        "selected_adb_actors[3].reactive_control_input",
+        "selected_adb_actors[3].selector_route",
+        "selected_adb_actors[3].track_id",
+        "selected_adb_actors[3].track_index",
+        "selected_adb_actors[3].tracks_to_predict_used",
+        "selected_adb_actors[4].actor_box_index",
+        "selected_adb_actors[4].causal_box_future_state_used",
+        "selected_adb_actors[4].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[4].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[4].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[4].current_box_H0.height_m",
+        "selected_adb_actors[4].current_box_H0.length_m",
+        "selected_adb_actors[4].current_box_H0.width_m",
+        "selected_adb_actors[4].current_box_H0.yaw_rad",
+        "selected_adb_actors[4].future_used_for_eligibility",
+        "selected_adb_actors[4].geometry_parity.center_m",
+        "selected_adb_actors[4].geometry_parity.dimension_m",
+        "selected_adb_actors[4].geometry_parity.yaw_rad",
+        "selected_adb_actors[4].object_type",
+        "selected_adb_actors[4].objects_of_interest_used",
+        "selected_adb_actors[4].prediction_id",
+        "selected_adb_actors[4].reactive_control_input",
+        "selected_adb_actors[4].selector_route",
+        "selected_adb_actors[4].track_id",
+        "selected_adb_actors[4].track_index",
+        "selected_adb_actors[4].tracks_to_predict_used",
+        "selected_adb_actors[5].actor_box_index",
+        "selected_adb_actors[5].causal_box_future_state_used",
+        "selected_adb_actors[5].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[5].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[5].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[5].current_box_H0.height_m",
+        "selected_adb_actors[5].current_box_H0.length_m",
+        "selected_adb_actors[5].current_box_H0.width_m",
+        "selected_adb_actors[5].current_box_H0.yaw_rad",
+        "selected_adb_actors[5].future_used_for_eligibility",
+        "selected_adb_actors[5].geometry_parity.center_m",
+        "selected_adb_actors[5].geometry_parity.dimension_m",
+        "selected_adb_actors[5].geometry_parity.yaw_rad",
+        "selected_adb_actors[5].object_type",
+        "selected_adb_actors[5].objects_of_interest_used",
+        "selected_adb_actors[5].prediction_id",
+        "selected_adb_actors[5].reactive_control_input",
+        "selected_adb_actors[5].selector_route",
+        "selected_adb_actors[5].track_id",
+        "selected_adb_actors[5].track_index",
+        "selected_adb_actors[5].tracks_to_predict_used",
+        "selected_adb_actors[6].actor_box_index",
+        "selected_adb_actors[6].causal_box_future_state_used",
+        "selected_adb_actors[6].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[6].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[6].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[6].current_box_H0.height_m",
+        "selected_adb_actors[6].current_box_H0.length_m",
+        "selected_adb_actors[6].current_box_H0.width_m",
+        "selected_adb_actors[6].current_box_H0.yaw_rad",
+        "selected_adb_actors[6].future_used_for_eligibility",
+        "selected_adb_actors[6].geometry_parity.center_m",
+        "selected_adb_actors[6].geometry_parity.dimension_m",
+        "selected_adb_actors[6].geometry_parity.yaw_rad",
+        "selected_adb_actors[6].object_type",
+        "selected_adb_actors[6].objects_of_interest_used",
+        "selected_adb_actors[6].prediction_id",
+        "selected_adb_actors[6].reactive_control_input",
+        "selected_adb_actors[6].selector_route",
+        "selected_adb_actors[6].track_id",
+        "selected_adb_actors[6].track_index",
+        "selected_adb_actors[6].tracks_to_predict_used",
+        "selected_adb_actors[7].actor_box_index",
+        "selected_adb_actors[7].causal_box_future_state_used",
+        "selected_adb_actors[7].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[7].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[7].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[7].current_box_H0.height_m",
+        "selected_adb_actors[7].current_box_H0.length_m",
+        "selected_adb_actors[7].current_box_H0.width_m",
+        "selected_adb_actors[7].current_box_H0.yaw_rad",
+        "selected_adb_actors[7].future_used_for_eligibility",
+        "selected_adb_actors[7].geometry_parity.center_m",
+        "selected_adb_actors[7].geometry_parity.dimension_m",
+        "selected_adb_actors[7].geometry_parity.yaw_rad",
+        "selected_adb_actors[7].object_type",
+        "selected_adb_actors[7].objects_of_interest_used",
+        "selected_adb_actors[7].prediction_id",
+        "selected_adb_actors[7].reactive_control_input",
+        "selected_adb_actors[7].selector_route",
+        "selected_adb_actors[7].track_id",
+        "selected_adb_actors[7].track_index",
+        "selected_adb_actors[7].tracks_to_predict_used",
+        "selected_adb_actors[8].actor_box_index",
+        "selected_adb_actors[8].causal_box_future_state_used",
+        "selected_adb_actors[8].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[8].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[8].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[8].current_box_H0.height_m",
+        "selected_adb_actors[8].current_box_H0.length_m",
+        "selected_adb_actors[8].current_box_H0.width_m",
+        "selected_adb_actors[8].current_box_H0.yaw_rad",
+        "selected_adb_actors[8].future_used_for_eligibility",
+        "selected_adb_actors[8].geometry_parity.center_m",
+        "selected_adb_actors[8].geometry_parity.dimension_m",
+        "selected_adb_actors[8].geometry_parity.yaw_rad",
+        "selected_adb_actors[8].object_type",
+        "selected_adb_actors[8].objects_of_interest_used",
+        "selected_adb_actors[8].prediction_id",
+        "selected_adb_actors[8].reactive_control_input",
+        "selected_adb_actors[8].selector_route",
+        "selected_adb_actors[8].track_id",
+        "selected_adb_actors[8].track_index",
+        "selected_adb_actors[8].tracks_to_predict_used",
+        "selected_adb_actors[9].actor_box_index",
+        "selected_adb_actors[9].causal_box_future_state_used",
+        "selected_adb_actors[9].current_box_H0.center_xyz_H0_m[0]",
+        "selected_adb_actors[9].current_box_H0.center_xyz_H0_m[1]",
+        "selected_adb_actors[9].current_box_H0.center_xyz_H0_m[2]",
+        "selected_adb_actors[9].current_box_H0.height_m",
+        "selected_adb_actors[9].current_box_H0.length_m",
+        "selected_adb_actors[9].current_box_H0.width_m",
+        "selected_adb_actors[9].current_box_H0.yaw_rad",
+        "selected_adb_actors[9].future_used_for_eligibility",
+        "selected_adb_actors[9].geometry_parity.center_m",
+        "selected_adb_actors[9].geometry_parity.dimension_m",
+        "selected_adb_actors[9].geometry_parity.yaw_rad",
+        "selected_adb_actors[9].object_type",
+        "selected_adb_actors[9].objects_of_interest_used",
+        "selected_adb_actors[9].prediction_id",
+        "selected_adb_actors[9].reactive_control_input",
+        "selected_adb_actors[9].selector_route",
+        "selected_adb_actors[9].track_id",
+        "selected_adb_actors[9].track_index",
+        "selected_adb_actors[9].tracks_to_predict_used",
+        "stage",
+        "t0_map_dtype",
+        "t0_map_row_index",
+        "t0_map_sha256",
+        "t0_map_shape[0]",
+        "t0_map_shape[1]"
+      ],
+      "path_like_values": [],
+      "relevant_leaves": [
+        {
+          "key": "original_reactive_ADB.decision_time",
+          "row": 1,
+          "value": "t0_current_causal_anchor"
+        },
+        {
+          "key": "original_reactive_ADB.score_schedule",
+          "row": 1,
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        },
+        {
+          "key": "t0_map_dtype",
+          "row": 1,
+          "value": "float64"
+        },
+        {
+          "key": "t0_map_row_index",
+          "row": 1,
+          "value": 0
+        },
+        {
+          "key": "t0_map_sha256",
+          "row": 1,
+          "value": "f027640e701e7b1ef1537018c7e45b322802c539b85cac0033669aece3fc3a0f"
+        },
+        {
+          "key": "t0_map_shape[0]",
+          "row": 1,
+          "value": 501
+        },
+        {
+          "key": "t0_map_shape[1]",
+          "row": 1,
+          "value": 301
+        },
+        {
+          "key": "original_reactive_ADB.decision_time",
+          "row": 2,
+          "value": "t0_current_causal_anchor"
+        },
+        {
+          "key": "original_reactive_ADB.score_schedule",
+          "row": 2,
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        },
+        {
+          "key": "t0_map_dtype",
+          "row": 2,
+          "value": "float64"
+        },
+        {
+          "key": "t0_map_row_index",
+          "row": 2,
+          "value": 1
+        },
+        {
+          "key": "t0_map_sha256",
+          "row": 2,
+          "value": "75e2b831876934f1f6bcaa1edf1a8a86364337a545893d1eb99b837154d873f2"
+        },
+        {
+          "key": "t0_map_shape[0]",
+          "row": 2,
+          "value": 501
+        },
+        {
+          "key": "t0_map_shape[1]",
+          "row": 2,
+          "value": 301
+        },
+        {
+          "key": "original_reactive_ADB.decision_time",
+          "row": 3,
+          "value": "t0_current_causal_anchor"
+        },
+        {
+          "key": "original_reactive_ADB.score_schedule",
+          "row": 3,
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        },
+        {
+          "key": "t0_map_dtype",
+          "row": 3,
+          "value": "float64"
+        },
+        {
+          "key": "t0_map_row_index",
+          "row": 3,
+          "value": 2
+        },
+        {
+          "key": "t0_map_sha256",
+          "row": 3,
+          "value": "5d21231dd275fa0b21275e7647e0baf44a44afabab74e92058ae76c1bd7103bc"
+        },
+        {
+          "key": "t0_map_shape[0]",
+          "row": 3,
+          "value": 501
+        },
+        {
+          "key": "t0_map_shape[1]",
+          "row": 3,
+          "value": 301
+        },
+        {
+          "key": "original_reactive_ADB.decision_time",
+          "row": 4,
+          "value": "t0_current_causal_anchor"
+        },
+        {
+          "key": "original_reactive_ADB.score_schedule",
+          "row": 4,
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        },
+        {
+          "key": "t0_map_dtype",
+          "row": 4,
+          "value": "float64"
+        },
+        {
+          "key": "t0_map_row_index",
+          "row": 4,
+          "value": 3
+        },
+        {
+          "key": "t0_map_sha256",
+          "row": 4,
+          "value": "cde7dd7c90e4e04a0085e7eb7014ca543b4ae6c5f00b75a9758d58b60310880e"
+        },
+        {
+          "key": "t0_map_shape[0]",
+          "row": 4,
+          "value": 501
+        },
+        {
+          "key": "t0_map_shape[1]",
+          "row": 4,
+          "value": 301
+        },
+        {
+          "key": "original_reactive_ADB.decision_time",
+          "row": 5,
+          "value": "t0_current_causal_anchor"
+        },
+        {
+          "key": "original_reactive_ADB.score_schedule",
+          "row": 5,
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        },
+        {
+          "key": "t0_map_dtype",
+          "row": 5,
+          "value": "float64"
+        },
+        {
+          "key": "t0_map_row_index",
+          "row": 5,
+          "value": 4
+        },
+        {
+          "key": "t0_map_sha256",
+          "row": 5,
+          "value": "5e47e9aff3643718eb5345237c9db1c3cc59b8a30aa50fecd25f7dcf4aeb6860"
+        },
+        {
+          "key": "t0_map_shape[0]",
+          "row": 5,
+          "value": 501
+        },
+        {
+          "key": "t0_map_shape[1]",
+          "row": 5,
+          "value": 301
+        },
+        {
+          "key": "original_reactive_ADB.decision_time",
+          "row": 6,
+          "value": "t0_current_causal_anchor"
+        },
+        {
+          "key": "original_reactive_ADB.score_schedule",
+          "row": 6,
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        },
+        {
+          "key": "t0_map_dtype",
+          "row": 6,
+          "value": "float64"
+        },
+        {
+          "key": "t0_map_row_index",
+          "row": 6,
+          "value": 5
+        },
+        {
+          "key": "t0_map_sha256",
+          "row": 6,
+          "value": "46cd18306834ba4f2b18f8fc1418c6b98365e4db1a9081a8c67fd07b2ef7f8a0"
+        },
+        {
+          "key": "t0_map_shape[0]",
+          "row": 6,
+          "value": 501
+        },
+        {
+          "key": "t0_map_shape[1]",
+          "row": 6,
+          "value": 301
+        },
+        {
+          "key": "original_reactive_ADB.decision_time",
+          "row": 7,
+          "value": "t0_current_causal_anchor"
+        },
+        {
+          "key": "original_reactive_ADB.score_schedule",
+          "row": 7,
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        },
+        {
+          "key": "t0_map_dtype",
+          "row": 7,
+          "value": "float64"
+        },
+        {
+          "key": "t0_map_row_index",
+          "row": 7,
+          "value": 6
+        },
+        {
+          "key": "t0_map_sha256",
+          "row": 7,
+          "value": "54415b3a0158dfecb4b1375170bfb9b876c0708d6c7ee3a3fc668a8c74b04022"
+        },
+        {
+          "key": "t0_map_shape[0]",
+          "row": 7,
+          "value": 501
+        },
+        {
+          "key": "t0_map_shape[1]",
+          "row": 7,
+          "value": 301
+        },
+        {
+          "key": "original_reactive_ADB.decision_time",
+          "row": 8,
+          "value": "t0_current_causal_anchor"
+        },
+        {
+          "key": "original_reactive_ADB.score_schedule",
+          "row": 8,
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        },
+        {
+          "key": "t0_map_dtype",
+          "row": 8,
+          "value": "float64"
+        },
+        {
+          "key": "t0_map_row_index",
+          "row": 8,
+          "value": 7
+        },
+        {
+          "key": "t0_map_sha256",
+          "row": 8,
+          "value": "0893a4331d8e7c56d1856b78c79b4aeee1671f15ad8041973e825336d4a6dd33"
+        },
+        {
+          "key": "t0_map_shape[0]",
+          "row": 8,
+          "value": 501
+        },
+        {
+          "key": "t0_map_shape[1]",
+          "row": 8,
+          "value": 301
+        },
+        {
+          "key": "original_reactive_ADB.decision_time",
+          "row": 9,
+          "value": "t0_current_causal_anchor"
+        },
+        {
+          "key": "original_reactive_ADB.score_schedule",
+          "row": 9,
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        },
+        {
+          "key": "t0_map_dtype",
+          "row": 9,
+          "value": "float64"
+        },
+        {
+          "key": "t0_map_row_index",
+          "row": 9,
+          "value": 8
+        },
+        {
+          "key": "t0_map_sha256",
+          "row": 9,
+          "value": "3cadec27e5d225f3a865d2fddb23a442dd33025a2ed8b119656655c97df207e8"
+        },
+        {
+          "key": "t0_map_shape[0]",
+          "row": 9,
+          "value": 501
+        },
+        {
+          "key": "t0_map_shape[1]",
+          "row": 9,
+          "value": 301
+        },
+        {
+          "key": "original_reactive_ADB.decision_time",
+          "row": 10,
+          "value": "t0_current_causal_anchor"
+        },
+        {
+          "key": "original_reactive_ADB.score_schedule",
+          "row": 10,
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        },
+        {
+          "key": "t0_map_dtype",
+          "row": 10,
+          "value": "float64"
+        },
+        {
+          "key": "t0_map_row_index",
+          "row": 10,
+          "value": 9
+        },
+        {
+          "key": "t0_map_sha256",
+          "row": 10,
+          "value": "3bcc067e433d1603ee1fd46d4343d202b4bfa50a9ae3b3e5a5b51bf12c50c801"
+        },
+        {
+          "key": "t0_map_shape[0]",
+          "row": 10,
+          "value": 501
+        },
+        {
+          "key": "t0_map_shape[1]",
+          "row": 10,
+          "value": 301
+        },
+        {
+          "key": "original_reactive_ADB.decision_time",
+          "row": 11,
+          "value": "t0_current_causal_anchor"
+        },
+        {
+          "key": "original_reactive_ADB.score_schedule",
+          "row": 11,
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        },
+        {
+          "key": "t0_map_dtype",
+          "row": 11,
+          "value": "float64"
+        },
+        {
+          "key": "t0_map_row_index",
+          "row": 11,
+          "value": 10
+        },
+        {
+          "key": "t0_map_sha256",
+          "row": 11,
+          "value": "5d2f9bc6289065d50fd8f441fc8975d9cba9b1d2b4f6eede8b6b195c0c6ac91c"
+        },
+        {
+          "key": "t0_map_shape[0]",
+          "row": 11,
+          "value": 501
+        },
+        {
+          "key": "t0_map_shape[1]",
+          "row": 11,
+          "value": 301
+        },
+        {
+          "key": "original_reactive_ADB.decision_time",
+          "row": 12,
+          "value": "t0_current_causal_anchor"
+        },
+        {
+          "key": "original_reactive_ADB.score_schedule",
+          "row": 12,
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        },
+        {
+          "key": "t0_map_dtype",
+          "row": 12,
+          "value": "float64"
+        },
+        {
+          "key": "t0_map_row_index",
+          "row": 12,
+          "value": 11
+        },
+        {
+          "key": "t0_map_sha256",
+          "row": 12,
+          "value": "b1ddadc8ac49f125462a3ca849087c26365ffcd588a3ad6a59a3dca16767221e"
+        },
+        {
+          "key": "t0_map_shape[0]",
+          "row": 12,
+          "value": 501
+        },
+        {
+          "key": "t0_map_shape[1]",
+          "row": 12,
+          "value": 301
+        },
+        {
+          "key": "original_reactive_ADB.decision_time",
+          "row": 13,
+          "value": "t0_current_causal_anchor"
+        },
+        {
+          "key": "original_reactive_ADB.score_schedule",
+          "row": 13,
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        },
+        {
+          "key": "t0_map_dtype",
+          "row": 13,
+          "value": "float64"
+        },
+        {
+          "key": "t0_map_row_index",
+          "row": 13,
+          "value": 12
+        },
+        {
+          "key": "t0_map_sha256",
+          "row": 13,
+          "value": "a36bb00027eb8c99c72c4f9339575b552c34ac8757cff407415b8d6e6d4acbb8"
+        },
+        {
+          "key": "t0_map_shape[0]",
+          "row": 13,
+          "value": 501
+        },
+        {
+          "key": "t0_map_shape[1]",
+          "row": 13,
+          "value": 301
+        },
+        {
+          "key": "original_reactive_ADB.decision_time",
+          "row": 14,
+          "value": "t0_current_causal_anchor"
+        },
+        {
+          "key": "original_reactive_ADB.score_schedule",
+          "row": 14,
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        },
+        {
+          "key": "t0_map_dtype",
+          "row": 14,
+          "value": "float64"
+        },
+        {
+          "key": "t0_map_row_index",
+          "row": 14,
+          "value": 13
+        },
+        {
+          "key": "t0_map_sha256",
+          "row": 14,
+          "value": "c8a45685c7e989258f54384b97087952c6ec43f698418e419f0d260037dadc45"
+        },
+        {
+          "key": "t0_map_shape[0]",
+          "row": 14,
+          "value": 501
+        },
+        {
+          "key": "t0_map_shape[1]",
+          "row": 14,
+          "value": 301
+        },
+        {
+          "key": "original_reactive_ADB.decision_time",
+          "row": 15,
+          "value": "t0_current_causal_anchor"
+        },
+        {
+          "key": "original_reactive_ADB.score_schedule",
+          "row": 15,
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        }
+      ],
+      "row_count": 120,
+      "sha256": "ac2b954571cdd0166bbcfa5bb8b2956785d1e132288dbe4af7fe2d55adeafcaa"
+    },
+    "/home/agni/waymo/iscai_stage6/reports/block68_reactive_decision_ledger_freeze.json": {
+      "relevant_leaves": [
+        {
+          "key": "frozen_outputs.maps.path",
+          "value": "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_t0_maps.npy"
+        },
+        {
+          "key": "reactive_decision_semantics.decision_time",
+          "value": "current_causal_t0"
+        },
+        {
+          "key": "reactive_decision_semantics.future_scoring_schedule",
+          "value": "hold_t0_action_at_0.1_0.3_0.5_1.0s"
+        }
+      ],
+      "sha256": "6ca868dbdf13e8a675813d4af2d3c814ce5297155126e5124ac452131670903b"
+    }
+  },
+  "next": "Bind the exact frozen 2-D current causal illumination I_prev source, then freeze Stage-4 scoring/initial-state semantics before any temporal/rate candidate outcome.",
+  "reactive_decision_candidates": [
+    "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_decision_ledger.jsonl",
+    "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_t0_maps.npy",
+    "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_part2b_part1_reactive_decision_ledger.log",
+    "/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch/run_block68_part2b_part1_reactive_decision_ledger.pre_patch.py",
+    "/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch_v2/run_block68_part2b_part1_reactive_decision_ledger.pre_v2.py",
+    "/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch_v3/run_block68_part2b_part1_reactive_decision_ledger.pre_v3.py",
+    "/home/agni/waymo/iscai_stage6/artifacts/block68/grid_binding_patch_v4/run_block68_part2b_part1_reactive_decision_ledger.pre_v4.py",
+    "/home/agni/waymo/iscai_stage6/reports/block68_reactive_decision_ledger_freeze.json"
+  ],
+  "scientific_boundary": {
+    "Stage1_gamma": "FROZEN",
+    "Stage2_margins": "FROZEN",
+    "Stage3_floors": "FROZEN",
+    "Stage4_outcomes_computed": false,
+    "Stage4_winner_selected": false,
+    "formal_evaluation": false,
+    "policy_numerics_modified": false,
+    "primary_acceptance_tested": false
+  },
+  "source_candidates": [
+    {
+      "hits": [
+        {
+          "context": [
+            "L00219:     return values",
+            "L00220: ",
+            "L00221: ",
+            "L00222: def _validate_current_illumination(",
+            "L00223:     current_illumination,",
+            "L00224: ) -> np.ndarray:",
+            "L00225: "
+          ],
+          "line": 222,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00220: ",
+            "L00221: ",
+            "L00222: def _validate_current_illumination(",
+            "L00223:     current_illumination,",
+            "L00224: ) -> np.ndarray:",
+            "L00225: ",
+            "L00226:     current = np.asarray("
+          ],
+          "line": 223,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00224: ) -> np.ndarray:",
+            "L00225: ",
+            "L00226:     current = np.asarray(",
+            "L00227:         current_illumination,",
+            "L00228:         dtype=np.float64,",
+            "L00229:     )",
+            "L00230: "
+          ],
+          "line": 227,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00230: ",
+            "L00231:     if current.ndim != 2:",
+            "L00232:         raise ValueError(",
+            "L00233:             \"current_illumination must be a 2-D \"",
+            "L00234:             \"[theta,range] Part-A reactive map\"",
+            "L00235:         )",
+            "L00236: "
+          ],
+          "line": 233,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00231:     if current.ndim != 2:",
+            "L00232:         raise ValueError(",
+            "L00233:             \"current_illumination must be a 2-D \"",
+            "L00234:             \"[theta,range] Part-A reactive map\"",
+            "L00235:         )",
+            "L00236: ",
+            "L00237:     if not np.all("
+          ],
+          "line": 234,
+          "matched_terms": [
+            "reactive map"
+          ]
+        },
+        {
+          "context": [
+            "L00238:         np.isfinite(current)",
+            "L00239:     ):",
+            "L00240:         raise ValueError(",
+            "L00241:             \"current_illumination contains non-finite values\"",
+            "L00242:         )",
+            "L00243: ",
+            "L00244:     if ("
+          ],
+          "line": 241,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00247:         np.any(current > 1.0)",
+            "L00248:     ):",
+            "L00249:         raise ValueError(",
+            "L00250:             \"current_illumination must lie in [0,1]\"",
+            "L00251:         )",
+            "L00252: ",
+            "L00253:     return current"
+          ],
+          "line": 250,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00254: ",
+            "L00255: ",
+            "L00256: def hold_current_reactive_schedule(",
+            "L00257:     current_illumination,",
+            "L00258:     *,",
+            "L00259:     horizons_s: Sequence[float] = (",
+            "L00260:         0.1,"
+          ],
+          "line": 257,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00267:     Frozen Block6.8 single-decision evaluator semantics.",
+            "L00268: ",
+            "L00269:     The original reactive ADB controller produces one causal",
+            "L00270:     current-state Part-A-style illumination action at t0.",
+            "L00271: ",
+            "L00272:     For future-horizon comparison against predictive ADB,",
+            "L00273:     that already-made action is held unchanged over the four"
+          ],
+          "line": 270,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00277:     future trajectory, or posterior update enters this",
+            "L00278:     operation.",
+            "L00279: ",
+            "L00280:     This is an evaluator representation of the t0 reactive",
+            "L00281:     decision. It is NOT a simulated closed-loop reactive",
+            "L00282:     controller with future re-observation.",
+            "L00283:     \"\"\""
+          ],
+          "line": 280,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00287:     )",
+            "L00288: ",
+            "L00289:     current = (",
+            "L00290:         _validate_current_illumination(",
+            "L00291:             current_illumination",
+            "L00292:         )",
+            "L00293:     )"
+          ],
+          "line": 290,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00288: ",
+            "L00289:     current = (",
+            "L00290:         _validate_current_illumination(",
+            "L00291:             current_illumination",
+            "L00292:         )",
+            "L00293:     )",
+            "L00294: "
+          ],
+          "line": 291,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00423:             \"original_reactive_ADB\",",
+            "L00424: ",
+            "L00425:         \"decision_time\":",
+            "L00426:             \"t0_current_causal_state\",",
+            "L00427: ",
+            "L00428:         \"controller_future_input\":",
+            "L00429:             False,"
+          ],
+          "line": 426,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00450: ",
+            "L00451:         \"schedule_semantics\":",
+            "L00452:             (",
+            "L00453:                 \"hold_t0_current_reactive_PartA_action_\"",
+            "L00454:                 \"unchanged_across_future_scoring_horizons\"",
+            "L00455:             ),",
+            "L00456: "
+          ],
+          "line": 453,
+          "matched_terms": [
+            "t0",
+            "hold_t0"
+          ]
+        },
+        {
+          "context": [
+            "L00744:         self.assertEqual(",
+            "L00745:             parameters,",
+            "L00746:             (",
+            "L00747:                 \"current_illumination\",",
+            "L00748:                 \"horizons_s\",",
+            "L00749:             ),",
+            "L00750:         )"
+          ],
+          "line": 747,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01286: ",
+            "L01287:         \"original_reactive_ADB\": {",
+            "L01288:             \"controller_state_source\":",
+            "L01289:                 \"current_causal_state_t0_only\",",
+            "L01290: ",
+            "L01291:             \"base_illumination_source\":",
+            "L01292:                 ("
+          ],
+          "line": 1289,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01319: ",
+            "L01320:             \"future_scoring_schedule\":",
+            "L01321:                 (",
+            "L01322:                     \"repeat_the_already_made_t0_\"",
+            "L01323:                     \"reactive_illumination_map_unchanged_\"",
+            "L01324:                     \"at_each_frozen_horizon\"",
+            "L01325:                 ),"
+          ],
+          "line": 1322,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01485:         \"test Python syntax   = PASS\"",
+            "L01486:     )",
+            "L01487:     print(",
+            "L01488:         \"reactive t0 action   = CURRENT CAUSAL ONLY\"",
+            "L01489:     )",
+            "L01490:     print(",
+            "L01491:         \"future refresh       = PROHIBITED\""
+          ],
+          "line": 1488,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01804:     )",
+            "L01805: ",
+            "L01806:     print(",
+            "L01807:         \"t0 reactive action      = FROZEN\"",
+            "L01808:     )",
+            "L01809:     print(",
+            "L01810:         \"future re-observation   = NO\""
+          ],
+          "line": 1807,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01943: ",
+            "L01944:         \"reactive_scoring\": {",
+            "L01945:             \"decision\":",
+            "L01946:                 \"current_causal_t0\",",
+            "L01947: ",
+            "L01948:             \"future_reobservation\":",
+            "L01949:                 False,"
+          ],
+          "line": 1946,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01957:                 ),",
+            "L01958: ",
+            "L01959:             \"schedule\":",
+            "L01960:                 \"hold_t0_action_across_all_horizons\",",
+            "L01961: ",
+            "L01962:             \"dim_support\":",
+            "L01963:                 \"I_final < 1.0\","
+          ],
+          "line": 1960,
+          "matched_terms": [
+            "t0",
+            "hold_t0"
+          ]
+        },
+        {
+          "context": [
+            "L02088:     )",
+            "L02089: ",
+            "L02090:     print(",
+            "L02091:         \"reactive decision source    = CURRENT CAUSAL t0\"",
+            "L02092:     )",
+            "L02093:     print(",
+            "L02094:         \"future input                = NO\""
+          ],
+          "line": 2091,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02103:         \"evaluation horizons         = 0.1 / 0.3 / 0.5 / 1.0 s\"",
+            "L02104:     )",
+            "L02105:     print(",
+            "L02106:         \"future schedule semantics   = HOLD t0 ACTION\"",
+            "L02107:     )",
+            "L02108:     print(",
+            "L02109:         \"binary dim support          = I_final < 1.0\""
+          ],
+          "line": 2106,
+          "matched_terms": [
+            "t0"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_reactive_scoring_semantics_freeze.py",
+      "score": 5,
+      "sha256": "90080fe195b5d109c967094b41b49de1edaf65684c0c1fbf1af326ead435f6f3"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00056: REPORT = (",
+            "L00057:     S6",
+            "L00058:     / \"reports/\"",
+            "L00059:       \"block68_stage4_current_illumination_authority_discovery.json\"",
+            "L00060: )",
+            "L00061: ",
+            "L00062: EXPECTED = {"
+          ],
+          "line": 59,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00073: EXPECTED_TESTS = 224",
+            "L00074: ",
+            "L00075: SEARCH_TERMS = (",
+            "L00076:     \"current_illumination\",",
+            "L00077:     \"current causal illumination\",",
+            "L00078:     \"current_causal_illumination\",",
+            "L00079:     \"t0\","
+          ],
+          "line": 76,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00074: ",
+            "L00075: SEARCH_TERMS = (",
+            "L00076:     \"current_illumination\",",
+            "L00077:     \"current causal illumination\",",
+            "L00078:     \"current_causal_illumination\",",
+            "L00079:     \"t0\",",
+            "L00080:     \"reactive map\","
+          ],
+          "line": 77,
+          "matched_terms": [
+            "current causal illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00075: SEARCH_TERMS = (",
+            "L00076:     \"current_illumination\",",
+            "L00077:     \"current causal illumination\",",
+            "L00078:     \"current_causal_illumination\",",
+            "L00079:     \"t0\",",
+            "L00080:     \"reactive map\",",
+            "L00081:     \"reactive_map\","
+          ],
+          "line": 78,
+          "matched_terms": [
+            "current_causal_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00076:     \"current_illumination\",",
+            "L00077:     \"current causal illumination\",",
+            "L00078:     \"current_causal_illumination\",",
+            "L00079:     \"t0\",",
+            "L00080:     \"reactive map\",",
+            "L00081:     \"reactive_map\",",
+            "L00082:     \"decision map\","
+          ],
+          "line": 79,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00077:     \"current causal illumination\",",
+            "L00078:     \"current_causal_illumination\",",
+            "L00079:     \"t0\",",
+            "L00080:     \"reactive map\",",
+            "L00081:     \"reactive_map\",",
+            "L00082:     \"decision map\",",
+            "L00083:     \"decision_map\","
+          ],
+          "line": 80,
+          "matched_terms": [
+            "reactive map"
+          ]
+        },
+        {
+          "context": [
+            "L00078:     \"current_causal_illumination\",",
+            "L00079:     \"t0\",",
+            "L00080:     \"reactive map\",",
+            "L00081:     \"reactive_map\",",
+            "L00082:     \"decision map\",",
+            "L00083:     \"decision_map\",",
+            "L00084:     \"illumination_path\","
+          ],
+          "line": 81,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L00079:     \"t0\",",
+            "L00080:     \"reactive map\",",
+            "L00081:     \"reactive_map\",",
+            "L00082:     \"decision map\",",
+            "L00083:     \"decision_map\",",
+            "L00084:     \"illumination_path\",",
+            "L00085:     \"map_path\","
+          ],
+          "line": 82,
+          "matched_terms": [
+            "decision map"
+          ]
+        },
+        {
+          "context": [
+            "L00080:     \"reactive map\",",
+            "L00081:     \"reactive_map\",",
+            "L00082:     \"decision map\",",
+            "L00083:     \"decision_map\",",
+            "L00084:     \"illumination_path\",",
+            "L00085:     \"map_path\",",
+            "L00086:     \"hold_t0\","
+          ],
+          "line": 83,
+          "matched_terms": [
+            "decision_map"
+          ]
+        },
+        {
+          "context": [
+            "L00081:     \"reactive_map\",",
+            "L00082:     \"decision map\",",
+            "L00083:     \"decision_map\",",
+            "L00084:     \"illumination_path\",",
+            "L00085:     \"map_path\",",
+            "L00086:     \"hold_t0\",",
+            "L00087:     \"all-on\","
+          ],
+          "line": 84,
+          "matched_terms": [
+            "illumination_path"
+          ]
+        },
+        {
+          "context": [
+            "L00082:     \"decision map\",",
+            "L00083:     \"decision_map\",",
+            "L00084:     \"illumination_path\",",
+            "L00085:     \"map_path\",",
+            "L00086:     \"hold_t0\",",
+            "L00087:     \"all-on\",",
+            "L00088:     \"all_on\","
+          ],
+          "line": 85,
+          "matched_terms": [
+            "map_path"
+          ]
+        },
+        {
+          "context": [
+            "L00083:     \"decision_map\",",
+            "L00084:     \"illumination_path\",",
+            "L00085:     \"map_path\",",
+            "L00086:     \"hold_t0\",",
+            "L00087:     \"all-on\",",
+            "L00088:     \"all_on\",",
+            "L00089: )"
+          ],
+          "line": 86,
+          "matched_terms": [
+            "t0",
+            "hold_t0"
+          ]
+        },
+        {
+          "context": [
+            "L00084:     \"illumination_path\",",
+            "L00085:     \"map_path\",",
+            "L00086:     \"hold_t0\",",
+            "L00087:     \"all-on\",",
+            "L00088:     \"all_on\",",
+            "L00089: )",
+            "L00090: "
+          ],
+          "line": 87,
+          "matched_terms": [
+            "all-on"
+          ]
+        },
+        {
+          "context": [
+            "L00085:     \"map_path\",",
+            "L00086:     \"hold_t0\",",
+            "L00087:     \"all-on\",",
+            "L00088:     \"all_on\",",
+            "L00089: )",
+            "L00090: ",
+            "L00091: "
+          ],
+          "line": 88,
+          "matched_terms": [
+            "all_on"
+          ]
+        },
+        {
+          "context": [
+            "L00391:     tokens = (",
+            "L00392:         \"reactive\",",
+            "L00393:         \"decision\",",
+            "L00394:         \"t0\",",
+            "L00395:         \"illum\",",
+            "L00396:         \"map\",",
+            "L00397:         \"current\","
+          ],
+          "line": 394,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00686: ",
+            "L00687:     for item in runtime_hits:",
+            "L00688:         if (",
+            "L00689:             \"current_illumination\"",
+            "L00690:             not in",
+            "L00691:             \" \".join(",
+            "L00692:                 item[\"matched_terms\"]"
+          ],
+          "line": 689,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00692:                 item[\"matched_terms\"]",
+            "L00693:             ).lower()",
+            "L00694:             and",
+            "L00695:             \"current causal illumination\"",
+            "L00696:             not in",
+            "L00697:             \" \".join(",
+            "L00698:                 item[\"matched_terms\"]"
+          ],
+          "line": 695,
+          "matched_terms": [
+            "current causal illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00705:             print(line)",
+            "L00706: ",
+            "L00707:     require(",
+            "L00708:         \"Initial I_prev is current causal illumination.\"",
+            "L00709:         in",
+            "L00710:         runtime_text,",
+            "L00711:         ("
+          ],
+          "line": 708,
+          "matched_terms": [
+            "current causal illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00717:     print()",
+            "L00718:     print(",
+            "L00719:         \"runtime initial-state contract = \"",
+            "L00720:         \"CURRENT CAUSAL ILLUMINATION\"",
+            "L00721:     )",
+            "L00722: ",
+            "L00723:     # --------------------------------------------------------"
+          ],
+          "line": 720,
+          "matched_terms": [
+            "current causal illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00721:     )",
+            "L00722: ",
+            "L00723:     # --------------------------------------------------------",
+            "L00724:     # D. Prove smoke all-on is not selection authority",
+            "L00725:     # --------------------------------------------------------",
+            "L00726: ",
+            "L00727:     print()"
+          ],
+          "line": 724,
+          "matched_terms": [
+            "all-on"
+          ]
+        },
+        {
+          "context": [
+            "L00725:     # --------------------------------------------------------",
+            "L00726: ",
+            "L00727:     print()",
+            "L00728:     print(\"===== D. STRUCTURAL-SMOKE ALL-ON STATUS =====\")",
+            "L00729: ",
+            "L00730:     smoke_sources = []",
+            "L00731: "
+          ],
+          "line": 728,
+          "matched_terms": [
+            "all-on"
+          ]
+        },
+        {
+          "context": [
+            "L00740:             continue",
+            "L00741: ",
+            "L00742:         if (",
+            "L00743:             \"Neutral causal all-on state\"",
+            "L00744:             in text",
+            "L00745:             or",
+            "L00746:             \"operator-chain plumbing smoke\""
+          ],
+          "line": 743,
+          "matched_terms": [
+            "all-on"
+          ]
+        },
+        {
+          "context": [
+            "L00773: ",
+            "L00774:             for index, line in enumerate(lines):",
+            "L00775:                 if (",
+            "L00776:                     \"Neutral causal all-on state\"",
+            "L00777:                     in line",
+            "L00778:                     or",
+            "L00779:                     \"operator-chain plumbing smoke\""
+          ],
+          "line": 776,
+          "matched_terms": [
+            "all-on"
+          ]
+        },
+        {
+          "context": [
+            "L00802:         smoke_sources,",
+            "L00803:         (",
+            "L00804:             \"Could not recover structural-smoke \"",
+            "L00805:             \"all-on disclaimer.\"",
+            "L00806:         ),",
+            "L00807:     )",
+            "L00808: "
+          ],
+          "line": 805,
+          "matched_terms": [
+            "all-on"
+          ]
+        },
+        {
+          "context": [
+            "L00808: ",
+            "L00809:     print()",
+            "L00810:     print(",
+            "L00811:         \"all-on smoke state usable for Stage-4 selection = NO\"",
+            "L00812:     )",
+            "L00813: ",
+            "L00814:     # --------------------------------------------------------"
+          ],
+          "line": 811,
+          "matched_terms": [
+            "all-on"
+          ]
+        },
+        {
+          "context": [
+            "L01023:     # --------------------------------------------------------",
+            "L01024: ",
+            "L01025:     print()",
+            "L01026:     print(\"===== H. SOURCE TRACE FOR T0/CURRENT MAP PRODUCTION =====\")",
+            "L01027: ",
+            "L01028:     source_candidates = []",
+            "L01029: "
+          ],
+          "line": 1026,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01053:                 int(term in lower)",
+            "L01054:                 for term in (",
+            "L01055:                     \"reactive\",",
+            "L01056:                     \"current_illumination\",",
+            "L01057:                     \"decision\",",
+            "L01058:                     \"t0\",",
+            "L01059:                     \"illumination_map\","
+          ],
+          "line": 1056,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01055:                     \"reactive\",",
+            "L01056:                     \"current_illumination\",",
+            "L01057:                     \"decision\",",
+            "L01058:                     \"t0\",",
+            "L01059:                     \"illumination_map\",",
+            "L01060:                 )",
+            "L01061:             )"
+          ],
+          "line": 1058,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01118:             if not any(",
+            "L01119:                 token in interesting",
+            "L01120:                 for token in (",
+            "L01121:                     \"current_illumination\",",
+            "L01122:                     \"t0\",",
+            "L01123:                     \"reactive map\",",
+            "L01124:                     \"decision map\","
+          ],
+          "line": 1121,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01119:                 token in interesting",
+            "L01120:                 for token in (",
+            "L01121:                     \"current_illumination\",",
+            "L01122:                     \"t0\",",
+            "L01123:                     \"reactive map\",",
+            "L01124:                     \"decision map\",",
+            "L01125:                     \"map_path\","
+          ],
+          "line": 1122,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01120:                 for token in (",
+            "L01121:                     \"current_illumination\",",
+            "L01122:                     \"t0\",",
+            "L01123:                     \"reactive map\",",
+            "L01124:                     \"decision map\",",
+            "L01125:                     \"map_path\",",
+            "L01126:                     \"illumination_path\","
+          ],
+          "line": 1123,
+          "matched_terms": [
+            "reactive map"
+          ]
+        },
+        {
+          "context": [
+            "L01121:                     \"current_illumination\",",
+            "L01122:                     \"t0\",",
+            "L01123:                     \"reactive map\",",
+            "L01124:                     \"decision map\",",
+            "L01125:                     \"map_path\",",
+            "L01126:                     \"illumination_path\",",
+            "L01127:                     \"hold_t0\","
+          ],
+          "line": 1124,
+          "matched_terms": [
+            "decision map"
+          ]
+        },
+        {
+          "context": [
+            "L01122:                     \"t0\",",
+            "L01123:                     \"reactive map\",",
+            "L01124:                     \"decision map\",",
+            "L01125:                     \"map_path\",",
+            "L01126:                     \"illumination_path\",",
+            "L01127:                     \"hold_t0\",",
+            "L01128:                 )"
+          ],
+          "line": 1125,
+          "matched_terms": [
+            "map_path"
+          ]
+        },
+        {
+          "context": [
+            "L01123:                     \"reactive map\",",
+            "L01124:                     \"decision map\",",
+            "L01125:                     \"map_path\",",
+            "L01126:                     \"illumination_path\",",
+            "L01127:                     \"hold_t0\",",
+            "L01128:                 )",
+            "L01129:             ):"
+          ],
+          "line": 1126,
+          "matched_terms": [
+            "illumination_path"
+          ]
+        },
+        {
+          "context": [
+            "L01124:                     \"decision map\",",
+            "L01125:                     \"map_path\",",
+            "L01126:                     \"illumination_path\",",
+            "L01127:                     \"hold_t0\",",
+            "L01128:                 )",
+            "L01129:             ):",
+            "L01130:                 continue"
+          ],
+          "line": 1127,
+          "matched_terms": [
+            "t0",
+            "hold_t0"
+          ]
+        },
+        {
+          "context": [
+            "L01156:         low = source.lower()",
+            "L01157: ",
+            "L01158:         phrases = (",
+            "L01159:             \"current causal illumination\",",
+            "L01160:             \"current_illumination\",",
+            "L01161:             \"hold t0\",",
+            "L01162:             \"hold_t0\","
+          ],
+          "line": 1159,
+          "matched_terms": [
+            "current causal illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01157: ",
+            "L01158:         phrases = (",
+            "L01159:             \"current causal illumination\",",
+            "L01160:             \"current_illumination\",",
+            "L01161:             \"hold t0\",",
+            "L01162:             \"hold_t0\",",
+            "L01163:         )"
+          ],
+          "line": 1160,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01158:         phrases = (",
+            "L01159:             \"current causal illumination\",",
+            "L01160:             \"current_illumination\",",
+            "L01161:             \"hold t0\",",
+            "L01162:             \"hold_t0\",",
+            "L01163:         )",
+            "L01164: "
+          ],
+          "line": 1161,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01159:             \"current causal illumination\",",
+            "L01160:             \"current_illumination\",",
+            "L01161:             \"hold t0\",",
+            "L01162:             \"hold_t0\",",
+            "L01163:         )",
+            "L01164: ",
+            "L01165:         for phrase in phrases:"
+          ],
+          "line": 1162,
+          "matched_terms": [
+            "t0",
+            "hold_t0"
+          ]
+        },
+        {
+          "context": [
+            "L01173:     )",
+            "L01174: ",
+            "L01175:     print(",
+            "L01176:         \"structural all-on is selection authority = NO\"",
+            "L01177:     )",
+            "L01178: ",
+            "L01179:     print("
+          ],
+          "line": 1176,
+          "matched_terms": [
+            "all-on"
+          ]
+        },
+        {
+          "context": [
+            "L01226:             6,",
+            "L01227: ",
+            "L01228:         \"block\":",
+            "L01229:             \"6.8_stage4_current_illumination_authority_discovery\",",
+            "L01230: ",
+            "L01231:         \"status\":",
+            "L01232:             \"PASS_STAGE4_CURRENT_ILLUMINATION_AUTHORITY_DISCOVERY_ONLY\","
+          ],
+          "line": 1229,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01229:             \"6.8_stage4_current_illumination_authority_discovery\",",
+            "L01230: ",
+            "L01231:         \"status\":",
+            "L01232:             \"PASS_STAGE4_CURRENT_ILLUMINATION_AUTHORITY_DISCOVERY_ONLY\",",
+            "L01233: ",
+            "L01234:         \"scientific_boundary\": {",
+            "L01235:             \"Stage1_gamma\":"
+          ],
+          "line": 1232,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01259: ",
+            "L01260:         \"authority\": {",
+            "L01261:             \"runtime_initial_state\":",
+            "L01262:                 \"current causal illumination\",",
+            "L01263: ",
+            "L01264:             \"structural_smoke_all_on_authoritative_for_selection\":",
+            "L01265:                 False,"
+          ],
+          "line": 1262,
+          "matched_terms": [
+            "current causal illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01261:             \"runtime_initial_state\":",
+            "L01262:                 \"current causal illumination\",",
+            "L01263: ",
+            "L01264:             \"structural_smoke_all_on_authoritative_for_selection\":",
+            "L01265:                 False,",
+            "L01266: ",
+            "L01267:             \"current_state_binding_required_before_sweep\":"
+          ],
+          "line": 1264,
+          "matched_terms": [
+            "all_on"
+          ]
+        },
+        {
+          "context": [
+            "L01328:     )",
+            "L01329: ",
+            "L01330:     print(",
+            "L01331:         \"runtime I_prev        = CURRENT CAUSAL ILLUMINATION\"",
+            "L01332:     )",
+            "L01333: ",
+            "L01334:     print("
+          ],
+          "line": 1331,
+          "matched_terms": [
+            "current causal illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01332:     )",
+            "L01333: ",
+            "L01334:     print(",
+            "L01335:         \"all-on smoke state    = NOT SELECTION AUTHORITY\"",
+            "L01336:     )",
+            "L01337: ",
+            "L01338:     print("
+          ],
+          "line": 1335,
+          "matched_terms": [
+            "all-on"
+          ]
+        },
+        {
+          "context": [
+            "L01358: ",
+            "L01359:     print(",
+            "L01360:         \"STATUS = \"",
+            "L01361:         \"PASS_STAGE4_CURRENT_ILLUMINATION_AUTHORITY_DISCOVERY_ONLY\"",
+            "L01362:     )",
+            "L01363: ",
+            "L01364:     print("
+          ],
+          "line": 1361,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01418: ",
+            "L01419:     print()",
+            "L01420:     print(",
+            "L01421:         \"Do not choose an all-on initial state and do \"",
+            "L01422:         \"not run the temporal/rate sweep.\"",
+            "L01423:     )",
+            "L01424: "
+          ],
+          "line": 1421,
+          "matched_terms": [
+            "all-on"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_stage4_current_illumination_authority_discovery.py",
+      "score": 5,
+      "sha256": "86efceb8f9b50f8429b737690bffa530c76c2c3e6224368f58e294297469d672"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00031:     return values",
+            "L00032: ",
+            "L00033: ",
+            "L00034: def _validate_current_illumination(",
+            "L00035:     current_illumination,",
+            "L00036: ) -> np.ndarray:",
+            "L00037: "
+          ],
+          "line": 34,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00032: ",
+            "L00033: ",
+            "L00034: def _validate_current_illumination(",
+            "L00035:     current_illumination,",
+            "L00036: ) -> np.ndarray:",
+            "L00037: ",
+            "L00038:     current = np.asarray("
+          ],
+          "line": 35,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00036: ) -> np.ndarray:",
+            "L00037: ",
+            "L00038:     current = np.asarray(",
+            "L00039:         current_illumination,",
+            "L00040:         dtype=np.float64,",
+            "L00041:     )",
+            "L00042: "
+          ],
+          "line": 39,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00042: ",
+            "L00043:     if current.ndim != 2:",
+            "L00044:         raise ValueError(",
+            "L00045:             \"current_illumination must be a 2-D \"",
+            "L00046:             \"[theta,range] Part-A reactive map\"",
+            "L00047:         )",
+            "L00048: "
+          ],
+          "line": 45,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00043:     if current.ndim != 2:",
+            "L00044:         raise ValueError(",
+            "L00045:             \"current_illumination must be a 2-D \"",
+            "L00046:             \"[theta,range] Part-A reactive map\"",
+            "L00047:         )",
+            "L00048: ",
+            "L00049:     if not np.all("
+          ],
+          "line": 46,
+          "matched_terms": [
+            "reactive map"
+          ]
+        },
+        {
+          "context": [
+            "L00050:         np.isfinite(current)",
+            "L00051:     ):",
+            "L00052:         raise ValueError(",
+            "L00053:             \"current_illumination contains non-finite values\"",
+            "L00054:         )",
+            "L00055: ",
+            "L00056:     if ("
+          ],
+          "line": 53,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00059:         np.any(current > 1.0)",
+            "L00060:     ):",
+            "L00061:         raise ValueError(",
+            "L00062:             \"current_illumination must lie in [0,1]\"",
+            "L00063:         )",
+            "L00064: ",
+            "L00065:     return current"
+          ],
+          "line": 62,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00066: ",
+            "L00067: ",
+            "L00068: def hold_current_reactive_schedule(",
+            "L00069:     current_illumination,",
+            "L00070:     *,",
+            "L00071:     horizons_s: Sequence[float] = (",
+            "L00072:         0.1,"
+          ],
+          "line": 69,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00079:     Frozen Block6.8 single-decision evaluator semantics.",
+            "L00080: ",
+            "L00081:     The original reactive ADB controller produces one causal",
+            "L00082:     current-state Part-A-style illumination action at t0.",
+            "L00083: ",
+            "L00084:     For future-horizon comparison against predictive ADB,",
+            "L00085:     that already-made action is held unchanged over the four"
+          ],
+          "line": 82,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00089:     future trajectory, or posterior update enters this",
+            "L00090:     operation.",
+            "L00091: ",
+            "L00092:     This is an evaluator representation of the t0 reactive",
+            "L00093:     decision. It is NOT a simulated closed-loop reactive",
+            "L00094:     controller with future re-observation.",
+            "L00095:     \"\"\""
+          ],
+          "line": 92,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00099:     )",
+            "L00100: ",
+            "L00101:     current = (",
+            "L00102:         _validate_current_illumination(",
+            "L00103:             current_illumination",
+            "L00104:         )",
+            "L00105:     )"
+          ],
+          "line": 102,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00100: ",
+            "L00101:     current = (",
+            "L00102:         _validate_current_illumination(",
+            "L00103:             current_illumination",
+            "L00104:         )",
+            "L00105:     )",
+            "L00106: "
+          ],
+          "line": 103,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L00235:             \"original_reactive_ADB\",",
+            "L00236: ",
+            "L00237:         \"decision_time\":",
+            "L00238:             \"t0_current_causal_state\",",
+            "L00239: ",
+            "L00240:         \"controller_future_input\":",
+            "L00241:             False,"
+          ],
+          "line": 238,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00262: ",
+            "L00263:         \"schedule_semantics\":",
+            "L00264:             (",
+            "L00265:                 \"hold_t0_current_reactive_PartA_action_\"",
+            "L00266:                 \"unchanged_across_future_scoring_horizons\"",
+            "L00267:             ),",
+            "L00268: "
+          ],
+          "line": 265,
+          "matched_terms": [
+            "t0",
+            "hold_t0"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/reactive_development_scoring.py",
+      "score": 4,
+      "sha256": "e3114093406da9e4f8088a70cfcf98843055634a6e45ef30e1f3f0420f586d7b"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00054: MAPS = (",
+            "L00055:     S6",
+            "L00056:     / \"artifacts/block68/\"",
+            "L00057:       \"block68_original_reactive_t0_maps.npy\"",
+            "L00058: )",
+            "L00059: ",
+            "L00060: LEDGER = ("
+          ],
+          "line": 57,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00477:     )",
+            "L00478: ",
+            "L00479:     blank = np.asarray(",
+            "L00480:         part_a_original_reactive_map_from_h0_centers(",
+            "L00481:             grid,",
+            "L00482:             (),",
+            "L00483:         ),"
+          ],
+          "line": 480,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L01039:     )",
+            "L01040: ",
+            "L01041:     print(",
+            "L01042:         \"t0 map artifact       = ABSENT\"",
+            "L01043:     )",
+            "L01044: ",
+            "L01045:     print("
+          ],
+          "line": 1042,
+          "matched_terms": [
+            "t0"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/repair_block68_part2b_part1_grid_binding.py",
+      "score": 3,
+      "sha256": "d0bdf210d9cb9d364c789f7565b7c89fd854de469585239c74ae8ef07e4d2e87"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00047: MAPS = (",
+            "L00048:     S6",
+            "L00049:     / \"artifacts/block68/\"",
+            "L00050:       \"block68_original_reactive_t0_maps.npy\"",
+            "L00051: )",
+            "L00052: ",
+            "L00053: LEDGER = ("
+          ],
+          "line": 50,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00347:     )",
+            "L00348: ",
+            "L00349:     blank = np.asarray(",
+            "L00350:         part_a_original_reactive_map_from_h0_centers(",
+            "L00351:             grid,",
+            "L00352:             (),",
+            "L00353:         ),"
+          ],
+          "line": 350,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L00723:     )",
+            "L00724: ",
+            "L00725:     print(",
+            "L00726:         \"reactive maps       = ABSENT\"",
+            "L00727:     )",
+            "L00728: ",
+            "L00729:     print("
+          ],
+          "line": 726,
+          "matched_terms": [
+            "reactive map"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/repair_block68_part2b_part1_grid_binding_v2.py",
+      "score": 3,
+      "sha256": "5993eb857ea9c4c57cdd7b62536a0597f71343e5a93daa7cf8941c459b591d49"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00035: MAPS = (",
+            "L00036:     S6",
+            "L00037:     / \"artifacts/block68/\"",
+            "L00038:       \"block68_original_reactive_t0_maps.npy\"",
+            "L00039: )",
+            "L00040: ",
+            "L00041: LEDGER = ("
+          ],
+          "line": 38,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00373:     )",
+            "L00374: ",
+            "L00375:     blank = np.asarray(",
+            "L00376:         part_a_original_reactive_map_from_h0_centers(",
+            "L00377:             grid,",
+            "L00378:             (),",
+            "L00379:         ),"
+          ],
+          "line": 376,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L00893:     )",
+            "L00894: ",
+            "L00895:     print(",
+            "L00896:         \"t0 maps        = ABSENT\"",
+            "L00897:     )",
+            "L00898: ",
+            "L00899:     print("
+          ],
+          "line": 896,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01382:         not MAPS.exists(),",
+            "L01383:         (",
+            "L01384:             \"Patch unexpectedly generated \"",
+            "L01385:             \"reactive maps.\"",
+            "L01386:         ),",
+            "L01387:     )",
+            "L01388: "
+          ],
+          "line": 1385,
+          "matched_terms": [
+            "reactive map"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/repair_block68_part2b_part1_grid_binding_v3.py",
+      "score": 3,
+      "sha256": "b98a57665e817d0d80b5b5a78d4e9253ff9f300cd1cb871f0d550378b5102c55"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00035: MAPS = (",
+            "L00036:     S6",
+            "L00037:     / \"artifacts/block68/\"",
+            "L00038:       \"block68_original_reactive_t0_maps.npy\"",
+            "L00039: )",
+            "L00040: ",
+            "L00041: LEDGER = ("
+          ],
+          "line": 38,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00364:     )",
+            "L00365: ",
+            "L00366:     blank = np.asarray(",
+            "L00367:         part_a_original_reactive_map_from_h0_centers(",
+            "L00368:             grid,",
+            "L00369:             (),",
+            "L00370:         ),"
+          ],
+          "line": 367,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L00891:     )",
+            "L00892: ",
+            "L00893:     print(",
+            "L00894:         \"reactive maps       = ABSENT\"",
+            "L00895:     )",
+            "L00896:     print(",
+            "L00897:         \"decision ledger     = ABSENT\""
+          ],
+          "line": 894,
+          "matched_terms": [
+            "reactive map"
+          ]
+        },
+        {
+          "context": [
+            "L01404:         not MAPS.exists(),",
+            "L01405:         (",
+            "L01406:             \"Patcher unexpectedly produced \"",
+            "L01407:             \"reactive maps.\"",
+            "L01408:         ),",
+            "L01409:     )",
+            "L01410: "
+          ],
+          "line": 1407,
+          "matched_terms": [
+            "reactive map"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/repair_block68_part2b_part1_grid_binding_v4.py",
+      "score": 3,
+      "sha256": "8c4845415b107f3630d6e217a285249e6d7af6d7c31a6105aab6584929f304fa"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00041:       \"block68_original_reactive_decision_ledger.jsonl\"",
+            "L00042: )",
+            "L00043: ",
+            "L00044: T0_MAPS = (",
+            "L00045:     S6",
+            "L00046:     / \"artifacts/block68/\"",
+            "L00047:       \"block68_original_reactive_t0_maps.npy\""
+          ],
+          "line": 44,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00044: T0_MAPS = (",
+            "L00045:     S6",
+            "L00046:     / \"artifacts/block68/\"",
+            "L00047:       \"block68_original_reactive_t0_maps.npy\"",
+            "L00048: )",
+            "L00049: ",
+            "L00050: RAW_VALUES = ("
+          ],
+          "line": 47,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00100:     \"85d1e132288dbe4af7fe2d55adeafcaa\"",
+            "L00101: )",
+            "L00102: ",
+            "L00103: EXPECTED_T0_MAPS_SHA = (",
+            "L00104:     \"7c5d63c76c3d9ef74adbbd7a68e3ce74\"",
+            "L00105:     \"83b1dd80fd262cba06f6ce1909994993\"",
+            "L00106: )"
+          ],
+          "line": 103,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01040: ",
+            "L01041:     require(",
+            "L01042:         file_sha(",
+            "L01043:             T0_MAPS",
+            "L01044:         )",
+            "L01045:         ==",
+            "L01046:         EXPECTED_T0_MAPS_SHA,"
+          ],
+          "line": 1043,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01043:             T0_MAPS",
+            "L01044:         )",
+            "L01045:         ==",
+            "L01046:         EXPECTED_T0_MAPS_SHA,",
+            "L01047:         (",
+            "L01048:             \"Frozen t0 maps SHA changed.\"",
+            "L01049:         ),"
+          ],
+          "line": 1046,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01045:         ==",
+            "L01046:         EXPECTED_T0_MAPS_SHA,",
+            "L01047:         (",
+            "L01048:             \"Frozen t0 maps SHA changed.\"",
+            "L01049:         ),",
+            "L01050:     )",
+            "L01051: "
+          ],
+          "line": 1048,
+          "matched_terms": [
+            "t0"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/repair_block68_reactive_only_future_gt_provenance.py",
+      "score": 3,
+      "sha256": "0474dbcd4b6639b01212fab08f1f42e3852f69b326acd1dc669291805f5f21cb"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L03296:             composition.vru_floor_guard",
+            "L03297:         )",
+            "L03298: ",
+            "L03299:         # Neutral causal all-on state is used ONLY for",
+            "L03300:         # operator-chain plumbing smoke; no objective metric",
+            "L03301:         # is evaluated from this tuple.",
+            "L03302:         current_illumination = np.ones("
+          ],
+          "line": 3299,
+          "matched_terms": [
+            "all-on"
+          ]
+        },
+        {
+          "context": [
+            "L03299:         # Neutral causal all-on state is used ONLY for",
+            "L03300:         # operator-chain plumbing smoke; no objective metric",
+            "L03301:         # is evaluated from this tuple.",
+            "L03302:         current_illumination = np.ones(",
+            "L03303:             (",
+            "L03304:                 501,",
+            "L03305:                 301,"
+          ],
+          "line": 3302,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L03309: ",
+            "L03310:         smoothed = temporal_smooth_schedule(",
+            "L03311:             raw,",
+            "L03312:             current_illumination=",
+            "L03313:                 current_illumination,",
+            "L03314:             horizons_s=",
+            "L03315:                 tuple("
+          ],
+          "line": 3312,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L03310:         smoothed = temporal_smooth_schedule(",
+            "L03311:             raw,",
+            "L03312:             current_illumination=",
+            "L03313:                 current_illumination,",
+            "L03314:             horizons_s=",
+            "L03315:                 tuple(",
+            "L03316:                     float(value)"
+          ],
+          "line": 3313,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L03326:         rate_limited = (",
+            "L03327:             apply_actuation_rate_limit(",
+            "L03328:                 smoothed,",
+            "L03329:                 current_illumination=",
+            "L03330:                     current_illumination,",
+            "L03331:                 horizons_s=",
+            "L03332:                     tuple("
+          ],
+          "line": 3329,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L03327:             apply_actuation_rate_limit(",
+            "L03328:                 smoothed,",
+            "L03329:                 current_illumination=",
+            "L03330:                     current_illumination,",
+            "L03331:                 horizons_s=",
+            "L03332:                     tuple(",
+            "L03333:                         float(value)"
+          ],
+          "line": 3330,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/run_block66_part3c_part2of2_final.py",
+      "score": 3,
+      "sha256": "c8b87a64e5c5f6d1aba3d534fd0090772e24688f29c0425fb036457a5fa5de93"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00025:     IlluminationGridSpec,",
+            "L00026: )",
+            "L00027: from iscai_stage6.adb.part_a_reactive import (",
+            "L00028:     part_a_original_reactive_map_from_h0_centers,",
+            "L00029: )",
+            "L00030: from iscai_stage6.adb.reactive_development_scoring import (",
+            "L00031:     hold_current_reactive_schedule,"
+          ],
+          "line": 28,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L00064: MAPS = (",
+            "L00065:     S6",
+            "L00066:     / \"artifacts/block68/\"",
+            "L00067:       \"block68_original_reactive_t0_maps.npy\"",
+            "L00068: )",
+            "L00069: ",
+            "L00070: LEDGER = ("
+          ],
+          "line": 67,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00741:     )",
+            "L00742: ",
+            "L00743:     blank = np.asarray(",
+            "L00744:         part_a_original_reactive_map_from_h0_centers(",
+            "L00745:             grid,",
+            "L00746:             (),",
+            "L00747:         ),"
+          ],
+          "line": 744,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L01763:     ) = resolve_grid()",
+            "L01764: ",
+            "L01765:     blank = np.asarray(",
+            "L01766:         part_a_original_reactive_map_from_h0_centers(",
+            "L01767:             grid,",
+            "L01768:             (),",
+            "L01769:         ),"
+          ],
+          "line": 1766,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L01790: ",
+            "L01791:     print()",
+            "L01792:     print(",
+            "L01793:         \"===== E. MATERIALIZE 120 CAUSAL t0 DECISIONS =====\"",
+            "L01794:     )",
+            "L01795: ",
+            "L01796:     for path in ("
+          ],
+          "line": 1793,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02099:                 )",
+            "L02100: ",
+            "L02101:             current_map = np.asarray(",
+            "L02102:                 part_a_original_reactive_map_from_h0_centers(",
+            "L02103:                     grid,",
+            "L02104:                     tuple(",
+            "L02105:                         vehicle_centers"
+          ],
+          "line": 2102,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02113:                 ==",
+            "L02114:                 GRID_SHAPE,",
+            "L02115:                 (",
+            "L02116:                     \"Reactive map shape mismatch: \"",
+            "L02117:                     f\"{scenario_id}\"",
+            "L02118:                 ),",
+            "L02119:             )"
+          ],
+          "line": 2116,
+          "matched_terms": [
+            "reactive map"
+          ]
+        },
+        {
+          "context": [
+            "L02137:                     )",
+            "L02138:                 ),",
+            "L02139:                 (",
+            "L02140:                     \"Reactive map invalid: \"",
+            "L02141:                     f\"{scenario_id}\"",
+            "L02142:                 ),",
+            "L02143:             )"
+          ],
+          "line": 2140,
+          "matched_terms": [
+            "reactive map"
+          ]
+        },
+        {
+          "context": [
+            "L02171:                 ),",
+            "L02172:                 (",
+            "L02173:                     \"Reactive scoring helper \"",
+            "L02174:                     \"did not hold t0 action exactly.\"",
+            "L02175:                 ),",
+            "L02176:             )",
+            "L02177: "
+          ],
+          "line": 2174,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02239: ",
+            "L02240:                     \"original_reactive_ADB\": {",
+            "L02241:                         \"decision_time\":",
+            "L02242:                             \"t0_current_causal_anchor\",",
+            "L02243: ",
+            "L02244:                         \"controller_input_class\":",
+            "L02245:                             \"TYPE_VEHICLE_ONLY\","
+          ],
+          "line": 2242,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02275: ",
+            "L02276:                         \"score_schedule\":",
+            "L02277:                             (",
+            "L02278:                                 \"hold_t0_action_at_\"",
+            "L02279:                                 \"0.1_0.3_0.5_1.0s\"",
+            "L02280:                             ),",
+            "L02281:                     },"
+          ],
+          "line": 2278,
+          "matched_terms": [
+            "t0",
+            "hold_t0"
+          ]
+        },
+        {
+          "context": [
+            "L02280:                             ),",
+            "L02281:                     },",
+            "L02282: ",
+            "L02283:                     \"t0_map_row_index\":",
+            "L02284:                         index,",
+            "L02285: ",
+            "L02286:                     \"t0_map_shape\":"
+          ],
+          "line": 2283,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02283:                     \"t0_map_row_index\":",
+            "L02284:                         index,",
+            "L02285: ",
+            "L02286:                     \"t0_map_shape\":",
+            "L02287:                         list(",
+            "L02288:                             GRID_SHAPE",
+            "L02289:                         ),"
+          ],
+          "line": 2286,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02288:                             GRID_SHAPE",
+            "L02289:                         ),",
+            "L02290: ",
+            "L02291:                     \"t0_map_dtype\":",
+            "L02292:                         \"float64\",",
+            "L02293: ",
+            "L02294:                     \"t0_map_sha256\":"
+          ],
+          "line": 2291,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02291:                     \"t0_map_dtype\":",
+            "L02292:                         \"float64\",",
+            "L02293: ",
+            "L02294:                     \"t0_map_sha256\":",
+            "L02295:                         array_sha(",
+            "L02296:                             current_map",
+            "L02297:                         ),"
+          ],
+          "line": 2294,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02341:             ):",
+            "L02342: ",
+            "L02343:                 print(",
+            "L02344:                     \"t0 decisions          = \"",
+            "L02345:                     f\"{index + 1} / {N}\"",
+            "L02346:                 )",
+            "L02347: "
+          ],
+          "line": 2344,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02459:         require(",
+            "L02460:             int(",
+            "L02461:                 row[",
+            "L02462:                     \"t0_map_row_index\"",
+            "L02463:                 ]",
+            "L02464:             )",
+            "L02465:             =="
+          ],
+          "line": 2462,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02477:             )",
+            "L02478:             ==",
+            "L02479:             row[",
+            "L02480:                 \"t0_map_sha256\"",
+            "L02481:             ],",
+            "L02482:             (",
+            "L02483:                 \"Map content SHA mismatch \""
+          ],
+          "line": 2480,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02729:                 \"original_reactive_ADB\",",
+            "L02730: ",
+            "L02731:             \"decision_time\":",
+            "L02732:                 \"current_causal_t0\",",
+            "L02733: ",
+            "L02734:             \"controller_actor_input\":",
+            "L02735:                 ("
+          ],
+          "line": 2732,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02754: ",
+            "L02755:             \"future_scoring_schedule\":",
+            "L02756:                 (",
+            "L02757:                     \"hold_t0_action_at_\"",
+            "L02758:                     \"0.1_0.3_0.5_1.0s\"",
+            "L02759:                 ),",
+            "L02760:         },"
+          ],
+          "line": 2757,
+          "matched_terms": [
+            "t0",
+            "hold_t0"
+          ]
+        },
+        {
+          "context": [
+            "L02876:     )",
+            "L02877: ",
+            "L02878:     print(",
+            "L02879:         \"t0 maps SHA256        =\",",
+            "L02880:         maps_sha,",
+            "L02881:     )",
+            "L02882: "
+          ],
+          "line": 2879,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02916:         \"original reactive input    = CURRENT VEHICLE CENTERS ONLY\"",
+            "L02917:     )",
+            "L02918:     print(",
+            "L02919:         \"reactive t0 maps           = 120 FROZEN\"",
+            "L02920:     )",
+            "L02921:     print(",
+            "L02922:         \"4-horizon scoring          = HOLD t0 ACTION\""
+          ],
+          "line": 2919,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02919:         \"reactive t0 maps           = 120 FROZEN\"",
+            "L02920:     )",
+            "L02921:     print(",
+            "L02922:         \"4-horizon scoring          = HOLD t0 ACTION\"",
+            "L02923:     )",
+            "L02924:     print(",
+            "L02925:         \"future state field access  = NO\""
+          ],
+          "line": 2922,
+          "matched_terms": [
+            "t0"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_part2b_part1_reactive_decision_ledger.py",
+      "score": 3,
+      "sha256": "c7bedc46e1dc687258b6d81790f54a3c05d7d2e55da8b7e681bd379d1058579e"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00023: MAPS = (",
+            "L00024:     S6",
+            "L00025:     / \"artifacts/block68/\"",
+            "L00026:       \"block68_original_reactive_t0_maps.npy\"",
+            "L00027: )",
+            "L00028: ",
+            "L00029: REACTIVE_REPORT = ("
+          ],
+          "line": 26,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00854:         \"future truth values read       = NO\"",
+            "L00855:     )",
+            "L00856:     print(",
+            "L00857:         \"reactive map values analyzed   = NO\"",
+            "L00858:     )",
+            "L00859:     print(",
+            "L00860:         \"oracle masks materialized      = NO\""
+          ],
+          "line": 857,
+          "matched_terms": [
+            "reactive map"
+          ]
+        },
+        {
+          "context": [
+            "L01050:         \"frozen reactive ledger      = EXACT PASS\"",
+            "L01051:     )",
+            "L01052:     print(",
+            "L01053:         \"frozen t0 maps              = EXACT PASS\"",
+            "L01054:     )",
+            "L01055:     print(",
+            "L01056:         \"scenario identity           = 120 / 120 PASS\""
+          ],
+          "line": 1053,
+          "matched_terms": [
+            "t0"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_part2b_part2_geometry_identity_bind.py",
+      "score": 3,
+      "sha256": "f0bec04d1b43f89d7b9f000127a31ff91318293d57f29df97d6555bc93fedd89"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00044:       \"block68_original_reactive_decision_ledger.jsonl\"",
+            "L00045: )",
+            "L00046: ",
+            "L00047: T0_MAPS = (",
+            "L00048:     S6",
+            "L00049:     / \"artifacts/block68/\"",
+            "L00050:       \"block68_original_reactive_t0_maps.npy\""
+          ],
+          "line": 47,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00047: T0_MAPS = (",
+            "L00048:     S6",
+            "L00049:     / \"artifacts/block68/\"",
+            "L00050:       \"block68_original_reactive_t0_maps.npy\"",
+            "L00051: )",
+            "L00052: ",
+            "L00053: REACTIVE_FREEZE_REPORT = ("
+          ],
+          "line": 50,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00115:     \"ledger\":",
+            "L00116:         \"ac2b954571cdd0166bbcfa5bb8b2956785d1e132288dbe4af7fe2d55adeafcaa\",",
+            "L00117: ",
+            "L00118:     \"t0_maps\":",
+            "L00119:         \"7c5d63c76c3d9ef74adbbd7a68e3ce7483b1dd80fd262cba06f6ce1909994993\",",
+            "L00120: ",
+            "L00121:     \"reactive_freeze_report\":"
+          ],
+          "line": 118,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00962:             LEDGER,",
+            "L00963:         ),",
+            "L00964:         (",
+            "L00965:             \"t0_maps\",",
+            "L00966:             T0_MAPS,",
+            "L00967:         ),",
+            "L00968:         ("
+          ],
+          "line": 965,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00963:         ),",
+            "L00964:         (",
+            "L00965:             \"t0_maps\",",
+            "L00966:             T0_MAPS,",
+            "L00967:         ),",
+            "L00968:         (",
+            "L00969:             \"reactive_freeze_report\","
+          ],
+          "line": 966,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01148: ",
+            "L01149:     # --------------------------------------------------------",
+            "L01150:     # C. PRE-OUTCOME evaluator/scoring contract",
+            "L01151:     # Absolutely before np.load(t0 maps) or future state reads.",
+            "L01152:     # --------------------------------------------------------",
+            "L01153: ",
+            "L01154:     print()"
+          ],
+          "line": 1151,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01202:                     LEDGER",
+            "L01203:                 ),",
+            "L01204: ",
+            "L01205:             \"population_fixed_at_t0\":",
+            "L01206:                 True,",
+            "L01207: ",
+            "L01208:             \"future_validity_used_as_selector\":"
+          ],
+          "line": 1205,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01219: ",
+            "L01220:             \"invalid_future_state_semantics\":",
+            "L01221:                 (",
+            "L01222:                     \"actor remains in frozen t0 population; \"",
+            "L01223:                     \"that actor contributes empty evaluator \"",
+            "L01224:                     \"support at that horizon\"",
+            "L01225:                 ),"
+          ],
+          "line": 1222,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01227: ",
+            "L01228:         \"future_truth\": {",
+            "L01229:             \"role\":",
+            "L01230:                 \"EVALUATOR_ONLY_AFTER_FROZEN_T0_DECISION\",",
+            "L01231: ",
+            "L01232:             \"controller_input\":",
+            "L01233:                 False,"
+          ],
+          "line": 1230,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01347:         \"original_reactive_candidate\": {",
+            "L01348:             \"action_source\":",
+            "L01349:                 str(",
+            "L01350:                     T0_MAPS",
+            "L01351:                 ),",
+            "L01352: ",
+            "L01353:             \"decision_time\":"
+          ],
+          "line": 1350,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01351:                 ),",
+            "L01352: ",
+            "L01353:             \"decision_time\":",
+            "L01354:                 \"t0\",",
+            "L01355: ",
+            "L01356:             \"four_horizon_schedule\":",
+            "L01357:                 \"HOLD_T0_ACTION_UNCHANGED\","
+          ],
+          "line": 1354,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01354:                 \"t0\",",
+            "L01355: ",
+            "L01356:             \"four_horizon_schedule\":",
+            "L01357:                 \"HOLD_T0_ACTION_UNCHANGED\",",
+            "L01358: ",
+            "L01359:             \"binary_dim_support\":",
+            "L01360:                 \"D_tau = [I_final_tau < 1.0]\","
+          ],
+          "line": 1357,
+          "matched_terms": [
+            "t0",
+            "hold_t0"
+          ]
+        },
+        {
+          "context": [
+            "L01364:             \"semantics\":",
+            "L01365:                 (",
+            "L01366:                     \"O_tau = union of constructed future \"",
+            "L01367:                     \"full-box supports of frozen t0-selected \"",
+            "L01368:                     \"ADB actors\"",
+            "L01369:                 ),",
+            "L01370: "
+          ],
+          "line": 1367,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01597:         \"===== E. FIRST LEGAL FUTURE-TRUTH REACTIVE SCORING =====\"",
+            "L01598:     )",
+            "L01599: ",
+            "L01600:     t0_maps = np.load(",
+            "L01601:         T0_MAPS,",
+            "L01602:         allow_pickle=False,",
+            "L01603:     )"
+          ],
+          "line": 1600,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01598:     )",
+            "L01599: ",
+            "L01600:     t0_maps = np.load(",
+            "L01601:         T0_MAPS,",
+            "L01602:         allow_pickle=False,",
+            "L01603:     )",
+            "L01604: "
+          ],
+          "line": 1601,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01603:     )",
+            "L01604: ",
+            "L01605:     require(",
+            "L01606:         t0_maps.shape",
+            "L01607:         ==",
+            "L01608:         (",
+            "L01609:             120,"
+          ],
+          "line": 1606,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01611:             N_RANGE,",
+            "L01612:         ),",
+            "L01613:         (",
+            "L01614:             \"Frozen t0 map shape mismatch: \"",
+            "L01615:             f\"{t0_maps.shape}\"",
+            "L01616:         ),",
+            "L01617:     )"
+          ],
+          "line": 1614,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01612:         ),",
+            "L01613:         (",
+            "L01614:             \"Frozen t0 map shape mismatch: \"",
+            "L01615:             f\"{t0_maps.shape}\"",
+            "L01616:         ),",
+            "L01617:     )",
+            "L01618: "
+          ],
+          "line": 1615,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01619:     require(",
+            "L01620:         np.all(",
+            "L01621:             np.isfinite(",
+            "L01622:                 t0_maps",
+            "L01623:             )",
+            "L01624:         ),",
+            "L01625:         \"Frozen t0 maps contain non-finite values.\","
+          ],
+          "line": 1622,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01622:                 t0_maps",
+            "L01623:             )",
+            "L01624:         ),",
+            "L01625:         \"Frozen t0 maps contain non-finite values.\",",
+            "L01626:     )",
+            "L01627: ",
+            "L01628:     require("
+          ],
+          "line": 1625,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01627: ",
+            "L01628:     require(",
+            "L01629:         np.all(",
+            "L01630:             t0_maps >= 0.0",
+            "L01631:         )",
+            "L01632:         and",
+            "L01633:         np.all("
+          ],
+          "line": 1630,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01631:         )",
+            "L01632:         and",
+            "L01633:         np.all(",
+            "L01634:             t0_maps <= 1.0",
+            "L01635:         ),",
+            "L01636:         \"Frozen t0 illumination lies outside [0,1].\",",
+            "L01637:     )"
+          ],
+          "line": 1634,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L01633:         np.all(",
+            "L01634:             t0_maps <= 1.0",
+            "L01635:         ),",
+            "L01636:         \"Frozen t0 illumination lies outside [0,1].\",",
+            "L01637:     )",
+            "L01638: ",
+            "L01639:     theta_centers = np.linspace("
+          ],
+          "line": 1636,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02100:                 # CRITICAL:",
+            "L02101:                 # validity is used only to determine evaluator",
+            "L02102:                 # support at this already-selected actor/horizon.",
+            "L02103:                 # It does NOT change the frozen t0 population.",
+            "L02104:                 if not bool(",
+            "L02105:                     state.valid",
+            "L02106:                 ):"
+          ],
+          "line": 2103,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02180:         )",
+            "L02181: ",
+            "L02182:         # Frozen original-reactive semantics:",
+            "L02183:         # hold t0 action unchanged across all four horizons.",
+            "L02184:         t0_illumination = np.asarray(",
+            "L02185:             t0_maps[",
+            "L02186:                 scenario_rank"
+          ],
+          "line": 2183,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02181: ",
+            "L02182:         # Frozen original-reactive semantics:",
+            "L02183:         # hold t0 action unchanged across all four horizons.",
+            "L02184:         t0_illumination = np.asarray(",
+            "L02185:             t0_maps[",
+            "L02186:                 scenario_rank",
+            "L02187:                 -"
+          ],
+          "line": 2184,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02182:         # Frozen original-reactive semantics:",
+            "L02183:         # hold t0 action unchanged across all four horizons.",
+            "L02184:         t0_illumination = np.asarray(",
+            "L02185:             t0_maps[",
+            "L02186:                 scenario_rank",
+            "L02187:                 -",
+            "L02188:                 1"
+          ],
+          "line": 2185,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02191:         )",
+            "L02192: ",
+            "L02193:         reactive_schedule = np.repeat(",
+            "L02194:             t0_illumination[",
+            "L02195:                 None,",
+            "L02196:                 :,",
+            "L02197:                 :,"
+          ],
+          "line": 2194,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02311: ",
+            "L02312:                 \"causality\": {",
+            "L02313:                     \"decision_source\":",
+            "L02314:                         \"frozen_t0_reactive_ledger\",",
+            "L02315: ",
+            "L02316:                     \"future_GT_role\":",
+            "L02317:                         \"evaluator_only_after_decision\","
+          ],
+          "line": 2314,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02652:         \"development_scenarios\":",
+            "L02653:             120,",
+            "L02654: ",
+            "L02655:         \"selected_t0_actor_count\":",
+            "L02656:             aggregate_selected_actor_count,",
+            "L02657: ",
+            "L02658:         \"future_evaluator\": {"
+          ],
+          "line": 2655,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02688:                 True,",
+            "L02689: ",
+            "L02690:             \"future_truth_role\":",
+            "L02691:                 \"REACTIVE_EVALUATOR_ONLY_AFTER_T0_DECISION\",",
+            "L02692: ",
+            "L02693:             \"reactive_performance_computed\":",
+            "L02694:                 True,"
+          ],
+          "line": 2691,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02851:         \"development population     = 120 / 120\"",
+            "L02852:     )",
+            "L02853:     print(",
+            "L02854:         \"frozen t0 decisions         = USED\"",
+            "L02855:     )",
+            "L02856:     print(",
+            "L02857:         \"future GT role              = EVALUATOR ONLY\""
+          ],
+          "line": 2854,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L02863:         \"full future box corners     = YES\"",
+            "L02864:     )",
+            "L02865:     print(",
+            "L02866:         \"reactive schedule           = HOLD t0 ACTION\"",
+            "L02867:     )",
+            "L02868:     print(",
+            "L02869:         \"overmask observations       =\","
+          ],
+          "line": 2866,
+          "matched_terms": [
+            "t0"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_reactive_only_ni_delta_freeze.py",
+      "score": 3,
+      "sha256": "dd58b1de2f01331d69b28726831039b87df8771ae4a4818b7d6c35e56d367e02"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00349: ",
+            "L00350:     require(",
+            "L00351:         (",
+            "L00352:             \"t1 > t0 \"",
+            "L00353:             \"for t0, t1 in zip(\"",
+            "L00354:             \"timestamps[:-1], timestamps[1:])\"",
+            "L00355:         )"
+          ],
+          "line": 352,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00350:     require(",
+            "L00351:         (",
+            "L00352:             \"t1 > t0 \"",
+            "L00353:             \"for t0, t1 in zip(\"",
+            "L00354:             \"timestamps[:-1], timestamps[1:])\"",
+            "L00355:         )",
+            "L00356:         in"
+          ],
+          "line": 353,
+          "matched_terms": [
+            "t0"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/repair_block68_reactive_only_timestamp_alignment.py",
+      "score": 2,
+      "sha256": "72b963790a0b3e4fa89464fff755ae5c6e92b7360eddacf3df7d5b7b0a566fa1"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L01790:             \"future truth evaluator-only role\",",
+            "L01791:             \"future box geometry\",",
+            "L01792:             \"rasterization\",",
+            "L01793:             \"reactive t0 action\",",
+            "L01794:             \"metric semantics\",",
+            "L01795:             \"NI rule\",",
+            "L01796:             \"controller\","
+          ],
+          "line": 1793,
+          "matched_terms": [
+            "t0"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/repair_block68_timestamp_alignment_superseding.py",
+      "score": 2,
+      "sha256": "9da346a95e440d79b6f2293086a89a799d94f0a3c992c4511407dea93a4c4402"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L02194:         intensity_floor=0.0,",
+            "L02195:     )",
+            "L02196: ",
+            "L02197:     reactive_map = reactive_adb_map(",
+            "L02198:         grid,",
+            "L02199:         (",
+            "L02200:             region_a,"
+          ],
+          "line": 2197,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02205:     require(",
+            "L02206:         static_map.shape",
+            "L02207:         ==",
+            "L02208:         reactive_map.shape",
+            "L02209:         ==",
+            "L02210:         grid.shape,",
+            "L02211:         \"ADB map shape mismatch.\","
+          ],
+          "line": 2208,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02213: ",
+            "L02214:     require(",
+            "L02215:         float(",
+            "L02216:             reactive_map.min()",
+            "L02217:         )",
+            "L02218:         >=",
+            "L02219:         0.0,"
+          ],
+          "line": 2216,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02222: ",
+            "L02223:     require(",
+            "L02224:         float(",
+            "L02225:             reactive_map.max()",
+            "L02226:         )",
+            "L02227:         <=",
+            "L02228:         1.0,"
+          ],
+          "line": 2225,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02231: ",
+            "L02232:     require(",
+            "L02233:         float(",
+            "L02234:             reactive_map.min()",
+            "L02235:         )",
+            "L02236:         <",
+            "L02237:         1.0,"
+          ],
+          "line": 2234,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/run_block62_part1_static_reactive_kernel.py",
+      "score": 2,
+      "sha256": "b7c71b8d15a2532312e1b67644d3783f3cddd21ad15a9a19958a2256dedc0b29"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L01451:     )",
+            "L01452: ",
+            "L01453: ",
+            "L01454: def part_a_original_reactive_map_from_h0_centers(",
+            "L01455:     grid,",
+            "L01456:     centers_H0_m: Iterable,",
+            "L01457: ) -> np.ndarray:"
+          ],
+          "line": 1454,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L01659:     part_a_current_vehicle_centers_from_causal_boxes,",
+            "L01660:     part_a_direct_source_reference_map_from_h0_centers,",
+            "L01661:     part_a_dynamic_geometry_from_h0_center,",
+            "L01662:     part_a_original_reactive_map_from_h0_centers,",
+            "L01663:     part_a_region_from_h0_center,",
+            "L01664: )",
+            "L01665: '''"
+          ],
+          "line": 1662,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L01708:         \"part_a_current_vehicle_centers_from_causal_boxes\",",
+            "L01709:         \"part_a_direct_source_reference_map_from_h0_centers\",",
+            "L01710:         \"part_a_dynamic_geometry_from_h0_center\",",
+            "L01711:         \"part_a_original_reactive_map_from_h0_centers\",",
+            "L01712:         \"part_a_region_from_h0_center\",",
+            "L01713:     )",
+            "L01714: "
+          ],
+          "line": 1711,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02099:     part_a_current_vehicle_centers_from_causal_boxes,",
+            "L02100:     part_a_direct_source_reference_map_from_h0_centers,",
+            "L02101:     part_a_dynamic_geometry_from_h0_center,",
+            "L02102:     part_a_original_reactive_map_from_h0_centers,",
+            "L02103: )",
+            "L02104: ",
+            "L02105: "
+          ],
+          "line": 2102,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02356:         )",
+            "L02357: ",
+            "L02358:         implementation = (",
+            "L02359:             part_a_original_reactive_map_from_h0_centers(",
+            "L02360:                 grid,",
+            "L02361:                 centers,",
+            "L02362:             )"
+          ],
+          "line": 2359,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02381:         grid = PartAReferenceGrid()",
+            "L02382: ",
+            "L02383:         result = (",
+            "L02384:             part_a_original_reactive_map_from_h0_centers(",
+            "L02385:                 grid,",
+            "L02386:                 (),",
+            "L02387:             )"
+          ],
+          "line": 2384,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02463:     def test_original_reactive_api_has_no_future_posterior_covariance(self):",
+            "L02464: ",
+            "L02465:         signature = inspect.signature(",
+            "L02466:             part_a_original_reactive_map_from_h0_centers",
+            "L02467:         )",
+            "L02468: ",
+            "L02469:         forbidden = {{"
+          ],
+          "line": 2466,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02612:         part_a_current_vehicle_centers_from_causal_boxes,",
+            "L02613:         part_a_direct_source_reference_map_from_h0_centers,",
+            "L02614:         part_a_dynamic_geometry_from_h0_center,",
+            "L02615:         part_a_original_reactive_map_from_h0_centers,",
+            "L02616:     )",
+            "L02617: ",
+            "L02618:     from iscai_stage6.adb.womd_geometry import ("
+          ],
+          "line": 2615,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02646:     )",
+            "L02647: ",
+            "L02648:     implemented = (",
+            "L02649:         part_a_original_reactive_map_from_h0_centers(",
+            "L02650:             parity_grid,",
+            "L02651:             parity_centers,",
+            "L02652:         )"
+          ],
+          "line": 2649,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02897:         PartAReferenceGrid()",
+            "L02898:     )",
+            "L02899: ",
+            "L02900:     reactive_map = (",
+            "L02901:         part_a_original_reactive_map_from_h0_centers(",
+            "L02902:             real_grid,",
+            "L02903:             vehicle_centers,"
+          ],
+          "line": 2900,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02898:     )",
+            "L02899: ",
+            "L02900:     reactive_map = (",
+            "L02901:         part_a_original_reactive_map_from_h0_centers(",
+            "L02902:             real_grid,",
+            "L02903:             vehicle_centers,",
+            "L02904:         )"
+          ],
+          "line": 2901,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02914:     real_parity_error = float(",
+            "L02915:         np.max(",
+            "L02916:             np.abs(",
+            "L02917:                 reactive_map",
+            "L02918:                 -",
+            "L02919:                 source_reference_map",
+            "L02920:             )"
+          ],
+          "line": 2917,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02934: ",
+            "L02935:     require(",
+            "L02936:         float(",
+            "L02937:             reactive_map.min()",
+            "L02938:         )",
+            "L02939:         <",
+            "L02940:         1.0,"
+          ],
+          "line": 2937,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02947: ",
+            "L02948:     require(",
+            "L02949:         float(",
+            "L02950:             reactive_map.min()",
+            "L02951:         )",
+            "L02952:         >=",
+            "L02953:         0.0,"
+          ],
+          "line": 2950,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02956: ",
+            "L02957:     require(",
+            "L02958:         float(",
+            "L02959:             reactive_map.max()",
+            "L02960:         )",
+            "L02961:         <=",
+            "L02962:         1.0,"
+          ],
+          "line": 2959,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02965: ",
+            "L02966:     dimmed_cells = int(",
+            "L02967:         np.count_nonzero(",
+            "L02968:             reactive_map",
+            "L02969:             <",
+            "L02970:             1.0",
+            "L02971:         )"
+          ],
+          "line": 2968,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L03025:     print(",
+            "L03026:         \"minimum intensity        =\",",
+            "L03027:         float(",
+            "L03028:             reactive_map.min()",
+            "L03029:         ),",
+            "L03030:     )",
+            "L03031: "
+          ],
+          "line": 3028,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L03089:         )",
+            "L03090: ",
+            "L03091:         result = (",
+            "L03092:             part_a_original_reactive_map_from_h0_centers(",
+            "L03093:                 real_grid,",
+            "L03094:                 centers,",
+            "L03095:             )"
+          ],
+          "line": 3092,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L03279:     )",
+            "L03280: ",
+            "L03281:     print(",
+            "L03282:         \"reactive map SHA256         =\",",
+            "L03283:         array_sha256(",
+            "L03284:             base_map",
+            "L03285:         ),"
+          ],
+          "line": 3282,
+          "matched_terms": [
+            "reactive map"
+          ]
+        },
+        {
+          "context": [
+            "L03576: ",
+            "L03577:     from iscai_stage6.adb.part_a_reactive import (",
+            "L03578:         part_a_dynamic_geometry_from_h0_center,",
+            "L03579:         part_a_original_reactive_map_from_h0_centers,",
+            "L03580:     )",
+            "L03581: ",
+            "L03582:     geometry_signature = str("
+          ],
+          "line": 3579,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L03587: ",
+            "L03588:     reactive_signature = str(",
+            "L03589:         inspect.signature(",
+            "L03590:             part_a_original_reactive_map_from_h0_centers",
+            "L03591:         )",
+            "L03592:     )",
+            "L03593: "
+          ],
+          "line": 3590,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L03626:             )",
+            "L03627:         ),",
+            "L03628:         (",
+            "L03629:             \"Original reactive map \"",
+            "L03630:             \"exposes predictive/communication input.\"",
+            "L03631:         ),",
+            "L03632:     )"
+          ],
+          "line": 3629,
+          "matched_terms": [
+            "reactive map"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/run_block62_part2_exact_part_a_reactive.py",
+      "score": 2,
+      "sha256": "d12ba7baed7117dba8aa26179a602f3dd8d081552d2b061fadc2fe2e2579bb96"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00021:       \"block65_to_block66_handoff.json\"",
+            "L00022: )",
+            "L00023: ",
+            "L00024: PART0B_REPORT = (",
+            "L00025:     S6",
+            "L00026:     / \"reports/\"",
+            "L00027:       \"block66_part0b_development_partition_resolution.json\""
+          ],
+          "line": 24,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00024: PART0B_REPORT = (",
+            "L00025:     S6",
+            "L00026:     / \"reports/\"",
+            "L00027:       \"block66_part0b_development_partition_resolution.json\"",
+            "L00028: )",
+            "L00029: ",
+            "L00030: PART1A_REPORT = ("
+          ],
+          "line": 27,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00083:             \"188df798e5ac19b4b289418ec5ffe700\"",
+            "L00084:         ),",
+            "L00085: ",
+            "L00086:     \"part0b_report\":",
+            "L00087:         (",
+            "L00088:             \"1e7860b9589d7ce62791c5c48802fb06\"",
+            "L00089:             \"f90e2ccfca5d90b8ec6b528e5e3bb032\""
+          ],
+          "line": 86,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00454:             \"Block6.5 handoff\",",
+            "L00455:         ),",
+            "L00456:         (",
+            "L00457:             PART0B_REPORT,",
+            "L00458:             EXPECTED[",
+            "L00459:                 \"part0b_report\"",
+            "L00460:             ],"
+          ],
+          "line": 457,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00456:         (",
+            "L00457:             PART0B_REPORT,",
+            "L00458:             EXPECTED[",
+            "L00459:                 \"part0b_report\"",
+            "L00460:             ],",
+            "L00461:             \"Part0B report\",",
+            "L00462:         ),"
+          ],
+          "line": 459,
+          "matched_terms": [
+            "t0"
+          ]
+        },
+        {
+          "context": [
+            "L00458:             EXPECTED[",
+            "L00459:                 \"part0b_report\"",
+            "L00460:             ],",
+            "L00461:             \"Part0B report\",",
+            "L00462:         ),",
+            "L00463:         (",
+            "L00464:             PART1A_REPORT,"
+          ],
+          "line": 461,
+          "matched_terms": [
+            "t0"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/run_block66_part1b_development_cohort_freeze.py",
+      "score": 2,
+      "sha256": "5c96a8f52b3c5f9fb7784aac8dc32cb9d740bd8ee26419c539131f3eacff4825"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L02099:                     False,",
+            "L02100: ",
+            "L02101:                 \"semantics\":",
+            "L02102:                     \"normalized all-on static map\",",
+            "L02103:             },",
+            "L02104: ",
+            "L02105:             \"2_original_reactive_ADB\": {"
+          ],
+          "line": 2102,
+          "matched_terms": [
+            "all-on"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/run_block66_part3b_preregistration.py",
+      "score": 2,
+      "sha256": "fe31d519019fd24445cf39fd7a8fc0dcc37f240f181fbb726c2bb207825e789d"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L01119: def temporal_smooth_schedule(",
+            "L01120:     raw_schedule,",
+            "L01121:     *,",
+            "L01122:     current_illumination,",
+            "L01123:     horizons_s: Sequence[float],",
+            "L01124:     time_constant_s: float,",
+            "L01125: ) -> np.ndarray:"
+          ],
+          "line": 1122,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01129:         alpha_h = 1-exp(-dt_h/T)",
+            "L01130:         I_h = alpha_h*raw_h + (1-alpha_h)*I_prev",
+            "L01131: ",
+            "L01132:     Initial I_prev is current causal illumination.",
+            "L01133:     \"\"\"",
+            "L01134: ",
+            "L01135:     raw = np.asarray("
+          ],
+          "line": 1132,
+          "matched_terms": [
+            "current causal illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01138:     )",
+            "L01139: ",
+            "L01140:     current = np.asarray(",
+            "L01141:         current_illumination,",
+            "L01142:         dtype=np.float64,",
+            "L01143:     )",
+            "L01144: "
+          ],
+          "line": 1141,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01163: ",
+            "L01164:     if current.shape != raw.shape[1:]:",
+            "L01165:         raise ValueError(",
+            "L01166:             \"current_illumination shape mismatch\"",
+            "L01167:         )",
+            "L01168: ",
+            "L01169:     if horizons.shape != ("
+          ],
+          "line": 1166,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01184:         np.isfinite(current)",
+            "L01185:     ):",
+            "L01186:         raise ValueError(",
+            "L01187:             \"current_illumination contains non-finite values\"",
+            "L01188:         )",
+            "L01189: ",
+            "L01190:     if ("
+          ],
+          "line": 1187,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01285: def apply_actuation_rate_limit(",
+            "L01286:     smoothed_schedule,",
+            "L01287:     *,",
+            "L01288:     current_illumination,",
+            "L01289:     horizons_s: Sequence[float],",
+            "L01290:     rho_dim_per_s: float,",
+            "L01291:     rho_bright_per_s: float,"
+          ],
+          "line": 1288,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01310:     )",
+            "L01311: ",
+            "L01312:     current = np.asarray(",
+            "L01313:         current_illumination,",
+            "L01314:         dtype=np.float64,",
+            "L01315:     )",
+            "L01316: "
+          ],
+          "line": 1313,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01340: ",
+            "L01341:     if current.shape != smooth.shape[1:]:",
+            "L01342:         raise ValueError(",
+            "L01343:             \"current_illumination shape mismatch\"",
+            "L01344:         )",
+            "L01345: ",
+            "L01346:     if horizons.shape != ("
+          ],
+          "line": 1343,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L02154: ",
+            "L02155:         output = temporal_smooth_schedule(",
+            "L02156:             raw,",
+            "L02157:             current_illumination=current,",
+            "L02158:             horizons_s=(",
+            "L02159:                 0.1,",
+            "L02160:             ),"
+          ],
+          "line": 2157,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L02206: ",
+            "L02207:         output = temporal_smooth_schedule(",
+            "L02208:             raw,",
+            "L02209:             current_illumination=current,",
+            "L02210:             horizons_s=(",
+            "L02211:                 0.1,",
+            "L02212:                 0.3,"
+          ],
+          "line": 2209,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L02285: ",
+            "L02286:         result = apply_actuation_rate_limit(",
+            "L02287:             smooth,",
+            "L02288:             current_illumination=current,",
+            "L02289:             horizons_s=(",
+            "L02290:                 0.1,",
+            "L02291:             ),"
+          ],
+          "line": 2288,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L02323: ",
+            "L02324:         result = apply_actuation_rate_limit(",
+            "L02325:             smooth,",
+            "L02326:             current_illumination=current,",
+            "L02327:             horizons_s=(",
+            "L02328:                 0.1,",
+            "L02329:             ),"
+          ],
+          "line": 2326,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L02372: ",
+            "L02373:         result = apply_actuation_rate_limit(",
+            "L02374:             smooth,",
+            "L02375:             current_illumination=current,",
+            "L02376:             horizons_s=(",
+            "L02377:                 0.1,",
+            "L02378:             ),"
+          ],
+          "line": 2375,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L02416:                         1,",
+            "L02417:                     )",
+            "L02418:                 ),",
+            "L02419:                 current_illumination=",
+            "L02420:                     np.ones(",
+            "L02421:                         (",
+            "L02422:                             1,"
+          ],
+          "line": 2419,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/run_block66_part3c1_class_aware_runtime.py",
+      "score": 2,
+      "sha256": "8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00141:     \"sample\",",
+            "L00142:     \"pocc\",",
+            "L00143:     \"occupancy\",",
+            "L00144:     \"current_illumination\",",
+            "L00145:     \"current\",",
+            "L00146:     \"grid\",",
+            "L00147:     \"replay\","
+          ],
+          "line": 144,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_development_selection_runtime_bind.py",
+      "score": 2,
+      "sha256": "552f2c5988a9a52958f569316b54c7fdcbdbfdfe50a6d897dba7f3df2456cc87"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00020: )",
+            "L00021: ",
+            "L00022: from iscai_stage6.adb.part_a_reactive import (",
+            "L00023:     part_a_original_reactive_map_from_h0_centers,",
+            "L00024: )",
+            "L00025: ",
+            "L00026: "
+          ],
+          "line": 23,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L01392:     )",
+            "L01393: ",
+            "L01394:     blank = np.asarray(",
+            "L01395:         part_a_original_reactive_map_from_h0_centers(",
+            "L01396:             grid,",
+            "L01397:             (),",
+            "L01398:         ),"
+          ],
+          "line": 1395,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L02074:     )",
+            "L02075: ",
+            "L02076:     readback_map = np.asarray(",
+            "L02077:         part_a_original_reactive_map_from_h0_centers(",
+            "L02078:             readback_grid,",
+            "L02079:             (),",
+            "L02080:         ),"
+          ],
+          "line": 2077,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_grid_runtime_binding_repair.py",
+      "score": 2,
+      "sha256": "313507007f305c7a0654611f091dae51abd181c2674222766dbad61991ae11e2"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00054:     part_a_current_vehicle_centers_from_causal_boxes,",
+            "L00055:     part_a_direct_source_reference_map_from_h0_centers,",
+            "L00056:     part_a_dynamic_geometry_from_h0_center,",
+            "L00057:     part_a_original_reactive_map_from_h0_centers,",
+            "L00058:     part_a_region_from_h0_center,",
+            "L00059: )",
+            "L00060: "
+          ],
+          "line": 57,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        },
+        {
+          "context": [
+            "L00072:     \"part_a_current_vehicle_centers_from_causal_boxes\",",
+            "L00073:     \"part_a_direct_source_reference_map_from_h0_centers\",",
+            "L00074:     \"part_a_dynamic_geometry_from_h0_center\",",
+            "L00075:     \"part_a_original_reactive_map_from_h0_centers\",",
+            "L00076:     \"part_a_region_from_h0_center\",",
+            "L00077: ",
+            "L00078:     \"ReactiveShadowRegion\","
+          ],
+          "line": 75,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/__init__.py",
+      "score": 2,
+      "sha256": "6fa2866292a479a8ad3c663a5ca792338035f7fa6c4637dcb99e5b2eb2f48d6c"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00991: def temporal_smooth_schedule(",
+            "L00992:     raw_schedule,",
+            "L00993:     *,",
+            "L00994:     current_illumination,",
+            "L00995:     horizons_s: Sequence[float],",
+            "L00996:     time_constant_s: float,",
+            "L00997: ) -> np.ndarray:"
+          ],
+          "line": 994,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01001:         alpha_h = 1-exp(-dt_h/T)",
+            "L01002:         I_h = alpha_h*raw_h + (1-alpha_h)*I_prev",
+            "L01003: ",
+            "L01004:     Initial I_prev is current causal illumination.",
+            "L01005:     \"\"\"",
+            "L01006: ",
+            "L01007:     raw = np.asarray("
+          ],
+          "line": 1004,
+          "matched_terms": [
+            "current causal illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01010:     )",
+            "L01011: ",
+            "L01012:     current = np.asarray(",
+            "L01013:         current_illumination,",
+            "L01014:         dtype=np.float64,",
+            "L01015:     )",
+            "L01016: "
+          ],
+          "line": 1013,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01035: ",
+            "L01036:     if current.shape != raw.shape[1:]:",
+            "L01037:         raise ValueError(",
+            "L01038:             \"current_illumination shape mismatch\"",
+            "L01039:         )",
+            "L01040: ",
+            "L01041:     if horizons.shape != ("
+          ],
+          "line": 1038,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01056:         np.isfinite(current)",
+            "L01057:     ):",
+            "L01058:         raise ValueError(",
+            "L01059:             \"current_illumination contains non-finite values\"",
+            "L01060:         )",
+            "L01061: ",
+            "L01062:     if ("
+          ],
+          "line": 1059,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01157: def apply_actuation_rate_limit(",
+            "L01158:     smoothed_schedule,",
+            "L01159:     *,",
+            "L01160:     current_illumination,",
+            "L01161:     horizons_s: Sequence[float],",
+            "L01162:     rho_dim_per_s: float,",
+            "L01163:     rho_bright_per_s: float,"
+          ],
+          "line": 1160,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01182:     )",
+            "L01183: ",
+            "L01184:     current = np.asarray(",
+            "L01185:         current_illumination,",
+            "L01186:         dtype=np.float64,",
+            "L01187:     )",
+            "L01188: "
+          ],
+          "line": 1185,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        },
+        {
+          "context": [
+            "L01212: ",
+            "L01213:     if current.shape != smooth.shape[1:]:",
+            "L01214:         raise ValueError(",
+            "L01215:             \"current_illumination shape mismatch\"",
+            "L01216:         )",
+            "L01217: ",
+            "L01218:     if horizons.shape != ("
+          ],
+          "line": 1215,
+          "matched_terms": [
+            "current_illumination"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/class_aware_policy.py",
+      "score": 2,
+      "sha256": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b"
+    },
+    {
+      "hits": [
+        {
+          "context": [
+            "L00501:     )",
+            "L00502: ",
+            "L00503: ",
+            "L00504: def part_a_original_reactive_map_from_h0_centers(",
+            "L00505:     grid,",
+            "L00506:     centers_H0_m: Iterable,",
+            "L00507: ) -> np.ndarray:"
+          ],
+          "line": 504,
+          "matched_terms": [
+            "reactive_map"
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/part_a_reactive.py",
+      "score": 2,
+      "sha256": "19f80f325aebc03b5257ca3c0408d1ddea1ac3a8ff4ad875914224584e2ef173"
+    }
+  ],
+  "stage": 6,
+  "status": "PASS_STAGE4_CURRENT_ILLUMINATION_AUTHORITY_DISCOVERY_ONLY"
+}

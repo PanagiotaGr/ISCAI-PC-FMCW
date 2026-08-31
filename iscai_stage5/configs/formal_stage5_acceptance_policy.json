@@ -1,0 +1,81 @@
+{
+  "adaptive_overhead_acceptance": {
+    "adaptive_vs_valid_fixed_requirement": "adaptive mean physical probe count <= best coverage-valid fixed Top-K",
+    "fixed_comparator_rule": "first determine which fixed Top-K baselines independently pass the same nominal coverage criterion across all four horizons; among coverage-valid fixed baselines use the smallest K as the fair overhead comparator",
+    "fixed_topk_baselines": [
+      1,
+      3,
+      5
+    ],
+    "hard_exhaustive_requirement": "adaptive mean physical probe count < exhaustive beam count for each codebook",
+    "if_no_fixed_topk_is_coverage_valid": "report that fact explicitly; fixed comparison is descriptive and the hard overhead requirement remains adaptive < exhaustive",
+    "nominal_q": 0.95,
+    "why_top1_is_not_unconditional_target": "a lower-overhead fixed policy that fails the requested reliability target is not a valid reliability-overhead comparator"
+  },
+  "block": "5.8",
+  "coverage_targets": {
+    "nominal_primary_q": 0.95,
+    "primary_acceptance_scope": "nominal_q_0.95",
+    "reported_q": [
+      0.9,
+      0.95,
+      0.975,
+      0.99
+    ],
+    "secondary_targets": [
+      0.9,
+      0.975,
+      0.99
+    ]
+  },
+  "evaluation_granularity": {
+    "codebook_sizes": [
+      16,
+      32,
+      64
+    ],
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "pool_horizons_for_primary_test": false,
+    "primary_completion_rule": "all evaluable nominal-q codebook/horizon strata must pass; n=0 is NOT_EVALUABLE and cannot silently pass",
+    "primary_tests": "separate test for every codebook_size x horizon",
+    "reason": "avoid treating correlated horizons from one selected receiver/scene as independent Bernoulli observations"
+  },
+  "formal_empirical_coverage_tolerance": {
+    "alpha": 0.05,
+    "fixed_absolute_percentage_point_tolerance": null,
+    "important_limitation": "PASS is finite-sample consistency with requested_q; it is not proof that the unknown population coverage is >= q",
+    "interpretation": "no statistically significant evidence that empirical containment is below the requested posterior-mass target",
+    "lower_tail_p_value": "P[X <= observed_hits | X~Binomial(n, requested_q)]",
+    "method": "one_sided_exact_binomial_lower_tail_consistency_with_requested_q",
+    "null_boundary": "coverage_probability = requested_q",
+    "pass_rule": "lower_tail_p_value >= 0.05",
+    "representation": "finite_sample_statistical_acceptance_rule"
+  },
+  "formal_leakage_guards": {
+    "formal_results_used_to_choose_alpha": false,
+    "formal_results_used_to_choose_q": false,
+    "formal_results_used_to_choose_threshold": false,
+    "model_selection_on_formal": false,
+    "policy_frozen_before_formal_metrics": true,
+    "post_hoc_tolerance_change_allowed": false,
+    "recalibration_on_formal": false,
+    "training_on_formal": false
+  },
+  "receiver_denominator_contract": {
+    "future_truth_receiver_selection": false,
+    "future_truth_role": "evaluator_only_after_controller_decision",
+    "invalid_future_endpoint": "exclude only from that horizon's Bernoulli denominator and report the unavailable endpoint count",
+    "no_eligible_receiver": "count explicitly in receiver availability; do not substitute another actor",
+    "one_primary_receiver_per_formal_scene": true,
+    "receiver_policy": "nearest_causal_vehicle_ahead",
+    "selected_receiver_prediction_unavailable": "count explicitly; do not substitute the second-best receiver",
+    "tracks_to_predict_receiver_selection": false
+  },
+  "stage": 5,
+  "status": "FROZEN_PRE_FORMAL"
+}

@@ -1,0 +1,88 @@
+{
+  "block": "6.8_development_stage1_class_gamma",
+  "development_population": {
+    "actor_population_selected_using_future": false,
+    "class_counts": {
+      "TYPE_CYCLIST": 48,
+      "TYPE_PEDESTRIAN": 110,
+      "TYPE_VEHICLE": 719
+    },
+    "predictive_actors": 877,
+    "scenarios": 120
+  },
+  "next": "Stage-2 development-only class-margin selection with Stage-1 k/gamma immutable",
+  "outputs": {
+    "curves": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage1_gamma/block68_stage1_class_gamma_objective_curves.npy",
+      "sha256": "6603a02b57bb5a78438fe0e3dcc5799d0224b92ba538191239e6a81dadda6a77"
+    },
+    "freeze": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_development_stage1_class_gamma_freeze.json",
+      "sha256": "a55f21589f55a75afcb660a8a7278e802dd9e102f4c75ca7863697359bbb2a87"
+    },
+    "pair_summary": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage1_gamma/block68_stage1_class_gamma_pair_support.jsonl",
+      "sha256": "45c07dd21e97385bd688f0870f4b66aeae9986c296e6a3eac6406f41c5f862a8"
+    }
+  },
+  "regression": {
+    "post": 224,
+    "pre": 224
+  },
+  "scientific_boundary": {
+    "NI_deltas_modified": false,
+    "P_occ_arrays_opened": true,
+    "additional_margin_selection": false,
+    "floor_selection": false,
+    "formal_content_opened": false,
+    "formal_evaluation": false,
+    "predictive_development_objective_computed": true,
+    "predictive_primary_acceptance_metrics_computed": false,
+    "temporal_rate_selection": false
+  },
+  "selected": {
+    "TYPE_CYCLIST": {
+      "exact_maximizer_count": 1,
+      "gamma_equivalent": 0.0679931640625,
+      "invalid_future_actor_horizon_pairs": 10,
+      "k": 557,
+      "largest_maximizer_k": 557,
+      "objective": 0.2451696448623915,
+      "scored_actor_horizon_pairs": 182,
+      "smallest_maximizer_k": 557,
+      "tie_break": "larger_k_first",
+      "valid_empty_oracle_pairs": 0
+    },
+    "TYPE_PEDESTRIAN": {
+      "exact_maximizer_count": 1,
+      "gamma_equivalent": 0.0609130859375,
+      "invalid_future_actor_horizon_pairs": 28,
+      "k": 499,
+      "largest_maximizer_k": 499,
+      "objective": 0.25486530932489326,
+      "scored_actor_horizon_pairs": 412,
+      "smallest_maximizer_k": 499,
+      "tie_break": "larger_k_first",
+      "valid_empty_oracle_pairs": 6
+    },
+    "TYPE_VEHICLE": {
+      "exact_maximizer_count": 1,
+      "gamma_equivalent": 0.11962890625,
+      "invalid_future_actor_horizon_pairs": 57,
+      "k": 980,
+      "largest_maximizer_k": 980,
+      "objective": 0.442779087781594,
+      "scored_actor_horizon_pairs": 2819,
+      "smallest_maximizer_k": 980,
+      "tie_break": "smaller_k_first",
+      "valid_empty_oracle_pairs": 40
+    }
+  },
+  "stage": 6,
+  "status": "PASS_STAGE1_CLASS_GAMMA_SELECTED_FROZEN",
+  "storage": {
+    "free_GiB": 1052.6328048706055,
+    "reserve_GiB": 250.0,
+    "reserve_pass": true
+  }
+}

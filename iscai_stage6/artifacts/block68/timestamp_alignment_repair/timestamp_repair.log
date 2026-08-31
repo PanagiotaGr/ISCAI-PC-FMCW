@@ -1,0 +1,62 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/repair_block68_reactive_only_timestamp_alignment.py", line 1798, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/repair_block68_reactive_only_timestamp_alignment.py", line 1329, in main
+    audit_timestamp_alignment()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/repair_block68_reactive_only_timestamp_alignment.py", line 552, in audit_timestamp_alignment
+    require(
+    ~~~~~~~^
+        np.all(
+        ^^^^^^^
+    ...<9 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/repair_block68_reactive_only_timestamp_alignment.py", line 136, in require
+    raise RuntimeError(message)
+RuntimeError: Stage0 per-step timestamp gate fails for scenario=b66168b7cf95bf84; max_error=0.1000099999999998
+============================================================
+STAGE 6 — BLOCK 6.8 PART2C
+WOMD TIMESTAMP ALIGNMENT SEMANTIC REPAIR
+UPSTREAM STAGE0 PER-STEP RULE / NO METRIC TUNING
+============================================================
+
+===== A. EXACT FAILURE-STATE BOUNDARY =====
+runner provenance repair = EXACT PASS
+preoutcome contract       = EXACT PASS
+metric artifacts          = ABSENT
+NI deltas                 = NOT COMPUTED
+predictive performance    = NOT COMPUTED
+P_occ content             = NOT OPENED
+future GT                 = OPENED, EVALUATOR ONLY
+
+===== B. UPSTREAM STAGE0 TIMESTAMP AUTHORITY =====
+nominal adjacent dt      = 0.1 s
+per-step tolerance       = < 0.001 s
+timestamp monotonicity   = REQUIRED
+cumulative 1-ms gate     = NOT UPSTREAM SEMANTIC
+Stage0 timing test SHA   = 4d1b478bf181c55035bffc358a62992c55327db4906117247c595155f42f0877
+
+===== C. TIMESTAMP SEMANTIC AMENDMENT FREEZE =====
+amendment SHA256 = 986174594522f735646eb9c9bccbfce7c167d861c0ae6d13baae53b89786b525
+
+===== D. 120-SCENARIO TIMESTAMP-ONLY AUDIT =====
+
+============================================================
+BLOCK 6.8 TIMESTAMP ALIGNMENT REPAIR = BLOCKED
+============================================================
+exception = RuntimeError Stage0 per-step timestamp gate fails for scenario=b66168b7cf95bf84; max_error=0.1000099999999998
+
+
+future GT                = OPENED, EVALUATOR ONLY
+reactive metric freeze   = ABSENT
+predictive performance   = NOT COMPUTED
+P_occ content            = NOT OPENED
+NI deltas                = NOT COMPUTED
+formal evaluation        = NO
+Do not loosen timestamp tolerances manually.
+Do not run predictive/formal evaluation.
+terminal remains open = YES

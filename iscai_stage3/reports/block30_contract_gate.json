@@ -1,0 +1,49 @@
+{
+  "algorithm_interface": {
+    "association_main": "estimated_association",
+    "oracle_modes": "diagnostic_only",
+    "same_observation_stream_required": true,
+    "source": "Stage2 UnlabeledDetectionFrame",
+    "truth_fields": []
+  },
+  "block": "3.0",
+  "canonical_root": "/home/agni/waymo/iscai_stage3",
+  "imm_modes": [
+    "CV",
+    "CA",
+    "CTRV"
+  ],
+  "implementation": {
+    "files": 18,
+    "sha256": "de219cae2d389eff6204fb9c31e47d58c5d51dcbd435386447f53d9fa2a8ac10"
+  },
+  "legacy_stage3_dependency": false,
+  "mht_meaning": "Multidimensional Hough Transform",
+  "stage": 3,
+  "stage2_schema": {
+    "azimuth_field": "azimuth_rad",
+    "covariance_field": "covariance",
+    "detection_key_field": "detection_key",
+    "elevation_field": "elevation_rad",
+    "frame_detections_field": "detections",
+    "frame_timestamp_field": "timestamp_s",
+    "radial_velocity_field": "radial_velocity_mps",
+    "range_field": "range_m"
+  },
+  "stage_boundary": {
+    "downstream_imports": [],
+    "legacy_imports": []
+  },
+  "status": "PASS",
+  "truth_boundary": {
+    "algorithm_truth_leakage": "NONE",
+    "evaluator_only": true
+  },
+  "upstream": {
+    "measured_fmcw": false,
+    "stage2_closure_frozen": true,
+    "stage2_closure_sha256": "44b0961128ee13b97876c97ddfb91de1b9c01d2962413a412066fb93f31701b5",
+    "validation_manifest_frozen": true,
+    "validation_manifest_sha256": "dc10609ef18a2ba881657eb3da3a3df7a81bdcc8345ecbc2227102ab16b8833c"
+  }
+}

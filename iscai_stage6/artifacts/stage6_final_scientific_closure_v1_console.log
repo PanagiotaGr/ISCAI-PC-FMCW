@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/finalize_stage6_negative_result_v1.py", line 599, in <module>
+    fail(
+    ~~~~^
+        "new Stage6 protected files appeared "
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        )
+        ^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/finalize_stage6_negative_result_v1.py", line 164, in fail
+    raise RuntimeError(
+        "FAIL-CLOSED: " + str(msg)
+    )
+RuntimeError: FAIL-CLOSED: new Stage6 protected files appeared after Stage-1: ['iscai_stage6/scripts/finalize_stage6_negative_result_v1.py']

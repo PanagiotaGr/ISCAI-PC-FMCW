@@ -1,0 +1,49 @@
+==============================================================================
+BLOCK 6.8 PRIMARY-GATE REACTIVE-SCHEMA REPAIR
+COMPARATOR SOURCE ONLY — POLICY / RULE UNCHANGED
+==============================================================================
+
+===== A. EXACT CURRENT BOUNDARY =====
+runner pre-patch SHA256 = 87d7dbe4f1ab713301538b7032fbcc776d7b5729444db522e76ccbdab002ebf7
+Stage1/2/3/4 policy = IMMUTABLE
+acceptance rule      = IMMUTABLE
+primary gate         = NOT COMPLETED
+formal evaluation    = NO
+
+===== B. EXACT SCHEMA-REPAIR TARGET =====
+failed source = NI-only reactive JSONL
+repair source = augmented immutable comparator
+gate equations changed = NO
+gate numerics changed  = NO
+
+===== C. VERIFIED BACKUP =====
+backup SHA256 = 87d7dbe4f1ab713301538b7032fbcc776d7b5729444db522e76ccbdab002ebf7
+
+===== D. BUILD MINIMAL SOURCE-ROUTE PATCH =====
+patch syntax              = PASS
+macro_metric()            = UNCHANGED
+vehicle strict rule       = UNCHANGED
+overmask +0.02 rule       = UNCHANGED
+ped/cyclist -0.05 rules   = UNCHANGED
+predictive winner source  = UNCHANGED
+formal boundary           = UNCHANGED
+
+===== E. TRANSACTIONAL PATCH =====
+patched runner compile = PASS
+Stage6 regression      = 224 / 224 PASS
+runner post-patch SHA  = 831c956bf344f6783328668dbfce1a38e1b5363e16d9de4d3bb3d355bc630e28
+
+==============================================================================
+PRIMARY-GATE REACTIVE-SCHEMA REPAIR — FINAL
+==============================================================================
+reactive NI source       = PRESERVED
+missing vehicle metric   = BOUND FROM FROZEN SOURCES
+primary gate equations   = UNCHANGED
+primary gate bounds      = UNCHANGED
+Stage1/2/3/4 policy      = IMMUTABLE
+primary acceptance       = NOT YET TESTED
+formal evaluation        = NO
+Stage6 regression        = 224 / 224 PASS
+STATUS = PASS_PRIMARY_GATE_REACTIVE_SCHEMA_SOURCE_REPAIRED
+report = /home/agni/waymo/iscai_stage6/reports/block68_primary_gate_reactive_schema_repair.json
+terminal remains open = YES

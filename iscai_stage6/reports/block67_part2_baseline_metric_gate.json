@@ -1,0 +1,70 @@
+{
+  "baselines": {
+    "fabricated_label_only_algorithm_difference": false,
+    "future_truth_controller_input": false,
+    "labels": [
+      "class_agnostic_predictive_ADB",
+      "class_aware_predictive_ADB",
+      "deterministic_predictive_ADB",
+      "oracle_future_ADB",
+      "original_reactive_ADB",
+      "static_ADB",
+      "uncertainty_aware_predictive_ADB"
+    ],
+    "primary": "class_aware_predictive_ADB",
+    "uncertainty_class_agnostic_overlap": "EXPLICIT_SHARED_RUNTIME_CONFIGURATION"
+  },
+  "block": "6.7",
+  "causality": {
+    "development_outcomes_read": false,
+    "formal_outcomes_read": false,
+    "future_GT_controller_read": false,
+    "parameter_tuning": false,
+    "policy_sweep": false
+  },
+  "constructed_oracle": {
+    "controller_access": false,
+    "evaluator_scoring_access": true,
+    "measured_ADB_ground_truth": false,
+    "parameter_tuning_access": false,
+    "same_Part_A_intensity_model": true,
+    "same_grid": true
+  },
+  "metric_interface": {
+    "ROI_freeze": "BLOCK6.8",
+    "acceptance_bound_freeze": "BLOCK6.8",
+    "controller_input_metrics": false,
+    "formula_freeze": "BLOCK6.8",
+    "labels": [
+      "actuation_latency",
+      "cyclist_visibility_proxy",
+      "energy_consumption",
+      "false_dimming",
+      "flicker_change_rate",
+      "glare_risk_exposure",
+      "mask_IoU_with_constructed_oracle_future_mask",
+      "over_masking_area",
+      "pedestrian_visibility_proxy",
+      "road_illumination_retention",
+      "temporal_smoothness",
+      "vehicle_shadow_zone_violation"
+    ]
+  },
+  "next": "Block6.8: freeze numerical ADB metric formulas, ROIs, development-only acceptance bounds and pre-formal policy",
+  "part": "2/2",
+  "project": "Agni",
+  "regression": {
+    "full_stage6_tests": 181,
+    "new_targeted_tests": 10,
+    "previous_stage6_tests": 171,
+    "status": "PASS"
+  },
+  "runtime_contract": {
+    "baseline_count": 7,
+    "metric_count": 12,
+    "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/baseline_metric_contract.py",
+    "sha256": "766aa77cd4c7f6fec6bb53ff93af4dad7ee145e4faf0d1ce47f305f0c66de620"
+  },
+  "stage": 6,
+  "status": "PASS_BASELINE_METRIC_CONTRACT_FROZEN"
+}

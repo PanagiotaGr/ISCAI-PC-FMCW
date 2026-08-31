@@ -1,0 +1,101 @@
+{
+  "block": "4.1",
+  "current_anchor_class_support": {
+    "calibration": {
+      "current_valid_actor_counts": {
+        "TYPE_CYCLIST": 1883,
+        "TYPE_PEDESTRIAN": 19745,
+        "TYPE_VEHICLE": 226015
+      },
+      "scenarios_containing_class": {
+        "TYPE_CYCLIST": 1244,
+        "TYPE_PEDESTRIAN": 4154,
+        "TYPE_VEHICLE": 7209
+      }
+    },
+    "development": {
+      "current_valid_actor_counts": {
+        "TYPE_CYCLIST": 1830,
+        "TYPE_PEDESTRIAN": 21952,
+        "TYPE_VEHICLE": 227362
+      },
+      "scenarios_containing_class": {
+        "TYPE_CYCLIST": 1222,
+        "TYPE_PEDESTRIAN": 4166,
+        "TYPE_VEHICLE": 7207
+      }
+    },
+    "fit": {
+      "current_valid_actor_counts": {
+        "TYPE_CYCLIST": 14489,
+        "TYPE_PEDESTRIAN": 162222,
+        "TYPE_VEHICLE": 1810789
+      },
+      "scenarios_containing_class": {
+        "TYPE_CYCLIST": 9744,
+        "TYPE_PEDESTRIAN": 32651,
+        "TYPE_VEHICLE": 57654
+      }
+    }
+  },
+  "future_mutation_gate": {
+    "pass": true,
+    "passes": 3,
+    "probes": 3
+  },
+  "manifests": {
+    "calibration": {
+      "count": 7209,
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block41/calibration.jsonl",
+      "sha256": "e003dd5c4d5a253729700b12c3754c47ffb99dadfa035b46627f01ec91eed4be"
+    },
+    "canonical_training_index": {
+      "count": 72085,
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block41/canonical_training_index.jsonl",
+      "sha256": "18f1e382e2e2cfd737bd32927fea96dce7ea77eb1b3a17dbe81151aaa48708b7"
+    },
+    "development": {
+      "count": 7208,
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block41/development.jsonl",
+      "sha256": "e4689698bddd80e58add7267f791aea90ef4bef0309ca18d0d7a9e7e94fe7e5c"
+    },
+    "fit": {
+      "count": 57668,
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block41/fit.jsonl",
+      "sha256": "284a61c877d937deb07137345beaabf3165690138785f9cc41f81655066d5276"
+    }
+  },
+  "partition_policy": {
+    "calibration_count": 7209,
+    "calibration_fraction_nominal": 0.1,
+    "class_used_for_partition": false,
+    "development_count": 7208,
+    "development_fraction_nominal": 0.1,
+    "fit_count": 57668,
+    "fit_fraction_nominal": 0.8,
+    "future_used_for_partition": false,
+    "objects_of_interest_used_for_partition": false,
+    "ordering": "ascending_hash_then_scenario_id",
+    "performance_used_for_partition": false,
+    "selection_key": "SHA256(scenario_id)",
+    "tracks_to_predict_used_for_partition": false,
+    "unit": "scenario"
+  },
+  "source": {
+    "canonical_motion_root": "/home/agni/waymo/data/paired_womd_lidar_v1_3_0/training/motion",
+    "dataset": "WOMD/WOMD-LiDAR v1.3.0 canonical paired corpus",
+    "formal_validation_excluded": true,
+    "official_split": "training",
+    "training_scenarios": 72085,
+    "validation_excluded": true
+  },
+  "stage": 4,
+  "statistics_policy": {
+    "calibration_source": "calibration_only",
+    "class_balancing": "later fit-sample sampler; current/anchor class only; does not modify frozen scenario partitions",
+    "early_stopping_source": "development_only",
+    "formal_validation_source": "evaluation_only",
+    "normalization_source": "fit_only"
+  },
+  "status": "FROZEN"
+}

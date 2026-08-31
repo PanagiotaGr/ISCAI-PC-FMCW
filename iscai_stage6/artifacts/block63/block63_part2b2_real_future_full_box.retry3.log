@@ -1,0 +1,109 @@
+========================================================================
+BLOCK 6.3 PART 2B/2 — REAL FUTURE FULL-BOX EXECUTION
+========================================================================
+
+===== A. FROZEN PREREQUISITE SEAL =====
+Part2A       = EXACT PASS
+Part2B/1     = EXACT PASS
+binding      = EXACT PASS
+Part1        = EXACT PASS
+Part2A status  = PASS
+Part2B/1 status= PASS
+
+===== B. IDENTITY-SAFE POSTERIOR LOAD =====
+JSONL = /home/agni/waymo/iscai_stage6/artifacts/block63/identity_safe_development_gaussian_posterior.jsonl
+JSONL SHA = 318b22dfc3788195a1432169075d1c8654f0d183337711918db2303b5668f5ea
+NPZ SHA   = 2d35613bfb0bdc7133c5b3e96b4ab28e9cca64340442f9a2ab1bcf9db3aad914
+records   = 27
+prediction_id unique = PASS
+anonymous row binding = NO
+
+===== C. REAL CAUSAL ADB BOXES =====
+scenario_id       = b85e1bd6cc8e74c0
+current index     = 10
+causal ADB boxes  = 9
+future box input  = NO
+tracks_to_predict = NO
+
+===== D. GAUSSIAN MEAN → DETERMINISTIC PREDICTIONS =====
+prediction class = DeterministicSharedMeanPrediction
+constructor      = (prediction_id: 'str', latest_position_H0_m: 'Vec3', mean_displacement_H0_m: 'tuple[Vec3, Vec3, Vec3, Vec3]') -> None
+predictions      = 27
+trajectory input = CALIBRATED GAUSSIAN MEAN ONLY
+covariance use   = NO
+
+===== E. REAL DETERMINISTIC PREDICTIVE PLAN =====
+matched forecasts       = 6
+reactive fallback boxes = 3 (1, 3, 8)
+unmatched predictors    = 21
+predicted future boxes  = 24
+association threshold   = NONE
+covariance gate         = NONE
+class gate              = NONE
+perfect actor ID        = NO
+
+===== F. FULL-BOX / CORNER EXECUTION =====
+future sequence field(s) = ['future']
+future full boxes        = 24
+corners per box          = 8
+total projected corners  = 192
+centroid-only projection = NO
+persisted predicted_sample = True
+persisted predicted_tangent= True
+controller provenance route = FROZEN BLOCK6.3 IMPLEMENTATION
+
+===== G. BLOCK6.3 SCOPE GUARDS =====
+predictive covariance used = NO
+probabilistic occupancy    = NOT IMPLEMENTED HERE
+class-aware policy         = NOT IMPLEMENTED HERE
+temporal smoothing         = NOT IMPLEMENTED HERE
+actuation-rate limits      = NOT IMPLEMENTED HERE
+communication codebook     = NOT REUSED
+formal grid                = NOT FROZEN
+future GT                  = NO
+training/recalibration     = NO / NO
+model forward              = NO
+formal evaluation          = NO
+
+===== H. ARTIFACT MATERIALIZATION =====
+artifact = /home/agni/waymo/iscai_stage6/artifacts/block63/block63_part2b2_real_future_full_box.json
+artifact SHA256 = 48118f193628937bf2daa94208ca801408aa76dfb360465064884356d52e2c62
+scientific digest = dfb3e474e2eaebebd6f8d9b8f5292c12551de17c29dbd2c2820f4a5b06e6b86e
+
+===== I. STAGE6 REGRESSION =====
+..................................................................................................
+----------------------------------------------------------------------
+Ran 98 tests in 0.035s
+
+OK
+regression status = PASS
+regression tests  = 98
+
+===== J. PART2B/2 CLOSURE =====
+report = /home/agni/waymo/iscai_stage6/reports/block63_part2b2_real_future_full_box.json
+report SHA256 = e747c4b75f89c1ac362a57eecebb54a970419ac99a8eb101fb106b4927675c64
+
+========================================================================
+BLOCK 6.3 PART 2B/2 — FINAL
+========================================================================
+status                   = PASS_REAL_FUTURE_FULL_BOX_EXECUTED
+scenario                 = b85e1bd6cc8e74c0
+posterior records        = 27
+Gaussian signal          = MEAN ONLY
+matched actors           = 6
+reactive fallback actors = 3
+unmatched predictors     = 21
+future boxes             = 24
+corners per box          = 8
+projected corners total  = 192
+centroid-only            = NO
+predictive covariance    = NOT USED
+future GT                = NO
+training/recalibration   = NO / NO
+new model forward        = NO
+formal evaluation        = NO
+Stage6 regression        = PASS | tests = 98
+report SHA256            = e747c4b75f89c1ac362a57eecebb54a970419ac99a8eb101fb106b4927675c64
+NEXT = BLOCK6.3 FINAL DETERMINISTIC PREDICTIVE BASELINE CLOSURE
+terminal remains open = YES
+========================================================================

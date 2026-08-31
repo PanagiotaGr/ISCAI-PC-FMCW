@@ -1,0 +1,664 @@
+{
+  "V3": {
+    "Stage6_allowed": false,
+    "formal_failure_reason": "No frozen V2 evaluator-truth binding could be resolved after sealing decisions.",
+    "formal_status": "FAIL_CLOSED_FULLPDF_V2_FORMAL"
+  },
+  "candidate_truth_contents_opened": false,
+  "current_hashes": {
+    "Checker2_V3_pretruth_seal": "28209ad30bd0c4acdd62ca6f43205fd24fb943f7df4f9f61bc6f62a7df10a705",
+    "Stage4_ledger": "2dd3c396d5c365677c41b3a0df6344a7c28d423daaa368dbe466bd4b17b4c2a8",
+    "V3_log": "56f3c3c6cbade9546b1792b7a79735f02e95f96a1f956ae9a6b5d927f38dbbc1",
+    "V3_postrun": "8ae664005203cf80175f0da0afcd01431b6dac6e83c1c1026e8c66878366ab67",
+    "authority_seal": "78be461e8f66f964f024acacb8f979be96febff7fdf761a4158de6fe3dcf7591",
+    "checker2": "5e77d678af188d3f0b34b84ab53ddc78fc1b2921c6bea573dd9722c439c63599",
+    "formal_checker": "342344902e6b00cb841036dcdc0e54f1e1ba396344fa602864521890f5eb5da5",
+    "protocol": "91dec3cc3d3a7b72385f012d1d2bfdb8981a497e1344f585d38f3e05f2e4fa5a",
+    "receiver_binding": "5a5516ee050d2fd1c0a571193007650e75f23836b2734ee3df1950cc04f2e1c8",
+    "runtime": "e57708e9332bb40e84f18270e483d91165e26c149b80e82c8f10b4df44376249"
+  },
+  "decision_artifact_inventory": {
+    "count": 2,
+    "files": [
+      {
+        "mode_octal": "0o444",
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/decision_ledger_sealed.jsonl",
+        "read_only": true,
+        "sha256": "751703975b3fc837cc1cf660cf1321db5768323d6cf2fbef524d05a3dbb48af4",
+        "size": 626833800,
+        "writable_bits": 0
+      },
+      {
+        "mode_octal": "0o664",
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/decision_ledger_seal.json",
+        "read_only": false,
+        "sha256": "7dd490f4f7ffb61f9aa011fbca25e896fab033d0b11635c03cbc2f3254747bb4",
+        "size": 465,
+        "writable_bits": 144
+      }
+    ],
+    "read_only_sealed_count": 1
+  },
+  "formal_checker_executed": false,
+  "formal_report": {
+    "G13": true,
+    "G14": true,
+    "Stage5": "REPAIRED_AND_FROZEN_PRE_FORMAL",
+    "Stage6_allowed": false,
+    "event_names": [
+      "PRETRUTH_TECHNICAL_RERUN_ADMITTED",
+      "FORMAL_CHECKER_STARTED",
+      "REGRESSION_STARTED",
+      "CAUSAL_BINDING_RESOLUTION_STARTED",
+      "DECISION_PASS_1_STARTED",
+      "DECISION_PASS_1_COMPLETE",
+      "DECISION_PASS_2_STARTED",
+      "DECISION_LEDGER_SEALED",
+      "EVALUATOR_TRUTH_BOUNDARY_OPENED"
+    ],
+    "failure_reason": "No frozen V2 evaluator-truth binding could be resolved after sealing decisions.",
+    "status": "FAIL_CLOSED_FULLPDF_V2_FORMAL"
+  },
+  "functions": {
+    "candidate_v2_paths": {
+      "calls": [
+        "Path",
+        "add",
+        "any",
+        "collect_strings",
+        "exists",
+        "is_absolute",
+        "is_file",
+        "isinstance",
+        "load_json_file",
+        "lower",
+        "resolve",
+        "rglob",
+        "set",
+        "sorted",
+        "str",
+        "values"
+      ],
+      "end_line": 1071,
+      "start_line": 945,
+      "string_literals": [
+        "*",
+        ".json",
+        ".jsonl",
+        "anchor",
+        "artifacts/fullpdf_v2",
+        "artifacts/fullpdf_v2_repair",
+        "artifacts/stage5_fullpdf_v2",
+        "binding",
+        "causal",
+        "current",
+        "debug",
+        "evaluator",
+        "future",
+        "identity",
+        "invalidated",
+        "metadata",
+        "pre_",
+        "quarantine",
+        "receiver",
+        "target",
+        "truth"
+      ]
+    },
+    "canonical_json": {
+      "calls": [
+        "dumps"
+      ],
+      "end_line": 148,
+      "start_line": 141,
+      "string_literals": [
+        ",",
+        ":"
+      ]
+    },
+    "evaluate_sealed_decisions": {
+      "calls": [
+        "all",
+        "any",
+        "append",
+        "beam_contains",
+        "bool",
+        "defaultdict",
+        "float",
+        "frozen_optical_chain",
+        "get",
+        "int",
+        "isfinite",
+        "len",
+        "list",
+        "max",
+        "mean",
+        "require",
+        "sorted",
+        "sum",
+        "truth_point_or_angle"
+      ],
+      "end_line": 3507,
+      "start_line": 2994,
+      "string_literals": [
+        "DPSK_BER",
+        "Evaluator attempted hidden/free beam.",
+        "Optical evaluator count != charged probe count.",
+        "Recovery mechanisms are structurally mandatory; a zero formal occurrence is not itself a failure when the frozen regression exercises the mechanism.",
+        "actual_charged_plan_hit",
+        "adaptive_TopK",
+        "beam",
+        "beam_probing_latency_s",
+        "best_charged_optical_link",
+        "charged_probe_count",
+        "charged_probes",
+        "codebook_size",
+        "codebooks",
+        "coverage_pass",
+        "coverage_targets",
+        "effective_rate_bps",
+        "empirical_coverage",
+        "exhaustive_loss_of_lock",
+        "free_probe_count",
+        "full_optical_chain_complete",
+        "future_endpoint_valid",
+        "horizon_s",
+        "latency_all_strata_pass",
+        "latency_pass",
+        "local_neighbor",
+        "local_neighbor_recovery",
+        "mass_covering_set_hit",
+        "mean_actual_charged_overhead_fraction",
+        "mean_beam_probing_latency_s",
+        "modes",
+        "no_free_probes",
+        "note",
+        "optical_gain",
+        "outside_support_probability",
+        "overhead_reduction_vs_exhaustive_all_strata_pass",
+        "overhead_reduction_vs_exhaustive_pass",
+        "posterior",
+        "prediction_id",
+        "probing_overhead_fraction",
+        "provenance",
+        "received_power_normalized",
+        "receiver_geometry",
+        "receiver_mode",
+        "recovery_event_counts",
+        "requested_coverage_all_strata_pass",
+        "requested_mass",
+        "scenario_id",
+        "selected_beams",
+        "sizes",
+        "snr_db",
+        "snr_linear",
+        "strata",
+        "total_decision_rows",
+        "truth_azimuth_rad",
+        "truth_elevation_rad",
+        "valid_endpoints",
+        "valid_evaluator_rows",
+        "widened_fallback"
+      ]
+    },
+    "event": {
+      "calls": [
+        "append",
+        "json_safe",
+        "len"
+      ],
+      "end_line": 298,
+      "start_line": 288,
+      "string_literals": [
+        "event",
+        "sequence"
+      ]
+    },
+    "has_forbidden_causal_payload": {
+      "calls": [
+        "any",
+        "has_forbidden_causal_payload",
+        "isinstance",
+        "items",
+        "lower",
+        "safe_negative_marker",
+        "str"
+      ],
+      "end_line": 752,
+      "start_line": 726,
+      "string_literals": []
+    },
+    "json_safe": {
+      "calls": [
+        "asdict",
+        "hasattr",
+        "is_dataclass",
+        "isinstance",
+        "item",
+        "items",
+        "json_safe",
+        "repr",
+        "startswith",
+        "str",
+        "tolist",
+        "vars"
+      ],
+      "end_line": 196,
+      "start_line": 151,
+      "string_literals": [
+        "_",
+        "__dict__"
+      ]
+    },
+    "load_json_file": {
+      "calls": [
+        "loads",
+        "read_text"
+      ],
+      "end_line": 512,
+      "start_line": 507,
+      "string_literals": [
+        "utf-8"
+      ]
+    },
+    "load_records": {
+      "calls": [
+        "append",
+        "get",
+        "isinstance",
+        "len",
+        "load_json_file",
+        "loads",
+        "lower",
+        "open",
+        "strip"
+      ],
+      "end_line": 580,
+      "start_line": 515,
+      "string_literals": [
+        ".json",
+        ".jsonl",
+        "items",
+        "predictions",
+        "r",
+        "receivers",
+        "records",
+        "rows",
+        "samples",
+        "utf-8"
+      ]
+    },
+    "parse_causal_row": {
+      "calls": [
+        "class_is_vehicle",
+        "float",
+        "has_forbidden_causal_payload",
+        "isfinite",
+        "parse_dimensions",
+        "recursively_find_alias",
+        "str"
+      ],
+      "end_line": 942,
+      "start_line": 840,
+      "string_literals": [
+        "actor_class",
+        "anchor_heading_h0_rad",
+        "class_name",
+        "current_heading_h0_rad",
+        "heading_h0_rad",
+        "heading_rad",
+        "height_m",
+        "is_primary_receiver",
+        "is_selected_receiver",
+        "length_m",
+        "object_class",
+        "object_type",
+        "prediction_id",
+        "receiver_prediction_id",
+        "receiver_selected",
+        "scenario_id",
+        "selected_receiver",
+        "selected_receiver_prediction_id",
+        "selection_flag_present",
+        "semantic_class",
+        "width_m",
+        "yaw_h0_rad"
+      ]
+    },
+    "parse_dimensions": {
+      "calls": [
+        "asarray",
+        "float",
+        "recursively_find_alias"
+      ],
+      "end_line": 837,
+      "start_line": 770,
+      "string_literals": [
+        "actor_dimensions_m",
+        "actor_height_m",
+        "actor_length_m",
+        "actor_width_m",
+        "anchor_height_m",
+        "anchor_length_m",
+        "anchor_width_m",
+        "box_dimensions_m",
+        "current_dimensions_m",
+        "current_height_m",
+        "current_length_m",
+        "current_width_m",
+        "dimensions_m",
+        "height_m",
+        "length_m",
+        "width_m"
+      ]
+    },
+    "recursively_find_alias": {
+      "calls": [
+        "isinstance",
+        "items",
+        "lower",
+        "recursively_find_alias",
+        "str",
+        "values"
+      ],
+      "end_line": 334,
+      "start_line": 301,
+      "string_literals": []
+    },
+    "require": {
+      "calls": [
+        "FailClosed"
+      ],
+      "end_line": 271,
+      "start_line": 266,
+      "string_literals": []
+    },
+    "resolve_truth_binding": {
+      "calls": [
+        "any",
+        "append",
+        "candidate_v2_paths",
+        "canonical_json",
+        "defaultdict",
+        "event",
+        "iter",
+        "json_safe",
+        "len",
+        "list",
+        "load_records",
+        "lower",
+        "next",
+        "recursively_find_alias",
+        "require",
+        "sha256_file",
+        "sorted",
+        "str",
+        "values"
+      ],
+      "end_line": 2603,
+      "start_line": 2467,
+      "string_literals": [
+        "EVALUATOR_TRUTH_BOUNDARY_OPENED",
+        "Evaluator truth access attempted before decision-ledger seal.",
+        "Multiple scientifically distinct evaluator truth bindings found: ",
+        "No frozen V2 evaluator-truth binding could be resolved after sealing decisions.",
+        "future",
+        "prediction_id",
+        "receiver_azimuth",
+        "receiver_point",
+        "receiver_position",
+        "scenario_id",
+        "truth"
+      ]
+    },
+    "sha256_file": {
+      "calls": [
+        "hexdigest",
+        "iter",
+        "open",
+        "read",
+        "sha256",
+        "update"
+      ],
+      "end_line": 138,
+      "start_line": 128,
+      "string_literals": [
+        "rb"
+      ]
+    },
+    "truth_point_or_angle": {
+      "calls": [
+        "abs",
+        "asarray",
+        "float",
+        "int",
+        "isscalar",
+        "point_to_angles",
+        "recursively_find_alias",
+        "rotation_z",
+        "select_horizon_value",
+        "sorted",
+        "str",
+        "truth_source_for_mode"
+      ],
+      "end_line": 2464,
+      "start_line": 2220,
+      "string_literals": [
+        "azimuth_rad",
+        "causal_actor_geometry",
+        "centroid",
+        "elevation_rad",
+        "frozen_receiver_offset_body_m",
+        "future_actor_center_H0_m",
+        "future_center_H0_m",
+        "future_centers_H0_m",
+        "future_heading_H0_rad",
+        "future_heading_h0_rad",
+        "future_position_H0_m",
+        "future_positions_H0_m",
+        "future_receiver_H0_m",
+        "future_valid",
+        "future_yaw_H0_rad",
+        "future_yaw_h0_rad",
+        "horizon_index",
+        "horizon_s",
+        "known",
+        "length_m",
+        "prediction_horizon_s",
+        "realized_receiver_offset_body_m",
+        "receiver_azimuth_rad",
+        "receiver_elevation_rad",
+        "receiver_mode",
+        "receiver_point_H0_m",
+        "receiver_position_H0_m",
+        "receiver_truth_H0_m",
+        "receiver_valid",
+        "truth_azimuth_rad",
+        "truth_elevation_rad",
+        "uncertain",
+        "uncertain_receiver_offset_body_m",
+        "valid"
+      ]
+    },
+    "truth_source_for_mode": {
+      "calls": [
+        "isinstance",
+        "recursively_find_alias"
+      ],
+      "end_line": 2217,
+      "start_line": 2180,
+      "string_literals": [
+        "centroid",
+        "centroid_baseline",
+        "evaluator_receiver_truth",
+        "known",
+        "known_receiver_offset",
+        "receiver_modes",
+        "receiver_truth_by_mode",
+        "truth_by_receiver_mode",
+        "uncertain",
+        "uncertain_receiver_offset"
+      ]
+    }
+  },
+  "interesting_global_constants": {
+    "DECISION_LEDGER_SEALED": {
+      "expression": "False",
+      "line": 113
+    },
+    "EVALUATOR_ROWS": {
+      "expression": "OUT / 'formal_evaluator_rows.jsonl'",
+      "line": 80
+    },
+    "EXPECTED_STAGE4_LEDGER_SHA": {
+      "expression": "'2dd3c396d5c365677c41b3a0df6344a7c28d423daaa368dbe466bd4b17b4c2a8'",
+      "line": 98
+    },
+    "FORMAL_TRUTH_OPENED": {
+      "expression": "False",
+      "line": 112
+    },
+    "RUN1_LEDGER": {
+      "expression": "OUT / 'decision_pass_run1.jsonl'",
+      "line": 76
+    },
+    "RUN2_LEDGER": {
+      "expression": "OUT / 'decision_pass_run2.jsonl'",
+      "line": 77
+    },
+    "SEALED_LEDGER": {
+      "expression": "OUT / 'decision_ledger_sealed.jsonl'",
+      "line": 78
+    },
+    "SEAL_REPORT": {
+      "expression": "OUT / 'decision_ledger_seal.json'",
+      "line": 79
+    },
+    "STAGE4_LEDGER": {
+      "expression": "S4 / 'artifacts/fullpdf_v2/formal_prediction_ledger_run1.jsonl'",
+      "line": 43
+    }
+  },
+  "resolver": {
+    "direct_calls": [
+      "any",
+      "append",
+      "candidate_v2_paths",
+      "canonical_json",
+      "defaultdict",
+      "event",
+      "iter",
+      "json_safe",
+      "len",
+      "list",
+      "load_records",
+      "lower",
+      "next",
+      "recursively_find_alias",
+      "require",
+      "sha256_file",
+      "sorted",
+      "str",
+      "values"
+    ],
+    "end_line": 2603,
+    "mentions_DECISION_LEDGER_SEALED": true,
+    "sets_FORMAL_TRUTH_OPENED_true": true,
+    "start_line": 2467
+  },
+  "scientific_artifacts_modified": false,
+  "stage": 5,
+  "status": "READ_ONLY_CONTRACT_AUDIT_PASS",
+  "truth_named_file_inventory": {
+    "contents_read": false,
+    "count": 17,
+    "files": [
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/checker2_pretruth_seal_superseding_v3.json",
+        "sha256": "28209ad30bd0c4acdd62ca6f43205fd24fb943f7df4f9f61bc6f62a7df10a705",
+        "size": 926
+      },
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/superseding_formal_receiver_binding_checkerfix_pretruthfix_v3_invocation.json",
+        "sha256": "f678d35c68d863810c91e397ed39c29074e447aff756eeb99143d95a18ee2c32",
+        "size": 2003
+      },
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/checker2_pretruth_seal.json",
+        "sha256": "44b1ba5bd702f8081f4e7e8c07a9139ccaa9e588ec938851b652d05c82693803",
+        "size": 926
+      },
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/stage5_fullpdf_v2_receiver_binding_superseding_pretruth_seal_v1.json",
+        "sha256": "b2c2035ee7839ceef3d8bf6039d5d181c993b5fac32113eca3df2723ef6c7c65",
+        "size": 1620
+      },
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/pretruth_checker_history/pretruth_failure_horizon_discovery.json",
+        "sha256": "25574fe0a39985d8a54a93ffe03dfb5eec8b2b115b6a5e1516d61caa756be4f5",
+        "size": 5258
+      },
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/pretruth_checker_history/pretruth_failure_existing_report_guard.json",
+        "sha256": "5271bad6281cd12c204c9af1d5302f793d2bccc66894b91d3d90eeb94ac37c93",
+        "size": 721
+      },
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/superseding_formal_v2_pre_run_history/010_checker2_pretruth_seal.json",
+        "sha256": "44b1ba5bd702f8081f4e7e8c07a9139ccaa9e588ec938851b652d05c82693803",
+        "size": 926
+      },
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/superseding_formal_v2_pre_run_history/011_stage5_fullpdf_v2_receiver_binding_superseding_pretruth_seal_v1.json",
+        "sha256": "b2c2035ee7839ceef3d8bf6039d5d181c993b5fac32113eca3df2723ef6c7c65",
+        "size": 1620
+      },
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/superseding_formal_v2_pre_run_history/006_stage5_fullpdf_v2_checker_probeplan_property_pretruth_seal_v1.json",
+        "sha256": "1da2f7f5731c5574c3c4fcb0ec2a216296f338fd1cc5adcfbd2125bde85b3548",
+        "size": 1555
+      },
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/checker2_pretruth_authority_repair_v1/stage5_fullpdf_v2_checker2_pretruth_authority_superseding_seal_v1.json",
+        "sha256": "78be461e8f66f964f024acacb8f979be96febff7fdf761a4158de6fe3dcf7591",
+        "size": 1698
+      },
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/probeplan_property_repair_v1/stage5_fullpdf_v2_checker_probeplan_property_pretruth_seal_v1.json",
+        "sha256": "1da2f7f5731c5574c3c4fcb0ec2a216296f338fd1cc5adcfbd2125bde85b3548",
+        "size": 1555
+      },
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/checker2_pretruth_authority_repair_v1/pre_repair_history/01_checker2_pretruth_seal.json",
+        "sha256": "44b1ba5bd702f8081f4e7e8c07a9139ccaa9e588ec938851b652d05c82693803",
+        "size": 926
+      },
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/checker2_pretruth_authority_repair_v1/pre_repair_history/08_stage5_fullpdf_v2_checker_probeplan_property_pretruth_seal_v1.json",
+        "sha256": "1da2f7f5731c5574c3c4fcb0ec2a216296f338fd1cc5adcfbd2125bde85b3548",
+        "size": 1555
+      },
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/checker2_pretruth_authority_repair_v1/pre_repair_history/10_stage5_fullpdf_v2_receiver_binding_superseding_pretruth_seal_v1.json",
+        "sha256": "b2c2035ee7839ceef3d8bf6039d5d181c993b5fac32113eca3df2723ef6c7c65",
+        "size": 1620
+      },
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/receiver_binding_failed_attempt_history/before_receiver_binding_20260826T200322Z/004_checker2_pretruth_seal.json",
+        "sha256": "44b1ba5bd702f8081f4e7e8c07a9139ccaa9e588ec938851b652d05c82693803",
+        "size": 926
+      },
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/receiver_binding_failed_attempt_history/before_receiver_binding_20260826T200905Z/004_checker2_pretruth_seal.json",
+        "sha256": "44b1ba5bd702f8081f4e7e8c07a9139ccaa9e588ec938851b652d05c82693803",
+        "size": 926
+      },
+      {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/receiver_binding_failed_attempt_history/before_receiver_binding_20260826T200545Z/004_checker2_pretruth_seal.json",
+        "sha256": "44b1ba5bd702f8081f4e7e8c07a9139ccaa9e588ec938851b652d05c82693803",
+        "size": 926
+      }
+    ]
+  },
+  "version": "fullpdf_v2"
+}

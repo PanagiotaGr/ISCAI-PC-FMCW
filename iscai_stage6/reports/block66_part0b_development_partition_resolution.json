@@ -1,0 +1,127 @@
+{
+  "block": "6.6-Part0B",
+  "candidate_source": {
+    "formal_overlap": 0,
+    "manifest_path": "/home/agni/waymo/iscai_stage4/artifacts/block41/calibration.jsonl",
+    "manifest_sha256": "e003dd5c4d5a253729700b12c3754c47ffb99dadfa035b46627f01ec91eed4be",
+    "partition": "frozen_Stage4_calibration_partition",
+    "scenario_count": 7209
+  },
+  "causal_selection_boundary": {
+    "anchor_class_counts_available": true,
+    "anchor_source": "scenario.current_time_index",
+    "class_source": "current_anchor_object_type",
+    "formal_outcomes": false,
+    "future_states": false,
+    "objects_of_interest": false,
+    "performance": false,
+    "tracks_to_predict": false
+  },
+  "class_support": {
+    "TYPE_CYCLIST": {
+      "anchor_actors": 1883,
+      "scenarios": 1244
+    },
+    "TYPE_PEDESTRIAN": {
+      "anchor_actors": 19745,
+      "scenarios": 4154
+    },
+    "TYPE_VEHICLE": {
+      "anchor_actors": 226015,
+      "scenarios": 7209
+    }
+  },
+  "formal_boundary": {
+    "formal_N": 120,
+    "formal_outcomes_read": false,
+    "formal_overlap": 0
+  },
+  "next": "BLOCK6.6_PART1_CAUSAL_FORWARD_HEADLAMP_COHORT_CENSUS_AND_SELECTION",
+  "not_yet_done": {
+    "class_policy_numeric_freeze": true,
+    "class_policy_preregistration": true,
+    "cohort_size_freeze": true,
+    "development_cohort_selection": true,
+    "forward_headlamp_geometry_scan": true,
+    "new_model_forward": true
+  },
+  "pre_headlamp_causal_strata": {
+    "cyclist": 1244,
+    "pedestrian_no_cyclist": 3267,
+    "vehicle_only": 2698
+  },
+  "previous_blocker": {
+    "cause": "plain_source_substring_gate_matched_negative_docstring_text",
+    "classification": "audit_false_positive",
+    "replacement_gate": "AST_executable_identifier_gate_with_only_function_docstring_removed",
+    "scientific_semantics_changed": false,
+    "upstream_source_changed": false
+  },
+  "real_random_access_class_smoke": [
+    {
+      "causal_ADB_box_total": 10,
+      "current_time_index": 10,
+      "future_used": false,
+      "manifest_anchor_class_counts": {
+        "TYPE_CYCLIST": 2,
+        "TYPE_PEDESTRIAN": 0,
+        "TYPE_VEHICLE": 8
+      },
+      "objects_of_interest_used": false,
+      "scenario_id": "2e60163c2043b42",
+      "selection_hash": "21ff2ffe22e2a3d06e8fa9b2dacded00b18dda99c6258afd638871cc86ba7dff",
+      "stage6_causal_ADB_class_counts": {
+        "TYPE_CYCLIST": 2,
+        "TYPE_PEDESTRIAN": 0,
+        "TYPE_VEHICLE": 8
+      },
+      "target_class": "TYPE_VEHICLE",
+      "tracks_to_predict_used": false
+    },
+    {
+      "causal_ADB_box_total": 14,
+      "current_time_index": 10,
+      "future_used": false,
+      "manifest_anchor_class_counts": {
+        "TYPE_CYCLIST": 0,
+        "TYPE_PEDESTRIAN": 1,
+        "TYPE_VEHICLE": 13
+      },
+      "objects_of_interest_used": false,
+      "scenario_id": "658e89b3313fd9fa",
+      "selection_hash": "21ffb37a3d505a68201ae91b1ec1c490e5a251d478eada4012671802f9698141",
+      "stage6_causal_ADB_class_counts": {
+        "TYPE_CYCLIST": 0,
+        "TYPE_PEDESTRIAN": 1,
+        "TYPE_VEHICLE": 13
+      },
+      "target_class": "TYPE_PEDESTRIAN",
+      "tracks_to_predict_used": false
+    },
+    {
+      "causal_ADB_box_total": 10,
+      "current_time_index": 10,
+      "future_used": false,
+      "manifest_anchor_class_counts": {
+        "TYPE_CYCLIST": 2,
+        "TYPE_PEDESTRIAN": 0,
+        "TYPE_VEHICLE": 8
+      },
+      "objects_of_interest_used": false,
+      "scenario_id": "2e60163c2043b42",
+      "selection_hash": "21ff2ffe22e2a3d06e8fa9b2dacded00b18dda99c6258afd638871cc86ba7dff",
+      "stage6_causal_ADB_class_counts": {
+        "TYPE_CYCLIST": 2,
+        "TYPE_PEDESTRIAN": 0,
+        "TYPE_VEHICLE": 8
+      },
+      "target_class": "TYPE_CYCLIST",
+      "tracks_to_predict_used": false
+    }
+  ],
+  "selection_hash_integrity": {
+    "mismatches": 0
+  },
+  "stage": 6,
+  "status": "PASS_NONFORMAL_DEVELOPMENT_CANDIDATE_SOURCE_RESOLVED"
+}

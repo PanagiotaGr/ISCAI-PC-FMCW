@@ -1,0 +1,59 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/repair_block68_part2b_part1_grid_binding_v3.py", line 1679, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/repair_block68_part2b_part1_grid_binding_v3.py", line 1097, in main
+    require(
+    ~~~~~~~^
+        (
+        ^
+    ...<7 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/repair_block68_part2b_part1_grid_binding_v3.py", line 472, in require
+    raise RuntimeError(message)
+RuntimeError: Replacement function AST does not contain exact binding filename.
+============================================================
+BLOCK 6.8 PART2B PART1 GRID PATCH V3
+SEMANTIC AST SHA VALIDATION
+RUNNER-ONLY / NO SCIENTIFIC CHANGE
+============================================================
+
+===== A. EXACT PRE-PATCH STATE =====
+whole-runner SHA   = EXACT PASS
+grid-binding SHA   = EXACT PASS
+scientific outputs = NOT READ
+future truth       = NOT READ
+
+===== B. PRE-SCIENTIFIC-OUTPUT BOUNDARY =====
+t0 maps        = ABSENT
+decision ledger= ABSENT
+freeze report  = ABSENT
+
+===== C. UNIQUE AST PATCH TARGET =====
+resolve_grid count  = 1
+resolve_grid lines  = 461..722
+old function SHA256 = 2a32646a82709818a1e62fdc7dc1b816cba2ab0b8b44c4c504b63724b987c2cd
+
+===== D. VERIFIED BACKUP =====
+backup SHA = EXACT PASS
+
+===== E. BUILD SEMANTICALLY VERIFIED PATCH =====
+
+============================================================
+BLOCK 6.8 PART2B PART1 GRID PATCH V3 = BLOCKED
+============================================================
+exception = RuntimeError Replacement function AST does not contain exact binding filename.
+
+
+scientific parameter edit = NO
+reactive performance      = NOT READ
+predictive performance    = NOT READ
+future truth              = NOT READ
+P_occ content             = NOT OPENED
+exact NI deltas           = NOT COMPUTED
+formal evaluation         = NO
+Do not manually edit scientific modules.
+terminal remains open = YES

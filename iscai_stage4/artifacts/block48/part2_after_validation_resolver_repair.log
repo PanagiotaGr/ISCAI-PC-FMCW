@@ -1,0 +1,76 @@
+============================================================
+BLOCK 4.8 PART 2/2 — SAFE CONTROLLER
+============================================================
+
+===== CONTROLLED COMPILE =====
+formal_runtime.py = PASS
+test_block48_formal_runtime.py = PASS
+run_block48_formal_evaluation.py = PASS
+
+===== NEW PART2 UNIT TESTS =====
+
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+OK
+
+
+===== PRE-FORMAL FULL REGRESSION =====
+
+..................................................................................................................
+----------------------------------------------------------------------
+Ran 114 tests in 0.408s
+
+OK
+
+pre-formal regression = 114 / 114 PASS
+
+===== FROZEN FORMAL N=120 RUN =====
+============================================================
+STAGE 4 — BLOCK 4.8 FROZEN FORMAL N=120 EVALUATION
+============================================================
+formal manifest N          = 120 PASS
+formal manifest SHA        = PASS
+validation manifest        = /home/agni/waymo/iscai_data_prep/manifests/selected_validation.jsonl
+validation manifest rows   = 44097
+all formal IDs resolvable = PASS
+Stage3 formal run SHA      = PASS
+fit-only normalization     = PASS
+formal training            = NO
+formal model selection     = NO
+formal calibration fit     = NO
+
+deterministic class        = iscai_stage4.ml.deterministic_gru.DeterministicTrajectoryGRU
+deterministic state load   = PASS
+Gaussian state load        = PASS
+GMM state load             = PASS
+
+===== FORMAL SAMPLE SCHEMA PROBE =====
+
+============================================================
+BLOCK 4.8 PART 2/2 = BLOCKED
+============================================================
+exception = RuntimeError Neural sample actor class does not match WOMD truth track.
+
+RECOVERY:
+Inspect the schema probe / explicit supervision metadata. Do not use prediction_id or tracks_to_predict as a causal identity feature.
+
+formal cache reusable      = YES
+training performed         = NO
+model selection performed  = NO
+recalibration performed    = NO
+Stage3 classical rerun     = NO
+terminal remains open      = YES
+failure report = /home/agni/waymo/iscai_stage4/reports/block48_formal_evaluation_failure.json
+
+formal runner raw process code = 0
+
+============================================================
+BLOCK 4.8 PART 2/2 SAFE CONTROLLER
+============================================================
+STATUS = BLOCKED
+phase = formal_evaluation
+reason = Neural sample actor class does not match WOMD truth track.
+recovery = Inspect the schema probe / explicit supervision metadata. Do not use prediction_id or tracks_to_predict as a causal identity feature.
+terminal remains open = YES

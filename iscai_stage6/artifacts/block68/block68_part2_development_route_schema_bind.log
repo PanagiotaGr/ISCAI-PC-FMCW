@@ -1,0 +1,755 @@
+============================================================
+STAGE 6 — BLOCK 6.8 PART 2/2
+DEVELOPMENT RUNTIME ROUTE / SCHEMA BIND
+FORMAL CONTENT HARD-BLOCKED
+============================================================
+
+===== A. RECONCILIATION SEAL =====
+reconciliation report         = EXACT PASS
+reconciled protocol           = EXACT PASS
+reconciled metric runtime     = EXACT PASS
+reconciled metric interface   = EXACT PASS
+Block6.6 authority             = FROZEN
+development outcome read so far= NO
+formal outcome read            = NO
+
+===== B. DEVELOPMENT POPULATION =====
+development cohort records    = 120
+posterior records             = 6925
+eligible predictive matches   = 877
+reactive fallback records     = 247
+P_occ manifest records        = 877
+development cohort = FROZEN 120 PASS
+
+===== C. DEVELOPMENT RECORD SCHEMAS =====
+
+DATASET = cohort
+path = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_class_aware_development_cohort_120.jsonl
+records = 120
+top-level keys = ['cohort_rank', 'cohort_stratum', 'cohort_stratum_rank', 'compact_record_offset', 'current_anchor_core_counts', 'current_time_index', 'headlamp_relevant_counts', 'headlamp_stratum', 'motion_shard', 'objects_of_interest_used', 'payload_length', 'scenario_id', 'selection_hash', 'selection_uses_centroid', 'selection_uses_full_box', 'selection_uses_future', 'source_rank', 'tracks_to_predict_used']
+
+DATASET = posterior
+path = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_identity_safe_gaussian_posterior.jsonl
+records = 6925
+top-level keys = ['calibrated_predictive_covariance_H0_m2', 'cohort_index', 'future_GT_used', 'horizons_s', 'latest_position_H0_m', 'mean_calibration', 'mean_displacement_H0_m', 'objects_of_interest_used', 'posterior_family', 'prediction_id', 'raw_predictive_covariance_H0_m2', 'scenario_id', 'tracks_to_predict_used', 'truth_id_used', 'variance_scale_alpha_h']
+
+DATASET = predictive_matches
+path = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_predictive_matches.jsonl
+records = 877
+top-level keys = ['actor_box_index', 'association_anchor_distance_m', 'centroid_only', 'cohort_index', 'current_box_H0', 'current_headlamp_eligible', 'eligibility_geometry', 'eligibility_time', 'future_used_for_eligibility', 'maximum_range_m', 'object_type', 'objects_of_interest_used', 'posterior_key', 'posterior_sha_source', 'prediction_id', 'route', 'scenario_id', 'theta_domain_deg', 'tracks_to_predict_used']
+
+DATASET = reactive_fallbacks
+path = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_reactive_fallbacks.jsonl
+records = 247
+top-level keys = ['actor_box_index', 'centroid_only', 'cohort_index', 'current_box_H0', 'current_headlamp_eligible', 'eligibility_geometry', 'eligibility_time', 'fallback', 'future_used_for_eligibility', 'maximum_range_m', 'object_type', 'objects_of_interest_used', 'route', 'scenario_id', 'theta_domain_deg', 'tracks_to_predict_used']
+
+DATASET = P_occ_manifest
+path = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c2b_eligible_actor_pocc_manifest.jsonl
+records = 877
+top-level keys = ['actor_box_index', 'actor_rank', 'cohort_index', 'object_type', 'occupancy_counts_path', 'occupancy_counts_sha256', 'prediction_id', 'sample_count', 'scenario_id', 'seed', 'summary']
+
+===== D. DEVELOPMENT REPLAY CONTRACT =====
+replay contract status = FROZEN_BEFORE_DETERMINISTIC_VEHICLE_REPLAY
+replay contract SHA256 = ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1
+
+replay-declared paths:
+   /home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_identity_safe_gaussian_posterior.jsonl
+   /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_predictive_matches.jsonl
+   /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c2b_eligible_actor_pocc_manifest.jsonl
+   /home/agni/waymo/iscai_stage6/configs/block64_mc_grid_numeric_freeze.json
+   /home/agni/waymo/iscai_stage6/configs/block66_part2c2b_pocc_persistence_contract.json
+   /home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json
+   /home/agni/waymo/iscai_stage6/reports/block66_part3c1_class_aware_runtime.json
+   /home/agni/waymo/iscai_stage6/reports/block66_part3c2a_vehicle_surrogate_route_binding_audit.json
+   /home/agni/waymo/iscai_stage6/reports/block66_part3c2b0_persistence_sufficiency_audit.json
+   /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/class_aware_policy.py
+   /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/illumination.py
+   /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/part_a_reactive.py
+   /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/predictive_mask.py
+   /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_full_box.py
+   /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_occupancy.py
+   /home/agni/waymo/iscai_stage6/tests/test_block66_part3c1_class_aware_policy.py
+
+prereg-declared paths:
+   /home/agni/waymo/iscai_stage6/artifacts/block66/block66_class_aware_development_cohort_120.jsonl
+   /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligibility_freeze_manifest.json
+   /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c2b_eligible_actor_pocc_manifest.jsonl
+   /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c2b_pocc_freeze_manifest.json
+   /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3a3_to_part3b_handoff.json
+   /home/agni/waymo/iscai_stage6/configs/block64_mc_grid_numeric_freeze.json
+   /home/agni/waymo/iscai_stage6/reports/block66_part2c2a_probabilistic_kernel_binding_audit.json
+   /home/agni/waymo/iscai_stage6/reports/block66_part2c2b_eligible_n8192_pocc.json
+   /home/agni/waymo/iscai_stage6/reports/block66_part3a3_operator_capability_correction.json
+   /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/geometry.py
+   /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/illumination.py
+   /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/part_a_reactive.py
+   /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/predictive_mask.py
+   /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_occupancy.py
+   I_raw = max(I_min, F_vru)
+   exact frozen raised-cosine profile
+   exact part_a_radial_profile with class-specific intensity_floor
+
+===== E. EXISTING BLOCK6.6 RUNTIME ARTIFACTS =====
+candidate files = 731
+   block66_class_aware_development_cohort_120.jsonl
+   block66_part3b_to_part3c_handoff.json
+   block66_part3c1_class_aware_runtime.log
+   block66_part3c1_to_part3c2_handoff.json
+   block66_part3c2a_surrogate_route_audit.log
+   block66_part3c2a_to_part3c2b_handoff.json
+   block66_part3c2b0_persistence_sufficiency_audit.log
+   block66_part3c2b0_to_part3c2b1_handoff.json
+   block66_part3c_final_freeze_manifest.json
+   block66_part3c_part2of2_final.log
+   block66_part3c_to_block67_handoff.json
+   block66_part3c_vehicle_surrogate_evidence.jsonl
+   part3c_vehicle_surrogate_replay_cache/vehicle_0000__f72a05a05035feb8__s3trk-000027.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0001__f72a05a05035feb8__s3trk-000024.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0002__f72a05a05035feb8__s3trk-000005.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0004__217d94b9231ed401__s3trk-000059.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0005__217d94b9231ed401__s3trk-000049.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0006__217d94b9231ed401__s3trk-000039.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0010__6ccad5b8230fdfaf__s3trk-000001.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0011__6ccad5b8230fdfaf__s3trk-000026.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0012__6ccad5b8230fdfaf__s3trk-000008.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0013__6ccad5b8230fdfaf__s3trk-000013.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0015__78249f8856cb2c57__s3trk-000057.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0016__78249f8856cb2c57__s3trk-000049.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0017__78249f8856cb2c57__s3trk-000017.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0018__78249f8856cb2c57__s3trk-000054.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0019__78249f8856cb2c57__s3trk-000036.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0021__63e96200cbac4d62__s3trk-000027.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0022__63e96200cbac4d62__s3trk-000018.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0029__d6a50bc55ce5f19e__s3trk-000037.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0030__d6a50bc55ce5f19e__s3trk-000057.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0031__d6a50bc55ce5f19e__s3trk-000033.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0032__d6a50bc55ce5f19e__s3trk-000050.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0033__d6a50bc55ce5f19e__s3trk-000006.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0034__d6a50bc55ce5f19e__s3trk-000008.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0035__d6a50bc55ce5f19e__s3trk-000042.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0036__d6a50bc55ce5f19e__s3trk-000007.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0037__d6a50bc55ce5f19e__s3trk-000024.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0038__d6a50bc55ce5f19e__s3trk-000020.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0042__418c1e982b7921eb__s3trk-000040.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0043__418c1e982b7921eb__s3trk-000015.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0044__418c1e982b7921eb__s3trk-000084.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0045__418c1e982b7921eb__s3trk-000077.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0046__418c1e982b7921eb__s3trk-000010.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0047__418c1e982b7921eb__s3trk-000093.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0048__418c1e982b7921eb__s3trk-000032.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0049__418c1e982b7921eb__s3trk-000095.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0051__418c1e982b7921eb__s3trk-000063.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0052__418c1e982b7921eb__s3trk-000106.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0053__418c1e982b7921eb__s3trk-000002.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0054__418c1e982b7921eb__s3trk-000111.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0055__e970e71b3969f6a8__s3trk-000026.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0056__e970e71b3969f6a8__s3trk-000049.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0057__e970e71b3969f6a8__s3trk-000038.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0058__e970e71b3969f6a8__s3trk-000016.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0059__e970e71b3969f6a8__s3trk-000024.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0060__e970e71b3969f6a8__s3trk-000014.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0061__e970e71b3969f6a8__s3trk-000004.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0062__e970e71b3969f6a8__s3trk-000048.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0063__e970e71b3969f6a8__s3trk-000019.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0064__e970e71b3969f6a8__s3trk-000046.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0065__e970e71b3969f6a8__s3trk-000015.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0066__e970e71b3969f6a8__s3trk-000071.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0067__e970e71b3969f6a8__s3trk-000020.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0068__e970e71b3969f6a8__s3trk-000043.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0069__65d6cd8b194260e3__s3trk-000036.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0070__65d6cd8b194260e3__s3trk-000015.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0071__65d6cd8b194260e3__s3trk-000003.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0072__65d6cd8b194260e3__s3trk-000030.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0073__65d6cd8b194260e3__s3trk-000017.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0075__65d6cd8b194260e3__s3trk-000022.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0076__65d6cd8b194260e3__s3trk-000041.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0079__6daa131b25b411e1__s3trk-000007.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0080__6daa131b25b411e1__s3trk-000045.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0081__6daa131b25b411e1__s3trk-000039.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0082__6daa131b25b411e1__s3trk-000035.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0083__6daa131b25b411e1__s3trk-000049.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0084__6daa131b25b411e1__s3trk-000052.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0085__6daa131b25b411e1__s3trk-000004.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0086__6daa131b25b411e1__s3trk-000010.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0088__87ed599ac076981a__s3trk-000047.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0089__87ed599ac076981a__s3trk-000011.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0090__87ed599ac076981a__s3trk-000010.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0091__87ed599ac076981a__s3trk-000048.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0092__87ed599ac076981a__s3trk-000055.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0093__87ed599ac076981a__s3trk-000033.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0094__87ed599ac076981a__s3trk-000077.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0095__87ed599ac076981a__s3trk-000006.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0096__87ed599ac076981a__s3trk-000035.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0097__87ed599ac076981a__s3trk-000083.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0100__b6d332d8e9bc222c__s3trk-000001.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0101__b6d332d8e9bc222c__s3trk-000004.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0102__b6d332d8e9bc222c__s3trk-000022.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0103__4c4f377a1c147f8e__s3trk-000008.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0104__4c4f377a1c147f8e__s3trk-000041.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0105__4c4f377a1c147f8e__s3trk-000029.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0106__4c4f377a1c147f8e__s3trk-000022.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0107__4c4f377a1c147f8e__s3trk-000036.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0112__c490bf21464a12e9__s3trk-000000.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0113__c490bf21464a12e9__s3trk-000019.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0117__94fc609eb2e9d4bf__s3trk-000022.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0118__78edfc551a37bffd__s3trk-000063.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0119__78edfc551a37bffd__s3trk-000057.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0120__78edfc551a37bffd__s3trk-000020.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0121__78edfc551a37bffd__s3trk-000011.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0122__78edfc551a37bffd__s3trk-000045.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0123__78edfc551a37bffd__s3trk-000074.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0124__78edfc551a37bffd__s3trk-000007.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0125__78edfc551a37bffd__s3trk-000050.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0126__78edfc551a37bffd__s3trk-000019.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0127__78edfc551a37bffd__s3trk-000024.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0128__78edfc551a37bffd__s3trk-000070.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0129__78edfc551a37bffd__s3trk-000064.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0130__78edfc551a37bffd__s3trk-000039.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0131__78edfc551a37bffd__s3trk-000068.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0132__30971820b847eb66__s3trk-000047.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0134__c78d67433bfd4c8c__s3trk-000025.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0135__c78d67433bfd4c8c__s3trk-000028.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0136__c78d67433bfd4c8c__s3trk-000018.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0137__c78d67433bfd4c8c__s3trk-000008.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0138__c78d67433bfd4c8c__s3trk-000023.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0139__c78d67433bfd4c8c__s3trk-000012.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0140__c78d67433bfd4c8c__s3trk-000011.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0141__c78d67433bfd4c8c__s3trk-000042.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0145__e697a3e91804731f__s3trk-000041.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0146__e697a3e91804731f__s3trk-000040.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0147__e697a3e91804731f__s3trk-000061.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0148__e697a3e91804731f__s3trk-000038.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0149__e697a3e91804731f__s3trk-000052.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0150__e697a3e91804731f__s3trk-000033.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0151__e697a3e91804731f__s3trk-000019.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0152__e697a3e91804731f__s3trk-000032.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0153__e697a3e91804731f__s3trk-000002.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0154__e697a3e91804731f__s3trk-000034.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0155__e697a3e91804731f__s3trk-000004.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0156__e697a3e91804731f__s3trk-000047.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0157__e697a3e91804731f__s3trk-000044.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0159__e697a3e91804731f__s3trk-000013.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0160__e697a3e91804731f__s3trk-000012.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0161__e697a3e91804731f__s3trk-000029.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0162__c4abc55d4bca0cb1__s3trk-000018.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0163__c4abc55d4bca0cb1__s3trk-000004.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0164__c4abc55d4bca0cb1__s3trk-000029.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0165__c4abc55d4bca0cb1__s3trk-000007.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0166__c4abc55d4bca0cb1__s3trk-000038.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0167__c4abc55d4bca0cb1__s3trk-000016.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0168__c4abc55d4bca0cb1__s3trk-000009.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0169__c4abc55d4bca0cb1__s3trk-000050.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0170__c4abc55d4bca0cb1__s3trk-000048.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0171__c4abc55d4bca0cb1__s3trk-000033.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0175__42f94f9b67c492f9__s3trk-000034.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0176__42f94f9b67c492f9__s3trk-000054.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0177__42f94f9b67c492f9__s3trk-000069.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0178__42f94f9b67c492f9__s3trk-000045.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0179__42f94f9b67c492f9__s3trk-000062.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0180__42f94f9b67c492f9__s3trk-000074.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0181__42f94f9b67c492f9__s3trk-000029.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0182__42f94f9b67c492f9__s3trk-000043.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0183__42f94f9b67c492f9__s3trk-000014.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0184__42f94f9b67c492f9__s3trk-000071.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0192__4f6961c554812aa1__s3trk-000007.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0193__4f6961c554812aa1__s3trk-000026.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0194__4f6961c554812aa1__s3trk-000006.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0195__4f6961c554812aa1__s3trk-000011.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0196__4f6961c554812aa1__s3trk-000018.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0197__4f6961c554812aa1__s3trk-000031.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0198__4f6961c554812aa1__s3trk-000028.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0201__26dfc0c284135c2b__s3trk-000047.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0202__26dfc0c284135c2b__s3trk-000053.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0203__26dfc0c284135c2b__s3trk-000056.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0204__26dfc0c284135c2b__s3trk-000023.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0206__26dfc0c284135c2b__s3trk-000015.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0207__26dfc0c284135c2b__s3trk-000028.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0208__26dfc0c284135c2b__s3trk-000018.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0209__26dfc0c284135c2b__s3trk-000010.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0210__95090c818ae21276__s3trk-000054.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0211__95090c818ae21276__s3trk-000031.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0212__95090c818ae21276__s3trk-000040.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0213__95090c818ae21276__s3trk-000057.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0214__95090c818ae21276__s3trk-000027.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0215__95090c818ae21276__s3trk-000022.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0218__1fcc11fbaef870af__s3trk-000006.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0219__1fcc11fbaef870af__s3trk-000002.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0220__1fcc11fbaef870af__s3trk-000020.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0221__1fcc11fbaef870af__s3trk-000008.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0222__1fcc11fbaef870af__s3trk-000033.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0228__7257f334476484c9__s3trk-000049.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0229__7257f334476484c9__s3trk-000053.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0231__7257f334476484c9__s3trk-000037.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0242__1d879936662232aa__s3trk-000007.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0243__1d879936662232aa__s3trk-000021.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0244__1d879936662232aa__s3trk-000056.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0245__1d879936662232aa__s3trk-000015.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0246__1d879936662232aa__s3trk-000036.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0247__1d879936662232aa__s3trk-000029.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0248__1d879936662232aa__s3trk-000012.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0251__bfa57d47562271ae__s3trk-000002.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0252__bfa57d47562271ae__s3trk-000007.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0253__bfa57d47562271ae__s3trk-000014.json
+   part3c_vehicle_surrogate_replay_cache/vehicle_0254__bfa57d47562271ae__s3trk-000016.json
+
+===== F. CLASS-AWARE RUNTIME SOURCE ROUTE =====
+runtime script SHA256 = 8b671cfa024cef8f2ac2ab972510e44b802dc9cd5d5c7ac7890bd2647792120c
+
+runtime functions:
+  L2443 require(condition, message)
+  L2453 sha256_file(path)
+  L2476 exact_seal(path, expected, label)
+  L2505 write_new_exact(path, text)
+  L2549 write_json_once(path, payload)
+  L2601 run(command)
+
+persistence functions:
+  L0119 require(condition, message)
+  L0124 sha256_file(path)
+  L0139 exact_seal(path, expected, label)
+  L0162 read_jsonl(path)
+  L0196 key_paths(value, prefix)
+  L0230 recursive_strings(value)
+  L0251 locate_posterior()
+  L0338 ast_relevant_calls(path)
+  L0403 canonical_write(path, payload)
+  L0441 run_regression()
+
+relevant runtime source lines:
+  L0001: from __future__ import annotations
+  L0064: PART_A_REACTIVE = (
+  L0067: "part_a_reactive.py"
+  L0070: ILLUMINATION = (
+  L0073: "illumination.py"
+  L0076: PREDICTIVE_MASK = (
+  L0079: "predictive_mask.py"
+  L0108: "part_a_reactive":
+  L0114: "illumination":
+  L0120: "predictive_mask":
+  L0129: from __future__ import annotations
+  L0137: from iscai_stage6.adb.illumination import (
+  L0140: from iscai_stage6.adb.part_a_reactive import (
+  L0164: lateral_predictive_sigma_m: float
+  L0174: illumination_minimum: np.ndarray
+  L0176: raw_class_aware_illumination: np.ndarray
+  L0184: illumination: np.ndarray
+  L0287: "covariance_H0_m2 must be symmetric"
+  L0388: Preregistered class-aware predictive margin.
+  L0623: lateral_predictive_sigma_m=float(
+  L0713: Symmetric theta-axis dilation only.
+  L0785: def predictive_mask_to_illumination(
+  L0792: Convert class predictive support to the preserved
+  L0793: Part-A raised-cosine radial illumination.
+  L0858: output = np.ones(
+  L0916: output[
+  L0932: return output
+  L0935: def compose_class_aware_illumination(
+  L0937: class_illumination: Mapping[
+  L0953: I_min = minimum over active class illumination maps
+  L0968: if not class_illumination:
+  L0970: "class_illumination cannot be empty"
+  L0974: class_illumination.keys()
+  L0989: in class_illumination.items()
+  L1002: "class illumination arrays must have shape "
+  L1009: "class illumination shapes differ"
+  L1016: f"{key} illumination contains "
+  L1026: f"{key} illumination must lie in [0,1]"
+  L1099: illumination_minimum=
+  L1111: raw_class_aware_illumination=
+  L1122: current_illumination,
+  L1132: Initial I_prev is current causal illumination.
+  L1141: current_illumination,
+  L1166: "current_illumination shape mismatch"
+  L1187: "current_illumination contains non-finite values"
+  L1200: "illumination must lie in [0,1]"
+  L1226: output = np.empty_like(
+  L1253: current_output = (
+  L1269: output[
+  L1271: ] = current_output
+  L1273: previous = current_output
+  L1279: output,
+  L1288: current_illumination,
+  L1313: current_illumination,
+  L1343: "current_illumination shape mismatch"
+  L1411: output = np.empty_like(
+  L1478: output[
+  L1504: illumination=
+  L1506: output,
+  L1523: from __future__ import annotations
+  L1536: compose_class_aware_illumination,
+  L1539: predictive_mask_to_illumination,
+  L1543: from iscai_stage6.adb.part_a_reactive import (
+  L1641: result.lateral_predictive_sigma_m,
+  L1793: class MaskAndIlluminationTests(unittest.TestCase):
+  L1872: def test_predictive_illumination_preserves_inactive_theta(self):
+  L1898: output = predictive_mask_to_illumination(
+  L1905: output[
+  L1917: output
+  L1925: output
+  L1931: def test_predictive_illumination_uses_nonzero_floor(self):
+  L1956: output = predictive_mask_to_illumination(
+  L1964: output[
+  L1987: result = compose_class_aware_illumination(
+  L1988: class_illumination={
+  L1997: result.raw_class_aware_illumination,
+  L2033: result = compose_class_aware_illumination(
+  L2034: class_illumination={
+  L2055: result.raw_class_aware_illumination[
+  L2067: result.raw_class_aware_illumination[
+  L2089: result = compose_class_aware_illumination(
+  L2090: class_illumination={
+  L2126: result.raw_class_aware_illumination[
+  L2155: output = temporal_smooth_schedule(
+  L2157: current_illumination=current,
+  L2174: output[
+  L2207: output = temporal_smooth_schedule(
+  L2209: current_illumination=current,
+  L2257: output[
+  L2288: current_illumination=current,
+  L2298: result.illumination[
+  L2326: current_illumination=current,
+  L2336: result.illumination[
+  L2375: current_illumination=current,
+  L2386: result.illumination[
+  L2419: current_illumination=
+  L2505: def write_new_exact(
+  L2536: temporary.write_bytes(
+  L2549: def write_json_once(
+  L2588: temporary.write_bytes(
+  L2620: "output":
+  L2676: PART_A_REACTIVE,
+  L2678: "part_a_reactive"
+  L2680: "part_a_reactive.py",
+  L2684: ILLUMINATION,
+  L2686: "illumination"
+  L2688: "illumination.py",
+  L2692: PREDICTIVE_MASK,
+  L2694: "predictive_mask"
+  L2696: "predictive_mask.py",
+  L2739: # B. Write isolated runtime implementation
+  L2744: "===== B. WRITE NEW ISOLATED RUNTIME MODULE ====="
+  L2747: source_sha = write_new_exact(
+  L2767: # C. Write operator tests
+  L2772: "===== C. WRITE PART3C/1 OPERATOR TESTS ====="
+  L2775: test_sha = write_new_exact(
+  L2815: "output"
+  L2856: "output"
+  L2874: "output"
+  L2918: compose_class_aware_illumination,
+
+relevant persistence source lines:
+  L0001: from __future__ import annotations
+  L0036: POCC_MANIFEST = (
+  L0038: "block66_part2c2b_eligible_actor_pocc_manifest.jsonl"
+  L0043: "block66_part2c1_headlamp_eligible_predictive_matches.jsonl"
+  L0046: POCC_CACHE = (
+  L0048: "part2c2b_actor_pocc_cache"
+  L0053: "block66_part2c2b_eligible_n8192_pocc.json"
+  L0061: PERSISTENCE_CONTRACT = (
+  L0063: "block66_part2c2b_pocc_persistence_contract.json"
+  L0068: "run_block66_part2c2b_resumable_pocc.py"
+  L0073: "block66_part3c2b0_persistence_sufficiency_audit.json"
+  L0095: "pocc_manifest":
+  L0107: "persistence_contract":
+  L0162: def read_jsonl(path: Path):
+  L0183: f"Invalid JSONL {path}:{line_number}: {exc}"
+  L0188: f"Non-object JSONL record at {path}:{line_number}",
+  L0254: Fall back only to JSONL files under block66.
+  L0270: or value.lower().endswith(".jsonl")
+  L0309: for path in block66.rglob("*.jsonl"):
+  L0311: "cache"
+  L0346: "build_stochastic_future_full_boxes",
+  L0348: "save",
+  L0349: "savez",
+  L0350: "write_text",
+  L0403: def canonical_write(path: Path, payload):
+  L0435: temporary.write_bytes(data)
+  L0487: "SURROGATE PERSISTENCE SUFFICIENCY AUDIT"
+  L0524: "P_occ_manifest",
+  L0525: POCC_MANIFEST,
+  L0526: "P_occ manifest",
+  L0531: "eligible predictive matches",
+  L0536: "Part2C/2B P_occ report",
+  L0544: "persistence_contract",
+  L0545: PERSISTENCE_CONTRACT,
+  L0546: "P_occ persistence contract",
+  L0554: "P_occ_manifest": "pocc_manifest",
+  L0558: "persistence_contract": "persistence_contract",
+  L0585: # B. Exhaustive cache persistence inventory
+  L0590: "===== B. EXHAUSTIVE P_OCC CACHE INVENTORY ====="
+  L0594: POCC_CACHE.is_dir(),
+  L0595: f"Missing cache: {POCC_CACHE}",
+  L0598: cache_files = sorted(
+  L0600: for path in POCC_CACHE.rglob("*")
+  L0606: for path in cache_files
+  L0612: for path in cache_files
+  L0618: for path in cache_files
+  L0628: len(cache_files),
+  L0647: len(cache_files) == 1754,
+  L0649: "Expected exact frozen cache size "
+  L0650: f"1754; got {len(cache_files)}."
+  L0673: "Unexpected additional cache files exist: "
+  L0679: # C. Metadata proof: are samplewise arrays persisted?
+  L0684: "===== C. SAMPLEWISE-PERSISTENCE METADATA PROOF ====="
+  L0717: "future_boxes",
+  L0718: "stochastic_future",
+  L0753: samplewise_persisted_in_cache = bool(
+  L0760: "samplewise forecast persisted in P_occ cache =",
+  L0761: samplewise_persisted_in_cache,
+  L0765: # D. Exact Part2C2B persistence source audit
+  L0770: "===== D. PART2C/2B RUNNER PERSISTENCE AUDIT ====="
+  L0793: "build_stochastic_future_full_boxes":
+  L0795: "build_stochastic_future_full_boxes"
+  L0835: # E. Persistence contract
+  L0840: "===== E. PERSISTENCE CONTRACT ====="
+  L0843: persistence = json.loads(
+  L0844: PERSISTENCE_CONTRACT.read_text(
+  L0851: persistence,
+  L0863: "===== F. FROZEN POSTERIOR REPLAY INPUT ROUTE ====="
+  L0889: posterior_records = read_jsonl(
+  L0911: "calibrated_predictive_covariance_H0_m2",
+  L0939: "Frozen posterior lacks replay inputs: "
+  L0950: "===== G. EXACT REPLAY JOIN SUFFICIENCY ====="
+  L0953: manifest_records = read_jsonl(
+  L0954: POCC_MANIFEST
+  L0957: match_records = read_jsonl(
+  L1040: "Replay input join failures: "
+  L1048: "Expected 719 predictive vehicles; "
+  L1080: "vehicle predictive actors =",
+  L1108: "example posterior replay inputs =",
+  L1131: exact_cache_only_possible = (
+  L1132: samplewise_persisted_in_cache
+  L1135: deterministic_replay_inputs_complete = True
+  L1138: "samplewise samples persisted =",
+  L1139: samplewise_persisted_in_cache,
+  L1143: "exact-cache subregion reconstruction possible =",
+  L1144: exact_cache_only_possible,
+  L1148: "frozen deterministic replay inputs complete =",
+  L1149: deterministic_replay_inputs_complete,
+  L1153: "replay executed in this audit = NO"
+  L1161: not exact_cache_only_possible
+  L1162: and deterministic_replay_inputs_complete
+  L1165: "REQUIRES_PRE_SWEEP_DETERMINISTIC_REPLAY_ADDENDUM"
+  L1168: elif exact_cache_only_possible:
+  L1170: "EXACT_PERSISTED_SAMPLEWISE_ROUTE_AVAILABLE"
+  L1233: "PASS_SURROGATE_PERSISTENCE_"
+  L1240: "cache_inventory": {
+  L1242: str(POCC_CACHE),
+  L1245: len(cache_files),
+  L1265: "samplewise_forecast_persisted":
+  L1266: samplewise_persisted_in_cache,
+
+===== G. EXISTING RUNTIME OUTPUT SCHEMAS =====
+
+OUTPUT = block66_class_aware_development_cohort_120.jsonl
+type = jsonl
+top-level keys = ['cohort_rank', 'cohort_stratum', 'cohort_stratum_rank', 'compact_record_offset', 'current_anchor_core_counts', 'current_time_index', 'headlamp_relevant_counts', 'headlamp_stratum', 'motion_shard', 'objects_of_interest_used', 'payload_length', 'scenario_id', 'selection_hash', 'selection_uses_centroid', 'selection_uses_full_box', 'selection_uses_future', 'source_rank', 'tracks_to_predict_used']
+
+OUTPUT = block66_part3b_to_part3c_handoff.json
+type = json
+top-level keys = ['Part3C_is_allowed_to', 'Part3C_is_not_allowed_to', 'PartA_continuity', 'formal_outcomes_read', 'freeze_manifest', 'from', 'preregistration', 'runtime_components_to_add', 'stage', 'status', 'to']
+
+OUTPUT = block66_part3c1_to_part3c2_handoff.json
+type = json
+top-level keys = ['Part3C2_allowed', 'Part3C2_forbidden', 'formal_outcomes_read', 'from', 'numeric_policy_selected', 'runtime_module', 'stage', 'status', 'to']
+
+OUTPUT = block66_part3c2a_to_part3c2b_handoff.json
+type = json
+top-level keys = ['cache_root', 'candidate_join_keys', 'formal_outcomes_allowed', 'from', 'new_sampling_allowed', 'numeric_policy_selection_allowed', 'route_audit_report', 'stage', 'status', 'to']
+
+OUTPUT = block66_part3c2b0_to_part3c2b1_handoff.json
+type = json
+top-level keys = ['deterministic_replay_inputs_complete', 'formal_outcomes_allowed', 'from', 'numeric_selection_allowed', 'policy_sweep_allowed', 'replay_allowed_yet', 'report', 'samplewise_forecast_persisted', 'stage', 'status', 'surrogate_materialization_allowed_yet', 'to']
+
+OUTPUT = block66_part3c_final_freeze_manifest.json
+type = json
+top-level keys = ['Part3B_preregistration', 'Stage6_regression', 'block', 'class_aware_runtime', 'closure', 'deterministic_replay_contract', 'formal_outcomes_read', 'full_box_parity', 'numeric_policy_selected', 'prohibited_after_freeze_before_Block6_7', 'stage', 'status', 'vehicle_surrogate_evidence']
+
+OUTPUT = block66_part3c_to_block67_handoff.json
+type = json
+top-level keys = ['Block6_7_Part1of2_allowed', 'Block6_7_Part1of2_forbidden', 'Part3B_preregistration_sha256', 'closure', 'development_population', 'freeze', 'from', 'stage', 'status', 'to']
+
+OUTPUT = block66_part3c_vehicle_surrogate_evidence.jsonl
+type = jsonl
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0000__f72a05a05035feb8__s3trk-000027.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0001__f72a05a05035feb8__s3trk-000024.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0002__f72a05a05035feb8__s3trk-000005.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0004__217d94b9231ed401__s3trk-000059.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0005__217d94b9231ed401__s3trk-000049.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0006__217d94b9231ed401__s3trk-000039.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0010__6ccad5b8230fdfaf__s3trk-000001.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0011__6ccad5b8230fdfaf__s3trk-000026.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0012__6ccad5b8230fdfaf__s3trk-000008.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0013__6ccad5b8230fdfaf__s3trk-000013.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0015__78249f8856cb2c57__s3trk-000057.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0016__78249f8856cb2c57__s3trk-000049.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0017__78249f8856cb2c57__s3trk-000017.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0018__78249f8856cb2c57__s3trk-000054.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0019__78249f8856cb2c57__s3trk-000036.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0021__63e96200cbac4d62__s3trk-000027.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0022__63e96200cbac4d62__s3trk-000018.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0029__d6a50bc55ce5f19e__s3trk-000037.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0030__d6a50bc55ce5f19e__s3trk-000057.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0031__d6a50bc55ce5f19e__s3trk-000033.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0032__d6a50bc55ce5f19e__s3trk-000050.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0033__d6a50bc55ce5f19e__s3trk-000006.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0034__d6a50bc55ce5f19e__s3trk-000008.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0035__d6a50bc55ce5f19e__s3trk-000042.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0036__d6a50bc55ce5f19e__s3trk-000007.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0037__d6a50bc55ce5f19e__s3trk-000024.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0038__d6a50bc55ce5f19e__s3trk-000020.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0042__418c1e982b7921eb__s3trk-000040.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0043__418c1e982b7921eb__s3trk-000015.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0044__418c1e982b7921eb__s3trk-000084.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0045__418c1e982b7921eb__s3trk-000077.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+OUTPUT = part3c_vehicle_surrogate_replay_cache/vehicle_0046__418c1e982b7921eb__s3trk-000010.json
+type = json
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+
+runtime output schemas inspected = 40
+
+===== H. EVALUATOR INGREDIENT DISCOVERY =====
+scenario_identity       = FOUND
+actor_identity          = NOT PROVEN
+class                   = FOUND
+P_occ                   = FOUND
+illumination            = NOT PROVEN
+oracle                  = FOUND
+reactive                = FOUND
+four_horizons           = FOUND
+
+===== I. FORMAL HARD BOUNDARY =====
+formal artifact content opened = NO
+formal manifest content opened = NO
+formal outcomes read           = NO
+formal evaluation executed     = NO
+development records opened     = YES / SCHEMA ONLY
+development performance metrics= NOT COMPUTED
+
+===== J. FULL STAGE6 REGRESSION =====
+Stage6 regression = 202 / 202 PASS
+
+===== K. RECONCILIATION IMMUTABILITY =====
+reconciliation report = UNCHANGED
+metric protocol       = UNCHANGED
+metric runtime        = UNCHANGED
+metric interface      = UNCHANGED
+
+===== L. STORAGE =====
+free GiB        = 1052.776
+250-GiB reserve = PASS
+
+============================================================
+BLOCK 6.8 PART 2/2 — DEVELOPMENT ROUTE BIND FINAL
+============================================================
+reconciled metric authority = EXACT PASS
+development cohort           = 120 SCENARIOS
+development schemas          = BOUND
+class-aware runtime route    = BOUND
+P_occ route                  = BOUND
+reactive fallback route      = BOUND
+development outcomes         = SCHEMA ONLY
+performance metrics computed = NO
+numeric bounds frozen        = NO
+formal files opened          = NO
+formal outcomes              = NO
+policy/parameter tuning      = NO
+Stage6 regression            = 202 / 202 PASS
+STATUS = PASS_DEVELOPMENT_ROUTE_SCHEMA_BOUND
+report = /home/agni/waymo/iscai_stage6/reports/block68_part2_development_route_schema_bind.json
+terminal remains open = YES

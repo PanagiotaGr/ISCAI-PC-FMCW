@@ -1,0 +1,89 @@
+============================================================
+STAGE 6 — BLOCK 6.8 PART 2/2
+EVALUATOR REFERENCE CONTRACT FREEZE
+PRE-DEVELOPMENT-OUTCOME IMPLEMENTATION COMPLETION
+============================================================
+
+===== A. UPSTREAM FROZEN SEALS =====
+I_final binding              = EXACT PASS
+full-box APIs                = PROVEN
+oracle/future truth routes   = PROVEN
+VRU evaluator regions        = PROVEN
+vehicle surrogate            = PROVEN
+road ROI code evidence       = PROVEN
+pre-existing road ROI artifact = ABSENT CONFIRMED
+
+===== B. PRE-OUTCOME SCIENTIFIC BOUNDARY =====
+development performance metrics = NOT READ
+numeric acceptance bounds        = NOT SELECTED
+formal content opened            = NO
+policy/controller modification   = NO
+road ROI completion source       = PRE-OUTCOME RULE
+
+===== C. PRE-FREEZE REGRESSION =====
+pre-freeze regression = 202 / 202 PASS
+
+===== D. BUILD EVALUATOR REFERENCE CONTRACT =====
+contract JSON syntax       = PASS
+road ROI artifact syntax   = PASS
+helper Python syntax        = PASS
+road ROI                    = ALL VALID GRID CELLS
+road ROI outcome dependence = NONE
+
+===== E. TRANSACTIONAL FREEZE =====
+evaluator contract = WRITTEN
+road ROI artifact  = WRITTEN
+helper module      = WRITTEN
+tests              = WRITTEN
+
+===== F. TARGETED CONTRACT TESTS =====
+targeted tests = 7 / 7 PASS
+
+===== G. FULL STAGE6 REGRESSION =====
+full Stage6 regression = 209 / 209 PASS
+
+===== H. EXACT SEMANTIC READBACK =====
+constructed oracle = EVALUATOR ONLY
+measured ADB GT     = NO
+future GT controller= NO
+I_final             = POST-ACTUATION
+road ROI            = FULL VALID ACTUATOR GRID
+road ROI artifact   = NOW EXPLICITLY FROZEN
+
+===== I. UPSTREAM IMMUTABILITY =====
+controller runtime       = UNCHANGED
+metric runtime           = UNCHANGED
+metric authority         = UNCHANGED
+previous evidence reports= UNCHANGED
+
+===== J. STORAGE =====
+free GiB        = 1052.773
+250-GiB reserve = PASS
+
+===== K. FREEZE REPORT =====
+contract SHA256      = c9ff0390820a3c37702fb391ba603244fffcf7c03c476045b590aa483e89bd7e
+road ROI SHA256      = 832f4bc3215fe585fee781080c98b2928157f26e8a66d22f428f15604afb75e0
+helper module SHA256 = 2015136fdcbfe3f837bcba5a2ee05578a4d8a01c4ecfd52e4dfac9f864349891
+freeze report SHA256 = 5885424d164a058a151c50dd663acec4da7aeba66a56d5e0191c777682e113a8
+
+============================================================
+BLOCK 6.8 EVALUATOR REFERENCE CONTRACT — FINAL
+============================================================
+I_final                     = FROZEN POST-ACTUATION
+constructed oracle          = FROZEN EVALUATOR ONLY
+future GT controller input  = NO
+measured ADB ground truth   = NO
+vehicle reference region    = FROZEN
+pedestrian future full-box  = FROZEN
+cyclist future full-box     = FROZEN
+road ROI                    = ALL VALID ACTUATOR CELLS
+road ROI artifact           = FROZEN
+development metrics         = NOT COMPUTED
+numeric bounds              = NOT SELECTED
+formal content              = NOT OPENED
+policy/parameter tuning     = NO
+targeted regression         = 7 / 7 PASS
+full Stage6 regression      = 209 / 209 PASS
+STATUS = PASS_EVALUATOR_REFERENCE_CONTRACT_FROZEN
+report = /home/agni/waymo/iscai_stage6/reports/block68_evaluator_reference_contract_freeze.json
+terminal remains open = YES

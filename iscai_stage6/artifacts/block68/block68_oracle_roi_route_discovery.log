@@ -1,0 +1,3551 @@
+/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/metric_semantics.py:204: SyntaxWarning: invalid escape sequence '\ '
+  |O_vehicle \ D| / |O_vehicle|
+/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/metric_semantics.py:312: SyntaxWarning: invalid escape sequence '\ '
+  |D \ O|
+/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/metric_semantics.py:521: SyntaxWarning: invalid escape sequence '\ '
+  |D \ O|
+============================================================
+STAGE 6 — BLOCK 6.8 PART 2/2
+CONSTRUCTED-ORACLE / FULL-BOX / ROAD-ROI ROUTE DISCOVERY
+NO PERFORMANCE METRICS / FORMAL CONTENT HARD-BLOCKED
+============================================================
+
+===== A. FROZEN EVALUATOR SEAL =====
+metric reconciliation     = EXACT PASS
+metric protocol           = EXACT PASS
+metric runtime            = EXACT PASS
+metric interface          = EXACT PASS
+I_final binding             = EXACT PASS
+formal evaluation           = BLOCKED
+
+===== B. BLOCK6.6 PREREGISTERED EVALUATOR SEMANTICS =====
+"formula": "wall-clock runtime from loaded P_occ/current geometry to final four-horizon illumination schedule",
+"cyclist_visibility_proxy": {
+"formula": "mean(I_final over future GT cyclist projected full-box footprint cells)"
+"oracle_dim_support": "O_tau = union of constructed future actor shadow supports",
+"pedestrian_visibility_proxy": {
+"formula": "mean(I_final over future GT pedestrian projected full-box footprint cells)"
+"road_illumination_retention": {
+"formula": "mean(I_final over frozen road ROI)"
+"TYPE_CYCLIST": 432,
+"TYPE_PEDESTRIAN": 54,
+"cyclist_lateral_multiplier": {
+"cyclist_formula": "m_extra = b_cyclist + u_cyclist*sigma_lat + q_cyclist*tau*v_lat",
+"cyclist_lateral_rate_mps": "v_lat = abs(ell_current^T mean_displacement_xy_tau)/tau",
+"pedestrian_formula": "m_extra = b_pedestrian + u_pedestrian*sigma_lat",
+"future_GT_controller_input": false,
+"future_GT_evaluator_after_decision": true,
+"future_GT_heading_controller_input": false,
+"future_track_duration_selection": false,
+"truth_track_index_controller_input": false
+"cyclist": {
+"cyclist_full_blackout_permitted": false,
+"pedestrian": {
+"pedestrian_full_blackout_permitted": false,
+"f_vehicle <= f_pedestrian",
+"f_vehicle <= f_cyclist",
+"f_pedestrian > 0",
+"f_cyclist > 0"
+"VRU_floor_guard": "F_vru = max(active pedestrian floor, active cyclist floor, 0)",
+"cyclist glare/visibility objective",
+"pedestrian glare/visibility objective"
+"pre_floor_guard_command": "I_min = minimum over all active actor illumination maps",
+"reason": "vehicle glare protection remains strong but may not force a pedestrian/cyclist below its hard non-blackout floor",
+"TYPE_PEDESTRIAN",
+"TYPE_CYCLIST"
+"constructed_oracle_reference": {
+"evaluation_access_timing": "future GT may be read only after controller output is fixed",
+"ground_truth_type": "constructed evaluator-only reference; NOT measured ADB ground truth",
+"identity": "truth track identity permitted evaluator-side only",
+"oracle_shadow_semantics": "future GT projected box -> exact Part-A +4 m shadow end and +20 m raised-cosine transition",
+"primary_actor_geometry": "future GT full 3D box",
+"continuous_illumination_conversion": {
+"centroid_only": false,
+"TYPE_CYCLIST": 48,
+"TYPE_PEDESTRIAN": 110,
+"objective": "maximize macro mean per-actor/per-horizon full-box mask IoU against constructed development future reference",
+"TYPE_CYCLIST": "larger k first (less unnecessary dimming)",
+"TYPE_PEDESTRIAN": "larger k first (less unnecessary dimming)",
+"cyclist_lateral_response_required": true,
+"vary": "class base / uncertainty / vehicle-closing / cyclist-lateral coefficients",
+"canonical floor tuple (f_vehicle,f_pedestrian,f_cyclist)"
+"1-pedestrian_visibility_proxy",
+"1-cyclist_visibility_proxy",
+"1-road_illumination_retention"
+"illumination_source": {
+"path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/illumination.py",
+"future_information": false,
+"road_ROI": {
+"empty_ROI": "NA and excluded from macro average",
+"future_dynamic_map_used": false,
+"metric_name": "road_illumination_retention",
+"reference_type": "constructed map-based road illumination proxy"
+"future_prediction": false,
+"future_prediction": false,
+"future_prediction": "shared calibrated Gaussian mean",
+"geometry": "future full boxes",
+"future_prediction": "frozen calibrated P_occ",
+"future_prediction": "frozen calibrated P_occ",
+"future_prediction": "frozen calibrated P_occ",
+"7_oracle_future_ADB": {
+"controller_input_in_nonoracle_methods": false,
+"future_prediction": "future GT evaluator-only",
+"purpose": "upper bound / constructed oracle future reference"
+"shared_actuator_dynamics_after_freeze": "deterministic, uncertainty-aware, class-agnostic, class-aware and oracle predictive maps use the same frozen raised-cosine and actuator dynamics where applicable; original reactive baseline itself remains exact and unmodified"
+"initial_state": "current causal class-aware reactive illumination generated from exact Part-A geometry; no future information",
+"controller_side_heading_source": "predicted/samplewise heading only; no future GT heading",
+"evaluator_side_heading_source": "future GT heading permitted only after controller decision for constructed oracle/safety-reference evaluation",
+"physical_ground_truth_claim": false,
+"required_before_parameter_sweep": "materialize/project these surrogate regions from the same frozen N8192 trajectory samples for vehicle compliance evidence; full-box P_occ remains the primary controller occupancy",
+
+prereg relevant lines = 78
+
+===== C. ADB SOURCE ROUTE CANDIDATES =====
+
+------------------------------------------------------------
+MODULE = baseline_metric_contract.py
+FUNCTION = required_baseline_specs @L201
+categories = {'constructed_oracle': 4, 'future_full_box': 1, 'road_roi': 2, 'future_truth_access': 2, 'reactive_reference': 3}
+arguments = []
+excerpt:
+  L0201: def required_baseline_specs(
+  L0202: ) -> tuple[
+  L0203:     ADBBaselineSpec,
+  L0204:     ...
+  L0205: ]:
+  L0206:     """
+  L0207:     Exact seven-label PDF comparison matrix.
+  L0208: 
+  L0209:     Important:
+  L0210:     `uncertainty_aware_predictive_ADB` and
+  L0211:     `class_agnostic_predictive_ADB` may map to the same runtime
+  L0212:     configuration if the implementation has no scientifically
+  L0213:     meaningful additional axis separating them.
+  L0214: 
+  L0215:     That overlap is explicit rather than hidden.
+  L0216:     """
+  L0217: 
+  L0218:     shared_uncertainty_configuration = (
+  L0219:         "predictive_uncertainty_common_policy_v1"
+  L0220:     )
+  L0221: 
+  L0222:     return (
+  L0223:         ADBBaselineSpec(
+  L0224:             label=(
+  L0225:                 ADBBaseline.STATIC_ADB
+  L0226:             ),
+  L0227: 
+  L0228:             predictive=False,
+  L0229:             future_mean=False,
+  L0230:             predictive_uncertainty=False,
+  L0231:             class_aware_policy=False,
+  L0232:             current_reactive_geometry=False,
+  L0233:             static_controller=True,
+  L0234:             evaluator_future_truth=False,
+  L0235:             future_truth_controller_input=False,
+  L0236:             constructed_oracle_only=False,
+  L0237: 
+  L0238:             runtime_configuration_id=(
+  L0239:                 "static_part_a_grid_v1"
+  L0240:             ),
+  L0241: 
+  L0242:             interpretation=(
+  L0243:                 "Static ADB reference without "
+  L0244:                 "reactive or predictive actor control."
+  L0245:             ),
+  L0246:         ),
+  L0247: 
+  L0248:         ADBBaselineSpec(
+  L0249:             label=(
+  L0250:                 ADBBaseline.ORIGINAL_REACTIVE_ADB
+  L0251:             ),
+  L0252: 
+  L0253:             predictive=False,
+  L0254:             future_mean=False,
+  L0255:             predictive_uncertainty=False,
+  L0256:             class_aware_policy=False,
+  L0257:             current_reactive_geometry=True,
+  L0258:             static_controller=False,
+  L0259:             evaluator_future_truth=False,
+  L0260:             future_truth_controller_input=False,
+  L0261:             constructed_oracle_only=False,
+  L0262: 
+  L0263:             runtime_configuration_id=(
+  L0264:                 "part_a_current_reactive_v1"
+  L0265:             ),
+  L0266: 
+  L0267:             interpretation=(
+  L0268:                 "Original Part-A-style current-time "
+  L0269:                 "deterministic reactive ADB."
+  L0270:             ),
+  L0271:         ),
+  L0272: 
+  L0273:         ADBBaselineSpec(
+  L0274:             label=(
+  L0275:                 ADBBaseline.DETERMINISTIC_PREDICTIVE_ADB
+  L0276:             ),
+  L0277: 
+  L0278:             predictive=True,
+  L0279:             future_mean=True,
+  L0280:             predictive_uncertainty=False,
+  L0281:             class_aware_policy=False,
+
+------------------------------------------------------------
+MODULE = baseline_metric_contract.py
+CLASS = ADBBaselineSpec @L99
+categories = {'constructed_oracle': 4, 'future_full_box': 1, 'future_truth_access': 2, 'reactive_reference': 2}
+excerpt:
+  L0099: class ADBBaselineSpec:
+  L0100:     """
+  L0101:     Frozen semantic configuration of one comparison label.
+  L0102: 
+  L0103:     `runtime_configuration_id` may intentionally be shared by
+  L0104:     two PDF labels when their semantics overlap.
+  L0105: 
+  L0106:     We never fabricate an algorithmic distinction merely to
+  L0107:     make labels appear different.
+  L0108:     """
+  L0109: 
+  L0110:     label: ADBBaseline
+  L0111: 
+  L0112:     predictive: bool
+  L0113: 
+  L0114:     future_mean: bool
+  L0115: 
+  L0116:     predictive_uncertainty: bool
+  L0117: 
+  L0118:     class_aware_policy: bool
+  L0119: 
+  L0120:     current_reactive_geometry: bool
+  L0121: 
+  L0122:     static_controller: bool
+  L0123: 
+  L0124:     evaluator_future_truth: bool
+  L0125: 
+  L0126:     future_truth_controller_input: bool
+  L0127: 
+  L0128:     constructed_oracle_only: bool
+  L0129: 
+  L0130:     runtime_configuration_id: str
+  L0131: 
+  L0132:     interpretation: str
+
+------------------------------------------------------------
+MODULE = baseline_metric_contract.py
+CLASS = ConstructedOracleContract @L136
+categories = {'constructed_oracle': 4, 'future_full_box': 1, 'road_roi': 1, 'future_truth_access': 2, 'reactive_reference': 1}
+excerpt:
+  L0136: class ConstructedOracleContract:
+  L0137:     """
+  L0138:     Oracle reference contract.
+  L0139: 
+  L0140:     WOMD has no measured ADB command ground truth.
+  L0141: 
+  L0142:     The oracle is therefore a CONSTRUCTED evaluator reference
+  L0143:     generated from future actor geometry after the controller
+  L0144:     decision boundary.
+  L0145: 
+  L0146:     It must never become a causal feature.
+  L0147:     """
+  L0148: 
+  L0149:     name: str = (
+  L0150:         "constructed_future_ADB_reference"
+  L0151:     )
+  L0152: 
+  L0153:     source: str = (
+  L0154:         "future_actor_truth_evaluator_only"
+  L0155:     )
+  L0156: 
+  L0157:     measured_ADB_ground_truth: bool = False
+  L0158: 
+  L0159:     available_to_controller: bool = False
+  L0160: 
+  L0161:     available_for_parameter_tuning: bool = False
+  L0162: 
+  L0163:     available_for_scoring: bool = True
+  L0164: 
+  L0165:     same_grid_as_predictive_ADB: bool = True
+  L0166: 
+  L0167:     same_Part_A_intensity_model: bool = True
+
+------------------------------------------------------------
+MODULE = probabilistic_full_box.py
+FUNCTION = build_stochastic_future_full_boxes @L476
+categories = {'constructed_oracle': 1, 'future_full_box': 4, 'road_roi': 1, 'future_truth_access': 1, 'reactive_reference': 2}
+arguments = ['prediction', 'actor_box', 'sample_count', 'seed']
+excerpt:
+  L0476: def build_stochastic_future_full_boxes(
+  L0477:     prediction: CalibratedGaussianFullBoxPrediction,
+  L0478:     actor_box,
+  L0479:     *,
+  L0480:     sample_count: int,
+  L0481:     seed: int,
+  L0482: ) -> StochasticFullBoxForecast:
+  L0483:     """
+  L0484:     Propagate calibrated trajectory uncertainty through
+  L0485:     physical future full-box geometry.
+  L0486: 
+  L0487:     For every trajectory sample and every horizon:
+  L0488:       sampled position -> Box3D center
+  L0489:       sampled tangent  -> box yaw
+  L0490:       current causal L/W/H -> held geometry
+  L0491:       8 physical corners -> headlamp projection
+  L0492: 
+  L0493:     No centroid-only probability approximation is used.
+  L0494:     """
+  L0495: 
+  L0496:     _require_causal_actor_box(
+  L0497:         actor_box
+  L0498:     )
+  L0499: 
+  L0500:     count = int(
+  L0501:         sample_count
+  L0502:     )
+  L0503: 
+  L0504:     if count <= 0:
+  L0505:         raise ValueError(
+  L0506:             "sample_count must be positive."
+  L0507:         )
+  L0508: 
+  L0509:     anchor = _finite_vec3(
+  L0510:         prediction.latest_position_H0_m,
+  L0511:         name="latest_position_H0_m",
+  L0512:     )
+  L0513: 
+  L0514:     samples = (
+  L0515:         sample_calibrated_future_positions_H0_m(
+  L0516:             prediction,
+  L0517:             sample_count=count,
+  L0518:             seed=int(
+  L0519:                 seed
+  L0520:             ),
+  L0521:         )
+  L0522:     )
+  L0523: 
+  L0524:     headings, fallback = (
+  L0525:         resolve_samplewise_headings(
+  L0526:             trajectory_samples_h0_m=(
+  L0527:                 samples
+  L0528:             ),
+  L0529:             current_position_h0_m=(
+  L0530:                 anchor
+  L0531:             ),
+  L0532:             current_heading_h0_rad=float(
+  L0533:                 actor_box.box.yaw_rad
+  L0534:             ),
+  L0535:         )
+  L0536:     )
+  L0537: 
+  L0538:     headings = np.asarray(
+  L0539:         headings,
+  L0540:         dtype=np.float64,
+  L0541:     )
+  L0542: 
+  L0543:     fallback = np.asarray(
+  L0544:         fallback,
+  L0545:         dtype=bool,
+  L0546:     )
+  L0547: 
+  L0548:     if headings.shape != (
+  L0549:         count,
+  L0550:         4,
+  L0551:     ):
+  L0552:         raise RuntimeError(
+  L0553:             "Stage5 heading resolver returned "
+  L0554:             f"unexpected shape {headings.shape}."
+  L0555:         )
+  L0556: 
+
+------------------------------------------------------------
+MODULE = deterministic_association.py
+FUNCTION = reciprocal_unique_nearest_anchor_association @L277
+categories = {'constructed_oracle': 2, 'future_full_box': 2, 'future_truth_access': 2, 'reactive_reference': 2}
+arguments = ['predictor_anchors', 'actor_boxes']
+excerpt:
+  L0277: def reciprocal_unique_nearest_anchor_association(
+  L0278:     predictor_anchors:
+  L0279:         Iterable[
+  L0280:             PredictorAnchor
+  L0281:         ],
+  L0282:     actor_boxes:
+  L0283:         Iterable,
+  L0284: ) -> ReciprocalAssociationResult:
+  L0285:     """
+  L0286:     Frozen Block-6.3 association policy.
+  L0287: 
+  L0288:     Association basis:
+  L0289:       predictor latest causal H0 anchor
+  L0290:         <->
+  L0291:       Stage6 causal ADB-box Stage1 H0 anchor
+  L0292: 
+  L0293:     Pair acceptance:
+  L0294:       - predictor has one exact unique nearest box,
+  L0295:       - box has one exact unique nearest predictor,
+  L0296:       - relations are reciprocal.
+  L0297: 
+  L0298:     Deliberately absent:
+  L0299:       - hard distance threshold,
+  L0300:       - covariance gate,
+  L0301:       - class gate,
+  L0302:       - Hungarian/forced assignment,
+  L0303:       - prediction_id == WOMD track_id,
+  L0304:       - truth_id / truth_track_index,
+  L0305:       - tracks_to_predict,
+  L0306:       - future state information.
+  L0307: 
+  L0308:     A causal box with no finite Stage1 anchor remains unmatched
+  L0309:     and is therefore eligible for the frozen original-reactive
+  L0310:     fallback downstream.
+  L0311:     """
+  L0312: 
+  L0313:     predictors = tuple(
+  L0314:         predictor_anchors
+  L0315:     )
+  L0316: 
+  L0317:     boxes = tuple(
+  L0318:         actor_boxes
+  L0319:     )
+  L0320: 
+  L0321:     prediction_ids = [
+  L0322:         str(
+  L0323:             item.prediction_id
+  L0324:         )
+  L0325:         for item in predictors
+  L0326:     ]
+  L0327: 
+  L0328:     if (
+  L0329:         len(
+  L0330:             prediction_ids
+  L0331:         )
+  L0332:         !=
+  L0333:         len(
+  L0334:             set(
+  L0335:                 prediction_ids
+  L0336:             )
+  L0337:         )
+  L0338:     ):
+  L0339:         raise ValueError(
+  L0340:             "Predictor IDs must be unique "
+  L0341:             "within one association call."
+  L0342:         )
+  L0343: 
+  L0344:     predictor_positions = tuple(
+  L0345:         _finite_vec3(
+  L0346:             item.latest_position_H0_m,
+  L0347:             name=(
+  L0348:                 "predictor latest_position_H0_m"
+  L0349:             ),
+  L0350:         )
+  L0351:         for item in predictors
+  L0352:     )
+  L0353: 
+  L0354:     box_positions = tuple(
+  L0355:         _box_anchor(
+  L0356:             actor_box
+  L0357:         )
+
+------------------------------------------------------------
+MODULE = deterministic_predictive.py
+FUNCTION = build_deterministic_future_full_boxes @L347
+categories = {'constructed_oracle': 1, 'future_full_box': 4, 'future_truth_access': 1, 'reactive_reference': 2}
+arguments = ['prediction', 'actor_box']
+excerpt:
+  L0347: def build_deterministic_future_full_boxes(
+  L0348:     prediction:
+  L0349:         DeterministicSharedMeanPrediction,
+  L0350:     actor_box,
+  L0351: ) -> tuple[
+  L0352:     DeterministicFutureProjectedBox,
+  L0353:     DeterministicFutureProjectedBox,
+  L0354:     DeterministicFutureProjectedBox,
+  L0355:     DeterministicFutureProjectedBox,
+  L0356: ]:
+  L0357:     """
+  L0358:     Build the deterministic predictive ADB geometry for one
+  L0359:     associated actor.
+  L0360: 
+  L0361:     State:
+  L0362:       shared calibrated-Gaussian mean trajectory only.
+  L0363: 
+  L0364:     Center:
+  L0365:       predictor causal anchor + metric-H0 mean displacement.
+  L0366: 
+  L0367:     Dimensions:
+  L0368:       current causal l/w/h held explicit across horizons.
+  L0369: 
+  L0370:     Orientation:
+  L0371:       frozen Stage5 trajectory tangent rule, with current causal
+  L0372:       actor-box yaw used only as the low-speed carry-forward seed.
+  L0373: 
+  L0374:     Projection:
+  L0375:       full 3D Box3D -> all eight physical corners.
+  L0376: 
+  L0377:     Deliberately absent:
+  L0378:       predictive covariance,
+  L0379:       probabilistic occupancy,
+  L0380:       future GT,
+  L0381:       class-specific margin/floor,
+  L0382:       communication codebook.
+  L0383:     """
+  L0384: 
+  L0385:     _validate_causal_actor_box(
+  L0386:         actor_box
+  L0387:     )
+  L0388: 
+  L0389:     centers = np.asarray(
+  L0390:         prediction.future_centers_H0_m(),
+  L0391:         dtype=np.float64,
+  L0392:     )
+  L0393: 
+  L0394:     heading_samples = centers[
+  L0395:         None,
+  L0396:         :,
+  L0397:         :,
+  L0398:     ]
+  L0399: 
+  L0400:     headings, fallback = (
+  L0401:         resolve_samplewise_headings(
+  L0402:             trajectory_samples_h0_m=(
+  L0403:                 heading_samples
+  L0404:             ),
+  L0405: 
+  L0406:             current_position_h0_m=(
+  L0407:                 prediction.latest_position_H0_m
+  L0408:             ),
+  L0409: 
+  L0410:             current_heading_h0_rad=float(
+  L0411:                 actor_box.box.yaw_rad
+  L0412:             ),
+  L0413:         )
+  L0414:     )
+  L0415: 
+  L0416:     if headings.shape != (
+  L0417:         1,
+  L0418:         4,
+  L0419:     ):
+  L0420:         raise RuntimeError(
+  L0421:             "Unexpected frozen Stage5 heading shape."
+  L0422:         )
+  L0423: 
+  L0424:     if fallback.shape != (
+  L0425:         1,
+  L0426:         4,
+  L0427:     ):
+
+------------------------------------------------------------
+MODULE = illumination.py
+CLASS = ReactiveShadowRegion @L22
+categories = {'constructed_oracle': 2, 'future_full_box': 1, 'road_roi': 1, 'future_truth_access': 2, 'reactive_reference': 2}
+excerpt:
+  L0022: class ReactiveShadowRegion:
+  L0023:     """
+  L0024:     One current deterministic ADB shadow region.
+  L0025: 
+  L0026:     This class deliberately describes illumination geometry only.
+  L0027:     It has no prediction posterior, covariance, future ground-truth,
+  L0028:     communication-beam or class-policy inputs.
+  L0029: 
+  L0030:     theta_center_rad / theta_span_rad:
+  L0031:         Horizontal angular shadow interval.
+  L0032: 
+  L0033:     r_shadow_end_m:
+  L0034:         Part-A/paper r_min:
+  L0035:         strongest attenuation applies up to this range.
+  L0036: 
+  L0037:     r_transition_end_m:
+  L0038:         Part-A/paper r_max:
+  L0039:         raised-cosine transition reaches full illumination here.
+  L0040: 
+  L0041:     intensity_floor:
+  L0042:         Normalized minimum illumination.
+  L0043:         floor=0 reproduces Eq. (5) of the reference paper.
+  L0044:         Non-zero floors are supported for later Stage6 policies.
+  L0045:     """
+  L0046: 
+  L0047:     theta_center_rad: float
+  L0048:     theta_span_rad: float
+  L0049: 
+  L0050:     r_shadow_end_m: float
+  L0051:     r_transition_end_m: float
+  L0052: 
+  L0053:     intensity_floor: float = 0.0
+  L0054: 
+  L0055:     source_semantics: str = (
+  L0056:         "current_deterministic_region"
+  L0057:     )
+  L0058: 
+  L0059:     def __post_init__(
+  L0060:         self,
+  L0061:     ) -> None:
+  L0062: 
+  L0063:         center = float(
+  L0064:             self.theta_center_rad
+  L0065:         )
+  L0066: 
+  L0067:         span = float(
+  L0068:             self.theta_span_rad
+  L0069:         )
+  L0070: 
+  L0071:         r_shadow = float(
+  L0072:             self.r_shadow_end_m
+  L0073:         )
+  L0074: 
+  L0075:         r_transition = float(
+  L0076:             self.r_transition_end_m
+  L0077:         )
+  L0078: 
+  L0079:         floor = float(
+  L0080:             self.intensity_floor
+  L0081:         )
+  L0082: 
+  L0083:         for name, value in (
+  L0084:             (
+  L0085:                 "theta_center_rad",
+  L0086:                 center,
+  L0087:             ),
+  L0088:             (
+  L0089:                 "theta_span_rad",
+  L0090:                 span,
+  L0091:             ),
+  L0092:             (
+  L0093:                 "r_shadow_end_m",
+  L0094:                 r_shadow,
+  L0095:             ),
+  L0096:             (
+  L0097:                 "r_transition_end_m",
+  L0098:                 r_transition,
+  L0099:             ),
+  L0100:             (
+  L0101:                 "intensity_floor",
+  L0102:                 floor,
+
+------------------------------------------------------------
+MODULE = probabilistic_occupancy.py
+FUNCTION = estimate_actor_occupancy_probability @L736
+categories = {'constructed_oracle': 1, 'future_full_box': 5, 'road_roi': 1, 'future_truth_access': 1}
+arguments = ['forecast', 'grid']
+excerpt:
+  L0736: def estimate_actor_occupancy_probability(
+  L0737:     forecast: StochasticFullBoxForecast,
+  L0738:     grid: OccupancyGrid,
+  L0739: ) -> ActorOccupancyProbability:
+  L0740:     """
+  L0741:     Monte-Carlo estimate of one actor's
+  L0742: 
+  L0743:         P_occ(theta, r, tau).
+  L0744: 
+  L0745:     For every sample and horizon, the indicator is obtained
+  L0746:     from the convex hull of all eight physical projected box
+  L0747:     corners.
+  L0748: 
+  L0749:     Probability is exactly:
+  L0750:         occupancy_count / forecast.sample_count
+  L0751: 
+  L0752:     No gamma threshold is applied here.
+  L0753:     """
+  L0754: 
+  L0755:     count = int(
+  L0756:         forecast.sample_count
+  L0757:     )
+  L0758: 
+  L0759:     if count <= 0:
+  L0760:         raise ValueError(
+  L0761:             "forecast.sample_count must be positive."
+  L0762:         )
+  L0763: 
+  L0764:     if len(
+  L0765:         forecast.future
+  L0766:     ) != count:
+  L0767:         raise ValueError(
+  L0768:             "forecast.future/sample_count mismatch."
+  L0769:         )
+  L0770: 
+  L0771:     theta_count, range_count = (
+  L0772:         grid.shape
+  L0773:     )
+  L0774: 
+  L0775:     occupancy_counts = np.zeros(
+  L0776:         (
+  L0777:             4,
+  L0778:             theta_count,
+  L0779:             range_count,
+  L0780:         ),
+  L0781:         dtype=np.uint32,
+  L0782:     )
+  L0783: 
+  L0784:     for sample_index, sequence in enumerate(
+  L0785:         forecast.future
+  L0786:     ):
+  L0787:         if len(
+  L0788:             sequence
+  L0789:         ) != 4:
+  L0790:             raise ValueError(
+  L0791:                 "Every trajectory sample must "
+  L0792:                 "contain four future horizons."
+  L0793:             )
+  L0794: 
+  L0795:         for horizon_index, item in enumerate(
+  L0796:             sequence
+  L0797:         ):
+  L0798:             if int(
+  L0799:                 item.sample_index
+  L0800:             ) != sample_index:
+  L0801:                 raise ValueError(
+  L0802:                     "Forecast sample index mismatch."
+  L0803:                 )
+  L0804: 
+  L0805:             if int(
+  L0806:                 item.horizon_index
+  L0807:             ) != horizon_index:
+  L0808:                 raise ValueError(
+  L0809:                     "Forecast horizon index mismatch."
+  L0810:                 )
+  L0811: 
+  L0812:             mask = rasterize_projected_full_box(
+  L0813:                 item,
+  L0814:                 grid,
+  L0815:             )
+  L0816: 
+
+------------------------------------------------------------
+MODULE = baseline_metric_contract.py
+CLASS = ADBMetric @L48
+categories = {'constructed_oracle': 3, 'future_full_box': 1, 'road_roi': 2, 'future_truth_access': 1}
+excerpt:
+  L0048: class ADBMetric(str, Enum):
+  L0049:     MASK_IOU = (
+  L0050:         "mask_IoU_with_constructed_oracle_future_mask"
+  L0051:     )
+  L0052: 
+  L0053:     VEHICLE_SHADOW_VIOLATION = (
+  L0054:         "vehicle_shadow_zone_violation"
+  L0055:     )
+  L0056: 
+  L0057:     GLARE_RISK_EXPOSURE = (
+  L0058:         "glare_risk_exposure"
+  L0059:     )
+  L0060: 
+  L0061:     OVER_MASKING_AREA = (
+  L0062:         "over_masking_area"
+  L0063:     )
+  L0064: 
+  L0065:     ROAD_ILLUMINATION_RETENTION = (
+  L0066:         "road_illumination_retention"
+  L0067:     )
+  L0068: 
+  L0069:     PEDESTRIAN_VISIBILITY_PROXY = (
+  L0070:         "pedestrian_visibility_proxy"
+  L0071:     )
+  L0072: 
+  L0073:     CYCLIST_VISIBILITY_PROXY = (
+  L0074:         "cyclist_visibility_proxy"
+  L0075:     )
+  L0076: 
+  L0077:     FALSE_DIMMING = (
+  L0078:         "false_dimming"
+  L0079:     )
+  L0080: 
+  L0081:     TEMPORAL_SMOOTHNESS = (
+  L0082:         "temporal_smoothness"
+  L0083:     )
+  L0084: 
+  L0085:     FLICKER_CHANGE_RATE = (
+  L0086:         "flicker_change_rate"
+  L0087:     )
+  L0088: 
+  L0089:     ENERGY_CONSUMPTION = (
+  L0090:         "energy_consumption"
+  L0091:     )
+  L0092: 
+  L0093:     ACTUATION_LATENCY = (
+  L0094:         "actuation_latency"
+  L0095:     )
+
+------------------------------------------------------------
+MODULE = baseline_metric_contract.py
+FUNCTION = required_metric_interfaces @L403
+categories = {'constructed_oracle': 3, 'road_roi': 3, 'future_truth_access': 1}
+arguments = []
+excerpt:
+  L0403: def required_metric_interfaces(
+  L0404: ) -> tuple[
+  L0405:     ADBMetricInterface,
+  L0406:     ...
+  L0407: ]:
+  L0408: 
+  L0409:     return (
+  L0410:         ADBMetricInterface(
+  L0411:             name=ADBMetric.MASK_IOU,
+  L0412:             requires_constructed_oracle=True,
+  L0413:             requires_vehicle_truth_region=False,
+  L0414:             requires_pedestrian_truth_region=False,
+  L0415:             requires_cyclist_truth_region=False,
+  L0416:             requires_road_ROI=False,
+  L0417:             requires_temporal_sequence=False,
+  L0418:             requires_intensity_map=False,
+  L0419:         ),
+  L0420: 
+  L0421:         ADBMetricInterface(
+  L0422:             name=(
+  L0423:                 ADBMetric.VEHICLE_SHADOW_VIOLATION
+  L0424:             ),
+  L0425:             requires_constructed_oracle=False,
+  L0426:             requires_vehicle_truth_region=True,
+  L0427:             requires_pedestrian_truth_region=False,
+  L0428:             requires_cyclist_truth_region=False,
+  L0429:             requires_road_ROI=False,
+  L0430:             requires_temporal_sequence=False,
+  L0431:             requires_intensity_map=True,
+  L0432:         ),
+  L0433: 
+  L0434:         ADBMetricInterface(
+  L0435:             name=ADBMetric.GLARE_RISK_EXPOSURE,
+  L0436:             requires_constructed_oracle=False,
+  L0437:             requires_vehicle_truth_region=True,
+  L0438:             requires_pedestrian_truth_region=False,
+  L0439:             requires_cyclist_truth_region=False,
+  L0440:             requires_road_ROI=False,
+  L0441:             requires_temporal_sequence=False,
+  L0442:             requires_intensity_map=True,
+  L0443:         ),
+  L0444: 
+  L0445:         ADBMetricInterface(
+  L0446:             name=ADBMetric.OVER_MASKING_AREA,
+  L0447:             requires_constructed_oracle=True,
+  L0448:             requires_vehicle_truth_region=False,
+  L0449:             requires_pedestrian_truth_region=False,
+  L0450:             requires_cyclist_truth_region=False,
+  L0451:             requires_road_ROI=False,
+  L0452:             requires_temporal_sequence=False,
+  L0453:             requires_intensity_map=False,
+  L0454:         ),
+  L0455: 
+  L0456:         ADBMetricInterface(
+  L0457:             name=(
+  L0458:                 ADBMetric.ROAD_ILLUMINATION_RETENTION
+  L0459:             ),
+  L0460:             requires_constructed_oracle=False,
+  L0461:             requires_vehicle_truth_region=False,
+  L0462:             requires_pedestrian_truth_region=False,
+  L0463:             requires_cyclist_truth_region=False,
+  L0464:             requires_road_ROI=True,
+  L0465:             requires_temporal_sequence=False,
+  L0466:             requires_intensity_map=True,
+  L0467:         ),
+  L0468: 
+  L0469:         ADBMetricInterface(
+  L0470:             name=(
+  L0471:                 ADBMetric.PEDESTRIAN_VISIBILITY_PROXY
+  L0472:             ),
+  L0473:             requires_constructed_oracle=False,
+  L0474:             requires_vehicle_truth_region=False,
+  L0475:             requires_pedestrian_truth_region=True,
+  L0476:             requires_cyclist_truth_region=False,
+  L0477:             requires_road_ROI=False,
+  L0478:             requires_temporal_sequence=False,
+  L0479:             requires_intensity_map=True,
+  L0480:         ),
+  L0481: 
+  L0482:         ADBMetricInterface(
+  L0483:             name=(
+
+------------------------------------------------------------
+MODULE = deterministic_predictive.py
+FUNCTION = build_deterministic_predictive_plan @L524
+categories = {'constructed_oracle': 1, 'future_full_box': 2, 'road_roi': 1, 'future_truth_access': 1, 'reactive_reference': 2}
+arguments = ['predictions', 'actor_boxes']
+excerpt:
+  L0524: def build_deterministic_predictive_plan(
+  L0525:     predictions:
+  L0526:         Iterable[
+  L0527:             DeterministicSharedMeanPrediction
+  L0528:         ],
+  L0529:     actor_boxes:
+  L0530:         Iterable,
+  L0531: ) -> DeterministicPredictivePlan:
+  L0532:     """
+  L0533:     Associate causal predictor tracks to causal Stage6 boxes,
+  L0534:     then construct deterministic future full boxes.
+  L0535: 
+  L0536:     Unmatched causal ADB boxes are explicitly returned for the
+  L0537:     frozen original-reactive fallback. They are never silently
+  L0538:     removed from illumination control.
+  L0539:     """
+  L0540: 
+  L0541:     predictions = tuple(
+  L0542:         predictions
+  L0543:     )
+  L0544: 
+  L0545:     actor_boxes = tuple(
+  L0546:         actor_boxes
+  L0547:     )
+  L0548: 
+  L0549:     anchors = tuple(
+  L0550:         prediction.association_anchor()
+  L0551:         for prediction
+  L0552:         in predictions
+  L0553:     )
+  L0554: 
+  L0555:     association = (
+  L0556:         reciprocal_unique_nearest_anchor_association(
+  L0557:             anchors,
+  L0558:             actor_boxes,
+  L0559:         )
+  L0560:     )
+  L0561: 
+  L0562:     forecasts = []
+  L0563: 
+  L0564:     for match in association.matches:
+  L0565: 
+  L0566:         actor_box = actor_boxes[
+  L0567:             match.box_index
+  L0568:         ]
+  L0569: 
+  L0570:         prediction = predictions[
+  L0571:             match.predictor_index
+  L0572:         ]
+  L0573: 
+  L0574:         future = (
+  L0575:             build_deterministic_future_full_boxes(
+  L0576:                 prediction,
+  L0577:                 actor_box,
+  L0578:             )
+  L0579:         )
+  L0580: 
+  L0581:         forecasts.append(
+  L0582:             MatchedDeterministicActorForecast(
+  L0583:                 predictor_index=(
+  L0584:                     match.predictor_index
+  L0585:                 ),
+  L0586: 
+  L0587:                 actor_box_index=(
+  L0588:                     match.box_index
+  L0589:                 ),
+  L0590: 
+  L0591:                 prediction_id=(
+  L0592:                     prediction.prediction_id
+  L0593:                 ),
+  L0594: 
+  L0595:                 actor_object_type=str(
+  L0596:                     getattr(
+  L0597:                         actor_box,
+  L0598:                         "object_type",
+  L0599:                         ""
+  L0600:                     )
+  L0601:                 ),
+  L0602: 
+  L0603:                 association_anchor_distance_m=(
+  L0604:                     float(
+
+------------------------------------------------------------
+MODULE = illumination.py
+FUNCTION = reactive_adb_map @L626
+categories = {'constructed_oracle': 1, 'future_full_box': 1, 'road_roi': 2, 'future_truth_access': 1, 'reactive_reference': 2}
+arguments = ['grid', 'regions']
+excerpt:
+  L0626: def reactive_adb_map(
+  L0627:     grid: IlluminationGridSpec,
+  L0628:     regions: Iterable[
+  L0629:         ReactiveShadowRegion
+  L0630:     ],
+  L0631: ) -> np.ndarray:
+  L0632:     """
+  L0633:     Current-state reactive ADB illumination map.
+  L0634: 
+  L0635:     This is intentionally NOT predictive:
+  L0636:       - no future trajectory,
+  L0637:       - no posterior,
+  L0638:       - no covariance,
+  L0639:       - no communication codebook,
+  L0640:       - no class-aware future policy.
+  L0641: 
+  L0642:     Empty regions reduce exactly to the static ADB baseline.
+  L0643:     """
+  L0644: 
+  L0645:     regions = tuple(
+  L0646:         regions
+  L0647:     )
+  L0648: 
+  L0649:     if not regions:
+  L0650:         return static_adb_map(
+  L0651:             grid
+  L0652:         )
+  L0653: 
+  L0654:     maps = tuple(
+  L0655:         single_region_illumination_map(
+  L0656:             grid,
+  L0657:             region,
+  L0658:         )
+  L0659:         for region in regions
+  L0660:     )
+  L0661: 
+  L0662:     return (
+  L0663:         combine_illumination_maps_minimum(
+  L0664:             maps
+  L0665:         )
+  L0666:     )
+
+------------------------------------------------------------
+MODULE = part_a_reactive.py
+FUNCTION = part_a_original_reactive_map_from_h0_centers @L504
+categories = {'constructed_oracle': 1, 'future_full_box': 1, 'road_roi': 1, 'future_truth_access': 1, 'reactive_reference': 3}
+arguments = ['grid', 'centers_H0_m']
+excerpt:
+  L0504: def part_a_original_reactive_map_from_h0_centers(
+  L0505:     grid,
+  L0506:     centers_H0_m: Iterable,
+  L0507: ) -> np.ndarray:
+  L0508:     """
+  L0509:     Original current-state reactive ADB comparator.
+  L0510: 
+  L0511:     No future trajectory, posterior, covariance, class policy
+  L0512:     or communication-codebook input is accepted.
+  L0513:     """
+  L0514: 
+  L0515:     centers = tuple(
+  L0516:         centers_H0_m
+  L0517:     )
+  L0518: 
+  L0519:     if not centers:
+  L0520:         return static_adb_map(
+  L0521:             grid
+  L0522:         )
+  L0523: 
+  L0524:     regions = tuple(
+  L0525:         part_a_region_from_h0_center(
+  L0526:             center
+  L0527:         )
+  L0528:         for center in centers
+  L0529:     )
+  L0530: 
+  L0531:     return reactive_adb_map(
+  L0532:         grid,
+  L0533:         regions,
+  L0534:     )
+
+------------------------------------------------------------
+MODULE = probabilistic_full_box.py
+CLASS = StochasticFullBoxForecast @L303
+categories = {'constructed_oracle': 1, 'future_full_box': 4, 'future_truth_access': 1, 'reactive_reference': 1}
+excerpt:
+  L0303: class StochasticFullBoxForecast:
+  L0304:     prediction_id: str
+  L0305: 
+  L0306:     sample_count: int
+  L0307: 
+  L0308:     seed: int
+  L0309: 
+  L0310:     absolute_mean_H0_m: np.ndarray
+  L0311: 
+  L0312:     trajectory_samples_H0_m: np.ndarray
+  L0313: 
+  L0314:     heading_samples_rad: np.ndarray
+  L0315: 
+  L0316:     heading_fallback_mask: np.ndarray
+  L0317: 
+  L0318:     future: tuple[
+  L0319:         tuple[
+  L0320:             StochasticFutureProjectedBox,
+  L0321:             StochasticFutureProjectedBox,
+  L0322:             StochasticFutureProjectedBox,
+  L0323:             StochasticFutureProjectedBox,
+  L0324:         ],
+  L0325:         ...,
+  L0326:     ]
+  L0327: 
+  L0328:     joint_sampling_semantics: str = (
+  L0329:         TRAJECTORY_JOINT_SAMPLING_SEMANTICS
+  L0330:     )
+  L0331: 
+  L0332:     @property
+  L0333:     def projected_box_count(
+  L0334:         self,
+  L0335:     ) -> int:
+  L0336:         return int(
+  L0337:             self.sample_count
+  L0338:             *
+  L0339:             len(
+  L0340:                 HORIZONS_S
+  L0341:             )
+  L0342:         )
+  L0343: 
+  L0344:     @property
+  L0345:     def projected_corner_count(
+  L0346:         self,
+  L0347:     ) -> int:
+  L0348:         return int(
+  L0349:             self.projected_box_count
+  L0350:             *
+  L0351:             8
+  L0352:         )
+
+------------------------------------------------------------
+MODULE = probabilistic_occupancy.py
+FUNCTION = _projected_theta_range_points @L185
+categories = {'constructed_oracle': 1, 'future_full_box': 4, 'road_roi': 1, 'future_truth_access': 1}
+arguments = ['future_item']
+excerpt:
+  L0185: def _projected_theta_range_points(
+  L0186:     future_item,
+  L0187: ) -> np.ndarray:
+  L0188:     """
+  L0189:     Use all eight physical projected box corners.
+  L0190: 
+  L0191:     Convert H0/headlamp XYZ corner locations to
+  L0192:     (theta, ground-range) coordinates.
+  L0193: 
+  L0194:     No centroid surrogate is used.
+  L0195:     """
+  L0196: 
+  L0197:     xyz = np.asarray(
+  L0198:         future_item
+  L0199:         .projection
+  L0200:         .corners
+  L0201:         .xyz,
+  L0202:         dtype=np.float64,
+  L0203:     )
+  L0204: 
+  L0205:     if xyz.shape != (
+  L0206:         8,
+  L0207:         3,
+  L0208:     ):
+  L0209:         raise ValueError(
+  L0210:             "Every projected physical box must "
+  L0211:             "contain exactly eight XYZ corners."
+  L0212:         )
+  L0213: 
+  L0214:     if not np.all(
+  L0215:         np.isfinite(
+  L0216:             xyz
+  L0217:         )
+  L0218:     ):
+  L0219:         raise ValueError(
+  L0220:             "Projected corner XYZ must be finite."
+  L0221:         )
+  L0222: 
+  L0223:     theta = np.arctan2(
+  L0224:         xyz[
+  L0225:             :,
+  L0226:             1
+  L0227:         ],
+  L0228:         xyz[
+  L0229:             :,
+  L0230:             0
+  L0231:         ],
+  L0232:     )
+  L0233: 
+  L0234:     ground_range = np.hypot(
+  L0235:         xyz[
+  L0236:             :,
+  L0237:             0
+  L0238:         ],
+  L0239:         xyz[
+  L0240:             :,
+  L0241:             1
+  L0242:         ],
+  L0243:     )
+  L0244: 
+  L0245:     result = np.column_stack(
+  L0246:         (
+  L0247:             theta,
+  L0248:             ground_range,
+  L0249:         )
+  L0250:     )
+  L0251: 
+  L0252:     if not np.all(
+  L0253:         np.isfinite(
+  L0254:             result
+  L0255:         )
+  L0256:     ):
+  L0257:         raise ValueError(
+  L0258:             "Projected theta/r points must be finite."
+  L0259:         )
+  L0260: 
+  L0261:     return result
+
+------------------------------------------------------------
+MODULE = probabilistic_occupancy.py
+FUNCTION = rasterize_projected_full_box @L571
+categories = {'constructed_oracle': 1, 'future_full_box': 4, 'road_roi': 1, 'future_truth_access': 1}
+arguments = ['future_item', 'grid']
+excerpt:
+  L0571: def rasterize_projected_full_box(
+  L0572:     future_item,
+  L0573:     grid: OccupancyGrid,
+  L0574: ) -> np.ndarray:
+  L0575:     """
+  L0576:     Rasterize one sampled projected full box.
+  L0577: 
+  L0578:     Returns bool [N_theta, N_range].
+  L0579: 
+  L0580:     Only candidate cells inside the hull bounding box are
+  L0581:     tested, but inclusion is against the convex hull itself,
+  L0582:     not its rectangular bounding box.
+  L0583:     """
+  L0584: 
+  L0585:     theta_axis = np.asarray(
+  L0586:         grid.theta_centers_rad,
+  L0587:         dtype=np.float64,
+  L0588:     )
+  L0589: 
+  L0590:     range_axis = np.asarray(
+  L0591:         grid.range_centers_m,
+  L0592:         dtype=np.float64,
+  L0593:     )
+  L0594: 
+  L0595:     result = np.zeros(
+  L0596:         grid.shape,
+  L0597:         dtype=bool,
+  L0598:     )
+  L0599: 
+  L0600:     points = (
+  L0601:         _projected_theta_range_points(
+  L0602:             future_item
+  L0603:         )
+  L0604:     )
+  L0605: 
+  L0606:     hull = convex_hull_theta_range(
+  L0607:         points
+  L0608:     )
+  L0609: 
+  L0610:     if hull.shape[
+  L0611:         0
+  L0612:     ] < 3:
+  L0613:         return result
+  L0614: 
+  L0615:     theta_min = float(
+  L0616:         np.min(
+  L0617:             hull[
+  L0618:                 :,
+  L0619:                 0
+  L0620:             ]
+  L0621:         )
+  L0622:     )
+  L0623: 
+  L0624:     theta_max = float(
+  L0625:         np.max(
+  L0626:             hull[
+  L0627:                 :,
+  L0628:                 0
+  L0629:             ]
+  L0630:         )
+  L0631:     )
+  L0632: 
+  L0633:     range_min = float(
+  L0634:         np.min(
+  L0635:             hull[
+  L0636:                 :,
+  L0637:                 1
+  L0638:             ]
+  L0639:         )
+  L0640:     )
+  L0641: 
+  L0642:     range_max = float(
+  L0643:         np.max(
+  L0644:             hull[
+  L0645:                 :,
+  L0646:                 1
+  L0647:             ]
+  L0648:         )
+  L0649:     )
+  L0650: 
+  L0651:     theta_lo = int(
+
+===== D. SCRIPT-SIDE ORACLE / FUTURE / ROI ROUTES =====
+
+------------------------------------------------------------
+SCRIPT = run_block68_preoutcome_metric_reconciliation.py
+FUNCTION = reconciled_protocol @L1835
+categories = {'constructed_oracle': 4, 'future_full_box': 2, 'road_roi': 4, 'future_truth_access': 2}
+arguments = []
+excerpt:
+  L1835: def reconciled_protocol():
+  L1836: 
+  L1837:     return {
+  L1838:         "project":
+  L1839:             "Agni",
+  L1840: 
+  L1841:         "stage":
+  L1842:             6,
+  L1843: 
+  L1844:         "block":
+  L1845:             "6.8",
+  L1846: 
+  L1847:         "status":
+  L1848:             (
+  L1849:                 "FROZEN_METRIC_SEMANTICS_"
+  L1850:                 "RECONCILED_TO_BLOCK66_PREREGISTRATION"
+  L1851:             ),
+  L1852: 
+  L1853:         "source_semantics": {
+  L1854:             "pdf_specifies_metric_names":
+  L1855:                 True,
+  L1856: 
+  L1857:             "pdf_specifies_unique_formula_for_every_metric":
+  L1858:                 False,
+  L1859: 
+  L1860:             "earliest_internal_preregistration_is_binding":
+  L1861:                 True,
+  L1862: 
+  L1863:             "reconciliation_performed_before_development_outcome_read":
+  L1864:                 True,
+  L1865: 
+  L1866:             "reconciliation_performed_before_formal_outcome_read":
+  L1867:                 True,
+  L1868:         },
+  L1869: 
+  L1870:         "authority": {
+  L1871:             "binding_source":
+  L1872:                 "Block6.6_preoutcome_preregistration",
+  L1873: 
+  L1874:             "binding_path":
+  L1875:                 str(
+  L1876:                     PREREG
+  L1877:                 ),
+  L1878: 
+  L1879:             "binding_sha256":
+  L1880:                 EXPECTED_PREREG_SHA,
+  L1881: 
+  L1882:             "development_outcomes_seen":
+  L1883:                 False,
+  L1884: 
+  L1885:             "formal_outcomes_seen":
+  L1886:                 False,
+  L1887: 
+  L1888:             "silent_override":
+  L1889:                 False,
+  L1890: 
+  L1891:             "reason":
+  L1892:                 (
+  L1893:                     "Earliest explicit pre-outcome "
+  L1894:                     "metric preregistration is authoritative."
+
+------------------------------------------------------------
+SCRIPT = run_block63_part2b1_frozen_gaussian_forward.py
+FUNCTION = main @L3651
+categories = {'constructed_oracle': 2, 'future_full_box': 1, 'future_truth_access': 3, 'reactive_reference': 1}
+arguments = []
+excerpt:
+  L3651: def main() -> None:
+  L3652:     result = None
+  L3653: 
+  L3654:     try:
+  L3655:         result = (
+  L3656:             scientific_run()
+  L3657:         )
+  L3658: 
+  L3659:     except BaseException as exc:
+  L3660:         print()
+  L3661:         print(
+  L3662:             "=" * 72
+  L3663:         )
+  L3664:         print(
+  L3665:             "CONTROLLED BLOCK — NO SCIENTIFIC STATE ADVANCE"
+  L3666:         )
+  L3667:         print(
+  L3668:             "=" * 72
+  L3669:         )
+  L3670: 
+  L3671:         print(
+  L3672:             "exception type =",
+  L3673:             type(exc).__name__,
+  L3674:         )
+  L3675: 
+  L3676:         print(
+  L3677:             "exception      =",
+  L3678:             str(exc),
+  L3679:         )
+  L3680: 
+  L3681:         traceback.print_exc()
+  L3682: 
+  L3683:         diagnostic = (
+  L3684:             diagnostic_payload(
+  L3685:                 exc
+  L3686:             )
+  L3687:         )
+  L3688: 
+  L3689:         DIAGNOSTIC_EXCERPT.write_text(
+  L3690:             diagnostic
+  L3691:             +
+  L3692:             "\n",
+  L3693:             encoding="utf-8",
+  L3694:         )
+  L3695: 
+  L3696:         result = {
+  L3697:             "stage":
+  L3698:                 6,
+  L3699: 
+  L3700:             "block":
+  L3701:                 "6.3_part2B1_frozen_gaussian_causal_forward",
+  L3702: 
+  L3703:             "status":
+  L3704:                 "BLOCKED_EXACT_FROZEN_GAUSSIAN_FORWARD_BOUNDARY",
+  L3705: 
+  L3706:             "exception_type":
+  L3707:                 type(exc).__name__,
+  L3708: 
+  L3709:             "exception":
+  L3710:                 str(exc),
+
+------------------------------------------------------------
+SCRIPT = run_block64_part1_stochastic_full_box_kernel.py
+FUNCTION = main @L1537
+categories = {'constructed_oracle': 2, 'future_full_box': 2, 'future_truth_access': 3}
+arguments = []
+excerpt:
+  L1537: def main() -> None:
+  L1538:     try:
+  L1539:         print(
+  L1540:             "=" * 72
+  L1541:         )
+  L1542:         print(
+  L1543:             "BLOCK 6.4 PART1 — STOCHASTIC FULL-BOX KERNEL"
+  L1544:         )
+  L1545:         print(
+  L1546:             "=" * 72
+  L1547:         )
+  L1548: 
+  L1549:         # ====================================================
+  L1550:         # A. Frozen Block6.3 seal
+  L1551:         # ====================================================
+  L1552: 
+  L1553:         print()
+  L1554:         print(
+  L1555:             "===== A. FROZEN BLOCK6.3 HANDOFF SEAL ====="
+  L1556:         )
+  L1557: 
+  L1558:         for path, expected, label in (
+  L1559:             (
+  L1560:                 CLOSURE63,
+  L1561:                 EXPECTED[
+  L1562:                     "closure63"
+  L1563:                 ],
+  L1564:                 "closure",
+  L1565:             ),
+  L1566:             (
+  L1567:                 HANDOFF63,
+  L1568:                 EXPECTED[
+  L1569:                     "handoff63"
+  L1570:                 ],
+  L1571:                 "handoff",
+  L1572:             ),
+  L1573:             (
+  L1574:                 FREEZE63,
+  L1575:                 EXPECTED[
+  L1576:                     "freeze63"
+  L1577:                 ],
+  L1578:                 "freeze",
+  L1579:             ),
+  L1580:             (
+  L1581:                 POSTERIOR,
+  L1582:                 EXPECTED[
+  L1583:                     "posterior"
+  L1584:                 ],
+  L1585:                 "posterior",
+  L1586:             ),
+  L1587:         ):
+  L1588:             require(
+  L1589:                 path.is_file(),
+  L1590:                 f"Missing {label}: {path}",
+  L1591:             )
+  L1592: 
+  L1593:             actual = sha256_file(
+  L1594:                 path
+  L1595:             )
+  L1596: 
+
+------------------------------------------------------------
+SCRIPT = run_block68_part2_development_route_schema_bind.py
+FUNCTION = interesting_source_lines @L532
+categories = {'constructed_oracle': 2, 'future_full_box': 1, 'road_roi': 1, 'future_truth_access': 1, 'reactive_reference': 1}
+arguments = ['path']
+excerpt:
+  L0532: def interesting_source_lines(
+  L0533:     path: Path,
+  L0534: ):
+  L0535: 
+  L0536:     tokens = (
+  L0537:         "I_final",
+  L0538:         "illumination",
+  L0539:         "oracle",
+  L0540:         "future",
+  L0541:         "metric",
+  L0542:         "jsonl",
+  L0543:         "cache",
+  L0544:         "persist",
+  L0545:         "p_occ",
+  L0546:         "pocc",
+  L0547:         "reactive",
+  L0548:         "predictive",
+  L0549:         "output",
+  L0550:         "write",
+  L0551:         "save",
+  L0552:         "replay",
+  L0553:     )
+  L0554: 
+  L0555:     results = []
+  L0556: 
+  L0557:     for index, line in enumerate(
+  L0558:         path.read_text(
+  L0559:             encoding="utf-8",
+  L0560:             errors="ignore",
+  L0561:         ).splitlines(),
+  L0562:         start=1,
+  L0563:     ):
+  L0564: 
+  L0565:         lower = line.lower()
+  L0566: 
+  L0567:         if any(
+  L0568:             token in lower
+  L0569:             for token in tokens
+  L0570:         ):
+  L0571: 
+  L0572:             stripped = line.strip()
+  L0573: 
+  L0574:             if len(
+  L0575:                 stripped
+  L0576:             ) > 220:
+  L0577: 
+  L0578:                 stripped = (
+  L0579:                     stripped[:217]
+  L0580:                     +
+  L0581:                     "..."
+  L0582:                 )
+  L0583: 
+  L0584:             results.append({
+  L0585:                 "line":
+  L0586:                     index,
+  L0587: 
+  L0588:                 "text":
+  L0589:                     stripped,
+  L0590:             })
+  L0591: 
+
+------------------------------------------------------------
+SCRIPT = run_block61_part1_geometry_core.py
+FUNCTION = main @L298
+categories = {'future_full_box': 2, 'road_roi': 1, 'reactive_reference': 2}
+arguments = []
+excerpt:
+  L0298: def main():
+  L0299: 
+  L0300:     print(
+  L0301:         "============================================================"
+  L0302:     )
+  L0303:     print(
+  L0304:         "STAGE 6 — BLOCK 6.1 PART 1/2"
+  L0305:     )
+  L0306:     print(
+  L0307:         "ILLUMINATION GEOMETRY CORE + FULL-BOX PROJECTION"
+  L0308:     )
+  L0309:     print(
+  L0310:         "============================================================"
+  L0311:     )
+  L0312: 
+  L0313:     required = (
+  L0314:         BLOCK60_CLOSURE,
+  L0315:         STAGE6_CONTRACT,
+  L0316:         PART_A_SOURCE_AUDIT,
+  L0317:         REACTIVE_ADAPTER_CONTRACT,
+  L0318:         STAGE5_CLOSURE,
+  L0319:     )
+  L0320: 
+  L0321:     missing = [
+  L0322:         str(
+  L0323:             path
+  L0324:         )
+  L0325:         for path in required
+  L0326:         if not path.is_file()
+  L0327:     ]
+  L0328: 
+  L0329:     require(
+  L0330:         not missing,
+  L0331:         (
+  L0332:             "Missing frozen prerequisite: "
+  L0333:             + ", ".join(
+  L0334:                 missing
+  L0335:             )
+  L0336:         ),
+  L0337:     )
+  L0338: 
+  L0339:     protected_before = {
+  L0340:         str(
+  L0341:             path
+  L0342:         ):
+  L0343:             sha256_file(
+  L0344:                 path
+  L0345:             )
+  L0346:         for path in required
+  L0347:     }
+  L0348: 
+  L0349:     # ========================================================
+  L0350:     # A. Frozen Block6.0 prerequisite
+  L0351:     # ========================================================
+  L0352: 
+  L0353:     print()
+  L0354:     print(
+  L0355:         "===== A. BLOCK6.0 / UPSTREAM SEAL ====="
+  L0356:     )
+  L0357: 
+
+------------------------------------------------------------
+SCRIPT = run_block63_causal_association_policy_audit.py
+FUNCTION = forbidden_truth_dependency @L370
+categories = {'constructed_oracle': 2, 'future_full_box': 1, 'future_truth_access': 2}
+arguments = ['source']
+excerpt:
+  L0370: def forbidden_truth_dependency(
+  L0371:     source: str,
+  L0372: ):
+  L0373: 
+  L0374:     lower = source.lower()
+  L0375: 
+  L0376:     forbidden = (
+  L0377:         "truth_id",
+  L0378:         "truth_track_index",
+  L0379:         "future_truth",
+  L0380:         "labels_future",
+  L0381:         "tracks_to_predict",
+  L0382:         "objects_of_interest",
+  L0383:     )
+  L0384: 
+  L0385:     return [
+  L0386:         token
+  L0387:         for token in forbidden
+  L0388:         if token in lower
+  L0389:     ]
+
+------------------------------------------------------------
+SCRIPT = run_block63_part1_deterministic_future_box.py
+FUNCTION = main @L342
+categories = {'constructed_oracle': 1, 'future_full_box': 3, 'future_truth_access': 1}
+arguments = []
+excerpt:
+  L0342: def main():
+  L0343: 
+  L0344:     bootstrap()
+  L0345: 
+  L0346:     print(
+  L0347:         "============================================================"
+  L0348:     )
+  L0349:     print(
+  L0350:         "STAGE 6 — BLOCK 6.3 PART 1/2"
+  L0351:     )
+  L0352:     print(
+  L0353:         "DETERMINISTIC FUTURE FULL-BOX PROJECTION"
+  L0354:     )
+  L0355:     print(
+  L0356:         "============================================================"
+  L0357:     )
+  L0358: 
+  L0359:     protected = (
+  L0360:         BINDING,
+  L0361:         BINDING_FREEZE,
+  L0362:         BLOCK62,
+  L0363:         GEOMETRY_MODULE,
+  L0364:         WOMD_GEOMETRY_MODULE,
+  L0365:         STAGE5_HEADING_MODULE,
+  L0366:     )
+  L0367: 
+  L0368:     missing = [
+  L0369:         str(path)
+  L0370:         for path in protected
+  L0371:         if not path.is_file()
+  L0372:     ]
+  L0373: 
+  L0374:     require(
+  L0375:         not missing,
+  L0376:         (
+  L0377:             "Missing prerequisite(s): "
+  L0378:             + ", ".join(missing)
+  L0379:         ),
+  L0380:     )
+  L0381: 
+  L0382:     protected_before = {
+  L0383:         str(path):
+  L0384:             sha256_file(path)
+  L0385:         for path in protected
+  L0386:     }
+  L0387: 
+  L0388:     # ========================================================
+  L0389:     # A. Frozen binding seal
+  L0390:     # ========================================================
+  L0391: 
+  L0392:     print()
+  L0393:     print(
+  L0394:         "===== A. FROZEN BINDING SEAL ====="
+  L0395:     )
+  L0396: 
+  L0397:     checks = (
+  L0398:         (
+  L0399:             "binding",
+  L0400:             BINDING,
+  L0401:         ),
+
+------------------------------------------------------------
+SCRIPT = run_block63_part2b2_real_future_full_box.py
+FUNCTION = future_sequence @L532
+categories = {'constructed_oracle': 1, 'future_full_box': 3, 'future_truth_access': 1}
+arguments = ['matched_forecast']
+excerpt:
+  L0532: def future_sequence(
+  L0533:     matched_forecast: Any,
+  L0534: ) -> tuple[
+  L0535:     str,
+  L0536:     tuple,
+  L0537: ]:
+  L0538:     """
+  L0539:     Find the unique four-item future-box sequence from the
+  L0540:     frozen matched-forecast dataclass/object.
+  L0541:     """
+  L0542: 
+  L0543:     candidates = []
+  L0544: 
+  L0545:     names = []
+  L0546: 
+  L0547:     if is_dataclass(
+  L0548:         matched_forecast
+  L0549:     ):
+  L0550:         names = [
+  L0551:             field.name
+  L0552:             for field
+  L0553:             in fields(
+  L0554:                 matched_forecast
+  L0555:             )
+  L0556:         ]
+  L0557: 
+  L0558:     elif hasattr(
+  L0559:         matched_forecast,
+  L0560:         "__dict__",
+  L0561:     ):
+  L0562:         names = list(
+  L0563:             vars(
+  L0564:                 matched_forecast
+  L0565:             ).keys()
+  L0566:         )
+  L0567: 
+  L0568:     for name in names:
+  L0569:         try:
+  L0570:             value = getattr(
+  L0571:                 matched_forecast,
+  L0572:                 name,
+  L0573:             )
+  L0574: 
+  L0575:         except BaseException:
+  L0576:             continue
+  L0577: 
+  L0578:         if not isinstance(
+  L0579:             value,
+  L0580:             (
+  L0581:                 tuple,
+  L0582:                 list,
+  L0583:             ),
+  L0584:         ):
+  L0585:             continue
+  L0586: 
+  L0587:         if len(
+  L0588:             value
+  L0589:         ) != 4:
+  L0590:             continue
+  L0591: 
+
+------------------------------------------------------------
+SCRIPT = run_block66_part2b_cohort_posterior_association.py
+FUNCTION = build_prepare_arrays @L579
+categories = {'constructed_oracle': 2, 'future_full_box': 1, 'future_truth_access': 2}
+arguments = ['payloads']
+excerpt:
+  L0579: def build_prepare_arrays(
+  L0580:     payloads: tuple[Any, ...],
+  L0581: ) -> dict[
+  L0582:     str,
+  L0583:     np.ndarray,
+  L0584: ]:
+  L0585: 
+  L0586:     count = len(
+  L0587:         payloads
+  L0588:     )
+  L0589: 
+  L0590:     require(
+  L0591:         count > 0,
+  L0592:         "No causal model payloads.",
+  L0593:     )
+  L0594: 
+  L0595:     target = np.asarray(
+  L0596:         [
+  L0597:             payload.target_history
+  L0598:             for payload
+  L0599:             in payloads
+  L0600:         ],
+  L0601:         dtype=np.float32,
+  L0602:     )
+  L0603: 
+  L0604:     neighbors = np.asarray(
+  L0605:         [
+  L0606:             payload.neighbor_histories
+  L0607:             for payload
+  L0608:             in payloads
+  L0609:         ],
+  L0610:         dtype=np.float32,
+  L0611:     )
+  L0612: 
+  L0613:     neighbor_mask = np.asarray(
+  L0614:         [
+  L0615:             payload.neighbor_mask
+  L0616:             for payload
+  L0617:             in payloads
+  L0618:         ],
+  L0619:         dtype=np.float32,
+  L0620:     )
+  L0621: 
+  L0622:     map_context = np.asarray(
+  L0623:         [
+  L0624:             payload.map_context
+  L0625:             for payload
+  L0626:             in payloads
+  L0627:         ],
+  L0628:         dtype=np.float32,
+  L0629:     )
+  L0630: 
+  L0631:     require(
+  L0632:         target.shape[0]
+  L0633:         ==
+  L0634:         count,
+  L0635:         "Target batch mismatch.",
+  L0636:     )
+  L0637: 
+  L0638:     require(
+
+------------------------------------------------------------
+SCRIPT = run_block68_part2_development_preflight.py
+FUNCTION = interesting_name @L201
+categories = {'constructed_oracle': 2, 'future_full_box': 1, 'future_truth_access': 1, 'reactive_reference': 1}
+arguments = ['name']
+excerpt:
+  L0201: def interesting_name(name: str) -> bool:
+  L0202:     lower = name.lower()
+  L0203: 
+  L0204:     tokens = (
+  L0205:         "adb",
+  L0206:         "baseline",
+  L0207:         "reactive",
+  L0208:         "predict",
+  L0209:         "occup",
+  L0210:         "oracle",
+  L0211:         "metric",
+  L0212:         "illum",
+  L0213:         "mask",
+  L0214:         "class",
+  L0215:         "margin",
+  L0216:         "actor",
+  L0217:         "future",
+  L0218:         "scenario",
+  L0219:         "develop",
+  L0220:         "dev",
+  L0221:         "validation",
+  L0222:         "cache",
+  L0223:         "posterior",
+  L0224:     )
+  L0225: 
+  L0226:     return any(
+  L0227:         token in lower
+  L0228:         for token in tokens
+  L0229:     )
+
+------------------------------------------------------------
+SCRIPT = run_block61_part2_stage1_integration.py
+FUNCTION = main @L755
+categories = {'future_full_box': 2, 'road_roi': 1, 'reactive_reference': 1}
+arguments = []
+excerpt:
+  L0755: def main():
+  L0756: 
+  L0757:     print(
+  L0758:         "============================================================"
+  L0759:     )
+  L0760:     print(
+  L0761:         "STAGE 6 — BLOCK 6.1 PART 2/2"
+  L0762:     )
+  L0763:     print(
+  L0764:         "FROZEN STAGE1 INTEGRATION + REAL FULL-BOX SMOKE"
+  L0765:     )
+  L0766:     print(
+  L0767:         "============================================================"
+  L0768:     )
+  L0769: 
+  L0770:     required = (
+  L0771:         PART1_REPORT,
+  L0772:         BLOCK60_CLOSURE,
+  L0773:         STAGE1_CLOSURE,
+  L0774:         STAGE1_PILOT_MANIFEST,
+  L0775:         STAGE5_CLOSURE,
+  L0776:         GEOMETRY_MODULE,
+  L0777:         GRID_MODULE,
+  L0778:     )
+  L0779: 
+  L0780:     missing = [
+  L0781:         str(path)
+  L0782:         for path in required
+  L0783:         if not path.is_file()
+  L0784:     ]
+  L0785: 
+  L0786:     require(
+  L0787:         not missing,
+  L0788:         (
+  L0789:             "Missing prerequisite: "
+  L0790:             + ", ".join(missing)
+  L0791:         ),
+  L0792:     )
+  L0793: 
+  L0794:     protected_before = {
+  L0795:         str(path):
+  L0796:             sha256_file(path)
+  L0797:         for path in required
+  L0798:     }
+  L0799: 
+  L0800:     print()
+  L0801:     print(
+  L0802:         "===== 0. PROJECT SOURCE-PATH BOOTSTRAP ====="
+  L0803:     )
+  L0804: 
+  L0805:     require(
+  L0806:         (
+  L0807:             ROOT
+  L0808:             / "iscai_stage1/src"
+  L0809:         ).is_dir(),
+  L0810:         "Stage1 source root missing.",
+  L0811:     )
+  L0812: 
+  L0813:     require(
+  L0814:         (
+
+------------------------------------------------------------
+SCRIPT = run_block63_binding_freeze.py
+FUNCTION = main @L188
+categories = {'constructed_oracle': 1, 'future_full_box': 2, 'future_truth_access': 1}
+arguments = []
+excerpt:
+  L0188: def main():
+  L0189: 
+  L0190:     print(
+  L0191:         "============================================================"
+  L0192:     )
+  L0193:     print(
+  L0194:         "STAGE 6 — BLOCK 6.3 BINDING FREEZE"
+  L0195:     )
+  L0196:     print(
+  L0197:         "DETERMINISTIC SHARED-MEAN FUTURE FULL-BOX POLICY"
+  L0198:     )
+  L0199:     print(
+  L0200:         "============================================================"
+  L0201:     )
+  L0202: 
+  L0203:     protected = (
+  L0204:         BLOCK62,
+  L0205:         INTERFACE_AUDIT,
+  L0206:         EXACT_ROUTE_AUDIT,
+  L0207:         IDENTITY_AUDIT,
+  L0208:         ASSOCIATION_AUDIT,
+  L0209:     )
+  L0210: 
+  L0211:     missing = [
+  L0212:         str(path)
+  L0213:         for path in protected
+  L0214:         if not path.is_file()
+  L0215:     ]
+  L0216: 
+  L0217:     require(
+  L0218:         not missing,
+  L0219:         (
+  L0220:             "Missing prerequisite(s): "
+  L0221:             + ", ".join(
+  L0222:                 missing
+  L0223:             )
+  L0224:         ),
+  L0225:     )
+  L0226: 
+  L0227:     before = {
+  L0228:         str(path):
+  L0229:             sha256_file(
+  L0230:                 path
+  L0231:             )
+  L0232:         for path in protected
+  L0233:     }
+  L0234: 
+  L0235:     # ========================================================
+  L0236:     # A. Exact audit-chain seal
+  L0237:     # ========================================================
+  L0238: 
+  L0239:     print()
+  L0240:     print(
+  L0241:         "===== A. EXACT AUDIT-CHAIN SEAL ====="
+  L0242:     )
+  L0243: 
+  L0244:     checks = (
+  L0245:         (
+  L0246:             "block62",
+  L0247:             BLOCK62,
+
+------------------------------------------------------------
+SCRIPT = run_block63_part2_dev_posterior_binding.py
+FUNCTION = main @L636
+categories = {'constructed_oracle': 1, 'future_full_box': 2, 'future_truth_access': 1}
+arguments = []
+excerpt:
+  L0636: def main():
+  L0637: 
+  L0638:     print(
+  L0639:         "============================================================"
+  L0640:     )
+  L0641:     print(
+  L0642:         "STAGE 6 — BLOCK 6.3 PART 2/2 — PHASE A"
+  L0643:     )
+  L0644:     print(
+  L0645:         "EXACT DEVELOPMENT POSTERIOR BINDING"
+  L0646:     )
+  L0647:     print(
+  L0648:         "============================================================"
+  L0649:     )
+  L0650: 
+  L0651:     protected = (
+  L0652:         PART1_REPORT,
+  L0653:         BLOCK63_BINDING,
+  L0654:         DEV_JSON,
+  L0655:         DEV_NPZ,
+  L0656:         DEV_RESOLVER,
+  L0657:         ROUTE_AUDIT,
+  L0658:         COORDINATE,
+  L0659:         RUNTIME_AUDIT,
+  L0660:     )
+  L0661: 
+  L0662:     missing = [
+  L0663:         str(path)
+  L0664:         for path in protected
+  L0665:         if not path.is_file()
+  L0666:     ]
+  L0667: 
+  L0668:     require(
+  L0669:         not missing,
+  L0670:         (
+  L0671:             "Missing required artifact(s): "
+  L0672:             + ", ".join(
+  L0673:                 missing
+  L0674:             )
+  L0675:         ),
+  L0676:     )
+  L0677: 
+  L0678:     before = {
+  L0679:         str(path):
+  L0680:             sha256_file(
+  L0681:                 path
+  L0682:             )
+  L0683:         for path in protected
+  L0684:     }
+  L0685: 
+  L0686:     # ========================================================
+  L0687:     # A. Frozen seals
+  L0688:     # ========================================================
+  L0689: 
+  L0690:     print()
+  L0691:     print(
+  L0692:         "===== A. FROZEN BLOCK6.3 SEAL ====="
+  L0693:     )
+  L0694: 
+  L0695:     require(
+
+------------------------------------------------------------
+SCRIPT = run_block63_part2b2_real_future_full_box.py
+FUNCTION = scientific_run @L808
+categories = {'constructed_oracle': 1, 'future_full_box': 2, 'future_truth_access': 1}
+arguments = []
+excerpt:
+  L0808: def scientific_run():
+  L0809:     print(
+  L0810:         "=" * 72
+  L0811:     )
+  L0812:     print(
+  L0813:         "BLOCK 6.3 PART 2B/2 — REAL FUTURE FULL-BOX EXECUTION"
+  L0814:     )
+  L0815:     print(
+  L0816:         "=" * 72
+  L0817:     )
+  L0818: 
+  L0819:     # ========================================================
+  L0820:     # A. Frozen prerequisite seal
+  L0821:     # ========================================================
+  L0822: 
+  L0823:     print()
+  L0824:     print(
+  L0825:         "===== A. FROZEN PREREQUISITE SEAL ====="
+  L0826:     )
+  L0827: 
+  L0828:     for path, expected, name in (
+  L0829:         (
+  L0830:             PART2A_REPORT,
+  L0831:             EXPECTED[
+  L0832:                 "part2a"
+  L0833:             ],
+  L0834:             "Part2A",
+  L0835:         ),
+  L0836:         (
+  L0837:             PART2B1_REPORT,
+  L0838:             EXPECTED[
+  L0839:                 "part2b1"
+  L0840:             ],
+  L0841:             "Part2B/1",
+  L0842:         ),
+  L0843:         (
+  L0844:             BINDING,
+  L0845:             EXPECTED[
+  L0846:                 "binding"
+  L0847:             ],
+  L0848:             "binding",
+  L0849:         ),
+  L0850:         (
+  L0851:             PART1_REPORT,
+  L0852:             EXPECTED[
+  L0853:                 "part1"
+  L0854:             ],
+  L0855:             "Part1",
+  L0856:         ),
+  L0857:     ):
+  L0858:         require(
+  L0859:             path.is_file(),
+  L0860:             f"Missing {name}: {path}",
+  L0861:         )
+  L0862: 
+  L0863:         actual = sha256_file(
+  L0864:             path
+  L0865:         )
+  L0866: 
+  L0867:         require(
+
+------------------------------------------------------------
+SCRIPT = run_block63_predictor_interface_audit.py
+FUNCTION = main @L418
+categories = {'constructed_oracle': 1, 'future_full_box': 2, 'future_truth_access': 1}
+arguments = []
+excerpt:
+  L0418: def main():
+  L0419: 
+  L0420:     bootstrap()
+  L0421: 
+  L0422:     print(
+  L0423:         "============================================================"
+  L0424:     )
+  L0425:     print(
+  L0426:         "STAGE 6 — BLOCK 6.3 PRE-IMPLEMENTATION AUDIT"
+  L0427:     )
+  L0428:     print(
+  L0429:         "FROZEN PREDICTOR → FUTURE BOX INTERFACE"
+  L0430:     )
+  L0431:     print(
+  L0432:         "============================================================"
+  L0433:     )
+  L0434: 
+  L0435:     protected = (
+  L0436:         BLOCK62,
+  L0437:         STAGE4_CLOSURE,
+  L0438:         STAGE4_HANDOFF,
+  L0439:         STAGE5_CLOSURE,
+  L0440:         STAGE5_HANDOFF,
+  L0441:         GEOMETRY,
+  L0442:     )
+  L0443: 
+  L0444:     for path in protected:
+  L0445: 
+  L0446:         require(
+  L0447:             path.is_file(),
+  L0448:             f"Missing prerequisite: {path}",
+  L0449:         )
+  L0450: 
+  L0451:     before = {
+  L0452:         str(path):
+  L0453:             sha256_file(path)
+  L0454:         for path in protected
+  L0455:     }
+  L0456: 
+  L0457:     # ========================================================
+  L0458:     # A. Frozen seals
+  L0459:     # ========================================================
+  L0460: 
+  L0461:     print()
+  L0462:     print(
+  L0463:         "===== A. FROZEN SEALS ====="
+  L0464:     )
+  L0465: 
+  L0466:     require(
+  L0467:         sha256_file(BLOCK62)
+  L0468:         ==
+  L0469:         EXPECTED_BLOCK62_SHA,
+  L0470:         (
+  L0471:             "Block6.2 closure SHA mismatch."
+  L0472:         ),
+  L0473:     )
+  L0474: 
+  L0475:     block62 = load_json(
+  L0476:         BLOCK62
+  L0477:     )
+
+------------------------------------------------------------
+SCRIPT = run_block66_part1a_forward_headlamp_census.py
+FUNCTION = box_intersects_forward_sector @L581
+categories = {'future_full_box': 3, 'reactive_reference': 1}
+arguments = ['box', 'half_angle_rad', 'maximum_range_m', 'box_corners_headlamp']
+excerpt:
+  L0581: def box_intersects_forward_sector(
+  L0582:     box,
+  L0583:     *,
+  L0584:     half_angle_rad: float,
+  L0585:     maximum_range_m: float,
+  L0586:     box_corners_headlamp,
+  L0587: ) -> bool:
+  L0588:     """
+  L0589:     Continuous intersection of the CURRENT full-box
+  L0590:     ground footprint with:
+  L0591: 
+  L0592:         |theta| <= half_angle_rad
+  L0593:         0 <= r <= maximum_range_m.
+  L0594: 
+  L0595:     Angular clipping is performed in Cartesian H0,
+  L0596:     avoiding the +/-pi wrap ambiguity.
+  L0597:     """
+  L0598: 
+  L0599:     corners = np.asarray(
+  L0600:         box_corners_headlamp(
+  L0601:             box
+  L0602:         ),
+  L0603:         dtype=np.float64,
+  L0604:     )
+  L0605: 
+  L0606:     require(
+  L0607:         corners.shape
+  L0608:         ==
+  L0609:         (
+  L0610:             8,
+  L0611:             3,
+  L0612:         ),
+  L0613:         (
+  L0614:             "Expected exactly eight physical "
+  L0615:             f"box corners; got {corners.shape}."
+  L0616:         ),
+  L0617:     )
+  L0618: 
+  L0619:     footprint = convex_hull_xy(
+  L0620:         corners[:, :2]
+  L0621:     )
+  L0622: 
+  L0623:     tangent = math.tan(
+  L0624:         half_angle_rad
+  L0625:     )
+  L0626: 
+  L0627:     # Upper ray:
+  L0628:     # y <= x*tan(alpha)
+  L0629:     clipped = clip_polygon_halfplane(
+  L0630:         footprint,
+  L0631:         a=-tangent,
+  L0632:         b=1.0,
+  L0633:     )
+  L0634: 
+  L0635:     if clipped.shape[0] == 0:
+  L0636:         return False
+  L0637: 
+  L0638:     # Lower ray:
+  L0639:     # y >= -x*tan(alpha)
+  L0640:     # -y - x*tan(alpha) <= 0
+
+===== E. NONFORMAL CONFIG / ARTIFACT SCHEMAS =====
+
+FILE = artifacts/block66/block66_part3c_vehicle_surrogate_evidence.jsonl
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0000__f72a05a05035feb8__s3trk-000027.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0001__f72a05a05035feb8__s3trk-000024.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0002__f72a05a05035feb8__s3trk-000005.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0004__217d94b9231ed401__s3trk-000059.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0005__217d94b9231ed401__s3trk-000049.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0006__217d94b9231ed401__s3trk-000039.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0010__6ccad5b8230fdfaf__s3trk-000001.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0011__6ccad5b8230fdfaf__s3trk-000026.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0012__6ccad5b8230fdfaf__s3trk-000008.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0013__6ccad5b8230fdfaf__s3trk-000013.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0015__78249f8856cb2c57__s3trk-000057.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0016__78249f8856cb2c57__s3trk-000049.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0017__78249f8856cb2c57__s3trk-000017.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0018__78249f8856cb2c57__s3trk-000054.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0019__78249f8856cb2c57__s3trk-000036.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0021__63e96200cbac4d62__s3trk-000027.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0022__63e96200cbac4d62__s3trk-000018.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0029__d6a50bc55ce5f19e__s3trk-000037.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0030__d6a50bc55ce5f19e__s3trk-000057.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0031__d6a50bc55ce5f19e__s3trk-000033.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0032__d6a50bc55ce5f19e__s3trk-000050.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0033__d6a50bc55ce5f19e__s3trk-000006.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0034__d6a50bc55ce5f19e__s3trk-000008.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0035__d6a50bc55ce5f19e__s3trk-000042.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0036__d6a50bc55ce5f19e__s3trk-000007.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0037__d6a50bc55ce5f19e__s3trk-000024.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0038__d6a50bc55ce5f19e__s3trk-000020.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0042__418c1e982b7921eb__s3trk-000040.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0043__418c1e982b7921eb__s3trk-000015.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0044__418c1e982b7921eb__s3trk-000084.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0045__418c1e982b7921eb__s3trk-000077.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0046__418c1e982b7921eb__s3trk-000010.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0047__418c1e982b7921eb__s3trk-000093.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0048__418c1e982b7921eb__s3trk-000032.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0049__418c1e982b7921eb__s3trk-000095.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0051__418c1e982b7921eb__s3trk-000063.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0052__418c1e982b7921eb__s3trk-000106.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0053__418c1e982b7921eb__s3trk-000002.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+FILE = artifacts/block66/part3c_vehicle_surrogate_replay_cache/vehicle_0054__418c1e982b7921eb__s3trk-000111.json
+   causality.future_GT : bool
+   causality.truth_ID : bool
+   full_box_parity_exact : bool
+   full_box_parity_tolerance : null
+   vehicle_surrogate : object
+   vehicle_surrogate.heading_samples_sha256 : str
+   vehicle_surrogate.horizon_summaries : array
+   vehicle_surrogate.horizon_summaries[] : object
+   vehicle_surrogate.horizon_summaries[].angular_span_max_rad : float
+   vehicle_surrogate.horizon_summaries[].angular_span_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].horizon_s : float
+   vehicle_surrogate.horizon_summaries[].oncoming_fraction : float
+   vehicle_surrogate.horizon_summaries[].oncoming_samples : int
+   vehicle_surrogate.horizon_summaries[].preceding_samples : int
+   vehicle_surrogate.horizon_summaries[].range_far_max_m : float
+   vehicle_surrogate.horizon_summaries[].range_far_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_mean_m : float
+   vehicle_surrogate.horizon_summaries[].range_near_min_m : float
+   vehicle_surrogate.horizon_summaries[].sample_count : int
+   vehicle_surrogate.horizon_summaries[].theta_center_mean_rad : float
+   vehicle_surrogate.horizon_summaries[].z_max_mean_m : float
+   vehicle_surrogate.horizon_summaries[].z_min_mean_m : float
+   vehicle_surrogate.oncoming : str
+   vehicle_surrogate.physical_annotation_claim : bool
+   vehicle_surrogate.preceding : str
+   vehicle_surrogate.samplewise_projection_sha256 : str
+   vehicle_surrogate.trajectory_samples_sha256 : str
+   vehicle_surrogate.vertical_actuator_claim : bool
+
+schema files inspected = 40
+
+===== F. EVALUATOR REFERENCE READINESS =====
+constructed_oracle_semantics      = FOUND
+future_truth_evaluator_route      = FOUND
+full_box_geometry                 = FOUND
+projection_or_rasterization       = FOUND
+vehicle_reference_region          = FOUND
+pedestrian_future_region          = FOUND
+cyclist_future_region             = FOUND
+road_roi                          = FOUND
+same_headlamp_grid_context        = FOUND
+
+===== G. STRONGEST SOURCE CANDIDATES =====
+
+constructed_oracle
+  baseline_metric_contract.py:L99 ADBBaselineSpec score=4
+  baseline_metric_contract.py:L136 ConstructedOracleContract score=4
+  baseline_metric_contract.py:L201 required_baseline_specs score=4
+  run_block68_preoutcome_metric_reconciliation.py:L1835 reconciled_protocol score=4
+  baseline_metric_contract.py:L48 ADBMetric score=3
+
+future_full_box
+  probabilistic_occupancy.py:L736 estimate_actor_occupancy_probability score=5
+  deterministic_predictive.py:L347 build_deterministic_future_full_boxes score=4
+  metric_semantics.py:L400 pedestrian_visibility_proxy score=4
+  metric_semantics.py:L456 cyclist_visibility_proxy score=4
+  probabilistic_full_box.py:L303 StochasticFullBoxForecast score=4
+
+road_roi
+  run_block68_preoutcome_metric_reconciliation.py:L1835 reconciled_protocol score=4
+  baseline_metric_contract.py:L403 required_metric_interfaces score=3
+  metric_semantics.py:L353 road_illumination_retention score=3
+  baseline_metric_contract.py:L48 ADBMetric score=2
+  baseline_metric_contract.py:L171 ADBMetricInterface score=2
+
+future_truth_access
+  run_block63_part2b1_frozen_gaussian_forward.py:L3651 main score=3
+  run_block64_part1_stochastic_full_box_kernel.py:L1537 main score=3
+  baseline_metric_contract.py:L99 ADBBaselineSpec score=2
+  baseline_metric_contract.py:L136 ConstructedOracleContract score=2
+  baseline_metric_contract.py:L201 required_baseline_specs score=2
+
+reactive_reference
+  baseline_metric_contract.py:L201 required_baseline_specs score=3
+  part_a_reactive.py:L364 part_a_region_from_h0_center score=3
+  part_a_reactive.py:L426 part_a_current_vehicle_centers_from_causal_boxes score=3
+  part_a_reactive.py:L504 part_a_original_reactive_map_from_h0_centers score=3
+  baseline_metric_contract.py:L99 ADBBaselineSpec score=2
+
+===== H. SCIENTIFIC BOUNDARY =====
+development artifact schemas opened = YES
+development metric values computed  = NO
+acceptance bounds selected          = NO
+controller parameters modified      = NO
+scientific source modified          = NO
+formal-named file content opened    = NO
+formal outcomes read                = NO
+formal evaluation                   = NO
+
+===== I. FULL STAGE6 REGRESSION =====
+Stage6 regression = 202 / 202 PASS
+
+===== J. FROZEN READBACK =====
+I_final binder      = UNCHANGED
+metric authority    = UNCHANGED
+scientific runtime  = UNCHANGED
+
+===== K. STORAGE =====
+free GiB        = 1052.775
+250-GiB reserve = PASS
+
+============================================================
+BLOCK 6.8 ORACLE / ROI ROUTE DISCOVERY — FINAL
+============================================================
+I_final binding            = FROZEN PASS
+constructed oracle route   = FOUND
+future truth evaluator     = FOUND
+future full-box geometry   = FOUND
+projection/raster route    = FOUND
+vehicle reference region   = FOUND
+pedestrian future region   = FOUND
+cyclist future region      = FOUND
+road ROI route             = FOUND
+same headlamp grid context = FOUND
+development metrics        = NOT COMPUTED
+numeric bounds             = NOT SELECTED
+formal content             = NOT OPENED
+formal evaluation          = NO
+Stage6 regression          = 202 / 202 PASS
+STATUS = PASS_ORACLE_ROI_ROUTE_DISCOVERY
+report = /home/agni/waymo/iscai_stage6/reports/block68_oracle_roi_route_discovery.json
+terminal remains open = YES

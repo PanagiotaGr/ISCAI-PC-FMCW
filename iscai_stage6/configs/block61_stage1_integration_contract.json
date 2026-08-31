@@ -1,0 +1,113 @@
+{
+  "ADB_actor_geometry": {
+    "centroid_only": false,
+    "classes": [
+      "TYPE_VEHICLE",
+      "TYPE_PEDESTRIAN",
+      "TYPE_CYCLIST"
+    ],
+    "corner_count": 8,
+    "dimensions": [
+      "length",
+      "width",
+      "height"
+    ],
+    "exclude_SDC": true,
+    "full_box": true,
+    "future_validity_selector": false,
+    "heading_source": "current_causal_anchor",
+    "heading_transform": "world forward vector rotated by frozen T_H0_from_W",
+    "objects_of_interest_selector": false,
+    "requires_anchor_valid": true,
+    "tracks_to_predict_selector": false
+  },
+  "Stage1": {
+    "H0": "front_face_midpoint_surrogate",
+    "axes": "+x forward, +y left, +z up",
+    "closure": "/home/agni/waymo/iscai_stage1/reports/stage1a/stage1a_closure_report.json",
+    "closure_sha256": "90d1a482cefcbf1906fb7c4602808a0eb7afc89a8aac056fdef40f5afb640164",
+    "default_pitch_rad": 0.0,
+    "default_roll_rad": 0.0,
+    "headlamp_config_module": "iscai_stage1.contracts.stage1a",
+    "headlamp_config_source": "/home/agni/waymo/iscai_stage1/src/iscai_stage1/contracts/stage1a.py",
+    "headlamp_default_config": {
+      "lateral_offset_m": 0.0,
+      "longitudinal_inset_m": 0.0,
+      "mode": "front_face_midpoint_surrogate",
+      "pitch_rad": 0.0,
+      "roll_rad": 0.0,
+      "vertical_offset_m": 0.0,
+      "yaw_rad": 0.0
+    },
+    "pilot_manifest_sha256": "2b6fd3d7e5c411455708d325fc8595af11d99f3fcba4dde621928150695ca859",
+    "source_hashes": {
+      "HeadlampSurrogateConfig_source": "34f40f4cb8a033d6bc11d161c283b41311dff05bd4e95b0c4508fd0b8e5113ca",
+      "actors/history.py": "db6f28e169a51594a13cf02ee5758da093c6b4cf6d5b4c73ecaef0b95cbb90a5",
+      "actors/womd_adapter.py": "6a6eec7b8642b22304fb5dfe51201b1ef9411efc6164bcba1ed60c90b7cf4c09",
+      "frames.py": "59827efad56092af5f25dd81fc320e282ee4c9e56d9195462ce6b602447aa0e1"
+    },
+    "yaw_only_Box3D_compatible": true
+  },
+  "Stage1_consistency": {
+    "bearing_H0_crosscheck": true,
+    "bearing_tolerance_rad": 1e-08,
+    "center_H0_crosscheck": true,
+    "center_tolerance_m": 1e-08,
+    "maximum_bearing_error_rad": 0.0,
+    "maximum_center_error_m": 0.0
+  },
+  "block": "6.1",
+  "causality": {
+    "causal_actor_geometry_sha256": "4f4485715479df3a04a986e3bcd16c47f76edabcf51b92dfac5c68073805c1fe",
+    "future_GT_controller_use": false,
+    "future_state_mutation_invariant": true,
+    "objects_of_interest_mutation_invariant": true,
+    "tracks_to_predict_mutation_invariant": true
+  },
+  "data_access": {
+    "Stage6_primary_experimental_mode_changed": false,
+    "WOMD_annotation_role": "GEOMETRY_INTEGRATION_VALIDATION_ONLY",
+    "custom_Block61_TFRecord_reader_used": false,
+    "historical_offset_equals_runtime_offset_required": false,
+    "historical_record_offset": 0,
+    "historical_source_semantics": "PROVENANCE_ONLY",
+    "historical_source_shard": "/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00000-of-00150",
+    "manifest_reader": "read_validation_manifest",
+    "motion_reader": "read_motion_scenario",
+    "offset_builder": "build_compact_motion_offset_index",
+    "paired_root": "/home/agni/waymo/data/paired_womd_lidar_v1_3_0",
+    "reader_module": "iscai_stage3.validation.womd_access",
+    "runtime_compact_record_offset": 0,
+    "runtime_motion_shard": "/home/agni/waymo/data/paired_womd_lidar_v1_3_0/validation/motion/paired-from-validation.tfrecord-00000-of-00150",
+    "shard_resolver": "resolve_motion_shard"
+  },
+  "illumination_grid": {
+    "Block6_1_diagnostic_grid": {
+      "n_range": 100,
+      "n_theta": 72,
+      "range_max_m": 56,
+      "range_min_m": 0.0,
+      "status": "DIAGNOSTIC_ONLY_NOT_SCIENTIFIC_GRID",
+      "theta_max_rad": 3.141592653589793,
+      "theta_min_rad": -3.141592653589793
+    },
+    "communication_codebook_reused": false,
+    "coordinate_interface": "theta-ground_range",
+    "final_numeric_FOV_frozen": false,
+    "final_numeric_range_frozen": false,
+    "final_numeric_resolution_frozen": false,
+    "freeze_stage": "Block6.8 development-only pre-formal freeze",
+    "reason": "PDF defines illumination angular/pixel space but not a mandatory numerical discretization; avoid inventing PDF parameters."
+  },
+  "part": "2/2",
+  "project": "Agni",
+  "stage": 6,
+  "status": "FROZEN_GEOMETRY_INTERFACE",
+  "timing_clarification": {
+    "Part1_text_said_numeric_grid_in_Part2": true,
+    "correct_binding_rule": "final ADB grid values freeze in Block6.8 before formal evaluation",
+    "reason": "preserves strict audited Stage6 pre-formal parameter-freeze plan and avoids arbitrary early values",
+    "scientific_change": false,
+    "superseded": true
+  }
+}

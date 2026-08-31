@@ -1,0 +1,81 @@
+{
+  "calibration_evidence": {
+    "SPD_after_calibration": true,
+    "calibrated_Brier": 0.19413178861788616,
+    "calibrated_ECE": 0.11165527003334381,
+    "calibrated_NLL": 3.6848268203287406,
+    "formal_used_for_calibrator": false,
+    "mean_modified": false,
+    "measurement_R_t_modified": false,
+    "pass": true,
+    "raw_Brier": 0.2397821951219512,
+    "raw_ECE": 0.18362046536363294,
+    "raw_NLL": 4.15760466880646
+  },
+  "common_support_performance_evidence": {
+    "CV_common_ADE_m": 6.5329401724917835,
+    "Gaussian_beats_CV": true,
+    "Gaussian_common_ADE_m": 1.6689863596174326,
+    "Gaussian_minus_CV_m": -4.863953812874351,
+    "Stage3_namespace": "(formal_rank, truth_id, horizon_s)",
+    "Stage4_namespace": "(formal_rank, truth_track_index)",
+    "by_horizon": {
+      "0.1": {
+        "CV_ADE_m": 1.8759292410307433,
+        "Gaussian_ADE_m": 0.864176138952319,
+        "n": 380
+      },
+      "0.3": {
+        "CV_ADE_m": 4.334378897385913,
+        "Gaussian_ADE_m": 1.2476235859502536,
+        "n": 371
+      },
+      "0.5": {
+        "CV_ADE_m": 6.929073786514348,
+        "Gaussian_ADE_m": 1.6880476893754277,
+        "n": 368
+      },
+      "1.0": {
+        "CV_ADE_m": 13.328353033380838,
+        "Gaussian_ADE_m": 2.9367827482868605,
+        "n": 359
+      }
+    },
+    "common_actor_count": 381,
+    "common_event_count": 1478,
+    "common_scenario_count": 112,
+    "future_truth_used_for_Stage3_assignment": false,
+    "identity_bridge": "truth_id = str(scenario.tracks[truth_track_index].id)",
+    "support_semantics": "exact_common_formal_rank_WOMD_track_id_horizon",
+    "tracks_to_predict_model_input": false
+  },
+  "from_stage": 4,
+  "legacy_Stage4_handoff": "SUPERSEDED",
+  "mandatory_downstream_rules": [
+    "predict causal estimated tracks before evaluator truth",
+    "do not use attach_supervision to select inference targets",
+    "do not apply Stage4 covariance calibration twice",
+    "tracks_to_predict is evaluator metadata, not controller input",
+    "future GT is evaluator-only"
+  ],
+  "primary_posterior": {
+    "calibrator": "/home/agni/waymo/iscai_stage4/artifacts/block45/covariance_scaler.json",
+    "calibrator_sha256": "508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087",
+    "checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt",
+    "checkpoint_sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f",
+    "family": "calibrated_Gaussian_GRU",
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "mean_calibration": "NONE",
+    "measurement_R_t": "separate_predictor_input",
+    "normalization": "/home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json",
+    "normalization_sha256": "3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6",
+    "predictive_covariance": "full_3D_SPD_calibrated_once"
+  },
+  "status": "FROZEN_HANDOFF_REPAIRED_V1",
+  "to_stage": 5
+}

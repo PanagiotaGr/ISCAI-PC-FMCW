@@ -1,0 +1,32 @@
+============================================================
+BLOCK 5.3 — REFERENCE GATE REPAIR
+============================================================
+scientific parameters changed = NO
+beam support changed          = NO
+gain model changed            = NO
+formal N=120 used             = NO
+Stage4 inference              = NO
+
+reference parser patch = PATCHED
+reference old SHA256 = c659dbe8319f912d9ca7a8f573cae1b96f7fecd8b07271a49c4295387d91101d
+reference new SHA256 = 5563557aa8a8c00666f9097220107ed6bd9cb1d29f954e759abdbf981b56df36
+
+safe-controller patch = PATCHED
+safe old SHA256 = f4ddb166ddbfe5124a2802676041fb282bcfbb010a9536248abf8f3a30fea38a
+safe new SHA256 = 3f4cc5a21236034a7867ee1240f0a2f5e8fd3a90ba662491761565295c88e2d5
+
+===== CONTROLLED COMPILE =====
+run_block53_part2_reference_decision.py = PASS
+run_block53_part2_safe.py = PASS
+
+============================================================
+REFERENCE GATE REPAIR FINAL
+============================================================
+FOV evidence parser       = REPAIRED
+structured PASS gate      = ADDED
+scientific contract       = UNCHANGED
+formal N=120 used         = NO
+Stage4 inference          = NO
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage5/artifacts/block53/reference_gate_repair.json
+terminal remains open = YES

@@ -1,0 +1,168 @@
+============================================================
+STAGE 5 — BLOCK 5.10 PART 1/2
+FINAL ACCEPTANCE AUDIT BEFORE FREEZE
+============================================================
+
+===== A. STAGES 0–4 / STAGE4 HANDOFF CONTINUITY =====
+Stages0–4 PDF compliance = PASS
+Stage4 closure            = COMPLETE_FROZEN
+Stage4→Stage5 handoff      = EXACT PASS
+formal N=120 manifest      = EXACT PASS
+
+===== B. BLOCKS 5.0 → 5.7 =====
+Block 5.0 = PASS
+Block 5.1 = PASS
+Block 5.2 = PASS
+Block 5.3 = PASS
+Block 5.4 = PASS
+Block 5.5 = PASS
+Block 5.6 = PASS
+Block 5.7 = PASS
+
+===== C. RECEIVER-AWARE POSTERIOR =====
+receiver/angular posterior = PASS
+centroid baseline           = PASS
+known receiver offset       = PASS
+uncertain receiver offset   = PASS
+
+===== D. CODEBOOKS / BEAM PROBABILITIES =====
+16 / 32 / 64 codebooks    = PASS
+beam probability vectors  = EXACT PASS
+
+===== E. REQUIRED BEAM BASELINES =====
+exhaustive                  = PASS
+previous-beam persistence   = PASS
+geometry nearest beam       = PASS
+fixed Top-1                 = PASS
+fixed Top-3                 = PASS
+fixed Top-5                 = PASS
+oracle beam set             = PASS
+blockage-aware Top-K      = OPTIONAL / NOT REQUIRED
+
+===== F. ADAPTIVE TOP-K CONTRACT =====
+q = 0.90                = PASS
+q = 0.95 nominal        = PASS
+q = 0.975               = PASS
+q = 0.99                = PASS
+horizons 0.1/0.3/0.5/1s = PASS
+
+===== G. LATENCY / FALLBACK =====
+hysteresis                = PASS
+switch penalty            = PASS
+neighbor sweep            = PASS
+widened fallback          = PASS
+loss-of-lock detection    = PASS
+loss-of-lock recovery     = PASS
+exhaustive recovery       = PASS
+beam/controller latency   = PASS
+fallback/reacquisition    = PASS
+temporal stability logic  = PASS
+loss-of-lock recovery     = WIDENED -> EXHAUSTIVE PASS
+evidence route            = FROZEN SOURCE + BLOCK5.7 PASS
+Block5.7 scientific repair= NO
+joint beam+ADB E2E latency = DEFERRED TO STAGE7
+
+===== H. OPTICAL LINK CHAIN =====
+pointing / gain         = PASS
+received power          = PASS
+SNR                     = PASS
+DPSK BER                = PASS
+effective rate          = PASS
+
+===== I. FORMAL N=120 / LEAKAGE CONTRACT =====
+formal N                  = 120 PASS
+same immutable population = PASS
+formal parameter tuning   = NO
+post-hoc selection        = NO
+tracks_to_predict selector = NO PASS
+
+===== J. PDF STAGE5 COMPLETION GATE =====
+requested q              = 0.95
+empirical coverage       = 0.9959473150962512 PASS
+overhead reduction       = 0.865216565349544 PASS
+probing overhead fraction= 0.00046970618034447825
+beam-gain loss dB        = 0.05214286133992984
+beam-switching rate      = 0.005065856129685917
+
+===== K. PDF BEAM-METRIC CONTRACT =====
+Top-1 hit               = PASS
+Top-3 / Top-K hit       = PASS
+average selected K      = PASS
+probability coverage    = PASS
+probing overhead        = PASS
+overhead reduction      = PASS
+beam gain loss          = PASS
+received-power loss     = PASS
+SNR loss                = PASS
+BER                     = PASS
+effective rate          = PASS
+outage                  = PASS
+beam switching          = PASS
+reacquisition           = PASS
+reliability-overhead    = PASS
+Pareto frontier         = PASS
+
+===== L. BLOCK5.8 FINAL EVIDENCE =====
+Block5.8 reconciliation = PASS
+Block5.8 closure SHA     = EXACT PASS
+Block5.8 formal SHA      = EXACT PASS
+
+===== M. BLOCK5.9 REPRODUCIBILITY =====
+canonical status          = PASS_FROZEN
+exact frozen match        = PASS
+fresh-process repeat      = EXACT PASS
+test-contract repair      = PASS_COMPLETE
+
+===== N. FULL STAGE5 REGRESSION =====
+Stage5 regression        = 257 / 257 PASS
+
+===== O. FINAL STAGE5 ACCEPTANCE MATRIX =====
+01_upstream_Stage4_frozen = PASS
+02_Stage5_contract_frozen = PASS
+03_receiver_angular_posterior = PASS
+04_receiver_geometry_centroid_known_uncertain = PASS
+05_codebooks_16_32_64_and_probabilities = PASS
+06_required_fixed_classical_beam_baselines = PASS
+07_adaptive_TopK_90_95_97p5_99 = PASS
+08_latency_fallback_reacquisition = PASS
+09_optical_pointing_gain_power_SNR_BER_rate = PASS
+10_formal_immutable_N120 = PASS
+11_requested_coverage_gate = PASS
+12_overhead_reduction_gate = PASS
+13_full_beam_metric_contract = PASS
+14_causal_no_formal_tuning_contract = PASS
+15_tracks_to_predict_not_receiver_selector = PASS
+16_exact_reproducibility = PASS
+17_full_regression = PASS
+
+mandatory acceptance = 17 / 17 PASS
+
+===== P. IMMUTABILITY READBACK =====
+Stages0–4 frozen evidence = UNCHANGED
+Blocks5.0–5.7 reports     = UNCHANGED
+Block5.8 formal evidence  = UNCHANGED
+Block5.9 frozen evidence  = UNCHANGED
+
+============================================================
+BLOCK 5.10 PART 1/2 — FINAL ACCEPTANCE AUDIT
+============================================================
+Blocks 5.0 → 5.9          = PASS
+mandatory acceptance      = 17 / 17 PASS
+formal N=120              = PASS
+receiver-aware posterior  = PASS
+16/32/64 codebooks        = PASS
+adaptive q targets        = PASS
+requested coverage        = 0.9959473150962512 PASS
+overhead reduction        = 0.865216565349544 PASS
+optical link chain        = PASS
+latency/fallback          = PASS
+causal/no tuning          = PASS
+exact reproducibility     = PASS_FROZEN
+full regression           = 257 / 257 PASS
+scientific outputs changed= NO
+Stage5 final freeze       = NOT YET WRITTEN
+Stage6 started            = NO
+safe for Part2 final freeze = YES
+STATUS = PASS_READY_FOR_FINAL_FREEZE
+report = /home/agni/waymo/iscai_stage5/reports/block510_part1_acceptance_audit.json
+terminal remains open = YES

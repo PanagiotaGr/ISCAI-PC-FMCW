@@ -1,0 +1,112 @@
+==============================================================================
+STAGE 6 — BLOCK 6.8
+FROZEN PRIMARY DEVELOPMENT ACCEPTANCE GATE
+NO TUNING / NO FORMAL / SCIENTIFIC PASS OR FAIL ONLY
+==============================================================================
+
+===== A. EXACT IMMUTABLE BOUNDARY =====
+stage4_freeze          = EXACT PASS
+stage4_report          = EXACT PASS
+predictive_winner      = EXACT PASS
+acceptance_policy      = EXACT PASS
+Stage-1 gamma       = IMMUTABLE
+Stage-2 margins     = IMMUTABLE
+Stage-3 floors      = IMMUTABLE
+Stage-4 temporal/rate = IMMUTABLE
+post-outcome tuning = FORBIDDEN
+formal evaluation   = NO
+
+===== B. FROZEN PRIMARY ACCEPTANCE RULE =====
+vehicle criterion = predictive < reactive STRICT
+overmask criterion = predictive - reactive <= 0.02
+ped visibility criterion = predictive - reactive >= -0.05
+cyclist visibility criterion = predictive - reactive >= -0.05
+all four criteria required = YES
+
+===== C. FROZEN REACTIVE COMPARATOR =====
+reactive comparator artifact = /home/agni/waymo/iscai_stage6/artifacts/block68/primary_development_gate/block68_reactive_primary_comparator_augmented.jsonl
+reactive comparator SHA      = 5925f1e02dc3cb9dbad42f40f200337f60ccb87f4c919c4dd7c628eb3725c2fa
+original reactive NI SHA     = 3a81d6d39b29a2d30247f30f06f0e02bedd47ecc754a0eb550611947f6e9b0d5
+vehicle metric source        = FROZEN t0 HOLD + FROZEN oracle_vehicle
+reactive scenarios           = 120 / 120
+
+===== D. FROZEN PREDICTIVE WINNER =====
+scenario identity join = 120 / 120 EXACT
+
+===== E. EXACT MACRO RECOMPUTATION =====
+
+vehicle_shadow_zone_violation
+  reactive mean  = 0.09481248124008006
+  predictive mean= 0.013116180708780553
+  delta          = -0.0816963005312995
+  support R/P    = 115 / 115
+
+over_masking_area
+  reactive mean  = 0.18862460571658454
+  predictive mean= 0.26521748861081823
+  delta          = 0.07659288289423369
+  support R/P    = 120 / 120
+
+pedestrian_visibility_proxy
+  reactive mean  = 0.5699538664317828
+  predictive mean= 0.8992267609505494
+  delta          = 0.3292728945187666
+  support R/P    = 54 / 45
+
+cyclist_visibility_proxy
+  reactive mean  = 0.7388137207027013
+  predictive mean= 0.8869782482483739
+  delta          = 0.14816452754567255
+  support R/P    = 40 / 37
+
+===== F. FROZEN PRIMARY DEVELOPMENT GATE =====
+
+vehicle_strict_improvement = PASS
+  reactive   = 0.09481248124008006
+  predictive = 0.013116180708780553
+  delta      = -0.0816963005312995
+  rule       = predictive < reactive
+
+overmask_noninferiority = FAIL
+  reactive   = 0.18862460571658454
+  predictive = 0.26521748861081823
+  delta      = 0.07659288289423369
+  rule       = predictive - reactive <= 0.02
+
+pedestrian_visibility_noninferiority = PASS
+  reactive   = 0.5699538664317828
+  predictive = 0.8992267609505494
+  delta      = 0.3292728945187666
+  rule       = predictive - reactive >= -0.05
+
+cyclist_visibility_noninferiority = PASS
+  reactive   = 0.7388137207027013
+  predictive = 0.8869782482483739
+  delta      = 0.14816452754567255
+  rule       = predictive - reactive >= -0.05
+
+OVERALL PRIMARY DEVELOPMENT ACCEPTANCE = FAIL
+
+===== G. POST-GATE REGRESSION =====
+Stage6 regression = 224 / 224 PASS
+
+===== H. WRITE-ONCE PRIMARY GATE RESULT =====
+
+==============================================================================
+BLOCK 6.8 PRIMARY DEVELOPMENT ACCEPTANCE — FINAL
+==============================================================================
+vehicle strict improvement = PASS
+overmask <= +0.02          = FAIL
+ped visibility >= -0.05    = PASS
+cyclist visibility >= -0.05= PASS
+overall primary gate       = FAIL
+Stage1/2/3/4 policy        = IMMUTABLE
+post-outcome retuning      = FORBIDDEN
+NI bounds                  = IMMUTABLE
+formal evaluation          = NO
+Stage6 regression          = 224 / 224 PASS
+detail SHA                 = 41ef7d6249bbb4efcef1eafa8f315e7bcb89fb193338cdd3f5139e585efb5bf9
+report SHA                 = e77dd8fb42e0d4641d1f2bf86d4cdb3aba2c2fb89a610181304556b468edda59
+STATUS = FAIL_PRIMARY_DEVELOPMENT_ACCEPTANCE_FROZEN
+NEXT = STOP / NO RETUNING / REPORT DEVELOPMENT ACCEPTANCE FAILURE
+terminal remains open = YES

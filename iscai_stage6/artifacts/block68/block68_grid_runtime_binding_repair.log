@@ -1,0 +1,71 @@
+============================================================
+STAGE 6 — BLOCK 6.8 PART2B GRID BINDING REPAIR
+TARGETED SEMANTIC-KEY RESOLUTION
+NO PERFORMANCE METRICS / NO FUTURE TRUTH
+============================================================
+
+===== A. FROZEN CONTINUITY =====
+reactive scoring freeze = EXACT PASS
+NI rule freeze          = EXACT PASS
+evaluator freeze        = EXACT PASS
+development outcomes    = NOT READ
+future truth            = NOT READ
+
+===== B. FAILED RESOLVER DIAGNOSIS =====
+IlluminationGridSpec signature = (theta_min_rad: 'float', theta_max_rad: 'float', range_min_m: 'float', range_max_m: 'float', n_theta: 'int', n_range: 'int') -> None
+previous attempts             = []
+diagnosis = SEMANTIC KEY MAPPING GAP
+scientific grid failure       = NO
+
+===== C. EXACT FROZEN GRID EVIDENCE =====
+Block6.4 grid subtree = FOUND
+selector theta domain = [-25.0, 25.0] deg
+selector max range    = 150.0 m
+
+resolved constructor:
+  theta_min_rad = -0.4363323129985824
+  theta_max_rad = 0.4363323129985824
+  range_min_m = 0.0
+  range_max_m = 150.0
+  n_theta = 501
+  n_range = 301
+range_min assumed zero = NO
+Part-A map shape       = [501, 301] PASS
+
+===== D. RUNTIME BINDING FREEZE =====
+runtime binding = WRITTEN
+
+===== E. EXACT BINDING READBACK =====
+constructor readback = PASS
+blank Part-A map     = [501, 301] PASS
+numeric invention    = NO
+
+===== F. REGRESSION + IMMUTABILITY =====
+scientific upstream = UNCHANGED
+Stage6 regression   = 224 / 224 PASS
+
+===== G. STORAGE =====
+free GiB        = 1052.772
+250-GiB reserve = PASS
+
+============================================================
+BLOCK 6.8 GRID RUNTIME BINDING REPAIR — FINAL
+============================================================
+previous resolver bug     = CONFIRMED
+scientific grid failure   = NO
+frozen semantic evidence  = RESOLVED
+IlluminationGridSpec args = 6 / 6 PROVEN
+runtime map shape         = 501 x 301 PASS
+range_min assumed zero    = NO
+scientific parameter edit = NO
+reactive performance      = NOT READ
+predictive performance    = NOT READ
+future truth              = NOT READ
+P_occ content             = NOT OPENED
+exact NI deltas           = NOT COMPUTED
+formal evaluation         = NO
+Stage6 regression         = 224 / 224 PASS
+binding SHA256            = be5145fe60a941e7906639916cfa384d5674dc29f294f5a42e12c962bc4df4bc
+STATUS = PASS_FROZEN_GRID_RUNTIME_BINDING
+report = /home/agni/waymo/iscai_stage6/reports/block68_grid_runtime_binding_repair.json
+terminal remains open = YES

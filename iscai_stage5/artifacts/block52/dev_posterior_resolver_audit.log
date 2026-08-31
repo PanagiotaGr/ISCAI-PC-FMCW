@@ -1,0 +1,2798 @@
+============================================================
+BLOCK 5.2 PART 2/2 — READ-ONLY DEV POSTERIOR RESOLVER AUDIT
+============================================================
+dataset scan          = NO
+Stage4 inference      = NO
+formal N=120 read     = NO
+upstream modification = NO
+
+Stage4 candidate files scanned = 12067
+
+============================================================
+A. NON-FORMAL BINARY/JSON CANDIDATES
+============================================================
+
+[1] score = 37
+path = iscai_stage4/reports/block44_gaussian_gru.json
+size = 15803
+inspection = {
+  "type": "json",
+  "interesting_fields": [
+    {
+      "key": "checkpoint.best_epoch",
+      "value": 12
+    },
+    {
+      "key": "checkpoint.exact_inference_repeat",
+      "value": true
+    },
+    {
+      "key": "checkpoint.file_sha256",
+      "value": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f"
+    },
+    {
+      "key": "checkpoint.path",
+      "value": "/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt"
+    },
+    {
+      "key": "checkpoint.prediction_sha256",
+      "value": "a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a"
+    },
+    {
+      "key": "checkpoint.state_dict_sha256",
+      "value": "1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3"
+    },
+    {
+      "key": "development.NLL_improved_over_initialization",
+      "value": true
+    },
+    {
+      "key": "development.best_raw_uncalibrated.class_planar_ADE_m.TYPE_CYCLIST",
+      "value": 1.6158116307248171
+    },
+    {
+      "key": "development.best_raw_uncalibrated.class_planar_ADE_m.TYPE_PEDESTRIAN",
+      "value": 0.9868421535187432
+    },
+    {
+      "key": "development.best_raw_uncalibrated.class_planar_ADE_m.TYPE_VEHICLE",
+      "value": 1.5874928289013388
+    },
+    {
+      "key": "development.best_raw_uncalibrated.horizon_metric_NLL.0.1",
+      "value": 2.410499496136465
+    },
+    {
+      "key": "development.best_raw_uncalibrated.horizon_metric_NLL.0.3",
+      "value": 2.9226757682440305
+    },
+    {
+      "key": "development.best_raw_uncalibrated.horizon_metric_NLL.0.5",
+      "value": 3.314474197393612
+    },
+    {
+      "key": "development.best_raw_uncalibrated.horizon_metric_NLL.1.0",
+      "value": 4.044859515472623
+    },
+    {
+      "key": "development.best_raw_uncalibrated.horizon_planar_error_m.0.1",
+      "value": 1.0263130081858938
+    },
+    {
+      "key": "development.best_raw_uncalibrated.horizon_planar_error_m.0.3",
+      "value": 1.288160796143693
+    },
+    {
+      "key": "development.best_raw_uncalibrated.horizon_planar_error_m.0.5",
+      "value": 1.578570180347882
+    },
+    {
+      "key": "development.best_raw_uncalibrated.horizon_planar_error_m.1.0",
+      "value": 2.3624556955696363
+    },
+    {
+      "key": "development.best_raw_uncalibrated.mean_predictive_std_m.0.1[0]",
+      "value": 0.7699694177681053
+    },
+    {
+      "key": "development.best_raw_uncalibrated.mean_predictive_std_m.0.1[1]",
+      "value": 0.7190069283597005
+    },
+    {
+      "key": "development.best_raw_uncalibrated.mean_predictive_std_m.0.1[2]",
+      "value": 0.21099571109412193
+    },
+    {
+      "key": "development.best_raw_uncalibrated.mean_predictive_std_m.0.3[0]",
+      "value": 0.9500304525482781
+    },
+    {
+      "key": "development.best_raw_uncalibrated.mean_predictive_std_m.0.3[1]",
+      "value": 0.8209438143981284
+    },
+    {
+      "key": "development.best_raw_uncalibrated.mean_predictive_std_m.0.3[2]",
+      "value": 0.20842390771688754
+    },
+    {
+      "key": "development.best_raw_uncalibrated.mean_predictive_std_m.0.5[0]",
+      "value": 1.1858516531889176
+    },
+    {
+      "key": "development.best_raw_uncalibrated.mean_predictive_std_m.0.5[1]",
+      "value": 0.9550432268063567
+    },
+    {
+      "key": "development.best_raw_uncalibrated.mean_predictive_std_m.0.5[2]",
+      "value": 0.2088698317256719
+    },
+    {
+      "key": "development.best_raw_uncalibrated.mean_predictive_std_m.1.0[0]",
+      "value": 1.8959188437277783
+    },
+    {
+      "key": "development.best_raw_uncalibrated.mean_predictive_std_m.1.0[1]",
+      "value": 1.365302304822417
+    },
+    {
+      "key": "development.best_raw_uncalibrated.mean_predictive_std_m.1.0[2]",
+      "value": 0.210157410684808
+    },
+    {
+      "key": "development.best_raw_uncalibrated.metric_Gaussian_NLL",
+      "value": 3.153939398019741
+    },
+    {
+      "key": "development.best_raw_uncalibrated.one_second_planar_error_m",
+      "value": 2.3624556955696363
+    },
+    {
+      "key": "development.best_raw_uncalibrated.planar_ADE_m",
+      "value": 1.5477828883725113
+    },
+    {
+      "key": "development.best_raw_uncalibrated.predictive_covariance_SPD_failures",
+      "value": 0
+    },
+    {
+      "key": "development.best_raw_uncalibrated.raw_empirical_coverage.0.50.by_horizon.0.1",
+      "value": 0.5245852860224652
+    },
+    {
+      "key": "development.best_raw_uncalibrated.raw_empirical_coverage.0.50.by_horizon.0.3",
+      "value": 0.5031202435312024
+    },
+    {
+      "key": "development.best_raw_uncalibrated.raw_empirical_coverage.0.50.by_horizon.0.5",
+      "value": 0.5041488949205118
+    },
+    {
+      "key": "development.best_raw_uncalibrated.raw_empirical_coverage.0.50.by_horizon.1.0",
+      "value": 0.5250711093051605
+    },
+    {
+      "key": "development.best_raw_uncalibrated.raw_empirical_coverage.0.50.empirical",
+      "value": 0.5141648803661434
+    },
+    {
+      "key": "development.best_raw_uncalibrated.raw_empirical_coverage.0.50.inside",
+      "value": 26625
+    },
+    {
+      "key"
+
+[2] score = 32
+path = iscai_stage4/artifacts/block43/development_cache.npz
+size = 77824990
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "target": {
+      "shape": [
+        13682,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        13682,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        13682,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        13682,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        13682,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        13682,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        13682
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[3] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00512_4553bf3ad22745f2.npz
+size = 223924
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        39,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        39,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        39,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        39,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        39,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        39,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        39
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[4] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00511_2a3e32b5c8ea25c.npz
+size = 218232
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U15"
+    },
+    "target": {
+      "shape": [
+        38,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        38,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        38,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        38,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        38,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        38,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        38
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[5] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00510_700b0024d0f205e5.npz
+size = 269428
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        47,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        47,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        47,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        47,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        47,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        47,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        47
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[6] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00509_8e64be6ebaef003c.npz
+size = 19156
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        3,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        3,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        3,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        3,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        3,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        3,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        3
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[7] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00508_8b935c09feeb004a.npz
+size = 252364
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        44,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        44,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        44,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        44,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        44,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        44,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        44
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[8] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00507_4b9d5fd0e8e2a495.npz
+size = 184108
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        32,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        32,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        32,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        32,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        32,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        32,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        32
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[9] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00506_70f32e98f11da7ff.npz
+size = 19156
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        3,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        3,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        3,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        3,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        3,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        3,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        3
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[10] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00505_5c15959f4a586d62.npz
+size = 161356
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        28,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        28,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        28,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        28,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        28,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        28,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        28
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[11] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00504_d06136eabef6de9b.npz
+size = 246676
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        43,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        43,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        43,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        43,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        43,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        43,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        43
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[12] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00503_557d3befffb85bd1.npz
+size = 93100
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        16,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        16,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        16,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        16,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        16,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        16,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        16
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[13] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00502_20e351cff833e33f.npz
+size = 132916
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        23,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        23,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        23,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        23,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        23,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        23,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        23
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[14] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00501_302ed9160c374e61.npz
+size = 229612
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        40,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        40,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        40,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        40,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        40,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        40,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        40
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[15] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00500_972c0423e1895025.npz
+size = 167044
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        29,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        29,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        29,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        29,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        29,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        29,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        29
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[16] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00499_69e7d14e83cf661a.npz
+size = 252364
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        44,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        44,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        44,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        44,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        44,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        44,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        44
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[17] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00498_5a59c6e0611faf40.npz
+size = 269428
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        47,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        47,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        47,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        47,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        47,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        47,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        47
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[18] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00497_3f9f973df73ead6f.npz
+size = 201172
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        35,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        35,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        35,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        35,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        35,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        35,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        35
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[19] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00496_54a2f11c2972977d.npz
+size = 263740
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        46,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        46,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        46,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        46,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        46,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        46,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        46
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[20] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00495_b615e8a801238387.npz
+size = 110164
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        19,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        19,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        19,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        19,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        19,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        19,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        19
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[21] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00494_1fcc8def90b962ac.npz
+size = 53284
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        9,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        9,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        9,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        9,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        9,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        9,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        9
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[22] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00493_77c49a651a2d544.npz
+size = 349056
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U15"
+    },
+    "target": {
+      "shape": [
+        61,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        61,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        61,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        61,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        61,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        61,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        61
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[23] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00492_5c143e4720711047.npz
+size = 115852
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        20,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        20,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        20,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        20,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        20,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        20,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        20
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[24] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00491_efa6d5357e0d9f3a.npz
+size = 53284
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        9,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        9,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        9,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        9,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        9,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        9,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        9
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[25] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00490_518aa0a31c184a98.npz
+size = 53284
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        9,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        9,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        9,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        9,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        9,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        9,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        9
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[26] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00489_bf5e929736d538e0.npz
+size = 349060
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        61,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        61,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        61,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        61,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        61,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        61,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        61
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[27] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00488_2cf013a035c912e7.npz
+size = 98788
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        17,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        17,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        17,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        17,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        17,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        17,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        17
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[28] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00487_b7a2d6e37597f8cc.npz
+size = 53284
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        9,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        9,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        9,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        9,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        9,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        9,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        9
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[29] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00486_6154f8742a6c32f7.npz
+size = 195484
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        34,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        34,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        34,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        34,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        34,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        34,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        34
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+[30] score = 32
+path = iscai_stage4/artifacts/block43/cache/development/00485_1eae59171862ca0f.npz
+size = 81724
+inspection = {
+  "type": "npz",
+  "arrays": {
+    "scenario_id": {
+      "shape": [],
+      "dtype": "<U16"
+    },
+    "target": {
+      "shape": [
+        14,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbors": {
+      "shape": [
+        14,
+        8,
+        11,
+        14
+      ],
+      "dtype": "float32"
+    },
+    "neighbor_mask": {
+      "shape": [
+        14,
+        8
+      ],
+      "dtype": "float32"
+    },
+    "map_context": {
+      "shape": [
+        14,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "future": {
+      "shape": [
+        14,
+        4,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "future_mask": {
+      "shape": [
+        14,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "class_id": {
+      "shape": [
+        14
+      ],
+      "dtype": "int64"
+    }
+  }
+}
+
+============================================================
+B. SOURCE-CODE / REPORT PROVENANCE HITS
+============================================================
+
+FILE: iscai_stage4/artifacts/block45/run_block45_real_calibration.pre_model_config_repair.py
+  L27:     fit_per_horizon_covariance_scale,
+  L34:     build_gaussian_model,
+  L59: BLOCK44 = (
+  L62:       "block44_gaussian_gru.json"
+  L65: GAUSSIAN_CHECKPOINT = (
+  L67:     / "artifacts/block44/"
+  L68:       "gaussian_gru.pt"
+  L89: CACHE_DIR = (
+  L92:       "cache/calibration"
+  L101: CACHE_REPORT = (
+  L104:       "calibration_cache_manifest.json"
+  L110:       "covariance_scaler.json"
+  L137: EXPECTED_BLOCK44_IMPL_SHA = (
+  L142: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (
+  L147: EXPECTED_GAUSSIAN_STATE_SHA = (
+  L275:             if "__pycache__" in (
+  L362:         np.savez(
+  L397: def cache_path(
+  L402:         CACHE_DIR
+  L411: def validate_cache_shard(
+  L466:             prediction_hash = str(
+  L468:                     "prediction_sha256"
+  L506:             prediction_hash
+  L579:             "prediction_sha256":
+  L582:                         "prediction_sha256"
+  L595:     device,
+  L631:     # causal prediction_id. No future-label
+  L642:             device=device,
+  L661:     device,
+  L669:     path = cache_path(
+
+FILE: iscai_stage4/scripts/repair_and_resume_block45_part2.py
+  L43: GAUSSIAN_CHECKPOINT = (
+  L45:     / "artifacts/block44/"
+  L46:       "gaussian_gru.pt"
+  L49: DETERMINISTIC_CHECKPOINT = (
+  L74: EXPECTED_DET_CHECKPOINT_SHA = (
+  L84: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (
+  L89: EXPECTED_GAUSSIAN_STATE_SHA = (
+  L214:         "block44_modified":
+  L286:         GAUSSIAN_CHECKPOINT,
+  L287:         DETERMINISTIC_CHECKPOINT,
+  L315:     # B. Verify BOTH frozen checkpoints before patching
+  L320:         "===== FROZEN CHECKPOINT VERIFICATION ====="
+  L325:             DETERMINISTIC_CHECKPOINT
+  L329:     actual_gaussian_file_sha = (
+  L331:             GAUSSIAN_CHECKPOINT
+  L338:         EXPECTED_DET_CHECKPOINT_SHA
+  L341:             "deterministic_checkpoint_file",
+  L343:                 "Frozen Block4.3 checkpoint "
+  L355:         actual_gaussian_file_sha
+  L357:         EXPECTED_GAUSSIAN_CHECKPOINT_SHA
+  L360:             "gaussian_checkpoint_file",
+  L362:                 "Frozen Block4.4 checkpoint "
+  L367:                 "Audit the frozen Gaussian "
+  L373:     deterministic_checkpoint = (
+  L375:             DETERMINISTIC_CHECKPOINT,
+  L381:     gaussian_checkpoint = (
+  L383:             GAUSSIAN_CHECKPOINT,
+  L391:             deterministic_checkpoint[
+  L397:     actual_gaussian_state_sha = (
+  L399:             gaussian_checkpoint[
+
+FILE: iscai_stage4/scripts/repair_block44_python_headers.py
+  L18:     / "reports/block44_environment_repair.json"
+  L23:     / "reports/block44_part1_safe_gate.json"
+  L28:     / "scripts/run_block44_part1_safe.py"
+  L82:             "Python development headers "
+  L109:         "block43_cache_regenerated":
+  L159:         "cache regeneration     = NO"
+  L162:         "Gaussian training      = NOT STARTED"
+  L204:                 torch.cuda.get_device_name(0)
+  L292:     # 3. Install ONLY development headers if needed.
+  L321:                     "for the development-header "
+  L340:             "Installing development headers only."
+  L363:             "python3.13-dev",
+  L364:             "libpython3.13-dev",
+  L412:                     "Neither python3.13-dev "
+  L413:                     "nor libpython3.13-dev "
+  L425:                 f"Development package was "
+  L472:                 .get_device_name(0)
+  L538:                 "print('device =', "
+  L539:                 "d.get_current_device())"
+  L589:                 "device='cuda',"
+  L593:                 "device='cuda',"
+  L620:                 "Development headers are fixed, "
+  L640:             "Python development headers "
+  L656:                 "but run_block44_part1_safe.py "
+  L731:         "cache regeneration     = NO"
+  L734:         "Gaussian training      = NOT STARTED"
+  L795:         "Gaussian training      = NOT STARTED"
+
+FILE: iscai_stage4/scripts/run_block40_bootstrap_gate.py
+  L145:         if "__pycache__" in path.parts:
+  L203:             if "__pycache__" in path.parts:
+  L603:         "measurement_covariance_R_t"
+  L768:                 .get_device_name(0)
+  L1065:         "measurement_covariance_as_predictor_input":
+  L1083:         "Gaussian_GRU_required":
+  L1092:         "receiver_angular_posterior_stage":
+  L1274:     "measurement covariance input = MANDATORY"
+  L1294:     "receiver/angular posterior    = STAGE 5"
+  L1473:             "- Measurement covariance R_t is a mandatory predictor input "
+  L1480:             "- Deterministic GRU, Gaussian probabilistic GRU and trajectory "
+  L1483:               "if the unimodal Gaussian is inadequate.\n"
+  L1487:             "- Receiver/angular posterior, beams, optical link, ADB and "
+
+FILE: iscai_stage4/scripts/run_block41_training_split_gate.py
+  L93: DEVELOPMENT_MANIFEST = (
+  L95:     / "development.jsonl"
+  L407:             if "__pycache__" in path.parts:
+  L888:     "development",
+  L909: development = split_a[
+  L910:     "development"
+  L919:     len(development),
+  L937: development_ids = {
+  L939:     for item in development
+  L951:     development_ids,
+  L957:     development_ids
+  L970:         development_ids
+  L989:     "development scenarios       =",
+  L990:     len(development),
+  L1017:     "development":
+  L1019:             development
+  L1085:     "development",
+  L1140: development_bytes = (
+  L1142:         development,
+  L1143:         partition="development",
+  L1166:     DEVELOPMENT_MANIFEST,
+  L1167:     development_bytes,
+  L1187:     "development":
+  L1189:             DEVELOPMENT_MANIFEST
+  L1244:         "development_count":
+  L1253:         "development_fraction_nominal":
+  L1280:             "development_only",
+  L1326:         "development": {
+  L1329:                     DEVELOPMENT_MANIFEST
+  L1334:                     "development"
+
+FILE: iscai_stage4/scripts/run_block42_neural_sample_gate.py
+  L98: DEVELOPMENT = (
+  L100:     / "artifacts/block41/development.jsonl"
+  L135: EXPECTED_DEVELOPMENT_SHA = (
+  L688:             sample.prediction_id,
+  L701:             sample.prediction_id,
+  L725:             if "__pycache__" in (
+  L835:         DEVELOPMENT
+  L838:     EXPECTED_DEVELOPMENT_SHA
+  L841:         "FAIL: development "
+  L926:     "development":
+  L927:         DEVELOPMENT,
+  L972: real_covariance_rows = 0
+  L1075:             covariance_values = (
+  L1084:                 in covariance_values
+  L1086:                 real_covariance_rows += 1
+  L1178:     "development",
+  L1202:     real_covariance_rows
+  L1208:         "covariance did not reach "
+  L1399:             "Stage2 measurement covariance propagated to H0",
+  L1404:         "measurement_covariance":
+  L1407:         "measurement_covariance_source": (
+  L1412:         "predictive_covariance":
+  L1486:             "records from each fit/dev/cal "
+  L1506:         "predictive Gaussian covariance",
+  L1644:         "real_covariance_rows":
+  L1645:             real_covariance_rows,
+  L1779:     "fit/dev/cal sample counts   =",
+  L1801:     "measurement covariance      = REAL INPUT"
+  L1805:     "real covariance rows        =",
+  L1806:     real_covariance_rows,
+
+FILE: iscai_stage4/scripts/run_block43_deterministic_gru.py
+  L53: DEV_MANIFEST = (
+  L55:     / "artifacts/block41/development.jsonl"
+  L68: CACHE_ROOT = (
+  L70:     / "artifacts/block43/cache"
+  L73: CACHE_META = (
+  L75:     / "artifacts/block43/cache_manifest.json"
+  L83: CHECKPOINT = (
+  L107: EXPECTED_DEV_SHA = (
+  L363:         CACHE_ROOT
+  L389:                 "Frozen cache scenario "
+  L410:                     "Frozen cache file "
+  L416:             "cache = REUSED",
+  L426:         CACHE_ROOT
+  L481:         torch.save(
+  L498:                 "Block4.3 cache exceeded "
+  L602:             f"{name} cache has "
+  L676:         "cache = FROZEN",
+  L695:         CACHE_ROOT
+  L1002:     device,
+  L1007:     predictions = []
+  L1024:         prediction = model(
+  L1028:                 device,
+  L1034:                 device,
+  L1040:                 device,
+  L1046:                 device,
+  L1051:         predictions.append(
+  L1052:             prediction
+  L1073:     prediction = torch.cat(
+  L1074:         predictions,
+  L1094:         prediction,
+
+FILE: iscai_stage4/scripts/run_block43_deterministic_gru_gate.py
+  L60: DEV_MANIFEST = (
+  L63:       "development.jsonl"
+  L78: DEV_SUBSET = (
+  L81:       "deterministic_dev_scenes.jsonl"
+  L90: CHECKPOINT = (
+  L92:     / "checkpoints/"
+  L129: EXPECTED_DEV_SHA = (
+  L141: DEV_QUOTA = 128
+  L149: DEV_SCENES = (
+  L150:     DEV_QUOTA
+  L387:                 sample.prediction_id,
+  L402:                 sample.prediction_id,
+  L510:     device,
+  L529:         device
+  L541:         device
+  L555:         device
+  L567:         device
+  L579:         device
+  L591:         device
+  L609:         device=device,
+  L625:     prediction,
+  L631:         prediction,
+  L764:     device,
+  L807:             device=device,
+  L814:         prediction = model(
+  L823:                 prediction,
+  L929: def evaluate_development(
+  L937:     device,
+  L986:             device=device,
+  L990:             prediction = model(
+
+FILE: iscai_stage4/scripts/run_block43_deterministic_training.py
+  L75: DEV_MANIFEST = (
+  L78:       "development.jsonl"
+  L84:       "model_development_selection.json"
+  L87: CACHE_ROOT = (
+  L90:       "cache"
+  L93: FIT_CACHE = (
+  L96:       "fit_cache.npz"
+  L99: DEV_CACHE = (
+  L102:       "development_cache.npz"
+  L105: CACHE_REPORT = (
+  L108:       "cache_manifest.json"
+  L117: CHECKPOINT = (
+  L150: EXPECTED_DEV_SHA = (
+  L330:         np.savez(
+  L528:             "Cache array keys changed."
+  L608:                 f"Non-finite cache "
+  L709:         CACHE_ROOT
+  L815:     # deterministic prediction_id ordering.
+  L843:             "New scene cache shard "
+  L876: def merge_partition_cache(
+  L966:             "cache is empty."
+  L1075:             "observation in cache."
+  L1080:         device=target.device,
+  L1103:         device=target.device,
+  L1119:         device,
+  L1127:                 device=device,
+  L1137:                 device=device,
+  L1147:                 device=device,
+  L1157:                 device=device,
+  L1167:                 device=device,
+
+FILE: iscai_stage4/scripts/run_block43_preflight.py
+  L38: DEV = (
+  L40:     / "artifacts/block41/development.jsonl"
+  L58: EXPECTED_DEV_SHA = (
+  L119:     sha256_file(DEV)
+  L121:     EXPECTED_DEV_SHA
+  L124:         "FAIL: development "
+  L131:         "device unavailable."
+  L148: device = torch.device(
+  L155:         device
+  L163:     device=device,
+  L171:     device=device,
+  L177:     device=device,
+  L183:     device=device,
+  L190:     device=device,
+  L196:     device=device,
+  L335:         "development_manifest_sha256":
+  L336:             EXPECTED_DEV_SHA,
+  L351:             .get_device_name(0),
+  L402:     "fit/dev manifests        = PASS"
+  L418:     .get_device_name(0),
+
+FILE: iscai_stage4/scripts/run_block44_gaussian_training.py
+  L26:     GaussianTrajectoryGRU,
+  L28:     covariance_from_scale_tril,
+  L29:     denormalize_gaussian,
+  L30:     gaussian_nll_per_horizon,
+  L33:     masked_gaussian_nll,
+  L43:     / "reports/block44_part1_safe_gate.json"
+  L48:     / "reports/block44_preflight.json"
+  L58:     / "configs/stage4_gaussian_gru.json"
+  L61: DET_CHECKPOINT = (
+  L66: FIT_CACHE = (
+  L68:     / "artifacts/block43/fit_cache.npz"
+  L71: DEV_CACHE = (
+  L73:     / "artifacts/block43/development_cache.npz"
+  L81: CHECKPOINT = (
+  L83:     / "artifacts/block44/gaussian_gru.pt"
+  L88:     / "artifacts/block44/training_progress.pt"
+  L93:     / "reports/block44_gaussian_gru.json"
+  L98:     / "reports/block44_training_failure.json"
+  L111: EXPECTED_DET_CHECKPOINT_SHA = (
+  L213:             if "__pycache__" in path.parts:
+  L268:     torch.save(
+  L296: # Frozen Block4.3 cache
+  L299: def load_cache(
+  L395:         device=target.device,
+  L421:         device=target.device,
+  L431: class GaussianNormalizer:
+  L437:         device,
+  L444:             device=device,
+  L452:             device=device,
+  L458:             device=device,
+
+FILE: iscai_stage4/scripts/run_block44_part1_safe.py
+  L23:       "block44_part1_safe_gate.json"
+  L29:       "run_block44_preflight.py"
+  L34:     / "artifacts/block44/"
+  L42:       "gaussian_gru.py",
+  L46:       "gaussian_math.py",
+  L54:       "test_block44_gaussian_gru.py",
+  L179:         "Gaussian training      = NOT STARTED"
+  L218:                 "Block4.3 or regenerate caches."
+  L264:                     "cache, normalization or "
+  L265:                     "checkpoint needs to rerun."
+  L286:             GaussianTrajectoryGRU,
+  L287:             covariance_from_scale_tril,
+  L288:             denormalize_gaussian,
+  L291:             masked_gaussian_nll,
+  L295:             GaussianTrajectoryGRU,
+  L296:             covariance_from_scale_tril,
+  L297:             denormalize_gaussian,
+  L300:             masked_gaussian_nll,
+  L318:         "Gaussian imports = PASS"
+  L324:     # This catches Gaussian math problems separately
+  L345:             "test_block44_gaussian_gru.py",
+  L372:             phase="block44_unit_tests",
+  L374:                 "New Gaussian unit tests "
+  L380:                 "gaussian_gru.py, gaussian_math.py "
+  L548:               "block44_preflight_failure.json"
+  L592:                 "No training or cache regeneration "
+  L612:           "block44_preflight.json"
+  L620:                 "but block44_preflight.json "
+  L652:                 "Inspect block44_preflight.json. "
+  L674:         "block44_unit_tests":
+
+FILE: iscai_stage4/scripts/run_block44_part2_safe.py
+  L16:     / "scripts/run_block44_gaussian_training.py"
+  L21:     / "reports/block44_part1_safe_gate.json"
+  L26:     / "reports/block44_preflight.json"
+  L31:     / "reports/block44_gaussian_gru.json"
+  L36:     / "reports/block44_training_failure.json"
+  L41:     / "artifacts/block44/part2_training.log"
+  L154:                 "Scientific Gaussian "
+  L177:                 "No frozen cache/checkpoint "
+  L190:         "Gaussian GPU/math preflight = PASS"
+  L244:                     "Gaussian training  = PASS"
+  L263:                 "gaussian_training",
+  L283:             "Inspect artifacts/block44/"
+  L285:             "No Stage2/3 cache regeneration "
+
+FILE: iscai_stage4/scripts/run_block44_preflight.py
+  L15:     GaussianTrajectoryGRU,
+  L16:     covariance_from_scale_tril,
+  L17:     denormalize_gaussian,
+  L20:     masked_gaussian_nll,
+  L40: DET_CHECKPOINT = (
+  L46: FIT_CACHE = (
+  L49:       "fit_cache.npz"
+  L52: DEV_CACHE = (
+  L55:       "development_cache.npz"
+  L64: GAUSSIAN_CONFIG = (
+  L67:       "stage4_gaussian_gru.json"
+  L73:       "block44_preflight.json"
+  L79:       "block44_preflight_failure.json"
+  L87: EXPECTED_CHECKPOINT_SHA = (
+  L172: def load_cache_shapes(
+  L192:                     f"Cache lacks {key}: "
+  L210:     device,
+  L244:             device
+  L249: def make_gaussian_model(
+  L252:     device,
+  L261:         GaussianTrajectoryGRU(
+  L286:             device
+  L324:     if not DET_CHECKPOINT.is_file():
+  L327:             "checkpoint missing."
+  L332:             DET_CHECKPOINT
+  L335:         EXPECTED_CHECKPOINT_SHA
+  L339:             "checkpoint SHA changed."
+  L342:     if not FIT_CACHE.is_file():
+  L344:             "Frozen fit cache missing."
+  L347:     if not DEV_CACHE.is_file():
+
+FILE: iscai_stage4/scripts/run_block45_part1_safe.py
+  L24: BLOCK44 = (
+  L26:     / "reports/block44_gaussian_gru.json"
+  L29: CHECKPOINT = (
+  L31:     / "artifacts/block44/gaussian_gru.pt"
+  L60: EXPECTED_BLOCK44_IMPL_SHA = (
+  L65: EXPECTED_CHECKPOINT_SHA = (
+  L139:         "block44_modified":
+  L142:         "calibration_cache_built":
+  L182:         "calibration cache built = NO"
+  L207:         BLOCK44,
+  L208:         CHECKPOINT,
+  L278:     block44 = json.loads(
+  L279:         BLOCK44.read_text(
+  L285:         block44.get(
+  L292:             "block44_status",
+  L302:         block44[
+  L308:         EXPECTED_BLOCK44_IMPL_SHA
+  L311:             "block44_fingerprint",
+  L326:             CHECKPOINT
+  L329:         EXPECTED_CHECKPOINT_SHA
+  L332:             "gaussian_checkpoint",
+  L334:                 "Frozen Gaussian "
+  L335:                 "checkpoint SHA changed."
+  L340:                 "Block4.4 checkpoint."
+  L346:         block44[
+  L347:             "checkpoint"
+  L355:             "gaussian_state",
+  L357:                 "Frozen Gaussian state "
+  L382:                 "cache until Block4.1 "
+  L420:         "Gaussian checkpoint       = PASS"
+
+FILE: iscai_stage4/scripts/run_block45_real_calibration.py
+  L27:     fit_per_horizon_covariance_scale,
+  L34:     build_gaussian_model,
+  L59: BLOCK44 = (
+  L62:       "block44_gaussian_gru.json"
+  L65: GAUSSIAN_CHECKPOINT = (
+  L67:     / "artifacts/block44/"
+  L68:       "gaussian_gru.pt"
+  L89: CACHE_DIR = (
+  L92:       "cache/calibration"
+  L101: CACHE_REPORT = (
+  L104:       "calibration_cache_manifest.json"
+  L110:       "covariance_scaler.json"
+  L137: EXPECTED_BLOCK44_IMPL_SHA = (
+  L142: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (
+  L147: EXPECTED_GAUSSIAN_STATE_SHA = (
+  L275:             if "__pycache__" in (
+  L362:         np.savez(
+  L397: def cache_path(
+  L402:         CACHE_DIR
+  L411: def validate_cache_shard(
+  L466:             prediction_hash = str(
+  L468:                     "prediction_sha256"
+  L506:             prediction_hash
+  L579:             "prediction_sha256":
+  L582:                         "prediction_sha256"
+  L595:     device,
+  L631:     # causal prediction_id. No future-label
+  L642:             device=device,
+  L661:     device,
+  L669:     path = cache_path(
+
+FILE: iscai_stage4/scripts/run_block46_gmm_training.py
+  L19:     initialize_gmm_from_gaussian,
+  L29:     prediction_sha256,
+  L61: BLOCK44 = (
+  L63:     / "reports/block44_gaussian_gru.json"
+  L71: DETERMINISTIC_CHECKPOINT = (
+  L76: GAUSSIAN_CHECKPOINT = (
+  L78:     / "artifacts/block44/gaussian_gru.pt"
+  L83:     / "artifacts/block45/covariance_scaler.json"
+  L86: FIT_CACHE = (
+  L88:     / "artifacts/block43/fit_cache.npz"
+  L91: DEV_CACHE = (
+  L93:     / "artifacts/block43/development_cache.npz"
+  L101: CHECKPOINT = (
+  L131: EXPECTED_DETERMINISTIC_CHECKPOINT_SHA = (
+  L141: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (
+  L146: EXPECTED_GAUSSIAN_STATE_SHA = (
+  L158: CACHE_KEYS = (
+  L257:             if "__pycache__" in path.parts:
+  L318:     torch.save(
+  L346: def load_cache(
+  L360:             for key in CACHE_KEYS
+  L443:                 f"Non-finite cache values: "
+  L453:     device,
+  L488:     ).to(device)
+  L534:             "development_metrics":
+  L546:         CHECKPOINT,
+  L613:     device,
+  L622:             map_location=device,
+  L682:             "the frozen Gaussian initialization."
+  L693:     device,
+
+FILE: iscai_stage4/scripts/run_block46_part1_safe.py
+  L29: BLOCK44 = (
+  L31:     / "reports/block44_gaussian_gru.json"
+  L34: GAUSSIAN_CHECKPOINT = (
+  L36:     / "artifacts/block44/gaussian_gru.pt"
+  L39: DETERMINISTIC_CHECKPOINT = (
+  L46:     / "artifacts/block45/covariance_scaler.json"
+  L75: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (
+  L80: EXPECTED_GAUSSIAN_STATE_SHA = (
+  L85: EXPECTED_DETERMINISTIC_CHECKPOINT_SHA = (
+  L231: def make_gaussian(
+  L234:     device,
+  L236:     from iscai_stage4.ml.gaussian_gru import (
+  L237:         GaussianTrajectoryGRU,
+  L246:     return GaussianTrajectoryGRU(
+  L269:     ).to(device)
+  L275:     device,
+  L310:     ).to(device)
+  L326:         BLOCK44,
+  L327:         GAUSSIAN_CHECKPOINT,
+  L328:         DETERMINISTIC_CHECKPOINT,
+  L404:     block44 = json.loads(
+  L405:         BLOCK44.read_text(
+  L445:         block44.get("status")
+  L450:             "block44_status",
+  L458:             GAUSSIAN_CHECKPOINT
+  L461:         EXPECTED_GAUSSIAN_CHECKPOINT_SHA
+  L464:             "Gaussian_checkpoint",
+  L466:                 "Frozen Gaussian "
+  L467:                 "checkpoint SHA changed."
+  L478:             DETERMINISTIC_CHECKPOINT
+
+FILE: iscai_stage4/scripts/run_block47_ablation_training.py
+  L22:     GaussianTrajectoryGRU,
+  L24:     denormalize_gaussian,
+  L25:     gaussian_nll_per_horizon,
+  L27:     masked_gaussian_nll,
+  L45:     evaluate_gaussian_condition,
+  L68:       "measurement_covariance_feature_contract.json"
+  L81: BLOCK44 = (
+  L83:     / "reports/block44_gaussian_gru.json"
+  L86: DETERMINISTIC_CHECKPOINT = (
+  L91: GAUSSIAN_CHECKPOINT = (
+  L93:     / "artifacts/block44/gaussian_gru.pt"
+  L98:     / "artifacts/block45/covariance_scaler.json"
+  L101: FIT_CACHE = (
+  L103:     / "artifacts/block43/fit_cache.npz"
+  L106: DEV_CACHE = (
+  L108:     / "artifacts/block43/development_cache.npz"
+  L141: EXPECTED_DETERMINISTIC_CHECKPOINT_SHA = (
+  L146: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (
+  L151: EXPECTED_GAUSSIAN_STATE_SHA = (
+  L169: CACHE_KEYS = (
+  L285:             if "__pycache__" in path.parts:
+  L338: def load_cache(
+  L350:             for key in CACHE_KEYS
+  L424:     device,
+  L432:     return GaussianTrajectoryGRU(
+  L455:     ).to(device)
+  L458: def checkpoint_path(
+  L464:         f"{variant}_gaussian.pt"
+  L486:     torch.save(
+  L507:     path = checkpoint_path(
+
+FILE: iscai_stage4/scripts/run_block47_part1_safe.py
+  L35: BLOCK44 = (
+  L37:     / "reports/block44_gaussian_gru.json"
+  L45: GAUSSIAN_CHECKPOINT = (
+  L47:     / "artifacts/block44/gaussian_gru.pt"
+  L50: DETERMINISTIC_CHECKPOINT = (
+  L55: FIT_CACHE = (
+  L57:     / "artifacts/block43/fit_cache.npz"
+  L73:       "measurement_covariance_feature_contract.json"
+  L89: EXPECTED_GAUSSIAN_CHECKPOINT_SHA = (
+  L94: EXPECTED_GAUSSIAN_STATE_SHA = (
+  L258: def build_gaussian(
+  L261:     device,
+  L263:     from iscai_stage4.ml.gaussian_gru import (
+  L264:         GaussianTrajectoryGRU,
+  L271:     return GaussianTrajectoryGRU(
+  L294:     ).to(device)
+  L327:         BLOCK44,
+  L329:         GAUSSIAN_CHECKPOINT,
+  L330:         DETERMINISTIC_CHECKPOINT,
+  L331:         FIT_CACHE,
+  L406:     block44 = json.loads(
+  L407:         BLOCK44.read_text(
+  L450:             GAUSSIAN_CHECKPOINT
+  L453:         EXPECTED_GAUSSIAN_CHECKPOINT_SHA
+  L456:             "Gaussian_checkpoint",
+  L458:                 "Frozen Gaussian "
+  L459:                 "checkpoint SHA changed."
+  L478:         measurement_covariance_indices,
+  L492:         covariance_indices = (
+  L493:             measurement_covariance_indices(
+
+FILE: iscai_stage4/src/iscai_stage4/__init__.py
+  L8: Beam, receiver-angular posterior, optical link,
+  L13:     GaussianHorizonPosterior,
+  L15:     TrajectoryGaussianPosterior,
+  L19:     "GaussianHorizonPosterior",
+  L21:     "TrajectoryGaussianPosterior",
+
+FILE: iscai_stage4/src/iscai_stage4/contracts.py
+  L73:     covariance: Matrix3,
+  L76:         covariance[0]
+  L78:         covariance[1]
+  L80:         covariance[2]
+  L88:             "Covariance must be finite."
+  L94:                 covariance[i][j]
+  L96:                 covariance[j][i]
+  L99:                     "Covariance must be symmetric."
+  L103:     minor1 = covariance[0][0]
+  L106:         covariance[0][0],
+  L107:         covariance[0][1],
+  L108:         covariance[1][0],
+  L109:         covariance[1][1],
+  L113:         covariance
+  L124:             "Covariance must be positive definite."
+  L129: class GaussianHorizonPosterior:
+  L132:     covariance_H0_m2: Matrix3
+  L147:                 "Posterior mean must be finite."
+  L151:             self.covariance_H0_m2
+  L156: class TrajectoryGaussianPosterior:
+  L157:     prediction_id: str
+  L159:         GaussianHorizonPosterior,
+  L164:         if not self.prediction_id:
+  L166:                 "prediction_id cannot be empty."
+  L176:                 "Stage4 posterior must contain "
+  L193:     measurement_covariance_is_input: bool = True
+  L210:     gaussian_probabilistic_predictor_required: bool = True
+  L217:     gmm_closure_critical_only_if_gaussian_inadequate: bool = True
+  L221:     receiver_angular_posterior_in_stage4: bool = False
+  L233:         if not self.measurement_covariance_is_input:
+
+FILE: iscai_stage4/src/iscai_stage4/data/neural_inputs.py
+  L102:             "Expected 3x3 covariance."
+  L118:             "Expected 3x3 covariance."
+  L127:             "Covariance must be finite."
+  L138:                     "Measurement covariance "
+  L147:             "Measurement covariance "
+  L154: def _zero_covariance() -> Matrix3:
+  L170:     measurement_covariance_H0_m2: Matrix3
+  L203:             self.measurement_covariance_H0_m2
+  L219:         covariance = (
+  L221:             .measurement_covariance_H0_m2
+  L246:                 covariance[0][0]
+  L249:                 covariance[0][1]
+  L252:                 covariance[0][2]
+  L255:                 covariance[1][1]
+  L258:                 covariance[1][2]
+  L261:                 covariance[2][2]
+  L283:     prediction_id: str
+  L294:         if not self.prediction_id:
+  L296:                 "prediction_id cannot "
+  L475:         No prediction IDs.
+  L555:             history.prediction_id
+  L566:                 "prediction IDs."
+  L571:         prediction_id: str,
+  L575:                 history.prediction_id
+  L577:                 prediction_id
+  L582:             prediction_id
+  L597:                     "prediction_id":
+  L598:                         history.prediction_id,
+  L624: def _extract_prediction_id(
+  L629:         "prediction_id",
+
+FILE: iscai_stage4/src/iscai_stage4/data/supervision.py
+  L153:     prediction_id: str
+  L170:         if not self.prediction_id:
+  L172:                 "prediction_id cannot "
+  L543:                         history.prediction_id,
+  L557:     used_predictions = set()
+  L564:         prediction_id,
+  L569:             prediction_id
+  L571:             used_predictions
+  L578:         used_predictions.add(
+  L579:             prediction_id
+  L588:                 prediction_id,
+  L727:         prediction_id,
+  L735:                 prediction_id
+  L752:                 prediction_id=(
+  L753:                     prediction_id
+  L783:                     f"{prediction_id}"
+  L785:                 prediction_id=(
+  L786:                     prediction_id
+  L813:             sample.prediction_id
+
+FILE: iscai_stage4/src/iscai_stage4/data/training_index.py
+  L354:     development = (
+  L365:         development
+  L370:         development,
+  L418:         development_n,
+  L426:     development_end = (
+  L429:         development_n
+  L436:     development = ordered[
+  L438:         development_end
+  L442:         development_end:
+  L456:         "development":
+  L457:             development,
+
+============================================================
+C. FORMAL/POST-FORMAL ARTIFACTS EXCLUDED
+============================================================
+excluded artifact count = 139
+EXCLUDED: iscai_stage4/artifacts/block410/stage4_final_freeze_manifest.json
+EXCLUDED: iscai_stage4/artifacts/block410/stage4_to_stage5_handoff.json
+EXCLUDED: iscai_stage4/artifacts/block48/cache/001_cfd33c593d645bf5.npz
+EXCLUDED: iscai_stage4/artifacts/block48/cache/002_b90adbf772ab2317.npz
+EXCLUDED: iscai_stage4/artifacts/block48/cache/003_b3078e2d1e2a6ed4.npz
+EXCLUDED: iscai_stage4/artifacts/block48/cache/004_765006a780597dad.npz
+EXCLUDED: iscai_stage4/artifacts/block48/cache/005_2ecd23f7b38b6be2.npz
+EXCLUDED: iscai_stage4/artifacts/block48/cache/006_1ddbd21df026a18c.npz
+EXCLUDED: iscai_stage4/artifacts/block48/cache/007_956c7591f9c52876.npz
+EXCLUDED: iscai_stage4/artifacts/block48/cache/008_74bef277f8242651.npz
+EXCLUDED: iscai_stage4/artifacts/block48/cache/009_d9cf27b30d5532a2.npz
+EXCLUDED: iscai_stage4/artifacts/block48/cache/010_76ef1efb0d6c5c2.npz
+EXCLUDED: iscai_stage4/artifacts/block48/cache/011_1c40180053156bf3.npz
+EXCLUDED: iscai_stage4/artifacts/block48/cache/012_957fd7198bdc22de.npz
+EXCLUDED: iscai_stage4/artifacts/block48/cache/013_7b58bb649f7b85b6.npz
+
+============================================================
+RESOLVER AUDIT FINAL
+============================================================
+read-only audit       = PASS
+formal N=120 used     = NO
+Stage4 inference      = NO
+dataset scan          = NO
+upstream modified     = NO
+positive candidates   = 11848
+source-evidence files = 42
+report = /home/agni/waymo/iscai_stage5/artifacts/block52/dev_posterior_resolver_audit.json
+terminal remains open = YES

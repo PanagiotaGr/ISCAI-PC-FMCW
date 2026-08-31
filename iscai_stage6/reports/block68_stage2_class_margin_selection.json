@@ -1,0 +1,118 @@
+{
+  "block": "6.8_development_stage2_class_margin",
+  "next": "Stage-3 class-floor development selection with Stage-1 gamma and Stage-2 margins immutable",
+  "outputs": {
+    "freeze": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_development_stage2_class_margin_freeze.json",
+      "sha256": "b061541f0563181cd07a91107a211b3519c6fdcc2e08243171db5b3bd9393ae8"
+    },
+    "input_binding": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_development_stage2_margin_input_binding.json",
+      "sha256": "20cad64a5c26ab38198b65de0728bf6e07a3346ad71c851a8e34b811ee9de21b"
+    },
+    "scores": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage2_margin/block68_stage2_class_margin_candidate_scores.jsonl",
+      "sha256": "3258070cb0c5140c3b5e7d059bbc25f2f4f00ed5a3be4bab10695e87ce77217d"
+    }
+  },
+  "regression": {
+    "post": 224,
+    "pre": 224
+  },
+  "scientific_boundary": {
+    "P_occ_opened": true,
+    "Stage1_gamma_modified": false,
+    "floor_selection": false,
+    "formal_evaluation": false,
+    "future_GT_role": "development evaluator only",
+    "posterior_opened": true,
+    "primary_acceptance_tested": false,
+    "temporal_rate_selection": false
+  },
+  "selected": {
+    "TYPE_CYCLIST": {
+      "base_margin_m": 0.0,
+      "candidate_index": 0,
+      "invalid_future_actor_horizon_pairs_NA": 10,
+      "macro_actor_horizon_IoU": 0.2229309135285922,
+      "macro_actor_horizon_over_masking_area": 0.0016067678450553899,
+      "motion_multiplier": 0.25,
+      "primary_IoU_maximizer_count": 1,
+      "scored_actor_horizon_pairs": 182,
+      "secondary_overmask_winner_count": 1,
+      "stage1_gamma": 0.0679931640625,
+      "stage1_k": 557,
+      "tie_break_order": [
+        "lower over-masking area",
+        "smaller base margin",
+        "smaller uncertainty multiplier",
+        "smaller closing/lateral multiplier",
+        "canonical numeric tuple"
+      ],
+      "uncertainty_multiplier": 0.5
+    },
+    "TYPE_PEDESTRIAN": {
+      "base_margin_m": 0.0,
+      "candidate_index": 0,
+      "invalid_future_actor_horizon_pairs_NA": 28,
+      "macro_actor_horizon_IoU": 0.22030627084752338,
+      "macro_actor_horizon_over_masking_area": 0.0009210846442456835,
+      "motion_multiplier": 0.0,
+      "primary_IoU_maximizer_count": 1,
+      "scored_actor_horizon_pairs": 412,
+      "secondary_overmask_winner_count": 1,
+      "stage1_gamma": 0.0609130859375,
+      "stage1_k": 499,
+      "tie_break_order": [
+        "lower over-masking area",
+        "smaller base margin",
+        "smaller uncertainty multiplier",
+        "motion multiplier not applicable",
+        "canonical numeric tuple"
+      ],
+      "uncertainty_multiplier": 0.5
+    },
+    "TYPE_VEHICLE": {
+      "base_margin_m": 0.0,
+      "candidate_index": 0,
+      "invalid_future_actor_horizon_pairs_NA": 57,
+      "macro_actor_horizon_IoU": 0.41918095515651327,
+      "macro_actor_horizon_over_masking_area": 0.003226307053031618,
+      "motion_multiplier": 0.05,
+      "primary_IoU_maximizer_count": 1,
+      "scored_actor_horizon_pairs": 2819,
+      "secondary_overmask_winner_count": 1,
+      "stage1_gamma": 0.11962890625,
+      "stage1_k": 980,
+      "tie_break_order": [
+        "lower over-masking area",
+        "smaller base margin",
+        "smaller uncertainty multiplier",
+        "smaller closing/lateral multiplier",
+        "canonical numeric tuple"
+      ],
+      "uncertainty_multiplier": 0.5
+    }
+  },
+  "stage": 6,
+  "status": "PASS_STAGE2_CLASS_MARGIN_SELECTED_FROZEN",
+  "storage": {
+    "free_GiB": 1052.632438659668,
+    "reserve_GiB": 250.0,
+    "reserve_pass": true
+  },
+  "support": {
+    "TYPE_CYCLIST": {
+      "invalid_future_actor_horizon_pairs_NA": 10,
+      "scored_actor_horizon_pairs": 182
+    },
+    "TYPE_PEDESTRIAN": {
+      "invalid_future_actor_horizon_pairs_NA": 28,
+      "scored_actor_horizon_pairs": 412
+    },
+    "TYPE_VEHICLE": {
+      "invalid_future_actor_horizon_pairs_NA": 57,
+      "scored_actor_horizon_pairs": 2819
+    }
+  }
+}

@@ -1,0 +1,558 @@
+{
+  "NLL": {
+    "calibrated": {
+      "by_horizon": {
+        "0.1": 2.360321253329606,
+        "0.3": 2.666915589555907,
+        "0.5": 3.032263641325875,
+        "1.0": 3.7585955593626736
+      },
+      "metric_Gaussian_NLL": 2.9390344685902585,
+      "valid_actor_horizon_points": 761039
+    },
+    "raw": {
+      "by_horizon": {
+        "0.1": 2.496985974370591,
+        "0.3": 2.840651739904545,
+        "0.5": 3.208312958228241,
+        "1.0": 3.8894559269525986
+      },
+      "metric_Gaussian_NLL": 3.0935138178583257,
+      "valid_actor_horizon_points": 761039
+    }
+  },
+  "block": "4.5",
+  "calibrated": {
+    "by_horizon": {
+      "0.1": {
+        "coverage_ECE": 0.04660878125015855,
+        "levels": {
+          "0.50": {
+            "absolute_error": 0.10196672400407958,
+            "chi_square_df3_threshold": 2.3659738843753377,
+            "coverage_event_Brier": 0.25,
+            "empirical": 0.6019667240040796,
+            "inside": 118635,
+            "nominal": 0.5,
+            "valid": 197079
+          },
+          "0.80": {
+            "absolute_error": 1.0148214675265166e-06,
+            "chi_square_df3_threshold": 4.64162767608745,
+            "coverage_event_Brier": 0.16000060889288054,
+            "empirical": 0.7999989851785325,
+            "inside": 157663,
+            "nominal": 0.8,
+            "valid": 197079
+          },
+          "0.90": {
+            "absolute_error": 0.03594548379076412,
+            "chi_square_df3_threshold": 6.251388631170325,
+            "coverage_event_Brier": 0.11875638703261128,
+            "empirical": 0.8640545162092359,
+            "inside": 170287,
+            "nominal": 0.9,
+            "valid": 197079
+          },
+          "0.95": {
+            "absolute_error": 0.04880301807904441,
+            "chi_square_df3_threshold": 7.814727903251179,
+            "coverage_event_Brier": 0.09142271627114,
+            "empirical": 0.9011969819209555,
+            "inside": 177607,
+            "nominal": 0.95,
+            "valid": 197079
+          },
+          "0.99": {
+            "absolute_error": 0.0463276655554371,
+            "chi_square_df3_threshold": 11.344866730144373,
+            "coverage_event_Brier": 0.05530111224432841,
+            "empirical": 0.9436723344445629,
+            "inside": 185978,
+            "nominal": 0.99,
+            "valid": 197079
+          }
+        },
+        "valid": 197079
+      },
+      "0.3": {
+        "coverage_ECE": 0.04816418862503695,
+        "levels": {
+          "0.50": {
+            "absolute_error": 0.10481675284062919,
+            "chi_square_df3_threshold": 2.3659738843753377,
+            "coverage_event_Brier": 0.25,
+            "empirical": 0.6048167528406292,
+            "inside": 116625,
+            "nominal": 0.5,
+            "valid": 192827
+          },
+          "0.80": {
+            "absolute_error": 3.111597442262415e-06,
+            "chi_square_df3_threshold": 4.64162767608745,
+            "coverage_event_Brier": 0.1600018669584654,
+            "empirical": 0.7999968884025578,
+            "inside": 154261,
+            "nominal": 0.8,
+            "valid": 192827
+          },
+          "0.90": {
+            "absolute_error": 0.03748074699082604,
+            "chi_square_df3_threshold": 6.251388631170325,
+            "coverage_event_Brier": 0.11998459759266078,
+            "empirical": 0.862519253009174,
+            "inside": 166317,
+            "nominal": 0.9,
+            "valid": 192827
+          },
+          "0.95": {
+            "absolute_error": 0.05110617289072583,
+            "chi_square_df3_threshold": 7.814727903251179,
+            "coverage_event_Brier": 0.09349555560165329,
+            "empirical": 0.8988938271092741,
+            "inside": 173331,
+            "nominal": 0.95,
+            "valid": 192827
+          },
+          "0.99": {
+            "absolute_error": 0.047414158805561435,
+            "chi_square_df3_threshold": 11.344866730144373,
+            "coverage_event_Brier": 0.056365875629450224,
+            "empirical": 0.9425858411944386,
+            "inside": 181756,
+            "nominal": 0.99,
+            "valid": 192827
+          }
+        },
+        "valid": 192827
+      },
+      "0.5": {
+        "coverage_ECE": 0.049846619842429926,
+        "levels": {
+          "0.50": {
+            "absolute_error": 0.10805369835833734,
+            "chi_square_df3_threshold": 2.3659738843753377,
+            "coverage_event_Brier": 0.25,
+            "empirical": 0.6080536983583373,
+            "inside": 115228,
+            "nominal": 0.5,
+            "valid": 189503
+          },
+          "0.80": {
+            "absolute_error": 2.1107845258327984e-06,
+            "chi_square_df3_threshold": 4.64162767608745,
+            "coverage_event_Brier": 0.16000126647071555,
+            "empirical": 0.7999978892154742,
+            "inside": 151602,
+            "nominal": 0.8,
+            "valid": 189503
+          },
+          "0.90": {
+            "absolute_error": 0.039053207600935114,
+            "chi_square_df3_threshold": 6.251388631170325,
+            "coverage_event_Brier": 0.12124256608074807,
+            "empirical": 0.8609467923990649,
+            "inside": 163152,
+            "nominal": 0.9,
+            "valid": 189503
+          },
+          "0.95": {
+            "absolute_error": 0.05285852994411688,
+            "chi_square_df3_threshold": 7.814727903251179,
+            "coverage_event_Brier": 0.0950726769497053,
+            "empirical": 0.8971414700558831,
+            "inside": 170011,
+            "nominal": 0.95,
+            "valid": 189503
+          },
+          "0.99": {
+            "absolute_error": 0.04926555252423448,
+            "chi_square_df3_threshold": 11.344866730144373,
+            "coverage_event_Brier": 0.058180241473749755,
+            "empirical": 0.9407344474757655,
+            "inside": 178272,
+            "nominal": 0.99,
+            "valid": 189503
+          }
+        },
+        "valid": 189503
+      },
+      "1.0": {
+        "coverage_ECE": 0.05142894896217583,
+        "levels": {
+          "0.50": {
+            "absolute_error": 0.1136706491218411,
+            "chi_square_df3_threshold": 2.3659738843753377,
+            "coverage_event_Brier": 0.25,
+            "empirical": 0.6136706491218411,
+            "inside": 111461,
+            "nominal": 0.5,
+            "valid": 181630
+          },
+          "0.80": {
+            "absolute_error": 0.0,
+            "chi_square_df3_threshold": 4.64162767608745,
+            "coverage_event_Brier": 0.16,
+            "empirical": 0.8,
+            "inside": 145304,
+            "nominal": 0.8,
+            "valid": 181630
+          },
+          "0.90": {
+            "absolute_error": 0.03971810824203048,
+            "chi_square_df3_threshold": 6.251388631170325,
+            "coverage_event_Brier": 0.12177448659362439,
+            "empirical": 0.8602818917579695,
+            "inside": 156253,
+            "nominal": 0.9,
+            "valid": 181630
+          },
+          "0.95": {
+            "absolute_error": 0.053997137036833065,
+            "chi_square_df3_threshold": 7.814727903251179,
+            "coverage_event_Brier": 0.09609742333314983,
+            "empirical": 0.8960028629631669,
+            "inside": 162741,
+            "nominal": 0.95,
+            "valid": 181630
+          },
+          "0.99": {
+            "absolute_error": 0.04975885041017447,
+            "chi_square_df3_threshold": 11.344866730144373,
+            "coverage_event_Brier": 0.05866367340197103,
+            "empirical": 0.9402411495898255,
+            "inside": 170776,
+            "nominal": 0.99,
+            "valid": 181630
+          }
+        },
+        "valid": 181630
+      }
+    },
+    "confidence_level_weighting": "equal_macro",
+    "confidence_levels": [
+      0.5,
+      0.8,
+      0.9,
+      0.95,
+      0.99
+    ],
+    "coverage_ECE_macro": 0.049012134669950316,
+    "coverage_MAE_macro": 0.049012134669950316,
+    "coverage_event_Brier": 0.1362941350968873,
+    "global_levels": {
+      "0.50": {
+        "absolute_error": 0.10699780168953232,
+        "empirical": 0.6069978016895323,
+        "inside": 461949,
+        "nominal": 0.5,
+        "valid": 761039
+      },
+      "0.80": {
+        "absolute_error": 1.5767917281861443e-06,
+        "empirical": 0.7999984232082719,
+        "inside": 608830,
+        "nominal": 0.8,
+        "valid": 761039
+      },
+      "0.90": {
+        "absolute_error": 0.03800869600638079,
+        "empirical": 0.8619913039936192,
+        "inside": 656009,
+        "nominal": 0.9,
+        "valid": 761039
+      },
+      "0.95": {
+        "absolute_error": 0.05163605281726691,
+        "empirical": 0.898363947182733,
+        "inside": 683690,
+        "nominal": 0.95,
+        "valid": 761039
+      },
+      "0.99": {
+        "absolute_error": 0.0481533929273007,
+        "empirical": 0.9418466070726993,
+        "inside": 716782,
+        "nominal": 0.99,
+        "valid": 761039
+      }
+    },
+    "horizon_weighting": "equal_macro"
+  },
+  "calibrated_covariance_SPD": true,
+  "confidence_levels": [
+    0.5,
+    0.8,
+    0.9,
+    0.95,
+    0.99
+  ],
+  "predictive_mean_identical": true,
+  "raw": {
+    "by_horizon": {
+      "0.1": {
+        "coverage_ECE": 0.0635786258302508,
+        "levels": {
+          "0.50": {
+            "absolute_error": 0.031761374880124205,
+            "chi_square_df3_threshold": 2.3659738843753377,
+            "coverage_event_Brier": 0.25,
+            "empirical": 0.5317613748801242,
+            "inside": 104799,
+            "nominal": 0.5,
+            "valid": 197079
+          },
+          "0.80": {
+            "absolute_error": 0.05532908123138436,
+            "chi_square_df3_threshold": 4.64162767608745,
+            "coverage_event_Brier": 0.19319744873883063,
+            "empirical": 0.7446709187686157,
+            "inside": 146759,
+            "nominal": 0.8,
+            "valid": 197079
+          },
+          "0.90": {
+            "absolute_error": 0.07968936314878805,
+            "chi_square_df3_threshold": 6.251388631170325,
+            "coverage_event_Brier": 0.15375149051903045,
+            "empirical": 0.820310636851212,
+            "inside": 161666,
+            "nominal": 0.9,
+            "valid": 197079
+          },
+          "0.95": {
+            "absolute_error": 0.08357587566407376,
+            "chi_square_df3_threshold": 7.814727903251179,
+            "coverage_event_Brier": 0.12271828809766643,
+            "empirical": 0.8664241243359262,
+            "inside": 170754,
+            "nominal": 0.95,
+            "valid": 197079
+          },
+          "0.99": {
+            "absolute_error": 0.06753743422688363,
+            "chi_square_df3_threshold": 11.344866730144373,
+            "coverage_event_Brier": 0.07608668554234596,
+            "empirical": 0.9224625657731164,
+            "inside": 181798,
+            "nominal": 0.99,
+            "valid": 197079
+          }
+        },
+        "valid": 197079
+      },
+      "0.3": {
+        "coverage_ECE": 0.07383486752373888,
+        "levels": {
+          "0.50": {
+            "absolute_error": 0.008372790117566531,
+            "chi_square_df3_threshold": 2.3659738843753377,
+            "coverage_event_Brier": 0.25,
+            "empirical": 0.5083727901175665,
+            "inside": 98028,
+            "nominal": 0.5,
+            "valid": 192827
+          },
+          "0.80": {
+            "absolute_error": 0.07929180042214012,
+            "chi_square_df3_threshold": 4.64162767608745,
+            "coverage_event_Brier": 0.20757508025328408,
+            "empirical": 0.7207081995778599,
+            "inside": 138972,
+            "nominal": 0.8,
+            "valid": 192827
+          },
+          "0.90": {
+            "absolute_error": 0.09966602187453,
+            "chi_square_df3_threshold": 6.251388631170325,
+            "coverage_event_Brier": 0.16973281749962402,
+            "empirical": 0.80033397812547,
+            "inside": 154326,
+            "nominal": 0.9,
+            "valid": 192827
+          },
+          "0.95": {
+            "absolute_error": 0.10131179762170228,
+            "chi_square_df3_threshold": 7.814727903251179,
+            "coverage_event_Brier": 0.13868061785953212,
+            "empirical": 0.8486882023782977,
+            "inside": 163650,
+            "nominal": 0.95,
+            "valid": 192827
+          },
+          "0.99": {
+            "absolute_error": 0.08053192758275551,
+            "chi_square_df3_threshold": 11.344866730144373,
+            "coverage_event_Brier": 0.08882128903110041,
+            "empirical": 0.9094680724172445,
+            "inside": 175370,
+            "nominal": 0.99,
+            "valid": 192827
+          }
+        },
+        "valid": 192827
+      },
+      "0.5": {
+        "coverage_ECE": 0.07567523469285445,
+        "levels": {
+          "0.50": {
+            "absolute_error": 0.010482683651446112,
+            "chi_square_df3_threshold": 2.3659738843753377,
+            "coverage_event_Brier": 0.25,
+            "empirical": 0.5104826836514461,
+            "inside": 96738,
+            "nominal": 0.5,
+            "valid": 189503
+          },
+          "0.80": {
+            "absolute_error": 0.07933067022685658,
+            "chi_square_df3_threshold": 4.64162767608745,
+            "coverage_event_Brier": 0.20759840213611397,
+            "empirical": 0.7206693297731435,
+            "inside": 136569,
+            "nominal": 0.8,
+            "valid": 189503
+          },
+          "0.90": {
+            "absolute_error": 0.1014110594555232,
+            "chi_square_df3_threshold": 6.251388631170325,
+            "coverage_event_Brier": 0.1711288475644185,
+            "empirical": 0.7985889405444768,
+            "inside": 151335,
+            "nominal": 0.9,
+            "valid": 189503
+          },
+          "0.95": {
+            "absolute_error": 0.10391840762415361,
+            "chi_square_df3_threshold": 7.814727903251179,
+            "coverage_event_Brier": 0.14102656686173834,
+            "empirical": 0.8460815923758463,
+            "inside": 160335,
+            "nominal": 0.95,
+            "valid": 189503
+          },
+          "0.99": {
+            "absolute_error": 0.08323335250629271,
+            "chi_square_df3_threshold": 11.344866730144373,
+            "coverage_event_Brier": 0.09146868545616692,
+            "empirical": 0.9067666474937073,
+            "inside": 171835,
+            "nominal": 0.99,
+            "valid": 189503
+          }
+        },
+        "valid": 189503
+      },
+      "1.0": {
+        "coverage_ECE": 0.07142013984473931,
+        "levels": {
+          "0.50": {
+            "absolute_error": 0.0340197104002643,
+            "chi_square_df3_threshold": 2.3659738843753377,
+            "coverage_event_Brier": 0.25,
+            "empirical": 0.5340197104002643,
+            "inside": 96994,
+            "nominal": 0.5,
+            "valid": 181630
+          },
+          "0.80": {
+            "absolute_error": 0.06252821670428899,
+            "chi_square_df3_threshold": 4.64162767608745,
+            "coverage_event_Brier": 0.19751693002257337,
+            "empirical": 0.7374717832957111,
+            "inside": 133947,
+            "nominal": 0.8,
+            "valid": 181630
+          },
+          "0.90": {
+            "absolute_error": 0.08914826845785395,
+            "chi_square_df3_threshold": 6.251388631170325,
+            "coverage_event_Brier": 0.1613186147662831,
+            "empirical": 0.8108517315421461,
+            "inside": 147275,
+            "nominal": 0.9,
+            "valid": 181630
+          },
+          "0.95": {
+            "absolute_error": 0.09443649176898083,
+            "chi_square_df3_threshold": 7.814727903251179,
+            "coverage_event_Brier": 0.13249284259208283,
+            "empirical": 0.8555635082310191,
+            "inside": 155396,
+            "nominal": 0.95,
+            "valid": 181630
+          },
+          "0.99": {
+            "absolute_error": 0.07696801189230851,
+            "chi_square_df3_threshold": 11.344866730144373,
+            "coverage_event_Brier": 0.08532865165446236,
+            "empirical": 0.9130319881076915,
+            "inside": 165834,
+            "nominal": 0.99,
+            "valid": 181630
+          }
+        },
+        "valid": 181630
+      }
+    },
+    "confidence_level_weighting": "equal_macro",
+    "confidence_levels": [
+      0.5,
+      0.8,
+      0.9,
+      0.95,
+      0.99
+    ],
+    "coverage_ECE_macro": 0.07112721697289588,
+    "coverage_MAE_macro": 0.07112721697289588,
+    "coverage_event_Brier": 0.16687890144920306,
+    "global_levels": {
+      "0.50": {
+        "absolute_error": 0.021075792436392904,
+        "empirical": 0.5210757924363929,
+        "inside": 396559,
+        "nominal": 0.5,
+        "valid": 761039
+      },
+      "0.80": {
+        "absolute_error": 0.0690952763261804,
+        "empirical": 0.7309047236738196,
+        "inside": 556247,
+        "nominal": 0.8,
+        "valid": 761039
+      },
+      "0.90": {
+        "absolute_error": 0.09241720857932378,
+        "empirical": 0.8075827914206762,
+        "inside": 614602,
+        "nominal": 0.9,
+        "valid": 761039
+      },
+      "0.95": {
+        "absolute_error": 0.09572709151567782,
+        "empirical": 0.8542729084843221,
+        "inside": 650135,
+        "nominal": 0.95,
+        "valid": 761039
+      },
+      "0.99": {
+        "absolute_error": 0.07698897165585472,
+        "empirical": 0.9130110283441453,
+        "inside": 694837,
+        "nominal": 0.99,
+        "valid": 761039
+      }
+    },
+    "horizon_weighting": "equal_macro"
+  },
+  "stage": 4,
+  "trajectory_mean_metrics": {
+    "horizon_planar_error_m": {
+      "0.1": 1.0107911513412717,
+      "0.3": 1.2529048156860336,
+      "0.5": 1.5345476962351257,
+      "1.0": 2.289041140792405
+    },
+    "planar_ADE_m": 1.507622501200657
+  }
+}

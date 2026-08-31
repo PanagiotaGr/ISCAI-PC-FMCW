@@ -1,0 +1,119 @@
+============================================================================
+STAGE 6 — BLOCK 6.8
+STAGE-3 EXECUTION PART 1/2
+FIXED STAGE1+2 MASK CACHE + EVALUATOR SUPPORT + REPLAY PARITY
+NO FLOOR OUTCOMES / NO STAGE4 / NO FORMAL
+============================================================================
+
+===== A. EXACT FROZEN UPSTREAM =====
+prereg                 = EXACT PASS
+stage1                 = EXACT PASS
+stage2                 = EXACT PASS
+stage3_execution       = EXACT PASS
+stage3_scoring         = EXACT PASS
+grid_binding           = EXACT PASS
+pocc_manifest          = EXACT PASS
+predictive_matches     = EXACT PASS
+posterior              = EXACT PASS
+class_runtime          = EXACT PASS
+metric_runtime         = EXACT PASS
+Stage-1 gamma           = IMMUTABLE
+Stage-2 margin          = IMMUTABLE
+Stage-3 scoring         = IMMUTABLE
+Stage-3 floor outcomes  = NOT COMPUTED
+Stage-4 temporal/rate   = NOT SELECTED
+formal evaluation       = NO
+
+===== B. FROZEN POLICY READBACK =====
+grid shape = (4, 501, 301)
+horizons = (0.1, 0.3, 0.5, 1.0)
+TYPE_VEHICLE k= 980 margin= {'base_margin_m': 0.0, 'uncertainty_multiplier': 0.5, 'motion_multiplier': 0.05}
+TYPE_PEDESTRIAN k= 499 margin= {'base_margin_m': 0.0, 'uncertainty_multiplier': 0.5, 'motion_multiplier': 0.0}
+TYPE_CYCLIST k= 557 margin= {'base_margin_m': 0.0, 'uncertainty_multiplier': 0.5, 'motion_multiplier': 0.25}
+predictive dilation input = additional_class_margin_m ONLY
+Part-A generic margin     = NOT re-applied by Stage-2 dilation
+
+===== C. DEVELOPMENT POPULATION / JOINS =====
+posterior total rows     = 6925
+selected posterior keys = 877 / 877 EXACT PASS
+posterior superset rows  = 6048
+posterior total == 877   = NOT REQUIRED
+development scenarios = 120 EXACT
+predictive actors      = 877 EXACT
+  TYPE_VEHICLE      = 719
+  TYPE_PEDESTRIAN   = 110
+  TYPE_CYCLIST      = 48
+identity join          = EXACT
+
+===== D. FUTURE-GT EVALUATOR PROVENANCE =====
+state source       = WOMD_future_GT_evaluator_only
+orientation source = oracle_evaluator_only
+controller_path    = False
+future truth role  = EVALUATOR ONLY
+
+===== E. MATERIALIZE FIXED MASK / EVALUATOR CACHE =====
+scenario 001/120 f72a05a05035feb8 actors=4 cache=PASS
+scenario 010/120 6daa131b25b411e1 actors=9 cache=PASS
+scenario 020/120 e697a3e91804731f actors=17 cache=PASS
+scenario 030/120 1d879936662232aa actors=9 cache=PASS
+scenario 040/120 1b0c763aeef8ba69 actors=5 cache=PASS
+scenario 050/120 91b9bd56c1084d03 actors=2 cache=PASS
+scenario 060/120 74ca33b01f8adc34 actors=5 cache=PASS
+scenario 070/120 9b55dd4a2eb55f33 actors=7 cache=PASS
+scenario 080/120 c9d6f61d94824305 actors=6 cache=PASS
+scenario 090/120 28e0ea7a2ca646d6 actors=8 cache=PASS
+scenario 100/120 5d27f514c439978d actors=3 cache=PASS
+scenario 110/120 43cb883b388c851e actors=4 cache=PASS
+scenario 120/120 89bda4c79cb0ead4 actors=6 cache=PASS
+
+===== F. FUTURE-TIMESTAMP REPLAY =====
+0.1s offsets = {1: 120} PASS
+0.3s offsets = {3: 120} PASS
+0.5s offsets = {5: 120} PASS
+1.0s offsets = {10: 118, 9: 2} PASS
+
+===== G. FROZEN STAGE-1 GAMMA REPLAY PARITY =====
+TYPE_VEHICLE | meanIoU= 0.4427790877815939 | target= 0.442779087781594 | delta= 1.1102230246251565e-16 | PASS
+TYPE_PEDESTRIAN | meanIoU= 0.25486530932489315 | target= 0.25486530932489326 | delta= 1.1102230246251565e-16 | PASS
+TYPE_CYCLIST | meanIoU= 0.2451696448623915 | target= 0.2451696448623915 | delta= 0.0 | PASS
+
+===== H. FROZEN STAGE-2 MARGIN REPLAY PARITY =====
+TYPE_VEHICLE | IoU= 0.4191809551565131 | overmask= 0.00322630705303162 | PASS
+TYPE_PEDESTRIAN | IoU= 0.2203062708475233 | overmask= 0.0009210846442456827 | PASS
+TYPE_CYCLIST | IoU= 0.2229309135285922 | overmask= 0.0016067678450553896 | PASS
+
+===== I. FIXED CACHE MANIFEST FREEZE =====
+manifest SHA256 = 9607f5bd6022da5471167650f652556dca8381b241adf0b7faaf06bd27edc041
+freeze SHA256   = 6733ba1641afc341910bd5cc822a034103585706f32db4758d606b7bf2bf786d
+
+===== J. FULL STAGE6 REGRESSION =====
+Stage6 regression = 224 / 224 PASS
+
+===== K. STORAGE =====
+free GiB        = 1052.629
+250-GiB reserve = PASS
+
+============================================================================
+BLOCK 6.8 STAGE-3 EXECUTION PART 1/2 — FINAL
+============================================================================
+Stage-1 gamma             = IMMUTABLE
+Stage-2 margins           = IMMUTABLE
+predictive actors         = 877 EXACT
+fixed scenario caches     = 120 / 120 PASS
+P_occ values              = OPENED DEVELOPMENT ONLY
+future GT                 = EVALUATOR ONLY
+future validity selector  = NO
+full-box evaluator        = YES
+centroid-only evaluator   = NO
+Stage-1 replay parity     = PASS
+Stage-2 replay parity     = PASS
+Stage-2 dilation input    = m_extra ONLY
+Stage-3 floor outcomes    = NOT COMPUTED
+selected floor tuple      = NONE
+Stage-4 temporal/rate     = NOT SELECTED
+primary acceptance        = NOT TESTED
+formal evaluation         = NO
+Stage6 regression         = 224 / 224 PASS
+STATUS = PASS_STAGE3_FIXED_CACHE_PARITY_FROZEN
+report = /home/agni/waymo/iscai_stage6/reports/block68_stage3_fixed_cache_parity.json
+terminal remains open = YES

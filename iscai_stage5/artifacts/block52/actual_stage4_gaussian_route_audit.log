@@ -1,0 +1,342 @@
+============================================================
+BLOCK 5.2 — ACTUAL STAGE4 GAUSSIAN SOURCE-ROUTE AUDIT
+============================================================
+formal N=120 read     = NO
+model forward pass    = NO
+dataset scan          = NO
+training/recalibration= NO
+upstream modification = NO
+
+============================================================
+A. ACTUAL BLOCK4.4 GAUSSIAN IMPORTS
+============================================================
+GaussianTrajectoryGRU = from iscai_stage4.ml import GaussianTrajectoryGRU
+covariance_from_scale_tril = from iscai_stage4.ml import covariance_from_scale_tril
+denormalize_gaussian = from iscai_stage4.ml import denormalize_gaussian
+gaussian_nll_per_horizon = from iscai_stage4.ml import gaussian_nll_per_horizon
+masked_gaussian_nll = from iscai_stage4.ml import masked_gaussian_nll
+
+============================================================
+B. RESOLVED ACTUAL SOURCE FILES
+============================================================
+
+GaussianTrajectoryGRU
+  module = iscai_stage4.ml
+  source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_gru.py
+  source SHA256 = b5e206d7e62e437bd3b64a5c20c56cab6319494b119882794defeb70a9494bb8
+  definition line = 189
+  signature = (*, target_hidden_dim: 'int' = 64, neighbor_hidden_dim: 'int' = 32, map_hidden_dim: 'int' = 32, fusion_hidden_dim: 'int' = 128, use_neighbors: 'bool' = True, use_map: 'bool' = True)
+
+covariance_from_scale_tril
+  module = iscai_stage4.ml
+  source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py
+  source SHA256 = 87a9a2b8c7fb5347fee9b441af33135c303826d80ff6a8dee9373b984f4d809e
+  definition line = 40
+  signature = (scale_tril: 'torch.Tensor') -> 'torch.Tensor'
+
+denormalize_gaussian
+  module = iscai_stage4.ml
+  source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py
+  source SHA256 = 87a9a2b8c7fb5347fee9b441af33135c303826d80ff6a8dee9373b984f4d809e
+  definition line = 279
+  signature = (mean_normalized: 'torch.Tensor', scale_tril_normalized: 'torch.Tensor', label_mean: 'torch.Tensor', label_std: 'torch.Tensor')
+
+gaussian_nll_per_horizon
+  module = iscai_stage4.ml
+  source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py
+  source SHA256 = 87a9a2b8c7fb5347fee9b441af33135c303826d80ff6a8dee9373b984f4d809e
+  definition line = 62
+  signature = (mean: 'torch.Tensor', scale_tril: 'torch.Tensor', target: 'torch.Tensor') -> 'torch.Tensor'
+
+masked_gaussian_nll
+  module = iscai_stage4.ml
+  source = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py
+  source SHA256 = 87a9a2b8c7fb5347fee9b441af33135c303826d80ff6a8dee9373b984f4d809e
+  definition line = 182
+  signature = (mean: 'torch.Tensor', scale_tril: 'torch.Tensor', target: 'torch.Tensor', validity_mask: 'torch.Tensor') -> 'torch.Tensor'
+
+============================================================
+C. FROZEN BLOCK4.3 DEVELOPMENT CACHE
+============================================================
+path = /home/agni/waymo/iscai_stage4/artifacts/block43/development_cache.npz
+SHA256 = bc0e5b508df38f6e33d9cb1a6d21d7eaa86d20c91ba09ede6f500d46b87fbcaa
+keys = ['target', 'neighbors', 'neighbor_mask', 'map_context', 'future', 'future_mask', 'class_id']
+target                         shape = [13682, 11, 14] | dtype = float32
+neighbors                      shape = [13682, 8, 11, 14] | dtype = float32
+neighbor_mask                  shape = [13682, 8] | dtype = float32
+map_context                    shape = [13682, 10] | dtype = float32
+future                         shape = [13682, 4, 3] | dtype = float32
+future_mask                    shape = [13682, 4] | dtype = float32
+class_id                       shape = [13682] | dtype = int64
+
+============================================================
+D. FROZEN BLOCK4.4 CHECKPOINT
+============================================================
+SHA256 = 49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f
+weights_only load = PASS_WEIGHTS_ONLY
+top-level keys = ['stage', 'block', 'model_type', 'state_dict', 'state_dict_sha256', 'best_epoch', 'development_metrics', 'fingerprints', 'configuration', 'calibrated']
+stage = {"type": "int", "repr": "4"}
+block = {"type": "str", "repr": "'4.4'"}
+model_type = {"type": "str", "repr": "'GaussianTrajectoryGRU'"}
+state_dict = {"type": "dict", "length": 20, "keys_preview": ["target_gru.weight_ih_l0", "target_gru.weight_hh_l0", "target_gru.bias_ih_l0", "target_gru.bias_hh_l0", "neighbor_gru.weight_ih_l0", "neighbor_gru.weight_hh_l0", "neighbor_gru.bias_ih_l0", "neighbor_gru.bias_hh_l0", "map_encoder.0.weight", "map_encoder.0.bias", "map_encoder.2.weight", "map_encoder.2.bias", "fusion.0.weight", "fusion.0.bias", "fusion.2.weight", "fusion.2.bias", "mean_head.weight", "mean_head.bias", "cholesky_head.weight", "cholesky_head.bias"]}
+state_dict_sha256 = {"type": "str", "repr": "'1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3'"}
+best_epoch = {"type": "int", "repr": "12"}
+development_metrics = {"type": "dict", "length": 10, "keys_preview": ["metric_Gaussian_NLL", "planar_ADE_m", "horizon_metric_NLL", "horizon_planar_error_m", "one_second_planar_error_m", "class_planar_ADE_m", "raw_empirical_coverage", "mean_predictive_std_m", "valid_actor_horizon_points", "predictive_covariance_SPD_failures"]}
+fingerprints = {"type": "dict", "length": 6, "keys_preview": ["configuration_sha256", "deterministic_checkpoint_sha256", "deterministic_state_dict_sha256", "fit_cache_sha256", "development_cache_sha256", "normalization_sha256"]}
+configuration = {"type": "dict", "length": 13, "keys_preview": ["stage", "block", "status", "purpose", "upstream", "input", "predictive_distribution", "initialization", "normalization", "training", "raw_evaluation_before_calibration", "acceptance", "next_block"]}
+calibrated = {"type": "bool", "repr": "False"}
+
+============================================================
+E. BLOCK4.4 TRAINING / DEV-INFERENCE ROUTE
+============================================================
+L  26:     GaussianTrajectoryGRU,
+L  28:     covariance_from_scale_tril,
+L  29:     denormalize_gaussian,
+L  61: DET_CHECKPOINT = (
+L  71: DEV_CACHE = (
+L  73:     / "artifacts/block43/development_cache.npz"
+L  81: CHECKPOINT = (
+L 111: EXPECTED_DET_CHECKPOINT_SHA = (
+L 302:     with np.load(
+L 791: def build_gaussian_model(
+L 803:         GaussianTrajectoryGRU(
+L 836: # Development evaluation
+L 932:             output = model(
+L 944:             ) = denormalize_gaussian(
+L 982:                     "development NLL."
+L1044:                 covariance_from_scale_tril(
+L1239:             "Development set has "
+L1272:                 "Zero development labels "
+L1426: def probabilistic_prediction_sha256(
+L1474:             output = model(
+L1509: # Checkpoint/progress
+L1512: def save_best_checkpoint(
+L1535:                 "GaussianTrajectoryGRU",
+L1546:             "development_metrics":
+L1558:         CHECKPOINT,
+L1651:         model.load_state_dict(
+L1657:         optimizer.load_state_dict(
+L1683:             "checkpoint archived:"
+L1712:         DET_CHECKPOINT,
+L1714:         DEV_CACHE,
+L1802:             DET_CHECKPOINT
+L1805:         EXPECTED_DET_CHECKPOINT_SHA
+L1809:             "checkpoint SHA changed."
+L1832:             DEV_CACHE
+L1838:             "development_cache"
+L1844:             "Frozen development "
+L1933:         CHECKPOINT.is_file()
+L1950:                     "checkpoint"
+L1958:                     CHECKPOINT
+L1968:                     "checkpoint SHA256 =",
+L2087:     deterministic_checkpoint = (
+L2089:             DET_CHECKPOINT,
+L2096:         deterministic_checkpoint[
+L2110:             deterministic_checkpoint[
+L2127:         DEV_CACHE
+L2143:         "development samples     =",
+L2170:         "deterministic_checkpoint_sha256":
+L2171:             EXPECTED_DET_CHECKPOINT_SHA,
+L2181:         "development_cache_sha256":
+L2183:                 DEV_CACHE
+L2192:     model = build_gaussian_model(
+L2193:         deterministic_checkpoint[
+L2201:         deterministic_checkpoint[
+L2315:         save_best_checkpoint(
+L2495:             output = model(
+L2601:         development = (
+L2611:             development[
+L2617:             development[
+L2622:         # Primary = development metric NLL.
+L2673:             save_best_checkpoint(
+L2677:                     development
+L2699:             "development_metric_Gaussian_NLL":
+L2702:             "development_planar_ADE_m":
+L2705:             "development_one_second_planar_error_m":
+L2707:                     development[
+L2775:     # Freeze/evaluate best Gaussian checkpoint.
+L2778:     if not CHECKPOINT.is_file():
+L2780:             "Gaussian best checkpoint "
+L2784:     checkpoint = torch.load(
+L2785:         CHECKPOINT,
+L2791:         checkpoint[
+L2798:             "Gaussian checkpoint "
+L2802:     best_model = build_gaussian_model(
+L2803:         deterministic_checkpoint[
+L2809:     best_model.load_state_dict(
+L2810:         checkpoint[
+L2826:         checkpoint[
+L2831:             "Gaussian checkpoint "
+L2835:     final_development = (
+L2851:         final_development[
+L2865:             "not improve development "
+L2871:         final_development[
+L2888:             final_development[
+L2893:                 "Final development "
+L2903:         probabilistic_prediction_sha256(
+L2911:     repeat_checkpoint = (
+L2913:             CHECKPOINT,
+L2920:         build_gaussian_model(
+L2921:             deterministic_checkpoint[
+L2928:     repeat_model.load_state_dict(
+L2929:         repeat_checkpoint[
+L2937:         probabilistic_prediction_sha256(
+L2951:             "Frozen Gaussian checkpoint "
+L3030:     checkpoint_sha = (
+L3032:             CHECKPOINT
+L3060:         final_development[
+L3083:             "deterministic_checkpoint_sha256":
+L3084:                 EXPECTED_DET_CHECKPOINT_SHA,
+L3123:                     checkpoint[
+L3138:                 "development_metric_Gaussian_NLL",
+L3147:         "development": {
+L3151:             "best_raw_uncalibrated":
+L3152:                 final_development,
+L3187:         "checkpoint": {
+L3189:                 str(CHECKPOINT),
+L3192:                 checkpoint_sha,
+L3199:                     checkpoint[
+L3207:             "prediction_sha256":
+L3300:                   "fit/development caches and "
+L3322:                   "checkpoint.\n"
+L3326:                 "- Model selection uses development "
+L3328:                   "development ADE as tiebreaker.\n"
+L3337:                 f"- Initial development Gaussian "
+L3339:                 f"- Best development Gaussian "
+L3341:                 f"- Best development planar ADE: "
+L3342:                 f"{final_development['planar_ADE_m']:.9f} m.\n"
+L3344:                 f"{checkpoint['best_epoch']}.\n"
+L3345:                 f"- Checkpoint SHA256: "
+L3346:                 f"{checkpoint_sha}.\n"
+L3351:                 "- Exact checkpoint inference repeat: "
+
+============================================================
+F. CRITICAL GAUSSIAN API DEFINITIONS
+============================================================
+
+--- GaussianTrajectoryGRU ---
+class GaussianTrajectoryGRU(
+    nn.Module
+):
+    """
+    Probabilistic extension of the frozen
+    Block4.3 deterministic architecture.
+
+    Input:
+        same causal target history,
+        same Stage2 R_t conditioning,
+        same neighbours,
+        same map context.
+
+    Output per horizon:
+        predictive mean in R^3
+        full 3x3 SPD predictive covariance.
+    """
+
+    def __init__(
+        self,
+        *,
+        target_hidden_dim: int = 64,
+        neighbor_hidden_dim: int = 32,
+        map_hidden_dim: int = 32,
+        fusion_hidden_dim: int = 128,
+        use_neighbors: bool = True,
+        use_map: bool = True,
+    ):
+        super().__init__()
+
+        if min(
+            target_hidden_dim,
+            neighbor_hidden_dim,
+            map_hidden_dim,
+            fusion_hidden_dim,
+        ) <= 0:
+            raise ValueError(
+                "Hidden dimensions "
+                "must be positive."
+            )
+
+
+--- covariance_from_scale_tril ---
+def covariance_from_scale_tril(
+    scale_tril: torch.Tensor,
+) -> torch.Tensor:
+    if scale_tril.shape[-2:] != (
+        POSITION_DIM,
+        POSITION_DIM,
+    ):
+        raise ValueError(
+            "scale_tril must end "
+            "in [3,3]."
+        )
+
+    return (
+        scale_tril
+        @
+        scale_tril.transpose(
+            -1,
+            -2,
+        )
+    )
+
+
+--- denormalize_gaussian ---
+def denormalize_gaussian(
+    mean_normalized: torch.Tensor,
+    scale_tril_normalized:
+        torch.Tensor,
+    label_mean: torch.Tensor,
+    label_std: torch.Tensor,
+):
+    """
+    Transform normalized Gaussian output
+    into metric H0-displacement coordinates.
+
+    If:
+        y_metric = D y_norm + b
+
+    then:
+        mu_metric = D mu_norm + b
+        L_metric  = D L_norm
+        Sigma_metric =
+            D Sigma_norm D^T
+    """
+
+    if label_mean.shape != (
+        mean_normalized.shape[1],
+        POSITION_DIM,
+    ):
+        raise ValueError(
+            "label_mean shape mismatch."
+        )
+
+    if label_std.shape != (
+        mean_normalized.shape[1],
+        POSITION_DIM,
+    ):
+        raise ValueError(
+            "label_std shape mismatch."
+        )
+
+    if bool(
+        torch.any(
+            label_std
+
+
+============================================================
+G. SOURCE-ROUTE CONCLUSION
+============================================================
+actual Gaussian model source = RESOLVED PASS
+actual covariance API source = RESOLVED PASS
+actual denormalization source= RESOLVED PASS
+development cache schema     = RESOLVED PASS
+checkpoint structure         = RESOLVED PASS
+materialized dev posterior   = NO
+frozen dev inference needed  = YES
+forward pass executed now    = NO
+
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage5/artifacts/block52/actual_stage4_gaussian_route_audit.json
+formal N=120 used = NO
+model forward executed = NO
+terminal remains open = YES

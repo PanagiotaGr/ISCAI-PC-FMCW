@@ -1,0 +1,102 @@
+========================================================================
+BLOCK 6.3 PART 2B/1 — FROZEN GAUSSIAN CAUSAL FORWARD
+========================================================================
+
+===== A. FROZEN PREREQUISITE SEAL =====
+part2a           = PASS
+checkpoint       = PASS
+normalization    = PASS
+calibrator       = PASS
+
+===== B. SAME REAL CAUSAL DEVELOPMENT ROUTE =====
+scenario_id             = b85e1bd6cc8e74c0
+causal histories        = 27
+prediction_id unique    = PASS
+future access           = NO
+
+===== C. EXACT PER-TARGET MAP-CONTEXT BINDING =====
+static map frame        = H0
+H0 transform source     = AdaptedScenario.frames.T_H0_from_W
+map producer            = build_static_map_index_H0
+per-target summary      = map_context_summary
+target position source  = latest_position_H0_m
+map context matrix      = (27, 10)
+unique map rows         = 27
+shared scene vector     = NO
+future map state        = NO
+
+===== D. CAUSAL MODEL INPUT PAYLOADS =====
+payloads                = 27
+per-target map contexts = YES
+attach_supervision      = NOT CALLED
+future labels           = NOT READ
+tracks_to_predict       = NOT USED
+
+===== E. FIT-ONLY FROZEN NORMALIZER =====
+normalizer constructor  = exact_frozen_statistics_mapping_directly
+prepare batch keys      = ['class_id', 'future_mask', 'map_context', 'neighbor_mask', 'neighbors', 'target', 'true_displacement']
+evaluator-only placeholders = ['future', 'future_mask', 'class_id']
+synthetic→model         = NO
+
+===== F. FROZEN GAUSSIAN CHECKPOINT =====
+device                  = cuda
+parameter count         = 48484
+forward signature       = (target_history, neighbor_histories, neighbor_mask, map_context) -> 'GaussianTrajectoryOutput'
+forward input mapping   = {'target_history': 'target', 'neighbor_histories': 'neighbors', 'neighbor_mask': 'neighbor_mask', 'map_context': 'map_context'}
+
+===== G. ACTUAL FROZEN GAUSSIAN MODEL FORWARD =====
+model forward           = PASS
+raw output mean shape   = (27, 4, 3)
+raw scale shape         = (27, 4, 3, 3)
+repeated hash equal     = PASS
+raw prediction SHA      = 9bb15150300e723ceea94679daff85fc437c7fc8c6aa89c58a2c1b1c19ff9919
+forward runtime 1 s     = 0.0749378529144451
+forward runtime 2 s     = 0.0006616880418732762
+
+===== H. METRIC H0 GAUSSIAN OUTPUT =====
+
+===== I. FROZEN COVARIANCE CALIBRATION =====
+alpha artifact evidence = PASS
+calibration max error   = 0.0
+predictive mean changed = NO
+Block6.3 covariance use = NO
+
+===== J. IDENTITY-SAFE POSTERIOR MATERIALIZATION =====
+records                 = 27
+prediction_id persisted = YES
+causal anchor persisted = YES
+anonymous row binding   = NO
+identity-safe digest    = de6a063cdf99cd2b461bf27592650dfdbc5735859d9693160540467782ec30f0
+JSONL SHA256            = 318b22dfc3788195a1432169075d1c8654f0d183337711918db2303b5668f5ea
+NPZ SHA256              = 2d35613bfb0bdc7133c5b3e96b4ab28e9cca64340442f9a2ab1bcf9db3aad914
+
+===== K. STAGE6 REGRESSION =====
+regression status       = PASS
+regression tests        = 98
+
+report = /home/agni/waymo/iscai_stage6/reports/block63_part2b1_frozen_gaussian_forward.json
+report SHA256 = 54a4c99394d0fe29e4e7e480deacaefd07682b4fa1f1f8d8555a051a5efdabaf
+
+========================================================================
+BLOCK 6.3 PART 2B/1 — FINAL
+========================================================================
+status = PASS_IDENTITY_SAFE_FROZEN_GAUSSIAN_FORWARD
+scenario                 = b85e1bd6cc8e74c0
+causal histories         = 27
+actual model forward     = YES
+mean shape               = [27, 4, 3]
+prediction reproducible  = True
+prediction_id retained   = YES
+causal anchor retained   = YES
+anonymous posterior row  = NO
+deterministic covariance = NOT USED
+future GT                = NO
+training/recalibration   = NO / NO
+formal evaluation        = NO
+posterior records        = 27
+posterior JSONL SHA      = 318b22dfc3788195a1432169075d1c8654f0d183337711918db2303b5668f5ea
+posterior NPZ SHA        = 2d35613bfb0bdc7133c5b3e96b4ab28e9cca64340442f9a2ab1bcf9db3aad914
+Stage6 regression        = PASS | tests = 98
+NEXT = BLOCK6.3 PART2B/2 REAL FUTURE FULL-BOX EXECUTION
+terminal remains open = YES
+========================================================================

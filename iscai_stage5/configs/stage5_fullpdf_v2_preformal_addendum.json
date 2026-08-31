@@ -1,0 +1,30 @@
+{
+  "parent_protocol": {
+    "path": "/home/agni/waymo/iscai_stage5/configs/stage5_fullpdf_v2_protocol.json",
+    "sha256": "91dec3cc3d3a7b72385f012d1d2bfdb8981a497e1344f585d38f3e05f2e4fa5a"
+  },
+  "prediction_horizons_s": [
+    0.1,
+    0.3,
+    0.5,
+    1.0
+  ],
+  "reason": "Pre-formal completeness correction: the Stage5 Full-PDF V2 parent protocol inherited the four frozen prediction horizons but did not materialize them explicitly. This addendum makes that inherited mandatory contract explicit before any Stage5 V2 formal truth/outcome is opened. No outcome-driven choice is made.",
+  "scientific_boundary": {
+    "Stage4_calibration_reapplied": false,
+    "Stage4_recalibration": false,
+    "Stage4_retraining": false,
+    "formal_outcomes_used": false,
+    "formal_parameter_tuning": false,
+    "formal_truth_opened_before_addendum": false
+  },
+  "scope_boundary": {
+    "blockage": "OPTIONAL_EXTENSION",
+    "blockage_is_Stage5_closure_gate": false,
+    "joint_beam_ADB_evaluation": "STAGE7",
+    "predictive_ADB": "STAGE6"
+  },
+  "stage": 5,
+  "status": "FROZEN_BEFORE_STAGE5_V2_FORMAL",
+  "version": "fullpdf_v2_preformal_addendum_1"
+}

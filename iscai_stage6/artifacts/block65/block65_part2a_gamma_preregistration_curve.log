@@ -1,0 +1,102 @@
+========================================================================
+BLOCK 6.5 PART2A — CLASS-AGNOSTIC GAMMA PREREGISTRATION + EXHAUSTIVE CURVE
+========================================================================
+
+===== A. FROZEN UPSTREAM SEAL =====
+Block6.5 Part1 module        = EXACT PASS
+Block6.5 Part1 contract      = EXACT PASS
+Block6.5 Part1 report        = EXACT PASS
+Block6.4 numeric freeze      = EXACT PASS
+Block6.4 handoff             = EXACT PASS
+Block6.4 convergence report  = EXACT PASS
+Block6.4 convergence counts  = EXACT PASS
+
+===== B. CLASS-AGNOSTIC GAMMA PREREGISTRATION =====
+preregistration = /home/agni/waymo/iscai_stage6/configs/block65_class_agnostic_gamma_preregistration.json
+preregistration SHA256 = bec7749511d37b01a39967864cfb3259f0c506d16f3b825d3d33d06b8819f02d
+selected gamma = 0.5
+selection basis = SYMMETRIC POSTERIOR BAYES/MAP RULE
+gamma curve outcomes read before prereg = NO
+
+===== C. REAL DEVELOPMENT P_OCC EVIDENCE =====
+actor 0 | prediction=s3trk-000004 | positive cells=0
+actor 1 | prediction=s3trk-000007 | positive cells=0
+actor 2 | prediction=s3trk-000010 | positive cells=38865
+actor 3 | prediction=s3trk-000016 | positive cells=0
+actor 4 | prediction=s3trk-000019 | positive cells=45422
+actor 5 | prediction=s3trk-000024 | positive cells=0
+matched actors = 6
+N_MC = 8192
+grid = (501, 301)
+
+===== D. EXHAUSTIVE 8193-POINT GAMMA CURVE =====
+gamma breakpoints = 8193
+minimum gamma = 0.0
+maximum gamma = 1.0
+selected gamma breakpoint index = 4096
+
+===== E. PREREGISTERED GAMMA OPTIMALITY GATE =====
+selected gamma = 0.5
+selected k = 4096
+exact selected risk numerator = 27433596
+exact global minimum risk numerator = 27433596
+number of tied minimizing breakpoints = 2
+preregistered gamma is exact minimizer = PASS
+
+===== F. PUBLIC MASK API PARITY =====
+strict threshold parity = EXACT PASS
+multi-actor union parity = EXACT PASS
+P_occ == 0.5 inactive = YES
+
+===== G. GAMMA=0.5 DEVELOPMENT DIAGNOSTICS =====
+k = 4096
+gamma = 0.5
+symmetric_loss_numerator = 27433596
+expected_missed_occupancy_mass = 2890.451171875
+expected_false_dim_mass = 458.37646484375
+union_predictive_mask_cells_total = 1373
+union_predictive_mask_cells_by_horizon = [933, 440, 0, 0]
+union mask fraction by horizon = [0.0061869616249229115, 0.0029177525347975145, 0.0, 0.0]
+
+===== H. EXHAUSTIVE CURVE ARTIFACT =====
+curve artifact = /home/agni/waymo/iscai_stage6/artifacts/block65/block65_class_agnostic_gamma_exhaustive_curve.npz
+curve SHA256 = b235b2fc6ef0cc261d57fb4cf57e899c3108868b52f15bdde511de0e2ce13e3c
+
+===== I. BLOCK6.5 PART2A REPORT =====
+report = /home/agni/waymo/iscai_stage6/reports/block65_part2a_gamma_curve.json
+report SHA256 = 93948ca4c0c14f2503b503426432d3bddf9a201de2e5a51b9db2f441c2e5ba3f
+
+===== J. FRESH STAGE6 REGRESSION =====
+.................................................................................................................................................
+----------------------------------------------------------------------
+Ran 145 tests in 0.180s
+
+OK
+fresh regression = PASS | 145
+
+========================================================================
+BLOCK 6.5 PART2A — FINAL
+========================================================================
+STATUS = PASS_CLASS_AGNOSTIC_GAMMA_PREREGISTRATION_AND_CURVE
+gamma scope                = CLASS-AGNOSTIC BASELINE
+preregistered gamma        = 0.5
+exact MC breakpoint        = 4096 / 8192
+selection rule             = SYMMETRIC POSTERIOR BAYES/MAP
+posthoc gamma selection    = NO
+gamma curve                = EXHAUSTIVE | 8193 BREAKPOINTS
+selected gamma global risk minimizer = PASS
+strict public API parity   = PASS
+multi-actor public parity  = PASS
+reactive fallback changed  = NO
+new MC sampling            = NO
+class-aware gamma frozen   = NO
+formal evaluation          = NO
+formal outcomes read       = NO
+source modification        = NO
+fresh Stage6 regression    = PASS | 145
+prereg SHA256              = bec7749511d37b01a39967864cfb3259f0c506d16f3b825d3d33d06b8819f02d
+curve SHA256               = b235b2fc6ef0cc261d57fb4cf57e899c3108868b52f15bdde511de0e2ce13e3c
+report SHA256              = 93948ca4c0c14f2503b503426432d3bddf9a201de2e5a51b9db2f441c2e5ba3f
+NEXT = BLOCK6.5 PART2B FREEZE CLASS-AGNOSTIC GAMMA + REAL MASK SMOKE
+terminal remains open = YES
+========================================================================

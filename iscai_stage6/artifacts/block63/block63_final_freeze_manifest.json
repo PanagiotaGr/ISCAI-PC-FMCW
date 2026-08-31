@@ -1,0 +1,43 @@
+{
+  "block": "6.3",
+  "closure": {
+    "path": "/home/agni/waymo/iscai_stage6/reports/block63_final_closure.json",
+    "sha256": "c451c965fa4b8a237f36358da9c1c36436a4317ee0b1501e170be2c804977d1c"
+  },
+  "handoff": {
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block63/block63_to_block64_handoff.json",
+    "sha256": "611f1679b83fb1273cf2d1836a03073e3c557704c9656741d46ea19f80ca18c6"
+  },
+  "immutable_inputs": {
+    "/home/agni/waymo/iscai_stage6/artifacts/block63/block63_part2b2_real_future_full_box.json": "48118f193628937bf2daa94208ca801408aa76dfb360465064884356d52e2c62",
+    "/home/agni/waymo/iscai_stage6/artifacts/block63/identity_safe_development_gaussian_posterior.jsonl": "318b22dfc3788195a1432169075d1c8654f0d183337711918db2303b5668f5ea",
+    "/home/agni/waymo/iscai_stage6/artifacts/block63/identity_safe_development_gaussian_posterior.npz": "2d35613bfb0bdc7133c5b3e96b4ab28e9cca64340442f9a2ab1bcf9db3aad914",
+    "/home/agni/waymo/iscai_stage6/configs/block63_deterministic_predictive_binding.json": "03903018109e7d5037643381ff71141a5c57f003b8bdc6b9be13bb4304468f67",
+    "/home/agni/waymo/iscai_stage6/reports/block63_part1_deterministic_future_box.json": "871c8a81e43048ff2ccf7ef1844ad5433a859ff15b944749e13be9160b08256a",
+    "/home/agni/waymo/iscai_stage6/reports/block63_part2_real_causal_association.json": "71c9d03cc9c1b33dbb371dccd7140d5226494554b6b21df7fbfa19e9f43ba71a",
+    "/home/agni/waymo/iscai_stage6/reports/block63_part2b1_frozen_gaussian_forward.json": "54a4c99394d0fe29e4e7e480deacaefd07682b4fa1f1f8d8555a051a5efdabaf",
+    "/home/agni/waymo/iscai_stage6/reports/block63_part2b2_real_future_full_box.json": "e747c4b75f89c1ac362a57eecebb54a970419ac99a8eb101fb106b4927675c64",
+    "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b2_real_future_full_box.py": "8ae81ac788de1e7880e15b620bc159f03de806e58906d5789ec06fbb285d9dbc"
+  },
+  "implementation_sha256": {
+    "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b2_real_future_full_box.py": "8ae81ac788de1e7880e15b620bc159f03de806e58906d5789ec06fbb285d9dbc",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/deterministic_association.py": "5a4cc1803f9e45a8af23a57d89f47d9df6cc06af57823b2ce00063afa0a110a8",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/deterministic_predictive.py": "a81834dee7203d37b045d070d6e448010dd9add88eb2d054ccfb56e207156d3e",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/geometry.py": "f6e6cc0dd362338eeeaae9d8e25947434a3e7c64b350f0baf81a79a46159f94e",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/womd_geometry.py": "b90f47289bd091474658e3864c4b1ccc8c2fc841aaa38160f38f0b95ece7187c",
+    "/home/agni/waymo/iscai_stage6/tests/test_block63_part1_deterministic_future_box.py": "f31c526a97574f8fe54df73c5aebfc5326173a79032578e9c3a4fe75ad72c014"
+  },
+  "scientific_lock": {
+    "Gaussian_mean_semantics": "FROZEN",
+    "association_policy": "FROZEN",
+    "deterministic_predictive_baseline": true,
+    "fallback_policy": "FROZEN",
+    "formal_tuning": "NOT_PERFORMED",
+    "full_box_geometry": "FROZEN",
+    "future_GT_controller_input": "FORBIDDEN",
+    "perfect_identity_controller_input": "FORBIDDEN",
+    "predictive_covariance_in_Block63": "FORBIDDEN"
+  },
+  "stage": 6,
+  "status": "BLOCK63_FROZEN"
+}

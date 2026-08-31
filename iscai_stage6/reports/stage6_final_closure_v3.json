@@ -1,0 +1,43 @@
+{
+  "PDF_completion": {
+    "cyclist_visibility_preserved": true,
+    "overmask_controlled": true,
+    "pedestrian_visibility_preserved": true,
+    "predictive_ADB_reduces_vehicle_shadow_violations": true
+  },
+  "Stage5_authority": {
+    "certificate_sha256": "f91a0d21ed752b1e1e67096ca8af1ea061145869605525b232f6bccf1c26efe1",
+    "closure_sha256": "e376a9274826f80b7ffcf6d031c0f44c792cb025a44a4675e95ded467e526e34",
+    "handoff_sha256": "ac6564dbfe537f39fe70e7f2e92a7b2a5509aa3285d1037983924714bca36124"
+  },
+  "Stage6_PDF_completion_gate": "PASS",
+  "Stage6_implementation_scope": "COMPLETE",
+  "Stage7_allowed": true,
+  "V2_development_result": {
+    "path": "/home/agni/waymo/iscai_stage6/reports/stage6_v3_conservative_development_acceptance.json",
+    "sha256": "e76ec51e2ca875c16c2e7a0e168be3b2cc54ac37882bf5ef7e2eea0c33ffef44"
+  },
+  "formal_note": "The frozen formal-N=120 choice is an internal implementation-continuity layer rather than a literal PDF Stage6 completion requirement. Stage6-V2 is frozen here; no further Stage6 parameter retuning is allowed. Stage7 may now perform the joint communication-illumination evaluation on the frozen V2 method.",
+  "historical_V1": {
+    "closure_sha256": "e36a007e4c95b0732eb7505d784fa46c1c06e135cc2dddde636ac0f73c4c1e17",
+    "status": "NEGATIVE_RESULT_PRESERVED_NOT_REWRITTEN"
+  },
+  "independent_formal_Stage6_evaluation": "NOT_RUN",
+  "method": "causal_budgeted_predictive_residual_ADB",
+  "regression": {
+    "status": "PASS",
+    "tests": 229
+  },
+  "scientific_integrity": {
+    "Stage4_recalibration": false,
+    "Stage4_retraining": false,
+    "V1_post_outcome_retuning": false,
+    "formal_outcomes_used_for_V2_design": false,
+    "future_truth_controller_input": false,
+    "old_threshold_changed": false,
+    "oracle_controller_input": false
+  },
+  "stage": 6,
+  "status": "COMPLETE_FROZEN_STAGE6_V3_PDF_PASS",
+  "version": "Stage6-V3-conservative-budgeted-residual"
+}

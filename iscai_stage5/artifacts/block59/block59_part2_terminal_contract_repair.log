@@ -1,0 +1,66 @@
+============================================================
+STAGE 5 — BLOCK 5.9 PART 2/2
+TERMINAL REPRODUCIBILITY CONTRACT REPAIR
+============================================================
+
+===== A. PART1 DIAGNOSIS CONTINUITY =====
+Part1 diagnosis          = PASS
+scientific failure       = NO
+sole defect              = STALE TEST STATUS
+
+===== B. TERMINAL BLOCK5.9 REPORT =====
+status                   = PASS_FROZEN
+exact Block5.8 match     = PASS
+fresh-process repeats    = 2 PASS
+beam probability vectors = EXACT PASS
+Block5.8 mutated         = NO
+
+===== C. TARGETED TEST CONTRACT REPAIR =====
+old PRE_FREEZE occurrences = 1
+PASS_FROZEN occurrences before = 0
+test backup              = PASS
+old test SHA256          = 9d0092b62909e5266859bd630ea8d999244b33f89c736a786110a8c9a0a256a4
+new test SHA256          = e868e2c44f21e6c637a57dc9869363de57d4fb3f1fb0e7c3d764f13a44ca3196
+semantic change          = PRE_FREEZE → PASS_FROZEN ONLY
+
+===== D. CONTROLLED COMPILE =====
+test_block59_reproducibility.py = PASS
+
+===== E. BLOCK5.9 TARGETED REGRESSION =====
+Ran 3 tests in 0.092s
+OK
+Block5.9 regression      = 3 / 3 PASS
+
+===== F. FULL STAGE5 REGRESSION =====
+Ran 257 tests in 0.177s
+OK
+full Stage5 regression   = PASS
+
+===== G. TEST DIFF CONTRACT =====
+approved changed tokens  = 1
+only change              = expected terminal status
+test semantics weakened  = NO
+
+===== H. SCIENTIFIC ARTIFACT IMMUTABILITY =====
+Block5.8 formal evidence = UNCHANGED
+Block5.8 closure         = UNCHANGED
+formal manifest          = UNCHANGED
+Block5.9 frozen report   = UNCHANGED
+scientific outputs       = UNCHANGED
+
+============================================================
+BLOCK 5.9 PART 2/2 — FINAL
+============================================================
+canonical reproducibility = PASS_FROZEN
+exact Block5.8 match      = PASS
+fresh-process repeat      = EXACT PASS
+Block5.9 targeted tests   = 3 / 3 PASS
+full Stage5 regression    = PASS
+stale test expectation    = REPAIRED
+scientific outputs changed= NO
+formal inference rerun    = NO
+parameter tuning          = NO
+Block5.9 report changed   = NO
+STATUS = PASS_COMPLETE
+report = /home/agni/waymo/iscai_stage5/reports/block59_part2_terminal_contract_repair.json
+terminal remains open = YES

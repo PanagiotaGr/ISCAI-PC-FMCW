@@ -1,0 +1,51 @@
+{
+  "N_MC_8192_executed": false,
+  "P_occ_materialized": false,
+  "block": "6.6-Part2B",
+  "class_policy_frozen": false,
+  "failure_classification": "REGRESSION_HARNESS_TOOLING_ONLY",
+  "formal_outcomes_read": false,
+  "observed_failure": "No module named pytest",
+  "scene_cache": {
+    "all_status_PASS": true,
+    "file_count": 120,
+    "manifest_digest_sha256": "b9fd652b200ad7f48b838d667eec84ad125ff5a322fbf23dcf0ad0415df80f19"
+  },
+  "scientific_outputs": {
+    "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_association_matches.jsonl": {
+      "sha256": "1011d443998e7b33600911954d67c4377aefc63ec4455fb3d67b24e281661848",
+      "size_bytes": 1950977
+    },
+    "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_identity_safe_gaussian_posterior.jsonl": {
+      "sha256": "f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd",
+      "size_bytes": 16373521
+    },
+    "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_reactive_fallback_boxes.jsonl": {
+      "sha256": "32af5397b3ae4a3311dcf401a36bd247cfbca5fbdb9bf7e883b0a9a4e34bbb3b",
+      "size_bytes": 243315
+    },
+    "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_scene_association_summary.jsonl": {
+      "sha256": "c37b33883a9929ae6dc1a6089bfd3cdff7744c0e1bf75e2843a238cef499b87a",
+      "size_bytes": 50123
+    }
+  },
+  "scientific_summary_from_completed_consolidation": {
+    "association_matches": 3937,
+    "causal_ADB_boxes": 4971,
+    "fallback_by_class": {
+      "TYPE_CYCLIST": 17,
+      "TYPE_PEDESTRIAN": 167,
+      "TYPE_VEHICLE": 850
+    },
+    "matches_by_class": {
+      "TYPE_CYCLIST": 79,
+      "TYPE_PEDESTRIAN": 358,
+      "TYPE_VEHICLE": 3500
+    },
+    "posterior_records": 6925,
+    "reactive_fallback_boxes": 1034,
+    "unmatched_predictors": 2988
+  },
+  "stage": 6,
+  "status": "PASS_SCIENTIFIC_OUTPUTS_MATERIALIZED_BEFORE_REGRESSION_HARNESS_FAILURE"
+}

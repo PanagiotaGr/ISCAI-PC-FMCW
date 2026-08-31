@@ -1,0 +1,65 @@
+{
+  "block": "3.7",
+  "common_evaluator": {
+    "assignment": "global Hungarian on anchor/current position only",
+    "common_prediction_contract": true,
+    "future_truth_used_for_assignment": false,
+    "methods_supported": [
+      "CV",
+      "CA",
+      "CTRV",
+      "Kalman_EKF",
+      "IMM_CV_CA_CTRV",
+      "Multidimensional_Hough"
+    ],
+    "truth_sidecar": "EVALUATOR_ONLY"
+  },
+  "horizons_s": [
+    0.1,
+    0.3,
+    0.5,
+    1.0
+  ],
+  "implementation": {
+    "files": 90,
+    "sha256": "e80f7c593954bffdb2981232db9bd9f8b52ae92dfda5635083183a0ece737525"
+  },
+  "metrics": {
+    "endpoint_miss_threshold_m": 2.0,
+    "primary": [
+      "ADE_XY",
+      "FDE_XY"
+    ],
+    "supplementary": [
+      "ADE_3D",
+      "FDE_3D",
+      "per_horizon_XY_MAE",
+      "per_horizon_XY_RMSE",
+      "per_horizon_3D_MAE",
+      "per_horizon_3D_RMSE",
+      "reconstruction_precision",
+      "reconstruction_recall",
+      "reconstruction_F1",
+      "endpoint_miss_rate",
+      "false_prediction_count",
+      "unmatched_truth_count"
+    ]
+  },
+  "probabilistic_metrics": {
+    "Brier": "DEFER_STAGE4",
+    "NLL": "DEFER_STAGE4",
+    "calibration": "DEFER_STAGE4"
+  },
+  "real_WOMD_metrics": "DEFERRED_TO_BLOCK_3_8",
+  "stage": 3,
+  "status": "PASS",
+  "synthetic_gate": {
+    "exact_ADE_m": 0.0,
+    "exact_FDE_m": 0.0,
+    "exact_matches": 2,
+    "future_mutation_assignment_invariant": true,
+    "imperfect_false_predictions": 1,
+    "imperfect_matches": 1,
+    "imperfect_unmatched_truth": 1
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "materialized_posterior": {
+    "content_sha256": "e63e7f14be6e119587716a4e6b25d492c154ec1881aa75225a454fd05964e4b9",
+    "covariance_already_calibrated": true,
+    "covariance_key": "calibrated_covariance_H0_m2",
+    "development_N": 13682,
+    "file_sha256": "39dacd4a1dd83ac9951244328403384421731dcffc1cf01617bcc6c6395460b4",
+    "historical_Block44_prediction_SHA256": "a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a",
+    "mean_key": "mean_absolute_H0_m",
+    "path": "/home/agni/waymo/iscai_stage5/artifacts/block52/development_gaussian_posterior.npz",
+    "second_calibration": false
+  },
+  "purpose": "replace_nonexistent_Block44_dev_prediction_NPZ_resolver_with_exact_Stage5_materialized_frozen_Block44_dev_posterior",
+  "regression_before_final_freeze": "72/72_PASS",
+  "runner": {
+    "backup": "/home/agni/waymo/iscai_stage5/artifacts/block52/run_block52_part2_freeze.pre_materialized_resolver.181237b2d2411d02.py",
+    "path": "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py",
+    "post_patch_sha256": "38734c7f6622299ce15f04b3cc532df6bddd6c3bfd6c2b60301e089bf2da0cac",
+    "pre_patch_sha256": "181237b2d2411d0246c24ac80e7a96468104f2ef2feedb73e8a55e7fe3d17cd3"
+  },
+  "scientific_execution": {
+    "Stage4_modified": false,
+    "additional_Stage4_inference": false,
+    "formal_N120_read": false,
+    "recalibration": false,
+    "training": false
+  },
+  "semantic_repair_counts": {
+    "            \"Stage4_inference_performed\":\n                False,": 1,
+    "            \"Stage4_model_inference\":\n                False,": 1,
+    "            \"model_inference_performed\":\n                False,": 1,
+    "        \"Stage4_inference_performed\":\n            False,": 1,
+    "\"Stage4 model inference        = NO\"": 1,
+    "\"Stage4 model inference    = NO\"": 1,
+    "\"frozen_non_formal_Block4.4_development_predictions\"": 1
+  },
+  "status": "PASS"
+}

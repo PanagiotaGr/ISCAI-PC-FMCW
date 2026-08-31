@@ -1,0 +1,33 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py", line 1414, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py", line 670, in main
+    require(
+    ~~~~~~~^
+        not missing,
+        ^^^^^^^^^^^^
+    ...<6 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage5/scripts/audit_block52_exact_dev_inference_bridge.py", line 82, in require
+    raise RuntimeError(
+        message
+    )
+RuntimeError: Missing frozen Stage4 prerequisite(s): /home/agni/waymo/iscai_stage4/src/iscai_stage4/models/gaussian_gru.py, /home/agni/waymo/iscai_stage4/src/iscai_stage4/models/gaussian_math.py
+============================================================
+BLOCK 5.2 — EXACT FROZEN DEV-INFERENCE BRIDGE AUDIT
+============================================================
+
+============================================================
+EXACT DEV-INFERENCE BRIDGE AUDIT = BLOCKED
+============================================================
+exception = RuntimeError Missing frozen Stage4 prerequisite(s): /home/agni/waymo/iscai_stage4/src/iscai_stage4/models/gaussian_gru.py, /home/agni/waymo/iscai_stage4/src/iscai_stage4/models/gaussian_math.py
+
+formal N=120 used      = NO
+model forward executed = NO
+training/recalibration = NO
+upstream modified      = NO
+terminal remains open  = YES

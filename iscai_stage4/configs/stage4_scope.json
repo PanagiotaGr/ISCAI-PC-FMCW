@@ -1,0 +1,113 @@
+{
+  "stage": 4,
+  "status": "BOOTSTRAP",
+  "scope": "deterministic_and_probabilistic_trajectory_forecasting_and_calibration",
+  "upstream": {
+    "stage2": "COMPLETE_FROZEN",
+    "stage3": "COMPLETE_FROZEN",
+    "stage3_implementation_sha256": "12b7a236cf1ea8e8a02b1c74da44d7db79cdaef363542a2be564b697036e6bbf",
+    "formal_validation_N": 120,
+    "formal_validation_manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "stage3_formal_run_sha256": "5fbb4642f87ab8e62cf1e1b3ef4214d92df5b5a1423bd9fb72b9733ced02e433"
+  },
+  "primary_horizons_s": [
+    0.1,
+    0.3,
+    0.5,
+    1.0
+  ],
+  "observation_contract": {
+    "main_mode": "full_frozen_stage2_degraded",
+    "association_frontend": "frozen_stage3_estimated_gnn",
+    "measurement_covariance_R_t": "MANDATORY_PREDICTOR_INPUT",
+    "measurement_uncertainty_distinct_from_predictive_uncertainty": true,
+    "measured_fmcw_claim": false
+  },
+  "causality": {
+    "future_states_model_input": false,
+    "future_validity_model_input": false,
+    "future_track_duration_model_input": false,
+    "future_lidar_model_input": false,
+    "future_trajectory_supervision_only": true,
+    "tracks_to_predict_model_input": false,
+    "objects_of_interest_model_input": false,
+    "annotated_velocity_realistic_input": false,
+    "perfect_track_id_numeric_feature": false
+  },
+  "training_policy": {
+    "source_split": "official_WOMD_training",
+    "internal_partition": "deterministic_scenario_level_SHA256_80_10_10",
+    "fit_fraction": 0.8,
+    "development_fraction": 0.1,
+    "calibration_fraction": 0.1,
+    "window_level_split_allowed": false,
+    "normalization_statistics_source": "fit_only",
+    "calibration_statistics_source": "calibration_partition_only",
+    "formal_validation_used_for_training": false,
+    "formal_validation_used_for_early_stopping": false,
+    "formal_validation_used_for_normalization": false,
+    "formal_validation_used_for_calibration": false,
+    "future_behavior_based_sampling": false,
+    "performance_based_sampling": false
+  },
+  "model_program": {
+    "deterministic_GRU": "MANDATORY",
+    "lightweight_multi_agent_context": "MANDATORY_MAIN_PATH",
+    "map_context": "IMPLEMENT_AND_ABLATE",
+    "Gaussian_GRU": "MANDATORY",
+    "Gaussian_covariance_parameterization": "Cholesky_positive_definite",
+    "GMM": "IMPLEMENT_AND_EVALUATE",
+    "GMM_closure_policy": "mandatory_if_unimodal_Gaussian_is_inadequate",
+    "Transformer": "OPTIONAL_NOT_CLOSURE_BLOCKING",
+    "raw_LiDAR_BEV": "OPTIONAL_NOT_CLOSURE_BLOCKING"
+  },
+  "calibration": {
+    "mandatory": true,
+    "confidence_levels": [
+      0.5,
+      0.8,
+      0.9,
+      0.95,
+      0.99
+    ],
+    "metrics": [
+      "NLL",
+      "empirical_coverage",
+      "coverage_error",
+      "ECE",
+      "reliability",
+      "coverage_event_Brier"
+    ],
+    "primary_method": "covariance_scaling",
+    "post_calibration_coverage_MAE_must_not_exceed_raw": true
+  },
+  "formal_evaluation": {
+    "manifest_is_immutable": true,
+    "N": 120,
+    "manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "primary_targets": "WOMD_tracks_to_predict_evaluator_only",
+    "same_observation_family_as_stage3": true,
+    "same_association_frontend_as_stage3_track_based_methods": true,
+    "primary_displacement_metric": "planar_ADE",
+    "pdf_minimum_acceptance": "probabilistic_predictor_ADE_lower_than_at_least_one_frozen_classical_baseline",
+    "stricter_project_acceptance": "calibrated_probabilistic_predictor_ADE_lower_than_frozen_CV_ADE",
+    "do_not_tune_after_formal_results": true
+  },
+  "required_ablations": [
+    "without_measurement_covariance",
+    "with_measurement_covariance",
+    "actor_only",
+    "multi_agent_context",
+    "no_map",
+    "map_context"
+  ],
+  "downstream_not_in_stage4": [
+    "receiver_angular_posterior",
+    "beam_codebook",
+    "adaptive_TopK",
+    "optical_link",
+    "ADB",
+    "joint_controller",
+    "DeepSense"
+  ]
+}

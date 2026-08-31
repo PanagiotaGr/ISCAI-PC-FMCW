@@ -1,0 +1,47 @@
+{
+  "stage": 3,
+  "status": "BOOTSTRAP_CONTRACT",
+
+  "upstream": {
+    "stage2_semantics": "degraded_algorithm_facing",
+    "measured_fmcw": false,
+    "measurement_covariance_required": true,
+    "future_information_allowed": false
+  },
+
+  "main_information_regime": {
+    "association_mode": "estimated_association",
+    "algorithm_input": "unlabeled_stage2_detection_frames",
+    "truth_sidecar_access": "evaluator_only",
+    "same_observation_stream_across_baselines": true
+  },
+
+  "diagnostic_modes": {
+    "oracle_identity": true,
+    "oracle_identity_main_result": false,
+    "oracle_association": true,
+    "oracle_association_main_result": false
+  },
+
+  "mht": {
+    "meaning": "Multidimensional Hough Transform",
+    "input_mode": "track_before_detect"
+  },
+
+  "imm": {
+    "required_modes": [
+      "CV",
+      "CA",
+      "CTRV"
+    ]
+  },
+
+  "stage_boundary": {
+    "neural_predictor": false,
+    "beam_control": false,
+    "adaptive_top_k": false,
+    "optical_link_budget": false,
+    "predictive_adb": false,
+    "deepsense": false
+  }
+}

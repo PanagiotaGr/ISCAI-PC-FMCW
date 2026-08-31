@@ -1,0 +1,94 @@
+{
+  "PartA_generic_margin": {
+    "body_margin_constants": [
+      "PART_A_LATERAL_SAFETY_MARGIN_M",
+      "PART_A_RADIAL_SAFETY_MARGIN_M"
+    ],
+    "class_aware": false,
+    "classification": "GENERIC_REACTIVE_SAFETY_MARGIN",
+    "control_transition_length_m": 20.0,
+    "function": "part_a_dynamic_geometry_from_h0_center",
+    "lateral_safety_margin_m": 1.0,
+    "numerical_semantic_test": {
+      "control_r_max_error": 0.0,
+      "control_r_min_error": 0.0,
+      "epsilon_error": 0.0,
+      "pass": true,
+      "test_center_H0_m": [
+        5.0,
+        40.0,
+        0.0
+      ]
+    },
+    "radial_safety_margin_m": 4.0,
+    "signature": "(center_H0_m) -> 'PartAReactiveGeometry'",
+    "source_path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/part_a_reactive.py",
+    "source_sha256": "19f80f325aebc03b5257ca3c0408d1ddea1ac3a8ff4ad875914224584e2ef173",
+    "target_width_m": 1.9,
+    "uncertainty_responsive": false
+  },
+  "actuator_boundary": {
+    "axes": [
+      "theta",
+      "range"
+    ],
+    "face_height_pixel_claim": false,
+    "full_3D_geometry_available": true,
+    "pedestrian_supported_branch": "partial_dimming_via_nonzero_intensity_floor",
+    "vertical_actuator_DOF": false
+  },
+  "authoritative_capabilities": {
+    "actuation_rate_limit_operator": "NOT_IMPLEMENTED_RUNTIME_API",
+    "class_aware_predictive_margin_operator": "NOT_IMPLEMENTED_RUNTIME_API",
+    "class_overlap_priority_operator": "NOT_IMPLEMENTED_RUNTIME_API",
+    "class_specific_policy_composition": "NOT_IMPLEMENTED_RUNTIME_API",
+    "full_3D_box_geometry": "IMPLEMENTED_RUNTIME_API",
+    "part_a_generic_safety_margin_geometry": "IMPLEMENTED_RUNTIME_API",
+    "predictive_gamma_threshold": "IMPLEMENTED_RUNTIME_API",
+    "reactive_intensity_floor": "IMPLEMENTED_RUNTIME_API",
+    "reactive_raised_cosine": "IMPLEMENTED_RUNTIME_API",
+    "temporal_smoothing_operator": "NOT_IMPLEMENTED_RUNTIME_API",
+    "vertical_pixel_or_elevation_actuation": "GEOMETRY_ONLY_NOT_ACTUATOR_DOF"
+  },
+  "block": "6.6-Part3A3",
+  "continuity_constraints": {
+    "communication_beam_actuator_reused": false,
+    "preserve_PartA_generic_safety_margin": true,
+    "preserve_PartA_raised_cosine": true,
+    "preserve_normalized_intensity_range": true,
+    "preserve_original_reactive_fallback": true
+  },
+  "next": "BLOCK6.6_PART3B_CLASS_AWARE_POLICY_PREREGISTRATION",
+  "regression": {
+    "status": "PASS",
+    "tests": 145
+  },
+  "required_new_runtime_components": [
+    "class_aware_policy_composition",
+    "class_aware_predictive_margin_operator",
+    "class_overlap_priority_rule",
+    "temporal_smoothing_operator",
+    "actuation_rate_limit_operator"
+  ],
+  "scientific_execution": {
+    "P_occ_modified": false,
+    "formal_outcomes_read": false,
+    "formal_tuning": false,
+    "numeric_policy_parameter_selected": false,
+    "source_modified": false
+  },
+  "stage": 6,
+  "status": "PASS_PART_A_MARGIN_SEMANTIC_BOUNDARY_RESOLVED",
+  "supersedes_for_Part3B": {
+    "Part3A2_report": "/home/agni/waymo/iscai_stage6/reports/block66_part3a2_executable_policy_capability_resolution.json",
+    "Part3A2_sha256": "4dc5f7dfb27c8cc2b448a3a861a0805b7ae5ec3e5347a513e9612dd47a6b1327",
+    "margin_audit_false_negative": {
+      "cause": "looked only for margin function parameters",
+      "correct_resolution": "Part-A margins are frozen module constants consumed inside executable geometry body"
+    },
+    "temporal_false_positive": {
+      "cause": "raw substring 'ema' inside PredictiveMask",
+      "corrected_value": "NOT_IMPLEMENTED_RUNTIME_API"
+    }
+  }
+}

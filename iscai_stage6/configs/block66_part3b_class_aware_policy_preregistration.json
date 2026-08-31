@@ -1,0 +1,572 @@
+{
+  "ADB_metric_formulas": {
+    "actuation_latency": {
+      "formula": "wall-clock runtime from loaded P_occ/current geometry to final four-horizon illumination schedule",
+      "units": "seconds",
+      "used_for_policy_selection": false
+    },
+    "binary_dim_support": "D_tau = [I_final_tau < 1.0]",
+    "cyclist_visibility_proxy": {
+      "direction": "higher_is_better",
+      "formula": "mean(I_final over future GT cyclist projected full-box footprint cells)"
+    },
+    "energy_consumption": {
+      "direction": "reported_not_primary_safety_target",
+      "formula": "mean over horizon/grid of I_final",
+      "reported_semantics": "normalized emitted-light energy proxy, not joules"
+    },
+    "false_dimming": {
+      "direction": "lower_is_better",
+      "formula": "|D \\ O| / |D|; 0 when |D|=0"
+    },
+    "flicker_change_rate": {
+      "direction": "lower_is_better",
+      "formula": "mean_h(count(I_h != I_prev)/grid_cell_count)"
+    },
+    "glare_risk_exposure": {
+      "direction": "lower_is_better",
+      "formula": "mean final normalized intensity over vehicle constructed front-upper/rear-upper surrogate reference cells"
+    },
+    "mask_IoU": {
+      "empty_union": 1.0,
+      "formula": "|D∩O| / |D∪O|"
+    },
+    "oracle_dim_support": "O_tau = union of constructed future actor shadow supports",
+    "over_masking_area": {
+      "direction": "lower_is_better",
+      "formula": "|D \\ O| / |full actuator grid|"
+    },
+    "pedestrian_visibility_proxy": {
+      "direction": "higher_is_better",
+      "formula": "mean(I_final over future GT pedestrian projected full-box footprint cells)"
+    },
+    "rate_limit_safety_override_fraction": {
+      "direction": "lower_is_better",
+      "formula": "override cells / total actuator-cell transitions"
+    },
+    "road_illumination_retention": {
+      "direction": "higher_is_better",
+      "formula": "mean(I_final over frozen road ROI)"
+    },
+    "temporal_smoothness": {
+      "direction": "lower_is_better",
+      "formula": "mean_h(mean_grid(|I_h-I_prev|)/delta_t_h)",
+      "reported_metric": "mean_absolute_change_rate"
+    },
+    "vehicle_shadow_zone_violation": {
+      "direction": "lower_is_better",
+      "formula": "|O_vehicle \\ D| / |O_vehicle|",
+      "no_vehicle_cells": "NA"
+    }
+  },
+  "actuation_rate_limit": {
+    "applied_after": "temporal smoothing",
+    "candidate_rates_per_s": [
+      1,
+      2,
+      4,
+      8,
+      16
+    ],
+    "constraint": "rho_dim >= rho_bright; dimming is never slower than brightening",
+    "equation": "I_rate = clip(I_smooth, I_prev-rho_dim*delta_t, I_prev+rho_bright*delta_t)",
+    "finite_rate_required": true,
+    "normalized_intensity_units": "[0,1]",
+    "rate_pair_count": 15,
+    "safety_override_metric": "fraction of actuator cells/time steps where hard VRU floor overrides I_rate",
+    "safety_projection_after_rate_limit": "re-apply active VRU hard floor; record every rate-limit safety override"
+  },
+  "additional_class_margin_parameterization": {
+    "angular_expansion": "delta_theta = atan2(m_extra, max(r_tau, PartA_EPS))",
+    "candidate_counts": {
+      "TYPE_CYCLIST": 432,
+      "TYPE_PEDESTRIAN": 54,
+      "TYPE_VEHICLE": 324
+    },
+    "candidate_rules": {
+      "base_margin_m": {
+        "candidate_count": 9,
+        "j_max": 8,
+        "j_min": 0,
+        "representation": "j/4 metres"
+      },
+      "cyclist_lateral_multiplier": {
+        "candidate_count": 8,
+        "j_max": 8,
+        "j_min": 1,
+        "representation": "j/4",
+        "zero_permitted": false
+      },
+      "uncertainty_multiplier": {
+        "candidate_count": 6,
+        "j_max": 6,
+        "j_min": 1,
+        "representation": "j/2",
+        "zero_permitted": false
+      },
+      "vehicle_closing_multiplier": {
+        "candidate_count": 6,
+        "j_max": 6,
+        "j_min": 1,
+        "representation": "j/20",
+        "zero_permitted": false
+      }
+    },
+    "closing_speed_mps": "v_close = max(0, (r_current-r_tau)/tau)",
+    "coordinate_frame": "H0 theta/r actuator plane",
+    "cyclist_formula": "m_extra = b_cyclist + u_cyclist*sigma_lat + q_cyclist*tau*v_lat",
+    "cyclist_lateral_rate_mps": "v_lat = abs(ell_current^T mean_displacement_xy_tau)/tau",
+    "grid_dilation": "ceil(delta_theta / frozen_theta_step); clip at actuator theta boundaries",
+    "lateral_LOS_unit": "ell_tau = [-p_tau_y/r_tau, p_tau_x/r_tau]",
+    "lateral_predictive_sigma_m": "sigma_lat = sqrt(ell_tau^T Sigma_xy,tau ell_tau)",
+    "meaning": "additional predictive dilation; does not replace Part-A generic margin",
+    "pedestrian_formula": "m_extra = b_pedestrian + u_pedestrian*sigma_lat",
+    "predicted_absolute_center": "p_tau_xy = causal_anchor_xy + calibrated_Gaussian_mean_displacement_xy",
+    "predicted_range": "r_tau = hypot(p_tau_x, p_tau_y)",
+    "vehicle_formula": "m_extra = b_vehicle + u_vehicle*sigma_lat + q_vehicle*tau*v_close"
+  },
+  "block": "6.6-Part3B",
+  "causality": {
+    "formal_outcome_tuning": false,
+    "future_GT_controller_input": false,
+    "future_GT_evaluator_after_decision": true,
+    "future_GT_heading_controller_input": false,
+    "future_track_duration_selection": false,
+    "objects_of_interest_selection": false,
+    "perfect_track_id_join": false,
+    "tracks_to_predict_selection": false,
+    "truth_track_index_controller_input": false
+  },
+  "class_intensity_floor_parameterization": {
+    "candidate_triplets": 3270,
+    "cyclist": {
+      "j_max": 20,
+      "j_min": 1,
+      "zero_permitted": false
+    },
+    "cyclist_full_blackout_permitted": false,
+    "pedestrian": {
+      "j_max": 20,
+      "j_min": 1,
+      "zero_permitted": false
+    },
+    "pedestrian_full_blackout_permitted": false,
+    "representation": "f_c = j_c / 20",
+    "structural_constraints": [
+      "f_vehicle <= f_pedestrian",
+      "f_vehicle <= f_cyclist",
+      "f_pedestrian > 0",
+      "f_cyclist > 0"
+    ],
+    "vehicle": {
+      "j_max": 20,
+      "j_min": 0
+    }
+  },
+  "class_overlap_policy": {
+    "VRU_floor_guard": "F_vru = max(active pedestrian floor, active cyclist floor, 0)",
+    "deterministic": true,
+    "hard_priority_order": [
+      "VRU minimum-visibility floor constraint",
+      "vehicle glare suppression",
+      "cyclist glare/visibility objective",
+      "pedestrian glare/visibility objective"
+    ],
+    "pre_floor_guard_command": "I_min = minimum over all active actor illumination maps",
+    "raw_class_aware_output": "I_raw = max(I_min, F_vru)",
+    "reason": "vehicle glare protection remains strong but may not force a pedestrian/cyclist below its hard non-blackout floor",
+    "same_level_suppression": "minimum intensity"
+  },
+  "class_threshold_parameterization": {
+    "candidate_rule": {
+      "candidates_per_class": 8192,
+      "k_max": 8191,
+      "k_min": 0,
+      "representation": "exact integer occupancy quantum",
+      "step": 1
+    },
+    "equation": "M_i,tau(theta,r) = 1[count_i,tau(theta,r) > k_c]",
+    "equivalent_gamma": "gamma_c = k_c / 8192",
+    "independent_classes": [
+      "TYPE_VEHICLE",
+      "TYPE_PEDESTRIAN",
+      "TYPE_CYCLIST"
+    ],
+    "no_float_grid_search": true,
+    "strict_comparison": ">"
+  },
+  "constructed_oracle_reference": {
+    "controller_access": false,
+    "evaluation_access_timing": "future GT may be read only after controller output is fixed",
+    "ground_truth_type": "constructed evaluator-only reference; NOT measured ADB ground truth",
+    "identity": "truth track identity permitted evaluator-side only",
+    "oracle_shadow_semantics": "future GT projected box -> exact Part-A +4 m shadow end and +20 m raised-cosine transition",
+    "primary_actor_geometry": "future GT full 3D box",
+    "vehicle_glare_reference": "heading-dependent geometry-based front-upper/rear-upper surrogate"
+  },
+  "continuous_illumination_conversion": {
+    "inactive_theta_column": 1.0,
+    "per_active_theta_column": {
+      "r_far": "maximum active frozen range-cell center after threshold/dilation",
+      "r_shadow_end_m": "r_far + 4.0",
+      "r_transition_end_m": "r_shadow_end_m + 20.0",
+      "radial_profile": "exact part_a_radial_profile with class-specific intensity_floor"
+    },
+    "purpose": "convert predictive occupancy/masks back into the preserved Part-A L(theta,r) rather than replacing ADB with a binary map",
+    "raised_cosine_preserved": true,
+    "range_profile_reimplemented": false
+  },
+  "controller_geometry": {
+    "actor_width_height": true,
+    "actuator_axes": [
+      "theta",
+      "ground_range"
+    ],
+    "box_corners": true,
+    "centroid_only": false,
+    "face_height_pixel_control_claim": false,
+    "predictive_covariance": true,
+    "primary_predictive_occupancy": "full projected 3D actor box",
+    "vertical_actuator_DOF": false
+  },
+  "development_population": {
+    "calibration_partition_used_for_policy_tuning": false,
+    "class_counts": {
+      "TYPE_CYCLIST": 48,
+      "TYPE_PEDESTRIAN": 110,
+      "TYPE_VEHICLE": 719
+    },
+    "cohort_scenes": 120,
+    "cohort_selection": "frozen outcome-independent Block6.6 development cohort",
+    "eligible_predictive_actors": 877,
+    "eligible_reactive_fallback_actors": 247,
+    "formal_population_used": false,
+    "partition": "Stage4 DEVELOPMENT only"
+  },
+  "development_selection_protocol": {
+    "acceptance_thresholds": "NOT selected in Part3B; after the development-only winning policy is frozen, a separate pre-formal gate must freeze formal acceptance/non-inferiority thresholds before any formal outcome is read",
+    "exact_tie_handling": "no tolerance-based tie; compare stored deterministic float64 metrics then canonical parameter tuple",
+    "formal_outcomes_allowed": false,
+    "full_cartesian_search": false,
+    "parameter_revisiting_after_later_stage": false,
+    "partition": "development only",
+    "stage_1_class_gamma": {
+      "held_fixed": "no additional class margin; floor not yet selected; no temporal/rate tuning",
+      "objective": "maximize macro mean per-actor/per-horizon full-box mask IoU against constructed development future reference",
+      "tie_break": {
+        "TYPE_CYCLIST": "larger k first (less unnecessary dimming)",
+        "TYPE_PEDESTRIAN": "larger k first (less unnecessary dimming)",
+        "TYPE_VEHICLE": "smaller k first (more protective threshold)"
+      },
+      "vary": "k_c only"
+    },
+    "stage_2_class_margin": {
+      "classwise_primary_objective": "maximize macro actor-horizon IoU after dilation",
+      "cyclist_lateral_response_required": true,
+      "gamma": "frozen Stage-1 development selection",
+      "mandatory_nonzero_uncertainty_response": true,
+      "tie_break_order": [
+        "lower over-masking area",
+        "smaller base margin",
+        "smaller uncertainty multiplier",
+        "smaller closing/lateral multiplier",
+        "canonical numeric tuple"
+      ],
+      "vary": "class base / uncertainty / vehicle-closing / cyclist-lateral coefficients",
+      "vehicle_closing_response_required": true
+    },
+    "stage_3_class_floors": {
+      "arbitrary_weighted_sum": false,
+      "gamma_and_margin": "fixed from stages 1 and 2",
+      "lexicographic_selection": [
+        "minimize maximum element of normalized risk vector",
+        "minimize arithmetic mean of normalized risk vector",
+        "minimize over_masking_area",
+        "minimize false_dimming",
+        "canonical floor tuple (f_vehicle,f_pedestrian,f_cyclist)"
+      ],
+      "normalized_risk_vector": [
+        "vehicle_shadow_zone_violation",
+        "glare_risk_exposure",
+        "1-pedestrian_visibility_proxy",
+        "1-cyclist_visibility_proxy",
+        "1-road_illumination_retention"
+      ],
+      "risk_vector_all_components_unit_interval": true,
+      "vary": "class floor triplets only"
+    },
+    "stage_4_temporal_and_rate": {
+      "all_class_parameters": "fixed from stages 1-3",
+      "lexicographic_selection": [
+        "minimize maximum normalized safety-risk component",
+        "minimize mean normalized safety-risk component",
+        "minimize temporal mean_absolute_change_rate",
+        "minimize flicker_change_rate",
+        "minimize rate-limit safety-override fraction",
+        "minimize over_masking_area",
+        "canonical temporal/rate tuple"
+      ],
+      "vary": "smoothing time constant and finite dim/bright rate pair"
+    },
+    "staged_search": true
+  },
+  "frozen_inputs": {
+    "Part3A3_handoff": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3a3_to_part3b_handoff.json",
+      "sha256": "0067239bf65d32d7bd40fdd33c02b74aff509265e8a86070a3d2a0ed404cb1ee"
+    },
+    "Part3A3_report": {
+      "path": "/home/agni/waymo/iscai_stage6/reports/block66_part3a3_operator_capability_correction.json",
+      "sha256": "d76474b09f88b6809e30f4a59615feb3d0e5687b93e0b7083816028d40704fe3"
+    },
+    "development_cohort": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_class_aware_development_cohort_120.jsonl",
+      "sha256": "57440e3d976e7aeff44811b5eeb075dc56e0e0e070a3832ec72d354253b998c9"
+    },
+    "eligibility_freeze": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligibility_freeze_manifest.json",
+      "sha256": "2d9dcd668b6b07824793a4773430edf98ce4e96311f7cf756b2947520468efc0"
+    },
+    "geometry_source": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/geometry.py",
+      "sha256": "f6e6cc0dd362338eeeaae9d8e25947434a3e7c64b350f0baf81a79a46159f94e"
+    },
+    "illumination_source": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/illumination.py",
+      "sha256": "daeb96029ff6e1720d17cd20d3e8f00155c566eeecec3b3726f4adcc8b05d832"
+    },
+    "mc_numeric_config": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/block64_mc_grid_numeric_freeze.json",
+      "sha256": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73"
+    },
+    "part2c2a_report": {
+      "path": "/home/agni/waymo/iscai_stage6/reports/block66_part2c2a_probabilistic_kernel_binding_audit.json",
+      "sha256": "4c79d9ba8084aa3cfbfed03945bf989703769feb5303827844413c2ee71ac0dc"
+    },
+    "part_a_reactive_source": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/part_a_reactive.py",
+      "sha256": "19f80f325aebc03b5257ca3c0408d1ddea1ac3a8ff4ad875914224584e2ef173"
+    },
+    "pocc_freeze": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c2b_pocc_freeze_manifest.json",
+      "sha256": "b0df9df17c6008f9bdf3a993d08b103dc694607be90abe3307bc8d4877f9f6a7"
+    },
+    "pocc_manifest": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c2b_eligible_actor_pocc_manifest.jsonl",
+      "sha256": "c361ed640b91850831d7e7177d89733fedd3e171f5f3111bcd93698c74a4a300"
+    },
+    "pocc_report": {
+      "path": "/home/agni/waymo/iscai_stage6/reports/block66_part2c2b_eligible_n8192_pocc.json",
+      "sha256": "41257fbc43bcd6e0a01925c0f96648f3cb67850785e8f39d9787547ce1511348"
+    },
+    "predictive_mask_source": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/predictive_mask.py",
+      "sha256": "239611ddb1cc21b9ddd46962eb561e58e0d1474be58878f9c79c256ba1940575"
+    },
+    "probabilistic_occupancy_source": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_occupancy.py",
+      "sha256": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e"
+    }
+  },
+  "frozen_probabilistic_runtime": {
+    "N_MC": 8192,
+    "P_occ_storage": "canonical uint32 occupancy counts; P_occ = count / 8192 exactly",
+    "grid": {
+      "range_count": 301,
+      "range_max_m": 150.0,
+      "range_min_m": 0.0,
+      "range_step_m": 0.5,
+      "theta_count": 501,
+      "theta_max_deg": 25.0,
+      "theta_min_deg": -25.0,
+      "theta_step_deg": 0.1
+    },
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "seed": 20260821,
+    "threshold_semantics": "STRICT_GREATER_THAN"
+  },
+  "next_implementation_gate": {
+    "block": "6.6-Part3C",
+    "development_parameter_sweep": "BLOCKED_UNTIL_PART3C_RUNTIME_PASS",
+    "requirements_before_any_sweep": [
+      "implement the five preregistered runtime operators",
+      "unit-test exact strict-gamma semantics",
+      "unit-test margin expansion in theta cells",
+      "unit-test class floors and no-VRU-blackout invariant",
+      "unit-test deterministic overlap priority",
+      "unit-test temporal smoothing",
+      "unit-test finite actuation-rate limiter",
+      "unit-test safety-floor override accounting",
+      "materialize vehicle geometry-based relevant-region evidence from the same frozen N8192 samples",
+      "prove no vertical/pixel actuation claim is introduced",
+      "fresh Stage6 regression"
+    ]
+  },
+  "predictive_mask_aggregation": {
+    "binary_OR_equivalence": true,
+    "multi_actor_binary_equation": "M_tau = 1 - product_i(1-M_i,tau)",
+    "per_actor": "strict class threshold followed by class-aware angular dilation"
+  },
+  "preserved_PartA_semantics": {
+    "class_aware_predictive_margin": "additional expansion above the frozen Part-A generic safety semantics",
+    "generic_lateral_margin_m": 1.0,
+    "generic_radial_margin_m": 4.0,
+    "generic_reactive_safety_margin": "preserved, not replaced",
+    "multi_actor_original_composition": "minimum intensity",
+    "original_reactive_baseline_modified": false,
+    "raised_cosine": "exact frozen Part-A runtime function",
+    "target_width_m": 1.9,
+    "transition_length_m": 20.0
+  },
+  "purpose": "Freeze the complete class-aware predictive ADB policy family, candidate-generation rules, evaluator formulas, class overlap semantics, temporal smoothing semantics, actuation-rate-limit semantics and staged development-only selection procedure before any class-policy sweep.",
+  "reactive_fallback_inside_class_aware_controller": {
+    "class_floor_applied": true,
+    "future_information": false,
+    "geometry": "exact frozen original-reactive Part-A geometry",
+    "radial_profile": "exact frozen raised-cosine profile",
+    "scope": "class-aware controller only; does not modify the original-reactive baseline"
+  },
+  "required_runtime_components_to_implement_next": [
+    "class_aware_policy_composition",
+    "class_aware_predictive_margin_operator",
+    "class_overlap_priority_rule",
+    "temporal_smoothing_operator",
+    "actuation_rate_limit_operator"
+  ],
+  "road_ROI": {
+    "construction": "map each frozen theta/range ground-cell center to H0 XY; include cell when its XY distance to a causal/static WOMD lane-center polyline is <= 1.75 m",
+    "empty_ROI": "NA and excluded from macro average",
+    "future_dynamic_map_used": false,
+    "lane_corridor_half_width_m": 1.75,
+    "metric_name": "road_illumination_retention",
+    "not_measured_photometry": true,
+    "reference_type": "constructed map-based road illumination proxy"
+  },
+  "scientific_boundary": {
+    "formal_outcomes_read": false,
+    "formal_tuning": false,
+    "new_MC_sampling": false,
+    "new_model_inference": false,
+    "numeric_policy_selected": false,
+    "policy_sweep_executed": false,
+    "recalibration": false,
+    "source_modified": false,
+    "training": false
+  },
+  "seven_ADB_baseline_factorization": {
+    "1_static_ADB": {
+      "class_policy": false,
+      "future_prediction": false,
+      "semantics": "normalized all-on static map",
+      "uncertainty": false
+    },
+    "2_original_reactive_ADB": {
+      "class_policy": false,
+      "future_prediction": false,
+      "must_remain_unchanged": true,
+      "semantics": "exact frozen Block6.2 Part-A reactive implementation",
+      "uncertainty": false
+    },
+    "3_deterministic_predictive_ADB": {
+      "class_policy": false,
+      "future_prediction": "shared calibrated Gaussian mean",
+      "geometry": "future full boxes",
+      "purpose": "isolate uncertainty contribution",
+      "uncertainty": false
+    },
+    "4_uncertainty_aware_predictive_ADB": {
+      "class_labels_collapsed": true,
+      "class_policy": false,
+      "future_prediction": "frozen calibrated P_occ",
+      "margin": "single shared sigma_lat-responsive margin family; no class terms",
+      "purpose": "isolate uncertainty-responsive control from class awareness",
+      "uncertainty": true
+    },
+    "5_class_agnostic_predictive_ADB": {
+      "additional_uncertainty_margin": false,
+      "class_policy": false,
+      "class_specific_floor": false,
+      "future_prediction": "frozen calibrated P_occ",
+      "gamma": 0.5,
+      "purpose": "preserve frozen Block6.5 class-agnostic boundary",
+      "uncertainty_in_P_occ": true
+    },
+    "6_class_aware_predictive_ADB": {
+      "actuation_rate_limit": true,
+      "class_floor": true,
+      "class_gamma": true,
+      "class_margin": true,
+      "class_policy": true,
+      "class_priority": true,
+      "future_prediction": "frozen calibrated P_occ",
+      "temporal_smoothing": true,
+      "uncertainty": true
+    },
+    "7_oracle_future_ADB": {
+      "controller_input_in_nonoracle_methods": false,
+      "future_prediction": "future GT evaluator-only",
+      "purpose": "upper bound / constructed oracle future reference"
+    },
+    "fake_duplicate_baselines_permitted": false,
+    "shared_actuator_dynamics_after_freeze": "deterministic, uncertainty-aware, class-agnostic, class-aware and oracle predictive maps use the same frozen raised-cosine and actuator dynamics where applicable; original reactive baseline itself remains exact and unmodified"
+  },
+  "source_of_numeric_candidate_grids": "Stage6 implementation preregistration; not numerical values supplied by the PDF or SAE J3069.",
+  "stage": 6,
+  "status": "PREREGISTERED_PARAMETERIZATION_AND_DEVELOPMENT_SELECTION_RULE",
+  "temporal_smoothing": {
+    "candidate_time_constants_ms": [
+      50,
+      100,
+      200,
+      400
+    ],
+    "candidate_values_are_PDF_values": false,
+    "domain": "planned actuation time sequence at tau=[0.1,0.3,0.5,1.0] s",
+    "equation": "alpha_h = 1-exp(-delta_t_h/T); I_smooth_h = alpha_h*I_raw_h + (1-alpha_h)*I_prev",
+    "initial_state": "current causal class-aware reactive illumination generated from exact Part-A geometry; no future information",
+    "zero_smoothing_candidate": false
+  },
+  "vehicle_relevant_region_surrogates": {
+    "controller_side_heading_source": "predicted/samplewise heading only; no future GT heading",
+    "evaluator_side_heading_source": "future GT heading permitted only after controller decision for constructed oracle/safety-reference evaluation",
+    "local_box_fraction_convention": "FractionalBoxRegion bounds relative to actor-local length/width/height axes",
+    "oncoming_front_upper_surrogate": {
+      "x_bounds": [
+        0.0,
+        0.5
+      ],
+      "y_bounds": [
+        -0.5,
+        0.5
+      ],
+      "z_bounds": [
+        0.0,
+        0.5
+      ]
+    },
+    "oncoming_rule": "cos(actor_heading_H0_rad) < 0",
+    "physical_ground_truth_claim": false,
+    "preceding_rear_upper_surrogate": {
+      "x_bounds": [
+        -0.5,
+        0.0
+      ],
+      "y_bounds": [
+        -0.5,
+        0.5
+      ],
+      "z_bounds": [
+        0.0,
+        0.5
+      ]
+    },
+    "preceding_rule": "cos(actor_heading_H0_rad) >= 0",
+    "required_before_parameter_sweep": "materialize/project these surrogate regions from the same frozen N8192 trajectory samples for vehicle compliance evidence; full-box P_occ remains the primary controller occupancy",
+    "semantics": "geometry-based heading-dependent surrogate only; WOMD does not provide actual windshield, mirror or driver locations"
+  }
+}

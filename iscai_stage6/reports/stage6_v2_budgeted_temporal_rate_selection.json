@@ -1,0 +1,106 @@
+{
+  "block": "6.8_development_stage4_temporal_rate_selection",
+  "candidate_count": 60,
+  "execution_integrity": {
+    "Stage3_raw_max_abs_delta": 4.440892098500626e-16,
+    "winner_max_abs_delta": 4.440892098500626e-16,
+    "winner_replay_scenarios": 120
+  },
+  "next": "RUN_FROZEN_PRIMARY_DEVELOPMENT_ACCEPTANCE_GATE",
+  "outputs": {
+    "freeze": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_v2_budgeted_temporal_rate_selection_freeze.json",
+      "sha256": "e6b7e488c7ff5ddb1f03169677c74bba78c6f17d348d6bcfa421629c30ef3d03"
+    },
+    "scores": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/stage6_v2_budgeted_residual/development_engine/candidate_scores.jsonl",
+      "sha256": "f2a80844f2960ccfee381e2fab075270250af1e413fba3aabdf9082b97f8b43a"
+    },
+    "winner_scenarios": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/stage6_v2_budgeted_residual/development_engine/winner_scenario_metrics.jsonl",
+      "sha256": "a6b49c22f69850dfdefa40d3f1cc454adcee05469593f0702d9045049353d373"
+    }
+  },
+  "regression": {
+    "post": 224,
+    "pre": 224
+  },
+  "runner_up": {
+    "rho_bright_per_s": 1,
+    "rho_dim_per_s": 2,
+    "selection_key": [
+      0.38528326443431016,
+      0.19636153911474014,
+      0.019387236810547024,
+      0.018521788096011713,
+      0.0,
+      0.21043520655256492,
+      400,
+      2,
+      1
+    ],
+    "time_constant_ms": 400
+  },
+  "scientific_boundary": {
+    "Stage4_frozen": true,
+    "Stage4_winner_selected": true,
+    "formal_evaluation": false,
+    "further_development_parameter_tuning": false,
+    "primary_acceptance_tested": false
+  },
+  "selected": {
+    "finite_scenario_support": {
+      "cyclist_visibility_proxy": 37,
+      "false_dimming": 120,
+      "flicker_change_rate": 120,
+      "glare_risk_exposure": 115,
+      "over_masking_area": 120,
+      "pedestrian_visibility_proxy": 45,
+      "rate_limit_safety_override_fraction": 120,
+      "road_illumination_retention": 120,
+      "temporal_mean_absolute_change_rate": 120,
+      "vehicle_shadow_zone_violation": 115
+    },
+    "metrics": {
+      "cyclist_visibility_proxy": 0.7351157167893618,
+      "false_dimming": 0.8807755827009678,
+      "flicker_change_rate": 0.01854854797603022,
+      "glare_risk_exposure": 0.08742530081439684,
+      "over_masking_area": 0.210464397893029,
+      "pedestrian_visibility_proxy": 0.6148659108025306,
+      "rate_limit_safety_override_fraction": 0.0,
+      "road_illumination_retention": 0.8135483809119194,
+      "temporal_mean_absolute_change_rate": 0.01599199729475096,
+      "vehicle_shadow_zone_violation": 0.05763895873027997
+    },
+    "rho_bright_per_s": 1,
+    "rho_dim_per_s": 1,
+    "safety_risk_vector": {
+      "1-cyclist_visibility_proxy": 0.26488428321063817,
+      "1-pedestrian_visibility_proxy": 0.3851340891974694,
+      "1-road_illumination_retention": 0.1864516190880806,
+      "glare_risk_exposure": 0.08742530081439684,
+      "vehicle_shadow_zone_violation": 0.05763895873027997
+    },
+    "selection_key": [
+      0.3851340891974694,
+      0.196306850208173,
+      0.01599199729475096,
+      0.01854854797603022,
+      0.0,
+      0.210464397893029,
+      400,
+      1,
+      1
+    ],
+    "time_constant_ms": 400,
+    "time_constant_s": 0.4
+  },
+  "stage": 6,
+  "status": "PASS_STAGE4_TEMPORAL_RATE_SELECTED_FROZEN",
+  "storage": {
+    "free_GiB": 1050.4753684997559,
+    "reserve_GiB": 250.0,
+    "reserve_pass": true
+  }
+}

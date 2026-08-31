@@ -1,0 +1,18 @@
+{
+  "Stage5_final_authority": "f91a0d21ed752b1e1e67096ca8af1ea061145869605525b232f6bccf1c26efe1",
+  "Stage6_final_closure": {
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/experiment5_v3_recovery_runs/20260829T144747Z/v3_closure.json",
+    "sha256": "e7d25b0d49ede47ce0591b2bb7de6ddb1ee19d10968af1c44affd9ca139242a6"
+  },
+  "Stage7_allowed": true,
+  "controller": "causal_budgeted_predictive_residual_ADB",
+  "from_stage": 6,
+  "historical_V1_block": {
+    "still_valid_for": "Stage6-V1 only",
+    "superseded_for_current_method_by": "Stage6-V2 PASS"
+  },
+  "post_outcome_threshold_change": false,
+  "same_shared_posterior": "frozen calibrated Stage4 Gaussian posterior",
+  "status": "FROZEN_STAGE6_V3_HANDOFF_READY",
+  "to_stage": 7
+}

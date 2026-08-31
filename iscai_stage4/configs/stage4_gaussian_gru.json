@@ -1,0 +1,116 @@
+{
+  "stage": 4,
+  "block": "4.4",
+  "status": "PRETRAIN_FROZEN",
+  "purpose": "full_covariance_Gaussian_probabilistic_GRU",
+
+  "upstream": {
+    "deterministic_block": "4.3",
+    "deterministic_checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/block43/deterministic_gru.pt",
+    "deterministic_checkpoint_sha256": "5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5",
+    "deterministic_state_dict_sha256": "d2ffbc03c7cb2826fef2175c95f48725707ec6d791eaeffbd6f59bc507b8595a",
+    "deterministic_best_development_ADE_m": 1.605455,
+    "reuse_block43_fit_cache": true,
+    "reuse_block43_development_cache": true,
+    "reuse_block43_fit_normalization": true,
+    "rerun_stage2_stage3_cache": false
+  },
+
+  "input": {
+    "history_steps": 11,
+    "history_feature_dim": 14,
+    "measurement_covariance_R_t_input": true,
+    "measurement_covariance_semantics": "sensor_measurement_uncertainty_conditioning_input",
+    "multi_agent_context": true,
+    "map_context": true,
+    "perfect_track_id_feature": false,
+    "actor_class_feature": false,
+    "future_input": false
+  },
+
+  "predictive_distribution": {
+    "family": "single_full_covariance_Gaussian",
+    "horizons_s": [0.1, 0.3, 0.5, 1.0],
+    "position_dimension": 3,
+    "mean_dimension_per_horizon": 3,
+    "covariance_dimension": [3, 3],
+    "covariance_parameterization": "Cholesky",
+    "cholesky_parameters_per_horizon": 6,
+    "positive_diagonal": "softplus_plus_floor",
+    "minimum_predictive_std_normalized": 0.001,
+    "initial_predictive_std_normalized": 0.5,
+    "predictive_covariance_is_distinct_from_measurement_covariance": true
+  },
+
+  "initialization": {
+    "backbone": "exact_copy_from_frozen_Block4.3_deterministic_GRU",
+    "mean_head": "exact_copy_from_frozen_Block4.3_deterministic_output_head",
+    "covariance_head_weights": "zeros",
+    "covariance_head_off_diagonal_bias": "zeros",
+    "covariance_head_diagonal_bias": "constant_for_0.5_normalized_std",
+    "initial_mean_must_equal_deterministic_checkpoint": true
+  },
+
+  "normalization": {
+    "source": "frozen_Block4.3_fit_only_statistics",
+    "predictive_distribution_training_space": "normalized_future_H0_displacement",
+    "reported_metric_space": "metric_future_H0_displacement",
+    "covariance_denormalization": "D_Sigma_D_transpose_via_row_scaled_Cholesky",
+    "development_statistics_used": false,
+    "calibration_statistics_used": false,
+    "formal_validation_statistics_used": false
+  },
+
+  "training": {
+    "seed": 20260821,
+    "device": "cuda:0",
+    "dtype": "float32",
+    "optimizer": "AdamW",
+    "learning_rate": 0.0005,
+    "weight_decay": 0.00001,
+    "batch_size": 512,
+    "max_epochs": 20,
+    "early_stopping_patience": 4,
+    "early_stopping_primary_metric": "development_metric_Gaussian_NLL",
+    "early_stopping_tiebreaker": "development_planar_ADE_m",
+    "gradient_clip_norm": 5.0,
+    "class_sampler": "reuse_Block4.3_equal_primary_class_mass_sampler",
+    "mixed_precision": false,
+    "num_workers": 0
+  },
+
+  "raw_evaluation_before_calibration": {
+    "metrics": [
+      "metric_Gaussian_NLL",
+      "planar_ADE_m",
+      "per_horizon_planar_error_m",
+      "one_second_planar_error_m",
+      "empirical_coverage_50",
+      "empirical_coverage_80",
+      "empirical_coverage_90",
+      "empirical_coverage_95",
+      "empirical_coverage_99",
+      "class_planar_ADE_m"
+    ],
+    "coverage_space": "3D_predictive_confidence_ellipsoid",
+    "coverage_distribution": "chi_square_df_3",
+    "calibration_applied": false
+  },
+
+  "acceptance": {
+    "all_predictive_covariances_SPD": true,
+    "all_NLL_values_finite": true,
+    "training_must_improve_development_NLL_over_initialized_Gaussian": true,
+    "initial_mean_equals_frozen_deterministic_GRU": true,
+    "measurement_and_predictive_uncertainty_are_separate": true,
+    "exact_frozen_checkpoint_inference_repeat": true,
+    "formal_validation_used": false,
+    "calibration_claimed": false,
+    "probabilistic_superiority_claimed": false
+  },
+
+  "next_block": {
+    "block": "4.5",
+    "purpose": "held_out_calibration_on_frozen_calibration_partition"
+  }
+}

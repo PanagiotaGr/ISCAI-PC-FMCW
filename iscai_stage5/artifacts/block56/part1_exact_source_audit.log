@@ -1,0 +1,1171 @@
+============================================================
+BLOCK 5.6 PART 1 — SAFE READ-ONLY SOURCE AUDIT
+============================================================
+audit compile = PASS
+
+===== PRE-AUDIT STAGE5 REGRESSION =====
+
+..........................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 186 tests in 0.071s
+
+OK
+
+pre-audit Stage5 regression = 186 / 186 PASS
+
+===== EXACT SOURCE AUDIT =====
+============================================================
+BLOCK 5.6 PART 1 — EXACT OPTICAL / HEADLAMP SOURCE AUDIT
+============================================================
+read-only                  = YES
+formal N=120 used          = NO
+Stage4 inference           = NO
+training/recalibration     = NO
+optical formula frozen now = NO
+effective-rate frozen now  = NO
+
+============================================================
+A. FROZEN PART-A INTEGRITY
+============================================================
+notebook SHA256 = b5a80a6d3441de6d571db4f65b4a43ed4052cc2b3ccba935ad31b5dd51316ef3
+Stage0 Part-A reference SHA256 = fcdfc0a7b9c14fa9447ceb8563a6f20ac277706223388dc9aa8a1edf416c5e2b
+cell count = 77
+integrity = PASS
+
+============================================================
+B. EXACT PART-A CELLS 63 / 64 / 65
+============================================================
+
+------------------------------------------------------------
+PART-A CELL 63
+------------------------------------------------------------
+cell index = 63
+numbers = ['2', '10', '1', '10', '000', '24', '0', '1e9', '10', '5', '2', '0', '0', '1', '2', '0', '2', '1e9', '0.5', '0.25', '1', '0', '0', '1', '1e9', '1', '1e9', '1', '1e9', '1', '0.5', '0.01', '2', '9', '0', '0.07', '1', '1']
+source =
+# ============================================================
+# Presentation-only plots - DPSK symbol timing preview
+# Uses the DPSK sequence already generated in Module 2.
+# ============================================================
+
+# We only visualize a small number of symbols.
+# A full 10 us chirp at 1 Gbps contains about 10,000 symbols.
+dpsk_preview_symbol_count = 24
+dpsk_preview_chirp_index = 0
+
+dpsk_preview_bits = dpsk_bits[dpsk_preview_chirp_index, :dpsk_preview_symbol_count]
+dpsk_preview_phase_symbols = phase_symbols[dpsk_preview_chirp_index, :dpsk_preview_symbol_count]
+dpsk_preview_time_ns = np.arange(dpsk_preview_symbol_count) * Ts * 1e9
+
+dpsk_preview_fig, dpsk_preview_ax = plt.subplots(figsize=(10, 5))
+
+dpsk_preview_ax.step(
+    dpsk_preview_time_ns,
+    dpsk_preview_phase_symbols / np.pi,
+    where="post",
+    linewidth=2,
+)
+
+dpsk_preview_ax.set_title("Module 0: DPSK phase is piecewise constant over symbol intervals")
+dpsk_preview_ax.set_xlabel("Time [ns]")
+dpsk_preview_ax.set_ylabel("DPSK phase / π")
+
+dpsk_preview_ax.set_yticks([0, 1, 2])
+dpsk_preview_ax.set_yticklabels(["0", "π", "2π"])
+
+for dpsk_preview_k in range(dpsk_preview_symbol_count):
+    dpsk_preview_ax.axvline(dpsk_preview_k * Ts * 1e9, linestyle="--", linewidth=0.5, alpha=0.25)
+
+dpsk_preview_formula_text = (
+    "Formula / convention:\n"
+    r"$T_s = 1/R_s$" "\n"
+    r"$\Delta\phi \in \{0,\pi\}$" "\n\n"
+    "Binary DPSK preview:\n"
+    "bit 0 -> no phase change\n"
+    "bit 1 -> phase jump by π"
+)
+
+dpsk_preview_rate_text = (
+    "Phase is constant inside\n"
+    "each symbol interval.\n\n"
+    f"data rate = {data_rate/1e9:.1f} Gbps\n\n"
+    f"Rs = {Rs/1e9:.1f} Gsymbols/s\n"
+    f"Ts = {Ts*1e9:.1f} ns"
+)
+
+add_info_box(dpsk_preview_ax, dpsk_preview_formula_text, loc="upper left")
+add_info_box(dpsk_preview_ax, dpsk_preview_rate_text, loc="upper right")
+
+dpsk_preview_fig.text(
+    0.5, 0.01,
+    "Caption: The plotted symbols come from the validated Module 2 DPSK sequence, not from a second random demo.",
+    ha="center",
+    fontsize=9,
+)
+
+plt.tight_layout(rect=[0, 0.07, 1, 1])
+plt.show()
+
+------------------------------------------------------------
+PART-A CELL 64
+------------------------------------------------------------
+cell index = 64
+numbers = ['2', '80', '1', '2', '12', '4.5', '1', '2', '0.05', '1.6', '0.05', '0', '1', '-0.25', '1.35', '0.25', '1', '2', '2', '0', '0', '18', '0.75', '0', '1', '1', '18', '0.75', '1', '0.0', '1.0', '0.0', '0.8', '0.25', '0.5', '0.01', '2', '9', '0', '0.08']
+source =
+# ============================================================
+# Presentation-only plots - DPSK communication recovery
+# Uses the validated Module 2 receiver outputs. No second receiver is simulated here.
+# ============================================================
+
+presentation_comm_bit_count = min(80, comm_bits_reference.size, comm_bits_hat.size)
+presentation_comm_bit_index = np.arange(presentation_comm_bit_count)
+
+presentation_comm_fig, presentation_comm_axes = plt.subplots(1, 2, figsize=(12, 4.5))
+presentation_comm_bit_ax, presentation_comm_symbol_ax = presentation_comm_axes
+
+# ------------------------------------------------------------
+# Plot 1: transmitted vs recovered bits
+# ------------------------------------------------------------
+presentation_comm_bit_ax.step(
+    presentation_comm_bit_index,
+    comm_bits_reference[:presentation_comm_bit_count],
+    where="post",
+    linewidth=2,
+    label="transmitted bits"
+)
+
+presentation_comm_bit_ax.step(
+    presentation_comm_bit_index,
+    comm_bits_hat[:presentation_comm_bit_count] + 0.05,
+    where="post",
+    linestyle="--",
+    linewidth=1.6,
+    label="recovered bits + 0.05 offset"
+)
+
+presentation_comm_bit_ax.set_title("DPSK communication recovery")
+presentation_comm_bit_ax.set_xlabel("Differential symbol index")
+presentation_comm_bit_ax.set_ylabel("Bit value")
+presentation_comm_bit_ax.set_yticks([0, 1])
+presentation_comm_bit_ax.set_ylim(-0.25, 1.35)
+presentation_comm_bit_ax.grid(True, alpha=0.25)
+presentation_comm_bit_ax.legend(loc="upper right")
+
+presentation_comm_info_text = (
+    "FFT carrier extraction + DPSK demodulation\n"
+    r"$z[k]=\hat{c}[k]\hat{c}^*[k-1]e^{-j\Delta\hat{\theta}_c[k]}$" "\n"
+    f"BER = {comm_ber:.2e}"
+)
+add_info_box(presentation_comm_bit_ax, presentation_comm_info_text, loc="lower right")
+
+# ------------------------------------------------------------
+# Plot 2: differential symbol plane
+# ------------------------------------------------------------
+presentation_comm_symbol_ax.scatter(
+    np.real(comm_diff_observations[comm_bits_reference == 0]),
+    np.imag(comm_diff_observations[comm_bits_reference == 0]),
+    s=18,
+    alpha=0.75,
+    label="bit 0"
+)
+
+presentation_comm_symbol_ax.scatter(
+    np.real(comm_diff_observations[comm_bits_reference == 1]),
+    np.imag(comm_diff_observations[comm_bits_reference == 1]),
+    s=18,
+    alpha=0.75,
+    label="bit 1"
+)
+
+presentation_comm_symbol_ax.axvline(0.0, linestyle="--", linewidth=1.0)
+presentation_comm_symbol_ax.axhline(0.0, linestyle=":", linewidth=0.8)
+presentation_comm_symbol_ax.set_title("Differential DPSK symbols after FFT carrier extraction")
+presentation_comm_symbol_ax.set_xlabel("Re{z[k]}")
+presentation_comm_symbol_ax.set_ylabel("Im{z[k]}")
+presentation_comm_symbol_ax.axis("equal")
+presentation_comm_symbol_ax.grid(True, alpha=0.25)
+presentation_comm_symbol_ax.legend(loc="upper right")
+
+presentation_comm_fig.text(
+    0.5,
+    0.01,
+    "Caption: This is a presentation view of the Module 2 receiver output; it does not create new random bits or a second BER test.",
+    ha="center",
+    fontsize=9,
+)
+
+plt.tight_layout(rect=[0, 0.08, 1, 1])
+plt.show()
+
+------------------------------------------------------------
+PART-A CELL 65
+------------------------------------------------------------
+cell index = 65
+numbers = ['4', '713', '1', '6', '2', '7', '29', '7', '7', '6', '1', '7', '5', '1', '4', '1', '60', '47', '3', '45', '4', '9', '7', '7', '5', '4', '9', '1', '5', '6', '0', '8', '9', '2', '04', '64', '7', '6', '9', '4']
+source =
+![image.png](data:image/png;base64,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
+
+============================================================
+C. RANKED PART-A OPTICAL / DPSK SOURCE HITS
+============================================================
+total optical/DPSK hits = 24
+
+[OPTICAL 1]
+cell = 16
+score = 85
+matched = ['dpsk', 'ber', 'snr', 'data rate', 'data_rate']
+numbers = ['4', '1', '-1', '2.0', '2.0', '0.5', '1', '-1', '2.0', '-1', '0', '0', '1', '0.0', '1', '1', '-1', '0.0', '1e9', '6', '1.0', '1e9', '6', '1e9', '6', '1', '3', '1']
+source =
+# ============================================================
+# Communication / DPSK receiver branch - Cell 4
+# ============================================================
+
+# Raw differential product from FFT-extracted carrier coefficients.
+comm_diff_raw = comm_carrier_coeffs[1:] * np.conj(comm_carrier_coeffs[:-1])
+
+# Carrier phase rotation between adjacent symbol centers.
+comm_symbol_dn = np.diff(comm_symbol_center_sample)
+
+comm_mu_unwrapped = np.unwrap(2.0 * np.pi * comm_carrier_cycles_per_sample) / (2.0 * np.pi)
+comm_mu_mid = 0.5 * (comm_mu_unwrapped[1:] + comm_mu_unwrapped[:-1])
+
+comm_carrier_phase_step = 2.0 * np.pi * comm_mu_mid * comm_symbol_dn
+
+# Remove carrier rotation and keep the DPSK phase jump.
+comm_diff_observations = comm_diff_raw * np.exp(-1j * comm_carrier_phase_step)
+
+# DBPSK decision:
+#   bit 0 -> phase jump 0  -> positive real part
+#   bit 1 -> phase jump pi -> negative real part
+comm_bits_hat = np.real(comm_diff_observations) < 0.0
+
+# Reference bits from the transmitted DPSK phase.
+# This is only for BER evaluation, not part of the receiver.
+comm_tx_symbol_phasors = np.exp(1j * phi_d[comm_chirp_index, comm_symbol_center_idx])
+comm_tx_diff = comm_tx_symbol_phasors[1:] * np.conj(comm_tx_symbol_phasors[:-1])
+comm_bits_reference = np.real(comm_tx_diff) < 0.0
+
+comm_bit_errors = int(np.count_nonzero(comm_bits_hat != comm_bits_reference))
+comm_ber = comm_bit_errors / comm_bits_reference.size
+
+comm_finite_packet_rate_bps = comm_bits_hat.size / (comm_num_symbols * Ts)
+
+print("Communication result")
+print("--------------------")
+print(f"Paper nominal data rate      : {data_rate/1e9:.6f} Gbps")
+print(f"Notebook symbol rate         : {(1.0/Ts)/1e9:.6f} Gbps")
+print(f"Valid DPSK symbols           : {comm_num_symbols}")
+print(f"Differential bit decisions   : {comm_bits_hat.size}")
+print(f"Finite-packet recovered rate : {comm_finite_packet_rate_bps/1e9:.6f} Gbps")
+print(f"SNR test condition           : {comm_rx_snr_db:.1f} dB")
+print(f"Bit errors                   : {comm_bit_errors} / {comm_bits_reference.size}")
+print(f"Notebook AWGN-test BER       : {comm_ber:.3e}")
+print()
+print("Scientific claim:")
+print("1 Gbps symbol timing is reproduced. BER is a notebook AWGN receiver test, not a paper-reported metric.")
+
+[OPTICAL 2]
+cell = 65
+score = 81
+matched = ['ber', 'snr', 'prx', 'n0']
+numbers = ['4', '713', '1', '6', '2', '7', '29', '7', '7', '6', '1', '7', '5', '1', '4', '1', '60', '47', '3', '45', '4', '9', '7', '7', '5', '4', '9', '1', '5', '6', '0', '8', '9', '2', '04', '64', '7', '6', '9', '4']
+source =
+![image.png](data:image/png;base64,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
+
+[OPTICAL 3]
+cell = 63
+score = 61
+matched = ['dpsk', 'ber', 'data rate', 'data_rate']
+numbers = ['2', '10', '1', '10', '000', '24', '0', '1e9', '10', '5', '2', '0', '0', '1', '2', '0', '2', '1e9', '0.5', '0.25', '1', '0', '0', '1', '1e9', '1', '1e9', '1', '1e9', '1', '0.5', '0.01', '2', '9', '0', '0.07', '1', '1']
+source =
+# ============================================================
+# Presentation-only plots - DPSK symbol timing preview
+# Uses the DPSK sequence already generated in Module 2.
+# ============================================================
+
+# We only visualize a small number of symbols.
+# A full 10 us chirp at 1 Gbps contains about 10,000 symbols.
+dpsk_preview_symbol_count = 24
+dpsk_preview_chirp_index = 0
+
+dpsk_preview_bits = dpsk_bits[dpsk_preview_chirp_index, :dpsk_preview_symbol_count]
+dpsk_preview_phase_symbols = phase_symbols[dpsk_preview_chirp_index, :dpsk_preview_symbol_count]
+dpsk_preview_time_ns = np.arange(dpsk_preview_symbol_count) * Ts * 1e9
+
+dpsk_preview_fig, dpsk_preview_ax = plt.subplots(figsize=(10, 5))
+
+dpsk_preview_ax.step(
+    dpsk_preview_time_ns,
+    dpsk_preview_phase_symbols / np.pi,
+    where="post",
+    linewidth=2,
+)
+
+dpsk_preview_ax.set_title("Module 0: DPSK phase is piecewise constant over symbol intervals")
+dpsk_preview_ax.set_xlabel("Time [ns]")
+dpsk_preview_ax.set_ylabel("DPSK phase / π")
+
+dpsk_preview_ax.set_yticks([0, 1, 2])
+dpsk_preview_ax.set_yticklabels(["0", "π", "2π"])
+
+for dpsk_preview_k in range(dpsk_preview_symbol_count):
+    dpsk_preview_ax.axvline(dpsk_preview_k * Ts * 1e9, linestyle="--", linewidth=0.5, alpha=0.25)
+
+dpsk_preview_formula_text = (
+    "Formula / convention:\n"
+    r"$T_s = 1/R_s$" "\n"
+    r"$\Delta\phi \in \{0,\pi\}$" "\n\n"
+    "Binary DPSK preview:\n"
+    "bit 0 -> no phase change\n"
+    "bit 1 -> phase jump by π"
+)
+
+dpsk_preview_rate_text = (
+    "Phase is constant inside\n"
+    "each symbol interval.\n\n"
+    f"data rate = {data_rate/1e9:.1f} Gbps\n\n"
+    f"Rs = {Rs/1e9:.1f} Gsymbols/s\n"
+    f"Ts = {Ts*1e9:.1f} ns"
+)
+
+add_info_box(dpsk_preview_ax, dpsk_preview_formula_text, loc="upper left")
+add_info_box(dpsk_preview_ax, dpsk_preview_rate_text, loc="upper right")
+
+dpsk_preview_fig.text(
+    0.5, 0.01,
+    "Caption: The plotted symbols come from the validated Module 2 DPSK sequence, not from a second random demo.",
+    ha="center",
+    fontsize=9,
+)
+
+plt.tight_layout(rect=[0, 0.07, 1, 1])
+plt.show()
+
+[OPTICAL 4]
+cell = 31
+score = 57
+matched = ['ber', 'snr', 'bandwidth']
+numbers = ['1', '2', '10', '4', '0', '1.5', '7', '0', '1.2', '3.8', '0', '7', '0', '0', '0', '0.3', '0', '1', '1.5', '7', '0', '1.6', '0', '1.6', '1', '7', '1', '1', '1', '0.3', '1', '7', '1e9', '2', '1e6', '2', '1e6', '2', '1e6', '4']
+source =
+m2_paper_reported_range_error_cm = PAPER_REPORTED_RANGE_ERROR_CM
+
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+
+# ------------------------------------------------------------
+# Range CRLB
+# ------------------------------------------------------------
+axes[0].semilogy(
+    m2_crlb_snr_db,
+    m2_crlb_range_std_cm,
+    marker="o",
+    linewidth=1.5,
+    label="Eq. (7) range CRLB"
+)
+
+axes[0].axhline(
+    m2_paper_reported_range_error_cm,
+    linestyle="--",
+    linewidth=1.2,
+    label="Paper reference: 3.8 cm"
+)
+
+axes[0].set_title("Paper Eq. (7): Range CRLB")
+axes[0].set_xlabel("SNR (dB)")
+axes[0].set_ylabel("Range standard deviation lower bound (cm)")
+axes[0].grid(True, alpha=0.3)
+axes[0].legend()
+
+# ------------------------------------------------------------
+# Velocity CRLB
+# ------------------------------------------------------------
+axes[1].semilogy(
+    m2_crlb_snr_db,
+    m2_crlb_velocity_std_mps,
+    marker="o",
+    linewidth=1.5,
+    label="Eq. (7) velocity CRLB"
+)
+
+axes[0].semilogy(
+    m2_crlb_snr_db,
+    m2_crlb_well_target1_std_cm,
+    linestyle=":",
+    linewidth=1.6,
+    label="well-separated FIM proxy"
+)
+
+axes[0].semilogy(
+    m2_crlb_snr_db,
+    m2_crlb_close_target1_std_cm,
+    linestyle="-.",
+    linewidth=1.6,
+    label="closely-spaced FIM proxy"
+)
+
+axes[1].set_title("Paper Eq. (7): Velocity CRLB")
+axes[1].set_xlabel("SNR (dB)")
+axes[1].set_ylabel("Velocity standard deviation lower bound (m/s)")
+axes[1].grid(True, alpha=0.3)
+axes[1].legend()
+
+plt.tight_layout()
+plt.show()
+
+print("Paper Eq. (7) CRLB summary")
+print("--------------------------")
+print(f"Bandwidth B                 : {B/1e9:.2f} GHz")
+print(f"Chirp duration T            : {m2_eq7_T*1e6:.2f} us")
+print(f"Chirp interval T_c          : {m2_eq7_Tc*1e6:.2f} us")
+print(f"Number of chirps M          : {m2_eq7_M}")
+print(f"Carrier wavelength lambda   : {lambda_c*1e6:.4f} um")
+print()
+print("At SNR = 20 dB:")
+snr20_idx = np.argmin(np.abs(m2_crlb_snr_db - 20.0))
+print(f"Range CRLB std              : {m2_crlb_range_std_cm[snr20_idx]:.4f} cm")
+print(f"Velocity CRLB std           : {m2_crlb_velocity_std_mps[snr20_idx]:.4e} m/s")
+print()
+print("Multi-target range-FIM coupling proxy")
+print("-------------------------------------")
+print(f"Range resolution c/(2B)              : {CM_PER_M*m2_crlb_range_resolution_m:.3f} cm")
+print()
+print("Well-separated targets:")
+print(f"  range separation                   : {m2_crlb_well_delta_r_m:.3f} m")
+print(f"  off-diagonal coupling proxy         : {m2_crlb_well_coupling:.3e}")
+print(f"  std inflation factor                : {m2_crlb_well_std_factor[0]:.3f} x")
+print(f"  range CRLB std at 20 dB             : {m2_crlb_well_target1_std_cm[snr20_idx]:.4f} cm")
+print()
+print("Closely-spaced targets:")
+print(f"  range separation                   : {CM_PER_M*m2_crlb_close_delta_r_m:.2f} cm")
+print(f"  off-diagonal coupling proxy         : {m2_crlb_close_coupling:.3f}")
+print(f"  std inflation factor                : {m2_crlb_close_std_factor[0]:.3f} x")
+print(f"  range CRLB std at 20 dB             : {m2_crlb_close_target1_std_cm[snr20_idx]:.4f} cm")
+
+[OPTICAL 5]
+cell = 14
+score = 57
+matched = ['dpsk', 'snr', 'noise']
+numbers = ['2', '2', '10.0', '10.0', '2.0', '1', '1', '4', '4']
+source =
+# ============================================================
+# Communication / DPSK receiver branch - Cell 2
+# ============================================================
+
+comm_tx_waveform = s_tx[comm_chirp_index]
+
+comm_signal_power = np.mean(np.abs(comm_tx_waveform) ** 2)
+comm_noise_power = comm_signal_power / (10.0 ** (comm_rx_snr_db / 10.0))
+
+comm_rng = np.random.default_rng(comm_noise_seed)
+comm_noise = np.sqrt(comm_noise_power / 2.0) * (
+    comm_rng.standard_normal(comm_tx_waveform.shape)
+    + 1j * comm_rng.standard_normal(comm_tx_waveform.shape)
+)
+
+comm_rx_waveform = comm_tx_waveform + comm_noise
+
+print("Communication waveform")
+print("----------------------")
+print(f"SNR test condition : {comm_rx_snr_db:.1f} dB")
+print(f"Signal power       : {comm_signal_power:.4e}")
+print(f"Noise power        : {comm_noise_power:.4e}")
+
+[OPTICAL 6]
+cell = 64
+score = 53
+matched = ['dpsk', 'ber']
+numbers = ['2', '80', '1', '2', '12', '4.5', '1', '2', '0.05', '1.6', '0.05', '0', '1', '-0.25', '1.35', '0.25', '1', '2', '2', '0', '0', '18', '0.75', '0', '1', '1', '18', '0.75', '1', '0.0', '1.0', '0.0', '0.8', '0.25', '0.5', '0.01', '2', '9', '0', '0.08']
+source =
+# ============================================================
+# Presentation-only plots - DPSK communication recovery
+# Uses the validated Module 2 receiver outputs. No second receiver is simulated here.
+# ============================================================
+
+presentation_comm_bit_count = min(80, comm_bits_reference.size, comm_bits_hat.size)
+presentation_comm_bit_index = np.arange(presentation_comm_bit_count)
+
+presentation_comm_fig, presentation_comm_axes = plt.subplots(1, 2, figsize=(12, 4.5))
+presentation_comm_bit_ax, presentation_comm_symbol_ax = presentation_comm_axes
+
+# ------------------------------------------------------------
+# Plot 1: transmitted vs recovered bits
+# ------------------------------------------------------------
+presentation_comm_bit_ax.step(
+    presentation_comm_bit_index,
+    comm_bits_reference[:presentation_comm_bit_count],
+    where="post",
+    linewidth=2,
+    label="transmitted bits"
+)
+
+presentation_comm_bit_ax.step(
+    presentation_comm_bit_index,
+    comm_bits_hat[:presentation_comm_bit_count] + 0.05,
+    where="post",
+    linestyle="--",
+    linewidth=1.6,
+    label="recovered bits + 0.05 offset"
+)
+
+presentation_comm_bit_ax.set_title("DPSK communication recovery")
+presentation_comm_bit_ax.set_xlabel("Differential symbol index")
+presentation_comm_bit_ax.set_ylabel("Bit value")
+presentation_comm_bit_ax.set_yticks([0, 1])
+presentation_comm_bit_ax.set_ylim(-0.25, 1.35)
+presentation_comm_bit_ax.grid(True, alpha=0.25)
+presentation_comm_bit_ax.legend(loc="upper right")
+
+presentation_comm_info_text = (
+    "FFT carrier extraction + DPSK demodulation\n"
+    r"$z[k]=\hat{c}[k]\hat{c}^*[k-1]e^{-j\Delta\hat{\theta}_c[k]}$" "\n"
+    f"BER = {comm_ber:.2e}"
+)
+add_info_box(presentation_comm_bit_ax, presentation_comm_info_text, loc="lower right")
+
+# ------------------------------------------------------------
+# Plot 2: differential symbol plane
+# ------------------------------------------------------------
+presentation_comm_symbol_ax.scatter(
+    np.real(comm_diff_observations[comm_bits_reference == 0]),
+    np.imag(comm_diff_observations[comm_bits_reference == 0]),
+    s=18,
+    alpha=0.75,
+    label="bit 0"
+)
+
+presentation_comm_symbol_ax.scatter(
+    np.real(comm_diff_observations[comm_bits_reference == 1]),
+    np.imag(comm_diff_observations[comm_bits_reference == 1]),
+    s=18,
+    alpha=0.75,
+    label="bit 1"
+)
+
+presentation_comm_symbol_ax.axvline(0.0, linestyle="--", linewidth=1.0)
+presentation_comm_symbol_ax.axhline(0.0, linestyle=":", linewidth=0.8)
+presentation_comm_symbol_ax.set_title("Differential DPSK symbols after FFT carrier extraction")
+presentation_comm_symbol_ax.set_xlabel("Re{z[k]}")
+presentation_comm_symbol_ax.set_ylabel("Im{z[k]}")
+presentation_comm_symbol_ax.axis("equal")
+presentation_comm_symbol_ax.grid(True, alpha=0.25)
+presentation_comm_symbol_ax.legend(loc="upper right")
+
+presentation_comm_fig.text(
+    0.5,
+    0.01,
+    "Caption: This is a presentation view of the Module 2 receiver output; it does not create new random bits or a second BER test.",
+    ha="center",
+    fontsize=9,
+)
+
+plt.tight_layout(rect=[0, 0.08, 1, 1])
+plt.show()
+
+[OPTICAL 7]
+cell = 17
+score = 53
+matched = ['dpsk', 'ber']
+numbers = ['5', '96', '1', '2', '12', '4.5', '1', '0', '2', '0', '0.05', '1.6', '0.05', '0', '0', '0', '0', '0', '1', '0', '-0.25', '1.35', '0', '0.25', '0', '1', '2', '0', '2', '1', '0', '0', '18', '0.75', '0', '1', '1', '1', '18', '0.75']
+source =
+# ============================================================
+# Communication / DPSK receiver branch - Cell 5
+# ============================================================
+
+comm_preview_bits = min(96, comm_bits_reference.size, comm_bits_hat.size)
+
+fig, axes = plt.subplots(1, 2, figsize=(12, 4.5))
+
+# ------------------------------------------------------------
+# Plot 1: transmitted vs recovered bits
+# ------------------------------------------------------------
+axes[0].step(
+    np.arange(comm_preview_bits),
+    comm_bits_reference[:comm_preview_bits],
+    where="post",
+    linewidth=2,
+    label="transmitted bits"
+)
+
+axes[0].step(
+    np.arange(comm_preview_bits),
+    comm_bits_hat[:comm_preview_bits] + 0.05,
+    where="post",
+    linestyle="--",
+    linewidth=1.6,
+    label="recovered bits + 0.05 offset"
+)
+
+axes[0].set_title("DPSK communication recovery")
+axes[0].set_xlabel("Differential symbol index")
+axes[0].set_ylabel("Bit value")
+axes[0].set_yticks([0, 1])
+axes[0].set_ylim(-0.25, 1.35)
+axes[0].grid(True, alpha=0.25)
+axes[0].legend(loc="upper right")
+
+info_text = (
+    "FFT carrier extraction + DPSK demodulation\n"
+    r"$z[k]=\hat{c}[k]\hat{c}^*[k-1]e^{-j\Delta\hat{\theta}_c[k]}$" "\n"
+    f"BER = {comm_ber:.2e}"
+)
+add_info_box(axes[0], info_text, loc="lower right")
+
+# ------------------------------------------------------------
+# Plot 2: differential symbol plane
+# ------------------------------------------------------------
+axes[1].scatter(
+    np.real(comm_diff_observations[comm_bits_reference == 0]),
+    np.imag(comm_diff_observations[comm_bits_reference == 0]),
+    s=18,
+    alpha=0.75,
+    label="bit 0"
+)
+
+axes[1].scatter(
+    np.real(comm_diff_observations[comm_bits_reference == 1]),
+    np.imag(comm_diff_observations[comm_bits_reference == 1]),
+    s=18,
+    alpha=0.75,
+    label="bit 1"
+)
+
+axes[1].axvline(0.0, linestyle="--", linewidth=1.0)
+axes[1].axhline(0.0, linestyle=":", linewidth=0.8)
+axes[1].set_title("Differential DPSK symbols after FFT carrier extraction")
+axes[1].set_xlabel("Re{z[k]}")
+axes[1].set_ylabel("Im{z[k]}")
+axes[1].axis("equal")
+axes[1].grid(True, alpha=0.25)
+axes[1].legend(loc="upper right")
+
+fig.text(
+    0.5,
+    0.01,
+    "Caption: The receiver uses local FFT carrier extraction, compensates the estimated carrier phase rotation, "
+    "and performs differential DPSK demodulation without absolute phase reference.",
+    ha="center",
+    fontsize=9,
+)
+
+plt.tight_layout(rect=[0, 0.08, 1, 1])
+plt.show()
+
+[OPTICAL 8]
+cell = 13
+score = 37
+matched = ['dpsk', 'data rate', 'data_rate']
+numbers = ['1', '1', '-1', '1', '2', '0.5', '1', '1e9', '3', '1e9', '3']
+source =
+# ============================================================
+# Communication / DPSK receiver branch - Cell 1
+# ============================================================
+
+comm_num_symbols = int(np.floor(T_chirp / Ts))
+comm_symbol_edges = np.searchsorted(t_fast, np.arange(comm_num_symbols + 1) * Ts, side="left")
+
+comm_symbol_start_idx = comm_symbol_edges[:-1]
+comm_symbol_stop_idx = comm_symbol_edges[1:]
+
+# Keep only valid symbol intervals
+valid = comm_symbol_stop_idx > comm_symbol_start_idx
+comm_symbol_start_idx = comm_symbol_start_idx[valid]
+comm_symbol_stop_idx = comm_symbol_stop_idx[valid]
+
+comm_symbol_lengths = comm_symbol_stop_idx - comm_symbol_start_idx
+comm_num_symbols = len(comm_symbol_start_idx)
+
+comm_symbol_center_idx = (comm_symbol_start_idx + comm_symbol_stop_idx) // 2
+comm_symbol_center_sample = 0.5 * (comm_symbol_start_idx + comm_symbol_stop_idx - 1)
+
+print("Communication / DPSK timing")
+print("---------------------------")
+print(f"Data rate              : {data_rate/1e9:.3f} Gbps")
+print(f"Symbol duration Ts     : {Ts*1e9:.3f} ns")
+print(f"Symbols per chirp      : {comm_num_symbols}")
+print(f"Samples per symbol     : min={comm_symbol_lengths.min()}, max={comm_symbol_lengths.max()}")
+
+[OPTICAL 9]
+cell = 9
+score = 33
+matched = ['dpsk', 'bandwidth']
+numbers = ['3', '1', '2', '1e9', '3', '2', '1e9', '3', '1e6', '3', '1e9', '3', '3', '1e9', '3', '3', '1e6', '3', '10']
+source =
+# ============================================================
+# Module 3 - Cell 1
+# ============================================================
+
+B_sim = B
+S_sim = B_sim / T_chirp
+
+print("Module 2 full-waveform sampling")
+print("--------------------------------")
+print(f"Paper bandwidth B             : {B/1e9:.3f} GHz")
+print(f"Module 2 bandwidth B_sim      : {B_sim/1e9:.3f} GHz")
+print(f"Chirp duration T_chirp        : {T_chirp*1e6:.3f} us")
+print(f"N_fast                        : {N_fast}")
+print(f"Effective fs_fast             : {fs_fast/1e9:.3f} GHz")
+print(f"fs_fast / B_sim               : {fs_fast/B_sim:.3f}")
+print(f"DPSK symbol duration Ts       : {Ts*1e9:.3f} ns")
+print(f"Effective samples / symbol    : {samples_per_symbol_effective:.3f}")
+print(f"Symbols per chirp             : {num_symbols_per_chirp}")
+print(f"Fast-time duration covered    : {N_fast/fs_fast*1e6:.3f} us")
+
+if fs_fast <= B_sim:
+    print("WARNING: fs_fast <= B_sim, so the 10 GHz chirp is not safely sampled.")
+else:
+    print("OK: fs_fast > B_sim, so the complex-baseband chirp is sampled consistently.")
+
+[OPTICAL 10]
+cell = 4
+score = 33
+matched = ['snr', 'noise']
+numbers = ['3', '131', '72', '64', '1.0', '1.0', '4', '4', '2', '256', '10.0', '40.0', '-0.045', '0.045', '18.0', '-10', '1.00', '0.20', '34.0', '8', '0.90', '1.10', '18.00', '-2', '1.00', '0.30', '18.02', '2', '0.95', '1.40', '20.0', '0', '8', '2025', '10.0', '40.0', '-0.045', '0.045', '2', '2']
+source =
+# -----------------------------
+# Module 3/RDM deterministic simulation parameters and axes
+# -----------------------------
+N_fast = 131_072
+M_chirps = 64
+
+# Sampling parameters
+PRF = 1.0 / T_chirp
+fs_fast = N_fast / T_chirp
+dt_fast = 1.0 / fs_fast
+
+# Fast-time and slow-time axes.
+t_fast = np.arange(N_fast, dtype=np.float64) * dt_fast
+t_slow = np.arange(M_chirps, dtype=np.float64) * T_chirp
+
+num_symbols_per_chirp = int(np.ceil(T_chirp / Ts))
+samples_per_symbol_effective = fs_fast * Ts
+
+doppler_bin_hz = PRF / M_chirps
+
+N_fft_range = 2 ** int(np.ceil(np.log2(N_fast)))
+N_fft_doppler = 256
+
+# Plot limits for range-Doppler results
+fig2_range_limits_m = (10.0, 40.0)
+fig2_velocity_limits_mps = (-0.045, 0.045)
+
+targets_well_separated = [
+    {"R_m": 18.0, "fD_Hz": -10 * doppler_bin_hz, "alpha": 1.00, "phi0_rad": 0.20},
+    {"R_m": 34.0, "fD_Hz":   8 * doppler_bin_hz, "alpha": 0.90, "phi0_rad": 1.10},
+]
+
+targets_closely_spaced = [
+    {"R_m": 18.00, "fD_Hz": -2 * doppler_bin_hz, "alpha": 1.00, "phi0_rad": 0.30},
+    {"R_m": 18.02, "fD_Hz":  2 * doppler_bin_hz, "alpha": 0.95, "phi0_rad": 1.40},
+]
+
+# Communication receiver test settings.
+comm_rx_snr_db = 20.0
+comm_chirp_index = 0
+comm_fft_zeropad_factor = 8
+comm_noise_seed = 2025
+
+# -----------------------------
+# CA-CFAR deterministic parameters
+# -----------------------------
+cfar_range_limits_m = (10.0, 40.0)
+cfar_velocity_limits_mps = (-0.045, 0.045)
+
+cfar_guard_velocity_cells = 2
+cfar_guard_range_cells = 2
+cfar_train_velocity_cells = 8
+cfar_train_range_cells = 10
+cfar_alpha = 12.0
+
+cfar_target_range_tolerance_m = 0.05
+cfar_target_velocity_tolerance_mps = 0.004
+
+cfar_pfa = 1e-8
+
+cfar_cc_connectivity = 2
+cfar_cc_min_size = 8
+
+[OPTICAL 11]
+cell = 35
+score = 29
+matched = ['ber']
+numbers = ['3', '3', '2', '2', '1', '1']
+source =
+# ============================================================
+# CA-CFAR - Cell 3
+# ============================================================
+
+from scipy import ndimage
+
+def cfar_component_peaks(detection_mask, power_map, min_size=3, connectivity=2):
+    """
+    Group neighboring CA-CFAR detections into connected components
+    and keep the strongest power cell from each component.
+
+    This is standard connected-component labeling:
+        binary CFAR mask -> components/blobs -> peak per blob
+
+    It does NOT force the number of detections.
+    It does NOT use ground-truth labels.
+    """
+    structure = ndimage.generate_binary_structure(2, connectivity)
+    labels, num_labels = ndimage.label(detection_mask, structure=structure)
+
+    output_mask = np.full(detection_mask.shape, False)
+
+    for label_id in range(1, num_labels + 1):
+        component = labels == label_id
+
+        if np.sum(component) < min_size:
+            continue
+
+        peak_idx = ndimage.maximum_position(power_map, labels=labels, index=label_id)
+        output_mask[peak_idx] = True
+
+    return output_mask
+
+def detection_points_from_mask(detection_mask, range_axis_m, velocity_axis_mps):
+    """Return detection coordinates as range and velocity arrays"""
+    v_idx, r_idx = np.where(detection_mask)
+    return range_axis_m[r_idx], velocity_axis_mps[v_idx]
+
+cfar_mask_well_lm = cfar_component_peaks(
+    cfar_mask_well,
+    cfar_power_well,
+    min_size=cfar_cc_min_size,
+    connectivity=cfar_cc_connectivity,
+)
+
+cfar_mask_close_lm = cfar_component_peaks(
+    cfar_mask_close,
+    cfar_power_close,
+    min_size=cfar_cc_min_size,
+    connectivity=cfar_cc_connectivity,
+)
+
+det_ranges_well_m, det_velocities_well_mps = detection_points_from_mask(
+    cfar_mask_well_lm,
+    cfar_range_axis_m,
+    cfar_velocity_axis_mps
+)
+
+det_ranges_close_m, det_velocities_close_mps = detection_points_from_mask(
+    cfar_mask_close_lm,
+    cfar_range_axis_m,
+    cfar_velocity_axis_mps
+)
+
+print("Connected-component CA-CFAR peak extraction")
+print("-------------------------------------------")
+print(f"connectivity       : {cfar_cc_connectivity}")
+print(f"min component size : {cfar_cc_min_size}")
+print()
+print(f"Well-separated component peaks : {np.sum(cfar_mask_well_lm)}")
+print(f"Closely-spaced component peaks : {np.sum(cfar_mask_close_lm)}")
+
+[OPTICAL 12]
+cell = 30
+score = 29
+matched = ['snr']
+numbers = ['3', '15', '-10.0', '31.0', '2.0', '10.0', '10.0', '7', '2.0', '2', '3.0', '8.0', '2', '2', '7', '2.0', '2', '3.0', '8.0', '2', '2', '3', '2.0', '1', '0', '-0.5', '2', '1.0', '1.0', '0', '0', '1', '1']
+source =
+# ============================================================
+# Module 3 - Cell 15
+# ============================================================
+
+m2_crlb_snr_db = np.arange(-10.0, 31.0, 2.0)
+m2_crlb_gamma = 10.0 ** (m2_crlb_snr_db / 10.0) # linear SNR, not dB
+
+m2_eq7_T = T_chirp
+m2_eq7_Tc = T_chirp
+m2_eq7_M = M_chirps
+
+# Eq. (7): range variance lower bound
+m2_crlb_range_var_m2 = (
+    (c * m2_eq7_T / (2.0 * B)) ** 2
+    * 3.0
+    / (
+        8.0
+        * np.pi**2
+        * m2_crlb_gamma
+        * m2_eq7_M
+        * m2_eq7_Tc**2
+    )
+)
+
+# Eq. (7): velocity variance lower bound
+m2_crlb_velocity_var_m2ps2 = (
+    (lambda_c / 2.0) ** 2
+    * 3.0
+    / (
+        8.0
+        * np.pi**2
+        * m2_crlb_gamma
+        * m2_eq7_Tc**2
+        * m2_eq7_M**3
+    )
+)
+
+# Standard deviations from the variance bounds
+m2_crlb_range_std_m = np.sqrt(m2_crlb_range_var_m2)
+m2_crlb_range_std_cm = CM_PER_M * m2_crlb_range_std_m
+
+m2_crlb_velocity_std_mps = np.sqrt(m2_crlb_velocity_var_m2ps2)
+
+# ------------------------------------------------------------
+# Multi-target range-only FIM coupling proxy
+# ------------------------------------------------------------
+m2_crlb_range_resolution_m = c / (2.0 * B)
+
+
+def m2_target_range_separation_m(targets):
+    return abs(targets[1]["R_m"] - targets[0]["R_m"])
+
+
+def m2_range_coupling_from_targets(targets):
+    delta_r_m = m2_target_range_separation_m(targets)
+    coupling = np.exp(-0.5 * (delta_r_m / m2_crlb_range_resolution_m) ** 2)
+    return delta_r_m, coupling
+
+
+def m2_coupled_range_std_cm(coupling):
+    coupling_matrix = np.array([[1.0, coupling], [coupling, 1.0]])
+
+    coupling_inverse = np.linalg.inv(coupling_matrix)
+
+    target1_std_cm = CM_PER_M * np.sqrt(m2_crlb_range_var_m2 * coupling_inverse[0, 0])
+    target2_std_cm = CM_PER_M * np.sqrt(m2_crlb_range_var_m2 * coupling_inverse[1, 1])
+
+    std_factor = np.sqrt(np.diag(coupling_inverse))
+
+    return target1_std_cm, target2_std_cm, std_factor
+
+m2_crlb_well_delta_r_m, m2_crlb_well_coupling = m2_range_coupling_from_targets(targets_well_separated)
+m2_crlb_close_delta_r_m, m2_crlb_close_coupling = m2_range_coupling_from_targets(targets_closely_spaced)
+
+m2_crlb_well_target1_std_cm, m2_crlb_well_target2_std_cm, m2_crlb_well_std_factor = m2_coupled_range_std_cm(m2_crlb_well_coupling)
+m2_crlb_close_target1_std_cm, m2_crlb_close_target2_std_cm, m2_crlb_close_std_factor = m2_coupled_range_std_cm(m2_crlb_close_coupling)
+
+============================================================
+D. EFFECTIVE-RATE SOURCE STATUS
+============================================================
+effective-rate source hits = 0
+Part-A source-level effective-rate formula = NOT FOUND
+Stage5 action = DERIVE FROM FROZEN RAW LINK RATE + BEAM PROBING OVERHEAD
+
+============================================================
+E. STAGE1 HEADLAMP / H0 EXTRINSIC EVIDENCE
+============================================================
+Stage1 files scanned = 38
+headlamp/extrinsic hits = 82
+
+[HEADLAMP 1]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/geometry/frames.py
+line = 66
+score = 50
+matched = ['headlamp', 'extrinsic']
+text =     """Static configurable headlamp-surrogate extrinsic."""
+
+[HEADLAMP 2]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/geometry/frames.py
+line = 86
+score = 30
+matched = ['t_h0', 'h0_from', 'from_h0']
+text =     T_H0_from_W = T_W_from_H0.inverse()
+
+[HEADLAMP 3]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/contracts/stage1a.py
+line = 32
+score = 30
+matched = ['headlamp', 'front_face_midpoint']
+text = HEADLAMP_SURROGATE_MODE = "front_face_midpoint_surrogate"
+
+[HEADLAMP 4]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/womd_adapter.py
+line = 295
+score = 25
+matched = ['t_h0', 'h0_from']
+text =             T_H0_from_W,
+
+[HEADLAMP 5]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/womd_adapter.py
+line = 291
+score = 25
+matched = ['t_h0', 'h0_from']
+text =             T_H0_from_W,
+
+[HEADLAMP 6]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/womd_adapter.py
+line = 280
+score = 25
+matched = ['t_h0', 'h0_from']
+text =     T_H0_from_W: RigidTransform,
+
+[HEADLAMP 7]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/womd_adapter.py
+line = 258
+score = 25
+matched = ['t_h0', 'h0_from']
+text =                 T_H0_from_W,
+
+[HEADLAMP 8]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/womd_adapter.py
+line = 233
+score = 25
+matched = ['t_h0', 'h0_from']
+text =     T_H0_from_W: RigidTransform,
+
+[HEADLAMP 9]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/womd_adapter.py
+line = 216
+score = 25
+matched = ['t_h0', 'h0_from']
+text =         stop_H0 = T_H0_from_W.apply_point(
+
+[HEADLAMP 10]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/womd_adapter.py
+line = 188
+score = 25
+matched = ['t_h0', 'h0_from']
+text =     T_H0_from_W: RigidTransform,
+
+[HEADLAMP 11]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/womd_adapter.py
+line = 141
+score = 25
+matched = ['t_h0', 'h0_from']
+text =                 T_H0_from_W.apply_point(point_W),
+
+[HEADLAMP 12]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/womd_adapter.py
+line = 133
+score = 25
+matched = ['t_h0', 'h0_from']
+text =                 T_H0_from_W,
+
+[HEADLAMP 13]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/womd_adapter.py
+line = 122
+score = 25
+matched = ['t_h0', 'h0_from']
+text =                 T_H0_from_W,
+
+[HEADLAMP 14]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/womd_adapter.py
+line = 93
+score = 25
+matched = ['t_h0', 'h0_from']
+text =     T_H0_from_W: RigidTransform,
+
+[HEADLAMP 15]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/womd_adapter.py
+line = 74
+score = 25
+matched = ['t_h0', 'h0_from']
+text =         T_H0_from_W.apply_point(point)
+
+[HEADLAMP 16]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/womd_adapter.py
+line = 63
+score = 25
+matched = ['t_h0', 'h0_from']
+text =     T_H0_from_W: RigidTransform,
+
+[HEADLAMP 17]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/static_map.py
+line = 211
+score = 25
+matched = ['t_h0', 'h0_from']
+text =                     T_H0_from_W,
+
+[HEADLAMP 18]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/static_map.py
+line = 126
+score = 25
+matched = ['t_h0', 'h0_from']
+text =     T_H0_from_W: RigidTransform,
+
+[HEADLAMP 19]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/static_map.py
+line = 118
+score = 25
+matched = ['t_h0', 'h0_from']
+text =         T_H0_from_W.apply_point(point_W)
+
+[HEADLAMP 20]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/static_map.py
+line = 115
+score = 25
+matched = ['t_h0', 'h0_from']
+text =     T_H0_from_W: RigidTransform,
+
+[HEADLAMP 21]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/static_map.py
+line = 40
+score = 25
+matched = ['headlamp']
+text =     # and the canonical anchor headlamp frame.
+
+[HEADLAMP 22]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/dynamic_map.py
+line = 169
+score = 25
+matched = ['t_h0', 'h0_from']
+text =                 T_H0_from_W,
+
+[HEADLAMP 23]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/dynamic_map.py
+line = 134
+score = 25
+matched = ['t_h0', 'h0_from']
+text =     T_H0_from_W: RigidTransform,
+
+[HEADLAMP 24]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/dynamic_map.py
+line = 120
+score = 25
+matched = ['t_h0', 'h0_from']
+text =         T_H0_from_W,
+
+[HEADLAMP 25]
+path = /home/agni/waymo/iscai_stage1/src/iscai_stage1/maps/dynamic_map.py
+line = 112
+score = 25
+matched = ['t_h0', 'h0_from']
+text =     T_H0_from_W: RigidTransform,
+
+============================================================
+F. AUDIT DECISION
+============================================================
+Part-A integrity            = PASS
+strong optical/DPSK source  = FOUND
+effective-rate source hits  = 0
+Stage1 headlamp/H0 hits     = 82
+optical implementation      = NOT STARTED
+formal N=120 used           = NO
+STATUS = PASS_READ_ONLY_AUDIT
+report = /home/agni/waymo/iscai_stage5/artifacts/block56/exact_parta_optical_headlamp_audit.json
+terminal remains open = YES
+
+audit raw code = 0
+
+===== POST-AUDIT STAGE5 REGRESSION =====
+
+..........................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 186 tests in 0.077s
+
+OK
+
+post-audit Stage5 regression = 186 / 186 PASS
+
+============================================================
+BLOCK 5.6 PART 1 SOURCE AUDIT FINAL
+============================================================
+Part-A frozen integrity      = PASS
+optical/DPSK source evidence = FOUND
+effective-rate formula       = SOURCE STATUS AUDITED
+headlamp/H0 transform        = SOURCE STATUS AUDITED
+formal N=120 used            = NO
+Stage4 inference             = NO
+optical implementation       = NOT STARTED
+Stage5 regression            = 186 / 186 PASS
+STATUS = PASS_READ_ONLY_AUDIT
+terminal remains open = YES

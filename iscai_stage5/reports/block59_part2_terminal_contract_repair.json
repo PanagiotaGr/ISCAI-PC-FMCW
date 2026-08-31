@@ -1,0 +1,47 @@
+{
+  "block": "5.9",
+  "canonical_reproducibility_report": {
+    "beam_probability_vectors_exact": true,
+    "exact_match_to_frozen_block58": true,
+    "formal_cache_count": 120,
+    "fresh_process_count": 2,
+    "fresh_process_repeat_exact": true,
+    "path": "/home/agni/waymo/iscai_stage5/reports/block59_reproducibility.json",
+    "sha256": "980bfbd2007ed798742bd7c36b5e8b6bcd0e808590c0dc5d9608db1ec6211845"
+  },
+  "canonical_reproducibility_status": "PASS_FROZEN",
+  "immutability": {
+    "Block5_8_closure": true,
+    "Block5_8_formal": true,
+    "Block5_9_frozen_report": true,
+    "formal_manifest": true,
+    "scientific_outputs": true
+  },
+  "next": "Block5.10 final Stage5 acceptance/closure and Stage5\u2192Stage6 handoff",
+  "part": "2/2",
+  "regression": {
+    "Block5_9": "3/3_PASS",
+    "full_Stage5": "PASS"
+  },
+  "repair": {
+    "backup": "/home/agni/waymo/iscai_stage5/artifacts/block59/test_block59_reproducibility.pre_terminal_status_repair.py",
+    "new_expected_status": "PASS_FROZEN",
+    "old_expected_status": "PASS_REPRODUCIBILITY_PRE_FREEZE",
+    "other_test_changes": false,
+    "replacement_count": 1,
+    "scientific_change": false,
+    "test_after_sha256": "e868e2c44f21e6c637a57dc9869363de57d4fb3f1fb0e7c3d764f13a44ca3196",
+    "test_before_sha256": "9d0092b62909e5266859bd630ea8d999244b33f89c736a786110a8c9a0a256a4",
+    "test_semantics_weakened": false,
+    "type": "stale_test_contract_status_transition"
+  },
+  "scientific_execution": {
+    "formal_inference": false,
+    "parameter_tuning": false,
+    "recalibration": false,
+    "reproducibility_rerun": false,
+    "training": false
+  },
+  "stage": 5,
+  "status": "PASS_COMPLETE"
+}

@@ -1,0 +1,74 @@
+==============================================================================
+STAGE 6 — BLOCK 6.8
+REACTIVE PRIMARY-COMPARATOR MATERIALIZATION
+MISSING VEHICLE METRIC ONLY / NO POLICY CHANGE / NO GATE YET
+==============================================================================
+
+===== A. EXACT FROZEN SOURCE BOUNDARY =====
+reactive_raw           = EXACT PASS
+current_binding        = EXACT PASS
+t0_maps                = EXACT PASS
+cache_manifest         = EXACT PASS
+cache_freeze           = EXACT PASS
+reactive_contract      = EXACT PASS
+metric_runtime         = EXACT PASS
+stage4_freeze          = EXACT PASS
+acceptance_policy      = EXACT PASS
+Stage1/2/3/4 policy = IMMUTABLE
+primary gate         = NOT YET EVALUATED
+formal evaluation    = NO
+
+===== B. EXACT REACTIVE-RAW SCHEMA GAP =====
+reactive raw rows              = 120
+vehicle metric present         = 0 / 120
+overmask / VRU NI source       = PRESERVED
+schema gap confirmed           = YES
+
+===== C. EXACT SCENARIO / ACTUATOR / ORACLE JOIN =====
+scenario identity join = 120 / 120 EXACT
+t0 action source       = FROZEN
+oracle vehicle source  = FROZEN CACHE
+WOMD reopened          = NO
+P_occ reopened         = NO
+
+===== D. AUTHORITATIVE REACTIVE VEHICLE MATERIALIZATION =====
+reactive vehicle 001/120 f72a05a05035feb8 PASS
+reactive vehicle 020/120 e697a3e91804731f PASS
+reactive vehicle 040/120 1b0c763aeef8ba69 PASS
+reactive vehicle 060/120 74ca33b01f8adc34 PASS
+reactive vehicle 080/120 c9d6f61d94824305 PASS
+reactive vehicle 100/120 5d27f514c439978d PASS
+reactive vehicle 120/120 89bda4c79cb0ead4 PASS
+
+finite vehicle support = 115
+reactive vehicle mean  = 0.09481248124008006
+selection/tuning       = NONE
+
+===== E. WRITE-ONCE REACTIVE PRIMARY COMPARATOR =====
+vehicle rows state = WRITTEN
+vehicle rows SHA   = 94a1d8622eae74dce68cdaabb333e69760b7f3e2f9f09078aa11f4c55191362d
+augmented state    = WRITTEN
+augmented SHA      = 5925f1e02dc3cb9dbad42f40f200337f60ccb87f4c919c4dd7c628eb3725c2fa
+
+===== F. REGRESSION =====
+Stage6 regression = 224 / 224 PASS
+
+==============================================================================
+REACTIVE PRIMARY COMPARATOR MATERIALIZATION — FINAL
+==============================================================================
+original NI artifact        = UNCHANGED
+missing vehicle metric      = MATERIALIZED
+vehicle comparator source   = FROZEN t0 HOLD
+vehicle oracle source       = FROZEN EVALUATOR CACHE
+reactive vehicle mean       = 0.09481248124008006
+finite vehicle support      = 115
+Stage1/2/3/4 policy         = IMMUTABLE
+acceptance rule             = UNCHANGED
+primary acceptance tested   = NO
+formal evaluation           = NO
+Stage6 regression           = 224 / 224 PASS
+augmented comparator SHA    = 5925f1e02dc3cb9dbad42f40f200337f60ccb87f4c919c4dd7c628eb3725c2fa
+materialization freeze SHA  = b8a99017d7502dd704ed646fc45925bba8a22e135c502cea91f871541168a9c4
+STATUS = PASS_REACTIVE_PRIMARY_COMPARATOR_MATERIALIZED_FROZEN
+report = /home/agni/waymo/iscai_stage6/reports/block68_reactive_primary_comparator_materialization.json
+terminal remains open = YES

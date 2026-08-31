@@ -1,0 +1,77 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part1_deterministic_future_box.py", line 3967, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part1_deterministic_future_box.py", line 3047, in main
+    require(
+    ~~~~~~~^
+        compile_process.returncode
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part1_deterministic_future_box.py", line 192, in require
+    raise RuntimeError(
+        message
+    )
+RuntimeError: Block6.3 Part1 compile failed:
+  File "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/deterministic_association.py", line 69
+    predictor_second_nearest_distance_m:
+                                        ^
+SyntaxError: invalid syntax
+
+============================================================
+STAGE 6 — BLOCK 6.3 PART 1/2
+DETERMINISTIC FUTURE FULL-BOX PROJECTION
+============================================================
+
+===== A. FROZEN BINDING SEAL =====
+binding            = EXACT PASS
+binding_freeze     = EXACT PASS
+block62            = EXACT PASS
+association policy  = FROZEN PASS
+shared mean policy  = FROZEN PASS
+future box policy   = FROZEN PASS
+
+===== B. RUNTIME API / PROVENANCE PREFLIGHT =====
+Stage5 heading API      = EXACT PASS
+predictive state source = predicted_sample PASS
+predictive yaw source   = predicted_tangent PASS
+controller_path=True    = PASS
+probe corner count      = 8 PASS
+
+===== C. CAUSAL ASSOCIATION MODULE =====
+deterministic_association.py = WRITTEN
+
+===== D. DETERMINISTIC FUTURE FULL-BOX MODULE =====
+deterministic_predictive.py = WRITTEN
+
+===== E. BLOCK6.3 PART1 UNIT TESTS =====
+test file = WRITTEN
+
+===== F. CONTROLLED COMPILE =====
+
+============================================================
+BLOCK 6.3 PART 1/2 = BLOCKED
+============================================================
+exception = RuntimeError Block6.3 Part1 compile failed:
+  File "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/deterministic_association.py", line 69
+    predictor_second_nearest_distance_m:
+                                        ^
+SyntaxError: invalid syntax
+
+
+
+new Block6.3 source rollback = PASS
+removed = /home/agni/waymo/iscai_stage6/tests/test_block63_part1_deterministic_future_box.py
+removed = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/deterministic_predictive.py
+removed = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/deterministic_association.py
+Block6.2 modified       = NO
+Stage3–5 modified       = NO
+training/inference      = NO
+dataset access          = NO
+formal evaluation       = NO
+parameter tuning        = NO
+terminal remains open   = YES

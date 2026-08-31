@@ -1,0 +1,104 @@
+{
+  "artifacts": {
+    "eligible_manifest": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part1a_headlamp_relevant_scenarios.jsonl",
+      "sha256": "b34340afd615fb92b2cf40bb2795b555c1acaa25b5778d8af7dd5bca8efd4efa"
+    },
+    "full_census": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part1a_headlamp_census.partial.jsonl",
+      "sha256": "a8b6a1f084583552434af9e00c762e363c09f3912b4720573acb9cd4ce34e4cb"
+    }
+  },
+  "block": "6.6-Part1A",
+  "census": {
+    "eligible_scenario_count": 6922,
+    "headlamp_relevant_actors_by_class": {
+      "TYPE_CYCLIST": 622,
+      "TYPE_PEDESTRIAN": 4558,
+      "TYPE_VEHICLE": 49150
+    },
+    "headlamp_relevant_scenes_by_class": {
+      "TYPE_CYCLIST": 504,
+      "TYPE_PEDESTRIAN": 1687,
+      "TYPE_VEHICLE": 6861
+    },
+    "mutually_exclusive_strata": {
+      "cyclist": 504,
+      "none": 286,
+      "pedestrian_no_cyclist": 1502,
+      "vehicle_only": 4916
+    }
+  },
+  "deterministic_examples_not_cohort_selection": {
+    "TYPE_CYCLIST": {
+      "headlamp_relevant_counts": {
+        "TYPE_CYCLIST": 1,
+        "TYPE_PEDESTRIAN": 0,
+        "TYPE_VEHICLE": 4
+      },
+      "scenario_id": "f72a05a05035feb8",
+      "selection_hash": "1e4334ce228a632e787057dea86f5367816823c4822c6c464d214d6a4cd7516b"
+    },
+    "TYPE_PEDESTRIAN": {
+      "headlamp_relevant_counts": {
+        "TYPE_CYCLIST": 0,
+        "TYPE_PEDESTRIAN": 11,
+        "TYPE_VEHICLE": 15
+      },
+      "scenario_id": "a6432ee002f8046d",
+      "selection_hash": "1e423739971605a7172a8dff1e04ddfee211a4d0bf89c96413aa9e686f4014c3"
+    },
+    "TYPE_VEHICLE": {
+      "headlamp_relevant_counts": {
+        "TYPE_CYCLIST": 0,
+        "TYPE_PEDESTRIAN": 11,
+        "TYPE_VEHICLE": 15
+      },
+      "scenario_id": "a6432ee002f8046d",
+      "selection_hash": "1e423739971605a7172a8dff1e04ddfee211a4d0bf89c96413aa9e686f4014c3"
+    }
+  },
+  "next": "BLOCK6.6_PART1B_DETERMINISTIC_CLASS_COVERED_COHORT_SELECTION",
+  "scientific_boundary": {
+    "class_policy_numeric_freeze": false,
+    "class_policy_preregistered": false,
+    "cohort_size_frozen": false,
+    "development_cohort_selected": false,
+    "formal_outcomes_read": false,
+    "formal_tuning": false,
+    "new_model_forward": false,
+    "source_modification": false
+  },
+  "selection_semantics": {
+    "angular_wrap_handling": "Cartesian_halfplane_clipping_before_range_intersection",
+    "boundary_inclusive": true,
+    "centroid_only": false,
+    "classes": [
+      "TYPE_VEHICLE",
+      "TYPE_PEDESTRIAN",
+      "TYPE_CYCLIST"
+    ],
+    "coordinate_frame": "Stage6_H0_headlamp",
+    "future_states": false,
+    "geometry": "continuous_current_full_box_ground_footprint_intersection_with_finite_forward_headlamp_sector",
+    "maximum_ground_range_m": 150.0,
+    "objects_of_interest": false,
+    "raster_cell_selection": false,
+    "theta_deg": [
+      -25.0,
+      25.0
+    ],
+    "time": "current_anchor_only",
+    "tracks_to_predict": false
+  },
+  "source_partition": {
+    "Stage4_calibration_reused_for_policy_selection": false,
+    "formal_overlap": 0,
+    "manifest_path": "/home/agni/waymo/iscai_stage4/artifacts/block41/development.jsonl",
+    "manifest_sha256": "e4689698bddd80e58add7267f791aea90ef4bef0309ca18d0d7a9e7e94fe7e5c",
+    "name": "Stage4_development",
+    "scenario_count": 7208
+  },
+  "stage": 6,
+  "status": "PASS_CAUSAL_FORWARD_HEADLAMP_DEVELOPMENT_CENSUS"
+}

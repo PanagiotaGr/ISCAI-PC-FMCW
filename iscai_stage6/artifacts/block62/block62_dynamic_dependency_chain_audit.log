@@ -1,0 +1,475 @@
+============================================================
+BLOCK 6.2 — TRANSITIVE PART-A DYNAMIC ADB AUDIT
+CALL-CHAIN + COORDINATE + WIDTH/MARGIN VERIFICATION
+============================================================
+
+===== A. FROZEN SEAL =====
+notebook               = EXACT PASS
+prebind                = EXACT PASS
+part1_report           = EXACT PASS
+part1_contract         = EXACT PASS
+block61_closure        = EXACT PASS
+
+===== B. NOTEBOOK FUNCTION DATABASE =====
+adb_trz_shadow_geometry_from_xy | cell = 70 | SHA256 = f968d50f08bdbda613ebc792c2d439736a0fe963142e4ea9bccd1a5b90926a83
+adb_shadow_geometry_from_xy | cell = 69 | SHA256 = 72330d8d79ee4bd3cb8abba8d1073d2210984bef7230936d37e1c1ee278314fc
+adb_intensity_map | cell = 59 | SHA256 = 000407148d5120db7326f95ed42e12342ce5144054184b613ee1f5678837c350
+adb_combine_intensity_maps | cell = 59 | SHA256 = e5517dc82a865658f014f38e82e2b283aeda1f498f2a0000435b66d6aa3ab33f
+adb_trz_track_arrays | cell = 70 | SHA256 = c0507900c798f3a5d82d7b4abc326b3a27d53ee63bfef002af9f0bfdc08ca4a7
+adb_shadow_angles_deg | definitions = 1
+
+===== C. TRANSITIVE GEOMETRY CALL CHAIN =====
+geometry dependency closure = ['adb_trz_shadow_geometry_from_xy', 'adb_shadow_geometry_from_xy']
+call edges:
+  adb_trz_shadow_geometry_from_xy -> adb_shadow_geometry_from_xy
+
+===== D. EXACT TRANSITIVE GEOMETRY SOURCES =====
+
+============================================================
+FUNCTION: adb_trz_shadow_geometry_from_xy
+CELL: 70
+SHA256: f968d50f08bdbda613ebc792c2d439736a0fe963142e4ea9bccd1a5b90926a83
+============================================================
+def adb_trz_shadow_geometry_from_xy(x_track, y_track):
+    """
+    Dynamic ADB geometry from reconstructed x(t), y(t).
+
+    Coordinate convention:
+        ego at (0, 0)
+        +y forward
+        +x right
+        theta = atan2(x, y), in degrees
+    """
+    return adb_shadow_geometry_from_xy(x_track, y_track, include_radial_zone=True)
+
+============================================================
+FUNCTION: adb_shadow_geometry_from_xy
+CELL: 69
+SHA256: 72330d8d79ee4bd3cb8abba8d1073d2210984bef7230936d37e1c1ee278314fc
+============================================================
+def adb_shadow_geometry_from_xy(x_track, y_track, include_radial_zone=False):
+    """
+    Convert reconstructed x(t), y(t) into dynamic ADB shadow geometry.
+
+    Coordinate convention:
+        ego vehicle at (0, 0)
+        +y = forward
+        +x = right
+        theta = atan2(x, y), in degrees
+
+    Dynamic quantities:
+        r(t)
+        theta_c(t)
+        theta_center(t) = theta_c(t) - Delta theta
+        epsilon(t)
+        theta_min(t)
+        theta_max(t)
+    """
+    target_range = np.sqrt(x_track**2 + y_track**2)
+    theta_c = np.rad2deg(np.arctan2(x_track, y_track))
+    shadow_center = theta_c - delta_theta_deg
+    effective_half_width = target_width_m / 2.0 + lateral_safety_margin_m
+    epsilon = np.rad2deg(np.arctan(effective_half_width / np.maximum(target_range, EPS)))
+
+    geometry = {
+        "range": target_range,
+        "range_target": target_range,
+        "theta_c": theta_c,
+        "shadow_center": shadow_center,
+        "epsilon": epsilon,
+        "theta_min": shadow_center - epsilon,
+        "theta_max": shadow_center + epsilon,
+    }
+
+    if include_radial_zone:
+        geometry["r_min"] = target_range + adb_trz_front_margin_units
+        geometry["r_max"] = geometry["r_min"] + adb_trz_transition_length_units
+
+    return geometry
+
+===== E. TRANSITIVE GEOMETRY SEMANTIC GATES =====
+wrapper_delegates_to_geometry_helper       = PASS
+xy_inputs                                  = PASS
+angular_mapping                            = PASS
+range_mapping                              = PASS
+vehicle_width_or_half_width                = PASS
+safety_margin                              = PASS
+angular_shadow_bounds                      = PASS
+radial_zone_support                        = PASS
+current_dynamic_geometry                   = PASS
+
+===== F. TRANSITIVE GLOBAL PARAMETER EVIDENCE =====
+geometry external/global names = ['EPS', 'adb_trz_front_margin_units', 'adb_trz_transition_length_units', 'delta_theta_deg', 'lateral_safety_margin_m', 'target_width_m']
+EPS                                | C03:L034 | EPS = 1e-12
+adb_trz_front_margin_units         | C06:L051 | adb_trz_front_margin_units = 4.0
+adb_trz_transition_length_units    | C06:L052 | adb_trz_transition_length_units = 8.0
+delta_theta_deg                    | C06:L008 | delta_theta_deg = 0.0
+lateral_safety_margin_m            | C06:L012 | lateral_safety_margin_m = 1.0
+target_width_m                     | C06:L011 | target_width_m = 1.9
+
+===== G. EXACT INTENSITY / COMBINATION SOURCES =====
+
+============================================================
+FUNCTION: adb_intensity_map
+CELL: 59
+SHA256: 000407148d5120db7326f95ed42e12342ce5144054184b613ee1f5678837c350
+============================================================
+def adb_intensity_map(theta_min_deg, theta_max_deg, x_m, y_m):
+    # Current distance from ego vehicle to target center
+    target_range_m = np.hypot(x_m, y_m)
+    # Same logic as the simulation 1's example intensity map
+    r_min_m = target_range_m + radial_safety_margin_m
+    r_max_m = r_min_m + transition_length_m
+
+    intensity = np.ones_like(adb_range_grid_m, dtype=float)
+
+    inside_shadow = (
+        (adb_angle_grid_deg >= theta_min_deg)
+        & (adb_angle_grid_deg <= theta_max_deg)
+    )
+
+    full_shadow = inside_shadow & (adb_range_grid_m <= r_min_m)
+    transition = (
+        inside_shadow
+        & (adb_range_grid_m > r_min_m)
+        & (adb_range_grid_m < r_max_m)
+    )
+    intensity[full_shadow] = 0.0
+
+    u = (adb_range_grid_m[transition] - r_min_m) / (r_max_m - r_min_m)
+    intensity[transition] = 0.5 * (1.0 - np.cos(np.pi * u))
+
+    return intensity
+
+============================================================
+FUNCTION: adb_combine_intensity_maps
+CELL: 59
+SHA256: e5517dc82a865658f014f38e82e2b283aeda1f498f2a0000435b66d6aa3ab33f
+============================================================
+def adb_combine_intensity_maps(theta_min_values, theta_max_values, x_values, y_values):
+    """Combine ADB intensity maps from multiple vehicles."""
+
+    combined = np.ones_like(adb_range_grid_m, dtype=float)
+
+    for theta_min_deg, theta_max_deg, x_m, y_m in zip(
+        theta_min_values,
+        theta_max_values,
+        x_values,
+        y_values
+    ):
+        vehicle_map = adb_intensity_map(theta_min_deg, theta_max_deg, x_m, y_m)
+        combined = np.minimum(combined, vehicle_map)
+
+    return combined
+target_range_from_xy                       = PASS
+radial_safety_margin                       = PASS
+transition_length                          = PASS
+full_shadow_zero                           = PASS
+raised_cosine                              = PASS
+outside_full_illumination                  = PASS
+multi_actor_minimum                        = PASS
+
+===== H. FIXED EPSILON vs DYNAMIC GEOMETRY =====
+fixed demo epsilon_deg    = 0.75 EXACT
+dynamic chain references fixed epsilon_deg = False
+dynamic chain width+margin geometry = True
+dynamic binding policy = FOLLOW_DYNAMIC_WIDTH_MARGIN_FORMULA
+
+===== I. MHT → DYNAMIC ADB CONNECTION =====
+dynamic geometry call contexts = 8
+
+--- geometry call context 1 (cell 70) ---
+0008:     raise ValueError("m2_final_tracks is empty. Run Module 2 first.")
+0009: 
+0010: # ------------------------------------------------------------
+0011: # Helpers
+0012: # ------------------------------------------------------------
+0013: def adb_trz_track_arrays(track):
+0014:     """
+0015:     Convert one reconstructed Module 2 track into ordered frame, x, y arrays.
+0016:     """
+0017:     return adb_track_arrays(track)
+0018: 
+0019: 
+0020: def adb_trz_shadow_geometry_from_xy(x_track, y_track):
+0021:     """
+0022:     Dynamic ADB geometry from reconstructed x(t), y(t).
+0023: 
+0024:     Coordinate convention:
+0025:         ego at (0, 0)
+0026:         +y forward
+0027:         +x right
+0028:         theta = atan2(x, y), in degrees
+0029:     """
+0030:     return adb_shadow_geometry_from_xy(x_track, y_track, include_radial_zone=True)
+0031: 
+0032: 
+
+--- geometry call context 2 (cell 70) ---
+0262:     adb_trz_cols,
+0263:     figsize=(5.0 * adb_trz_cols, 4.9 * adb_trz_num_tracks),
+0264:     constrained_layout=True
+0265: )
+0266: 
+0267: if adb_trz_num_tracks == 1:
+0268:     axes = np.array([axes])
+0269: 
+0270: adb_trz_colors = ["tab:blue", "tab:orange", "tab:green", "tab:red"]
+0271: 
+0272: for adb_trz_track_idx, adb_trz_track in enumerate(m2_final_tracks):
+0273:     adb_trz_frames, adb_trz_x_track, adb_trz_y_track = adb_trz_track_arrays(adb_trz_track)
+0274:     adb_trz_geom = adb_trz_shadow_geometry_from_xy(adb_trz_x_track, adb_trz_y_track)
+0275:     adb_trz_snapshot_indices = adb_trz_select_snapshot_indices(
+0276:         adb_trz_frames,
+0277:         n_snapshots=adb_trz_num_snapshots
+0278:     )
+0279: 
+0280:     adb_trz_track_label = f"Reconstructed track {adb_trz_track_idx + 1}"
+0281:     adb_trz_track_color = adb_trz_colors[adb_trz_track_idx % len(adb_trz_colors)]
+0282: 
+0283:     for adb_trz_col_idx in range(adb_trz_cols):
+0284:         adb_trz_ax = axes[adb_trz_track_idx, adb_trz_col_idx]
+0285: 
+0286:         if adb_trz_col_idx < len(adb_trz_snapshot_indices):
+
+--- geometry call context 3 (cell 71) ---
+0177: # ------------------------------------------------------------
+0178: 
+0179: adb_rc_frame0_items = []
+0180: 
+0181: for adb_rc_track_idx, adb_rc_track in enumerate(m2_final_tracks):
+0182:     adb_rc_frames, adb_rc_x_track, adb_rc_y_track = adb_trz_track_arrays(adb_rc_track)
+0183: 
+0184:     if adb_rc_requested_frame not in adb_rc_frames:
+0185:         continue
+0186: 
+0187:     adb_rc_array_idx = int(np.where(adb_rc_frames == adb_rc_requested_frame)[0][0])
+0188: 
+0189:     adb_rc_geom = adb_trz_shadow_geometry_from_xy(
+0190:         adb_rc_x_track,
+0191:         adb_rc_y_track
+0192:     )
+0193: 
+0194:     adb_rc_frame0_items.append(
+0195:         {
+0196:             "track_idx": adb_rc_track_idx,
+0197:             "frames": adb_rc_frames,
+0198:             "geom": adb_rc_geom,
+0199:             "array_idx": adb_rc_array_idx,
+0200:         }
+0201:     )
+
+--- geometry call context 4 (cell 72) ---
+0414:     ax.grid(True, axis="x", alpha=0.18)
+0415: 
+0416:     for adb_angmap_spine in ax.spines.values():
+0417:         adb_angmap_spine.set_linewidth(0.8)
+0418: 
+0419: 
+0420: # ------------------------------------------------------------
+0421: # Build one educational figure per reconstructed track
+0422: # ------------------------------------------------------------
+0423: for adb_angmap_track_idx, adb_angmap_track in enumerate(m2_final_tracks):
+0424:     adb_angmap_frames, adb_angmap_x_track, adb_angmap_y_track = adb_trz_track_arrays(adb_angmap_track)
+0425: 
+0426:     adb_angmap_geom = adb_trz_shadow_geometry_from_xy(
+0427:         adb_angmap_x_track,
+0428:         adb_angmap_y_track
+0429:     )
+0430: 
+0431:     adb_angmap_snapshot_indices = adb_trz_select_snapshot_indices(
+0432:         adb_angmap_frames,
+0433:         n_snapshots=adb_angmap_num_snapshots
+0434:     )
+0435: 
+0436:     adb_angmap_track_label = f"Reconstructed track {adb_angmap_track_idx + 1}"
+0437:     adb_angmap_track_color = adb_angmap_track_colors[
+0438:         adb_angmap_track_idx % len(adb_angmap_track_colors)
+
+--- geometry call context 5 (cell 73) ---
+0002: # Module 3 - TODO Cell 1N (clean labels version)
+0003: # Dynamic intensity / top-down ADB plot
+0004: # Only for reconstructed track 2 (curved track)
+0005: #
+0006: # Design change requested:
+0007: # - no legend
+0008: # - no labels placed on top of the shaded cone/line
+0009: # - only small labels / boxes away from the geometry
+0010: # - no arrows in the first plot
+0011: #
+0012: # Uses helpers from previous cells:
+0013: # - adb_trz_track_arrays()
+0014: # - adb_trz_shadow_geometry_from_xy()
+0015: # - adb_trz_select_snapshot_indices()
+0016: # - ray_xy_from_yaxis()
+0017: # - add_ego_vehicle(), add_target_vehicle()
+0018: # - add_label_box()
+0019: # - COLOR_THETA_C, COLOR_CENTER, COLOR_THETA_BOUNDS, COLOR_FORWARD
+0020: # - m2_final_tracks, m2_x_range, m2_y_range
+0021: #
+0022: # Does NOT redefine the older static Module 3 variables.
+0023: # ============================================================
+0024: 
+0025: if len(m2_final_tracks) < 2:
+0026:     raise ValueError(
+
+m2_final_tracks contexts = 23
+
+--- MHT context 1 (cell 49) ---
+0079:             deviations.append(float(np.linalg.norm(position - gt_positions[frame])))
+0080: 
+0081:     return {
+0082:         "matched_label": matched_label,
+0083:         "label_counts": label_counts,
+0084:         "mean_deviation": float(np.mean(deviations)) if deviations else np.inf,
+0085:         "max_deviation": float(np.max(deviations)) if deviations else np.inf,
+0086:         "num_eval_frames": len(deviations),
+0087:     }
+0088: 
+0089: m2_final_tracks = []
+0090: m2_filter_table = []
+0091: 
+0092: for track in m2_tracks:
+0093:     passes, filter_info = m2_track_passes_final_filters(track)
+0094:     evaluation = m2_evaluate_track_against_gt(track)
+0095: 
+0096:     m2_filter_table.append({
+0097:         "track_id": track["track_id"],
+0098:         "passes": passes,
+0099:         **filter_info,
+
+--- MHT context 2 (cell 49) ---
+0094:     evaluation = m2_evaluate_track_against_gt(track)
+0095: 
+0096:     m2_filter_table.append({
+0097:         "track_id": track["track_id"],
+0098:         "passes": passes,
+0099:         **filter_info,
+0100:         **evaluation,
+0101:     })
+0102: 
+0103:     if passes:
+0104:         m2_final_tracks.append(track)
+0105: 
+0106: m2_final_evaluations = [m2_evaluate_track_against_gt(track) for track in m2_final_tracks]
+0107: 
+0108: # ------------------------------------------------------------
+0109: # Paper scenario 1 reference: linear-track error proxy
+0110: # ------------------------------------------------------------
+0111: 
+0112: def m2_gt_line_rho_theta(label):
+0113:     if label == 1:
+0114:         x = m2_gt1_x
+
+--- MHT context 3 (cell 49) ---
+0096:     m2_filter_table.append({
+0097:         "track_id": track["track_id"],
+0098:         "passes": passes,
+0099:         **filter_info,
+0100:         **evaluation,
+0101:     })
+0102: 
+0103:     if passes:
+0104:         m2_final_tracks.append(track)
+0105: 
+0106: m2_final_evaluations = [m2_evaluate_track_against_gt(track) for track in m2_final_tracks]
+0107: 
+0108: # ------------------------------------------------------------
+0109: # Paper scenario 1 reference: linear-track error proxy
+0110: # ------------------------------------------------------------
+0111: 
+0112: def m2_gt_line_rho_theta(label):
+0113:     if label == 1:
+0114:         x = m2_gt1_x
+0115:         y = m2_gt1_y
+0116:     elif label == 2:
+
+--- MHT context 4 (cell 49) ---
+0141: 
+0142:     x = xy[:, 0]
+0143:     y = xy[:, 1]
+0144: 
+0145:     distances = np.abs(x * np.cos(theta) + y * np.sin(theta) - rho)
+0146:     return float(np.mean(distances))
+0147: 
+0148: m2_linear_error_table = []
+0149: 
+0150: if m2_gt_mode == "two_linear":
+0151:     for track, evaluation in zip(m2_final_tracks, m2_final_evaluations):
+0152:         label = evaluation["matched_label"]
+0153: 
+0154:         if label in [1, 2]:
+0155:             m2_linear_error_table.append({
+0156:                 "track_id": track["track_id"],
+0157:                 "matched_label": label,
+0158:                 "mean_perpendicular_line_error": m2_mean_perpendicular_error_to_gt_line(track, label),
+0159:             })
+0160: 
+0161:     m2_paper_first_scenario_reference_errors = list(PAPER_REPORTED_MHT_LINEAR_ERRORS_UNITS)
+
+--- MHT context 5 (cell 49) ---
+0153: 
+0154:         if label in [1, 2]:
+0155:             m2_linear_error_table.append({
+0156:                 "track_id": track["track_id"],
+0157:                 "matched_label": label,
+0158:                 "mean_perpendicular_line_error": m2_mean_perpendicular_error_to_gt_line(track, label),
+0159:             })
+0160: 
+0161:     m2_paper_first_scenario_reference_errors = list(PAPER_REPORTED_MHT_LINEAR_ERRORS_UNITS)
+0162: 
+0163: m2_num_final_tracks = len(m2_final_tracks)
+0164: m2_matched_labels = [ev["matched_label"] for ev in m2_final_evaluations]
+0165: m2_false_final_tracks = int(np.sum([label == 0 for label in m2_matched_labels]))
+0166: m2_both_gt_matched = set(m2_matched_labels) == {1, 2}
+0167: m2_max_mean_deviation = max([ev["mean_deviation"] for ev in m2_final_evaluations], default=np.inf)
+0168: 
+0169: m2_accepted = (
+0170:     m2_num_final_tracks == 2
+0171:     and m2_false_final_tracks == 0
+0172:     and m2_both_gt_matched
+0173:     and m2_max_mean_deviation <= m2_deviation_threshold
+
+MHT/current-track connection = PASS
+
+===== J. COORDINATE-CONVENTION AUDIT =====
+Part-A axes     = +Y FORWARD / +X RIGHT
+Stage6 H0 axes  = +X FORWARD / +Y LEFT / +Z UP
+H0 -> Part-A    = x_A=-y_H0 ; y_A=x_H0
+theta relation  = theta_A = -theta_H0
+interval mapping= [a,b] -> [-b,-a]
+angle conversion smoke max error = 0.0
+adapter conversion implemented = NO
+
+===== K. AUDIT ARTIFACT =====
+report = /home/agni/waymo/iscai_stage6/reports/block62_dynamic_dependency_chain_audit.json
+report SHA256 = 7406e5e0342cee6252a536d63edd77ff909b6acd3eea7e6adb870f99e51796b5
+exact excerpt = /home/agni/waymo/iscai_stage6/artifacts/block62/part_a_dynamic_dependency_chain_exact_source.txt
+
+===== L. IMMUTABILITY RECHECK =====
+Part-A notebook      = UNCHANGED
+Block6.1             = UNCHANGED
+Block6.2 Part1       = UNCHANGED
+scientific code      = UNCHANGED
+
+============================================================
+TRANSITIVE DYNAMIC ADB AUDIT — FINAL
+============================================================
+wrapper-only previous gate = FALSE NEGATIVE CONFIRMED
+dynamic dependency chain   = AUDITED PASS
+vehicle width semantics     = TRANSITIVELY PROVEN
+safety margin semantics     = TRANSITIVELY PROVEN
+angular/range geometry      = PASS
+raised-cosine intensity     = EXACT SOURCE PASS
+multi-actor minimum         = EXACT SOURCE PASS
+MHT/current-track link      = PASS
+fixed epsilon 0.75          = PRESERVED AS FIXED DEMO
+dynamic epsilon policy      = FOLLOW_DYNAMIC_WIDTH_MARGIN_FORMULA
+Part-A axes                 = +Y FORWARD / +X RIGHT
+Stage6 H0 axes              = +X FORWARD / +Y LEFT
+coordinate conversion       = DERIVED / NOT YET IMPLEMENTED
+Part-A reactive upgraded    = NO
+Stage6 predictive started   = NO
+upstream modified           = NO
+STATUS = PASS_READY_FOR_EXACT_PARTA_REACTIVE_ADAPTER
+terminal remains open = YES

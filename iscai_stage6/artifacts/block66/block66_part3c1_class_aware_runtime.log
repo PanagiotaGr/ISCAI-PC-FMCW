@@ -1,0 +1,123 @@
+==============================================================================
+BLOCK 6.6 PART3C/1 — PREREGISTERED CLASS-AWARE RUNTIME OPERATORS
+==============================================================================
+
+===== A. IMMUTABLE PART3B PREREGISTRATION SEAL =====
+Part3B preregistration              = EXACT PASS
+Part3B report                       = EXACT PASS
+Part3B freeze                       = EXACT PASS
+Part3B -> Part3C handoff            = EXACT PASS
+part_a_reactive.py                  = EXACT PASS
+illumination.py                     = EXACT PASS
+predictive_mask.py                  = EXACT PASS
+numeric policy selection = FORBIDDEN
+formal outcomes read = NO
+
+===== B. WRITE NEW ISOLATED RUNTIME MODULE =====
+module = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/class_aware_policy.py
+module SHA256 = b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b
+existing frozen modules modified = NO
+
+===== C. WRITE PART3C/1 OPERATOR TESTS =====
+test file = /home/agni/waymo/iscai_stage6/tests/test_block66_part3c1_class_aware_policy.py
+test SHA256 = e94b16cf289a5f07edd3490bf4cc2b6ab01f03dfd14f926850d2b6c1ae89490d
+
+===== D. PYTHON COMPILE GATE =====
+
+compile = PASS
+
+===== E. FOCUSED PART3C/1 UNIT TESTS =====
+test_maximum_active_vru_floor_wins (tests.test_block66_part3c1_class_aware_policy.CompositionTests.test_maximum_active_vru_floor_wins) ... ok
+test_pedestrian_floor_overrides_vehicle_blackout (tests.test_block66_part3c1_class_aware_policy.CompositionTests.test_pedestrian_floor_overrides_vehicle_blackout) ... ok
+test_vehicle_only_uses_minimum (tests.test_block66_part3c1_class_aware_policy.CompositionTests.test_vehicle_only_uses_minimum) ... ok
+test_angular_margin_uses_ceil (tests.test_block66_part3c1_class_aware_policy.MarginTests.test_angular_margin_uses_ceil) ... ok
+test_cyclist_lateral_response (tests.test_block66_part3c1_class_aware_policy.MarginTests.test_cyclist_lateral_response) ... ok
+test_pedestrian_has_no_motion_term (tests.test_block66_part3c1_class_aware_policy.MarginTests.test_pedestrian_has_no_motion_term) ... ok
+test_unknown_class_rejected (tests.test_block66_part3c1_class_aware_policy.MarginTests.test_unknown_class_rejected) ... ok
+test_vehicle_uncertainty_and_closing (tests.test_block66_part3c1_class_aware_policy.MarginTests.test_vehicle_uncertainty_and_closing) ... ok
+test_predictive_illumination_preserves_inactive_theta (tests.test_block66_part3c1_class_aware_policy.MaskAndIlluminationTests.test_predictive_illumination_preserves_inactive_theta) ... ok
+test_predictive_illumination_uses_nonzero_floor (tests.test_block66_part3c1_class_aware_policy.MaskAndIlluminationTests.test_predictive_illumination_uses_nonzero_floor) ... ok
+test_theta_dilation_clips_at_boundary (tests.test_block66_part3c1_class_aware_policy.MaskAndIlluminationTests.test_theta_dilation_clips_at_boundary) ... ok
+test_theta_dilation_only (tests.test_block66_part3c1_class_aware_policy.MaskAndIlluminationTests.test_theta_dilation_only) ... ok
+test_finite_brightening_rate (tests.test_block66_part3c1_class_aware_policy.RateLimitTests.test_finite_brightening_rate) ... ok
+test_finite_dimming_rate (tests.test_block66_part3c1_class_aware_policy.RateLimitTests.test_finite_dimming_rate) ... ok
+test_invalid_rate_order_rejected (tests.test_block66_part3c1_class_aware_policy.RateLimitTests.test_invalid_rate_order_rejected) ... ok
+test_vru_floor_safety_override_is_counted (tests.test_block66_part3c1_class_aware_policy.RateLimitTests.test_vru_floor_safety_override_is_counted) ... ok
+test_invalid_k_rejected (tests.test_block66_part3c1_class_aware_policy.StrictThresholdTests.test_invalid_k_rejected) ... ok
+test_k_zero_keeps_positive_counts (tests.test_block66_part3c1_class_aware_policy.StrictThresholdTests.test_k_zero_keeps_positive_counts) ... ok
+test_strict_k_boundary (tests.test_block66_part3c1_class_aware_policy.StrictThresholdTests.test_strict_k_boundary) ... ok
+test_temporal_smoothing_exact_first_step (tests.test_block66_part3c1_class_aware_policy.TemporalTests.test_temporal_smoothing_exact_first_step) ... ok
+test_temporal_smoothing_is_recursive (tests.test_block66_part3c1_class_aware_policy.TemporalTests.test_temporal_smoothing_is_recursive) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.013s
+
+OK
+
+focused tests = PASS | 21
+
+===== F. RUNTIME API SMOKE =====
+threshold_occupancy_counts_strict_k           = iscai_stage6.adb.class_aware_policy
+compute_class_aware_margin                    = iscai_stage6.adb.class_aware_policy
+angular_margin_cells                          = iscai_stage6.adb.class_aware_policy
+dilate_mask_theta                             = iscai_stage6.adb.class_aware_policy
+predictive_mask_to_illumination               = iscai_stage6.adb.class_aware_policy
+compose_class_aware_illumination              = iscai_stage6.adb.class_aware_policy
+temporal_smooth_schedule                      = iscai_stage6.adb.class_aware_policy
+apply_actuation_rate_limit                    = iscai_stage6.adb.class_aware_policy
+strict-k operator       = IMPLEMENTED
+predictive margin       = IMPLEMENTED
+class composition       = IMPLEMENTED
+overlap VRU priority    = IMPLEMENTED
+temporal smoothing      = IMPLEMENTED
+actuation-rate limiter  = IMPLEMENTED
+
+===== G. FROZEN PART-A CONTINUITY RECHECK =====
+part_a_reactive.py                  = EXACT PASS
+illumination.py                     = EXACT PASS
+predictive_mask.py                  = EXACT PASS
+original reactive baseline modified = NO
+
+===== H. FULL STAGE6 REGRESSION =====
+......................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 166 tests in 0.174s
+
+OK
+Stage6 regression = PASS | 166
+
+===== I. PART3C/1 REPORT + HANDOFF =====
+report = /home/agni/waymo/iscai_stage6/reports/block66_part3c1_class_aware_runtime.json
+report SHA256 = ef4c18367dfe26ceac3a7f55f725f5450c7a3a0fd28811aa565472d9b06073a2
+handoff = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3c1_to_part3c2_handoff.json
+handoff SHA256 = 5dccff7f48403bffcb3eab2f787bb09f96a4cce41a5e8c286050026fea58f813
+
+==============================================================================
+BLOCK 6.6 PART3C/1 — FINAL
+==============================================================================
+STATUS = PASS_PREREGISTERED_CLASS_AWARE_RUNTIME_OPERATORS_IMPLEMENTED
+strict integer-k threshold = IMPLEMENTED
+predictive class margin    = IMPLEMENTED
+Part-A generic margin      = PRESERVED
+theta-only mask dilation   = IMPLEMENTED
+raised-cosine conversion   = IMPLEMENTED / REUSED
+class-aware composition    = IMPLEMENTED
+VRU overlap floor guard    = IMPLEMENTED
+temporal smoothing         = IMPLEMENTED
+finite actuation rate      = IMPLEMENTED
+safety override accounting = IMPLEMENTED
+vertical actuator DOF      = NO
+focused tests              = PASS | 21
+Stage6 regression          = PASS | 166
+policy sweep executed      = NO
+numeric policy selected    = NO
+formal outcomes read       = NO
+new model forward          = NO
+new MC sampling            = NO
+module SHA256              = b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b
+test SHA256                = e94b16cf289a5f07edd3490bf4cc2b6ab01f03dfd14f926850d2b6c1ae89490d
+report SHA256              = ef4c18367dfe26ceac3a7f55f725f5450c7a3a0fd28811aa565472d9b06073a2
+handoff SHA256             = 5dccff7f48403bffcb3eab2f787bb09f96a4cce41a5e8c286050026fea58f813
+NEXT = BLOCK6.6 PART3C/2 VEHICLE SURROGATE EVIDENCE + INTEGRATION
+terminal remains open = YES
+==============================================================================

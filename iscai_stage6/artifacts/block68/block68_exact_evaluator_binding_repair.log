@@ -1,0 +1,105 @@
+============================================================
+STAGE 6 — BLOCK 6.8 PART 2/2
+EXACT EVALUATOR BINDING REPAIR
+EVIDENCE ROUTE ONLY — NO SCIENTIFIC CHANGE
+============================================================
+
+===== A. FROZEN EVIDENCE CONTINUITY =====
+reconciliation          = EXACT PASS
+metric protocol         = EXACT PASS
+metric runtime          = EXACT PASS
+metric interface        = EXACT PASS
+development route bind   = PASS
+illumination extraction  = PASS
+
+===== B. FINAL OUTPUT TYPE PROOF =====
+ClassAwareComposition raw I = PROVEN
+ClassAwareComposition final I= ABSENT / EXPECTED
+RateLimitedSchedule final I  = PROVEN
+final actuator field          = RateLimitedSchedule.illumination
+
+===== C. EXACT PRODUCER CHAIN =====
+compose:
+   (*, class_illumination: 'Mapping[str, np.ndarray]', class_active_masks: 'Mapping[str, np.ndarray]', class_floors: 'Mapping[str, float]') -> 'ClassAwareComposition'
+smooth:
+   (raw_schedule, *, current_illumination, horizons_s: 'Sequence[float]', time_constant_s: 'float') -> 'np.ndarray'
+rate limit:
+   (smoothed_schedule, *, current_illumination, horizons_s: 'Sequence[float]', rho_dim_per_s: 'float', rho_bright_per_s: 'float', vru_floor_guard=None) -> 'RateLimitedSchedule'
+
+producer chain =
+  ClassAwareComposition.raw_class_aware_illumination
+    -> temporal_smooth_schedule
+    -> apply_actuation_rate_limit
+    -> RateLimitedSchedule.illumination
+
+===== D. SYNTHETIC STRUCTURAL EXECUTION =====
+composition output shape = (4, 5, 7)
+smoothed output shape    = (4, 5, 7)
+final output type        = RateLimitedSchedule
+final I shape            = (4, 5, 7)
+final I finite/[0,1]     = PASS
+synthetic performance claim = NO
+
+===== E. EVALUATOR I_FINAL BINDING =====
+raw_predictive_class_aware_map = ClassAwareComposition.raw_class_aware_illumination
+temporal_operator = temporal_smooth_schedule
+rate_limit_operator = apply_actuation_rate_limit
+final_result_type = RateLimitedSchedule
+final_metric_intensity = RateLimitedSchedule.illumination
+final_shape_semantics = [horizon,theta,range]
+safety_override_diagnostic = RateLimitedSchedule.safety_override_mask
+pre_temporal_raw_map_used_as_final_metric_input = False
+smoothed_pre_rate_limit_map_used_as_final_metric_input = False
+
+===== F. PREVIOUS BINDER DIAGNOSIS =====
+scientific controller bug = NO
+binder/evidence bug       = YES
+scientific repair needed  = NO
+binder repair             = THIS REPORT ONLY
+
+===== G. SCIENTIFIC OUTCOME BOUNDARY =====
+development outcome records read = NO
+development metrics computed     = NO
+numeric acceptance bounds        = NOT SELECTED
+policy parameters modified       = NO
+scientific controller modified   = NO
+formal content opened            = NO
+formal outcomes read             = NO
+formal evaluation                = NO
+
+===== H. FULL STAGE6 REGRESSION =====
+Stage6 regression = 202 / 202 PASS
+
+===== I. IMMUTABILITY READBACK =====
+reconciled protocol    = UNCHANGED
+metric runtime         = UNCHANGED
+metric interface       = UNCHANGED
+class-aware controller = UNCHANGED
+margin binding         = UNCHANGED
+
+===== J. STORAGE =====
+free GiB        = 1052.775
+250-GiB reserve = PASS
+
+===== K. REPAIRED BINDER FREEZE =====
+repair report SHA256 = 1505c780423efbe27735c3729b95a18c3da2093f49826bd96cbfad8fdce5d5f1
+
+============================================================
+BLOCK 6.8 EXACT EVALUATOR BINDER REPAIR — FINAL
+============================================================
+previous binder assumption = REJECTED
+raw class-aware I           = ClassAwareComposition.raw_class_aware_illumination
+temporal operator           = temporal_smooth_schedule
+rate-limit operator         = apply_actuation_rate_limit
+final actuator result       = RateLimitedSchedule
+final metric I_final        = RateLimitedSchedule.illumination
+synthetic structural route  = PASS
+scientific controller change= NO
+development metrics         = NOT COMPUTED
+numeric bounds              = NOT SELECTED
+formal content              = NOT OPENED
+formal evaluation           = NO
+Stage6 regression           = 202 / 202 PASS
+STATUS = PASS_FINAL_ACTUATION_OUTPUT_BOUND
+report = /home/agni/waymo/iscai_stage6/reports/block68_exact_evaluator_binding_repair.json
+terminal remains open = YES

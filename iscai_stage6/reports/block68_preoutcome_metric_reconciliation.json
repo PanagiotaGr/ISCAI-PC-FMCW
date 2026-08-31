@@ -1,0 +1,75 @@
+{
+  "authority": {
+    "rule": "earliest explicit pre-outcome preregistration is authoritative",
+    "sha256": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e",
+    "source": "/home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json"
+  },
+  "block": "6.8",
+  "formal_evaluation_allowed": false,
+  "historical_Block68_Part1": {
+    "old_protocol_sha256": "c12b95c24ba64f48ac8dc3890fa550613ea597875f6a5a759762b88629623ac0",
+    "old_runtime_sha256": "fdca66a1a9af74d24baaafe4e17d12acdb2db538e037503aba6ee04684eac362",
+    "report": "/home/agni/waymo/iscai_stage6/reports/block68_part1_metric_freeze_gate.json",
+    "status": "PRESERVED_BUT_SUPERSEDED_BY_PREOUTCOME_RECONCILIATION"
+  },
+  "immutability": {
+    "Block66_preregistration": "UNCHANGED",
+    "Block67_closure": "UNCHANGED",
+    "class_aware_policy": "UNCHANGED",
+    "class_margin_binding": "UNCHANGED",
+    "historical_Block68_Part1_report": "UNCHANGED"
+  },
+  "next": "development-only metric runtime evaluation and numeric non-inferiority bound freeze",
+  "part": "preoutcome_metric_reconciliation",
+  "project": "Agni",
+  "reconciled": {
+    "metric_interface": {
+      "amended_flags": [
+        "over_masking_area.requires_road_ROI=false",
+        "false_dimming.requires_road_ROI=false",
+        "energy_consumption.requires_road_ROI=false"
+      ],
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/baseline_metric_contract.py",
+      "sha256": "39518597079f65d556ee8f0fd3b00ce525319623c9eb8a83f6e3c608954213e9"
+    },
+    "metric_runtime": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/metric_semantics.py",
+      "sha256": "bf8358b5a7edfe40ffac2718ca7cd5af6e7b5fdb3ff8a2823caad6d0f40f057a"
+    },
+    "protocol": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_metric_freeze_protocol.json",
+      "sha256": "409fbb2785e4ff13f29fdff96c91d608c245e009fcbb86ce57099d6a4e1815c9"
+    }
+  },
+  "regression": {
+    "metric_semantics_tests": 15,
+    "new_reconciliation_tests": 6,
+    "post": 202,
+    "pre": 196,
+    "status": "PASS"
+  },
+  "scientific_boundary": {
+    "development_outcomes_read": false,
+    "formal_evaluation": false,
+    "formal_outcomes_read": false,
+    "parameter_tuning": false,
+    "policy_tuning": false
+  },
+  "semantic_resolution": {
+    "binary_dim_support": "D=[I_final<1]",
+    "energy": "mean_full_horizon_grid",
+    "false_dimming": "|D\\O|/|D|",
+    "flicker": "exact_I_h_not_equal_I_prev",
+    "latency": "seconds_loaded_Pocc_to_four_horizon_schedule",
+    "over_masking": "|D\\O|/|full actuator grid|",
+    "temporal_smoothness": "mean_absolute_change_rate_lower_is_better",
+    "vehicle_no_support": "NA"
+  },
+  "stage": 6,
+  "status": "PASS_PREOUTCOME_METRIC_RECONCILED",
+  "storage": {
+    "free_GiB": 1052.7759742736816,
+    "hard_reserve_GiB": 250.0,
+    "pass": true
+  }
+}

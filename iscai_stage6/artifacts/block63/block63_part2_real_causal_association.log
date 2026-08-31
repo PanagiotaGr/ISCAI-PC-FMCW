@@ -1,0 +1,83 @@
+====================================================================
+BLOCK 6.3 PART 2A — REAL CAUSAL ROUTE + ASSOCIATION
+====================================================================
+
+===== A. FROZEN PREREQUISITES =====
+binding              = PASS
+part1_report         = PASS
+block62_closure      = PASS
+formal_manifest      = PASS
+pilot_manifest       = PASS
+
+===== B. DEVELOPMENT-ONLY SCENARIO SELECTION =====
+selection policy       = FIRST_FROZEN_TINY_PILOT_NOT_IN_FORMAL_N120
+scenario_id            = b85e1bd6cc8e74c0
+compact record offset  = 0
+payload length         = 647785
+formal overlap         = NO
+formal outcomes read   = NO
+
+===== C. FROZEN REAL CAUSAL INPUT ROUTE =====
+Stage2 config packaging = two_element_sequence
+CausalSceneInputs        = PASS
+causal timestamps        = 11
+causal histories         = 27
+prediction_id unique     = PASS
+latest frame max         = 10
+scenario current index   = 10
+future controller access = NO
+
+===== D. CURRENT CAUSAL ADB BOX GEOMETRY =====
+builder module           = iscai_stage6.adb.womd_geometry
+builder source           = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/womd_geometry.py
+builder signature        = (*, scenario: 'Any', adapted: 'Any', allowed_classes: 'frozenset[str]' = frozenset({'TYPE_VEHICLE', 'TYPE_CYCLIST', 'TYPE_PEDESTRIAN'})) -> 'tuple[CausalADBActorBox, ...]'
+ADB-relevant boxes       = 9
+finite current anchors   = 9
+invalid anchor boxes     = 0
+future box state used    = NO
+
+===== E. PARAMETER-FREE CAUSAL ASSOCIATION =====
+predictor histories      = 27
+ADB boxes                = 9
+reciprocal matches       = 6
+unmatched predictors     = 21
+reactive fallback boxes  = 3
+reactive fallback frac   = 0.3333333333333333
+matched distance min m   = 0.40407694559933527
+matched distance mean m  = 1.2878342753342906
+matched distance max m   = 4.205123888107536
+distance threshold       = NONE
+covariance gate          = NONE
+class gate               = NONE
+forced assignment        = NO
+perfect-ID comparison    = NO
+truth association        = NO
+unmatched box policy     = ORIGINAL_REACTIVE_ADB_FALLBACK
+
+===== F. STAGE6 REGRESSION =====
+regression return code   = 0
+regression test count    = 98
+regression status        = PASS
+
+report = /home/agni/waymo/iscai_stage6/reports/block63_part2_real_causal_association.json
+report SHA256 = 71c9d03cc9c1b33dbb371dccd7140d5226494554b6b21df7fbfa19e9f43ba71a
+
+====================================================================
+BLOCK 6.3 PART 2A — FINAL
+====================================================================
+status = PASS_REAL_CAUSAL_ASSOCIATION_EXECUTED
+development scenario     = b85e1bd6cc8e74c0
+formal overlap           = False
+causal histories         = 27
+reciprocal matches       = 6
+reactive fallback boxes  = 3
+distance threshold       = None
+truth/perfect ID         = NO
+future GT                = NO
+model forward            = False
+training/recalibration   = NO / NO
+formal evaluation        = False
+Stage6 regression        = PASS | tests = 98
+NEXT = BLOCK6.3 PART2B FROZEN GAUSSIAN MODEL FORWARD
+terminal remains open     = YES
+====================================================================

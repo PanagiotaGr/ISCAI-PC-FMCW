@@ -1,0 +1,92 @@
+{
+  "Stage5_final_freeze_written": false,
+  "Stage6_handoff_written": false,
+  "Stage6_started_by_this_block": false,
+  "block": "5.10_part_1",
+  "formal": {
+    "N": 120,
+    "beam_gain_loss_db": 0.05214286133992984,
+    "beam_switching_rate": 0.005065856129685917,
+    "codebooks": [
+      16,
+      32,
+      64
+    ],
+    "empirical_probability_coverage": 0.9959473150962512,
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "nominal_q": 0.95,
+    "overhead_reduction_vs_exhaustive": 0.865216565349544,
+    "probing_overhead_fraction": 0.00046970618034447825,
+    "receiver_geometries": [
+      "centroid",
+      "known",
+      "uncertain"
+    ],
+    "reported_q": [
+      0.9,
+      0.95,
+      0.975,
+      0.99
+    ]
+  },
+  "mandatory_acceptance": {
+    "matrix": {
+      "01_upstream_Stage4_frozen": true,
+      "02_Stage5_contract_frozen": true,
+      "03_receiver_angular_posterior": true,
+      "04_receiver_geometry_centroid_known_uncertain": true,
+      "05_codebooks_16_32_64_and_probabilities": true,
+      "06_required_fixed_classical_beam_baselines": true,
+      "07_adaptive_TopK_90_95_97p5_99": true,
+      "08_latency_fallback_reacquisition": true,
+      "09_optical_pointing_gain_power_SNR_BER_rate": true,
+      "10_formal_immutable_N120": true,
+      "11_requested_coverage_gate": true,
+      "12_overhead_reduction_gate": true,
+      "13_full_beam_metric_contract": true,
+      "14_causal_no_formal_tuning_contract": true,
+      "15_tracks_to_predict_not_receiver_selector": true,
+      "16_exact_reproducibility": true,
+      "17_full_regression": true
+    },
+    "passed": 17,
+    "total": 17
+  },
+  "next": "Block5.10 Part2/2: canonical Stage5 final closure, freeze manifest, and Stage5\u2192Stage6 posterior/interface handoff",
+  "project": "Agni",
+  "protected_artifacts_modified": false,
+  "regression": {
+    "passed": 257,
+    "status": "PASS",
+    "tests": 257
+  },
+  "reproducibility": {
+    "beam_probability_vectors_exact": true,
+    "exact_match_to_frozen_block58": true,
+    "fresh_process_count": 2,
+    "fresh_process_repeat_exact": true,
+    "report_sha256": "980bfbd2007ed798742bd7c36b5e8b6bcd0e808590c0dc5d9608db1ec6211845",
+    "status": "PASS_FROZEN"
+  },
+  "scientific_execution": {
+    "formal_inference": false,
+    "parameter_tuning": false,
+    "recalibration": false,
+    "reproducibility_rerun": false,
+    "training": false
+  },
+  "scope_boundary": {
+    "DeepSense": "DEFERRED_TO_STAGE8",
+    "Stage5": "receiver-aware probabilistic communication beam controller and optical link evaluation",
+    "joint_beam_ADB_evaluation": "DEFERRED_TO_STAGE7",
+    "predictive_ADB": "DEFERRED_TO_STAGE6"
+  },
+  "stage": 5,
+  "status": "PASS_READY_FOR_FINAL_FREEZE"
+}

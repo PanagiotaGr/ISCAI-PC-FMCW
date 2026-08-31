@@ -1,0 +1,114 @@
+{
+  "block": "4.1",
+  "class_balancing_policy": "fit-sample-level later; does not alter frozen scenario membership",
+  "class_support": {
+    "calibration": {
+      "current_valid_actor_counts": {
+        "TYPE_CYCLIST": 1883,
+        "TYPE_PEDESTRIAN": 19745,
+        "TYPE_VEHICLE": 226015
+      },
+      "scenarios_containing_class": {
+        "TYPE_CYCLIST": 1244,
+        "TYPE_PEDESTRIAN": 4154,
+        "TYPE_VEHICLE": 7209
+      }
+    },
+    "development": {
+      "current_valid_actor_counts": {
+        "TYPE_CYCLIST": 1830,
+        "TYPE_PEDESTRIAN": 21952,
+        "TYPE_VEHICLE": 227362
+      },
+      "scenarios_containing_class": {
+        "TYPE_CYCLIST": 1222,
+        "TYPE_PEDESTRIAN": 4166,
+        "TYPE_VEHICLE": 7207
+      }
+    },
+    "fit": {
+      "current_valid_actor_counts": {
+        "TYPE_CYCLIST": 14489,
+        "TYPE_PEDESTRIAN": 162222,
+        "TYPE_VEHICLE": 1810789
+      },
+      "scenarios_containing_class": {
+        "TYPE_CYCLIST": 9744,
+        "TYPE_PEDESTRIAN": 32651,
+        "TYPE_VEHICLE": 57654
+      }
+    }
+  },
+  "implementation": {
+    "file_count": 10,
+    "sha256": "2021ef79a5f875239e132e404805f4c512e45926d0fdac9d2d6c7a5b51eab7eb"
+  },
+  "leakage": {
+    "calibration_from_validation": false,
+    "future_mutation_passes": 3,
+    "future_mutation_probes": 3,
+    "future_used_for_partition": false,
+    "normalization_from_validation": false,
+    "objects_of_interest_accessed": false,
+    "performance_used_for_partition": false,
+    "tracks_to_predict_accessed": false,
+    "training_formal_validation_overlap": 0,
+    "training_validation_overlap": 0
+  },
+  "manifests": {
+    "calibration_sha256": "e003dd5c4d5a253729700b12c3754c47ffb99dadfa035b46627f01ec91eed4be",
+    "development_sha256": "e4689698bddd80e58add7267f791aea90ef4bef0309ca18d0d7a9e7e94fe7e5c",
+    "fit_sha256": "284a61c877d937deb07137345beaabf3165690138785f9cc41f81655066d5276",
+    "split_config_sha256": "cdff4ec5c12952228202cd61b7202a3dab510c82bafbbfefe2eb54281c37706e",
+    "training_index_sha256": "18f1e382e2e2cfd737bd32927fea96dce7ea77eb1b3a17dbe81151aaa48708b7"
+  },
+  "not_yet_claimed": [
+    "Stage2-to-neural sample construction",
+    "future target extraction",
+    "measurement covariance tensor conditioning",
+    "multi-agent context tensor",
+    "map-context tensor",
+    "normalization statistics",
+    "GRU training",
+    "probabilistic covariance",
+    "calibration"
+  ],
+  "partitions": {
+    "calibration": 7209,
+    "complete_training_coverage": true,
+    "deterministic": true,
+    "development": 7208,
+    "fit": 57668,
+    "input_order_invariant": true,
+    "overlap": 0,
+    "scenario_level": true
+  },
+  "purpose": "canonical training access and deterministic scenario-level fit/development/calibration freeze",
+  "regression": {
+    "pass": true,
+    "tests_passed": 20,
+    "tests_total": 20
+  },
+  "stage": 4,
+  "status": "PASS",
+  "storage": {
+    "free_gib": 1056.5502090454102,
+    "hard_reserve_gib": 250.0,
+    "pass": true
+  },
+  "training_corpus": {
+    "current_anchor_actor_counts": {
+      "TYPE_CYCLIST": 18202,
+      "TYPE_PEDESTRIAN": 203919,
+      "TYPE_VEHICLE": 2264166
+    },
+    "motion_shards": 1000,
+    "scan_runtime_s": 104.17578382999636,
+    "scenario_count": 72085,
+    "scenarios_containing_class": {
+      "TYPE_CYCLIST": 12210,
+      "TYPE_PEDESTRIAN": 40971,
+      "TYPE_VEHICLE": 72070
+    }
+  }
+}

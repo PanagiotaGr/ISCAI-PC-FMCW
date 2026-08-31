@@ -1,0 +1,113 @@
+============================================================
+STAGE 4 — BLOCK 4.10 FINAL FREEZE
+============================================================
+
+===== A. FINAL UPSTREAM CLOSURE VERIFICATION =====
+Block4.10 Part1          = PASS
+mandatory acceptance     = 14 / 14 PASS
+Block4.8 formal eval     = PASS
+Block4.9 reproducibility = PASS
+
+===== B. FINAL IMMUTABLE ARTIFACT HASHES =====
+formal_manifest              = PASS
+validation_manifest          = PASS
+normalization                = PASS
+deterministic_checkpoint     = PASS
+Gaussian_checkpoint          = PASS
+calibrator                   = PASS
+GMM_checkpoint               = PASS
+reproducibility_manifest     = PASS
+
+===== C. FINAL SCIENTIFIC INVARIANTS =====
+formal scenarios         = 120 PASS
+matched / eligible       = 494 / 547 PASS
+calibrated Gaussian ADE  = 1.9848952833749467
+frozen CV ADE            = 9.538706032921292
+classical baselines beaten = ['CA', 'CTRV', 'CV', 'IMM_CV_CA_CTRV', 'Kalman_EKF']
+raw → calibrated ECE     = 0.18362046536363294 → 0.11165527003334381
+formal scientific gates  = PASS
+
+===== D. FINAL LEAKAGE INVARIANTS =====
+formal training            = NO
+formal model selection     = NO
+formal recalibration       = NO
+future model input         = NO
+tracks_to_predict input    = NO
+tracks_to_predict ordering = AFTER PREDICTION PASS
+leakage contract           = PASS
+
+===== E. CALIBRATED GAUSSIAN HANDOFF CONTRACT =====
+default downstream family = CALIBRATED GAUSSIAN
+horizons s                = [0.1, 0.3, 0.5, 1.0]
+variance scales alpha_h   = [1.2347064500315355, 1.3451250295202921, 1.354822057728461, 1.2829700217319266]
+std scales sqrt(alpha_h)  = [1.1111734563206301, 1.1597952532754616, 1.1639682374225084, 1.1326826659448475]
+predictive mean modified  = NO
+measurement R_t modified  = NO
+predictive covariance     = CALIBRATED
+
+===== F. FINAL PRE-FREEZE REGRESSION =====
+
+..................................................................................................................................
+----------------------------------------------------------------------
+Ran 130 tests in 0.422s
+
+OK
+
+full Stage4 regression = 130 / 130 PASS
+
+===== G. WRITING STAGE4 → STAGE5 HANDOFF =====
+Stage5 handoff             = WRITTEN
+handoff SHA256             = 491bce010d35c2a394f879ecf35ed26ef1de92f7fff1465dcbf46b072a87c6fd
+
+===== H. WRITING CANONICAL STAGE4 CLOSURE =====
+canonical closure          = WRITTEN
+closure SHA256             = 570da4feb918b1025b5e85cc919360d922b471c468c85b3844f13fb7774e7c2f
+
+===== I. WRITING FINAL FREEZE MANIFEST =====
+freeze manifest            = WRITTEN
+freeze manifest SHA256     = 88e3f290e1f7c1d037684adc132ea8ae78af057b3e3ab564fb29516687eb25e7
+
+===== J. FINAL READBACK VERIFICATION =====
+canonical closure readback = PASS
+Stage5 handoff readback    = PASS
+freeze-manifest readback   = PASS
+default posterior          = CALIBRATED GAUSSIAN PASS
+
+============================================================
+STAGE 4 FINAL CLOSURE GATE
+============================================================
+Blocks 4.0 → 4.10          = COMPLETE
+mandatory acceptance       = 14 / 14 PASS
+formal N=120               = PASS
+probabilistic > classical  = PASS
+Gaussian < frozen CV       = PASS
+formal calibration         = PASS
+measurement/predictive UQ  = SEPARATE PASS
+GMM extension              = FROZEN DIAGNOSTIC
+causal/leakage contract    = PASS
+exact reproducibility      = PASS
+full Stage4 regression     = 130 / 130 PASS
+default Stage5 posterior   = CALIBRATED GAUSSIAN
+Stage5 handoff             = FROZEN
+training in Block4.10      = NO
+formal inference Block4.10 = NO
+recalibration Block4.10    = NO
+Stage5 started             = NO
+final implementation files = 87
+final implementation SHA256= 64526bcd8f64772a04183583b63facace2db45a7311ac96412cbd19114ac9f91
+canonical closure SHA256   = 570da4feb918b1025b5e85cc919360d922b471c468c85b3844f13fb7774e7c2f
+Stage5 handoff SHA256      = 491bce010d35c2a394f879ecf35ed26ef1de92f7fff1465dcbf46b072a87c6fd
+freeze manifest SHA256     = 88e3f290e1f7c1d037684adc132ea8ae78af057b3e3ab564fb29516687eb25e7
+STATUS = COMPLETE_FROZEN
+closure report = /home/agni/waymo/iscai_stage4/reports/stage4_final_closure.json
+handoff = /home/agni/waymo/iscai_stage4/artifacts/block410/stage4_to_stage5_handoff.json
+freeze manifest = /home/agni/waymo/iscai_stage4/artifacts/block410/stage4_final_freeze_manifest.json
+
+===== STAGE 4 FINAL =====
+Stage 4 scientific scope   = COMPLETE
+Stage 4 implementation     = FROZEN
+Stage 4 formal evidence    = FROZEN
+Stage 4 reproducibility    = FROZEN
+Stage 5 interface          = FROZEN
+next stage                 = STAGE 5
+terminal remains open      = YES

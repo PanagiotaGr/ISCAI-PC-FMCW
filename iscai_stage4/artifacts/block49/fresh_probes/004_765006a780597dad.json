@@ -1,0 +1,28 @@
+{
+  "actual_prediction_sha256": "6bac4231f2ca41ced8ce31b0e153b9644cdeb0f6f8612d2a03958a5cc9a18846",
+  "block": "4.9_fresh_process_probe",
+  "deterministic_class": "iscai_stage4.ml.deterministic_gru.DeterministicTrajectoryGRU",
+  "environment": {
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "GPU": "NVIDIA RTX A6000",
+    "deterministic_algorithms": true,
+    "numpy": "2.5.1",
+    "python": "3.13.5",
+    "torch": "2.13.0+cu132",
+    "torch_cuda": "13.2"
+  },
+  "exact_prediction_match": true,
+  "expected_prediction_sha256": "6bac4231f2ca41ced8ce31b0e153b9644cdeb0f6f8612d2a03958a5cc9a18846",
+  "future_used_as_model_input": false,
+  "model_selection": false,
+  "rank": 4,
+  "recalibration": false,
+  "scenario_id": "765006a780597dad",
+  "stage": 4,
+  "status": "PASS",
+  "strict_state_load": true,
+  "supervised_samples": 12,
+  "tracks_to_predict_accessed": false,
+  "training": false,
+  "truth_index_source": "sample.truth_track_index"
+}

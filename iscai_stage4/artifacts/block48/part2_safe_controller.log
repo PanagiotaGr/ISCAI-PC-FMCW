@@ -1,0 +1,59 @@
+============================================================
+BLOCK 4.8 PART 2/2 — SAFE CONTROLLER
+============================================================
+
+===== CONTROLLED COMPILE =====
+formal_runtime.py = PASS
+test_block48_formal_runtime.py = PASS
+run_block48_formal_evaluation.py = PASS
+
+===== NEW PART2 UNIT TESTS =====
+
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+OK
+
+
+===== PRE-FORMAL FULL REGRESSION =====
+
+..................................................................................................................
+----------------------------------------------------------------------
+Ran 114 tests in 0.429s
+
+OK
+
+pre-formal regression = 114 / 114 PASS
+
+===== FROZEN FORMAL N=120 RUN =====
+============================================================
+STAGE 4 — BLOCK 4.8 FROZEN FORMAL N=120 EVALUATION
+============================================================
+
+============================================================
+BLOCK 4.8 PART 2/2 = BLOCKED
+============================================================
+exception = RuntimeError No official validation manifest contains all frozen formal IDs. Candidates=[]
+
+RECOVERY:
+Do not guess the validation reader. Inspect the candidate manifest evidence; no model retraining is needed.
+
+formal cache reusable      = YES
+training performed         = NO
+model selection performed  = NO
+recalibration performed    = NO
+Stage3 classical rerun     = NO
+terminal remains open      = YES
+failure report = /home/agni/waymo/iscai_stage4/reports/block48_formal_evaluation_failure.json
+
+formal runner raw process code = 0
+
+============================================================
+BLOCK 4.8 PART 2/2 SAFE CONTROLLER
+============================================================
+STATUS = BLOCKED
+phase = formal_evaluation
+reason = No official validation manifest contains all frozen formal IDs. Candidates=[]
+recovery = Do not guess the validation reader. Inspect the candidate manifest evidence; no model retraining is needed.
+terminal remains open = YES

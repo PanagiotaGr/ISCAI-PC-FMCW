@@ -1,0 +1,514 @@
+{
+  "block": "4.4",
+  "calibration": {
+    "performed": false,
+    "reserved_for": "Block4.5"
+  },
+  "checkpoint": {
+    "best_epoch": 12,
+    "exact_inference_repeat": true,
+    "file_sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f",
+    "path": "/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt",
+    "prediction_sha256": "a0e96b4d9ba051bb3ceb0e1270d592fc13cfa0b3b4ddeb3dc16ed7a29a82e66a",
+    "state_dict_sha256": "1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3"
+  },
+  "development": {
+    "NLL_improved_over_initialization": true,
+    "best_raw_uncalibrated": {
+      "class_planar_ADE_m": {
+        "TYPE_CYCLIST": 1.6158116307248171,
+        "TYPE_PEDESTRIAN": 0.9868421535187432,
+        "TYPE_VEHICLE": 1.5874928289013388
+      },
+      "horizon_metric_NLL": {
+        "0.1": 2.410499496136465,
+        "0.3": 2.9226757682440305,
+        "0.5": 3.314474197393612,
+        "1.0": 4.044859515472623
+      },
+      "horizon_planar_error_m": {
+        "0.1": 1.0263130081858938,
+        "0.3": 1.288160796143693,
+        "0.5": 1.578570180347882,
+        "1.0": 2.3624556955696363
+      },
+      "mean_predictive_std_m": {
+        "0.1": [
+          0.7699694177681053,
+          0.7190069283597005,
+          0.21099571109412193
+        ],
+        "0.3": [
+          0.9500304525482781,
+          0.8209438143981284,
+          0.20842390771688754
+        ],
+        "0.5": [
+          1.1858516531889176,
+          0.9550432268063567,
+          0.2088698317256719
+        ],
+        "1.0": [
+          1.8959188437277783,
+          1.365302304822417,
+          0.210157410684808
+        ]
+      },
+      "metric_Gaussian_NLL": 3.153939398019741,
+      "one_second_planar_error_m": 2.3624556955696363,
+      "planar_ADE_m": 1.5477828883725113,
+      "predictive_covariance_SPD_failures": 0,
+      "raw_empirical_coverage": {
+        "0.50": {
+          "by_horizon": {
+            "0.1": 0.5245852860224652,
+            "0.3": 0.5031202435312024,
+            "0.5": 0.5041488949205118,
+            "1.0": 0.5250711093051605
+          },
+          "empirical": 0.5141648803661434,
+          "inside": 26625,
+          "nominal": 0.5,
+          "valid": 51783
+        },
+        "0.80": {
+          "by_horizon": {
+            "0.1": 0.7394182846090902,
+            "0.3": 0.7128614916286149,
+            "0.5": 0.7102753005040714,
+            "1.0": 0.729134498171475
+          },
+          "empirical": 0.722978583705077,
+          "inside": 37438,
+          "nominal": 0.8,
+          "valid": 51783
+        },
+        "0.90": {
+          "by_horizon": {
+            "0.1": 0.813955218329242,
+            "0.3": 0.7929223744292238,
+            "0.5": 0.7875920899573479,
+            "1.0": 0.7998374644453474
+          },
+          "empirical": 0.7986984145375896,
+          "inside": 41359,
+          "nominal": 0.9,
+          "valid": 51783
+        },
+        "0.95": {
+          "by_horizon": {
+            "0.1": 0.8597039351335267,
+            "0.3": 0.8398021308980214,
+            "0.5": 0.8370686312524234,
+            "1.0": 0.8431531897602601
+          },
+          "empirical": 0.8450842940733445,
+          "inside": 43761,
+          "nominal": 0.95,
+          "valid": 51783
+        },
+        "0.99": {
+          "by_horizon": {
+            "0.1": 0.9181730268541248,
+            "0.3": 0.9036529680365297,
+            "0.5": 0.9008918185343157,
+            "1.0": 0.9080048760666396
+          },
+          "empirical": 0.9077689589247436,
+          "inside": 47007,
+          "nominal": 0.99,
+          "valid": 51783
+        }
+      },
+      "valid_actor_horizon_points": 51783
+    },
+    "calibration_applied": false,
+    "initialized_Gaussian": {
+      "class_planar_ADE_m": {
+        "TYPE_CYCLIST": 1.6503467935441098,
+        "TYPE_PEDESTRIAN": 1.0323782335345042,
+        "TYPE_VEHICLE": 1.6462586414186342
+      },
+      "horizon_metric_NLL": {
+        "0.1": 4.585288882849694,
+        "0.3": 4.794896253240345,
+        "0.5": 4.965900256958244,
+        "1.0": 5.641912626028545
+      },
+      "horizon_planar_error_m": {
+        "0.1": 1.0428566592510973,
+        "0.3": 1.3191058061620053,
+        "0.5": 1.6328179053624226,
+        "1.0": 2.497188201371076
+      },
+      "mean_predictive_std_m": {
+        "0.1": [
+          1.0540647852201772,
+          0.5883354318112674,
+          0.5260590991209121
+        ],
+        "0.3": [
+          1.4734829790878876,
+          0.7589174825125452,
+          0.522867905894008
+        ],
+        "0.5": [
+          1.9329317682332057,
+          0.9563869421590249,
+          0.521585778794394
+        ],
+        "1.0": [
+          3.143509986254317,
+          1.5026810603818,
+          0.5166518154400047
+        ]
+      },
+      "metric_Gaussian_NLL": 4.984338414030667,
+      "one_second_planar_error_m": 2.497188201371076,
+      "planar_ADE_m": 1.60545472380686,
+      "predictive_covariance_SPD_failures": 0,
+      "raw_empirical_coverage": {
+        "0.50": {
+          "by_horizon": {
+            "0.1": 0.7211931860447817,
+            "0.3": 0.7445205479452055,
+            "0.5": 0.7544784800310198,
+            "1.0": 0.7691182446160097
+          },
+          "empirical": 0.7467894868972442,
+          "inside": 38671,
+          "nominal": 0.5,
+          "valid": 51783
+        },
+        "0.80": {
+          "by_horizon": {
+            "0.1": 0.8311388826898758,
+            "0.3": 0.8427701674277017,
+            "0.5": 0.8499418379216751,
+            "1.0": 0.8575375863470134
+          },
+          "empirical": 0.8450456713593264,
+          "inside": 43759,
+          "nominal": 0.8,
+          "valid": 51783
+        },
+        "0.90": {
+          "by_horizon": {
+            "0.1": 0.8658781521981701,
+            "0.3": 0.8727549467275495,
+            "0.5": 0.8789453276463746,
+            "1.0": 0.8886631450629825
+          },
+          "empirical": 0.8762914469999807,
+          "inside": 45377,
+          "nominal": 0.9,
+          "valid": 51783
+        },
+        "0.95": {
+          "by_horizon": {
+            "0.1": 0.8858141783828014,
+            "0.3": 0.8952815829528158,
+            "0.5": 0.898255137650252,
+            "1.0": 0.9061357171881349
+          },
+          "empirical": 0.8961435220052913,
+          "inside": 46405,
+          "nominal": 0.95,
+          "valid": 51783
+        },
+        "0.99": {
+          "by_horizon": {
+            "0.1": 0.916462099233802,
+            "0.3": 0.9214611872146119,
+            "0.5": 0.9274137262504847,
+            "1.0": 0.9328728159284844
+          },
+          "empirical": 0.9243574145955237,
+          "inside": 47866,
+          "nominal": 0.99,
+          "valid": 51783
+        }
+      },
+      "valid_actor_horizon_points": 51783
+    }
+  },
+  "formal_validation": {
+    "comparison_with_Stage3": "DEFERRED_TO_BLOCK_4.8",
+    "used": false
+  },
+  "implementation": {
+    "file_count": 40,
+    "sha256": "b9ea474443d3a54235f09cd4e2b616374b37456f2b9e080f5334f76f4dd7c432"
+  },
+  "not_yet_claimed": [
+    "calibrated predictive uncertainty",
+    "post-calibration coverage",
+    "ECE",
+    "coverage-event Brier score",
+    "GMM multimodality",
+    "formal validation superiority over classical baseline"
+  ],
+  "raw_coverage": {
+    "confidence_levels": [
+      0.5,
+      0.8,
+      0.9,
+      0.95,
+      0.99
+    ],
+    "distribution": "chi_square_df_3",
+    "results": {
+      "0.50": {
+        "by_horizon": {
+          "0.1": 0.5245852860224652,
+          "0.3": 0.5031202435312024,
+          "0.5": 0.5041488949205118,
+          "1.0": 0.5250711093051605
+        },
+        "empirical": 0.5141648803661434,
+        "inside": 26625,
+        "nominal": 0.5,
+        "valid": 51783
+      },
+      "0.80": {
+        "by_horizon": {
+          "0.1": 0.7394182846090902,
+          "0.3": 0.7128614916286149,
+          "0.5": 0.7102753005040714,
+          "1.0": 0.729134498171475
+        },
+        "empirical": 0.722978583705077,
+        "inside": 37438,
+        "nominal": 0.8,
+        "valid": 51783
+      },
+      "0.90": {
+        "by_horizon": {
+          "0.1": 0.813955218329242,
+          "0.3": 0.7929223744292238,
+          "0.5": 0.7875920899573479,
+          "1.0": 0.7998374644453474
+        },
+        "empirical": 0.7986984145375896,
+        "inside": 41359,
+        "nominal": 0.9,
+        "valid": 51783
+      },
+      "0.95": {
+        "by_horizon": {
+          "0.1": 0.8597039351335267,
+          "0.3": 0.8398021308980214,
+          "0.5": 0.8370686312524234,
+          "1.0": 0.8431531897602601
+        },
+        "empirical": 0.8450842940733445,
+        "inside": 43761,
+        "nominal": 0.95,
+        "valid": 51783
+      },
+      "0.99": {
+        "by_horizon": {
+          "0.1": 0.9181730268541248,
+          "0.3": 0.9036529680365297,
+          "0.5": 0.9008918185343157,
+          "1.0": 0.9080048760666396
+        },
+        "empirical": 0.9077689589247436,
+        "inside": 47007,
+        "nominal": 0.99,
+        "valid": 51783
+      }
+    },
+    "space": "3D_predictive_confidence_ellipsoid",
+    "used_for_model_selection": false,
+    "used_for_training": false
+  },
+  "regression": {
+    "tests_passed": 60,
+    "tests_total": 60
+  },
+  "scope": "single_full_covariance_Gaussian_probabilistic_GRU",
+  "stage": 4,
+  "status": "PASS",
+  "storage": {
+    "free_gib": 1055.130916595459,
+    "hard_reserve_gib": 250.0,
+    "pass": true
+  },
+  "training": {
+    "batch_size": 512,
+    "best_epoch": 12,
+    "class_balanced_sampler": true,
+    "device": "cuda:0",
+    "executed_epochs": 16,
+    "gpu": "NVIDIA RTX A6000",
+    "history": [
+      {
+        "development_metric_Gaussian_NLL": 3.9282983646901495,
+        "development_one_second_planar_error_m": 2.5251349023278773,
+        "development_planar_ADE_m": 1.6302670924745453,
+        "epoch": 1,
+        "improved": true,
+        "patience": 0,
+        "training_normalized_Gaussian_NLL": 1.1605626048010647
+      },
+      {
+        "development_metric_Gaussian_NLL": 3.5635086223700347,
+        "development_one_second_planar_error_m": 2.4662748198061637,
+        "development_planar_ADE_m": 1.5992120966340304,
+        "epoch": 2,
+        "improved": true,
+        "patience": 0,
+        "training_normalized_Gaussian_NLL": 0.5990181196840587
+      },
+      {
+        "development_metric_Gaussian_NLL": 3.3538714518398893,
+        "development_one_second_planar_error_m": 2.4480095991609736,
+        "development_planar_ADE_m": 1.5880337015994028,
+        "epoch": 3,
+        "improved": true,
+        "patience": 0,
+        "training_normalized_Gaussian_NLL": 0.41970570260715406
+      },
+      {
+        "development_metric_Gaussian_NLL": 3.298577671409415,
+        "development_one_second_planar_error_m": 2.4328059971889604,
+        "development_planar_ADE_m": 1.5832353008513291,
+        "epoch": 4,
+        "improved": true,
+        "patience": 0,
+        "training_normalized_Gaussian_NLL": 0.31032427813391644
+      },
+      {
+        "development_metric_Gaussian_NLL": 3.2953921367171657,
+        "development_one_second_planar_error_m": 2.4327145659792766,
+        "development_planar_ADE_m": 1.5826771337993406,
+        "epoch": 5,
+        "improved": true,
+        "patience": 0,
+        "training_normalized_Gaussian_NLL": 0.21322774877631692
+      },
+      {
+        "development_metric_Gaussian_NLL": 3.2317599141187743,
+        "development_one_second_planar_error_m": 2.423424097562602,
+        "development_planar_ADE_m": 1.577492746360111,
+        "epoch": 6,
+        "improved": true,
+        "patience": 0,
+        "training_normalized_Gaussian_NLL": 0.14483687778306772
+      },
+      {
+        "development_metric_Gaussian_NLL": 3.1947400333030385,
+        "development_one_second_planar_error_m": 2.3996793633018845,
+        "development_planar_ADE_m": 1.5652304825546028,
+        "epoch": 7,
+        "improved": true,
+        "patience": 0,
+        "training_normalized_Gaussian_NLL": 0.07687658937822783
+      },
+      {
+        "development_metric_Gaussian_NLL": 3.191708121964496,
+        "development_one_second_planar_error_m": 2.38316710408942,
+        "development_planar_ADE_m": 1.5560955412037976,
+        "epoch": 8,
+        "improved": true,
+        "patience": 0,
+        "training_normalized_Gaussian_NLL": 0.05624982586748902
+      },
+      {
+        "development_metric_Gaussian_NLL": 3.1910116118586216,
+        "development_one_second_planar_error_m": 2.3790669304430363,
+        "development_planar_ADE_m": 1.5564077147588857,
+        "epoch": 9,
+        "improved": true,
+        "patience": 0,
+        "training_normalized_Gaussian_NLL": -0.01676393292428548
+      },
+      {
+        "development_metric_Gaussian_NLL": 3.1844144260966436,
+        "development_one_second_planar_error_m": 2.3758492443049066,
+        "development_planar_ADE_m": 1.5549597637315817,
+        "epoch": 10,
+        "improved": true,
+        "patience": 0,
+        "training_normalized_Gaussian_NLL": -0.02334193837537184
+      },
+      {
+        "development_metric_Gaussian_NLL": 3.1552845830195237,
+        "development_one_second_planar_error_m": 2.3686463915202154,
+        "development_planar_ADE_m": 1.5506608651880203,
+        "epoch": 11,
+        "improved": true,
+        "patience": 0,
+        "training_normalized_Gaussian_NLL": -0.10123268328971999
+      },
+      {
+        "development_metric_Gaussian_NLL": 3.153939398019741,
+        "development_one_second_planar_error_m": 2.3624556955696363,
+        "development_planar_ADE_m": 1.5477828883725113,
+        "epoch": 12,
+        "improved": true,
+        "patience": 0,
+        "training_normalized_Gaussian_NLL": -0.14201121581181297
+      },
+      {
+        "development_metric_Gaussian_NLL": 3.198550471438503,
+        "development_one_second_planar_error_m": 2.3565809191750686,
+        "development_planar_ADE_m": 1.5435576002334863,
+        "epoch": 13,
+        "improved": false,
+        "patience": 1,
+        "training_normalized_Gaussian_NLL": -0.1747681642550187
+      },
+      {
+        "development_metric_Gaussian_NLL": 3.1544373160894983,
+        "development_one_second_planar_error_m": 2.3643331280475417,
+        "development_planar_ADE_m": 1.5472378894406706,
+        "epoch": 14,
+        "improved": false,
+        "patience": 2,
+        "training_normalized_Gaussian_NLL": -0.2044986572420331
+      },
+      {
+        "development_metric_Gaussian_NLL": 3.1657061152429367,
+        "development_one_second_planar_error_m": 2.3447794431014453,
+        "development_planar_ADE_m": 1.5373471555125475,
+        "epoch": 15,
+        "improved": false,
+        "patience": 3,
+        "training_normalized_Gaussian_NLL": -0.2332154168846625
+      },
+      {
+        "development_metric_Gaussian_NLL": 3.175194337502776,
+        "development_one_second_planar_error_m": 2.346787333575655,
+        "development_planar_ADE_m": 1.5373990076376416,
+        "epoch": 16,
+        "improved": false,
+        "patience": 4,
+        "training_normalized_Gaussian_NLL": -0.26706312385953745
+      }
+    ],
+    "max_epochs": 20,
+    "model_selection": "development_metric_Gaussian_NLL",
+    "objective": "full_3D_Gaussian_NLL",
+    "optimizer": "AdamW",
+    "primary_class_sampling_mass": {
+      "TYPE_CYCLIST": 1.0000000000000002,
+      "TYPE_PEDESTRIAN": 1.0000000000000004,
+      "TYPE_VEHICLE": 1.0
+    },
+    "runtime_this_invocation_s": 26.543029409949668,
+    "seed": 20260821
+  },
+  "uncertainty_semantics": {
+    "measurement_uncertainty": "Stage2_R_t_model_input",
+    "predictive_uncertainty": "learned_Gaussian_output_covariance",
+    "separate": true
+  },
+  "upstream": {
+    "block43": "FROZEN",
+    "cache_regenerated": false,
+    "deterministic_checkpoint_sha256": "5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5",
+    "fit_normalization": "FROZEN_FIT_ONLY"
+  }
+}

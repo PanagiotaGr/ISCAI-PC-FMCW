@@ -1,0 +1,86 @@
+{
+  "Part1": {
+    "historical_implementation_sha256": "3006d2dd1592d5fa317776635d0355d8595cc79888aa9973a7feb6d975501e43",
+    "report": "/home/agni/waymo/iscai_stage5/reports/block51_part1_receiver_contract.json",
+    "status": "PASS"
+  },
+  "Stage3_provenance": {
+    "current_actor_bridge": "current_causal_associated_actor_estimate_H0",
+    "future_truth_added": false,
+    "observation_interface": "stage2_degraded_algorithm_facing",
+    "source_hashes": {
+      "Stage2_degraded_bridge": "50f34428dea80e8c665c911ef849d36f8199ad96e65dc1f888667d549eab4f71",
+      "common_contract": "9a0fed7622973e97f565ef13fef52be17b3c155fa7fd58e382217bbfffb4b696"
+    }
+  },
+  "block": "5.1",
+  "causal_bridge": {
+    "association_validity": "current",
+    "future_truth": false,
+    "input": "current_causal_associated_actor_estimate_H0",
+    "oracle_connectivity": false,
+    "perfect_track_ID": false,
+    "position": "current_estimated_H0",
+    "semantic_class": "current_causal_metadata",
+    "tracks_to_predict": false
+  },
+  "implementation": {
+    "file_count": 19,
+    "sha256": "604c0ea15353830ed6dd74b40ff7e42313bf9f86c816aa1e76f0057ab6bc8a53"
+  },
+  "next": "Block5.2 receiver-aware trajectory-to-angular posterior",
+  "project": "Agni",
+  "receiver_geometry": {
+    "modes": [
+      "centroid_baseline",
+      "known_receiver_offset",
+      "uncertain_receiver_offset"
+    ],
+    "placement_covariance": "receiver_placement_uncertainty_only",
+    "trajectory_plus_placement_uncertainty": "Block5.2"
+  },
+  "receiver_policy": {
+    "connectivity": "constructed_hypothetical_connected_vehicle",
+    "distance_still_evaluated": true,
+    "max_planar_range_m": null,
+    "max_range_performance_tuned": false,
+    "max_range_semantics": "no_additional_receiver_eligibility_range_cutoff",
+    "minimum_forward_H0_m": 0.0,
+    "path": "/home/agni/waymo/iscai_stage5/configs/receiver_policy.json",
+    "primary_policy": "nearest_causal_vehicle_ahead",
+    "sha256": "b5b6fc2b0a3c4575ed9567aff15f36f3430f4887862c245f045fae7cf9e349c0",
+    "status": "FROZEN"
+  },
+  "remaining_development_fields_for_later_blocks": [
+    "low_speed_heading_threshold",
+    "angular_monte_carlo_sample_count",
+    "codebook_angular_support",
+    "formal_empirical_coverage_tolerance",
+    "K_max",
+    "hysteresis_parameters",
+    "beam_switch_penalty",
+    "local_neighbour_sweep_width",
+    "fallback_parameters",
+    "reacquisition_parameters"
+  ],
+  "resolved_development_fields": {
+    "receiver_eligibility_max_range": {
+      "formal_data_used": false,
+      "performance_tuned": false,
+      "semantics": "no_additional_receiver_eligibility_range_cutoff",
+      "value_m": null
+    }
+  },
+  "scientific_execution": {
+    "Stage4_inference": false,
+    "beam_selection": false,
+    "dataset_scan": false,
+    "formal_N120_read": false,
+    "recalibration": false,
+    "receiver_posterior_inference": false,
+    "training": false
+  },
+  "stage": 5,
+  "status": "PASS",
+  "upstream_modified": false
+}

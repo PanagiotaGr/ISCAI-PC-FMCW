@@ -1,0 +1,73 @@
+{
+  "stage": 3,
+  "block": "3.7",
+  "purpose": "common classical-baseline trajectory evaluation",
+  "methods": [
+    "CV",
+    "CA",
+    "CTRV",
+    "Kalman_EKF",
+    "IMM_CV_CA_CTRV",
+    "Multidimensional_Hough"
+  ],
+  "prediction_horizons_s": [
+    0.1,
+    0.3,
+    0.5,
+    1.0
+  ],
+  "truth_policy": {
+    "source": "WOMD validation future actor states",
+    "truth_is_evaluator_only": true,
+    "algorithm_access_to_future_truth": false,
+    "algorithm_access_to_truth_identity": false
+  },
+  "assignment": {
+    "method": "global_Hungarian",
+    "cost": "3D_anchor_position_distance",
+    "time": "anchor_current_only",
+    "future_truth_used": false,
+    "gate_m": 5.0,
+    "scipy_required": false
+  },
+  "trajectory_metrics": {
+    "primary_ADE_FDE_space": "planar_XY_H0",
+    "supplementary_3D_ADE_FDE": true,
+    "horizon_planar_MAE": true,
+    "horizon_planar_RMSE": true,
+    "horizon_3D_MAE": true,
+    "horizon_3D_RMSE": true,
+    "reconstruction_precision": true,
+    "reconstruction_recall": true,
+    "reconstruction_F1": true,
+    "false_prediction_count": true,
+    "unmatched_truth_count": true,
+    "endpoint_miss_rate": true,
+    "endpoint_miss_threshold_m": 2.0
+  },
+  "probabilistic_metrics": {
+    "NLL": "DEFER_TO_STAGE4",
+    "Brier_score": "DEFER_TO_STAGE4",
+    "calibration_error": "DEFER_TO_STAGE4",
+    "confidence_region_coverage": "DEFER_TO_STAGE4"
+  },
+  "runtime": {
+    "field_supported": true,
+    "formal_measurement": "BLOCK_3_8_REAL_VALIDATION"
+  },
+  "formal_validation_tuning": false,
+  "status": "FROZEN_BEFORE_REAL_STAGE3_VALIDATION",
+  "temporal_alignment": {
+    "prediction_anchor": "global_WOMD_current_time_anchor",
+    "active_stale_track_policy": "causal_open_loop_propagation_to_global_anchor",
+    "terminated_track_policy": "exclude_from_anchor_forecast",
+    "prediction_timestamp_rule": "timestamp_s ~= anchor_timestamp_s + horizon_s",
+    "timestamp_tolerance_s": 0.002
+  },
+  "primary_target_ignore_policy": {
+    "primary_truth": "WOMD_tracks_to_predict_evaluator_only",
+    "ignored_truth": "current_valid_non_SDC_not_in_tracks_to_predict",
+    "ignored_real_actor_prediction_is_false_positive": false,
+    "clutter_or_unmatched_prediction_is_false_positive": true
+  }
+}

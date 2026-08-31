@@ -1,0 +1,61 @@
+{
+  "Block5_9_modified": false,
+  "Blocks5_0_5_7_modified": false,
+  "Stage0_4_modified": false,
+  "acceptance_policy": {
+    "nominal_q": 0.95,
+    "pre_frozen_before_formal_metrics": true,
+    "reported_q": [
+      0.9,
+      0.95,
+      0.975,
+      0.99
+    ],
+    "sha256": "a89dcc3c785933632b547d73dae96696e3b63ebd19b46e73b7b0602fa0da313f"
+  },
+  "block": "5.8_part_2",
+  "codebook_evidence": {
+    "Block5.3": [
+      16,
+      32,
+      64
+    ],
+    "exact_required_set": [
+      16,
+      32,
+      64
+    ],
+    "formal_frozen_contract": [
+      16,
+      32,
+      64
+    ],
+    "status": "PASS"
+  },
+  "formal_parameter_tuning": false,
+  "formal_population": {
+    "N": 120,
+    "manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "same_immutable_Stage3_4_population": true
+  },
+  "formal_rerun_during_reconciliation": false,
+  "formal_training": false,
+  "historical_gate": {
+    "path": "/home/agni/waymo/iscai_stage5/reports/block58_part2_formal_gate.json",
+    "preserved_unchanged": true,
+    "reason": "RuntimeError: Part1 does not prove frozen 16/32/64 codebooks.",
+    "sha256": "c3502b3cf486dd407d41a3f035b1fcdcea357202dcc827a1530ae574c6135634",
+    "status": "BLOCKED"
+  },
+  "primary_acceptance": {
+    "coverage_at_least_nominal_q": true,
+    "geometry": "uncertain",
+    "overhead_reduction_positive": true,
+    "overhead_reduction_vs_exhaustive": 0.865216565349544,
+    "probability_coverage": 0.9959473150962512
+  },
+  "resolution": "existing formal evidence proves the contract omitted from the historical Part1 schema gate",
+  "scientific_outputs_modified": false,
+  "stage": 5,
+  "status": "PASS_RECONCILED"
+}

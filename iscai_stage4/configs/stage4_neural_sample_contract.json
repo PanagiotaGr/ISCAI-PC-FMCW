@@ -1,0 +1,61 @@
+{
+  "block": "4.2",
+  "model_input": {
+    "actor_class_numeric_feature": false,
+    "future_duration_input": false,
+    "future_lidar_input": false,
+    "future_validity_input": false,
+    "history_feature_dim": 14,
+    "history_feature_semantics": [
+      "H0 noisy Cartesian position",
+      "strict-backward causal velocity",
+      "Stage2 measurement covariance propagated to H0",
+      "observation mask",
+      "velocity-validity mask"
+    ],
+    "history_frames": 11,
+    "history_seconds": 1.0,
+    "map_context": "static current-scene WOMD map geometry only",
+    "map_context_dim": 10,
+    "max_neighbors": 8,
+    "measurement_covariance": "MANDATORY_INPUT",
+    "measurement_covariance_source": "Stage2 R_t propagated through frozen Stage3 Cartesian geometry",
+    "neighbor_selection": "causal nearest associated tracks in H0",
+    "objects_of_interest_input": false,
+    "perfect_track_id_numeric_feature": false,
+    "predictive_covariance": "NOT_AN_INPUT_NOT_YET_CREATED",
+    "tracks_to_predict_input": false
+  },
+  "not_yet_claimed": [
+    "normalization statistics",
+    "class-balanced fit sampler",
+    "LiDAR actor features",
+    "learned map encoder",
+    "GRU architecture",
+    "predictive Gaussian covariance",
+    "NLL training",
+    "calibration"
+  ],
+  "pilot": {
+    "scenario_count": 12,
+    "selection": "first four frozen-manifest records from each fit/dev/cal partition",
+    "selection_future_based": false,
+    "selection_performance_based": false
+  },
+  "stage": 4,
+  "status": "FROZEN",
+  "supervision": {
+    "future_positions": "label_only",
+    "future_used_for_pairing": false,
+    "future_validity": "label_mask_only",
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "pairing": "deterministic one-to-one historical/current-only distance matching",
+    "pairing_gate_m": 5.0,
+    "sample_inclusion_depends_on_future_validity": false
+  }
+}

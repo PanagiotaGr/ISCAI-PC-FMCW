@@ -1,0 +1,84 @@
+============================================================
+STAGE 5 — BLOCK 5.9 PART 1/2
+EXISTING REPRODUCIBILITY FREEZE AUDIT
+============================================================
+
+===== A. EXISTING BLOCK5.9 REPORT =====
+status = PASS_FROZEN
+stage  = 5
+block  = 5.9
+terminal reproducibility status = PASS_FROZEN
+report SHA256 = 980bfbd2007ed798742bd7c36b5e8b6bcd0e808590c0dc5d9608db1ec6211845
+
+===== B. REPRODUCIBILITY INVARIANTS =====
+exact match to Block5.8 = PASS
+fresh-process repeat    = EXACT PASS
+reproducibility evidence fields = 83
+  beam_probability_vectors_exact = True
+  block58_mutated = False
+  canonical_runner.resolved_from_formal_report_provenance = True
+  canonical_runner.sha256 = b1276eefd51444e0e648794d8bbb61ef829cc49bd1a09ba68ff79d9b61c8a9a5
+  exact_match_to_frozen_block58 = True
+  fresh_process_count = 2
+  fresh_process_repeat_exact = True
+  fresh_process_signatures.semantic_sha256 = cd991712f1918e370c7314f84ffaa894fcded8d9ce02dd90e771a4a26abe7627
+  fresh_process_signatures.trace_sha256 = 3b0939dd92767f793960b8caba16c17e9cce2af315859e3ec00b0b7398f68551
+  frozen_block58.closure_sha256 = 23ba634c421d264af245d5aa0013e380fd62f7b1b2e96fa1434162c2dad5038a
+  frozen_block58.formal_cache_combined_manifest_sha256 = 55b8622cfc6b90c619a98127237a2f1ad2d6f45cc9b5aed4086894f71fb0a981
+  frozen_block58.formal_cache_count = 120
+  frozen_block58.formal_records_sha256 = b45c23d407bce2a10cb74db03b856773171470edaaa8770c2f032e974081800a
+  frozen_block58.formal_report_sha256 = 76c23c21e667cf5acec1a6b1273256b915f8c12d0bba6417459e56c27203fc55
+  implementation.files.configs/formal_stage5_acceptance_policy.json = a89dcc3c785933632b547d73dae96696e3b63ebd19b46e73b7b0602fa0da313f
+  implementation.files.scripts/audit_block52_exact_block44_hash_route.py = ad427c6377dd71733d82c79e128dcf8e769423704e60a37c2050ab9e734b2ac0
+  implementation.files.scripts/audit_block52_exact_dev_inference_bridge.py = bb467cd964e5ed56152507978686ab6b66706d2cf081892232874cf845f9f7b4
+  implementation.files.scripts/materialize_block52_frozen_dev_posterior.py = ae15b795dfe1a9468b03ca2dacc7487e4abfc8e67821729b03daa7f9d0553458
+  implementation.files.scripts/materialize_block52_frozen_dev_posterior_v2.py = a8613d5ac0e5dd4e749337fc47362bce98c22fcae307a316dde7299f8b958e2d
+  implementation.files.scripts/run_block56_part1_exact_source_audit.py = aff7a5bfe90e27f8308082fbe4d7a94f511c40dbacea533d9931ee70aa0d7460
+  implementation.files.scripts/run_block58_acceptance_freeze.py = 2cf5b504c4a0c1e88723d685cec6f2c2e0c14b62438027c71a58096513a2422d
+  implementation.files.scripts/run_block58_formal_clean.py = b1276eefd51444e0e648794d8bbb61ef829cc49bd1a09ba68ff79d9b61c8a9a5
+  implementation.files.scripts/run_block58_part1_formal_route_audit.py = a6baee8309acad72908c2f23b16f20609bb4844a7ba7a825310ca931117ceeb7
+  implementation.files.scripts/run_block58_part1_formal_route_audit_safe.py = 498b73de4eb48c7216aaaf3dbfc0230b94a41fc845503f81f7ada034709712b3
+  implementation.files.scripts/run_block58_part2_formal_evaluation.pre_full_causal_repair.py = dfd1054564ef7bc235e5daa136555fb2fd5c194c56acadd77fd18ff8ebdbe025
+  implementation.files.scripts/run_block58_part2_formal_evaluation.py = 16495f3c46ed5f95145918b25b169f8aa33408b2ef84ffc19cb66af1db3c189a
+  implementation.files.scripts/run_block58_postformal_acceptance_closure.py = a497eb3d86d2b6b92fe9cf9f672aacdfcbba442697d2d56c61a382209b9c8f7d
+  implementation.files.scripts/run_block58_prefreeze_safe.py = 3f4b9b1e246525ee710285f59f524f74d840dd20ddbcce8187a4f773589afd27
+  implementation.files.scripts/run_block58_routeb_schema_probe.py = c427c346772b5bf4a3bff4aec4065f2bfd66389bb538e7f7253caa65f9db1776
+  implementation.files.src/iscai_stage5/formal_acceptance.py = 727c6d11906ef5389e5571176970bb6ebdd606f37eb65b7eeca9ce1ac5d99382
+
+===== C. BLOCK5.8 FROZEN CONTINUITY =====
+Block5.8 formal          = PASS
+Block5.8 reconciliation  = PASS
+formal rerun in repair   = NO
+parameter tuning         = NO
+
+===== D. BLOCK5.9 TEST EXPECTATION =====
+test expects PRE_FREEZE = True
+test knows PASS_FROZEN   = False
+
+===== E. CURRENT BLOCK5.9 TEST =====
+AssertionError: 'PASS_FROZEN' != 'PASS_REPRODUCIBILITY_PRE_FREEZE'
+Ran 3 tests in 0.091s
+FAILED (failures=1)
+tests run               = 3
+failures                = 1
+errors                  = 0
+sole defect = stale status expectation = True
+
+===== F. READ-ONLY IMMUTABILITY =====
+Block5.8 evidence        = UNCHANGED
+Block5.9 frozen report   = UNCHANGED
+formal manifest          = UNCHANGED
+
+============================================================
+BLOCK 5.9 PART 1/2 — FINAL
+============================================================
+existing Block5.9 status = PASS_FROZEN
+exact Block5.8 match     = PASS
+fresh-process repeat     = EXACT PASS
+scientific failure       = NO
+sole regression defect   = STALE STATUS EXPECTATION
+scientific artifacts changed = NO
+safe targeted Part2 repair = YES
+STATUS = PASS_TARGETED_REPAIR_READY
+report = /home/agni/waymo/iscai_stage5/reports/block59_part1_resume_audit.json
+terminal remains open = YES

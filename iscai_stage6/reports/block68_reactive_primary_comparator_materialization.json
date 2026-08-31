@@ -1,0 +1,58 @@
+{
+  "Stage6_regression": 224,
+  "block": "6.8_reactive_primary_comparator_materialization",
+  "next": "repair primary-gate comparator source to use this augmented frozen artifact and execute the existing frozen gate",
+  "outputs": {
+    "augmented_primary_comparator": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/primary_development_gate/block68_reactive_primary_comparator_augmented.jsonl",
+      "rows": 120,
+      "sha256": "5925f1e02dc3cb9dbad42f40f200337f60ccb87f4c919c4dd7c628eb3725c2fa"
+    },
+    "vehicle_values": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/primary_development_gate/block68_reactive_vehicle_violation_values.jsonl",
+      "rows": 120,
+      "sha256": "94a1d8622eae74dce68cdaabb333e69760b7f3e2f9f09078aa11f4c55191362d"
+    }
+  },
+  "purpose": "materialize the missing original_reactive_ADB vehicle_shadow_zone_violation required by the already-frozen primary acceptance rule",
+  "schema_gap": {
+    "original_NI_values_modified": false,
+    "original_reactive_NI_artifact": "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_reactive_only_ni_values.jsonl",
+    "original_reactive_NI_sha256": "3a81d6d39b29a2d30247f30f06f0e02bedd47ecc754a0eb550611947f6e9b0d5",
+    "vehicle_metric_present_in_original": false
+  },
+  "scientific_boundary": {
+    "NI_bounds_modified": false,
+    "Stage1_modified": false,
+    "Stage2_modified": false,
+    "Stage3_modified": false,
+    "Stage4_modified": false,
+    "acceptance_rule_modified": false,
+    "formal_evaluation": false,
+    "new_parameter_tuning": false,
+    "primary_acceptance_tested": false
+  },
+  "source_seals": {
+    "acceptance_policy": "e103466b1a6eb62be4e6746029147cbda9671b05130acba5210a3ab7328e6b81",
+    "cache_freeze": "6733ba1641afc341910bd5cc822a034103585706f32db4758d606b7bf2bf786d",
+    "cache_manifest": "9607f5bd6022da5471167650f652556dca8381b241adf0b7faaf06bd27edc041",
+    "current_binding": "3a1c689484fdbd8dbf763cfb0a52b3a987a5930a236fe9692f0b084cb178387d",
+    "metric_runtime": "bf8358b5a7edfe40ffac2718ca7cd5af6e7b5fdb3ff8a2823caad6d0f40f057a",
+    "reactive_contract": "454d22a2f067025fd8dde877546b7305c4357000126585c860a4a2d9ef3535d5",
+    "reactive_raw": "3a81d6d39b29a2d30247f30f06f0e02bedd47ecc754a0eb550611947f6e9b0d5",
+    "stage4_freeze": "780e134a66153c52783bc18d55f607c891b9a6983f8cfc8ac78e2e7367874885",
+    "t0_maps": "7c5d63c76c3d9ef74adbbd7a68e3ce7483b1dd80fd262cba06f6ce1909994993"
+  },
+  "stage": 6,
+  "status": "PASS_REACTIVE_PRIMARY_COMPARATOR_MATERIALIZED_FROZEN",
+  "vehicle_metric": {
+    "finite_support": 115,
+    "metric_runtime": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/metric_semantics.py",
+    "metric_runtime_sha256": "bf8358b5a7edfe40ffac2718ca7cd5af6e7b5fdb3ff8a2823caad6d0f40f057a",
+    "name": "vehicle_shadow_zone_violation",
+    "oracle": "frozen constructed future oracle_vehicle evaluator support",
+    "reactive_action": "frozen causal t0 original_reactive_ADB map",
+    "scenario_macro_mean": 0.09481248124008006,
+    "schedule": "same t0 action held unchanged at 0.1,0.3,0.5,1.0 seconds"
+  }
+}

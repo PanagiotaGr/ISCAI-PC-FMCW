@@ -1,0 +1,59 @@
+{
+  "Block52_continuity": {
+    "MC_convergence_sha256": "2a66b9128b06250b90b61ed0cd3e0a089b86946bd34c0eac4483de150306fc5e",
+    "MC_sample_count": 2048,
+    "angular_policy_sha256": "846f6bf3d3419a2ea99fabc6293514726388bf60a31bb2a889aaf18b487fd82e",
+    "historical_implementation_sha256": "e6a6c3996a1c09b493ebfe61516f7a4619994dd1aed34c7ada7e17f3711f9878",
+    "status": "PASS"
+  },
+  "block": "5.3_part_1",
+  "codebook_kernel": {
+    "azimuth_support": "NOT_YET_FROZEN",
+    "beam_counts": [
+      16,
+      32,
+      64
+    ],
+    "decision_cells": "nonoverlapping_probability_accounting_cells",
+    "physical_gain": "separate_physical_gain_patterns_may_overlap",
+    "physical_gain_pattern": "NOT_YET_FROZEN",
+    "synthetic_support_used_for_kernel_tests_only": true
+  },
+  "expected_gain_score": {
+    "S_b": "posterior_expectation_of_physical_beam_gain",
+    "distinct_from_P_b": true,
+    "overlapping_physical_gain_allowed": true,
+    "physical_gain_evaluator_frozen": false
+  },
+  "implementation": {
+    "file_count": 46,
+    "sha256": "1a705734d1de3a36e10ccd900633726afa6ca3a2fe0ff9ccfbf917cfd1867b75"
+  },
+  "next": "Block5.3 Part2 freeze angular support, directional codebooks and physical gain probability/score contract",
+  "posterior_beam_probability": {
+    "P_b": "posterior_probability_mass_inside_decision_cell",
+    "normalization": "P_cells_plus_P_outside_equals_1",
+    "outside_support_probability": "explicit"
+  },
+  "project": "Agni",
+  "provenance_precision": {
+    "additional_Stage4_inference_in_Block53_Part1": false,
+    "earlier_dev_materialization_used_frozen_Stage4_inference": true,
+    "formal_N120_read": false
+  },
+  "reference_audit": {
+    "PartA_hit_count": 33,
+    "legacy_runtime_dependency": false,
+    "path": "/home/agni/waymo/iscai_stage5/artifacts/block53/parta_beam_reference_audit.json"
+  },
+  "scope": {
+    "ADB_started": false,
+    "adaptive_TopK_started": false,
+    "beam_selection_started": false,
+    "beam_support_frozen": false,
+    "optical_link_started": false,
+    "physical_gain_frozen": false
+  },
+  "stage": 5,
+  "status": "PASS"
+}

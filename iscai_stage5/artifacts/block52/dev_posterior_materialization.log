@@ -1,0 +1,127 @@
+============================================================
+BLOCK 5.2 — DEV POSTERIOR MATERIALIZATION SAFE EXECUTION
+============================================================
+materialization script compile = PASS
+
+===== PRE-INFERENCE STAGE5 REGRESSION =====
+
+........................................................................
+----------------------------------------------------------------------
+Ran 72 tests in 0.061s
+
+OK
+
+pre-inference Stage5 regression = 72 / 72 PASS
+
+===== FROZEN DEVELOPMENT INFERENCE =====
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior.py", line 1980, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior.py", line 1208, in main
+    require(
+    ~~~~~~~^
+        selected_batch_size
+        ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage5/scripts/materialize_block52_frozen_dev_posterior.py", line 128, in require
+    raise RuntimeError(
+        message
+    )
+RuntimeError: No batching route reproduced the frozen Block4.4 development prediction SHA. Do not materialize a Stage5 dev posterior.
+============================================================
+BLOCK 5.2 — FROZEN DEV POSTERIOR MATERIALIZATION
+============================================================
+purpose = numerical MC convergence only
+formal N=120 used        = NO
+training                 = NO
+recalibration            = NO
+model weights modified   = NO
+Stage4 files modified    = NO
+Stage4 dev inference     = YES — FROZEN REPRODUCTION
+
+============================================================
+A. FROZEN UPSTREAM INTEGRITY
+============================================================
+development cache SHA     = PASS
+Gaussian checkpoint SHA   = PASS
+normalization SHA          = PASS
+Block4.4 prediction SHA    = PASS
+
+============================================================
+B. FROZEN CACHE / CHECKPOINT LOAD
+============================================================
+development N             = 13682
+checkpoint best epoch     = 12
+checkpoint calibrated     = FALSE PASS
+
+============================================================
+C. CANONICAL STAGE4 RUNTIME SETUP
+============================================================
+CalibrationNormalizer signature = (statistics, *, device)
+reconstructed frozen architecture = {'target_hidden_dim': 64, 'neighbor_hidden_dim': 32, 'map_hidden_dim': 32, 'fusion_hidden_dim': 128}
+canonical normalizer       = PASS
+canonical model builder    = PASS
+strict state_dict load     = PASS
+device                     = NVIDIA RTX A6000
+
+============================================================
+D. EXACT BLOCK4.4 PREDICTION-HASH REPRODUCTION
+============================================================
+batch-size evidence = [('checkpoint.configuration.training.batch_size', 512), ('stage4_gaussian_gru.training.batch_size', 512)]
+reproduction batch candidates = [128, 256, 512, 1024, 2048, 4096, 13682]
+
+trying batch_size = 128
+prediction SHA256 = e4063465307c92a429368ffb686e5a8198ae47530f56bf0554c72e369ba3c229
+matches frozen = NO
+
+trying batch_size = 256
+prediction SHA256 = f9fbdfabcefcc5a84a8c7de51ae3796570817f5d7e4cdd988fbb082ec7592e37
+matches frozen = NO
+
+trying batch_size = 512
+prediction SHA256 = 8f8e9714fb16d2fc9ffc0a2421e5c5849b4f2239fd7691597ec9dee3eb505549
+matches frozen = NO
+
+trying batch_size = 1024
+prediction SHA256 = ad121400f1de9b759788836d70fb7ccae2bf23e30237d36d817481c213b152ac
+matches frozen = NO
+
+trying batch_size = 2048
+prediction SHA256 = 5b1e6a571114d36988649a6b5e6092f5d65992276b1c4820a76304668f52f4da
+matches frozen = NO
+
+trying batch_size = 4096
+prediction SHA256 = 07ab3cf6b27637ddd5d176cc95991bf70d7744e0f0d1b7aa7f3aa441bf3abf1f
+matches frozen = NO
+
+trying batch_size = 13682
+prediction SHA256 = 5029a30a7ee73f5ca24555720cf5d1b1c490f318d2700ba28d536dd244479a62
+matches frozen = NO
+
+============================================================
+DEV POSTERIOR MATERIALIZATION = BLOCKED
+============================================================
+exception = RuntimeError No batching route reproduced the frozen Block4.4 development prediction SHA. Do not materialize a Stage5 dev posterior.
+
+formal N=120 used       = NO
+training                = NO
+recalibration           = NO
+Stage4 modified         = NO
+terminal remains open   = YES
+
+materialization raw code = 0
+
+============================================================
+BLOCK 5.2 DEV MATERIALIZATION SAFE CONTROLLER
+============================================================
+STATUS = BLOCKED
+phase = structured_report
+reason = Development posterior report was not written.
+formal N=120 used = NO
+training/recalibration = NO
+terminal remains open = YES

@@ -1,0 +1,86 @@
+============================================================
+STAGE 6 — BLOCK 6.8
+SUPERSEDING TIMESTAMP ALIGNMENT FREEZE
+NEAREST OBSERVED SAMPLE / NO INTERPOLATION
+NO PERFORMANCE-BASED SELECTION
+============================================================
+
+===== A. EXACT PRE-METRIC BOUNDARY =====
+runner                       = EXACT PASS
+preoutcome contract          = EXACT PASS
+provenance binding           = EXACT PASS
+failed amendment             = PRESERVED
+timestamp diagnostic         = PASS
+metric artifacts             = ABSENT
+predictive performance       = NOT COMPUTED
+NI deltas                    = NOT COMPUTED
+
+===== B. DIAGNOSTIC FACT READBACK =====
+0.1 s nearest offsets = {1:120}
+0.3 s nearest offsets = {3:120}
+0.5 s nearest offsets = {5:120}
+1.0 s nearest offsets = {9:2, 10:118}
+nearest error >10 ms  = 0 / 120
+
+===== C. TIMESTAMP-ONLY ALIGNMENT REVALIDATION =====
+development scenarios   = 120 / 120 PASS
+targets bracketed        = 120 / 120 × 4 PASS
+selected indices         = STRICTLY INCREASING PASS
+interpolation required   = NO
+numeric tolerance needed = NO
+
+maximum observed nearest errors (DIAGNOSTIC ONLY):
+  0.1s = 0.0008399999999999519
+  0.3s = 0.00262999999999991
+  0.5s = 0.004510000000000014
+  1.0s = 0.00920999999999994
+
+===== D. SUPERSEDING ALIGNMENT RULE FREEZE =====
+superseding rule SHA256 = 51a3b56a119467001a9f4617e1e19dc82c548c0a30c79fc9c4a9c1f5ef27bf56
+alignment selector       = NEAREST TIMESTAMP
+interpolation            = NO
+error threshold          = NONE
+
+===== E. PATCH REACTIVE-ONLY RUNNER =====
+runner pre-patch SHA = 35fedb5ac974140626ec64ab95ff142328366a77bffeb2815bce16e4953249dd
+patch scope          = TIMESTAMP SELECTION ONLY
+future box code      = UNCHANGED
+metric code          = UNCHANGED
+
+===== F. TRANSACTIONAL PATCH =====
+patched runner compile = PASS
+Stage6 regression      = 224 / 224 PASS
+
+===== G. POST-PATCH READBACK =====
+nearest timestamp selector = ACTIVE
+fixed direct offset         = DISABLED
+cumulative tolerance gate   = DISABLED
+superseding SHA seal        = PASS
+
+============================================================
+BLOCK 6.8 SUPERSEDING TIMESTAMP ALIGNMENT — FINAL
+============================================================
+timestamp diagnostic       = 120 / 120 PASS
+fixed offset selector      = SUPERSEDED
+nearest timestamp selector = FROZEN
+tie break                  = EARLIEST INDEX
+interpolation              = NO
+numeric tolerance gate     = NONE
+0.1s selected offsets      = {1:120}
+0.3s selected offsets      = {3:120}
+0.5s selected offsets      = {5:120}
+1.0s selected offsets      = {9:2, 10:118}
+preoutcome contract        = BYTE-UNCHANGED
+failed amendment           = PRESERVED + SUPERSEDED
+future GT                  = EVALUATOR ONLY
+reactive metrics           = NOT COMPUTED
+predictive performance     = NOT COMPUTED
+P_occ content              = NOT OPENED
+NI deltas                  = NOT COMPUTED
+formal evaluation          = NO
+Stage6 regression          = 224 / 224 PASS
+patched runner SHA256      = dd58b1de2f01331d69b28726831039b87df8771ae4a4818b7d6c35e56d367e02
+superseding rule SHA256    = 51a3b56a119467001a9f4617e1e19dc82c548c0a30c79fc9c4a9c1f5ef27bf56
+STATUS = PASS_SUPERSEDING_TIMESTAMP_ALIGNMENT_FROZEN
+report = /home/agni/waymo/iscai_stage6/reports/block68_timestamp_alignment_superseding_repair.json
+terminal remains open = YES

@@ -1,0 +1,67 @@
+{
+  "Block50_continuity": {
+    "PartA_contract_sha256": "80a06892e1721e28e2599c20acc29c9bea44fd74e256b8af7eadd02416600fca",
+    "Stage5_contract_sha256": "04fd32e4bc6e160f2627f465a7820c74e19ca2e1a1f47f23ed1884f842cb7db4",
+    "historical_implementation_sha256": "f92a4112ef9c23b5db4c24260e18b2e1da2749c50ac125f623101e45d688ab02",
+    "status": "PASS"
+  },
+  "block": "5.1_part_1",
+  "development_pending": {
+    "current_default_max_range_m": null,
+    "formal_N120_allowed": false,
+    "freeze_source": "non_formal_development_only",
+    "receiver_eligibility_max_range": "NOT_YET_FROZEN"
+  },
+  "implementation": {
+    "file_count": 13,
+    "sha256": "3006d2dd1592d5fa317776635d0355d8595cc79888aa9973a7feb6d975501e43"
+  },
+  "leakage": {
+    "formal_data": false,
+    "future_GT_heading": false,
+    "future_truth_receiver_location": false,
+    "oracle_receiver": false,
+    "tracks_to_predict": false
+  },
+  "next": "Block5.1 Part2 frozen Stage1/Stage3 bridge plus non-formal development receiver-availability audit",
+  "project": "Agni",
+  "receiver_geometry": {
+    "centroid_baseline": "PASS",
+    "joint_uncertainty_propagation": "BLOCK5.2",
+    "known_receiver_offset": "PASS",
+    "modes": [
+      "centroid_baseline",
+      "known_receiver_offset",
+      "uncertain_receiver_offset"
+    ],
+    "offset_frame": "receiver_vehicle_body_frame",
+    "placement_covariance": "receiver_placement_uncertainty_only",
+    "rotation": "yaw_body_to_H0",
+    "trajectory_predictive_covariance": "NOT_MERGED_IN_BLOCK5.1_PART1",
+    "uncertain_receiver_offset": "PASS"
+  },
+  "receiver_selection": {
+    "candidate_list_index_role": "final_exact_tie_break_only_not_physical_or_model_feature",
+    "connectivity_semantics": "constructed_hypothetical_connected_vehicle",
+    "current_causal_availability": true,
+    "future_truth_input": false,
+    "no_receiver_state_explicit": true,
+    "perfect_track_ID_input": false,
+    "positive_forward_H0": true,
+    "primary_policy": "nearest_causal_vehicle_ahead",
+    "ranking_metric": "planar_range_m",
+    "tracks_to_predict_input": false,
+    "vehicle_only": true
+  },
+  "scientific_execution": {
+    "Stage4_inference": false,
+    "beam_selection": false,
+    "dataset_scan": false,
+    "formal_evaluation": false,
+    "recalibration": false,
+    "receiver_posterior_inference": false,
+    "training": false
+  },
+  "stage": 5,
+  "status": "PASS"
+}

@@ -1,0 +1,81 @@
+{
+  "Block64_required_transition": {
+    "MC_sample_count_not_yet_frozen": true,
+    "actuation_rate_limits_not_yet_implemented": true,
+    "calibrated_predictive_covariance_available": true,
+    "calibrated_predictive_covariance_must_now_be_used": true,
+    "centroid_only_probability_projection_forbidden": true,
+    "class_aware_policy_not_yet_implemented": true,
+    "class_margins_not_yet_frozen": true,
+    "deterministic_mean_baseline_frozen": true,
+    "development_before_formal": true,
+    "dimming_floors_not_yet_frozen": true,
+    "formal_numeric_grid_not_yet_frozen": true,
+    "formal_tuning_at_handoff": false,
+    "occupancy_gamma_not_yet_frozen": true,
+    "probabilistic_occupancy_not_yet_implemented": true,
+    "rate_limit_parameters_not_yet_frozen": true,
+    "smoothing_parameters_not_yet_frozen": true,
+    "temporal_smoothing_not_yet_implemented": true,
+    "uncertainty_must_propagate_through_full_boxes": true
+  },
+  "from_block": "6.3",
+  "frozen_association": {
+    "class_gate": null,
+    "covariance_gate": null,
+    "development_pilot_result": {
+      "ADB_boxes": 9,
+      "fallback": 3,
+      "matched": 6,
+      "unmatched_predictors": 21
+    },
+    "forced_assignment": false,
+    "hard_threshold": null,
+    "perfect_actor_identity": false,
+    "policy": "reciprocal_unique_nearest_current_anchor_H0",
+    "unmatched_ADB_policy": "ORIGINAL_REACTIVE_ADB_FALLBACK"
+  },
+  "frozen_full_box_geometry": {
+    "centroid_only": false,
+    "communication_beam_actuator_reused_as_ADB": false,
+    "corners_per_box": 8,
+    "deterministic_dimensions": "current_causal_LWH_held_over_horizons",
+    "orientation_provenance": "predicted_tangent",
+    "state_provenance": "predicted_sample"
+  },
+  "scientific_execution_at_handoff": {
+    "formal_evaluation": false,
+    "new_model_forward": false,
+    "parameter_tuning": false,
+    "recalibration": false,
+    "training": false
+  },
+  "shared_posterior": {
+    "calibrated_covariance_key": "calibrated_predictive_covariance_H0_m2",
+    "causal_anchor_key": "latest_position_H0_m",
+    "family": "calibrated_Gaussian_GRU",
+    "future_ground_truth_as_controller_input": false,
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "jsonl_path": "/home/agni/waymo/iscai_stage6/artifacts/block63/identity_safe_development_gaussian_posterior.jsonl",
+    "jsonl_sha256": "318b22dfc3788195a1432169075d1c8654f0d183337711918db2303b5668f5ea",
+    "mean_key": "mean_displacement_H0_m",
+    "npz_path": "/home/agni/waymo/iscai_stage6/artifacts/block63/identity_safe_development_gaussian_posterior.npz",
+    "npz_sha256": "2d35613bfb0bdc7133c5b3e96b4ab28e9cca64340442f9a2ab1bcf9db3aad914",
+    "raw_covariance_key": "raw_predictive_covariance_H0_m2",
+    "records": 27,
+    "tracks_to_predict_as_controller_input": false,
+    "truth_identity_as_controller_input": false
+  },
+  "stage": 6,
+  "status": "PASS_READY_FOR_BLOCK64_PROBABILISTIC_FULL_BOX_OCCUPANCY",
+  "to_block": "6.4",
+  "upstream_closure": {
+    "path": "/home/agni/waymo/iscai_stage6/reports/block63_final_closure.json",
+    "sha256": "c451c965fa4b8a237f36358da9c1c36436a4317ee0b1501e170be2c804977d1c"
+  }
+}

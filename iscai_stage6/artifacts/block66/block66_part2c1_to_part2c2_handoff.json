@@ -1,0 +1,47 @@
+{
+  "eligible_predictive_matches": {
+    "by_class": {
+      "TYPE_CYCLIST": 48,
+      "TYPE_PEDESTRIAN": 110,
+      "TYPE_VEHICLE": 719
+    },
+    "count": 877,
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_predictive_matches.jsonl",
+    "sha256": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6"
+  },
+  "forbidden_next": [
+    "formal_outcome_read",
+    "gamma_reoptimization",
+    "perfect_ID_association",
+    "future_GT_controller_input",
+    "class_policy_numeric_tuning_before_P_occ_evidence"
+  ],
+  "from": "6.6-Part2C/1",
+  "frozen_MC": {
+    "grid_shape": [
+      501,
+      301
+    ],
+    "sample_count": 8192,
+    "sampler": "Stage5_exact_product_of_frozen_per_horizon_Gaussian_marginals",
+    "seed": 20260821
+  },
+  "posterior": {
+    "family": "calibrated_Gaussian_GRU",
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_identity_safe_gaussian_posterior.jsonl",
+    "sha256": "f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd"
+  },
+  "required_next": [
+    "materialize_N8192_full_box_P_occ_only_for_eligible_predictive_matches",
+    "preserve_current_box_dimensions_and_samplewise_predicted_tangent_heading",
+    "retain_original_reactive_fallback_for_eligible_unmatched_boxes",
+    "record_classwise_P_occ_support_before_class_policy_preregistration"
+  ],
+  "stage": 6,
+  "status": "PASS_READY_FOR_ELIGIBLE_N8192_P_OCC_MATERIALIZATION",
+  "to": "6.6-Part2C/2",
+  "upstream_freeze": {
+    "eligibility_freeze_sha256": "2d9dcd668b6b07824793a4773430edf98ce4e96311f7cf756b2947520468efc0",
+    "report_sha256": "d5f70216ab629b132307fa510c4a475f7e8c0a32a414877d51fef5c0cd654200"
+  }
+}

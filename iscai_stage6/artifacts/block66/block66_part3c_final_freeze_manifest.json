@@ -1,0 +1,37 @@
+{
+  "Part3B_preregistration": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json",
+    "sha256": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e"
+  },
+  "Stage6_regression": "PASS_166",
+  "block": "6.6-Part3C",
+  "class_aware_runtime": {
+    "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/class_aware_policy.py",
+    "sha256": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b"
+  },
+  "closure": {
+    "path": "/home/agni/waymo/iscai_stage6/reports/block66_part3c_final_closure.json",
+    "sha256": "8413fd646a1bf18e15c12bf0441d1ddb1ea72ed142703020ac0d2c77dba0bb29"
+  },
+  "deterministic_replay_contract": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block66_part3c_part2of2_deterministic_replay_contract.json",
+    "sha256": "ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1"
+  },
+  "formal_outcomes_read": false,
+  "full_box_parity": "EXACT_719_OF_719",
+  "numeric_policy_selected": false,
+  "prohibited_after_freeze_before_Block6_7": [
+    "change Part3B candidate universe",
+    "change Part3B metric formulas",
+    "change class-aware controller formulas after seeing outcomes",
+    "change surrogate geometry after seeing outcomes",
+    "formal outcome read",
+    "formal tuning"
+  ],
+  "stage": 6,
+  "status": "FROZEN_COMPLETE",
+  "vehicle_surrogate_evidence": {
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3c_vehicle_surrogate_evidence.jsonl",
+    "sha256": "bfe8eb6d8b605d58f9b99d8097744b71b99ecb9ed9fd169191222375f31bc826"
+  }
+}

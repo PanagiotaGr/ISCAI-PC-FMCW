@@ -1,0 +1,92 @@
+============================================================
+STAGE 6 — BLOCK 6.7 PART 2/2
+BASELINE MATRIX + ORACLE/METRIC INTERFACE GATE
+============================================================
+
+===== A. PART1 CONTINUITY =====
+Part1 status              = PASS
+m_extra runtime binding   = FROZEN PASS
+previous Stage6 tests     = 171
+
+===== B. STRICT STAGE6 CONTRACT CROSS-CHECK =====
+PDF baseline labels       = 7 / 7 PASS
+PDF metric labels         = 12 / 12 PASS
+
+===== C. BASELINE CAUSALITY MATRIX =====
+static_ADB                             | predictive=False | uncertainty=False | class-aware=False | futureGT-controller=NO
+original_reactive_ADB                  | predictive=False | uncertainty=False | class-aware=False | futureGT-controller=NO
+deterministic_predictive_ADB           | predictive=True  | uncertainty=False | class-aware=False | futureGT-controller=NO
+uncertainty_aware_predictive_ADB       | predictive=True  | uncertainty=True  | class-aware=False | futureGT-controller=NO
+class_agnostic_predictive_ADB          | predictive=True  | uncertainty=True  | class-aware=False | futureGT-controller=NO
+class_aware_predictive_ADB             | predictive=True  | uncertainty=True  | class-aware=True  | futureGT-controller=NO
+oracle_future_ADB                      | predictive=False | uncertainty=False | class-aware=True  | futureGT-controller=NO
+
+primary Stage6 controller = CLASS-AWARE PREDICTIVE PASS
+
+===== D. PDF LABEL OVERLAP DISCLOSURE =====
+uncertainty-aware / class-agnostic
+runtime config overlap    = EXPLICIT PASS
+fabricated distinction    = NO
+
+===== E. CONSTRUCTED ORACLE BOUNDARY =====
+oracle type               = CONSTRUCTED
+measured ADB GT           = NO
+controller access         = NO
+parameter tuning access   = NO
+evaluator scoring         = YES
+
+===== F. METRIC INTERFACE CONTRACT =====
+mandatory metrics         = 12 / 12 PASS
+metrics as controller input= NO
+oracle-dependent metrics  = EXPLICIT PASS
+numerical metric formulas = NOT YET FROZEN
+formula/ROI freeze        = BLOCK6.8
+
+===== G. DATA-USE BOUNDARY =====
+development outcomes      = NO
+formal outcomes           = NO
+future GT controller read = NO
+policy sweep              = NO
+
+===== H. BLOCK6.7 PART2 TARGETED TESTS =====
+targeted tests = 10 / 10 PASS
+
+===== I. FULL STAGE6 REGRESSION =====
+full Stage6 regression = 181 / 181 PASS
+
+===== J. IMMUTABILITY READBACK =====
+Stage5 frozen evidence    = UNCHANGED
+Blocks6.0–6.6 evidence    = UNCHANGED
+Block6.7 Part1 evidence   = UNCHANGED
+class-aware policy        = UNCHANGED
+
+===== K. STORAGE =====
+free GiB        = 1052.777
+250-GiB reserve = PASS
+
+===== L. BLOCK6.7 CLOSURE =====
+Part2 report SHA256 = 2cb4289a2b8cfa2e7c346b17c0fee0d814aca525d1b03fbdeb21d922cfbaba28
+Block6.7 closure SHA256 = 67d168ed7678164b8d85885e6e81f41f7206bd8f754e13ec5cc28c3a65aa20e7
+
+============================================================
+BLOCK 6.7 PART 2/2 — FINAL
+============================================================
+Part1 m_extra binding      = FROZEN PASS
+ADB baseline matrix        = 7 / 7 PASS
+ADB metric interface       = 12 / 12 PASS
+primary predictive ADB     = CLASS-AWARE + UNCERTAINTY
+constructed oracle         = EVALUATOR ONLY PASS
+measured ADB ground truth  = NO
+future GT controller input = NO
+label-overlap disclosure   = PASS
+metric formulas frozen     = NOT YET / BLOCK6.8
+development outcomes       = NO
+formal outcomes            = NO
+policy tuning              = NO
+targeted regression        = 10 / 10 PASS
+full Stage6 regression     = 181 / 181 PASS
+upstream modified          = NO
+STATUS = PASS_COMPLETE
+report = /home/agni/waymo/iscai_stage6/reports/block67_part2_baseline_metric_gate.json
+closure = /home/agni/waymo/iscai_stage6/reports/block67_final_closure.json
+terminal remains open = YES

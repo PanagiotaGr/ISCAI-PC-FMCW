@@ -1,0 +1,380 @@
+============================================================
+STAGE4 BLOCK 4.8 PART 1/2 FORMAL DISCOVERY / PREFLIGHT
+============================================================
+
+===== A. FROZEN UPSTREAM =====
+Block4.7 frozen          = PASS
+Stage3 closure           = PASS
+Stage3 implementation SHA= PASS
+
+===== B. FORMAL N=120 MANIFEST =====
+formal manifest SHA      = PASS
+formal scenarios         = 120
+unique scenario IDs      = PASS
+first row keys           = ['anchor_class_counts', 'compact_record_offset', 'degraded_outcome_used', 'formal_rank', 'formal_selection_policy', 'future_used', 'performance_used', 'scenario_id', 'selection_hash', 'source_shard', 'stratum', 'stratum_rank']
+first scenario ID        = cfd33c593d645bf5
+
+FIRST FORMAL ROW:
+{
+  "anchor_class_counts": {
+    "TYPE_CYCLIST": 1,
+    "TYPE_PEDESTRIAN": 3,
+    "TYPE_VEHICLE": 59
+  },
+  "compact_record_offset": 8396022,
+  "degraded_outcome_used": false,
+  "formal_rank": 1,
+  "formal_selection_policy": "current_anchor_class_stratum_then_ascending_sha256_scenario_id",
+  "future_used": false,
+  "performance_used": false,
+  "scenario_id": "cfd33c593d645bf5",
+  "selection_hash": "0021a46ed3fb1c08471876e4d92ecc4387ba05a76fdbbf53282ace145e0f9217",
+  "source_shard": "/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00030-of-00150",
+  "stratum": "cyclist",
+  "stratum_rank": 1
+}
+
+===== C. FROZEN MODEL ARTIFACTS =====
+deterministic        = PASS
+Gaussian             = PASS
+calibrator           = PASS
+GMM                  = PASS
+fit-only normalization   = PASS
+
+===== D. VALIDATION ACCESS API DISCOVERY =====
+
+--- iscai_stage4.data.real_pipeline ---
+module file = /home/agni/waymo/iscai_stage4/src/iscai_stage4/data/real_pipeline.py
+adapt_causal_womd_scenario (scenario: 'Any', *, headlamp_config: 'HeadlampSurrogateConfig | None' = None, receiver_config: 'ReceiverGeometryConfig | None' = None) -> 'AdaptedScenario'
+build_causal_dynamic_headlamp_frames (adapted: 'AdaptedScenario', *, config: 'HeadlampSurrogateConfig | None' = None) -> 'tuple[tuple[DynamicHeadlampFrame | None, ...], tuple[Vec3 | None, ...]]'
+build_causal_scene_inputs (associated_tracks, *, scenario_id: 'str', context, timestamps_s: 'tuple[float, ...]') -> 'CausalSceneInputs'
+build_clean_observation_scene (*, ideal_scene: 'IdealObservationScene', config: 'CleanObservationConfig') -> 'CleanObservationScene'
+build_degraded_observation_scene (*, clean_scene: 'CleanObservationScene', config: 'DegradedObservationConfig') -> 'DegradedObservationScene'
+build_real_causal_inputs (scenario, *, clean_config, degraded_config)
+build_real_ideal_observation_scene (*, raw_scenario: 'Any', adapted: 'AdaptedScenario', include_sdc: 'bool' = False) -> 'IdealObservationScene'
+load_frozen_stage2_configs ()
+read_training_scenario (record: 'dict') -> 'scenario_pb2.Scenario'
+
+--- iscai_stage4.data ---
+module file = /home/agni/waymo/iscai_stage4/src/iscai_stage4/data/__init__.py
+CausalSceneInputs (scenario_id: 'str', timestamps_s: 'tuple[float, ...]', histories: 'tuple[CausalTrackHistory, ...]') -> None
+CausalTrackHistory (prediction_id: 'str', steps: 'tuple[HistoryStep, ...]', latest_observed_frame_index: 'int', latest_position_H0_m: 'Vec3') -> None
+ModelInputPayload (target_history: 'tuple[tuple[float, ...], ...]', neighbor_histories: 'tuple[tuple[tuple[float, ...], ...], ...]', neighbor_mask: 'tuple[float, ...]', map_context: 'tuple[float, ...]') -> None
+TrainingScenarioRecord (scenario_id: 'str', motion_shard: 'str', compact_record_offset: 'int', payload_length: 'int', selection_hash: 'str', anchor_class_counts: 'tuple[tuple[str, int], ...]') -> None
+attach_supervision (scene_inputs: 'CausalSceneInputs', scenario, *, T_H0_from_W) -> 'tuple[SupervisedTrajectorySample, ...]'
+build_causal_scene_inputs (associated_tracks, *, scenario_id: 'str', context, timestamps_s: 'tuple[float, ...]') -> 'CausalSceneInputs'
+build_causal_track_history (associated_track, *, context, timestamps_s: 'tuple[float, ...]') -> 'CausalTrackHistory'
+build_model_input_payload (scene_inputs: 'CausalSceneInputs', *, prediction_id: 'str', map_context: 'tuple[float, ...]') -> 'ModelInputPayload'
+iter_compact_motion_records (path: 'Path') -> 'Iterator[tuple[int, int, scenario_pb2.Scenario]]'
+scenario_selection_hash (scenario_id: 'str') -> 'str'
+
+--- iscai_stage3.validation.womd_access ---
+module file = /home/agni/waymo/iscai_stage3/src/iscai_stage3/validation/womd_access.py
+ValidationManifestRow (scenario_id: 'str', split: 'str', source_shard: 'str', record_offset: 'int', payload_length: 'int', motion_record_bytes: 'int', lidar_uri: 'str', lidar_bytes: 'int', pair_bytes: 'int', selection_hash: 'str', selection_policy: 'str') -> None
+build_compact_motion_offset_index (rows: 'Iterable[ValidationManifestRow]') -> 'dict[str, int]'
+read_motion_scenario (row: 'ValidationManifestRow', *, paired_root: 'Path', compact_record_offset: 'int')
+read_validation_manifest (path: 'Path') -> 'tuple[ValidationManifestRow, ...]'
+
+--- iscai_stage3.validation ---
+module file = /home/agni/waymo/iscai_stage3/src/iscai_stage3/validation/__init__.py
+ValidationManifestRow (scenario_id: 'str', split: 'str', source_shard: 'str', record_offset: 'int', payload_length: 'int', motion_record_bytes: 'int', lidar_uri: 'str', lidar_bytes: 'int', pair_bytes: 'int', selection_hash: 'str', selection_policy: 'str') -> None
+build_compact_motion_offset_index (rows: 'Iterable[ValidationManifestRow]') -> 'dict[str, int]'
+read_motion_scenario (row: 'ValidationManifestRow', *, paired_root: 'Path', compact_record_offset: 'int')
+read_validation_manifest (path: 'Path') -> 'tuple[ValidationManifestRow, ...]'
+
+===== E. STAGE4 SAMPLE-BUILDER SIGNATURES =====
+build_real_causal_inputs (scenario, *, clean_config, degraded_config)
+load_frozen_stage2_configs ()
+read_training_scenario (record: 'dict') -> 'scenario_pb2.Scenario'
+attach_supervision (scene_inputs: 'CausalSceneInputs', scenario, *, T_H0_from_W) -> 'tuple[SupervisedTrajectorySample, ...]'
+
+===== F. STAGE3 FORMAL REPORT DISCOVERY =====
+formal report path       = /home/agni/waymo/iscai_stage3/reports/block38f_formal_evaluation.json
+formal report file SHA   = 35ef1353c30f2c871fd79250192ee47bed1f8c17962a979336e97585dec80367
+formal run-SHA candidates:
+deterministic.run_sha256 = 5fbb4642f87ab8e62cf1e1b3ef4214d92df5b5a1423bd9fb72b9733ced02e433
+formal_manifest_sha256 = 2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46
+expected frozen run SHA  = 5fbb4642f87ab8e62cf1e1b3ef4214d92df5b5a1423bd9fb72b9733ced02e433
+run SHA status           = FOUND_IN_REPORT
+
+FORMAL METRIC/SCHEMA EVIDENCE:
+aggregation_semantics.ADE = micro mean over every available matched actor-horizon error
+aggregation_semantics.FDE = micro mean over matched tracks with evaluator-defined final endpoint; unavailable FDE count reported explicitly
+aggregation_semantics.horizon_endpoint_miss = sum endpoint misses / sum eligible truth tracks
+checkpoint_recovery.scenario_deterministic_hashes_verified = True
+deterministic.run_sha256 = 5fbb4642f87ab8e62cf1e1b3ef4214d92df5b5a1423bd9fb72b9733ced02e433
+deterministic.scenario_hashes = <list len=120>
+formal = True
+formal_manifest_sha256 = 2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46
+future_truth.tracks_to_predict_accessed_after_prediction = True
+per_scenario_artifact = /home/agni/waymo/iscai_stage3/artifacts/block38f/formal_per_scenario.jsonl
+per_scenario_artifact_sha256 = c97e7451b0be7263165d13acb2b3993dbe842810db06396fd0352d9f35c72ac3
+primary_evaluation.metrics.CA.ade_3d_m = 50.91148310223243
+primary_evaluation.metrics.CA.ade_m = 42.49438163820611
+primary_evaluation.metrics.CA.ade_point_count = 1649
+primary_evaluation.metrics.CA.anchor_assignment_error_mean_m = 1.2162437975704414
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.ade_3d_m = 29.179800811923524
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.ade_m = 24.756524508433888
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.fde_3d_m = 80.12950977036732
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.fde_m = 68.16114169934058
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.fde_track_count = 18
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.fde_unavailable_matched_track_count = 2
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.1.available_predictions = 20
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.1.eligible_truth_tracks = 27
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.1.endpoint_miss_count = 17
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.1.endpoint_miss_rate = 0.6296296296296297
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.1.mean_planar_error_m = 2.382548680776949
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.1.rmse_planar_error_m = 3.274168715230779
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.3.available_predictions = 19
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.3.eligible_truth_tracks = 26
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.3.endpoint_miss_count = 22
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.3.endpoint_miss_rate = 0.8461538461538461
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.3.mean_planar_error_m = 9.992982178573047
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.3.rmse_planar_error_m = 13.521050894569148
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.5.available_predictions = 18
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.5.eligible_truth_tracks = 25
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.5.endpoint_miss_count = 23
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.5.endpoint_miss_rate = 0.92
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.5.mean_planar_error_m = 21.79561958533248
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.0.5.rmse_planar_error_m = 29.251404254007625
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.1.0.available_predictions = 18
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.1.0.eligible_truth_tracks = 25
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.1.0.endpoint_miss_count = 25
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.1.0.endpoint_miss_rate = 1.0
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.1.0.mean_planar_error_m = 68.16114169934058
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.horizons.1.0.rmse_planar_error_m = 90.35936642211975
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.matched_tracks = 20
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.recall = 0.7407407407407407
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.truth_tracks = 27
+primary_evaluation.metrics.CA.classes.TYPE_CYCLIST.unmatched_truth = 7
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.ade_3d_m = 55.598876064284184
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.ade_m = 47.18233905127388
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.fde_3d_m = 145.9375773485064
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.fde_m = 122.90621205414392
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.fde_track_count = 53
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.fde_unavailable_matched_track_count = 2
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.1.available_predictions = 55
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.1.eligible_truth_tracks = 62
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.1.endpoint_miss_count = 43
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.1.endpoint_miss_rate = 0.6935483870967742
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.1.mean_planar_error_m = 4.925061899772132
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.1.rmse_planar_error_m = 9.032648861489887
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.3.available_predictions = 54
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.3.eligible_truth_tracks = 61
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.3.endpoint_miss_count = 53
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.3.endpoint_miss_rate = 0.8688524590163934
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.3.mean_planar_error_m = 19.79947215559361
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.3.rmse_planar_error_m = 36.5156509679952
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.5.available_predictions = 55
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.5.eligible_truth_tracks = 61
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.5.endpoint_miss_count = 56
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.5.endpoint_miss_rate = 0.9180327868852459
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.5.mean_planar_error_m = 43.3543351703142
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.0.5.rmse_planar_error_m = 77.45145640310247
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.1.0.available_predictions = 53
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.1.0.eligible_truth_tracks = 58
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.1.0.endpoint_miss_count = 55
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.1.0.endpoint_miss_rate = 0.9482758620689655
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.1.0.mean_planar_error_m = 122.90621205414392
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.horizons.1.0.rmse_planar_error_m = 203.96241527602527
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.matched_tracks = 55
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.recall = 0.8870967741935484
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.truth_tracks = 62
+primary_evaluation.metrics.CA.classes.TYPE_PEDESTRIAN.unmatched_truth = 7
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.ade_3d_m = 51.36300255618081
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.ade_m = 42.72507620423205
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.fde_3d_m = 141.0230393687322
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.fde_m = 116.76814260307646
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.fde_track_count = 328
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.fde_unavailable_matched_track_count = 22
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.1.available_predictions = 350
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.1.eligible_truth_tracks = 451
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.1.endpoint_miss_count = 269
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.1.endpoint_miss_rate = 0.5964523281596452
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.1.mean_planar_error_m = 4.517886215110068
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.1.rmse_planar_error_m = 8.786168936238125
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.3.available_predictions = 342
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.3.eligible_truth_tracks = 440
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.3.endpoint_miss_count = 364
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.3.endpoint_miss_rate = 0.8272727272727273
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.3.mean_planar_error_m = 16.808871181832846
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.3.rmse_planar_error_m = 32.37240289773184
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.5.available_predictions = 337
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.5.eligible_truth_tracks = 435
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.5.endpoint_miss_count = 398
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.5.endpoint_miss_rate = 0.9149425287356322
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.5.mean_planar_error_m = 36.641197376434626
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.0.5.rmse_planar_error_m = 70.28320413761327
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.1.0.available_predictions = 328
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.1.0.eligible_truth_tracks = 424
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.1.0.endpoint_miss_count = 413
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.1.0.endpoint_miss_rate = 0.9740566037735849
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.1.0.mean_planar_error_m = 116.76814260307646
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.horizons.1.0.rmse_planar_error_m = 222.23331754405112
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.matched_tracks = 350
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.recall = 0.7743362831858407
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.truth_tracks = 452
+primary_evaluation.metrics.CA.classes.TYPE_VEHICLE.unmatched_truth = 102
+primary_evaluation.metrics.CA.false_prediction_count = 3127
+primary_evaluation.metrics.CA.fde_3d_m = 138.92877114857546
+primary_evaluation.metrics.CA.fde_m = 115.39067810342564
+primary_evaluation.metrics.CA.fde_track_count = 399
+primary_evaluation.metrics.CA.fde_unavailable_matched_track_count = 26
+primary_evaluation.metrics.CA.horizons.0.1.available_predictions = 425
+primary_evaluation.metrics.CA.horizons.0.1.eligible_truth_tracks = 540
+primary_evaluation.metrics.CA.horizons.0.1.endpoint_miss_count = 329
+primary_evaluation.metrics.CA.horizons.0.1.endpoint_miss_rate = 0.6092592592592593
+primary_evaluation.metrics.CA.horizons.0.1.mean_3d_error_m = 5.246658305098482
+primary_evaluation.metrics.CA.horizons.0.1.mean_planar_error_m = 4.4700930668036
+primary_evaluation.metrics.CA.horizons.0.1.rmse_3d_error_m = 9.235742987365368
+primary_evaluation.metrics.CA.horizons.0.1.rmse_planar_error_m = 8.639260891205103
+primary_evaluation.metrics.CA.horizons.0.3.available_predictions = 415
+primary_evaluation.metrics.CA.horizons.0.3.eligible_truth_tracks = 527
+primary_evaluation.metrics.CA.horizons.0.3.endpoint_miss_count = 439
+primary_evaluation.metrics.CA.horizons.0.3.endpoint_miss_rate = 0.8330170777988615
+primary_evaluation.metrics.CA.horizons.0.3.mean_3d_error_m = 20.166691135044815
+primary_evaluation.metrics.CA.horizons.0.3.mean_planar_error_m = 16.885956872245245
+primary_evaluation.metrics.CA.horizons.0.3.rmse_3d_error_m = 35.2499290352734
+primary_evaluation.metrics.CA.horizons.0.3.rmse_planar_error_m = 32.33422415274779
+primary_evaluation.metrics.CA.horizons.0.5.available_predictions = 410
+primary_evaluation.metrics.CA.horizons.0.5.eligible_truth_tracks = 521
+primary_evaluation.metrics.CA.horizons.0.5.endpoint_miss_count = 477
+primary_evaluation.metrics.CA.horizons.0.5.endpoint_miss_rate = 0.9155470249520153
+primary_evaluation.metrics.CA.horizons.0.5.mean_3d_error_m = 43.71085206485174
+primary_evaluation.metrics.CA.horizons.0.5.mean_planar_error_m = 36.88998317746765
+primary_evaluation.metrics.CA.horizons.0.5.rmse_3d_error_m = 75.65343674825158
+primary_evaluation.metrics.CA.horizons.0.5.rmse_planar_error_m = 70.01777212225255
+primary_evaluation.metrics.CA.horizons.1.0.available_predictions = 399
+primary_evaluation.metrics.CA.horizons.1.0.eligible_truth_tracks = 507
+primary_evaluation.metrics.CA.horizons.1.0.endpoint_miss_count = 493
+primary_evaluation.metrics.CA.horizons.1.0.endpoint_miss_rate = 0.9723865877712031
+primary_evaluation.metrics.CA.horizons.1.0.mean_3d_error_m = 138.92877114857546
+primary_evaluation.metrics.CA.horizons.1.0.mean_planar_error_m = 115.39067810342564
+primary_evaluation.metrics.CA.horizons.1.0.rmse_3d_error_m = 237.70721421948005
+primary_evaluation.metrics.CA.horizons.1.0.rmse_planar_error_m = 215.62376944859545
+primary_evaluation.metrics.CA.matched_track_count = 425
+primary_evaluation.metrics.CA.prediction_track_count = 3552
+primary_evaluation.metrics.CA.reconstruction_f1 = 0.20767163449792328
+primary_evaluation.metrics.CA.reconstruction_precision = 0.1196509009009009
+primary_evaluation.metrics.CA.reconstruction_recall = 0.7855822550831792
+primary_evaluation.metrics.CA.runtime_ms.median = 24.142426438629627
+primary_evaluation.metrics.CA.runtime_ms.p95 = 77.80189905315638
+primary_evaluation.metrics.CA.runtime_ms.total = 3754.787022480741
+primary_evaluation.metrics.CA.truth_track_count = 541
+primary_evaluation.metrics.CA.unmatched_truth_count = 116
+primary_evaluation.metrics.CTRV.ade_3d_m = 8.098779639148713
+primary_evaluation.metrics.CTRV.ade_m = 6.453930162499179
+primary_evaluation.metrics.CTRV.ade_point_count = 1649
+primary_evaluation.metrics.CTRV.anchor_assignment_error_mean_m = 1.2162437975704414
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.ade_3d_m = 4.82499016521229
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.ade_m = 3.7731334835478108
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.fde_3d_m = 8.807370892839415
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.fde_m = 6.633835051750458
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.fde_track_count = 18
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.fde_unavailable_matched_track_count = 2
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.1.available_predictions = 20
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.1.eligible_truth_tracks = 27
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.1.endpoint_miss_count = 12
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.1.endpoint_miss_rate = 0.4444444444444444
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.1.mean_planar_error_m = 1.5742940859652133
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.1.rmse_planar_error_m = 2.150826613381912
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.3.available_predictions = 19
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.3.eligible_truth_tracks = 26
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.3.endpoint_miss_count = 15
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.3.endpoint_miss_rate = 0.5769230769230769
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.3.mean_planar_error_m = 3.028115324858296
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.3.rmse_planar_error_m = 4.547990870134644
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.5.available_predictions = 18
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.5.eligible_truth_tracks = 25
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.5.endpoint_miss_count = 17
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.5.endpoint_miss_rate = 0.68
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.5.mean_planar_error_m = 4.141994857942536
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.0.5.rmse_planar_error_m = 5.885087676903217
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.1.0.available_predictions = 18
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.1.0.eligible_truth_tracks = 25
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.1.0.endpoint_miss_count = 20
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.1.0.endpoint_miss_rate = 0.8
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.1.0.mean_planar_error_m = 6.633835051750458
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.horizons.1.0.rmse_planar_error_m = 9.215796660180178
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.matched_tracks = 20
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.recall = 0.7407407407407407
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.truth_tracks = 27
+primary_evaluation.metrics.CTRV.classes.TYPE_CYCLIST.unmatched_truth = 7
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.ade_3d_m = 6.810598110373342
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.ade_m = 4.639647824536797
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.fde_3d_m = 9.445109800380012
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.fde_m = 4.836643958102271
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.fde_track_count = 53
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.fde_unavailable_matched_track_count = 2
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.1.available_predictions = 55
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.1.eligible_truth_tracks = 62
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.1.endpoint_miss_count = 24
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.1.endpoint_miss_rate = 0.3870967741935484
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.1.mean_planar_error_m = 2.8375246239816874
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.1.rmse_planar_error_m = 5.719817519729347
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.3.available_predictions = 54
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.3.eligible_truth_tracks = 61
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.3.endpoint_miss_count = 25
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.3.endpoint_miss_rate = 0.4098360655737705
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.3.mean_planar_error_m = 5.033131575423886
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.3.rmse_planar_error_m = 13.46769206921396
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.5.available_predictions = 55
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.5.eligible_truth_tracks = 61
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.5.endpoint_miss_count = 27
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.5.endpoint_miss_rate = 0.4426229508196721
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.5.mean_planar_error_m = 5.865608886421489
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.0.5.rmse_planar_error_m = 16.49457405052599
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.1.0.available_predictions = 53
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.1.0.eligible_truth_tracks = 58
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.1.0.endpoint_miss_count = 31
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.1.0.endpoint_miss_rate = 0.5344827586206896
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.1.0.mean_planar_error_m = 4.836643958102271
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.horizons.1.0.rmse_planar_error_m = 10.843409943908192
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.matched_tracks = 55
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.recall = 0.8870967741935484
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.truth_tracks = 62
+primary_evaluation.metrics.CTRV.classes.TYPE_PEDESTRIAN.unmatched_truth = 7
+primary_evaluation.metrics.CTRV.classes.TYPE_VEHICLE.ade_3d_m = 8.48571376021687
+primary_evaluation.metrics.CTRV.classes.TYPE_VEHICLE.ade_m = 6.892219785387308
+primary_evaluation.metrics.CTRV.classes.TYPE_VEHICLE.fde_3d_m = 14.918764864242334
+primary_evaluation.metrics.CTRV.classes.TYPE_VEHICLE.fde_m = 11.524711859308924
+primary_evaluation.metrics.CTRV.classes.TYPE_VEHICLE.fde_track_count = 328
+primary_evaluation.metrics.CTRV.classes.TYPE_VEHICLE.fde_unavailable_matched_track_count = 22
+primary_evaluation.metrics.CTRV.classes.TYPE_VEHICLE.horizons.0.1.available_predictions = 350
+primary_evaluation.metrics.CTRV.classes.TYPE_VEHICLE.horizons.0.1.eligible_truth_tracks = 451
+primary_evaluation.metrics.CTRV.classes.TYPE_VEHICLE.horizons.0.1.endpoint_miss_count = 237
+primary_evaluation.metrics.CTRV.classes.TYPE_VEHICLE.horizons.0.1.endpoint_miss_rate = 0.5254988913525499
+primary_evaluation.metrics.CTRV.classes.TYPE_VEHICLE.horizons.0.1.mean_planar_error_m = 2.8781518129299575
+primary_evaluation.metrics.CTRV.classes.TYPE_VEHICLE.horizons.0.1.rmse_planar_error_m = 5.341614447054341
+primary_evaluation.metrics.CTRV.classes.TYPE_VEHICLE.horizons.0.3.available_predictions = 342
+primary_evaluation.metrics.CTRV.classes.TYPE_VEHICLE.horizons.0.3.eligible_truth_tracks = 440
+... 1602 additional relevant flattened fields omitted
+
+===== G. FULL STAGE4 REGRESSION =====
+
+............................................................................................................
+----------------------------------------------------------------------
+Ran 108 tests in 0.416s
+
+OK
+
+
+============================================================
+STAGE4 BLOCK 4.8 PART 1/2 DISCOVERY GATE
+============================================================
+Block4.7 frozen upstream = PASS
+Stage3 frozen upstream   = PASS
+formal manifest N        = 120 PASS
+formal manifest SHA      = PASS
+formal report discovered = PASS
+model/checkpoint hashes  = PASS
+fit-only normalization   = PASS
+validation API inventory = CAPTURED
+formal schema evidence   = CAPTURED
+formal model inference   = NOT STARTED
+formal model selection   = NONE
+formal calibration fit   = NONE
+full Stage4 regression   = 108 / 108 PASS
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage4/reports/block48_part1_discovery.json
+terminal remains open    = YES

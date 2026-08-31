@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage5/scripts/run_stage5_fullpdf_v2_independent_formal_checker.py", line 5212, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage5/scripts/run_stage5_fullpdf_v2_independent_formal_checker.py", line 4245, in main
+    decisions_1 = build_decision_rows(
+        ledger_map,
+    ...<2 lines>...
+        protocol,
+    )
+  File "/home/agni/waymo/iscai_stage5/scripts/run_stage5_fullpdf_v2_independent_formal_checker.py", line 1990, in build_decision_rows
+    plan.probing_beam_count()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+TypeError: 'int' object is not callable
+STAGE5 FULLPDF V2 INDEPENDENT FORMAL CHECKER
+FAIL-CLOSED / NO TRAINING / NO RETUNING
+
+========================================================================
+STAGE5 FULLPDF V2 FORMAL = FAIL CLOSED
+Stage6_allowed = false
+reason = Unexpected checker exception; automatic fail-closed.
+report = /home/agni/waymo/iscai_stage5/reports/stage5_fullpdf_v2_independent_formal_checker.json
+========================================================================

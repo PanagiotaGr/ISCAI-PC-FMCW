@@ -1,0 +1,56 @@
+{
+  "PDF_Stage5_completion_evidence": {
+    "Pareto_frontier_present": true,
+    "optical_link_metrics_present": true,
+    "overhead_reduction_vs_exhaustive": "PASS",
+    "reliability_overhead_curve_present": true,
+    "requested_coverage": "PASS"
+  },
+  "block": "5.8",
+  "codebooks": [
+    16,
+    32,
+    64
+  ],
+  "formal_N": 120,
+  "formal_evaluation_status": "PASS",
+  "formal_rerun": false,
+  "geometries": [
+    "centroid",
+    "known",
+    "uncertain"
+  ],
+  "historical_blocked_gate_preserved": true,
+  "horizons_s": [
+    0.1,
+    0.3,
+    0.5,
+    1.0
+  ],
+  "next": "Block5.9 reproducibility audit; repair stale pre-freeze status expectation there, not in Block5.8",
+  "nominal_q": 0.95,
+  "parameter_tuning": false,
+  "part": "2/2_reconciliation",
+  "primary_overhead_reduction_vs_exhaustive": 0.865216565349544,
+  "primary_probability_coverage": 0.9959473150962512,
+  "recalibration": false,
+  "reconciled_gate": "/home/agni/waymo/iscai_stage5/reports/block58_part2_reconciled_gate.json",
+  "reconciled_gate_sha256": "e8010fea3938b70fe1afc4674698f5ae04677ee021449f510ea1c158e35ae63b",
+  "regression_through_Block5_8": {
+    "excluded_downstream_Block5_9_tests": 3,
+    "status": "PASS",
+    "tests": 254
+  },
+  "reported_q": [
+    0.9,
+    0.95,
+    0.975,
+    0.99
+  ],
+  "root_cause": "historical Part2 gate required 16/32/64 evidence from Part1 even though frozen Block5.3 and the canonical formal report already proved the exact codebook family",
+  "scientific_failure": false,
+  "scientific_outputs_modified": false,
+  "stage": 5,
+  "status": "PASS_RECONCILED_COMPLETE",
+  "training": false
+}

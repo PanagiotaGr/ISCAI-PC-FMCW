@@ -1,0 +1,29 @@
+{
+  "N_MC_8192_executed_before_repair": false,
+  "after": {
+    "call": "model(batch['target'], batch['neighbors'], batch['neighbor_mask'], batch['map_context'])",
+    "runner_sha256": "3025525f9cc30a7728e24c2777206262d59ed2c6f8787ba71024fe39a1d9fcd2"
+  },
+  "architecture_changed": false,
+  "association_changed": false,
+  "before": {
+    "call": "model(**model_kwargs)",
+    "runner_sha256": "a5874f5c68e0d183aef0d16f97594669a5478b2b8f74131f674be29b7471f3a8"
+  },
+  "block": "6.6-Part2B",
+  "calibration_changed": false,
+  "class_policy_changed": false,
+  "classification": "RUNNER_ONLY_NOT_SCIENTIFIC",
+  "cohort_changed": false,
+  "formal_outcomes_read": false,
+  "forward_signature": "(self, target_history, neighbor_histories, neighbor_mask, map_context) -> 'GaussianTrajectoryOutput'",
+  "future_GT_used": false,
+  "model_weights_changed": false,
+  "normalization_changed": false,
+  "observed_exception": "TypeError: GaussianTrajectoryGRU.forward() got an unexpected keyword argument 'target'",
+  "repair": "Gaussian_forward_call_convention",
+  "resume_cache_deleted": false,
+  "scientific_inputs_changed": false,
+  "stage": 6,
+  "status": "PASS_POSITIONAL_FORWARD_CALL_REPAIRED"
+}

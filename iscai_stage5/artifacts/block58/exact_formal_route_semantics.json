@@ -1,0 +1,1019 @@
+{
+  "Block48_source_windows": [
+    {
+      "end_line": 1274,
+      "start_line": 1245,
+      "text": "1245:                     ],\n1246:                     batch[\n1247:                         \"map_context\"\n1248:                     ],\n1249:                 )\n1250:             )\n1251: \n1252:             # Prediction hash is computed BEFORE\n1253:             # tracks_to_predict is accessed.\n1254:             all_prediction_sha = (\n1255:                 tensor_bundle_sha256(\n1256:                     (\n1257:                         (\n1258:                             \"det\",\n1259:                             det_normalized,\n1260:                         ),\n1261:                         (\n1262:                             \"gaussian_mean\",\n1263:                             Gaussian_output.mean,\n1264:                         ),\n1265:                         (\n1266:                             \"gaussian_scale\",\n1267:                             Gaussian_output.scale_tril,\n1268:                         ),\n1269:                         (\n1270:                             \"gmm_logits\",\n1271:                             GMM_output.mixture_logits,\n1272:                         ),\n1273:                         (\n1274:                             \"gmm_means\","
+    },
+    {
+      "end_line": 1312,
+      "start_line": 1294,
+      "text": "1294:                 normalizer.label_mean[\n1295:                     None,\n1296:                     :,\n1297:                     :\n1298:                 ]\n1299:             )\n1300: \n1301:             (\n1302:                 Gaussian_mean_metric,\n1303:                 Gaussian_scale_metric,\n1304:             ) = denormalize_gaussian(\n1305:                 Gaussian_output.mean,\n1306:                 Gaussian_output.scale_tril,\n1307:                 normalizer.label_mean,\n1308:                 normalizer.label_std,\n1309:             )\n1310: \n1311:             (\n1312:                 GMM_means_metric,"
+    },
+    {
+      "end_line": 1387,
+      "start_line": 1360,
+      "text": "1360:             .cpu()\n1361:             .numpy()\n1362:             .astype(\n1363:                 np.float32,\n1364:                 copy=False,\n1365:             )\n1366:         )\n1367: \n1368:         Gaussian_mean_metric = (\n1369:             Gaussian_mean_metric.detach()\n1370:             .cpu()\n1371:             .numpy()\n1372:             .astype(\n1373:                 np.float32,\n1374:                 copy=False,\n1375:             )\n1376:         )\n1377: \n1378:         Gaussian_scale_metric = (\n1379:             Gaussian_scale_metric.detach()\n1380:             .cpu()\n1381:             .numpy()\n1382:             .astype(\n1383:                 np.float32,\n1384:                 copy=False,\n1385:             )\n1386:         )\n1387: "
+    },
+    {
+      "end_line": 1468,
+      "start_line": 1446,
+      "text": "1446:             ),\n1447:             dtype=np.int64,\n1448:         )\n1449: \n1450:         det_metric = np.zeros_like(\n1451:             truth_all\n1452:         )\n1453: \n1454:         Gaussian_mean_metric = (\n1455:             np.zeros_like(\n1456:                 truth_all\n1457:             )\n1458:         )\n1459: \n1460:         Gaussian_scale_metric = (\n1461:             np.zeros(\n1462:                 (\n1463:                     0,\n1464:                     4,\n1465:                     3,\n1466:                     3,\n1467:                 ),\n1468:                 dtype=np.float32,"
+    },
+    {
+      "end_line": 1519,
+      "start_line": 1498,
+      "text": "1498:             dtype=np.float32,\n1499:         )\n1500: \n1501:     # ========================================================\n1502:     # Evaluator target metadata accessed only AFTER all\n1503:     # neural predictions above have already been generated.\n1504:     # ========================================================\n1505: \n1506:     eligible = eligible_formal_targets(\n1507:         scenario\n1508:     )\n1509: \n1510:     # eligible_formal_targets() correctly reads the\n1511:     # evaluator-only WOMD tracks_to_predict metadata, but\n1512:     # its class_id values are raw WOMD object_type integers.\n1513:     # Convert them into the frozen Stage4 internal class-ID\n1514:     # domain before any class-specific aggregation.\n1515:     eligible[\n1516:         \"class_id\"\n1517:     ] = np.asarray(\n1518:         [\n1519:             stage4_class_id_for_womd_track("
+    },
+    {
+      "end_line": 1696,
+      "start_line": 1674,
+      "text": "1674:                 selected_mask\n1675:             ],\n1676: \n1677:         \"det_mean\":\n1678:             det_metric[\n1679:                 selected_mask\n1680:             ],\n1681: \n1682:         \"gaussian_mean\":\n1683:             Gaussian_mean_metric[\n1684:                 selected_mask\n1685:             ],\n1686: \n1687:         \"gaussian_scale\":\n1688:             Gaussian_scale_metric[\n1689:                 selected_mask\n1690:             ],\n1691: \n1692:         \"gmm_logits\":\n1693:             GMM_logits[\n1694:                 selected_mask\n1695:             ],\n1696: "
+    },
+    {
+      "end_line": 1760,
+      "start_line": 1735,
+      "text": "1735:             int(\n1736:                 len(\n1737:                     eligible[\n1738:                         \"track_index\"\n1739:                     ]\n1740:                 )\n1741:             ),\n1742: \n1743:         \"tracks_to_predict_accessed_after_prediction\":\n1744:             True,\n1745:     }\n1746: \n1747: \n1748: def save_scene_shard(\n1749:     rank,\n1750:     payload,\n1751: ):\n1752:     path = cache_path(\n1753:         rank,\n1754:         payload[\n1755:             \"scenario_id\"\n1756:         ],\n1757:     )\n1758: \n1759:     atomic_npz(\n1760:         path,"
+    },
+    {
+      "end_line": 1832,
+      "start_line": 1808,
+      "text": "1808:         ),\n1809: \n1810:         det_mean=(\n1811:             payload[\n1812:                 \"det_mean\"\n1813:             ]\n1814:         ),\n1815: \n1816:         gaussian_mean=(\n1817:             payload[\n1818:                 \"gaussian_mean\"\n1819:             ]\n1820:         ),\n1821: \n1822:         gaussian_scale=(\n1823:             payload[\n1824:                 \"gaussian_scale\"\n1825:             ]\n1826:         ),\n1827: \n1828:         gmm_logits=(\n1829:             payload[\n1830:                 \"gmm_logits\"\n1831:             ]\n1832:         ),"
+    },
+    {
+      "end_line": 1893,
+      "start_line": 1877,
+      "text": "1877: \n1878:         eligible_formal_target_count=np.asarray(\n1879:             payload[\n1880:                 \"eligible_formal_target_count\"\n1881:             ],\n1882:             dtype=np.int64,\n1883:         ),\n1884: \n1885:         tracks_to_predict_accessed_after_prediction=np.asarray(\n1886:             True,\n1887:             dtype=np.bool_,\n1888:         ),\n1889:     )\n1890: \n1891:     if not validate_shard(\n1892:         path,\n1893:         payload["
+    },
+    {
+      "end_line": 1932,
+      "start_line": 1915,
+      "text": "1915:                     ]\n1916:                 )\n1917:             for key in (\n1918:                 \"selected_truth_index\",\n1919:                 \"selected_class_id\",\n1920:                 \"truth\",\n1921:                 \"validity\",\n1922:                 \"det_mean\",\n1923:                 \"gaussian_mean\",\n1924:                 \"gaussian_scale\",\n1925:                 \"gmm_logits\",\n1926:                 \"gmm_means\",\n1927:                 \"gmm_scale\",\n1928:                 \"eligible_truth_index\",\n1929:                 \"eligible_class_id\",\n1930:                 \"eligible_validity\",\n1931:             )\n1932:         } | {"
+    },
+    {
+      "end_line": 1987,
+      "start_line": 1970,
+      "text": "1970: def merge_shards(\n1971:     formal_rows,\n1972: ):\n1973:     keys = (\n1974:         \"selected_class_id\",\n1975:         \"truth\",\n1976:         \"validity\",\n1977:         \"det_mean\",\n1978:         \"gaussian_mean\",\n1979:         \"gaussian_scale\",\n1980:         \"gmm_logits\",\n1981:         \"gmm_means\",\n1982:         \"gmm_scale\",\n1983:         \"eligible_class_id\",\n1984:         \"eligible_validity\",\n1985:     )\n1986: \n1987:     parts = {"
+    },
+    {
+      "end_line": 2013,
+      "start_line": 1997,
+      "text": "1997:     prediction_hashes = []\n1998: \n1999:     truth_index_sources = set()\n2000: \n2001:     for rank, row in enumerate(\n2002:         formal_rows,\n2003:         start=1,\n2004:     ):\n2005:         path = cache_path(\n2006:             rank,\n2007:             row[\n2008:                 \"scenario_id\"\n2009:             ],\n2010:         )\n2011: \n2012:         if not validate_shard(\n2013:             path,"
+    },
+    {
+      "end_line": 2112,
+      "start_line": 2076,
+      "text": "2076:             \"truth_index_source\"\n2077:         ]:\n2078:             truth_index_sources.add(\n2079:                 shard[\n2080:                     \"truth_index_source\"\n2081:                 ]\n2082:             )\n2083: \n2084:     merged = {\n2085:         key:\n2086:             np.concatenate(\n2087:                 parts[\n2088:                     key\n2089:                 ],\n2090:                 axis=0,\n2091:             )\n2092:         for key in keys\n2093:     }\n2094: \n2095:     atomic_npz(\n2096:         MERGED,\n2097:         **merged,\n2098:     )\n2099: \n2100:     digest = sha256()\n2101: \n2102:     for key in keys:\n2103:         array = np.ascontiguousarray(\n2104:             merged[\n2105:                 key\n2106:             ]\n2107:         )\n2108: \n2109:         digest.update(\n2110:             key.encode(\n2111:                 \"utf-8\"\n2112:             )"
+    },
+    {
+      "end_line": 2177,
+      "start_line": 2127,
+      "text": "2127:     for value in prediction_hashes:\n2128:         digest.update(\n2129:             value.encode(\n2130:                 \"ascii\"\n2131:             )\n2132:         )\n2133: \n2134:     return (\n2135:         merged,\n2136:         {\n2137:             \"formal_scenarios\":\n2138:                 120,\n2139: \n2140:             \"all_supervised_predictions\":\n2141:                 total_supervised,\n2142: \n2143:             \"matched_formal_targets\":\n2144:                 len(\n2145:                     scenario_namespace_matched\n2146:                 ),\n2147: \n2148:             \"eligible_formal_targets\":\n2149:                 len(\n2150:                     scenario_namespace_eligible\n2151:                 ),\n2152: \n2153:             \"matched_namespace\":\n2154:                 scenario_namespace_matched,\n2155: \n2156:             \"eligible_namespace\":\n2157:                 scenario_namespace_eligible,\n2158: \n2159:             \"truth_index_sources\":\n2160:                 sorted(\n2161:                     truth_index_sources\n2162:                 ),\n2163: \n2164:             \"merged_file_sha256\":\n2165:                 file_sha256(\n2166:                     MERGED\n2167:                 ),\n2168: \n2169:             \"merged_content_sha256\":\n2170:                 digest.hexdigest(),\n2171:         },\n2172:     )\n2173: \n2174: \n2175: def classical_metrics(\n2176:     Stage3_payload,\n2177: ):"
+    },
+    {
+      "end_line": 2285,
+      "start_line": 2269,
+      "text": "2269: \n2270:     required = (\n2271:         PART1,\n2272:         BLOCK47,\n2273:         FORMAL_MANIFEST,\n2274:         STAGE3_FORMAL_REPORT,\n2275:         DET_CHECKPOINT,\n2276:         GAUSSIAN_CHECKPOINT,\n2277:         CALIBRATOR,\n2278:         GMM_CHECKPOINT,\n2279:         NORMALIZATION,\n2280:     )\n2281: \n2282:     missing = [\n2283:         str(\n2284:             path\n2285:         )"
+    },
+    {
+      "end_line": 2385,
+      "start_line": 2367,
+      "text": "2367:             \"deterministic checkpoint\",\n2368:         ),\n2369:         (\n2370:             GAUSSIAN_CHECKPOINT,\n2371:             EXPECTED_GAUSSIAN_SHA,\n2372:             \"Gaussian checkpoint\",\n2373:         ),\n2374:         (\n2375:             CALIBRATOR,\n2376:             EXPECTED_CALIBRATOR_SHA,\n2377:             \"calibrator\",\n2378:         ),\n2379:         (\n2380:             GMM_CHECKPOINT,\n2381:             EXPECTED_GMM_SHA,\n2382:             \"GMM checkpoint\",\n2383:         ),\n2384:     )\n2385: "
+    },
+    {
+      "end_line": 2495,
+      "start_line": 2479,
+      "text": "2479:     )\n2480:     print(\n2481:         \"formal training            = NO\"\n2482:     )\n2483:     print(\n2484:         \"formal model selection     = NO\"\n2485:     )\n2486:     print(\n2487:         \"formal calibration fit     = NO\"\n2488:     )\n2489: \n2490:     deterministic_checkpoint = torch.load(\n2491:         DET_CHECKPOINT,\n2492:         map_location=device,\n2493:         weights_only=False,\n2494:     )\n2495: "
+    },
+    {
+      "end_line": 2597,
+      "start_line": 2563,
+      "text": "2563:     print(\n2564:         \"Gaussian state load        = PASS\"\n2565:     )\n2566:     print(\n2567:         \"GMM state load             = PASS\"\n2568:     )\n2569: \n2570:     normalizer = (\n2571:         CalibrationNormalizer(\n2572:             normalization,\n2573:             device=device,\n2574:         )\n2575:     )\n2576: \n2577:     calibrator = json.loads(\n2578:         CALIBRATOR.read_text(\n2579:             encoding=\"utf-8\"\n2580:         )\n2581:     )\n2582: \n2583:     variance_scale = tuple(\n2584:         float(\n2585:             value\n2586:         )\n2587:         for value in (\n2588:             calibrator[\n2589:                 \"variance_scale\"\n2590:             ]\n2591:         )\n2592:     )\n2593: \n2594:     (\n2595:         clean_config,\n2596:         degraded_config,\n2597:     ) = load_frozen_stage2_configs()"
+    },
+    {
+      "end_line": 2693,
+      "start_line": 2677,
+      "text": "2677:     )\n2678:     print(\n2679:         \"matched formal targets     =\",\n2680:         probe_payload[\n2681:             \"matched_formal_target_count\"\n2682:         ],\n2683:     )\n2684:     print(\n2685:         \"tracks_to_predict access   = AFTER PREDICTION PASS\"\n2686:     )\n2687: \n2688:     # Save probe immediately so it is not recomputed.\n2689:     save_scene_shard(\n2690:         probe_rank,\n2691:         probe_payload,\n2692:     )\n2693: "
+    },
+    {
+      "end_line": 2733,
+      "start_line": 2717,
+      "text": "2717:     for rank, formal_row in enumerate(\n2718:         formal_rows,\n2719:         start=1,\n2720:     ):\n2721:         scenario_id = formal_row[\n2722:             \"scenario_id\"\n2723:         ]\n2724: \n2725:         path = cache_path(\n2726:             rank,\n2727:             scenario_id,\n2728:         )\n2729: \n2730:         if validate_shard(\n2731:             path,\n2732:             scenario_id,\n2733:         ):"
+    },
+    {
+      "end_line": 2854,
+      "start_line": 2838,
+      "text": "2838: \n2839:     cache_runtime_s = (\n2840:         time.perf_counter()\n2841:         -\n2842:         started\n2843:     )\n2844: \n2845:     (\n2846:         merged,\n2847:         merge_summary,\n2848:     ) = merge_shards(\n2849:         formal_rows\n2850:     )\n2851: \n2852:     write_json(\n2853:         CACHE_REPORT,\n2854:         {"
+    },
+    {
+      "end_line": 2875,
+      "start_line": 2859,
+      "text": "2859:                 \"4.8\",\n2860: \n2861:             \"formal_scenarios\":\n2862:                 120,\n2863: \n2864:             \"resumable\":\n2865:                 True,\n2866: \n2867:             \"tracks_to_predict_accessed_after_prediction\":\n2868:                 True,\n2869: \n2870:             \"validation_manifest\":\n2871:                 str(\n2872:                     validation_manifest_path\n2873:                 ),\n2874: \n2875:             \"validation_manifest_sha256\":"
+    },
+    {
+      "end_line": 2921,
+      "start_line": 2899,
+      "text": "2899:         \"matched formal targets     =\",\n2900:         merge_summary[\n2901:             \"matched_formal_targets\"\n2902:         ],\n2903:     )\n2904:     print(\n2905:         \"eligible formal targets    =\",\n2906:         merge_summary[\n2907:             \"eligible_formal_targets\"\n2908:         ],\n2909:     )\n2910:     print(\n2911:         \"merged formal output SHA   =\",\n2912:         merge_summary[\n2913:             \"merged_content_sha256\"\n2914:         ],\n2915:     )\n2916: \n2917:     # ========================================================\n2918:     # Exact repeat on first four non-empty scenes\n2919:     # ========================================================\n2920: \n2921:     print()"
+    },
+    {
+      "end_line": 2941,
+      "start_line": 2925,
+      "text": "2925: \n2926:     repeated = 0\n2927: \n2928:     for rank, formal_row in enumerate(\n2929:         formal_rows,\n2930:         start=1,\n2931:     ):\n2932:         shard = load_shard(\n2933:             cache_path(\n2934:                 rank,\n2935:                 formal_row[\n2936:                     \"scenario_id\"\n2937:                 ],\n2938:             )\n2939:         )\n2940: \n2941:         if ("
+    },
+    {
+      "end_line": 3073,
+      "start_line": 2997,
+      "text": "2997:     print(\n2998:         \"formal inference repeat    = 4 / 4 PASS\"\n2999:     )\n3000: \n3001:     # ========================================================\n3002:     # Point-prediction metrics\n3003:     # ========================================================\n3004: \n3005:     truth = merged[\n3006:         \"truth\"\n3007:     ]\n3008: \n3009:     validity = (\n3010:         merged[\n3011:             \"validity\"\n3012:         ]\n3013:         >\n3014:         0.5\n3015:     )\n3016: \n3017:     classes = merged[\n3018:         \"selected_class_id\"\n3019:     ]\n3020: \n3021:     deterministic_metrics = (\n3022:         trajectory_point_metrics(\n3023:             merged[\n3024:                 \"det_mean\"\n3025:             ],\n3026:             truth,\n3027:             validity,\n3028:             classes,\n3029:             class_id_to_name=(\n3030:                 CLASS_ID_TO_NAME\n3031:             ),\n3032:         )\n3033:     )\n3034: \n3035:     Gaussian_point_metrics = (\n3036:         trajectory_point_metrics(\n3037:             merged[\n3038:                 \"gaussian_mean\"\n3039:             ],\n3040:             truth,\n3041:             validity,\n3042:             classes,\n3043:             class_id_to_name=(\n3044:                 CLASS_ID_TO_NAME\n3045:             ),\n3046:         )\n3047:     )\n3048: \n3049:     # ========================================================\n3050:     # Raw + calibrated Gaussian probabilistic metrics\n3051:     # ========================================================\n3052: \n3053:     mean_t = torch.from_numpy(\n3054:         np.asarray(\n3055:             merged[\n3056:                 \"gaussian_mean\"\n3057:             ],\n3058:             dtype=np.float64,\n3059:         )\n3060:     )\n3061: \n3062:     scale_t = torch.from_numpy(\n3063:         np.asarray(\n3064:             merged[\n3065:                 \"gaussian_scale\"\n3066:             ],\n3067:             dtype=np.float64,\n3068:         )\n3069:     )\n3070: \n3071:     truth_t = torch.from_numpy(\n3072:         np.asarray(\n3073:             truth,"
+    },
+    {
+      "end_line": 3185,
+      "start_line": 3095,
+      "text": "3095: \n3096:     raw_reliability = (\n3097:         reliability_metrics(\n3098:             q,\n3099:             validity,\n3100:         )\n3101:     )\n3102: \n3103:     calibrated_reliability = (\n3104:         reliability_metrics(\n3105:             q,\n3106:             validity,\n3107:             variance_scale=(\n3108:                 variance_scale\n3109:             ),\n3110:         )\n3111:     )\n3112: \n3113:     calibrated_nll = (\n3114:         calibrated_nll_per_horizon(\n3115:             raw_nll,\n3116:             q,\n3117:             variance_scale,\n3118:         )\n3119:     )\n3120: \n3121:     Gaussian_NLL = {\n3122:         \"raw\":\n3123:             masked_nll_metrics(\n3124:                 raw_nll,\n3125:                 validity,\n3126:             ),\n3127: \n3128:         \"calibrated\":\n3129:             masked_nll_metrics(\n3130:                 calibrated_nll,\n3131:                 validity,\n3132:             ),\n3133:     }\n3134: \n3135:     # Direct calibrated-SPD proof.\n3136:     calibrated_scale_t = (\n3137:         apply_variance_scale(\n3138:             scale_t,\n3139:             variance_scale,\n3140:         )\n3141:     )\n3142: \n3143:     calibrated_covariance = (\n3144:         calibrated_scale_t\n3145:         @\n3146:         calibrated_scale_t.transpose(\n3147:             -1,\n3148:             -2,\n3149:         )\n3150:     )\n3151: \n3152:     (\n3153:         _,\n3154:         calibrated_info,\n3155:     ) = torch.linalg.cholesky_ex(\n3156:         calibrated_covariance\n3157:     )\n3158: \n3159:     if bool(\n3160:         torch.any(\n3161:             calibrated_info != 0\n3162:         )\n3163:     ):\n3164:         raise RuntimeError(\n3165:             \"Formal calibrated Gaussian \"\n3166:             \"covariance lost SPD.\"\n3167:         )\n3168: \n3169:     # ========================================================\n3170:     # GMM formal metrics\n3171:     # ========================================================\n3172: \n3173:     GMM_metrics = gmm_formal_metrics(\n3174:         merged[\n3175:             \"gmm_logits\"\n3176:         ],\n3177:         merged[\n3178:             \"gmm_means\"\n3179:         ],\n3180:         truth,\n3181:         validity,\n3182:     )\n3183: \n3184:     GMM_mix_point = (\n3185:         trajectory_point_metrics("
+    },
+    {
+      "end_line": 3240,
+      "start_line": 3206,
+      "text": "3206:             class_id_to_name=(\n3207:                 CLASS_ID_TO_NAME\n3208:             ),\n3209:         )\n3210:     )\n3211: \n3212:     gmm_logits_t = torch.from_numpy(\n3213:         np.asarray(\n3214:             merged[\n3215:                 \"gmm_logits\"\n3216:             ],\n3217:             dtype=np.float64,\n3218:         )\n3219:     )\n3220: \n3221:     gmm_means_t = torch.from_numpy(\n3222:         np.asarray(\n3223:             merged[\n3224:                 \"gmm_means\"\n3225:             ],\n3226:             dtype=np.float64,\n3227:         )\n3228:     )\n3229: \n3230:     gmm_scale_t = torch.from_numpy(\n3231:         np.asarray(\n3232:             merged[\n3233:                 \"gmm_scale\"\n3234:             ],\n3235:             dtype=np.float64,\n3236:         )\n3237:     )\n3238: \n3239:     validity_t = torch.from_numpy(\n3240:         validity.astype("
+    },
+    {
+      "end_line": 3361,
+      "start_line": 3345,
+      "text": "3345:         available = int(\n3346:             validity[\n3347:                 :,\n3348:                 h\n3349:             ].sum()\n3350:         )\n3351: \n3352:         eligible = int(\n3353:             merged[\n3354:                 \"eligible_validity\"\n3355:             ][\n3356:                 :,\n3357:                 h\n3358:             ].sum()\n3359:         )\n3360: \n3361:         availability["
+    },
+    {
+      "end_line": 3396,
+      "start_line": 3380,
+      "text": "3380:                     else None\n3381:                 ),\n3382:         }\n3383: \n3384:     class_availability = {}\n3385: \n3386:     for class_id in sorted(\n3387:         set(\n3388:             merged[\n3389:                 \"eligible_class_id\"\n3390:             ].tolist()\n3391:         )\n3392:     ):\n3393:         class_id = int(\n3394:             class_id\n3395:         )\n3396: "
+    },
+    {
+      "end_line": 3414,
+      "start_line": 3398,
+      "text": "3398:             class_id,\n3399:             str(\n3400:                 class_id\n3401:             ),\n3402:         )\n3403: \n3404:         eligible = int(\n3405:             (\n3406:                 merged[\n3407:                     \"eligible_class_id\"\n3408:                 ]\n3409:                 ==\n3410:                 class_id\n3411:             ).sum()\n3412:         )\n3413: \n3414:         matched = int("
+    },
+    {
+      "end_line": 3521,
+      "start_line": 3451,
+      "text": "3451:     )\n3452: \n3453:     if \"CV\" not in classical:\n3454:         raise RuntimeError(\n3455:             \"Frozen Stage3 formal report \"\n3456:             \"does not expose CV metrics.\"\n3457:         )\n3458: \n3459:     calibrated_Gaussian_ADE = float(\n3460:         Gaussian_point_metrics[\n3461:             \"ade_m\"\n3462:         ]\n3463:     )\n3464: \n3465:     beaten = [\n3466:         name\n3467:         for name, metrics\n3468:         in classical.items()\n3469:         if (\n3470:             calibrated_Gaussian_ADE\n3471:             <\n3472:             metrics[\n3473:                 \"ade_m\"\n3474:             ]\n3475:         )\n3476:     ]\n3477: \n3478:     PDF_performance_gate = bool(\n3479:         beaten\n3480:     )\n3481: \n3482:     internal_CV_gate = bool(\n3483:         calibrated_Gaussian_ADE\n3484:         <\n3485:         classical[\n3486:             \"CV\"\n3487:         ][\n3488:             \"ade_m\"\n3489:         ]\n3490:     )\n3491: \n3492:     calibration_measured = True\n3493: \n3494:     PDF_acceptance = (\n3495:         PDF_performance_gate\n3496:         and\n3497:         calibration_measured\n3498:     )\n3499: \n3500:     raw_ECE = float(\n3501:         raw_reliability[\n3502:             \"coverage_ECE_macro\"\n3503:         ]\n3504:     )\n3505: \n3506:     calibrated_ECE = float(\n3507:         calibrated_reliability[\n3508:             \"coverage_ECE_macro\"\n3509:         ]\n3510:     )\n3511: \n3512:     formal_calibration_nonworsening = bool(\n3513:         calibrated_ECE\n3514:         <=\n3515:         raw_ECE\n3516:         +\n3517:         1e-15\n3518:     )\n3519: \n3520:     # ========================================================\n3521:     # Final regression"
+    },
+    {
+      "end_line": 3646,
+      "start_line": 3624,
+      "text": "3624:                 False,\n3625: \n3626:             \"model_selection_on_formal\":\n3627:                 False,\n3628: \n3629:             \"normalization_fit_on_formal\":\n3630:                 False,\n3631: \n3632:             \"calibrator_fit_on_formal\":\n3633:                 False,\n3634: \n3635:             \"tracks_to_predict_model_input\":\n3636:                 False,\n3637: \n3638:             \"tracks_to_predict_accessed_after_prediction\":\n3639:                 True,\n3640: \n3641:             \"future_model_input\":\n3642:                 False,\n3643:         },\n3644: \n3645:         \"observation_interface\": {\n3646:             \"Stage2\":"
+    },
+    {
+      "end_line": 3706,
+      "start_line": 3671,
+      "text": "3671:                     Gaussian_NLL[\n3672:                         \"raw\"\n3673:                     ],\n3674: \n3675:                 \"reliability\":\n3676:                     raw_reliability,\n3677:             },\n3678: \n3679:             \"calibrated_Gaussian_GRU\": {\n3680:                 \"point_metrics\":\n3681:                     Gaussian_point_metrics,\n3682: \n3683:                 \"mean_identical_to_raw\":\n3684:                     True,\n3685: \n3686:                 \"NLL\":\n3687:                     Gaussian_NLL[\n3688:                         \"calibrated\"\n3689:                     ],\n3690: \n3691:                 \"reliability\":\n3692:                     calibrated_reliability,\n3693: \n3694:                 \"covariance_SPD\":\n3695:                     True,\n3696: \n3697:                 \"calibrator_sha256\":\n3698:                     EXPECTED_CALIBRATOR_SHA,\n3699:             },\n3700: \n3701:             \"GMM_ablation\": {\n3702:                 \"mixture_mean_point_metrics\":\n3703:                     GMM_mix_point,\n3704: \n3705:                 \"MAP_point_metrics\":\n3706:                     GMM_map_point,"
+    },
+    {
+      "end_line": 3765,
+      "start_line": 3733,
+      "text": "3733:                         \"mean_mixture_probability\"\n3734:                     ],\n3735: \n3736:                 \"MAP_mode_counts\":\n3737:                     GMM_metrics[\n3738:                         \"MAP_mode_counts\"\n3739:                     ],\n3740: \n3741:                 \"calibrated\":\n3742:                     False,\n3743: \n3744:                 \"downstream_selected\":\n3745:                     False,\n3746:             },\n3747:         },\n3748: \n3749:         \"classical_frozen_Stage3\":\n3750:             classical,\n3751: \n3752:         \"comparison\": {\n3753:             \"primary_metric\":\n3754:                 \"planar_ADE_m\",\n3755: \n3756:             \"calibrated_Gaussian_ADE_m\":\n3757:                 calibrated_Gaussian_ADE,\n3758: \n3759:             \"classical_baselines_beaten\":\n3760:                 beaten,\n3761: \n3762:             \"beats_at_least_one_classical\":\n3763:                 PDF_performance_gate,\n3764: \n3765:             \"frozen_CV_ADE_m\":"
+    },
+    {
+      "end_line": 3824,
+      "start_line": 3768,
+      "text": "3768:                 ][\n3769:                     \"ade_m\"\n3770:                 ],\n3771: \n3772:             \"internal_CV_gate\":\n3773:                 internal_CV_gate,\n3774:         },\n3775: \n3776:         \"formal_calibration_generalization\": {\n3777:             \"raw_macro_ECE\":\n3778:                 raw_ECE,\n3779: \n3780:             \"calibrated_macro_ECE\":\n3781:                 calibrated_ECE,\n3782: \n3783:             \"ECE_nonworsening\":\n3784:                 formal_calibration_nonworsening,\n3785: \n3786:             \"raw_coverage_event_Brier\":\n3787:                 raw_reliability[\n3788:                     \"coverage_event_Brier\"\n3789:                 ],\n3790: \n3791:             \"calibrated_coverage_event_Brier\":\n3792:                 calibrated_reliability[\n3793:                     \"coverage_event_Brier\"\n3794:                 ],\n3795: \n3796:             \"raw_metric_Gaussian_NLL\":\n3797:                 Gaussian_NLL[\n3798:                     \"raw\"\n3799:                 ][\n3800:                     \"metric_Gaussian_NLL\"\n3801:                 ],\n3802: \n3803:             \"calibrated_metric_Gaussian_NLL\":\n3804:                 Gaussian_NLL[\n3805:                     \"calibrated\"\n3806:                 ][\n3807:                     \"metric_Gaussian_NLL\"\n3808:                 ],\n3809:         },\n3810: \n3811:         \"Stage4_acceptance_evidence\": {\n3812:             \"PDF_probabilistic_beats_at_least_one_classical\":\n3813:                 PDF_performance_gate,\n3814: \n3815:             \"PDF_calibration_measured\":\n3816:                 calibration_measured,\n3817: \n3818:             \"PDF_acceptance_current\":\n3819:                 PDF_acceptance,\n3820: \n3821:             \"internal_CV_gate\":\n3822:                 internal_CV_gate,\n3823: \n3824:             \"final_closure_decision\":"
+    }
+  ],
+  "Stage5_receiver_source": [
+    {
+      "path": "/home/agni/waymo/iscai_stage5/src/iscai_stage5/__init__.py",
+      "windows": [
+        {
+          "end_line": 27,
+          "start_line": 2,
+          "text": "0002: \n0003: from .contracts import (\n0004:     BEAM_BASELINES,\n0005:     CODEBOOK_SIZES,\n0006:     DEFAULT_PROBABILITY_MASS_TARGET,\n0007:     FORMAL_POPULATION_N,\n0008:     HORIZONS_S,\n0009:     OPTICAL_LINK_CHAIN,\n0010:     PRIMARY_RECEIVER_POLICY,\n0011:     PROBABILITY_MASS_TARGETS,\n0012:     RECEIVER_GEOMETRY_MODES,\n0013:     contract_dict,\n0014: )\n0015: \n0016: __all__ = [\n0017:     \"BEAM_BASELINES\",\n0018:     \"CODEBOOK_SIZES\",\n0019:     \"DEFAULT_PROBABILITY_MASS_TARGET\",\n0020:     \"FORMAL_POPULATION_N\",\n0021:     \"HORIZONS_S\",\n0022:     \"OPTICAL_LINK_CHAIN\",\n0023:     \"PRIMARY_RECEIVER_POLICY\",\n0024:     \"PROBABILITY_MASS_TARGETS\",\n0025:     \"RECEIVER_GEOMETRY_MODES\",\n0026:     \"contract_dict\",\n0027: ]"
+        }
+      ]
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage5/src/iscai_stage5/contracts.py",
+      "windows": [
+        {
+          "end_line": 70,
+          "start_line": 50,
+          "text": "0050: # WOMD has no measured V2X/optical-connectivity label.\n0051: # Therefore \"connected vehicle\" is a declared constructed\n0052: # experimental eligibility assumption, never a dataset claim.\n0053: #\n0054: CONNECTED_VEHICLE_SEMANTICS = (\n0055:     \"constructed_hypothetical_connected_vehicle\"\n0056: )\n0057: \n0058: PRIMARY_RECEIVER_POLICY = (\n0059:     \"nearest_causal_vehicle_ahead\"\n0060: )\n0061: \n0062: PRIMARY_RECEIVER_POLICY_SEMANTICS = (\n0063:     \"select_the_nearest_causally_available_vehicle_\"\n0064:     \"ahead_in_the_headlamp_frame_from_the_current_\"\n0065:     \"associated_actor_set\"\n0066: )\n0067: \n0068: PRIMARY_RECEIVER_REQUIRES_VEHICLE_CLASS = True\n0069: \n0070: PRIMARY_RECEIVER_REQUIRES_CURRENT_CAUSAL_AVAILABILITY = True"
+        },
+        {
+          "end_line": 88,
+          "start_line": 72,
+          "text": "0072: PRIMARY_RECEIVER_REQUIRES_POSITIVE_FORWARD_H0 = True\n0073: \n0074: TRACKS_TO_PREDICT_IS_RECEIVER_SELECTOR = False\n0075: \n0076: FUTURE_TRUTH_IS_RECEIVER_SELECTOR = False\n0077: \n0078: PERFECT_TRACK_ID_IS_CONTROL_FEATURE = False\n0079: \n0080: NO_ELIGIBLE_RECEIVER_POLICY = (\n0081:     \"explicit_no_link_target\"\n0082: )\n0083: \n0084: \n0085: # ============================================================\n0086: # Receiver geometry contract\n0087: # ============================================================\n0088: "
+        },
+        {
+          "end_line": 344,
+          "start_line": 328,
+          "text": "0328: )\n0329: \n0330: FORMAL_TUNING_ALLOWED = False\n0331: \n0332: FORMAL_MODEL_SELECTION_ALLOWED = False\n0333: \n0334: FORMAL_RECALIBRATION_ALLOWED = False\n0335: \n0336: FORMAL_RECEIVER_POLICY_SELECTION_ALLOWED = False\n0337: \n0338: FORMAL_CODEBOOK_SELECTION_ALLOWED = False\n0339: \n0340: FORMAL_THRESHOLD_SELECTION_ALLOWED = False\n0341: \n0342: \n0343: # ============================================================\n0344: # Stage5 acceptance"
+        },
+        {
+          "end_line": 512,
+          "start_line": 492,
+          "text": "0492:             \"Stage4_posthoc_GMM_selection_allowed\":\n0493:                 STAGE4_POSTHOC_GMM_SELECTION_ALLOWED,\n0494:         },\n0495: \n0496:         \"receiver_selection\": {\n0497:             \"connectivity_semantics\":\n0498:                 CONNECTED_VEHICLE_SEMANTICS,\n0499: \n0500:             \"primary_policy\":\n0501:                 PRIMARY_RECEIVER_POLICY,\n0502: \n0503:             \"policy_semantics\":\n0504:                 PRIMARY_RECEIVER_POLICY_SEMANTICS,\n0505: \n0506:             \"vehicle_class_required\":\n0507:                 PRIMARY_RECEIVER_REQUIRES_VEHICLE_CLASS,\n0508: \n0509:             \"current_causal_availability_required\":\n0510:                 PRIMARY_RECEIVER_REQUIRES_CURRENT_CAUSAL_AVAILABILITY,\n0511: \n0512:             \"positive_forward_H0_required\":"
+        },
+        {
+          "end_line": 533,
+          "start_line": 517,
+          "text": "0517: \n0518:             \"future_truth_selector\":\n0519:                 FUTURE_TRUTH_IS_RECEIVER_SELECTOR,\n0520: \n0521:             \"perfect_track_ID_control_feature\":\n0522:                 PERFECT_TRACK_ID_IS_CONTROL_FEATURE,\n0523: \n0524:             \"no_eligible_receiver\":\n0525:                 NO_ELIGIBLE_RECEIVER_POLICY,\n0526:         },\n0527: \n0528:         \"receiver_geometry\": {\n0529:             \"modes\":\n0530:                 list(\n0531:                     RECEIVER_GEOMETRY_MODES\n0532:                 ),\n0533: "
+        },
+        {
+          "end_line": 709,
+          "start_line": 692,
+          "text": "0692:                 FORMAL_TUNING_ALLOWED,\n0693: \n0694:             \"model_selection_allowed\":\n0695:                 FORMAL_MODEL_SELECTION_ALLOWED,\n0696: \n0697:             \"recalibration_allowed\":\n0698:                 FORMAL_RECALIBRATION_ALLOWED,\n0699: \n0700:             \"receiver_policy_selection_allowed\":\n0701:                 FORMAL_RECEIVER_POLICY_SELECTION_ALLOWED,\n0702: \n0703:             \"codebook_selection_allowed\":\n0704:                 FORMAL_CODEBOOK_SELECTION_ALLOWED,\n0705: \n0706:             \"threshold_selection_allowed\":\n0707:                 FORMAL_THRESHOLD_SELECTION_ALLOWED,\n0708:         },\n0709: "
+        }
+      ]
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage5/src/iscai_stage5/receiver_policy.py",
+      "windows": [
+        {
+          "end_line": 17,
+          "start_line": 1,
+          "text": "0001: from __future__ import annotations\n0002: \n0003: \n0004: RECEIVER_POLICY_STATUS = (\n0005:     \"FROZEN\"\n0006: )\n0007: \n0008: PRIMARY_POLICY = (\n0009:     \"nearest_causal_vehicle_ahead\"\n0010: )\n0011: \n0012: CONNECTIVITY_SEMANTICS = (\n0013:     \"constructed_hypothetical_connected_vehicle\"\n0014: )\n0015: \n0016: MINIMUM_FORWARD_H0_M = (\n0017:     0.0"
+        },
+        {
+          "end_line": 101,
+          "start_line": 79,
+          "text": "0079:     False\n0080: )\n0081: \n0082: NO_ELIGIBLE_RECEIVER_STATE = (\n0083:     \"NO_ELIGIBLE_RECEIVER\"\n0084: )\n0085: \n0086: \n0087: def receiver_policy_dict():\n0088:     return {\n0089:         \"status\":\n0090:             RECEIVER_POLICY_STATUS,\n0091: \n0092:         \"primary_policy\":\n0093:             PRIMARY_POLICY,\n0094: \n0095:         \"connectivity_semantics\":\n0096:             CONNECTIVITY_SEMANTICS,\n0097: \n0098:         \"minimum_forward_H0_m\":\n0099:             MINIMUM_FORWARD_H0_M,\n0100: \n0101:         \"max_planar_range_m\":"
+        }
+      ]
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage5/src/iscai_stage5/receiver_selection.py",
+      "windows": [
+        {
+          "end_line": 17,
+          "start_line": 1,
+          "text": "0001: from __future__ import annotations\n0002: \n0003: from dataclasses import dataclass\n0004: import math\n0005: from typing import Sequence\n0006: \n0007: \n0008: PRIMARY_POLICY = (\n0009:     \"nearest_causal_vehicle_ahead\"\n0010: )\n0011: \n0012: CONNECTIVITY_SEMANTICS = (\n0013:     \"constructed_hypothetical_connected_vehicle\"\n0014: )\n0015: \n0016: NO_ELIGIBLE_RECEIVER = (\n0017:     \"NO_ELIGIBLE_RECEIVER\""
+        },
+        {
+          "end_line": 106,
+          "start_line": 90,
+          "text": "0090:     planar_range_m: float | None\n0091: \n0092:     forward_h0_m: float | None\n0093: \n0094:     lateral_h0_m: float | None\n0095: \n0096:     eligible_candidate_count: int\n0097: \n0098:     primary_policy: str = PRIMARY_POLICY\n0099: \n0100:     connectivity_semantics: str = (\n0101:         CONNECTIVITY_SEMANTICS\n0102:     )\n0103: \n0104: \n0105: def normalize_semantic_class(\n0106:     value: str,"
+        }
+      ]
+    }
+  ],
+  "cache": {
+    "manifest_path": "/home/agni/waymo/iscai_stage4/artifacts/block48/formal_cache_manifest.json",
+    "manifest_sha256": "3f2cc58393fdf2ed2aace41bbf7ba4c915f92cc7d16e5b6f55f063af344e0baa",
+    "sample_shards": [
+      {
+        "first_dim_counts": {
+          "5": 10,
+          "6": 3
+        },
+        "identity_previews": {
+          "eligible_class_id": [
+            1,
+            1,
+            2,
+            0,
+            0,
+            {
+              "unique_count": 3
+            }
+          ],
+          "selected_class_id": [
+            2,
+            1,
+            0,
+            0,
+            1,
+            {
+              "unique_count": 3
+            }
+          ]
+        },
+        "keys": [
+          {
+            "dtype": "<U16",
+            "key": "scenario_id",
+            "shape": []
+          },
+          {
+            "dtype": "<U64",
+            "key": "cache_contract_sha256",
+            "shape": []
+          },
+          {
+            "dtype": "<U64",
+            "key": "all_prediction_sha256",
+            "shape": []
+          },
+          {
+            "dtype": "<U24",
+            "key": "truth_index_source",
+            "shape": []
+          },
+          {
+            "dtype": "int64",
+            "key": "selected_truth_index",
+            "shape": [
+              5
+            ]
+          },
+          {
+            "dtype": "int64",
+            "key": "selected_class_id",
+            "shape": [
+              5
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "truth",
+            "shape": [
+              5,
+              4,
+              3
+            ]
+          },
+          {
+            "dtype": "bool",
+            "key": "validity",
+            "shape": [
+              5,
+              4
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "det_mean",
+            "shape": [
+              5,
+              4,
+              3
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "gaussian_mean",
+            "shape": [
+              5,
+              4,
+              3
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "gaussian_scale",
+            "shape": [
+              5,
+              4,
+              3,
+              3
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "gmm_logits",
+            "shape": [
+              5,
+              3
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "gmm_means",
+            "shape": [
+              5,
+              3,
+              4,
+              3
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "gmm_scale",
+            "shape": [
+              5,
+              3,
+              4,
+              3,
+              3
+            ]
+          },
+          {
+            "dtype": "int64",
+            "key": "eligible_truth_index",
+            "shape": [
+              6
+            ]
+          },
+          {
+            "dtype": "int64",
+            "key": "eligible_class_id",
+            "shape": [
+              6
+            ]
+          },
+          {
+            "dtype": "bool",
+            "key": "eligible_validity",
+            "shape": [
+              6,
+              4
+            ]
+          },
+          {
+            "dtype": "int64",
+            "key": "all_supervised_prediction_count",
+            "shape": []
+          },
+          {
+            "dtype": "int64",
+            "key": "matched_formal_target_count",
+            "shape": []
+          },
+          {
+            "dtype": "int64",
+            "key": "eligible_formal_target_count",
+            "shape": []
+          },
+          {
+            "dtype": "bool",
+            "key": "tracks_to_predict_accessed_after_prediction",
+            "shape": []
+          }
+        ],
+        "path": "/home/agni/waymo/iscai_stage4/artifacts/block48/cache/001_cfd33c593d645bf5.npz",
+        "sha256": "7d17b778cf2fd17b4ca11b36513ba7051cf1de68d94fc23a03d3842478bb5cb5"
+      },
+      {
+        "first_dim_counts": {
+          "5": 13
+        },
+        "identity_previews": {
+          "eligible_class_id": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            {
+              "unique_count": 2
+            }
+          ],
+          "selected_class_id": [
+            0,
+            0,
+            1,
+            1,
+            0,
+            {
+              "unique_count": 2
+            }
+          ]
+        },
+        "keys": [
+          {
+            "dtype": "<U16",
+            "key": "scenario_id",
+            "shape": []
+          },
+          {
+            "dtype": "<U64",
+            "key": "cache_contract_sha256",
+            "shape": []
+          },
+          {
+            "dtype": "<U64",
+            "key": "all_prediction_sha256",
+            "shape": []
+          },
+          {
+            "dtype": "<U24",
+            "key": "truth_index_source",
+            "shape": []
+          },
+          {
+            "dtype": "int64",
+            "key": "selected_truth_index",
+            "shape": [
+              5
+            ]
+          },
+          {
+            "dtype": "int64",
+            "key": "selected_class_id",
+            "shape": [
+              5
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "truth",
+            "shape": [
+              5,
+              4,
+              3
+            ]
+          },
+          {
+            "dtype": "bool",
+            "key": "validity",
+            "shape": [
+              5,
+              4
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "det_mean",
+            "shape": [
+              5,
+              4,
+              3
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "gaussian_mean",
+            "shape": [
+              5,
+              4,
+              3
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "gaussian_scale",
+            "shape": [
+              5,
+              4,
+              3,
+              3
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "gmm_logits",
+            "shape": [
+              5,
+              3
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "gmm_means",
+            "shape": [
+              5,
+              3,
+              4,
+              3
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "gmm_scale",
+            "shape": [
+              5,
+              3,
+              4,
+              3,
+              3
+            ]
+          },
+          {
+            "dtype": "int64",
+            "key": "eligible_truth_index",
+            "shape": [
+              5
+            ]
+          },
+          {
+            "dtype": "int64",
+            "key": "eligible_class_id",
+            "shape": [
+              5
+            ]
+          },
+          {
+            "dtype": "bool",
+            "key": "eligible_validity",
+            "shape": [
+              5,
+              4
+            ]
+          },
+          {
+            "dtype": "int64",
+            "key": "all_supervised_prediction_count",
+            "shape": []
+          },
+          {
+            "dtype": "int64",
+            "key": "matched_formal_target_count",
+            "shape": []
+          },
+          {
+            "dtype": "int64",
+            "key": "eligible_formal_target_count",
+            "shape": []
+          },
+          {
+            "dtype": "bool",
+            "key": "tracks_to_predict_accessed_after_prediction",
+            "shape": []
+          }
+        ],
+        "path": "/home/agni/waymo/iscai_stage4/artifacts/block48/cache/061_b8eaf5beb401fdf7.npz",
+        "sha256": "6645013042f24a1860c760bf9cf63f3dd366711eef3dcf3611a05ac46ccfc1d1"
+      },
+      {
+        "first_dim_counts": {
+          "1": 13
+        },
+        "identity_previews": {
+          "eligible_class_id": [
+            0,
+            {
+              "unique_count": 1
+            }
+          ],
+          "selected_class_id": [
+            0,
+            {
+              "unique_count": 1
+            }
+          ]
+        },
+        "keys": [
+          {
+            "dtype": "<U16",
+            "key": "scenario_id",
+            "shape": []
+          },
+          {
+            "dtype": "<U64",
+            "key": "cache_contract_sha256",
+            "shape": []
+          },
+          {
+            "dtype": "<U64",
+            "key": "all_prediction_sha256",
+            "shape": []
+          },
+          {
+            "dtype": "<U24",
+            "key": "truth_index_source",
+            "shape": []
+          },
+          {
+            "dtype": "int64",
+            "key": "selected_truth_index",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "dtype": "int64",
+            "key": "selected_class_id",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "truth",
+            "shape": [
+              1,
+              4,
+              3
+            ]
+          },
+          {
+            "dtype": "bool",
+            "key": "validity",
+            "shape": [
+              1,
+              4
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "det_mean",
+            "shape": [
+              1,
+              4,
+              3
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "gaussian_mean",
+            "shape": [
+              1,
+              4,
+              3
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "gaussian_scale",
+            "shape": [
+              1,
+              4,
+              3,
+              3
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "gmm_logits",
+            "shape": [
+              1,
+              3
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "gmm_means",
+            "shape": [
+              1,
+              3,
+              4,
+              3
+            ]
+          },
+          {
+            "dtype": "float32",
+            "key": "gmm_scale",
+            "shape": [
+              1,
+              3,
+              4,
+              3,
+              3
+            ]
+          },
+          {
+            "dtype": "int64",
+            "key": "eligible_truth_index",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "dtype": "int64",
+            "key": "eligible_class_id",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "dtype": "bool",
+            "key": "eligible_validity",
+            "shape": [
+              1,
+              4
+            ]
+          },
+          {
+            "dtype": "int64",
+            "key": "all_supervised_prediction_count",
+            "shape": []
+          },
+          {
+            "dtype": "int64",
+            "key": "matched_formal_target_count",
+            "shape": []
+          },
+          {
+            "dtype": "int64",
+            "key": "eligible_formal_target_count",
+            "shape": []
+          },
+          {
+            "dtype": "bool",
+            "key": "tracks_to_predict_accessed_after_prediction",
+            "shape": []
+          }
+        ],
+        "path": "/home/agni/waymo/iscai_stage4/artifacts/block48/cache/120_9813d165b07551c0.npz",
+        "sha256": "a2d87e9cf0609bc5c57633b47792158cf34a7e624b86233f8e18be7eddaf802c"
+      }
+    ],
+    "shard_count": 120
+  },
+  "coverage_acceptance_debt": {
+    "Block52_remaining_fields": [
+      "codebook_angular_support",
+      "formal_empirical_coverage_tolerance",
+      "K_max",
+      "hysteresis_parameters",
+      "beam_switch_penalty",
+      "local_neighbour_sweep_width",
+      "fallback_parameters",
+      "reacquisition_parameters"
+    ],
+    "formal_empirical_coverage_tolerance_pending": true,
+    "formal_metrics_seen": false
+  },
+  "eligible_formal_targets": {
+    "end_line": 365,
+    "name": "eligible_formal_targets",
+    "start_line": 269,
+    "text": "0269: def eligible_formal_targets(\n0270:     scenario,\n0271: ):\n0272:     \"\"\"\n0273:     Must be called only after prediction generation.\n0274: \n0275:     Returns target-level evaluator metadata and\n0276:     future-validity at the four frozen horizons.\n0277:     \"\"\"\n0278: \n0279:     indices = tracks_to_predict_indices(\n0280:         scenario\n0281:     )\n0282: \n0283:     current_index = int(\n0284:         scenario.current_time_index\n0285:     )\n0286: \n0287:     if current_index != 10:\n0288:         raise RuntimeError(\n0289:             \"Frozen WOMD current_time_index \"\n0290:             f\"changed: {current_index}\"\n0291:         )\n0292: \n0293:     classes = []\n0294:     validity = []\n0295: \n0296:     for index in indices:\n0297:         track = scenario.tracks[\n0298:             index\n0299:         ]\n0300: \n0301:         classes.append(\n0302:             int(\n0303:                 track.object_type\n0304:             )\n0305:         )\n0306: \n0307:         row = []\n0308: \n0309:         for offset in (\n0310:             HORIZON_FRAME_OFFSETS\n0311:         ):\n0312:             state_index = (\n0313:                 current_index\n0314:                 +\n0315:                 offset\n0316:             )\n0317: \n0318:             valid = (\n0319:                 state_index\n0320:                 <\n0321:                 len(\n0322:                     track.states\n0323:                 )\n0324:                 and\n0325:                 bool(\n0326:                     track.states[\n0327:                         state_index\n0328:                     ].valid\n0329:                 )\n0330:             )\n0331: \n0332:             row.append(\n0333:                 bool(\n0334:                     valid\n0335:                 )\n0336:             )\n0337: \n0338:         validity.append(\n0339:             row\n0340:         )\n0341: \n0342:     return {\n0343:         \"track_index\":\n0344:             np.asarray(\n0345:                 indices,\n0346:                 dtype=np.int64,\n0347:             ),\n0348: \n0349:         \"class_id\":\n0350:             np.asarray(\n0351:                 classes,\n0352:                 dtype=np.int64,\n0353:             ),\n0354: \n0355:         \"validity\":\n0356:             np.asarray(\n0357:                 validity,\n0358:                 dtype=np.bool_,\n0359:             ).reshape(\n0360:                 len(\n0361:                     indices\n0362:                 ),\n0363:                 4,\n0364:             ),\n0365:     }"
+  },
+  "formal_manifest": {
+    "metadata": {
+      "identity_preview": [
+        {
+          "compact_record_offset": 8396022,
+          "scenario_id": "cfd33c593d645bf5",
+          "selection_hash": "0021a46ed3fb1c08471876e4d92ecc4387ba05a76fdbbf53282ace145e0f9217",
+          "source_shard": "/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00030-of-00150"
+        },
+        {
+          "compact_record_offset": 6645751,
+          "scenario_id": "b90adbf772ab2317",
+          "selection_hash": "00271cbc286f9d753b6eedb10c3c5840efa12f37c078b36e4416450f78425adc",
+          "source_shard": "/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00057-of-00150"
+        },
+        {
+          "compact_record_offset": 167974331,
+          "scenario_id": "b3078e2d1e2a6ed4",
+          "selection_hash": "003079c6ef78b22bb8e33ccbe7270ddab013a3c5e0b433e4cc6501ffa7e9002d",
+          "source_shard": "/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00114-of-00150"
+        }
+      ],
+      "keys": [
+        "anchor_class_counts",
+        "compact_record_offset",
+        "degraded_outcome_used",
+        "formal_rank",
+        "formal_selection_policy",
+        "future_used",
+        "performance_used",
+        "scenario_id",
+        "selection_hash",
+        "source_shard",
+        "stratum",
+        "stratum_rank"
+      ],
+      "row_count": 120
+    },
+    "path": "/home/agni/waymo/iscai_stage3/artifacts/block38e/formal_validation_120.jsonl",
+    "sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46"
+  },
+  "merged_formal_prediction": {
+    "description": {
+      "first_dim_counts": {
+        "494": 9,
+        "547": 2
+      },
+      "identity_previews": {
+        "eligible_class_id": [
+          1,
+          1,
+          2,
+          0,
+          0,
+          {
+            "unique_count": 3
+          }
+        ],
+        "selected_class_id": [
+          2,
+          1,
+          0,
+          0,
+          1,
+          {
+            "unique_count": 3
+          }
+        ]
+      },
+      "keys": [
+        {
+          "dtype": "int64",
+          "key": "selected_class_id",
+          "shape": [
+            494
+          ]
+        },
+        {
+          "dtype": "float32",
+          "key": "truth",
+          "shape": [
+            494,
+            4,
+            3
+          ]
+        },
+        {
+          "dtype": "bool",
+          "key": "validity",
+          "shape": [
+            494,
+            4
+          ]
+        },
+        {
+          "dtype": "float32",
+          "key": "det_mean",
+          "shape": [
+            494,
+            4,
+            3
+          ]
+        },
+        {
+          "dtype": "float32",
+          "key": "gaussian_mean",
+          "shape": [
+            494,
+            4,
+            3
+          ]
+        },
+        {
+          "dtype": "float32",
+          "key": "gaussian_scale",
+          "shape": [
+            494,
+            4,
+            3,
+            3
+          ]
+        },
+        {
+          "dtype": "float32",
+          "key": "gmm_logits",
+          "shape": [
+            494,
+            3
+          ]
+        },
+        {
+          "dtype": "float32",
+          "key": "gmm_means",
+          "shape": [
+            494,
+            3,
+            4,
+            3
+          ]
+        },
+        {
+          "dtype": "float32",
+          "key": "gmm_scale",
+          "shape": [
+            494,
+            3,
+            4,
+            3,
+            3
+          ]
+        },
+        {
+          "dtype": "int64",
+          "key": "eligible_class_id",
+          "shape": [
+            547
+          ]
+        },
+        {
+          "dtype": "bool",
+          "key": "eligible_validity",
+          "shape": [
+            547,
+            4
+          ]
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block48/formal_neural_outputs.npz",
+      "sha256": "a3e8af17962a28a533070db23e53cee10571d13ab641c74b9db21e79c9a5c8c9"
+    },
+    "schema_supports_candidate_mapping": false,
+    "semantic_key_groups": {
+      "Gaussian_mean": [
+        "gaussian_mean"
+      ],
+      "Gaussian_scale_or_covariance": [
+        "gaussian_scale"
+      ],
+      "anchor_or_current_H0": [],
+      "calibration_explicit": [],
+      "class_identity": [
+        "selected_class_id",
+        "eligible_class_id"
+      ],
+      "scenario_identity": [],
+      "track_identity": []
+    }
+  },
+  "route_decision": "PENDING_SEMANTIC_REVIEW_NO_STAGE4_INFERENCE_YET",
+  "scientific_execution": {
+    "Stage4_inference": false,
+    "Stage5_formal_controller_run": false,
+    "formal_artifact_schema_read": true,
+    "formal_metrics_computed": false,
+    "posthoc_tuning": false,
+    "recalibration": false,
+    "training": false,
+    "upstream_modified": false
+  },
+  "status": "PASS_ROUTE_SEMANTICS_EXTRACTED"
+}

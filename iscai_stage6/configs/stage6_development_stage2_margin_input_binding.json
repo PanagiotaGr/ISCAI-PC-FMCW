@@ -1,0 +1,33 @@
+{
+  "PartA_generic_margin_reapplied": false,
+  "block": "6.8_development_stage2_margin_input_binding",
+  "candidate_counts": {
+    "TYPE_CYCLIST": 432,
+    "TYPE_PEDESTRIAN": 54,
+    "TYPE_VEHICLE": 324
+  },
+  "dilation_semantics": "additional_class_margin_m / m_extra ONLY",
+  "posterior": {
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_identity_safe_gaussian_posterior.jsonl",
+    "sha256": "f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd",
+    "source": "exact path bound by frozen Part3C deterministic replay contract"
+  },
+  "scientific_boundary": {
+    "floor_selection": false,
+    "formal_evaluation": false,
+    "primary_acceptance_tested": false,
+    "stage2_outcomes_seen_before_binding": false,
+    "temporal_rate_selection": false
+  },
+  "stage": 6,
+  "stage1_gamma_freeze": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/stage6_development_stage1_class_gamma_freeze.json",
+    "selected_k": {
+      "TYPE_CYCLIST": 557,
+      "TYPE_PEDESTRIAN": 499,
+      "TYPE_VEHICLE": 980
+    },
+    "sha256": "a55f21589f55a75afcb660a8a7278e802dd9e102f4c75ca7863697359bbb2a87"
+  },
+  "status": "FROZEN_BEFORE_STAGE2_MARGIN_OBJECTIVE"
+}

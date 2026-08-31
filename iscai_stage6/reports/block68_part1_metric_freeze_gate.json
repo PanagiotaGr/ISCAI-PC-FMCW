@@ -1,0 +1,43 @@
+{
+  "acceptance": {
+    "cyclist_visibility_bound": "BLOCK6.8_PART2_DEVELOPMENT_ONLY",
+    "formal_results_used": false,
+    "over_masking_bound": "BLOCK6.8_PART2_DEVELOPMENT_ONLY",
+    "pedestrian_visibility_bound": "BLOCK6.8_PART2_DEVELOPMENT_ONLY",
+    "primary_comparison": "class_aware_predictive_ADB_vs_original_reactive_ADB",
+    "vehicle_shadow_zone_violation": "STRICT_IMPROVEMENT"
+  },
+  "block": "6.8",
+  "metric_protocol": {
+    "flicker_delta_threshold": 0.1,
+    "metric_count": 12,
+    "path": "/home/agni/waymo/iscai_stage6/configs/stage6_metric_freeze_protocol.json",
+    "sha256": "c12b95c24ba64f48ac8dc3890fa550613ea597875f6a5a759762b88629623ac0"
+  },
+  "metric_runtime": {
+    "measured_ADB_ground_truth": false,
+    "normalized_intensity": "[0,1]",
+    "oracle": "CONSTRUCTED_EVALUATOR_ONLY",
+    "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/metric_semantics.py",
+    "sha256": "fdca66a1a9af74d24baaafe4e17d12acdb2db538e037503aba6ee04684eac362"
+  },
+  "next": "Block6.8 Part2: development-only runtime metric validation and numeric non-inferiority bound freeze",
+  "part": "1/2",
+  "project": "Agni",
+  "regression": {
+    "full_tests": 196,
+    "new_tests": 15,
+    "previous_tests": 181,
+    "status": "PASS"
+  },
+  "scientific_execution": {
+    "development_outcomes_read": false,
+    "formal_evaluation": false,
+    "formal_outcomes_read": false,
+    "parameter_tuning": false,
+    "policy_tuning": false
+  },
+  "stage": 6,
+  "status": "PASS_METRIC_SEMANTICS_FROZEN",
+  "upstream_modified": false
+}

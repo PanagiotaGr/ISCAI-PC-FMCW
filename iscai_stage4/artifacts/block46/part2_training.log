@@ -1,0 +1,89 @@
+============================================================
+STAGE 4 — BLOCK 4.6 GMM TRAINING
+============================================================
+Block4.6 Part1          = PASS
+Block4.5 frozen         = PASS
+Gaussian baseline       = FROZEN
+fit samples             = 114906
+development samples     = 13682
+Stage2/3 rescan         = NO
+normalization           = FIT ONLY
+GPU                     = NVIDIA RTX A6000
+
+===== INITIAL GMM EVALUATION =====
+initialized dev joint NLL = 11.975549275851328
+initialized mixture ADE m = 1.5477828883725113
+initialized minADE m      = 1.5134561138075628
+initialized effective K   = 3.0
+epoch 01 | trainNLL=-2.961985 | devNLL=9.193964 | mixADE=1.548555 | minADE=1.359681 | effK=2.8029 | bestEpoch=1 | patience=0/4
+epoch 02 | trainNLL=-3.990111 | devNLL=9.247407 | mixADE=1.552338 | minADE=1.364199 | effK=2.8722 | bestEpoch=1 | patience=1/4
+epoch 03 | trainNLL=-4.362029 | devNLL=9.379620 | mixADE=1.555298 | minADE=1.368888 | effK=2.8888 | bestEpoch=1 | patience=2/4
+epoch 04 | trainNLL=-4.606052 | devNLL=9.436261 | mixADE=1.555948 | minADE=1.362381 | effK=2.9052 | bestEpoch=1 | patience=3/4
+epoch 05 | trainNLL=-4.823401 | devNLL=9.513478 | mixADE=1.557606 | minADE=1.368415 | effK=2.9050 | bestEpoch=1 | patience=4/4
+early stopping = TRIGGERED
+
+exact GMM inference repeat = PASS
+GMM prediction SHA256      = 0b35669827e92e027349b385fa9249c6b10833b01fc46033262ef0a4f0830d88
+
+============================================================
+STAGE4 BLOCK 4.6 GATE
+============================================================
+fit/dev cache reuse        = PASS
+Stage2/3 rescan            = NO
+fit-only normalization     = PASS
+mandatory Gaussian         = FROZEN / UNCHANGED
+GMM components             = 3
+trajectory-level modes     = PASS
+component SPD failures     = 0
+
+initialized joint GMM NLL  = 11.975549
+best joint GMM NLL         = 9.193964
+joint NLL improved         = PASS
+best epoch                 = 1
+
+mixture-mean ADE m         = 1.548555
+MAP-component ADE m        = 1.549375
+minADE m                   = 1.359681
+minFDE @1.0s m             = 2.040403
+mixture-mean 1.0s error m  = 2.364887
+
+mixture entropy nats       = 1.030072
+effective mode count       = 2.802933
+mean mixture probability   = [0.24210223947428566, 0.5085785148679748, 0.24931923833532324]
+MAP mode counts            = {'0': 0, '1': 13545, '2': 0}
+pairwise mode sep @1.0s m  = 0.943002
+
+Gaussian dev ADE reference = 1.547783
+GMM-Gaussian ADE delta m   = 0.000772
+comparison role            = DIAGNOSTIC
+
+class mixture ADE          = {'TYPE_CYCLIST': 1.6384433270544139, 'TYPE_PEDESTRIAN': 0.9924532708997131, 'TYPE_VEHICLE': 1.5877080179491212}
+
+checkpoint SHA256          = 5aebeaf40d522d58345d424ae2557d6f87e2c02bdc26c23635cc6e3a28cbe3ee
+state_dict SHA256          = 3bd803104a5de694b9c6073fa651230e16a08899db14894e0f1fd1e2f11c1a97
+GMM prediction SHA256      = 0b35669827e92e027349b385fa9249c6b10833b01fc46033262ef0a4f0830d88
+exact inference repeat     = PASS
+GMM calibrated             = NO
+GMM downstream selected    = NO
+formal validation used     = NO
+full Stage4 regression     = 92 / 92 PASS
+free GiB                   = 1055.074
+implementation files       = 58
+implementation SHA256      = bf7ba0ef8c83d0b6a8d5ef2acd62419035f4367b17d4d6844f7a99c288f1c961
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage4/reports/block46_gmm_gru.json
+
+===== BLOCK 4.6 FINAL =====
+trajectory-level GMM       = PASS
+joint GMM NLL training     = PASS
+full SPD components        = PASS
+minADE/minFDE              = MEASURED
+mode diagnostics           = MEASURED
+mandatory Gaussian         = PRESERVED
+GMM downstream selection   = NOT YET
+formal validation leak     = NONE
+checkpoint freeze          = PASS
+exact inference repeat     = PASS
+regression                 = 92 / 92
+implementation SHA         = bf7ba0ef8c83d0b6a8d5ef2acd62419035f4367b17d4d6844f7a99c288f1c961
+log closure                = PASS

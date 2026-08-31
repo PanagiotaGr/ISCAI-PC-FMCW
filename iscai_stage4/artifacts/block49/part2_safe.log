@@ -1,0 +1,137 @@
+============================================================
+STAGE 4 — BLOCK 4.9 FRESH-PROCESS REPRODUCIBILITY
+============================================================
+Block4.9 Part1          = PASS
+Block4.8 frozen         = PASS
+checkpoint/state hashes = PASS
+formal content SHA      = PASS
+training                = NO
+recalibration           = NO
+
+===== FRESH-PROCESS PROBE PLAN =====
+rank 1 | scenario cfd33c593d645bf5 | samples 50
+rank 2 | scenario b90adbf772ab2317 | samples 24
+rank 3 | scenario b3078e2d1e2a6ed4 | samples 32
+rank 4 | scenario 765006a780597dad | samples 12
+probe-plan SHA256       = ac16063f47979361391c013f418744c40c9f6b6d4e1caa94dff87b68b7609813
+
+===== FOUR INDEPENDENT PYTHON PROCESSES =====
+
+------------------------------------------------------------
+FRESH PROCESS 1/4
+------------------------------------------------------------
+============================================================
+BLOCK 4.9 FRESH-PROCESS PROBE — FORMAL RANK 1
+============================================================
+scenario ID              = cfd33c593d645bf5
+supervised samples       = 50
+deterministic class      = iscai_stage4.ml.deterministic_gru.DeterministicTrajectoryGRU
+strict state load        = PASS
+expected prediction SHA  = d92330d0e37e0c8d79f76f7bb166b5baf88570cc37f896713c72da4175aea204
+actual prediction SHA    = d92330d0e37e0c8d79f76f7bb166b5baf88570cc37f896713c72da4175aea204
+exact prediction match   = PASS
+tracks_to_predict access = NO
+STATUS = PASS
+
+------------------------------------------------------------
+FRESH PROCESS 2/4
+------------------------------------------------------------
+============================================================
+BLOCK 4.9 FRESH-PROCESS PROBE — FORMAL RANK 2
+============================================================
+scenario ID              = b90adbf772ab2317
+supervised samples       = 24
+deterministic class      = iscai_stage4.ml.deterministic_gru.DeterministicTrajectoryGRU
+strict state load        = PASS
+expected prediction SHA  = a2970314b5d701f82330e09d79de952f4558728c17b6f05b9a04fc2e2c5a0d93
+actual prediction SHA    = a2970314b5d701f82330e09d79de952f4558728c17b6f05b9a04fc2e2c5a0d93
+exact prediction match   = PASS
+tracks_to_predict access = NO
+STATUS = PASS
+
+------------------------------------------------------------
+FRESH PROCESS 3/4
+------------------------------------------------------------
+============================================================
+BLOCK 4.9 FRESH-PROCESS PROBE — FORMAL RANK 3
+============================================================
+scenario ID              = b3078e2d1e2a6ed4
+supervised samples       = 32
+deterministic class      = iscai_stage4.ml.deterministic_gru.DeterministicTrajectoryGRU
+strict state load        = PASS
+expected prediction SHA  = 41e01d0ea53ba2edfc3f3ed5de58a675c8dfc8628aad27c3c44e576ea7301c5e
+actual prediction SHA    = 41e01d0ea53ba2edfc3f3ed5de58a675c8dfc8628aad27c3c44e576ea7301c5e
+exact prediction match   = PASS
+tracks_to_predict access = NO
+STATUS = PASS
+
+------------------------------------------------------------
+FRESH PROCESS 4/4
+------------------------------------------------------------
+============================================================
+BLOCK 4.9 FRESH-PROCESS PROBE — FORMAL RANK 4
+============================================================
+scenario ID              = 765006a780597dad
+supervised samples       = 12
+deterministic class      = iscai_stage4.ml.deterministic_gru.DeterministicTrajectoryGRU
+strict state load        = PASS
+expected prediction SHA  = 6bac4231f2ca41ced8ce31b0e153b9644cdeb0f6f8612d2a03958a5cc9a18846
+actual prediction SHA    = 6bac4231f2ca41ced8ce31b0e153b9644cdeb0f6f8612d2a03958a5cc9a18846
+exact prediction match   = PASS
+tracks_to_predict access = NO
+STATUS = PASS
+
+===== FRESH-PROCESS REPRODUCIBILITY GATE =====
+fresh processes            = 4 / 4
+strict checkpoint loads    = 4 / 4 PASS
+exact prediction SHA       = 4 / 4 PASS
+environment agreement      = PASS
+tracks_to_predict accessed = NO
+
+===== FINAL STAGE4 REGRESSION =====
+
+............................................................................................................................
+----------------------------------------------------------------------
+Ran 124 tests in 0.394s
+
+OK
+
+
+============================================================
+STAGE4 BLOCK 4.9 GATE
+============================================================
+Part1 artifact audit       = PASS
+formal N=120 content SHA   = PASS
+fresh Python processes     = 4 / 4 PASS
+strict model reconstruction= 4 / 4 PASS
+exact prediction SHA       = 4 / 4 PASS
+probe 1 cfd33c593d645bf5 = d92330d0e37e0c8d79f76f7bb166b5baf88570cc37f896713c72da4175aea204
+probe 2 b90adbf772ab2317 = a2970314b5d701f82330e09d79de952f4558728c17b6f05b9a04fc2e2c5a0d93
+probe 3 b3078e2d1e2a6ed4 = 41e01d0ea53ba2edfc3f3ed5de58a675c8dfc8628aad27c3c44e576ea7301c5e
+probe 4 765006a780597dad = 6bac4231f2ca41ced8ce31b0e153b9644cdeb0f6f8612d2a03958a5cc9a18846
+environment agreement      = PASS
+tracks_to_predict accessed = NO
+full N=120 rerun           = NO
+training performed         = NO
+model selection performed  = NO
+recalibration performed    = NO
+reproducibility manifest   = PASS
+manifest SHA256            = 135a3c60e5a2c4419125fa0daa6d2d55452f923255a04698f0bc1aaca5f474b8
+full Stage4 regression     = 124 / 124 PASS
+free GiB                   = 1055.068
+implementation files       = 82
+implementation SHA256      = e1c779c05155dd86794f405a8567c994f0acac617015f717944e5ff6868491cd
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage4/reports/block49_reproducibility.json
+
+===== BLOCK 4.9 FINAL =====
+artifact integrity          = PASS
+formal-cache reconstruction = PASS
+fresh-process reconstruction= PASS
+exact inference repeat      = PASS
+environment frozen          = CAPTURED
+reproducibility manifest    = FROZEN
+formal leakage              = NONE
+regression                  = 124 / 124
+implementation SHA          = e1c779c05155dd86794f405a8567c994f0acac617015f717944e5ff6868491cd
+log closure                 = PASS

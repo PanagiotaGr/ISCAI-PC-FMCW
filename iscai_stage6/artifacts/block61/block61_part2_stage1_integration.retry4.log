@@ -1,0 +1,80 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block61_part2_stage1_integration.py", line 3555, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block61_part2_stage1_integration.py", line 2198, in main
+    read_scenario_at_tfrecord_offset(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        path=source_shard,
+        ^^^^^^^^^^^^^^^^^^
+        record_offset=record_offset,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block61_part2_stage1_integration.py", line 486, in read_scenario_at_tfrecord_offset
+    require(
+    ~~~~~~~^
+        path.is_file(),
+        ^^^^^^^^^^^^^^^
+        f"Motion shard missing: {path}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block61_part2_stage1_integration.py", line 284, in require
+    raise RuntimeError(message)
+RuntimeError: Motion shard missing: /waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00000-of-00150
+============================================================
+STAGE 6 — BLOCK 6.1 PART 2/2
+FROZEN STAGE1 INTEGRATION + REAL FULL-BOX SMOKE
+============================================================
+
+===== 0. PROJECT SOURCE-PATH BOOTSTRAP =====
+Stage1 source root = /home/agni/waymo/iscai_stage1/src
+Stage6 source root = /home/agni/waymo/iscai_stage6/src
+current-process sys.path = BOOTSTRAPPED
+child PYTHONPATH         = SYNCHRONIZED
+iscai_stage1 import probe= PASS
+iscai_stage6 import probe= PASS
+
+===== A. FROZEN PREREQUISITES =====
+Block6.1 Part1       = EXACT PASS
+Stage1 closure       = PASS_COMPLETE
+H0                   = front_face_midpoint_surrogate
+axes                 = +x forward / +y left / +z up
+future-box dependency= NO
+tracks_to_predict use= NO
+
+===== B. STAGE1 HEADLAMP API / EXTRINSIC AUDIT =====
+HeadlampSurrogateConfig module = iscai_stage1.contracts.stage1a
+default roll                 = 0.0
+default pitch                = 0.0
+yaw-only Stage6 box basis    = COMPATIBLE PASS
+
+===== C. CAUSAL WOMD → FULL BOX H0 ADAPTER =====
+womd_geometry.py = ALREADY_EXACT
+
+===== D. PACKAGE EXPORT CONTRACT =====
+adb/__init__.py = ALREADY_UPDATED
+
+===== E. ADAPTER UNIT TESTS =====
+test file = ALREADY_EXACT
+
+===== F. CONTROLLED COMPILE =====
+adapter/tests compile = PASS
+
+===== G. ONE REAL FROZEN STAGE1 SCENARIO =====
+
+============================================================
+BLOCK 6.1 PART 2/2 = BLOCKED
+============================================================
+exception = RuntimeError Motion shard missing: /waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00000-of-00150
+
+
+Stage1 modified         = NO
+Stage5 modified         = NO
+corpus scan             = NO
+training                = NO
+trajectory inference    = NO
+formal evaluation       = NO
+parameter tuning        = NO
+terminal remains open   = YES

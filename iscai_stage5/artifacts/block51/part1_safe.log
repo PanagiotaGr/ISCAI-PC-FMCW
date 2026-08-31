@@ -1,0 +1,65 @@
+============================================================
+STAGE 5 — BLOCK 5.1 PART 1/2
+CAUSAL RECEIVER SELECTION + GEOMETRY KERNEL
+============================================================
+
+===== A. BLOCK5.0 FROZEN CONTINUITY =====
+Block5.0 report             = PASS
+historical implementation   = PASS
+Stage5 structural contract  = PASS
+Part-A source contract      = PASS
+
+===== B. PRIMARY RECEIVER-SELECTION CONTRACT =====
+policy                     = NEAREST CAUSAL VEHICLE AHEAD
+connectivity               = CONSTRUCTED ASSUMPTION
+vehicle-only receiver      = PASS
+positive-forward H0        = PASS
+current causal state only  = PASS
+tracks_to_predict          = NOT INPUT
+future truth               = NOT INPUT
+perfect track ID           = NOT INPUT
+no receiver                = EXPLICIT STATE
+
+===== C. DEVELOPMENT-ONLY RECEIVER RANGE GATE =====
+max receiver range        = NOT YET FROZEN
+current default           = NO RANGE CUTOFF
+formal N=120 tuning       = FORBIDDEN
+freeze source             = NON-FORMAL DEVELOPMENT ONLY
+
+===== D. RECEIVER-GEOMETRY SEMANTICS =====
+centroid baseline         = PASS
+known receiver offset     = PASS
+uncertain receiver offset = PASS
+body→H0 yaw rotation      = PASS
+placement covariance      = PSD-VALIDATED
+placement covariance      = DISTINCT FROM Stage4 UQ
+trajectory+placement UQ   = DEFERRED TO BLOCK5.2
+
+===== E. FORBIDDEN LEAKAGE SURFACE =====
+future GT heading         = NOT INPUT
+tracks_to_predict         = NOT INPUT
+oracle receiver location  = NOT INPUT
+formal data used          = NO
+trajectory inference      = NO
+
+============================================================
+BLOCK 5.1 PART 1/2 GATE
+============================================================
+Block5.0 continuity          = PASS
+primary receiver policy      = PASS
+constructed connectivity     = PASS
+vehicle-only selection       = PASS
+causal/current-only selector = PASS
+receiver centroid mode       = PASS
+receiver known-offset mode   = PASS
+receiver uncertain mode      = PASS
+receiver covariance PSD      = PASS
+measurement/predictive UQ    = NOT MERGED
+max receiver range           = DEVELOPMENT PENDING
+formal N=120 used            = NO
+training/inference           = NO
+implementation files         = 13
+implementation SHA256        = 3006d2dd1592d5fa317776635d0355d8595cc79888aa9973a7feb6d975501e43
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage5/reports/block51_part1_receiver_contract.json
+terminal remains open = YES

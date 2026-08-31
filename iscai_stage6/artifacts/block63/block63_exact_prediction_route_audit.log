@@ -1,0 +1,1887 @@
+============================================================
+STAGE 6 — BLOCK 6.3 EXACT PREDICTION-ROUTE AUDIT
+SHARED MEAN / RECORD ID / H0 FRAME / YAW POLICY
+============================================================
+
+===== A. FROZEN IDENTITY =====
+Block6.2 closure        = EXACT PASS
+Block6.3 interface audit= EXACT PASS
+Stage4 handoff          = EXACT PASS
+Stage5 handoff SHA256   = c900ccbd63e7c680af28ed5cd8046f408463eceb7ce943b324b266dda73500eb
+
+===== B. STAGE4 PREDICTION COORDINATE SEMANTICS =====
+matched fields = 58
+normalization = {'type': 'dict', 'keys': ['path', 'payload', 'sha256'], 'key_count': 3}
+normalization.path = /home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json
+normalization.payload = {'type': 'dict', 'keys': ['calibration_used', 'continuous_feature_mean', 'continuous_feature_std', 'development_used', 'label_displacement_mean', 'label_displacement_std', 'label_valid_count_per_horizon', 'map_mean', 'map_std', 'missing_history_rows_in_statistics', 'observed_history_row_count', 'padded_neighbor_slots_in_statistics', 'sample_count', 'sha256', 'source', 'validation_used'], 'key_count': 16}
+normalization.payload.calibration_used = False
+normalization.payload.continuous_feature_mean = {'type': 'list', 'length': 12, 'value': [-0.4892875943158473, 1.6509485615199415, -0.2966244902042905, 0.837157244279352, -0.039076888601007144, -0.0033103295693422186, 0.6699312829489187, -0.0031701553213251054, 7.0476648252687865e-06, 0.8388677714738461, -1.9899908831105273e-05, 1.423362226694129]}
+normalization.payload.continuous_feature_std = {'type': 'list', 'length': 12, 'value': [32.95467400300616, 28.232856905864434, 2.092118871268435, 32.77884439232807, 33.02806448288359, 12.953189350576718, 3.078435466749296, 1.7695341317061122, 0.6827917993801238, 3.5440528033651892, 0.6069358070484366, 5.226704468878048]}
+normalization.payload.development_used = False
+normalization.payload.label_displacement_mean = {'type': 'list', 'length': 4, 'value': [[0.13007088691299454, -0.009454513690765774, -0.00595621884818416], [0.25189157920308564, -0.018269621280981006, -0.006957900924953559], [0.3840395248758152, -0.025380008056422685, -0.006908590412966617], [0.764490583785491, -0.05333015817784657, -0.005716003541891749]]}
+normalization.payload.label_displacement_std = {'type': 'list', 'length': 4, 'value': [[2.108129758471249, 1.1766709642960933, 1.0521182396038433], [2.946966166360802, 1.5178348778080983, 1.0457358748923975], [3.8658635164507253, 1.9127738858677783, 1.0431715804152502], [6.287019686024694, 3.0053620147764994, 1.0333035957932626]]}
+normalization.payload.label_valid_count_per_horizon = {'type': 'list', 'length': 4, 'value': [112831, 110346, 108416, 103886]}
+normalization.payload.map_mean = {'type': 'list', 'length': 10, 'value': [5.324304655891342, 2292.8533671000646, 26.639824675634244, 910.2583416009608, 6.589249199198382, 852.650122708997, 71.1632610286267, 8.355838685534263, 271.9592346084822, 0.524942126607836]}
+normalization.payload.map_std = {'type': 'list', 'length': 10, 'value': [8.248965696695901, 1215.5631521569821, 111.6788265399522, 612.667750179903, 7.239576547186826, 319.5408453983796, 185.77684649770194, 7.6010361927712, 380.61011018789054, 1.0891741110788282]}
+normalization.payload.missing_history_rows_in_statistics = False
+normalization.payload.observed_history_row_count = 4425389
+normalization.payload.padded_neighbor_slots_in_statistics = False
+normalization.payload.sample_count = 114906
+normalization.payload.sha256 = 70b2f5c194167423996ec5b4d3c05c1d0e3eaf98b5e96feb509feaca8f172487
+normalization.payload.source = fit_only
+normalization.payload.validation_used = False
+normalization.sha256 = 3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6
+scientific_execution = {'type': 'dict', 'keys': ['dataset_scan', 'formal_N120_read', 'model_forward', 'recalibration', 'training', 'upstream_modified'], 'key_count': 6}
+scientific_execution.dataset_scan = False
+scientific_execution.formal_N120_read = False
+scientific_execution.model_forward = False
+scientific_execution.recalibration = False
+scientific_execution.training = False
+scientific_execution.upstream_modified = False
+semantic_signals.absolute_signals = {'type': 'list', 'length': 10, 'value': [{'line': 354, 'path': 'iscai_stage4/src/iscai_stage4/data/supervision.py', 'text': '    target_position_H0_m: Vec3,'}, {'line': 357, 'path': 'iscai_stage4/src/iscai_stage4/data/supervision.py', 'text': '        target_position_H0_m'}, {'line': 488, 'path': 'iscai_stage4/src/iscai_stage4/data/supervision.py', 'text': '            .latest_position_H0_m'}, {'line': 167, 'path': 'iscai_stage4/src/iscai_stage4/data/neural_inputs.py', 'text': '    position_H0_m: Vec3'}, {'line': 195, 'path': 'iscai_stage4/src/iscai_stage4/data/neural_inputs.py', 'text': '            self.position_H0_m'}, {'line': 226, 'path': 'iscai_stage4/src/iscai_stage4/data/neural_inputs.py', 'text': '                self.position_H0_m[0]'}, {'line': 229, 'path': 'iscai_stage4/src/iscai_stage4/data/neural_inputs.py', 'text': '                self.position_H0_m[1]'}, {'line': 232, 'path': 'iscai_stage4/src/iscai_stage4/data/neural_inputs.py', 'text': '                self.position_H0_m[2]'}, {'line': 291, 'path': 'iscai_stage4/src/iscai_stage4/data/neural_inputs.py', 'text': '    latest_position_H0_m: Vec3'}, {'line': 350, 'path': 'iscai_stage4/src/iscai_stage4/data/neural_inputs.py', 'text': '            self.latest_position_H0_m'}]}
+semantic_signals.absolute_signals[0].line = 354
+semantic_signals.absolute_signals[0].path = iscai_stage4/src/iscai_stage4/data/supervision.py
+semantic_signals.absolute_signals[0].text =     target_position_H0_m: Vec3,
+semantic_signals.absolute_signals[1].line = 357
+semantic_signals.absolute_signals[1].path = iscai_stage4/src/iscai_stage4/data/supervision.py
+semantic_signals.absolute_signals[1].text =         target_position_H0_m
+semantic_signals.absolute_signals[2].line = 488
+semantic_signals.absolute_signals[2].path = iscai_stage4/src/iscai_stage4/data/supervision.py
+semantic_signals.absolute_signals[2].text =             .latest_position_H0_m
+semantic_signals.absolute_signals[3].line = 167
+semantic_signals.absolute_signals[3].path = iscai_stage4/src/iscai_stage4/data/neural_inputs.py
+semantic_signals.absolute_signals[3].text =     position_H0_m: Vec3
+semantic_signals.absolute_signals[4].line = 195
+semantic_signals.absolute_signals[4].path = iscai_stage4/src/iscai_stage4/data/neural_inputs.py
+semantic_signals.absolute_signals[4].text =             self.position_H0_m
+semantic_signals.absolute_signals[5].line = 226
+semantic_signals.absolute_signals[5].path = iscai_stage4/src/iscai_stage4/data/neural_inputs.py
+semantic_signals.absolute_signals[5].text =                 self.position_H0_m[0]
+semantic_signals.absolute_signals[6].line = 229
+semantic_signals.absolute_signals[6].path = iscai_stage4/src/iscai_stage4/data/neural_inputs.py
+semantic_signals.absolute_signals[6].text =                 self.position_H0_m[1]
+semantic_signals.absolute_signals[7].line = 232
+semantic_signals.absolute_signals[7].path = iscai_stage4/src/iscai_stage4/data/neural_inputs.py
+semantic_signals.absolute_signals[7].text =                 self.position_H0_m[2]
+semantic_signals.absolute_signals[8].line = 291
+semantic_signals.absolute_signals[8].path = iscai_stage4/src/iscai_stage4/data/neural_inputs.py
+semantic_signals.absolute_signals[8].text =     latest_position_H0_m: Vec3
+semantic_signals.absolute_signals[9].line = 350
+semantic_signals.absolute_signals[9].path = iscai_stage4/src/iscai_stage4/data/neural_inputs.py
+semantic_signals.absolute_signals[9].text =             self.latest_position_H0_m
+
+===== C1. ACTUAL STAGE4 GAUSSIAN ROUTE =====
+matched fields = 83
+Gaussian_config = {'type': 'dict', 'keys': ['path', 'sha256'], 'key_count': 2}
+Gaussian_config.path = /home/agni/waymo/iscai_stage4/configs/stage4_gaussian_gru.json
+Gaussian_config.sha256 = c74e37b7c3b5f496812fb4fcc27fbae4ddba5c35b59a8aeeac54099e5869c891
+checkpoint.top_level_summary.calibrated = {'type': 'dict', 'keys': ['repr', 'type'], 'key_count': 2}
+checkpoint.top_level_summary.calibrated.repr = False
+checkpoint.top_level_summary.calibrated.type = bool
+conclusion.actual_covariance_source_resolved = True
+development_cache.arrays.class_id = {'type': 'dict', 'keys': ['dtype', 'finite_fraction', 'shape', 'size'], 'key_count': 4}
+development_cache.arrays.class_id.dtype = int64
+development_cache.arrays.class_id.finite_fraction = 1.0
+development_cache.arrays.class_id.shape = {'type': 'list', 'length': 1, 'value': [13682]}
+development_cache.arrays.class_id.size = 13682
+resolved_symbols.GaussianTrajectoryGRU = {'type': 'dict', 'keys': ['definition_start_line', 'module', 'object_type', 'signature', 'source_path', 'source_preview', 'source_sha256', 'symbol'], 'key_count': 8}
+resolved_symbols.GaussianTrajectoryGRU.definition_start_line = 189
+resolved_symbols.GaussianTrajectoryGRU.module = iscai_stage4.ml
+resolved_symbols.GaussianTrajectoryGRU.object_type = type
+resolved_symbols.GaussianTrajectoryGRU.signature = (*, target_hidden_dim: 'int' = 64, neighbor_hidden_dim: 'int' = 32, map_hidden_dim: 'int' = 32, fusion_hidden_dim: 'int' = 128, use_neighbors: 'bool' = True, use_map: 'bool' = True)
+resolved_symbols.GaussianTrajectoryGRU.source_path = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_gru.py
+resolved_symbols.GaussianTrajectoryGRU.source_preview = class GaussianTrajectoryGRU(
+    nn.Module
+):
+    """
+    Probabilistic extension of the frozen
+    Block4.3 deterministic architecture.
+
+    Input:
+        same causal target history,
+        same Stage2 R_t conditioning,
+        same neighbours,
+        same map context.
+
+    Output per horizon:
+        predictive mean in R^3
+        full 3x3 SPD predictive covariance.
+    """
+
+    def __init__(
+        self,
+        *,
+        target_hidden_dim: int = 64,
+        neighbor_hidden_dim: int = 32,
+        map_hidden_dim: int = 32,
+        fusion_hidden_dim: int = 128,
+        use_neighbors: bool = True,
+        use_map: bool = True,
+    ):
+        super().__init__()
+
+        if min(
+            target_hidden_dim,
+            neighbor_hidden_dim,
+            map_hidden_dim,
+            fusion_hidden_dim,
+        ) <= 0:
+            raise ValueError(
+                "Hidden dimensions "
+                "must be positive."
+            )
+
+resolved_symbols.GaussianTrajectoryGRU.source_sha256 = b5e206d7e62e437bd3b64a5c20c56cab6319494b119882794defeb70a9494bb8
+resolved_symbols.GaussianTrajectoryGRU.symbol = GaussianTrajectoryGRU
+resolved_symbols.covariance_from_scale_tril = {'type': 'dict', 'keys': ['definition_start_line', 'module', 'object_type', 'signature', 'source_path', 'source_preview', 'source_sha256', 'symbol'], 'key_count': 8}
+resolved_symbols.covariance_from_scale_tril.definition_start_line = 40
+resolved_symbols.covariance_from_scale_tril.module = iscai_stage4.ml
+resolved_symbols.covariance_from_scale_tril.object_type = function
+resolved_symbols.covariance_from_scale_tril.signature = (scale_tril: 'torch.Tensor') -> 'torch.Tensor'
+resolved_symbols.covariance_from_scale_tril.source_path = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py
+resolved_symbols.covariance_from_scale_tril.source_preview = def covariance_from_scale_tril(
+    scale_tril: torch.Tensor,
+) -> torch.Tensor:
+    if scale_tril.shape[-2:] != (
+        POSITION_DIM,
+        POSITION_DIM,
+    ):
+        raise ValueError(
+            "scale_tril must end "
+            "in [3,3]."
+        )
+
+    return (
+        scale_tril
+        @
+        scale_tril.transpose(
+            -1,
+            -2,
+        )
+    )
+
+resolved_symbols.covariance_from_scale_tril.source_sha256 = 87a9a2b8c7fb5347fee9b441af33135c303826d80ff6a8dee9373b984f4d809e
+resolved_symbols.covariance_from_scale_tril.symbol = covariance_from_scale_tril
+resolved_symbols.denormalize_gaussian = {'type': 'dict', 'keys': ['definition_start_line', 'module', 'object_type', 'signature', 'source_path', 'source_preview', 'source_sha256', 'symbol'], 'key_count': 8}
+resolved_symbols.denormalize_gaussian.definition_start_line = 279
+resolved_symbols.denormalize_gaussian.module = iscai_stage4.ml
+resolved_symbols.denormalize_gaussian.object_type = function
+resolved_symbols.denormalize_gaussian.signature = (mean_normalized: 'torch.Tensor', scale_tril_normalized: 'torch.Tensor', label_mean: 'torch.Tensor', label_std: 'torch.Tensor')
+resolved_symbols.denormalize_gaussian.source_path = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py
+resolved_symbols.denormalize_gaussian.source_preview = def denormalize_gaussian(
+    mean_normalized: torch.Tensor,
+    scale_tril_normalized:
+        torch.Tensor,
+    label_mean: torch.Tensor,
+    label_std: torch.Tensor,
+):
+    """
+    Transform normalized Gaussian output
+    into metric H0-displacement coordinates.
+
+    If:
+        y_metric = D y_norm + b
+
+    then:
+        mu_metric = D mu_norm + b
+        L_metric  = D L_norm
+        Sigma_metric =
+            D Sigma_norm D^T
+    """
+
+    if label_mean.shape != (
+        mean_normalized.shape[1],
+        POSITION_DIM,
+    ):
+        raise ValueError(
+            "label_mean shape mismatch."
+        )
+
+    if label_std.shape != (
+        mean_normalized.shape[1],
+        POSITION_DIM,
+    ):
+        raise ValueError(
+            "label_std shape mismatch."
+        )
+
+    if bool(
+        torch.any(
+            label_std
+
+resolved_symbols.denormalize_gaussian.source_sha256 = 87a9a2b8c7fb5347fee9b441af33135c303826d80ff6a8dee9373b984f4d809e
+resolved_symbols.denormalize_gaussian.symbol = denormalize_gaussian
+resolved_symbols.gaussian_nll_per_horizon = {'type': 'dict', 'keys': ['definition_start_line', 'module', 'object_type', 'signature', 'source_path', 'source_preview', 'source_sha256', 'symbol'], 'key_count': 8}
+resolved_symbols.gaussian_nll_per_horizon.definition_start_line = 62
+resolved_symbols.gaussian_nll_per_horizon.module = iscai_stage4.ml
+resolved_symbols.gaussian_nll_per_horizon.object_type = function
+resolved_symbols.gaussian_nll_per_horizon.signature = (mean: 'torch.Tensor', scale_tril: 'torch.Tensor', target: 'torch.Tensor') -> 'torch.Tensor'
+resolved_symbols.gaussian_nll_per_horizon.source_path = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py
+resolved_symbols.gaussian_nll_per_horizon.source_preview = def gaussian_nll_per_horizon(
+    mean: torch.Tensor,
+    scale_tril: torch.Tensor,
+    target: torch.Tensor,
+) -> torch.Tensor:
+    """
+    Full 3-D Gaussian negative log likelihood.
+
+    Returns:
+        [B,H]
+    """
+
+    if mean.shape != target.shape:
+        raise ValueError(
+            "Gaussian mean/target "
+            "shape mismatch."
+        )
+
+    if mean.ndim != 3:
+        raise ValueError(
+            "mean and target must "
+            "be [B,H,3]."
+        )
+
+    if mean.shape[-1] != (
+        POSITION_DIM
+    ):
+        raise ValueError(
+            "Expected 3-D trajectory."
+        )
+
+    if scale_tril.shape != (
+        mean.shape[0],
+        mean.shape[1],
+        POSITION_DIM,
+        POSITION_DIM,
+    ):
+        raise ValueError(
+            "scale_tril shape mismatch."
+        )
+
+resolved_symbols.gaussian_nll_per_horizon.source_sha256 = 87a9a2b8c7fb5347fee9b441af33135c303826d80ff6a8dee9373b984f4d809e
+resolved_symbols.gaussian_nll_per_horizon.symbol = gaussian_nll_per_horizon
+resolved_symbols.masked_gaussian_nll = {'type': 'dict', 'keys': ['definition_start_line', 'module', 'object_type', 'signature', 'source_path', 'source_preview', 'source_sha256', 'symbol'], 'key_count': 8}
+resolved_symbols.masked_gaussian_nll.definition_start_line = 182
+resolved_symbols.masked_gaussian_nll.module = iscai_stage4.ml
+resolved_symbols.masked_gaussian_nll.object_type = function
+resolved_symbols.masked_gaussian_nll.signature = (mean: 'torch.Tensor', scale_tril: 'torch.Tensor', target: 'torch.Tensor', validity_mask: 'torch.Tensor') -> 'torch.Tensor'
+resolved_symbols.masked_gaussian_nll.source_path = /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py
+resolved_symbols.masked_gaussian_nll.source_preview = def masked_gaussian_nll(
+    mean: torch.Tensor,
+    scale_tril: torch.Tensor,
+    target: torch.Tensor,
+    validity_mask: torch.Tensor,
+) -> torch.Tensor:
+    nll = (
+        gaussian_nll_per_horizon(
+            mean,
+            scale_tril,
+            target,
+        )
+    )
+
+    if validity_mask.shape != (
+        nll.shape
+    ):
+        raise ValueError(
+            "Gaussian validity-mask "
+            "shape mismatch."
+        )
+
+    mask = validity_mask.to(
+        dtype=nll.dtype
+    )
+
+    denominator = (
+        mask.sum()
+    )
+
+    if denominator.item() == 0:
+        return (
+            mean.sum()
+            *
+            0.0
+            +
+            scale_tril.sum()
+            *
+            0.0
+        )
+
+resolved_symbols.masked_gaussian_nll.source_sha256 = 87a9a2b8c7fb5347fee9b441af33135c303826d80ff6a8dee9373b984f4d809e
+resolved_symbols.masked_gaussian_nll.symbol = masked_gaussian_nll
+scientific_execution.recalibration = False
+training_script.target_imports.GaussianTrajectoryGRU = {'type': 'dict', 'keys': ['imported_symbol', 'line', 'local_name', 'module'], 'key_count': 4}
+training_script.target_imports.GaussianTrajectoryGRU.imported_symbol = GaussianTrajectoryGRU
+training_script.target_imports.GaussianTrajectoryGRU.line = 19
+training_script.target_imports.GaussianTrajectoryGRU.local_name = GaussianTrajectoryGRU
+training_script.target_imports.GaussianTrajectoryGRU.module = iscai_stage4.ml
+training_script.target_imports.covariance_from_scale_tril = {'type': 'dict', 'keys': ['imported_symbol', 'line', 'local_name', 'module'], 'key_count': 4}
+training_script.target_imports.covariance_from_scale_tril.imported_symbol = covariance_from_scale_tril
+training_script.target_imports.covariance_from_scale_tril.line = 19
+training_script.target_imports.covariance_from_scale_tril.local_name = covariance_from_scale_tril
+training_script.target_imports.covariance_from_scale_tril.module = iscai_stage4.ml
+training_script.target_imports.denormalize_gaussian = {'type': 'dict', 'keys': ['imported_symbol', 'line', 'local_name', 'module'], 'key_count': 4}
+training_script.target_imports.denormalize_gaussian.imported_symbol = denormalize_gaussian
+training_script.target_imports.denormalize_gaussian.line = 19
+training_script.target_imports.denormalize_gaussian.local_name = denormalize_gaussian
+training_script.target_imports.denormalize_gaussian.module = iscai_stage4.ml
+training_script.target_imports.gaussian_nll_per_horizon = {'type': 'dict', 'keys': ['imported_symbol', 'line', 'local_name', 'module'], 'key_count': 4}
+training_script.target_imports.gaussian_nll_per_horizon.imported_symbol = gaussian_nll_per_horizon
+training_script.target_imports.gaussian_nll_per_horizon.line = 19
+training_script.target_imports.gaussian_nll_per_horizon.local_name = gaussian_nll_per_horizon
+training_script.target_imports.gaussian_nll_per_horizon.module = iscai_stage4.ml
+training_script.target_imports.masked_gaussian_nll = {'type': 'dict', 'keys': ['imported_symbol', 'line', 'local_name', 'module'], 'key_count': 4}
+training_script.target_imports.masked_gaussian_nll.imported_symbol = masked_gaussian_nll
+training_script.target_imports.masked_gaussian_nll.line = 19
+training_script.target_imports.masked_gaussian_nll.local_name = masked_gaussian_nll
+training_script.target_imports.masked_gaussian_nll.module = iscai_stage4.ml
+
+===== C2. CALIBRATED RUNTIME API =====
+matched fields = 5
+coordinate_semantics = {'type': 'dict', 'keys': ['Stage4_prediction', 'absolute_H0_mean', 'translation_changes_covariance'], 'key_count': 3}
+coordinate_semantics.Stage4_prediction = H0_displacement
+coordinate_semantics.absolute_H0_mean = latest_causal_observed_position_H0_plus_predicted_displacement
+coordinate_semantics.translation_changes_covariance = False
+scientific_execution.recalibration = False
+
+===== D1. EXACT FORMAL ROUTE SEMANTICS =====
+matched fields = 84
+cache.sample_shards[0].identity_previews = {'type': 'dict', 'keys': ['eligible_class_id', 'selected_class_id'], 'key_count': 2}
+cache.sample_shards[0].identity_previews.eligible_class_id = {'type': 'list', 'length': 6, 'value': [1, 1, 2, 0, 0, {'unique_count': 3}]}
+cache.sample_shards[0].identity_previews.eligible_class_id[5].unique_count = 3
+cache.sample_shards[0].identity_previews.selected_class_id = {'type': 'list', 'length': 6, 'value': [2, 1, 0, 0, 1, {'unique_count': 3}]}
+cache.sample_shards[0].identity_previews.selected_class_id[5].unique_count = 3
+cache.sample_shards[1].identity_previews = {'type': 'dict', 'keys': ['eligible_class_id', 'selected_class_id'], 'key_count': 2}
+cache.sample_shards[1].identity_previews.eligible_class_id = {'type': 'list', 'length': 6, 'value': [1, 1, 0, 0, 0, {'unique_count': 2}]}
+cache.sample_shards[1].identity_previews.eligible_class_id[5].unique_count = 2
+cache.sample_shards[1].identity_previews.selected_class_id = {'type': 'list', 'length': 6, 'value': [0, 0, 1, 1, 0, {'unique_count': 2}]}
+cache.sample_shards[1].identity_previews.selected_class_id[5].unique_count = 2
+cache.sample_shards[2].identity_previews = {'type': 'dict', 'keys': ['eligible_class_id', 'selected_class_id'], 'key_count': 2}
+cache.sample_shards[2].identity_previews.eligible_class_id = {'type': 'list', 'length': 2, 'value': [0, {'unique_count': 1}]}
+cache.sample_shards[2].identity_previews.eligible_class_id[1].unique_count = 1
+cache.sample_shards[2].identity_previews.selected_class_id = {'type': 'list', 'length': 2, 'value': [0, {'unique_count': 1}]}
+cache.sample_shards[2].identity_previews.selected_class_id[1].unique_count = 1
+formal_manifest.metadata.identity_preview = {'type': 'list', 'length': 3, 'value': [{'compact_record_offset': 8396022, 'scenario_id': 'cfd33c593d645bf5', 'selection_hash': '0021a46ed3fb1c08471876e4d92ecc4387ba05a76fdbbf53282ace145e0f9217', 'source_shard': '/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00030-of-00150'}, {'compact_record_offset': 6645751, 'scenario_id': 'b90adbf772ab2317', 'selection_hash': '00271cbc286f9d753b6eedb10c3c5840efa12f37c078b36e4416450f78425adc', 'source_shard': '/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00057-of-00150'}, {'compact_record_offset': 167974331, 'scenario_id': 'b3078e2d1e2a6ed4', 'selection_hash': '003079c6ef78b22bb8e33ccbe7270ddab013a3c5e0b433e4cc6501ffa7e9002d', 'source_shard': '/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00114-of-00150'}]}
+formal_manifest.metadata.identity_preview[0].compact_record_offset = 8396022
+formal_manifest.metadata.identity_preview[0].scenario_id = cfd33c593d645bf5
+formal_manifest.metadata.identity_preview[0].selection_hash = 0021a46ed3fb1c08471876e4d92ecc4387ba05a76fdbbf53282ace145e0f9217
+formal_manifest.metadata.identity_preview[0].source_shard = /waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00030-of-00150
+formal_manifest.metadata.identity_preview[1].compact_record_offset = 6645751
+formal_manifest.metadata.identity_preview[1].scenario_id = b90adbf772ab2317
+formal_manifest.metadata.identity_preview[1].selection_hash = 00271cbc286f9d753b6eedb10c3c5840efa12f37c078b36e4416450f78425adc
+formal_manifest.metadata.identity_preview[1].source_shard = /waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00057-of-00150
+formal_manifest.metadata.identity_preview[2].compact_record_offset = 167974331
+formal_manifest.metadata.identity_preview[2].scenario_id = b3078e2d1e2a6ed4
+formal_manifest.metadata.identity_preview[2].selection_hash = 003079c6ef78b22bb8e33ccbe7270ddab013a3c5e0b433e4cc6501ffa7e9002d
+formal_manifest.metadata.identity_preview[2].source_shard = /waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00114-of-00150
+merged_formal_prediction = {'type': 'dict', 'keys': ['description', 'schema_supports_candidate_mapping', 'semantic_key_groups'], 'key_count': 3}
+merged_formal_prediction.description = {'type': 'dict', 'keys': ['first_dim_counts', 'identity_previews', 'keys', 'path', 'sha256'], 'key_count': 5}
+merged_formal_prediction.description.first_dim_counts = {'type': 'dict', 'keys': ['494', '547'], 'key_count': 2}
+merged_formal_prediction.description.first_dim_counts.494 = 9
+merged_formal_prediction.description.first_dim_counts.547 = 2
+merged_formal_prediction.description.identity_previews = {'type': 'dict', 'keys': ['eligible_class_id', 'selected_class_id'], 'key_count': 2}
+merged_formal_prediction.description.identity_previews.eligible_class_id = {'type': 'list', 'length': 6, 'value': [1, 1, 2, 0, 0, {'unique_count': 3}]}
+merged_formal_prediction.description.identity_previews.eligible_class_id[5].unique_count = 3
+merged_formal_prediction.description.identity_previews.selected_class_id = {'type': 'list', 'length': 6, 'value': [2, 1, 0, 0, 1, {'unique_count': 3}]}
+merged_formal_prediction.description.identity_previews.selected_class_id[5].unique_count = 3
+merged_formal_prediction.description.keys = {'type': 'list', 'length': 11, 'value': [{'dtype': 'int64', 'key': 'selected_class_id', 'shape': [494]}, {'dtype': 'float32', 'key': 'truth', 'shape': [494, 4, 3]}, {'dtype': 'bool', 'key': 'validity', 'shape': [494, 4]}, {'dtype': 'float32', 'key': 'det_mean', 'shape': [494, 4, 3]}, {'dtype': 'float32', 'key': 'gaussian_mean', 'shape': [494, 4, 3]}, {'dtype': 'float32', 'key': 'gaussian_scale', 'shape': [494, 4, 3, 3]}, {'dtype': 'float32', 'key': 'gmm_logits', 'shape': [494, 3]}, {'dtype': 'float32', 'key': 'gmm_means', 'shape': [494, 3, 4, 3]}, {'dtype': 'float32', 'key': 'gmm_scale', 'shape': [494, 3, 4, 3, 3]}, {'dtype': 'int64', 'key': 'eligible_class_id', 'shape': [547]}, {'dtype': 'bool', 'key': 'eligible_validity', 'shape': [547, 4]}]}
+merged_formal_prediction.description.keys[0].dtype = int64
+merged_formal_prediction.description.keys[0].key = selected_class_id
+merged_formal_prediction.description.keys[0].shape = {'type': 'list', 'length': 1, 'value': [494]}
+merged_formal_prediction.description.keys[1].dtype = float32
+merged_formal_prediction.description.keys[1].key = truth
+merged_formal_prediction.description.keys[1].shape = {'type': 'list', 'length': 3, 'value': [494, 4, 3]}
+merged_formal_prediction.description.keys[2].dtype = bool
+merged_formal_prediction.description.keys[2].key = validity
+merged_formal_prediction.description.keys[2].shape = {'type': 'list', 'length': 2, 'value': [494, 4]}
+merged_formal_prediction.description.keys[3].dtype = float32
+merged_formal_prediction.description.keys[3].key = det_mean
+merged_formal_prediction.description.keys[3].shape = {'type': 'list', 'length': 3, 'value': [494, 4, 3]}
+merged_formal_prediction.description.keys[4].dtype = float32
+merged_formal_prediction.description.keys[4].key = gaussian_mean
+merged_formal_prediction.description.keys[4].shape = {'type': 'list', 'length': 3, 'value': [494, 4, 3]}
+merged_formal_prediction.description.keys[5].dtype = float32
+merged_formal_prediction.description.keys[5].key = gaussian_scale
+merged_formal_prediction.description.keys[5].shape = {'type': 'list', 'length': 4, 'value': [494, 4, 3, 3]}
+merged_formal_prediction.description.keys[6].dtype = float32
+merged_formal_prediction.description.keys[6].key = gmm_logits
+merged_formal_prediction.description.keys[6].shape = {'type': 'list', 'length': 2, 'value': [494, 3]}
+merged_formal_prediction.description.keys[7].dtype = float32
+merged_formal_prediction.description.keys[7].key = gmm_means
+merged_formal_prediction.description.keys[7].shape = {'type': 'list', 'length': 4, 'value': [494, 3, 4, 3]}
+merged_formal_prediction.description.keys[8].dtype = float32
+merged_formal_prediction.description.keys[8].key = gmm_scale
+merged_formal_prediction.description.keys[8].shape = {'type': 'list', 'length': 5, 'value': [494, 3, 4, 3, 3]}
+merged_formal_prediction.description.keys[9].dtype = int64
+merged_formal_prediction.description.keys[9].key = eligible_class_id
+merged_formal_prediction.description.keys[9].shape = {'type': 'list', 'length': 1, 'value': [547]}
+merged_formal_prediction.description.keys[10].dtype = bool
+merged_formal_prediction.description.keys[10].key = eligible_validity
+merged_formal_prediction.description.keys[10].shape = {'type': 'list', 'length': 2, 'value': [547, 4]}
+merged_formal_prediction.description.path = /home/agni/waymo/iscai_stage4/artifacts/block48/formal_neural_outputs.npz
+merged_formal_prediction.description.sha256 = a3e8af17962a28a533070db23e53cee10571d13ab641c74b9db21e79c9a5c8c9
+merged_formal_prediction.schema_supports_candidate_mapping = False
+merged_formal_prediction.semantic_key_groups = {'type': 'dict', 'keys': ['Gaussian_mean', 'Gaussian_scale_or_covariance', 'anchor_or_current_H0', 'calibration_explicit', 'class_identity', 'scenario_identity', 'track_identity'], 'key_count': 7}
+merged_formal_prediction.semantic_key_groups.Gaussian_mean = {'type': 'list', 'length': 1, 'value': ['gaussian_mean']}
+merged_formal_prediction.semantic_key_groups.Gaussian_scale_or_covariance = {'type': 'list', 'length': 1, 'value': ['gaussian_scale']}
+merged_formal_prediction.semantic_key_groups.anchor_or_current_H0 = {'type': 'list', 'length': 0, 'value': []}
+merged_formal_prediction.semantic_key_groups.calibration_explicit = {'type': 'list', 'length': 0, 'value': []}
+merged_formal_prediction.semantic_key_groups.class_identity = {'type': 'list', 'length': 2, 'value': ['selected_class_id', 'eligible_class_id']}
+merged_formal_prediction.semantic_key_groups.scenario_identity = {'type': 'list', 'length': 0, 'value': []}
+merged_formal_prediction.semantic_key_groups.track_identity = {'type': 'list', 'length': 0, 'value': []}
+scientific_execution.recalibration = False
+
+===== D2. FORMAL INPUT ROUTE AUDIT =====
+matched fields = 68
+formal_candidates = {'type': 'list', 'length': 15}
+formal_candidates[0].path = /home/agni/waymo/iscai_stage3/reports/block38e_formal_manifest_gate.json
+formal_candidates[0].sha256 = 4992e4c2971f4452a65cbde8515f3aa2738cd193ff4cbd76158f78e13edae090
+formal_candidates[0].size_bytes = 1522
+formal_candidates[0].suffix = .json
+formal_candidates[1].path = /home/agni/waymo/iscai_stage3/reports/block38f_formal_evaluation.json
+formal_candidates[1].sha256 = 35ef1353c30f2c871fd79250192ee47bed1f8c17962a979336e97585dec80367
+formal_candidates[1].size_bytes = 109522
+formal_candidates[1].suffix = .json
+formal_candidates[2].path = /home/agni/waymo/iscai_stage4/artifacts/block48/formal_cache_manifest.json
+formal_candidates[2].sha256 = 3f2cc58393fdf2ed2aace41bbf7ba4c915f92cc7d16e5b6f55f063af344e0baa
+formal_candidates[2].size_bytes = 70408
+formal_candidates[2].suffix = .json
+formal_candidates[3].path = /home/agni/waymo/iscai_stage4/artifacts/block48/formal_neural_outputs.npz
+formal_candidates[3].sha256 = a3e8af17962a28a533070db23e53cee10571d13ab641c74b9db21e79c9a5c8c9
+formal_candidates[3].size_bytes = 448064
+formal_candidates[3].suffix = .npz
+formal_candidates[4].path = /home/agni/waymo/iscai_stage4/reports/block48_formal_evaluation.json
+formal_candidates[4].sha256 = 402ab3d771e9a3c77de0c091c893e9a0d6ee5826ec52d07d27b919c68276b353
+formal_candidates[4].size_bytes = 41819
+formal_candidates[4].suffix = .json
+formal_candidates[5].path = /home/agni/waymo/iscai_stage3/reports/block38c_real_one_scenario_integration.json
+formal_candidates[5].sha256 = fba45aeb301f59c16ff82cf65e94698f9e9a51737a135dfb60fb70951f5f3b42
+formal_candidates[5].size_bytes = 77784
+formal_candidates[5].suffix = .json
+formal_candidates[6].path = /home/agni/waymo/iscai_stage3/reports/stage3_final_closure.json
+formal_candidates[6].sha256 = 1dd15551d9fc181f9f2e7f85c7388672f7af8d0d988a016a1345b910723102c9
+formal_candidates[6].size_bytes = 3215
+formal_candidates[6].suffix = .json
+formal_candidates[7].path = /home/agni/waymo/iscai_stage4/artifacts/block410/stage4_to_stage5_handoff.json
+formal_candidates[7].sha256 = 491bce010d35c2a394f879ecf35ed26ef1de92f7fff1465dcbf46b072a87c6fd
+formal_candidates[7].size_bytes = 5316
+formal_candidates[7].suffix = .json
+formal_candidates[8].path = /home/agni/waymo/iscai_stage4/reports/block44_gaussian_gru.json
+formal_candidates[8].sha256 = 78ccc780a9d753e9619e215fee0e83a706f1607445741b032983e526efd97a54
+formal_candidates[8].size_bytes = 15803
+formal_candidates[8].suffix = .json
+formal_candidates[9].path = /home/agni/waymo/iscai_stage4/reports/block48_class_semantics_discovery.json
+formal_candidates[9].sha256 = 32822bed8036a076ef3764411fa78cf4a6e4f3121ca6db168696ccdd2593ef74
+formal_candidates[9].size_bytes = 1368
+formal_candidates[9].suffix = .json
+formal_candidates[10].path = /home/agni/waymo/iscai_stage4/reports/block48_class_semantics_repair.json
+formal_candidates[10].sha256 = 3fd4d7c32de4a12afd6c525daf5af636fa5f51ef33fd93773b8fcf0c093be48b
+formal_candidates[10].size_bytes = 834
+formal_candidates[10].suffix = .json
+formal_candidates[11].path = /home/agni/waymo/iscai_stage4/reports/block48_part1_discovery.json
+formal_candidates[11].sha256 = b473b39a331e32c02132f37bc570daf73a6f0f89be019218219041055d9c2b87
+formal_candidates[11].size_bytes = 252489
+formal_candidates[11].suffix = .json
+formal_candidates[12].path = /home/agni/waymo/iscai_stage4/reports/block48_validation_resolver_repair.json
+formal_candidates[12].sha256 = a8185dffb394418de785c4c9cc7e4d778c2934885116741d4941e44e5b0f7861
+formal_candidates[12].size_bytes = 727
+formal_candidates[12].suffix = .json
+formal_candidates[13].path = /home/agni/waymo/iscai_stage4/reports/block48_validation_source_discovery.json
+formal_candidates[13].sha256 = 132106f9446c79351a3dbacb3d4c449255309e5a83c3ae9531a515b352c6b304
+formal_candidates[13].size_bytes = 82540
+formal_candidates[13].suffix = .json
+formal_candidates[14].path = /home/agni/waymo/iscai_stage4/reports/stage4_final_closure.json
+formal_candidates[14].sha256 = 570da4feb918b1025b5e85cc919360d922b471c468c85b3844f13fb7774e7c2f
+formal_candidates[14].size_bytes = 5645
+formal_candidates[14].suffix = .json
+formal_policy.receiver_selection_uses_tracks_to_predict = False
+materialized_formal_candidates = {'type': 'list', 'length': 1, 'value': [{'path': '/home/agni/waymo/iscai_stage4/artifacts/block48/formal_neural_outputs.npz', 'sha256': 'a3e8af17962a28a533070db23e53cee10571d13ab641c74b9db21e79c9a5c8c9', 'size_bytes': 448064, 'suffix': '.npz'}]}
+materialized_formal_candidates[0].path = /home/agni/waymo/iscai_stage4/artifacts/block48/formal_neural_outputs.npz
+materialized_formal_candidates[0].sha256 = a3e8af17962a28a533070db23e53cee10571d13ab641c74b9db21e79c9a5c8c9
+materialized_formal_candidates[0].size_bytes = 448064
+materialized_formal_candidates[0].suffix = .npz
+scientific_execution.recalibration = False
+
+===== E. FORMAL CLEAN-RECORD SCHEMA =====
+
+--- formal record 0 ---
+top-level keys = ['angular_runtime_s', 'beam_gain_loss_db', 'beam_probability_runtime_s', 'ber', 'codebook', 'containment_hit', 'distance_m', 'effective_rate_bps', 'effective_rate_loss_bps', 'exhaustive_reacquisition', 'geometry', 'horizon', 'loss_of_lock', 'optical_gain', 'overhead_fraction', 'overhead_reduction_vs_exhaustive', 'physical_probe_count', 'predictor_runtime_s', 'primary_switched', 'q', 'reacquisition_latency_s', 'received_power', 'received_power_loss_db', 'scenario_id', 'selected_k', 'selected_mass', 'snr_db', 'snr_loss_db', 'topk_runtime_s', 'type', 'uncertainty_rad']
+horizon = 0.1
+scenario_id = b90adbf772ab2317
+
+--- formal record 1 ---
+top-level keys = ['angular_runtime_s', 'beam_gain_loss_db', 'beam_probability_runtime_s', 'ber', 'codebook', 'containment_hit', 'distance_m', 'effective_rate_bps', 'effective_rate_loss_bps', 'exhaustive_reacquisition', 'geometry', 'horizon', 'loss_of_lock', 'optical_gain', 'overhead_fraction', 'overhead_reduction_vs_exhaustive', 'physical_probe_count', 'predictor_runtime_s', 'primary_switched', 'q', 'reacquisition_latency_s', 'received_power', 'received_power_loss_db', 'scenario_id', 'selected_k', 'selected_mass', 'snr_db', 'snr_loss_db', 'topk_runtime_s', 'type', 'uncertainty_rad']
+horizon = 0.1
+scenario_id = b90adbf772ab2317
+
+--- formal record 2 ---
+top-level keys = ['angular_runtime_s', 'beam_gain_loss_db', 'beam_probability_runtime_s', 'ber', 'codebook', 'containment_hit', 'distance_m', 'effective_rate_bps', 'effective_rate_loss_bps', 'exhaustive_reacquisition', 'geometry', 'horizon', 'loss_of_lock', 'optical_gain', 'overhead_fraction', 'overhead_reduction_vs_exhaustive', 'physical_probe_count', 'predictor_runtime_s', 'primary_switched', 'q', 'reacquisition_latency_s', 'received_power', 'received_power_loss_db', 'scenario_id', 'selected_k', 'selected_mass', 'snr_db', 'snr_loss_db', 'topk_runtime_s', 'type', 'uncertainty_rad']
+horizon = 0.1
+scenario_id = b90adbf772ab2317
+
+===== F. STAGE4 FORMAL NPZ SCHEMA =====
+selected_class_id | shape= (494,) | dtype= int64
+truth | shape= (494, 4, 3) | dtype= float32
+validity | shape= (494, 4) | dtype= bool
+det_mean | shape= (494, 4, 3) | dtype= float32
+gaussian_mean | shape= (494, 4, 3) | dtype= float32
+gaussian_scale | shape= (494, 4, 3, 3) | dtype= float32
+gmm_logits | shape= (494, 3) | dtype= float32
+gmm_means | shape= (494, 3, 4, 3) | dtype= float32
+gmm_scale | shape= (494, 3, 4, 3, 3) | dtype= float32
+eligible_class_id | shape= (547,) | dtype= int64
+eligible_validity | shape= (547, 4) | dtype= bool
+
+===== G. EXACT STAGE4/STAGE5 SOURCE CONTRACTS =====
+
+------------------------------------------------------------
+DEFINITION: GaussianHorizonPosterior
+PATH: /home/agni/waymo/iscai_stage4/src/iscai_stage4/contracts.py
+SHA256: 4dc14562f5a4005b3f424b6cca65712077738833d66f7adae1c19e0801836123
+------------------------------------------------------------
+class GaussianHorizonPosterior:
+    horizon_s: float
+    mean_H0_m: Vector3
+    covariance_H0_m2: Matrix3
+
+    def __post_init__(self) -> None:
+        if self.horizon_s not in (
+            PRIMARY_HORIZONS_S
+        ):
+            raise ValueError(
+                "Unsupported Stage4 horizon."
+            )
+
+        if not all(
+            isfinite(float(x))
+            for x in self.mean_H0_m
+        ):
+            raise ValueError(
+                "Posterior mean must be finite."
+            )
+
+        _validate_spd3(
+            self.covariance_H0_m2
+        )
+
+------------------------------------------------------------
+DEFINITION: TrajectoryGaussianPosterior
+PATH: /home/agni/waymo/iscai_stage4/src/iscai_stage4/contracts.py
+SHA256: 642ad998ec68c83b4b09293d220ba894b88be5d9447f993a0adb22341553a964
+------------------------------------------------------------
+class TrajectoryGaussianPosterior:
+    prediction_id: str
+    horizons: tuple[
+        GaussianHorizonPosterior,
+        ...,
+    ]
+
+    def __post_init__(self) -> None:
+        if not self.prediction_id:
+            raise ValueError(
+                "prediction_id cannot be empty."
+            )
+
+        actual = tuple(
+            item.horizon_s
+            for item in self.horizons
+        )
+
+        if actual != PRIMARY_HORIZONS_S:
+            raise ValueError(
+                "Stage4 posterior must contain "
+                "exactly the frozen primary horizons."
+            )
+
+------------------------------------------------------------
+DEFINITION: GaussianTrajectoryOutput
+PATH: /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_gru.py
+SHA256: c3668b76d3767f7c9315f8d82b43bd387ba9ca4f523fcd508b754cd214449340
+------------------------------------------------------------
+class GaussianTrajectoryOutput:
+    """
+    Predictive distribution in normalized
+    future-displacement coordinates.
+
+    This predictive covariance is NOT
+    Stage2 measurement covariance R_t.
+
+    Stage2 R_t remains part of the model
+    input history. scale_tril below is an
+    output of the learned predictor.
+    """
+
+    mean: torch.Tensor
+
+    scale_tril: torch.Tensor
+
+    def __post_init__(self) -> None:
+        if self.mean.ndim != 3:
+            raise ValueError(
+                "Gaussian mean must be "
+                "[B,H,3]."
+            )
+
+        if self.mean.shape[1:] != (
+            PREDICTION_HORIZONS,
+            POSITION_DIM,
+        ):
+            raise ValueError(
+                "Gaussian mean shape changed."
+            )
+
+        if self.scale_tril.ndim != 4:
+            raise ValueError(
+                "scale_tril must be "
+                "[B,H,3,3]."
+            )
+
+        if self.scale_tril.shape != (
+            self.mean.shape[0],
+            PREDICTION_HORIZONS,
+            POSITION_DIM,
+            POSITION_DIM,
+        ):
+            raise ValueError(
+                "Gaussian scale_tril "
+                "shape changed."
+            )
+
+    @property
+    def covariance(
+        self,
+    ) -> torch.Tensor:
+        return (
+            self.scale_tril
+            @
+            self.scale_tril.transpose(
+                -1,
+                -2,
+            )
+        )
+
+------------------------------------------------------------
+DEFINITION: extract_deterministic_prediction
+PATH: /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/formal_runtime.py
+SHA256: 687a9c7bc73e4cd6b7be82ae4f421a9e76acbdd29a9a8d6147d18bc6652f140f
+------------------------------------------------------------
+def extract_deterministic_prediction(
+    output,
+):
+    if isinstance(
+        output,
+        torch.Tensor,
+    ):
+        candidate = output
+
+    else:
+        candidate = None
+
+        for name in (
+            "prediction",
+            "mean",
+            "trajectory",
+            "positions",
+        ):
+            value = getattr(
+                output,
+                name,
+                None,
+            )
+
+            if isinstance(
+                value,
+                torch.Tensor,
+            ):
+                candidate = value
+                break
+
+        if (
+            candidate is None
+            and
+            isinstance(
+                output,
+                (
+                    tuple,
+                    list,
+                ),
+            )
+            and
+            output
+            and
+            isinstance(
+                output[
+                    0
+                ],
+                torch.Tensor,
+            )
+        ):
+            candidate = output[
+                0
+            ]
+
+    if candidate is None:
+        raise RuntimeError(
+            "Could not extract deterministic "
+            "trajectory tensor from model output."
+        )
+
+    if (
+        candidate.ndim != 3
+        or
+        tuple(
+            candidate.shape[
+                1:
+            ]
+        )
+        !=
+        (
+            4,
+            3,
+        )
+    ):
+        raise RuntimeError(
+            "Deterministic prediction shape "
+            f"changed: {tuple(candidate.shape)}"
+        )
+
+    return candidate
+
+------------------------------------------------------------
+DEFINITION: deterministic_receiver_angular_posterior
+PATH: /home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_monte_carlo.py
+SHA256: cc60315f47752c6743b4f8c89ad1b30af5737f0b0164bd612ee30287465937a8
+------------------------------------------------------------
+def deterministic_receiver_angular_posterior(
+    *,
+    trajectory_mean_h0_m,
+    raw_trajectory_covariance_h0_m2,
+    current_position_h0_m,
+    current_heading_h0_rad: float,
+    receiver_geometry_mode: str,
+    receiver_offset: ReceiverOffsetGaussianBody | None,
+    sample_count: int,
+    seed: int = MONTE_CARLO_BASE_SEED,
+    low_speed_threshold_mps: float = (
+        LOW_SPEED_HEADING_THRESHOLD_MPS
+    ),
+) -> ReceiverAngularMonteCarloPosterior:
+    """
+    Primary Stage5 receiver-aware angular posterior.
+
+    Pipeline:
+
+      frozen Gaussian mean/cov
+      → frozen covariance calibration
+      → product-of-horizon Gaussian sampling
+      → samplewise predicted trajectory heading
+      → shared receiver placement draw
+      → receiver position in H0
+      → range/azimuth/elevation samples
+    """
+
+    if (
+        receiver_geometry_mode
+        not in
+        RECEIVER_GEOMETRY_MODES
+    ):
+        raise ValueError(
+            "Unsupported receiver geometry mode."
+        )
+
+    mean = _finite_horizon_positions(
+        trajectory_mean_h0_m,
+        name="trajectory_mean_h0_m",
+    )
+
+    calibrated_covariance = (
+        calibrate_stage4_horizon_covariances(
+            raw_trajectory_covariance_h0_m2
+        )
+    )
+
+    sample_count = int(
+        sample_count
+    )
+
+    if (
+        sample_count
+        <
+        MONTE_CARLO_MINIMUM_SAMPLE_COUNT
+    ):
+        raise ValueError(
+            "sample_count is below the frozen "
+            "Stage5 minimum probability-resolution "
+            "requirement."
+        )
+
+    trajectory_samples = (
+        sample_product_of_horizon_gaussians(
+            trajectory_mean_h0_m=mean,
+
+            calibrated_covariance_h0_m2=(
+                calibrated_covariance
+            ),
+
+            sample_count=sample_count,
+
+            seed=int(
+                seed
+            ),
+        )
+    )
+
+    (
+        heading_samples,
+        fallback_mask,
+    ) = resolve_samplewise_headings(
+        trajectory_samples_h0_m=(
+            trajectory_samples
+        ),
+
+        current_position_h0_m=(
+            current_position_h0_m
+        ),
+
+        current_heading_h0_rad=(
+            current_heading_h0_rad
+        ),
+
+        low_speed_threshold_mps=(
+            low_speed_threshold_mps
+        ),
+    )
+
+    if (
+        receiver_geometry_mode
+        ==
+        "centroid_baseline"
+    ):
+        receiver_positions = (
+            trajectory_samples.copy()
+        )
+
+    else:
+        if receiver_offset is None:
+            raise ValueError(
+                "known/uncertain receiver mode "
+                "requires receiver_offset."
+            )
+
+        offset_mean = _finite_vector3(
+            receiver_offset.mean_body_m,
+            name="receiver_offset.mean_body_m",
+        )
+
+        offset_covariance = (
+            _psd_covariance3(
+                receiver_offset.covariance_body_m2,
+                name=(
+                    "receiver_offset."
+                    "covariance_body_m2"
+                ),
+            )
+        )
+
+        if (
+            receiver_geometry_mode
+            ==
+            "known_receiver_offset"
+        ):
+            body_offsets = np.repeat(
+                offset_mean[
+                    None,
+                    :
+                ],
+                sample_count,
+                axis=0,
+            )
+
+        else:
+            #
+            # Separate RNG stream from trajectory sampling.
+            #
+            # One physical receiver-placement draw is shared
+            # across all future horizons of the same MC sample.
+            #
+            generator = np.random.Generator(
+                np.random.PCG64(
+                    int(
+                        seed
+                    )
+                    +
+                    1_000_003
+                )
+            )
+
+            z = generator.standard_normal(
+                (
+                    sample_count,
+                    3,
+                ),
+                dtype=np.float64,
+            )
+
+            body_offsets = (
+                _sample_gaussian3(
+                    mean=offset_mean,
+
+                    covariance=(
+                        offset_covariance
+                    ),
+
+                    standard_normal_samples=z,
+                )
+            )
+
+        offset_h0 = _yaw_rotate_samples(
+            body_offsets,
+            heading_samples,
+        )
+
+        receiver_positions = (
+            trajectory_samples
+            +
+            offset_h0
+        )
+
+    (
+        range_samples,
+        azimuth_samples,
+        elevation_samples,
+    ) = _angular_samples_from_positions(
+        receiver_positions
+    )
+
+    summaries = []
+
+    for horizon_index, horizon in enumerate(
+        HORIZONS_S
+    ):
+        ranges = range_samples[
+            :,
+            horizon_index
+        ]
+
+        azimuths = azimuth_samples[
+            :,
+            horizon_index
+        ]
+
+        elevations = elevation_samples[
+            :,
+            horizon_index
+        ]
+
+        range_mean = float(
+            np.mean(
+                ranges
+            )
+        )
+
+        azimuth_mean = (
+            _circular_mean(
+                azimuths
+            )
+        )
+
+        elevation_mean = float(
+            np.mean(
+                elevations
+            )
+        )
+
+        residuals = np.empty(
+            (
+                sample_count,
+                3,
+            ),
+            dtype=np.float64,
+        )
+
+        residuals[
+            :,
+            0
+        ] = (
+            ranges
+            -
+            range_mean
+        )
+
+        residuals[
+            :,
+            1
+        ] = np.asarray(
+            [
+                circular_angle_difference(
+                    float(
+                        angle
+                    ),
+                    azimuth_mean,
+                )
+                for angle in azimuths
+            ],
+            dtype=np.float64,
+        )
+
+        residuals[
+            :,
+            2
+        ] = (
+            elevations
+            -
+            elevation_mean
+        )
+
+        covariance_rae = (
+            residuals.T
+            @
+            residuals
+            /
+            float(
+                sample_count
+                -
+                1
+            )
+        )
+
+        covariance_rae = (
+            0.5
+            *
+            (
+                covariance_rae
+                +
+                covariance_rae.T
+            )
+        )
+
+        summaries.append(
+            HorizonAngularSummary(
+                horizon_s=(
+                    float(
+                        horizon
+                    )
+                ),
+
+                range_mean_m=(
+                    range_mean
+                ),
+
+                range_std_m=(
+                    float(
+                        np.std(
+                            ranges,
+                            ddof=1,
+                        )
+                    )
+                ),
+
+                azimuth_circular_mean_rad=(
+                    azimuth_mean
+                ),
+
+                azimuth_circular_std_rad=(
+                    _circular_std(
+                        azimuths
+                    )
+                ),
+
+                elevation_mean_rad=(
+                    elevation_mean
+                ),
+
+                elevation_std_rad=(
+                    float(
+                        np.std(
+                            elevations,
+                            ddof=1,
+                        )
+                    )
+                ),
+
+                covariance_rae=tuple(
+                    tuple(
+                        float(
+                            value
+                        )
+                        for value in row
+                    )
+                    for row in covariance_rae
+                ),
+
+                heading_fallback_fraction=(
+                    float(
+                        np.mean(
+                            fallback_mask[
+                                :,
+                                horizon_index
+                            ]
+                        )
+                    )
+                ),
+            )
+        )
+
+    sample_sha = _sample_hash(
+        range_samples,
+        azimuth_samples,
+        elevation_samples,
+        heading_samples,
+        receiver_positions,
+    )
+
+    return ReceiverAngularMonteCarloPosterior(
+        range_samples_m=(
+            range_samples
+        ),
+
+        azimuth_samples_rad=(
+            azimuth_samples
+        ),
+
+        elevation_samples_rad=(
+            elevation_samples
+        ),
+
+        heading_samples_rad=(
+            heading_samples
+        ),
+
+        receiver_position_samples_h0_m=(
+            receiver_positions
+        ),
+
+        summaries=tuple(
+            summaries
+        ),
+
+        sample_count=(
+            sample_count
+        ),
+
+        seed=int(
+            seed
+        ),
+
+        receiver_geometry_mode=(
+            receiver_geometry_mode
+        ),
+
+        sample_sha256=(
+            sample_sha
+        ),
+    )
+
+===== H. JOIN / MEAN / HEADING SOURCE CONTEXTS =====
+
+--- /home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/formal_runtime.py ---
+contexts = 11
+
+line 79
+0072:             set(
+0073:                 names
+0074:             )
+0075:         )
+0076:     )
+0077: 
+0078: 
+0079: def resolve_sample_truth_track_index(
+0080:     sample,
+0081: ):
+0082:     """
+0083:     Resolve the explicit evaluator metadata
+0084:     produced by the frozen Block4.2 supervision
+0085:     pairing.
+0086: 
+
+line 87
+0080:     sample,
+0081: ):
+0082:     """
+0083:     Resolve the explicit evaluator metadata
+0084:     produced by the frozen Block4.2 supervision
+0085:     pairing.
+0086: 
+0087:     Never use prediction_id as truth identity.
+0088:     """
+0089: 
+0090:     candidate_names = (
+0091:         "truth_track_index",
+0092:         "truth_index",
+0093:         "matched_truth_track_index",
+0094:         "womd_track_index",
+
+line 91
+0084:     produced by the frozen Block4.2 supervision
+0085:     pairing.
+0086: 
+0087:     Never use prediction_id as truth identity.
+0088:     """
+0089: 
+0090:     candidate_names = (
+0091:         "truth_track_index",
+0092:         "truth_index",
+0093:         "matched_truth_track_index",
+0094:         "womd_track_index",
+0095:         "ground_truth_track_index",
+0096:         "target_track_index",
+0097:     )
+0098: 
+
+line 93
+0086: 
+0087:     Never use prediction_id as truth identity.
+0088:     """
+0089: 
+0090:     candidate_names = (
+0091:         "truth_track_index",
+0092:         "truth_index",
+0093:         "matched_truth_track_index",
+0094:         "womd_track_index",
+0095:         "ground_truth_track_index",
+0096:         "target_track_index",
+0097:     )
+0098: 
+0099:     objects = [
+0100:         (
+
+line 94
+0087:     Never use prediction_id as truth identity.
+0088:     """
+0089: 
+0090:     candidate_names = (
+0091:         "truth_track_index",
+0092:         "truth_index",
+0093:         "matched_truth_track_index",
+0094:         "womd_track_index",
+0095:         "ground_truth_track_index",
+0096:         "target_track_index",
+0097:     )
+0098: 
+0099:     objects = [
+0100:         (
+0101:             "sample",
+
+line 95
+0088:     """
+0089: 
+0090:     candidate_names = (
+0091:         "truth_track_index",
+0092:         "truth_index",
+0093:         "matched_truth_track_index",
+0094:         "womd_track_index",
+0095:         "ground_truth_track_index",
+0096:         "target_track_index",
+0097:     )
+0098: 
+0099:     objects = [
+0100:         (
+0101:             "sample",
+0102:             sample,
+
+line 96
+0089: 
+0090:     candidate_names = (
+0091:         "truth_track_index",
+0092:         "truth_index",
+0093:         "matched_truth_track_index",
+0094:         "womd_track_index",
+0095:         "ground_truth_track_index",
+0096:         "target_track_index",
+0097:     )
+0098: 
+0099:     objects = [
+0100:         (
+0101:             "sample",
+0102:             sample,
+0103:         )
+
+line 219
+0212:     values = []
+0213: 
+0214:     for item in (
+0215:         scenario.tracks_to_predict
+0216:     ):
+0217:         if not hasattr(
+0218:             item,
+0219:             "track_index",
+0220:         ):
+0221:             raise RuntimeError(
+0222:                 "tracks_to_predict element "
+0223:                 "lacks track_index."
+0224:             )
+0225: 
+0226:         index = int(
+
+line 223
+0216:     ):
+0217:         if not hasattr(
+0218:             item,
+0219:             "track_index",
+0220:         ):
+0221:             raise RuntimeError(
+0222:                 "tracks_to_predict element "
+0223:                 "lacks track_index."
+0224:             )
+0225: 
+0226:         index = int(
+0227:             item.track_index
+0228:         )
+0229: 
+0230:         if (
+
+line 227
+0220:         ):
+0221:             raise RuntimeError(
+0222:                 "tracks_to_predict element "
+0223:                 "lacks track_index."
+0224:             )
+0225: 
+0226:         index = int(
+0227:             item.track_index
+0228:         )
+0229: 
+0230:         if (
+0231:             index < 0
+0232:             or
+0233:             index
+0234:             >=
+
+line 343
+0336:             )
+0337: 
+0338:         validity.append(
+0339:             row
+0340:         )
+0341: 
+0342:     return {
+0343:         "track_index":
+0344:             np.asarray(
+0345:                 indices,
+0346:                 dtype=np.int64,
+0347:             ),
+0348: 
+0349:         "class_id":
+0350:             np.asarray(
+
+--- /home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_monte_carlo.py ---
+contexts = 59
+
+line 33
+0026: )
+0027: 
+0028: TRAJECTORY_JOINT_SAMPLING_SEMANTICS = (
+0029:     "product_of_frozen_calibrated_"
+0030:     "per_horizon_Gaussian_marginals"
+0031: )
+0032: 
+0033: FUTURE_HEADING_SEMANTICS = (
+0034:     "samplewise_trajectory_tangent_with_"
+0035:     "causal_heading_fallback"
+0036: )
+0037: 
+0038: RECEIVER_OFFSET_TEMPORAL_SEMANTICS = (
+0039:     "one_body_frame_receiver_offset_draw_"
+0040:     "shared_across_all_horizons_per_MC_sample"
+
+line 35
+0028: TRAJECTORY_JOINT_SAMPLING_SEMANTICS = (
+0029:     "product_of_frozen_calibrated_"
+0030:     "per_horizon_Gaussian_marginals"
+0031: )
+0032: 
+0033: FUTURE_HEADING_SEMANTICS = (
+0034:     "samplewise_trajectory_tangent_with_"
+0035:     "causal_heading_fallback"
+0036: )
+0037: 
+0038: RECEIVER_OFFSET_TEMPORAL_SEMANTICS = (
+0039:     "one_body_frame_receiver_offset_draw_"
+0040:     "shared_across_all_horizons_per_MC_sample"
+0041: )
+0042: 
+
+line 43
+0036: )
+0037: 
+0038: RECEIVER_OFFSET_TEMPORAL_SEMANTICS = (
+0039:     "one_body_frame_receiver_offset_draw_"
+0040:     "shared_across_all_horizons_per_MC_sample"
+0041: )
+0042: 
+0043: LOW_SPEED_HEADING_THRESHOLD_MPS = (
+0044:     0.25
+0045: )
+0046: 
+0047: LOW_SPEED_HEADING_THRESHOLD_BASIS = (
+0048:     "preregistered_numerical_stability_choice_"
+0049:     "equivalent_to_2p5cm_displacement_over_0p1s"
+0050: )
+
+line 47
+0040:     "shared_across_all_horizons_per_MC_sample"
+0041: )
+0042: 
+0043: LOW_SPEED_HEADING_THRESHOLD_MPS = (
+0044:     0.25
+0045: )
+0046: 
+0047: LOW_SPEED_HEADING_THRESHOLD_BASIS = (
+0048:     "preregistered_numerical_stability_choice_"
+0049:     "equivalent_to_2p5cm_displacement_over_0p1s"
+0050: )
+0051: 
+0052: MONTE_CARLO_BASE_SEED = (
+0053:     20260821
+0054: )
+
+line 147
+0140:         tuple[
+0141:             float,
+0142:             float,
+0143:             float,
+0144:         ],
+0145:     ]
+0146: 
+0147:     heading_fallback_fraction: float
+0148: 
+0149: 
+0150: @dataclass(
+0151:     frozen=True
+0152: )
+0153: class ReceiverAngularMonteCarloPosterior:
+0154:     """
+
+line 169
+0162: 
+0163:     range_samples_m: np.ndarray
+0164: 
+0165:     azimuth_samples_rad: np.ndarray
+0166: 
+0167:     elevation_samples_rad: np.ndarray
+0168: 
+0169:     heading_samples_rad: np.ndarray
+0170: 
+0171:     receiver_position_samples_h0_m: np.ndarray
+0172: 
+0173:     summaries: tuple[
+0174:         HorizonAngularSummary,
+0175:         ...
+0176:     ]
+
+line 568
+0561:         @
+0562:         factor.T
+0563:     )
+0564: 
+0565: 
+0566: def sample_product_of_horizon_gaussians(
+0567:     *,
+0568:     trajectory_mean_h0_m,
+0569:     calibrated_covariance_h0_m2,
+0570:     sample_count: int,
+0571:     seed: int,
+0572: ) -> np.ndarray:
+0573:     """
+0574:     Sample the only joint trajectory distribution directly
+0575:     implied by the frozen Gaussian output:
+
+line 583
+0576: 
+0577:         prod_h N(mu_h, Sigma_cal,h)
+0578: 
+0579:     No cross-horizon covariance is invented.
+0580:     """
+0581: 
+0582:     mean = _finite_horizon_positions(
+0583:         trajectory_mean_h0_m,
+0584:         name="trajectory_mean_h0_m",
+0585:     )
+0586: 
+0587:     covariance = _horizon_covariances(
+0588:         calibrated_covariance_h0_m2
+0589:     )
+0590: 
+
+line 584
+0577:         prod_h N(mu_h, Sigma_cal,h)
+0578: 
+0579:     No cross-horizon covariance is invented.
+0580:     """
+0581: 
+0582:     mean = _finite_horizon_positions(
+0583:         trajectory_mean_h0_m,
+0584:         name="trajectory_mean_h0_m",
+0585:     )
+0586: 
+0587:     covariance = _horizon_covariances(
+0588:         calibrated_covariance_h0_m2
+0589:     )
+0590: 
+0591:     sample_count = int(
+
+line 658
+0651:                 ]
+0652:             ),
+0653:         )
+0654: 
+0655:     return result
+0656: 
+0657: 
+0658: def resolve_samplewise_headings(
+0659:     *,
+0660:     trajectory_samples_h0_m,
+0661:     current_position_h0_m,
+0662:     current_heading_h0_rad: float,
+0663:     low_speed_threshold_mps: float = (
+0664:         LOW_SPEED_HEADING_THRESHOLD_MPS
+0665:     ),
+
+line 661
+0654: 
+0655:     return result
+0656: 
+0657: 
+0658: def resolve_samplewise_headings(
+0659:     *,
+0660:     trajectory_samples_h0_m,
+0661:     current_position_h0_m,
+0662:     current_heading_h0_rad: float,
+0663:     low_speed_threshold_mps: float = (
+0664:         LOW_SPEED_HEADING_THRESHOLD_MPS
+0665:     ),
+0666: ) -> tuple[
+0667:     np.ndarray,
+0668:     np.ndarray,
+
+line 662
+0655:     return result
+0656: 
+0657: 
+0658: def resolve_samplewise_headings(
+0659:     *,
+0660:     trajectory_samples_h0_m,
+0661:     current_position_h0_m,
+0662:     current_heading_h0_rad: float,
+0663:     low_speed_threshold_mps: float = (
+0664:         LOW_SPEED_HEADING_THRESHOLD_MPS
+0665:     ),
+0666: ) -> tuple[
+0667:     np.ndarray,
+0668:     np.ndarray,
+0669: ]:
+
+line 664
+0657: 
+0658: def resolve_samplewise_headings(
+0659:     *,
+0660:     trajectory_samples_h0_m,
+0661:     current_position_h0_m,
+0662:     current_heading_h0_rad: float,
+0663:     low_speed_threshold_mps: float = (
+0664:         LOW_SPEED_HEADING_THRESHOLD_MPS
+0665:     ),
+0666: ) -> tuple[
+0667:     np.ndarray,
+0668:     np.ndarray,
+0669: ]:
+0670:     """
+0671:     Resolve future body heading from sampled trajectory
+
+line 671
+0664:         LOW_SPEED_HEADING_THRESHOLD_MPS
+0665:     ),
+0666: ) -> tuple[
+0667:     np.ndarray,
+0668:     np.ndarray,
+0669: ]:
+0670:     """
+0671:     Resolve future body heading from sampled trajectory
+0672:     tangents.
+0673: 
+0674:     At low planar speed, heading is carried forward from the
+0675:     previous causal/predicted heading rather than using an
+0676:     unstable atan2 of an almost-zero displacement.
+0677: 
+0678:     Returns:
+
+line 674
+0667:     np.ndarray,
+0668:     np.ndarray,
+0669: ]:
+0670:     """
+0671:     Resolve future body heading from sampled trajectory
+0672:     tangents.
+0673: 
+0674:     At low planar speed, heading is carried forward from the
+0675:     previous causal/predicted heading rather than using an
+0676:     unstable atan2 of an almost-zero displacement.
+0677: 
+0678:     Returns:
+0679:         headings_rad         [N,4]
+0680:         fallback_mask        [N,4]
+0681:     """
+
+line 675
+0668:     np.ndarray,
+0669: ]:
+0670:     """
+0671:     Resolve future body heading from sampled trajectory
+0672:     tangents.
+0673: 
+0674:     At low planar speed, heading is carried forward from the
+0675:     previous causal/predicted heading rather than using an
+0676:     unstable atan2 of an almost-zero displacement.
+0677: 
+0678:     Returns:
+0679:         headings_rad         [N,4]
+0680:         fallback_mask        [N,4]
+0681:     """
+0682: 
+
+line 679
+0672:     tangents.
+0673: 
+0674:     At low planar speed, heading is carried forward from the
+0675:     previous causal/predicted heading rather than using an
+0676:     unstable atan2 of an almost-zero displacement.
+0677: 
+0678:     Returns:
+0679:         headings_rad         [N,4]
+0680:         fallback_mask        [N,4]
+0681:     """
+0682: 
+0683:     samples = np.asarray(
+0684:         trajectory_samples_h0_m,
+0685:         dtype=np.float64,
+0686:     )
+
+line 713
+0706:         )
+0707:     ):
+0708:         raise ValueError(
+0709:             "trajectory samples must be finite."
+0710:         )
+0711: 
+0712:     current_position = _finite_vector3(
+0713:         current_position_h0_m,
+0714:         name="current_position_h0_m",
+0715:     )
+0716: 
+0717:     current_heading = float(
+0718:         current_heading_h0_rad
+0719:     )
+0720: 
+
+line 714
+0707:     ):
+0708:         raise ValueError(
+0709:             "trajectory samples must be finite."
+0710:         )
+0711: 
+0712:     current_position = _finite_vector3(
+0713:         current_position_h0_m,
+0714:         name="current_position_h0_m",
+0715:     )
+0716: 
+0717:     current_heading = float(
+0718:         current_heading_h0_rad
+0719:     )
+0720: 
+0721:     if not math.isfinite(
+
+line 717
+0710:         )
+0711: 
+0712:     current_position = _finite_vector3(
+0713:         current_position_h0_m,
+0714:         name="current_position_h0_m",
+0715:     )
+0716: 
+0717:     current_heading = float(
+0718:         current_heading_h0_rad
+0719:     )
+0720: 
+0721:     if not math.isfinite(
+0722:         current_heading
+0723:     ):
+0724:         raise ValueError(
+
+line 718
+0711: 
+0712:     current_position = _finite_vector3(
+0713:         current_position_h0_m,
+0714:         name="current_position_h0_m",
+0715:     )
+0716: 
+0717:     current_heading = float(
+0718:         current_heading_h0_rad
+0719:     )
+0720: 
+0721:     if not math.isfinite(
+0722:         current_heading
+0723:     ):
+0724:         raise ValueError(
+0725:             "current_heading_h0_rad "
+
+line 722
+0715:     )
+0716: 
+0717:     current_heading = float(
+0718:         current_heading_h0_rad
+0719:     )
+0720: 
+0721:     if not math.isfinite(
+0722:         current_heading
+0723:     ):
+0724:         raise ValueError(
+0725:             "current_heading_h0_rad "
+0726:             "must be finite."
+0727:         )
+0728: 
+0729:     threshold = float(
+
+line 725
+0718:         current_heading_h0_rad
+0719:     )
+0720: 
+0721:     if not math.isfinite(
+0722:         current_heading
+0723:     ):
+0724:         raise ValueError(
+0725:             "current_heading_h0_rad "
+0726:             "must be finite."
+0727:         )
+0728: 
+0729:     threshold = float(
+0730:         low_speed_threshold_mps
+0731:     )
+0732: 
+
+line 749
+0742:             "must be finite and non-negative."
+0743:         )
+0744: 
+0745:     count = samples.shape[
+0746:         0
+0747:     ]
+0748: 
+0749:     headings = np.empty(
+0750:         (
+0751:             count,
+0752:             4,
+0753:         ),
+0754:         dtype=np.float64,
+0755:     )
+0756: 
+
+line 774
+0767:             None,
+0768:             :
+0769:         ],
+0770:         count,
+0771:         axis=0,
+0772:     )
+0773: 
+0774:     previous_heading = np.full(
+0775:         (
+0776:             count,
+0777:         ),
+0778:         current_heading,
+0779:         dtype=np.float64,
+0780:     )
+0781: 
+
+line 778
+0771:         axis=0,
+0772:     )
+0773: 
+0774:     previous_heading = np.full(
+0775:         (
+0776:             count,
+0777:         ),
+0778:         current_heading,
+0779:         dtype=np.float64,
+0780:     )
+0781: 
+0782:     previous_horizon = 0.0
+0783: 
+0784:     for horizon_index, horizon in enumerate(
+0785:         HORIZONS_S
+
+line 833
+0826: 
+0827:         moving = (
+0828:             planar_speed
+0829:             >
+0830:             threshold
+0831:         )
+0832: 
+0833:         candidate_heading = np.arctan2(
+0834:             displacement[
+0835:                 :,
+0836:                 1
+0837:             ],
+0838:             displacement[
+0839:                 :,
+0840:                 0
+
+line 846
+0839:                 :,
+0840:                 0
+0841:             ],
+0842:         )
+0843: 
+0844:         resolved = np.where(
+0845:             moving,
+0846:             candidate_heading,
+0847:             previous_heading,
+0848:         )
+0849: 
+0850:         headings[
+0851:             :,
+0852:             horizon_index
+0853:         ] = resolved
+... 31 additional contexts omitted
+
+===== I. BINDING EVIDENCE GATES =====
+H0_prediction_semantics                    = PASS
+trajectory_mean_present                    = PASS
+predictive_covariance_present              = PASS
+scenario_identity_present                  = PASS
+actor_prediction_identity_present          = NOT PROVEN
+four_required_horizons_supported           = PASS
+future_GT_not_required_for_controller      = PASS
+
+===== J. PDF-DIRECTED DETERMINISTIC-ADB INTERPRETATION =====
+motion deterministic GRU = RETAINED AS SEPARATE STAGE4 MOTION BASELINE
+Stage6 deterministic shared trajectory candidate = CALIBRATED GAUSSIAN MEAN ONLY
+Stage6 deterministic covariance use = NONE
+reason = isolate uncertainty effect while preserving shared predictor family
+binding frozen in this audit = NO
+future yaw binding = WAIT FOR EXACT SOURCE EVIDENCE
+
+===== K. IMMUTABILITY =====
+Stage4 = UNCHANGED
+Stage5 = UNCHANGED
+Block6.2 = UNCHANGED
+
+report = /home/agni/waymo/iscai_stage6/reports/block63_exact_prediction_route_audit.json
+report SHA256 = 7fa674e6915c4d3ef49252f7def68807943fd5c0be6ea4f4aa260294c92d23ce
+
+============================================================
+BLOCK 6.3 EXACT PREDICTION-ROUTE AUDIT — FINAL
+============================================================
+H0 prediction semantics = PASS
+trajectory mean schema   = PASS
+prediction identity      = NOT PROVEN
+horizons                 = PASS
+future GT controller use = NO
+deterministic ADB candidate = SHARED CALIBRATED GAUSSIAN MEAN
+candidate frozen         = NO
+future yaw policy        = SOURCE EVIDENCE EXTRACTED / DECISION NOT YET FROZEN
+training/inference       = NO
+formal evaluation/tuning = NO
+upstream modified        = NO
+STATUS = BLOCKED_BINDING_EVIDENCE_INCOMPLETE
+terminal remains open = YES

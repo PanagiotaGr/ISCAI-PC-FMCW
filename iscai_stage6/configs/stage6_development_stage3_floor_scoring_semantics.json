@@ -1,0 +1,97 @@
+{
+  "aggregation": {
+    "actor_count_weighting": false,
+    "actuation_rate_limit": false,
+    "controller_schedule": "one raw class-aware illumination schedule of shape [4,501,301] per scenario and candidate floor triplet",
+    "empty_support": "inherit authoritative metric runtime exactly; if it returns NaN/NA, exclude that scenario only from that metric aggregate; do not impute",
+    "evaluation_unit": "development scenario",
+    "future_validity_as_selection_filter": false,
+    "horizon_reweighting": false,
+    "metric_evaluation": "call the authoritative frozen metric semantics on the complete four-horizon scenario schedule; do not manually reweight horizons",
+    "normalization": "no outcome-dependent normalization; all five risk components are already frozen in [0,1]",
+    "risk_vector_after_scenario_macro": [
+      "vehicle_shadow_zone_violation",
+      "glare_risk_exposure",
+      "1-pedestrian_visibility_proxy",
+      "1-cyclist_visibility_proxy",
+      "1-road_illumination_retention"
+    ],
+    "scenario_aggregation": "arithmetic macro mean over finite scenario-level metric values",
+    "scenario_weighting": "equal scenario weight",
+    "secondary_metrics_after_scenario_macro": [
+      "over_masking_area",
+      "false_dimming"
+    ],
+    "temporal_smoothing": false,
+    "terminal_illumination": "ClassAwareComposition.raw_class_aware_illumination"
+  },
+  "authority": {
+    "metric_runtime": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/metric_semantics.py",
+    "preoutcome_execution_binding": "/home/agni/waymo/iscai_stage6/configs/stage6_development_stage3_floor_execution_binding.json",
+    "preregistered_candidate_space_and_objective": "/home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json"
+  },
+  "block": "6.8_stage3_floor_scoring_semantics",
+  "candidate_floor_triplets": 3270,
+  "cohort": {
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_class_aware_development_cohort_120.jsonl",
+    "scenario_count": 120,
+    "sha256": "57440e3d976e7aeff44811b5eeb075dc56e0e0e070a3832ec72d354253b998c9"
+  },
+  "frozen_lexicographic_order": [
+    "minimize maximum element of normalized risk vector",
+    "minimize arithmetic mean of normalized risk vector",
+    "minimize over_masking_area",
+    "minimize false_dimming",
+    "canonical floor tuple (f_vehicle,f_pedestrian,f_cyclist)"
+  ],
+  "frozen_risk_vector": [
+    "vehicle_shadow_zone_violation",
+    "glare_risk_exposure",
+    "1-pedestrian_visibility_proxy",
+    "1-cyclist_visibility_proxy",
+    "1-road_illumination_retention"
+  ],
+  "scientific_boundary": {
+    "P_occ_array_payloads_dereferenced": false,
+    "Stage1_modified": false,
+    "Stage2_modified": false,
+    "Stage3_floor_metric_values_computed": false,
+    "Stage3_floor_sweep_executed": false,
+    "Stage3_floor_tuple_selected": false,
+    "Stage4_temporal_or_rate_selected": false,
+    "formal_evaluation": false,
+    "future_truth_opened_by_this_run": false,
+    "primary_acceptance_tested": false
+  },
+  "seals": {
+    "metric_runtime": "bf8358b5a7edfe40ffac2718ca7cd5af6e7b5fdb3ff8a2823caad6d0f40f057a",
+    "pocc_manifest": "c361ed640b91850831d7e7177d89733fedd3e171f5f3111bcd93698c74a4a300",
+    "predictive_matches": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6",
+    "prereg": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e",
+    "stage1": "a55f21589f55a75afcb660a8a7278e802dd9e102f4c75ca7863697359bbb2a87",
+    "stage2": "b061541f0563181cd07a91107a211b3519c6fdcc2e08243171db5b3bd9393ae8",
+    "stage3_execution": "28cc6e986d89ac449cce4b5180f3879567e0f6a8bd77a2bd6054fcb262cba091"
+  },
+  "selection_comparator": {
+    "candidate_key": "(max(risk_vector), mean(risk_vector), over_masking_area, false_dimming, j_vehicle, j_pedestrian, j_cyclist)",
+    "canonical_integer_tuple_final_tie_break": true,
+    "comparison": "ascending Python/IEEE-754 float64 lexicographic order",
+    "epsilon_tolerance": null,
+    "post_outcome_tie_discretion": false,
+    "rounding_before_comparison": false
+  },
+  "selection_population": {
+    "class_counts": {
+      "TYPE_CYCLIST": 48,
+      "TYPE_PEDESTRIAN": 110,
+      "TYPE_VEHICLE": 719
+    },
+    "development_scenarios": 120,
+    "future_validity_used_as_selector": false,
+    "predictive_actors": 877,
+    "reactive_fallback_actors_used_for_stage3_selection": false,
+    "reactive_fallback_receives_selected_floor_downstream": true
+  },
+  "stage": 6,
+  "status": "FROZEN_STAGE3_SCORING_SEMANTICS_BEFORE_FLOOR_OUTCOMES"
+}

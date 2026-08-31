@@ -1,0 +1,32 @@
+{
+  "binding": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block63_deterministic_predictive_binding.json",
+    "sha256": "03903018109e7d5037643381ff71141a5c57f003b8bdc6b9be13bb4304468f67"
+  },
+  "block": "6.3",
+  "formal_parameter_tuning": false,
+  "next": "Block6.3 Part1 deterministic future full-box projection",
+  "not_started": {
+    "class_aware_ADB": true,
+    "formal_evaluation": true,
+    "formal_grid_freeze": true,
+    "model_inference": true,
+    "probabilistic_occupancy": true
+  },
+  "phase": "BINDING_FREEZE",
+  "project": "Agni",
+  "resolved": {
+    "actor_association": "RECIPROCAL_UNIQUE_NEAREST_CURRENT_ANCHOR_H0_3D",
+    "deterministic_trajectory": "SHARED_CALIBRATED_GAUSSIAN_MEAN_ONLY",
+    "future_box": "FULL_8_CORNER",
+    "future_center": "PREDICTOR_ANCHOR_PLUS_METRIC_H0_MEAN_DISPLACEMENT",
+    "future_dimensions": "CURRENT_CAUSAL_LWH_HELD",
+    "future_yaw": "STAGE5_TANGENT_WITH_LOW_SPEED_CAUSAL_CARRY_FORWARD",
+    "new_numeric_association_threshold": false,
+    "prediction_recentered_to_box": false,
+    "unmatched_ADB_box": "ORIGINAL_REACTIVE_FALLBACK"
+  },
+  "stage": 6,
+  "status": "PASS_READY_FOR_BLOCK63_PART1",
+  "upstream_modified": false
+}

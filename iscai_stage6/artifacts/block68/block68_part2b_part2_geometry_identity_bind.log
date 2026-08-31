@@ -1,0 +1,458 @@
+============================================================
+STAGE 6 — BLOCK 6.8 PART2B PART2/2
+FUTURE-EVALUATOR GEOMETRY + ACTOR IDENTITY BIND
+READ ONLY — NO FUTURE TRUTH OPENED
+============================================================
+
+===== A. EXACT FROZEN CONTINUITY =====
+ledger               = EXACT PASS
+maps                 = EXACT PASS
+reactive_report      = EXACT PASS
+grid_binding         = EXACT PASS
+evaluator_contract   = EXACT PASS
+
+===== B. FROZEN DECISION LEDGER SCHEMA =====
+ledger rows          = 120 PASS
+unique scenario IDs  = 120 PASS
+
+identity-relevant ledger paths:
+   causality
+   causality.P_occ_opened
+   causality.future_state_field_access_by_runner
+   causality.future_track_duration_selector
+   causality.future_truth_scoring
+   causality.future_validity_selector
+   causality.objects_of_interest_selector
+   causality.performance_metric_computed
+   causality.tracks_to_predict_selector
+   cohort_index
+   current_time_index
+   scenario_id
+   selected_adb_actor_count
+   selected_adb_actor_counts
+   selected_adb_actor_counts.TYPE_CYCLIST
+   selected_adb_actor_counts.TYPE_PEDESTRIAN
+   selected_adb_actor_counts.TYPE_VEHICLE
+   selected_adb_actors
+   selected_adb_actors[]
+   selected_adb_actors[].actor_box_index
+   selected_adb_actors[].causal_box_future_state_used
+   selected_adb_actors[].current_box_H0
+   selected_adb_actors[].current_box_H0.center_xyz_H0_m
+   selected_adb_actors[].current_box_H0.center_xyz_H0_m[]
+   selected_adb_actors[].current_box_H0.height_m
+   selected_adb_actors[].current_box_H0.length_m
+   selected_adb_actors[].current_box_H0.width_m
+   selected_adb_actors[].current_box_H0.yaw_rad
+   selected_adb_actors[].future_used_for_eligibility
+   selected_adb_actors[].geometry_parity
+   selected_adb_actors[].geometry_parity.center_m
+   selected_adb_actors[].geometry_parity.dimension_m
+   selected_adb_actors[].geometry_parity.yaw_rad
+   selected_adb_actors[].object_type
+   selected_adb_actors[].objects_of_interest_used
+   selected_adb_actors[].prediction_id
+   selected_adb_actors[].reactive_control_input
+   selected_adb_actors[].selector_route
+   selected_adb_actors[].track_id
+   selected_adb_actors[].track_index
+   selected_adb_actors[].tracks_to_predict_used
+
+track_index paths    = 1
+track_id paths       = 1
+actor_box_index paths= 1
+
+===== C. EXACT STAGE6 GEOMETRY API =====
+geometry module = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/geometry.py
+
+dataclasses:
+
+Box3D
+    center_xyz : tuple[float, float, float]
+    length_m : float
+    width_m : float
+    height_m : float
+    yaw_rad : float
+
+FractionalBoxRegion
+    x_bounds : tuple[float, float]
+    y_bounds : tuple[float, float]
+    z_bounds : tuple[float, float]
+
+ProjectedBox
+    box : Box3D
+    corners : ProjectedPoints
+    centroid : ProjectedPoints
+    theta_center_rad : float
+    theta_span_rad : float
+    theta_min_unwrapped_rad : float
+    theta_max_unwrapped_rad : float
+    ground_range_min_m : float
+    ground_range_max_m : float
+    range_3d_min_m : float
+    range_3d_max_m : float
+    phi_min_rad : float
+    phi_max_rad : float
+    state_source : str
+    orientation_source : str
+    controller_path : bool
+
+ProjectedPoints
+    xyz : np.ndarray
+    ground_range_m : np.ndarray
+    range_3d_m : np.ndarray
+    theta_rad : np.ndarray
+    phi_rad : np.ndarray
+
+ProjectedRegion
+    region : FractionalBoxRegion
+    points : ProjectedPoints
+    theta_center_rad : float
+    theta_span_rad : float
+    ground_range_min_m : float
+    ground_range_max_m : float
+    phi_min_rad : float
+    phi_max_rad : float
+
+project_box_to_headlamp signature = (box: 'Box3D', *, state_source: 'str', orientation_source: 'str', controller_path: 'bool' = True) -> 'ProjectedBox'
+
+----- project_box_to_headlamp source -----
+def project_box_to_headlamp(
+    box: Box3D,
+    *,
+    state_source: str,
+    orientation_source: str,
+    controller_path: bool = True,
+) -> ProjectedBox:
+    """
+    Full 3D actor-box projection.
+
+    Centroid projection is retained only as diagnostic metadata;
+    all extent fields are derived from all 8 physical corners.
+    """
+
+    validate_controller_provenance(
+        state_source=state_source,
+        orientation_source=orientation_source,
+        controller_path=controller_path,
+    )
+
+    corners_xyz = box_corners_headlamp(
+        box
+    )
+
+    corners = project_points_to_headlamp(
+        corners_xyz
+    )
+
+    centroid = project_points_to_headlamp(
+        box.center[
+            None,
+            :
+        ]
+    )
+
+    (
+        theta_center,
+        theta_span,
+        theta_min,
+        theta_max,
+    ) = _minimal_circular_interval(
+        corners.theta_rad
+    )
+
+    return ProjectedBox(
+        box=box,
+        corners=corners,
+        centroid=centroid,
+
+        theta_center_rad=theta_center,
+        theta_span_rad=theta_span,
+        theta_min_unwrapped_rad=theta_min,
+        theta_max_unwrapped_rad=theta_max,
+
+        ground_range_min_m=float(
+            np.min(
+                corners.ground_range_m
+            )
+        ),
+
+        ground_range_max_m=float(
+            np.max(
+                corners.ground_range_m
+            )
+        ),
+
+        range_3d_min_m=float(
+            np.min(
+                corners.range_3d_m
+            )
+        ),
+
+        range_3d_max_m=float(
+            np.max(
+                corners.range_3d_m
+            )
+        ),
+
+        phi_min_rad=float(
+            np.min(
+                corners.phi_rad
+            )
+        ),
+
+        phi_max_rad=float(
+            np.max(
+                corners.phi_rad
+            )
+        ),
+
+        state_source=str(
+            state_source
+        ),
+
+        orientation_source=str(
+            orientation_source
+        ),
+
+        controller_path=bool(
+            controller_path
+        ),
+    )
+
+
+===== D. CAUSAL ADB BOX API =====
+scenario_id : str
+track_index : int
+track_id : str
+object_type : str
+box : Box3D
+stage1_anchor_center_H0_m : tuple[float, float, float] | None
+stage1_anchor_bearing_H0_rad : float | None
+center_consistency_error_m : float
+source_time_index : int
+state_source : str
+orientation_source : str
+tracks_to_predict_used : bool
+objects_of_interest_used : bool
+future_state_used : bool
+
+build_causal_adb_actor_boxes signature = (*, scenario: 'Any', adapted: 'Any', allowed_classes: 'frozenset[str]' = frozenset({'TYPE_PEDESTRIAN', 'TYPE_VEHICLE', 'TYPE_CYCLIST'})) -> 'tuple[CausalADBActorBox, ...]'
+
+===== E. STAGE1 ANCHOR TRANSFORM API =====
+
+AnchorFrames
+    T_W_from_E0 : RigidTransform
+    T_E0_from_W : RigidTransform
+    T_W_from_H0 : RigidTransform
+    T_H0_from_W : RigidTransform
+
+AdaptedScenario
+    scenario_id : str
+    anchor_index : int
+    sdc_track_index : int
+    frames : AnchorFrames
+    actors : tuple[AdaptedActor, ...]
+
+adapt_causal_womd_scenario signature = (scenario: 'Any', *, headlamp_config: 'HeadlampSurrogateConfig | None' = None, receiver_config: 'ReceiverGeometryConfig | None' = None) -> 'AdaptedScenario'
+
+===== F. EXACT THREE NI-BOUND METRIC APIs =====
+
+over_masking_area (candidate_mask, oracle_mask) -> 'float'
+def over_masking_area(
+    candidate_mask,
+    oracle_mask,
+) -> float:
+    """
+    Frozen Block6.6 definition:
+
+        |D \ O|
+        --------------------
+        |full actuator grid|
+
+    Lower is better.
+    """
+
+    candidate = _bool_array(
+        candidate_mask,
+        name="candidate_mask",
+    )
+
+    oracle = _bool_array(
+        oracle_mask,
+        name="oracle_mask",
+    )
+
+    _same_shape(
+        candidate,
+        oracle,
+    )
+
+    unnecessary = (
+        candidate
+        &
+        ~oracle
+    )
+
+    return float(
+        np.count_nonzero(
+            unnecessary
+        )
+        /
+        candidate.size
+    )
+
+
+pedestrian_visibility_proxy (intensity, pedestrian_future_full_box_region) -> 'float'
+def pedestrian_visibility_proxy(
+    intensity,
+    pedestrian_future_full_box_region,
+) -> float:
+    """
+    Frozen Block6.6 definition:
+
+        mean(
+            I_final over future-GT pedestrian
+            projected full-box footprint cells
+        )
+
+    Evaluator only.
+    Higher is better.
+
+    Empty support:
+        NA -> NaN
+    """
+
+    light = _intensity_array(
+        intensity,
+        name="intensity",
+    )
+
+    region = _bool_array(
+        pedestrian_future_full_box_region,
+        name=(
+            "pedestrian_future_full_box_region"
+        ),
+    )
+
+    _same_shape(
+        light,
+        region,
+    )
+
+    if not np.any(
+        region
+    ):
+        return float(
+            "nan"
+        )
+
+    return float(
+        np.mean(
+            light[
+                region
+            ]
+        )
+    )
+
+
+cyclist_visibility_proxy (intensity, cyclist_future_full_box_region) -> 'float'
+def cyclist_visibility_proxy(
+    intensity,
+    cyclist_future_full_box_region,
+) -> float:
+    """
+    Frozen Block6.6 definition:
+
+        mean(
+            I_final over future-GT cyclist
+            projected full-box footprint cells
+        )
+
+    Evaluator only.
+    Higher is better.
+
+    Empty support:
+        NA -> NaN
+    """
+
+    light = _intensity_array(
+        intensity,
+        name="intensity",
+    )
+
+    region = _bool_array(
+        cyclist_future_full_box_region,
+        name=(
+            "cyclist_future_full_box_region"
+        ),
+    )
+
+    _same_shape(
+        light,
+        region,
+    )
+
+    if not np.any(
+        region
+    ):
+        return float(
+            "nan"
+        )
+
+    return float(
+        np.mean(
+            light[
+                region
+            ]
+        )
+    )
+
+
+===== G. FROZEN EVALUATOR-REFERENCE HELPER =====
+module = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/evaluator_reference.py
+_actor_support_array (value, *, grid_shape) -> 'np.ndarray'
+aggregate_class_future_region (actor_regions: 'Iterable[np.ndarray]', *, grid_shape) -> 'np.ndarray'
+aggregate_constructed_oracle_supports (actor_supports: 'Iterable[np.ndarray]', *, grid_shape) -> 'np.ndarray'
+frozen_road_roi (grid_shape) -> 'np.ndarray'
+validate_final_metric_illumination (illumination, *, grid_shape) -> 'np.ndarray'
+
+===== H. FROZEN NI RULE API =====
+candidate modules = 1
+   noninferiority_bounds.py 3c67a7f152359710cb24db1a6e01c4b580728e6480b7c5d8f9c40a41349cf1cd
+
+===== I. SCIENTIFIC BOUNDARY =====
+future WOMD states opened     = NO
+future truth values read       = NO
+reactive map values analyzed   = NO
+oracle masks materialized      = NO
+overmask values computed       = NO
+ped visibility computed        = NO
+cyclist visibility computed    = NO
+predictive performance         = NO
+NI deltas computed             = NO
+formal content opened          = NO
+policy/controller modified     = NO
+
+===== J. FULL STAGE6 REGRESSION =====
+Stage6 regression = 224 / 224 PASS
+
+============================================================
+BLOCK 6.8 PART2B PART2 GEOMETRY/IDENTITY BIND — FINAL
+============================================================
+frozen reactive ledger      = EXACT PASS
+frozen t0 maps              = EXACT PASS
+scenario identity           = 120 / 120 PASS
+WOMD actor identity path    = PROVEN
+future full-box API         = PROVEN
+headlamp transform route    = PROVEN
+three NI metric APIs        = PROVEN
+future truth opened         = NO
+performance metrics         = NOT COMPUTED
+predictive performance      = NOT COMPUTED
+NI deltas                   = NOT COMPUTED
+formal evaluation           = NO
+Stage6 regression           = 224 / 224 PASS
+STATUS = PASS_FUTURE_EVALUATOR_GEOMETRY_IDENTITY_BOUND
+report = /home/agni/waymo/iscai_stage6/reports/block68_part2b_part2_geometry_identity_bind.json
+terminal remains open = YES

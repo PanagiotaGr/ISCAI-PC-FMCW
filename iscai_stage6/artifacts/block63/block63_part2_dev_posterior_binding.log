@@ -1,0 +1,51 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2_dev_posterior_binding.py", line 1799, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2_dev_posterior_binding.py", line 791, in main
+    require(
+    ~~~~~~~^
+        "metric_h0_displacement"
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2_dev_posterior_binding.py", line 90, in require
+    raise RuntimeError(
+        message
+    )
+RuntimeError: Could not prove metric_H0_displacement from frozen coordinate artifact.
+============================================================
+STAGE 6 — BLOCK 6.3 PART 2/2 — PHASE A
+EXACT DEVELOPMENT POSTERIOR BINDING
+============================================================
+
+===== A. FROZEN BLOCK6.3 SEAL =====
+Part1 report  = EXACT PASS
+Block63 binding = EXACT PASS
+
+===== B. DEVELOPMENT ARTIFACT IDENTITY =====
+development_gaussian_posterior.json = 5a69f6e374da5d60e92f3112654591ea23ebdc6adeb8589ac365d2dd4fe8111e
+development_gaussian_posterior.npz = 39dacd4a1dd83ac9951244328403384421731dcffc1cf01617bcc6c6395460b4
+dev_posterior_resolver_summary.json = 6b2f4eb1caeab1e273fb6bebfb757ba49e58d80c771c42a282fb46dc5b536cb6
+actual_stage4_gaussian_route_audit.json = 7e912bcc860c4fe03bb9102cbc7796997b9d6979de61ff4e74941d5a066cbcea
+stage4_prediction_coordinate_semantics.json = d8c1ff754932f658dd5ee06e66e3f2c5aef71065867683779a897fce23cc73b2
+calibrated_runtime_api_audit.json = 3e7581e2d78ef3fb5c248f7744ddba19e2d6a2df903f1378a0f9b334b25c17dc
+
+===== C. COORDINATE SEMANTICS =====
+
+============================================================
+BLOCK 6.3 PART2 DEVELOPMENT BINDING = BLOCKED
+============================================================
+exception = RuntimeError Could not prove metric_H0_displacement from frozen coordinate artifact.
+
+
+Block6.3 Part1 modified = NO
+Stage4/5 modified      = NO
+dataset access         = NO
+model inference        = NO
+formal evaluation      = NO
+parameter tuning       = NO
+terminal remains open  = YES

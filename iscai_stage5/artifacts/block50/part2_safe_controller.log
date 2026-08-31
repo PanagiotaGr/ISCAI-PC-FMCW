@@ -1,0 +1,124 @@
+============================================================
+BLOCK 5.0 PART 2/2 — SAFE CONTROLLER
+============================================================
+
+===== CONTROLLED COMPILE =====
+__init__.py = PASS
+contracts.py = PASS
+test_block50_contracts.py = PASS
+run_block50_contract_freeze.py = PASS
+run_block50_part2_safe.py = PASS
+
+===== BLOCK5.0 CONTRACT TESTS =====
+
+............
+----------------------------------------------------------------------
+Ran 12 tests in 0.000s
+
+OK
+
+Block5.0 tests = 12 / 12 PASS
+
+===== PRE-FREEZE FULL STAGE5 REGRESSION =====
+
+............
+----------------------------------------------------------------------
+Ran 12 tests in 0.000s
+
+OK
+
+pre-freeze Stage5 regression = 12 / 12 PASS
+
+===== EXACT CONTRACT FREEZE =====
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage5/scripts/run_block50_contract_freeze.py", line 2537, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage5/scripts/run_block50_contract_freeze.py", line 1615, in main
+    require(
+    ~~~~~~~^
+        hits,
+        ^^^^^
+    ...<3 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage5/scripts/run_block50_contract_freeze.py", line 444, in require
+    raise RuntimeError(
+        message
+    )
+RuntimeError: Part-A notebook no longer contains effective_rate evidence.
+============================================================
+STAGE 5 — BLOCK 5.0 PART 2/2
+EXACT CONTRACT FREEZE
+============================================================
+
+============================================================
+A. PART1 CONTINUITY
+============================================================
+Block5.0 Part1             = PASS
+training/inference          = NO
+upstream modified           = NO
+
+============================================================
+B. FROZEN UPSTREAM RECHECK
+============================================================
+Stage4 closure               = PASS
+Stage4 handoff               = PASS
+Stage4 freeze                = PASS
+Stage4 reproducibility       = PASS
+Gaussian checkpoint          = PASS
+normalization                = PASS
+calibrator                   = PASS
+formal manifest              = PASS
+PDF certification            = PASS
+Waymo NOTICE                 = PASS
+Part-A frozen reference      = PASS
+
+============================================================
+C. EXACT PART-A NOTEBOOK SOURCE FREEZE
+============================================================
+Part-A notebook          = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+notebook SHA256          = b5a80a6d3441de6d571db4f65b4a43ed4052cc2b3ccba935ad31b5dd51316ef3
+notebook cells           = 77
+numeric assignments      = 142
+non-Python parse cells   = 0
+carrier_frequency_Hz      = PASS | fc = 193400000000000.0
+waveform_bandwidth_Hz     = PASS | B = 10000000000.0
+chirp_duration_s          = PASS | T_chirp = 1e-05
+data_rate_bps             = PASS | data_rate = 1000000000.0
+sample_period_s           = PASS | Ts = 1e-09
+N_fast                    = PASS | N_fast = 131072.0
+M_chirps                  = PASS | M_chirps = 64.0
+
+============================================================
+D. PART-A OPTICAL / DPSK EVIDENCE-CELL FREEZE
+============================================================
+DPSK                            = PASS | cells = [9, 10, 12, 13, 14, 15, 16, 17, 22, 63]
+BER                             = PASS | cells = [16, 17, 29, 31, 35, 63, 64, 65]
+optical_gain_or_received_power  = PASS | cells = [65]
+
+============================================================
+BLOCK 5.0 PART 2/2 = BLOCKED
+============================================================
+exception = RuntimeError Part-A notebook no longer contains effective_rate evidence.
+
+training/inference         = NO
+formal evaluation          = NO
+Stage4 retraining          = NO
+Stage4 recalibration       = NO
+upstream modified          = NO
+terminal remains open      = YES
+
+contract-freeze raw code = 0
+
+============================================================
+BLOCK 5.0 PART 2/2 SAFE CONTROLLER
+============================================================
+STATUS = BLOCKED
+phase = structured_report
+reason = Block5.0 final report was not written.
+recovery = Inspect artifacts/block50/part2_safe.log.
+training/inference = NO
+terminal remains open = YES

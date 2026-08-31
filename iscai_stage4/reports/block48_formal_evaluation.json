@@ -1,0 +1,1239 @@
+{
+  "Stage4_acceptance_evidence": {
+    "PDF_acceptance_current": true,
+    "PDF_calibration_measured": true,
+    "PDF_probabilistic_beats_at_least_one_classical": true,
+    "final_closure_decision": "DEFERRED_TO_BLOCK4.10",
+    "internal_CV_gate": true
+  },
+  "availability": {
+    "classes": {
+      "TYPE_CYCLIST": {
+        "eligible_truth_tracks": 27,
+        "matched_tracks": 25,
+        "recall": 0.9259259259259259
+      },
+      "TYPE_PEDESTRIAN": {
+        "eligible_truth_tracks": 62,
+        "matched_tracks": 55,
+        "recall": 0.8870967741935484
+      },
+      "TYPE_VEHICLE": {
+        "eligible_truth_tracks": 458,
+        "matched_tracks": 414,
+        "recall": 0.9039301310043668
+      }
+    },
+    "eligible_truth_tracks": 547,
+    "horizons": {
+      "0.1": {
+        "availability_recall": 0.9029304029304029,
+        "available_predictions": 493,
+        "eligible_truth_tracks": 546
+      },
+      "0.3": {
+        "availability_recall": 0.9025735294117647,
+        "available_predictions": 491,
+        "eligible_truth_tracks": 544
+      },
+      "0.5": {
+        "availability_recall": 0.9044117647058824,
+        "available_predictions": 492,
+        "eligible_truth_tracks": 544
+      },
+      "1.0": {
+        "availability_recall": 0.9044117647058824,
+        "available_predictions": 492,
+        "eligible_truth_tracks": 544
+      }
+    },
+    "matched_target_recall": 0.903107861060329,
+    "matched_tracks": 494
+  },
+  "block": "4.8",
+  "classical_frozen_Stage3": {
+    "CA": {
+      "ade_m": 42.49438163820611,
+      "f1": 0.20767163449792328,
+      "fde_m": 115.39067810342564,
+      "recall": 0.7855822550831792
+    },
+    "CTRV": {
+      "ade_m": 6.453930162499179,
+      "f1": 0.20767163449792328,
+      "fde_m": 10.415680828481843,
+      "recall": 0.7855822550831792
+    },
+    "CV": {
+      "ade_m": 9.538706032921292,
+      "f1": 0.1838307966001186,
+      "fde_m": 19.598318908620666,
+      "recall": 0.8595194085027726
+    },
+    "IMM_CV_CA_CTRV": {
+      "ade_m": 11.232591369475708,
+      "f1": 0.20767163449792328,
+      "fde_m": 20.139907890760277,
+      "recall": 0.7855822550831792
+    },
+    "Kalman_EKF": {
+      "ade_m": 12.373487723184146,
+      "f1": 0.1838307966001186,
+      "fde_m": 19.791890509820036,
+      "recall": 0.8595194085027726
+    },
+    "Multidimensional_Hough": {
+      "ade_m": 1.6147003361796544,
+      "f1": 0.2904899135446686,
+      "fde_m": 2.536680875181824,
+      "recall": 0.4658040665434381
+    }
+  },
+  "comparison": {
+    "beats_at_least_one_classical": true,
+    "calibrated_Gaussian_ADE_m": 1.9848952833749467,
+    "classical_baselines_beaten": [
+      "CA",
+      "CTRV",
+      "CV",
+      "IMM_CV_CA_CTRV",
+      "Kalman_EKF"
+    ],
+    "frozen_CV_ADE_m": 9.538706032921292,
+    "internal_CV_gate": true,
+    "primary_metric": "planar_ADE_m"
+  },
+  "formal_calibration_generalization": {
+    "ECE_nonworsening": true,
+    "calibrated_coverage_event_Brier": 0.19413178861788616,
+    "calibrated_macro_ECE": 0.11165527003334381,
+    "calibrated_metric_Gaussian_NLL": 3.6848268203287406,
+    "raw_coverage_event_Brier": 0.2397821951219512,
+    "raw_macro_ECE": 0.18362046536363294,
+    "raw_metric_Gaussian_NLL": 4.15760466880646
+  },
+  "formal_population": {
+    "Stage3_formal_run_sha256": "5fbb4642f87ab8e62cf1e1b3ef4214d92df5b5a1423bd9fb72b9733ced02e433",
+    "manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "same_frozen_population": true,
+    "scenario_count": 120
+  },
+  "implementation": {
+    "file_count": 74,
+    "sha256": "f21abaed100d1337ad95e6005298727ab5e103d10d3a173b7d2e561d886dc88d"
+  },
+  "leakage_contract": {
+    "calibrator_fit_on_formal": false,
+    "future_model_input": false,
+    "model_selection_on_formal": false,
+    "normalization_fit_on_formal": false,
+    "tracks_to_predict_accessed_after_prediction": true,
+    "tracks_to_predict_model_input": false,
+    "training_on_formal": false
+  },
+  "neural_models": {
+    "GMM_ablation": {
+      "MAP_mode_counts": {
+        "0": 0,
+        "1": 494,
+        "2": 0
+      },
+      "MAP_point_metrics": {
+        "ade_3d_m": 2.0006470069374056,
+        "ade_m": 1.9769698915781548,
+        "ade_point_count": 1968,
+        "classes": {
+          "TYPE_CYCLIST": {
+            "ade_3d_m": 1.596109141168611,
+            "ade_m": 1.5790397876054572,
+            "fde_1.0s_m": 2.796765371139449,
+            "horizons": {
+              "0.1": {
+                "available_predictions": 25,
+                "mean_planar_error_m": 0.7509714188566402
+              },
+              "0.3": {
+                "available_predictions": 25,
+                "mean_planar_error_m": 1.1528130152010378
+              },
+              "0.5": {
+                "available_predictions": 25,
+                "mean_planar_error_m": 1.6156093452247022
+              },
+              "1.0": {
+                "available_predictions": 25,
+                "mean_planar_error_m": 2.796765371139449
+              }
+            },
+            "matched_tracks": 25
+          },
+          "TYPE_PEDESTRIAN": {
+            "ade_3d_m": 0.8860746734482462,
+            "ade_m": 0.8468907775426077,
+            "fde_1.0s_m": 1.353528143571616,
+            "horizons": {
+              "0.1": {
+                "available_predictions": 55,
+                "mean_planar_error_m": 0.50738443126402
+              },
+              "0.3": {
+                "available_predictions": 54,
+                "mean_planar_error_m": 0.6618002725999673
+              },
+              "0.5": {
+                "available_predictions": 55,
+                "mean_planar_error_m": 0.8614849808267797
+              },
+              "1.0": {
+                "available_predictions": 55,
+                "mean_planar_error_m": 1.353528143571616
+              }
+            },
+            "matched_tracks": 55
+          },
+          "TYPE_VEHICLE": {
+            "ade_3d_m": 2.1732031789271,
+            "ade_m": 2.1511847711239733,
+            "fde_1.0s_m": 3.6061792235646286,
+            "horizons": {
+              "0.1": {
+                "available_predictions": 413,
+                "mean_planar_error_m": 1.195449225872889
+              },
+              "0.3": {
+                "available_predictions": 412,
+                "mean_planar_error_m": 1.6303045104645344
+              },
+              "0.5": {
+                "available_predictions": 412,
+                "mean_planar_error_m": 2.175125871062898
+              },
+              "1.0": {
+                "available_predictions": 412,
+                "mean_planar_error_m": 3.6061792235646286
+              }
+            },
+            "matched_tracks": 414
+          }
+        },
+        "fde_1.0s_m": 3.31322972008852,
+        "fde_1.0s_track_count": 492,
+        "horizons": {
+          "0.1": {
+            "available_predictions": 493,
+            "mean_3d_error_m": 1.1308518675129413,
+            "mean_planar_error_m": 1.0961479908244223
+          },
+          "0.3": {
+            "available_predictions": 491,
+            "mean_3d_error_m": 1.525242342359777,
+            "mean_planar_error_m": 1.499476575176807
+          },
+          "0.5": {
+            "available_predictions": 492,
+            "mean_3d_error_m": 2.0201022010404115,
+            "mean_planar_error_m": 1.9998450537683015
+          },
+          "1.0": {
+            "available_predictions": 492,
+            "mean_3d_error_m": 3.327193223492686,
+            "mean_planar_error_m": 3.31322972008852
+          }
+        },
+        "matched_track_count": 494
+      },
+      "calibrated": false,
+      "downstream_selected": false,
+      "effective_mode_count": 2.7573970285750744,
+      "joint_GMM_NLL_per_sample": 12.149566182246462,
+      "mean_mixture_probability": [
+        0.23141049009513628,
+        0.5298547023471922,
+        0.23873480755767076
+      ],
+      "minADE_m": 1.7501282180440747,
+      "minFDE_1.0s_m": 2.8964357486760552,
+      "mixture_entropy_nats": 1.0136083121890607,
+      "mixture_mean_point_metrics": {
+        "ade_3d_m": 1.997437000472699,
+        "ade_m": 1.9739866668992556,
+        "ade_point_count": 1968,
+        "classes": {
+          "TYPE_CYCLIST": {
+            "ade_3d_m": 1.5983235888821332,
+            "ade_m": 1.5815639142647893,
+            "fde_1.0s_m": 2.8043735179897156,
+            "horizons": {
+              "0.1": {
+                "available_predictions": 25,
+                "mean_planar_error_m": 0.748904966255654
+              },
+              "0.3": {
+                "available_predictions": 25,
+                "mean_planar_error_m": 1.1531566796705033
+              },
+              "0.5": {
+                "available_predictions": 25,
+                "mean_planar_error_m": 1.619820493143285
+              },
+              "1.0": {
+                "available_predictions": 25,
+                "mean_planar_error_m": 2.8043735179897156
+              }
+            },
+            "matched_tracks": 25
+          },
+          "TYPE_PEDESTRIAN": {
+            "ade_3d_m": 0.8837905632202118,
+            "ade_m": 0.8456164509870228,
+            "fde_1.0s_m": 1.3520341982933919,
+            "horizons": {
+              "0.1": {
+                "available_predictions": 55,
+                "mean_planar_error_m": 0.5070901169715278
+              },
+              "0.3": {
+                "available_predictions": 54,
+                "mean_planar_error_m": 0.6602930842484517
+              },
+              "0.5": {
+                "available_predictions": 55,
+                "mean_planar_error_m": 0.8596788886758367
+              },
+              "1.0": {
+                "available_predictions": 55,
+                "mean_planar_error_m": 1.3520341982933919
+              }
+            },
+            "matched_tracks": 55
+          },
+          "TYPE_VEHICLE": {
+            "ade_3d_m": 2.1695412520902555,
+            "ade_m": 2.14764061022747,
+            "fde_1.0s_m": 3.600364174446198,
+            "horizons": {
+              "0.1": {
+                "available_predictions": 413,
+                "mean_planar_error_m": 1.1923349947899036
+              },
+              "0.3": {
+                "available_predictions": 412,
+                "mean_planar_error_m": 1.6276952682324937
+              },
+              "0.5": {
+                "available_predictions": 412,
+                "mean_planar_error_m": 2.1724867063913766
+              },
+              "1.0": {
+                "available_predictions": 412,
+                "mean_planar_error_m": 3.600364174446198
+              }
+            },
+            "matched_tracks": 414
+          }
+        },
+        "fde_1.0s_m": 3.3085797941620183,
+        "fde_1.0s_track_count": 492,
+        "horizons": {
+          "0.1": {
+            "available_predictions": 493,
+            "mean_3d_error_m": 1.1278308015325165,
+            "mean_planar_error_m": 1.0934014877039664
+          },
+          "0.3": {
+            "available_predictions": 491,
+            "mean_3d_error_m": 1.5226903881140337,
+            "mean_planar_error_m": 1.4971388880915815
+          },
+          "0.5": {
+            "available_predictions": 492,
+            "mean_3d_error_m": 2.0177166326256404,
+            "mean_planar_error_m": 1.9976471021117892
+          },
+          "1.0": {
+            "available_predictions": 492,
+            "mean_3d_error_m": 3.322312739753932,
+            "mean_planar_error_m": 3.3085797941620183
+          }
+        },
+        "matched_track_count": 494
+      }
+    },
+    "calibrated_Gaussian_GRU": {
+      "NLL": {
+        "by_horizon": {
+          "0.1": 2.4675919652962253,
+          "0.3": 3.2543490741833523,
+          "0.5": 3.888964227361892,
+          "1.0": 5.130001114288304
+        },
+        "metric_Gaussian_NLL": 3.6848268203287406,
+        "valid_actor_horizon_points": 1968
+      },
+      "calibrator_sha256": "508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087",
+      "covariance_SPD": true,
+      "mean_identical_to_raw": true,
+      "point_metrics": {
+        "ade_3d_m": 2.0081093824824876,
+        "ade_m": 1.9848952833749467,
+        "ade_point_count": 1968,
+        "classes": {
+          "TYPE_CYCLIST": {
+            "ade_3d_m": 1.6096121276877913,
+            "ade_m": 1.594219924517964,
+            "fde_1.0s_m": 2.8213151679305595,
+            "horizons": {
+              "0.1": {
+                "available_predictions": 25,
+                "mean_planar_error_m": 0.7496936614181529
+              },
+              "0.3": {
+                "available_predictions": 25,
+                "mean_planar_error_m": 1.1637453420960548
+              },
+              "0.5": {
+                "available_predictions": 25,
+                "mean_planar_error_m": 1.6421255266270882
+              },
+              "1.0": {
+                "available_predictions": 25,
+                "mean_planar_error_m": 2.8213151679305595
+              }
+            },
+            "matched_tracks": 25
+          },
+          "TYPE_PEDESTRIAN": {
+            "ade_3d_m": 0.8824625121577032,
+            "ade_m": 0.8454017760562326,
+            "fde_1.0s_m": 1.3540309911925974,
+            "horizons": {
+              "0.1": {
+                "available_predictions": 55,
+                "mean_planar_error_m": 0.5074553140899235
+              },
+              "0.3": {
+                "available_predictions": 54,
+                "mean_planar_error_m": 0.6576710644115951
+              },
+              "0.5": {
+                "available_predictions": 55,
+                "mean_planar_error_m": 0.8590364488645476
+              },
+              "1.0": {
+                "available_predictions": 55,
+                "mean_planar_error_m": 1.3540309911925974
+              }
+            },
+            "matched_tracks": 55
+          },
+          "TYPE_VEHICLE": {
+            "ade_3d_m": 2.181770019280909,
+            "ade_m": 2.1599205192685167,
+            "fde_1.0s_m": 3.6124850496394902,
+            "horizons": {
+              "0.1": {
+                "available_predictions": 413,
+                "mean_planar_error_m": 1.201171529187864
+              },
+              "0.3": {
+                "available_predictions": 412,
+                "mean_planar_error_m": 1.641158858739831
+              },
+              "0.5": {
+                "available_predictions": 412,
+                "mean_planar_error_m": 2.1871937001624167
+              },
+              "1.0": {
+                "available_predictions": 412,
+                "mean_planar_error_m": 3.6124850496394902
+              }
+            },
+            "matched_tracks": 414
+          }
+        },
+        "fde_1.0s_m": 3.3198138702547295,
+        "fde_1.0s_track_count": 492,
+        "horizons": {
+          "0.1": {
+            "available_predictions": 493,
+            "mean_3d_error_m": 1.134920526332466,
+            "mean_planar_error_m": 1.1008848384685344
+          },
+          "0.3": {
+            "available_predictions": 491,
+            "mean_3d_error_m": 1.5340752570589375,
+            "mean_planar_error_m": 1.5086870078033356
+          },
+          "0.5": {
+            "available_predictions": 492,
+            "mean_3d_error_m": 2.030961380186908,
+            "mean_planar_error_m": 2.011024283171022
+          },
+          "1.0": {
+            "available_predictions": 492,
+            "mean_3d_error_m": 3.333291656454741,
+            "mean_planar_error_m": 3.3198138702547295
+          }
+        },
+        "matched_track_count": 494
+      },
+      "reliability": {
+        "by_horizon": {
+          "0.1": {
+            "coverage_ECE": 0.06978498985801218,
+            "levels": {
+              "0.50": {
+                "absolute_error": 0.0030425963488843744,
+                "chi_square_df3_threshold": 2.3659738843753377,
+                "coverage_event_Brier": 0.25,
+                "empirical": 0.4969574036511156,
+                "inside": 245,
+                "nominal": 0.5,
+                "valid": 493
+              },
+              "0.80": {
+                "absolute_error": 0.07789046653144016,
+                "chi_square_df3_threshold": 4.64162767608745,
+                "coverage_event_Brier": 0.20673427991886412,
+                "empirical": 0.7221095334685599,
+                "inside": 356,
+                "nominal": 0.8,
+                "valid": 493
+              },
+              "0.90": {
+                "absolute_error": 0.10283975659229216,
+                "chi_square_df3_threshold": 6.251388631170325,
+                "coverage_event_Brier": 0.17227180527383365,
+                "empirical": 0.7971602434077079,
+                "inside": 393,
+                "nominal": 0.9,
+                "valid": 493
+              },
+              "0.95": {
+                "absolute_error": 0.10010141987829613,
+                "chi_square_df3_threshold": 7.814727903251179,
+                "coverage_event_Brier": 0.13759127789046655,
+                "empirical": 0.8498985801217038,
+                "inside": 419,
+                "nominal": 0.95,
+                "valid": 493
+              },
+              "0.99": {
+                "absolute_error": 0.06505070993914808,
+                "chi_square_df3_threshold": 11.344866730144373,
+                "coverage_event_Brier": 0.0736496957403651,
+                "empirical": 0.9249492900608519,
+                "inside": 456,
+                "nominal": 0.99,
+                "valid": 493
+              }
+            },
+            "valid": 493
+          },
+          "0.3": {
+            "coverage_ECE": 0.1033564154786151,
+            "levels": {
+              "0.50": {
+                "absolute_error": 0.04378818737270873,
+                "chi_square_df3_threshold": 2.3659738843753377,
+                "coverage_event_Brier": 0.25,
+                "empirical": 0.45621181262729127,
+                "inside": 224,
+                "nominal": 0.5,
+                "valid": 491
+              },
+              "0.80": {
+                "absolute_error": 0.12382892057026484,
+                "chi_square_df3_threshold": 4.64162767608745,
+                "coverage_event_Brier": 0.2342973523421589,
+                "empirical": 0.6761710794297352,
+                "inside": 332,
+                "nominal": 0.8,
+                "valid": 491
+              },
+              "0.90": {
+                "absolute_error": 0.14032586558044813,
+                "chi_square_df3_threshold": 6.251388631170325,
+                "coverage_event_Brier": 0.20226069246435846,
+                "empirical": 0.7596741344195519,
+                "inside": 373,
+                "nominal": 0.9,
+                "valid": 491
+              },
+              "0.95": {
+                "absolute_error": 0.12718940936863543,
+                "chi_square_df3_threshold": 7.814727903251179,
+                "coverage_event_Brier": 0.1619704684317719,
+                "empirical": 0.8228105906313645,
+                "inside": 404,
+                "nominal": 0.95,
+                "valid": 491
+              },
+              "0.99": {
+                "absolute_error": 0.08164969450101833,
+                "chi_square_df3_threshold": 11.344866730144373,
+                "coverage_event_Brier": 0.08991670061099798,
+                "empirical": 0.9083503054989817,
+                "inside": 446,
+                "nominal": 0.99,
+                "valid": 491
+              }
+            },
+            "valid": 491
+          },
+          "0.5": {
+            "coverage_ECE": 0.12190243902439027,
+            "levels": {
+              "0.50": {
+                "absolute_error": 0.06097560975609756,
+                "chi_square_df3_threshold": 2.3659738843753377,
+                "coverage_event_Brier": 0.25,
+                "empirical": 0.43902439024390244,
+                "inside": 216,
+                "nominal": 0.5,
+                "valid": 492
+              },
+              "0.80": {
+                "absolute_error": 0.13739837398373989,
+                "chi_square_df3_threshold": 4.64162767608745,
+                "coverage_event_Brier": 0.24243902439024395,
+                "empirical": 0.6626016260162602,
+                "inside": 326,
+                "nominal": 0.8,
+                "valid": 492
+              },
+              "0.90": {
+                "absolute_error": 0.16422764227642284,
+                "chi_square_df3_threshold": 6.251388631170325,
+                "coverage_event_Brier": 0.2213821138211382,
+                "empirical": 0.7357723577235772,
+                "inside": 362,
+                "nominal": 0.9,
+                "valid": 492
+              },
+              "0.95": {
+                "absolute_error": 0.1451219512195121,
+                "chi_square_df3_threshold": 7.814727903251179,
+                "coverage_event_Brier": 0.17810975609756097,
+                "empirical": 0.8048780487804879,
+                "inside": 396,
+                "nominal": 0.95,
+                "valid": 492
+              },
+              "0.99": {
+                "absolute_error": 0.10178861788617888,
+                "chi_square_df3_threshold": 11.344866730144373,
+                "coverage_event_Brier": 0.10965284552845528,
+                "empirical": 0.8882113821138211,
+                "inside": 437,
+                "nominal": 0.99,
+                "valid": 492
+              }
+            },
+            "valid": 492
+          },
+          "1.0": {
+            "coverage_ECE": 0.15157723577235774,
+            "levels": {
+              "0.50": {
+                "absolute_error": 0.08739837398373984,
+                "chi_square_df3_threshold": 2.3659738843753377,
+                "coverage_event_Brier": 0.25,
+                "empirical": 0.41260162601626016,
+                "inside": 203,
+                "nominal": 0.5,
+                "valid": 492
+              },
+              "0.80": {
+                "absolute_error": 0.1678861788617887,
+                "chi_square_df3_threshold": 4.64162767608745,
+                "coverage_event_Brier": 0.26073170731707324,
+                "empirical": 0.6321138211382114,
+                "inside": 311,
+                "nominal": 0.8,
+                "valid": 492
+              },
+              "0.90": {
+                "absolute_error": 0.1865853658536586,
+                "chi_square_df3_threshold": 6.251388631170325,
+                "coverage_event_Brier": 0.23926829268292682,
+                "empirical": 0.7134146341463414,
+                "inside": 351,
+                "nominal": 0.9,
+                "valid": 492
+              },
+              "0.95": {
+                "absolute_error": 0.18170731707317067,
+                "chi_square_df3_threshold": 7.814727903251179,
+                "coverage_event_Brier": 0.21103658536585365,
+                "empirical": 0.7682926829268293,
+                "inside": 378,
+                "nominal": 0.95,
+                "valid": 492
+              },
+              "0.99": {
+                "absolute_error": 0.13430894308943087,
+                "chi_square_df3_threshold": 11.344866730144373,
+                "coverage_event_Brier": 0.14152276422764226,
+                "empirical": 0.8556910569105691,
+                "inside": 421,
+                "nominal": 0.99,
+                "valid": 492
+              }
+            },
+            "valid": 492
+          }
+        },
+        "confidence_level_weighting": "equal_macro",
+        "confidence_levels": [
+          0.5,
+          0.8,
+          0.9,
+          0.95,
+          0.99
+        ],
+        "coverage_ECE_macro": 0.11165527003334381,
+        "coverage_MAE_macro": 0.11165527003334381,
+        "coverage_event_Brier": 0.19413178861788616,
+        "global_levels": {
+          "0.50": {
+            "absolute_error": 0.04878048780487804,
+            "empirical": 0.45121951219512196,
+            "inside": 888,
+            "nominal": 0.5,
+            "valid": 1968
+          },
+          "0.80": {
+            "absolute_error": 0.12672764227642286,
+            "empirical": 0.6732723577235772,
+            "inside": 1325,
+            "nominal": 0.8,
+            "valid": 1968
+          },
+          "0.90": {
+            "absolute_error": 0.14847560975609764,
+            "empirical": 0.7515243902439024,
+            "inside": 1479,
+            "nominal": 0.9,
+            "valid": 1968
+          },
+          "0.95": {
+            "absolute_error": 0.13851626016260155,
+            "empirical": 0.8114837398373984,
+            "inside": 1597,
+            "nominal": 0.95,
+            "valid": 1968
+          },
+          "0.99": {
+            "absolute_error": 0.09569105691056912,
+            "empirical": 0.8943089430894309,
+            "inside": 1760,
+            "nominal": 0.99,
+            "valid": 1968
+          }
+        },
+        "horizon_weighting": "equal_macro"
+      }
+    },
+    "deterministic_GRU": {
+      "ade_3d_m": 2.003231079151904,
+      "ade_m": 1.977799942082802,
+      "ade_point_count": 1968,
+      "classes": {
+        "TYPE_CYCLIST": {
+          "ade_3d_m": 1.590928494550671,
+          "ade_m": 1.576155904001657,
+          "fde_1.0s_m": 2.7936082264093636,
+          "horizons": {
+            "0.1": {
+              "available_predictions": 25,
+              "mean_planar_error_m": 0.7324497930726875
+            },
+            "0.3": {
+              "available_predictions": 25,
+              "mean_planar_error_m": 1.1540332019801998
+            },
+            "0.5": {
+              "available_predictions": 25,
+              "mean_planar_error_m": 1.6245323945443757
+            },
+            "1.0": {
+              "available_predictions": 25,
+              "mean_planar_error_m": 2.7936082264093636
+            }
+          },
+          "matched_tracks": 25
+        },
+        "TYPE_PEDESTRIAN": {
+          "ade_3d_m": 1.0350894948726705,
+          "ade_m": 0.9950353138717756,
+          "fde_1.0s_m": 1.629340629477996,
+          "horizons": {
+            "0.1": {
+              "available_predictions": 55,
+              "mean_planar_error_m": 0.5740554322396297
+            },
+            "0.3": {
+              "available_predictions": 54,
+              "mean_planar_error_m": 0.7656128583350456
+            },
+            "0.5": {
+              "available_predictions": 55,
+              "mean_planar_error_m": 1.006961018061035
+            },
+            "1.0": {
+              "available_predictions": 55,
+              "mean_planar_error_m": 1.629340629477996
+            }
+          },
+          "matched_tracks": 55
+        },
+        "TYPE_VEHICLE": {
+          "ade_3d_m": 2.1568109854085904,
+          "ade_m": 2.1326755378295146,
+          "fde_1.0s_m": 3.6009957343301786,
+          "horizons": {
+            "0.1": {
+              "available_predictions": 413,
+              "mean_planar_error_m": 1.149938358217692
+            },
+            "0.3": {
+              "available_predictions": 412,
+              "mean_planar_error_m": 1.6099695133942888
+            },
+            "0.5": {
+              "available_predictions": 412,
+              "mean_planar_error_m": 2.172183829792434
+            },
+            "1.0": {
+              "available_predictions": 412,
+              "mean_planar_error_m": 3.6009957343301786
+            }
+          },
+          "matched_tracks": 414
+        }
+      },
+      "fde_1.0s_m": 3.339561347206417,
+      "fde_1.0s_track_count": 492,
+      "horizons": {
+        "0.1": {
+          "available_predictions": 493,
+          "mean_3d_error_m": 1.1030734289592923,
+          "mean_planar_error_m": 1.0645209645920966
+        },
+        "0.3": {
+          "available_predictions": 491,
+          "mean_3d_error_m": 1.5218042780578889,
+          "mean_planar_error_m": 1.4938927982037566
+        },
+        "0.5": {
+          "available_predictions": 492,
+          "mean_3d_error_m": 2.0350717598424026,
+          "mean_planar_error_m": 2.014097365307823
+        },
+        "1.0": {
+          "available_predictions": 492,
+          "mean_3d_error_m": 3.3538259287096164,
+          "mean_planar_error_m": 3.339561347206417
+        }
+      },
+      "matched_track_count": 494
+    },
+    "raw_Gaussian_GRU": {
+      "NLL": {
+        "by_horizon": {
+          "0.1": 2.7550013926003145,
+          "0.3": 3.768089082287639,
+          "0.5": 4.457168489305181,
+          "1.0": 5.652218832353206
+        },
+        "metric_Gaussian_NLL": 4.15760466880646,
+        "valid_actor_horizon_points": 1968
+      },
+      "point_metrics": {
+        "ade_3d_m": 2.0081093824824876,
+        "ade_m": 1.9848952833749467,
+        "ade_point_count": 1968,
+        "classes": {
+          "TYPE_CYCLIST": {
+            "ade_3d_m": 1.6096121276877913,
+            "ade_m": 1.594219924517964,
+            "fde_1.0s_m": 2.8213151679305595,
+            "horizons": {
+              "0.1": {
+                "available_predictions": 25,
+                "mean_planar_error_m": 0.7496936614181529
+              },
+              "0.3": {
+                "available_predictions": 25,
+                "mean_planar_error_m": 1.1637453420960548
+              },
+              "0.5": {
+                "available_predictions": 25,
+                "mean_planar_error_m": 1.6421255266270882
+              },
+              "1.0": {
+                "available_predictions": 25,
+                "mean_planar_error_m": 2.8213151679305595
+              }
+            },
+            "matched_tracks": 25
+          },
+          "TYPE_PEDESTRIAN": {
+            "ade_3d_m": 0.8824625121577032,
+            "ade_m": 0.8454017760562326,
+            "fde_1.0s_m": 1.3540309911925974,
+            "horizons": {
+              "0.1": {
+                "available_predictions": 55,
+                "mean_planar_error_m": 0.5074553140899235
+              },
+              "0.3": {
+                "available_predictions": 54,
+                "mean_planar_error_m": 0.6576710644115951
+              },
+              "0.5": {
+                "available_predictions": 55,
+                "mean_planar_error_m": 0.8590364488645476
+              },
+              "1.0": {
+                "available_predictions": 55,
+                "mean_planar_error_m": 1.3540309911925974
+              }
+            },
+            "matched_tracks": 55
+          },
+          "TYPE_VEHICLE": {
+            "ade_3d_m": 2.181770019280909,
+            "ade_m": 2.1599205192685167,
+            "fde_1.0s_m": 3.6124850496394902,
+            "horizons": {
+              "0.1": {
+                "available_predictions": 413,
+                "mean_planar_error_m": 1.201171529187864
+              },
+              "0.3": {
+                "available_predictions": 412,
+                "mean_planar_error_m": 1.641158858739831
+              },
+              "0.5": {
+                "available_predictions": 412,
+                "mean_planar_error_m": 2.1871937001624167
+              },
+              "1.0": {
+                "available_predictions": 412,
+                "mean_planar_error_m": 3.6124850496394902
+              }
+            },
+            "matched_tracks": 414
+          }
+        },
+        "fde_1.0s_m": 3.3198138702547295,
+        "fde_1.0s_track_count": 492,
+        "horizons": {
+          "0.1": {
+            "available_predictions": 493,
+            "mean_3d_error_m": 1.134920526332466,
+            "mean_planar_error_m": 1.1008848384685344
+          },
+          "0.3": {
+            "available_predictions": 491,
+            "mean_3d_error_m": 1.5340752570589375,
+            "mean_planar_error_m": 1.5086870078033356
+          },
+          "0.5": {
+            "available_predictions": 492,
+            "mean_3d_error_m": 2.030961380186908,
+            "mean_planar_error_m": 2.011024283171022
+          },
+          "1.0": {
+            "available_predictions": 492,
+            "mean_3d_error_m": 3.333291656454741,
+            "mean_planar_error_m": 3.3198138702547295
+          }
+        },
+        "matched_track_count": 494
+      },
+      "reliability": {
+        "by_horizon": {
+          "0.1": {
+            "coverage_ECE": 0.12211764705882353,
+            "levels": {
+              "0.50": {
+                "absolute_error": 0.06592292089249491,
+                "chi_square_df3_threshold": 2.3659738843753377,
+                "coverage_event_Brier": 0.25,
+                "empirical": 0.4340770791075051,
+                "inside": 214,
+                "nominal": 0.5,
+                "valid": 493
+              },
+              "0.80": {
+                "absolute_error": 0.14482758620689662,
+                "chi_square_df3_threshold": 4.64162767608745,
+                "coverage_event_Brier": 0.246896551724138,
+                "empirical": 0.6551724137931034,
+                "inside": 323,
+                "nominal": 0.8,
+                "valid": 493
+              },
+              "0.90": {
+                "absolute_error": 0.1474645030425964,
+                "chi_square_df3_threshold": 6.251388631170325,
+                "coverage_event_Brier": 0.20797160243407706,
+                "empirical": 0.7525354969574036,
+                "inside": 371,
+                "nominal": 0.9,
+                "valid": 493
+              },
+              "0.95": {
+                "absolute_error": 0.1508113590263691,
+                "chi_square_df3_threshold": 7.814727903251179,
+                "coverage_event_Brier": 0.18323022312373227,
+                "empirical": 0.7991886409736308,
+                "inside": 394,
+                "nominal": 0.95,
+                "valid": 493
+              },
+              "0.99": {
+                "absolute_error": 0.10156186612576068,
+                "chi_square_df3_threshold": 11.344866730144373,
+                "coverage_event_Brier": 0.10943062880324542,
+                "empirical": 0.8884381338742393,
+                "inside": 438,
+                "nominal": 0.99,
+                "valid": 493
+              }
+            },
+            "valid": 493
+          },
+          "0.3": {
+            "coverage_ECE": 0.18319348268839103,
+            "levels": {
+              "0.50": {
+                "absolute_error": 0.11507128309572301,
+                "chi_square_df3_threshold": 2.3659738843753377,
+                "coverage_event_Brier": 0.25,
+                "empirical": 0.384928716904277,
+                "inside": 189,
+                "nominal": 0.5,
+                "valid": 491
+              },
+              "0.80": {
+                "absolute_error": 0.21344195519348275,
+                "chi_square_df3_threshold": 4.64162767608745,
+                "coverage_event_Brier": 0.28806517311608965,
+                "empirical": 0.5865580448065173,
+                "inside": 288,
+                "nominal": 0.8,
+                "valid": 491
+              },
+              "0.90": {
+                "absolute_error": 0.22382892057026482,
+                "chi_square_df3_threshold": 6.251388631170325,
+                "coverage_event_Brier": 0.26906313645621177,
+                "empirical": 0.6761710794297352,
+                "inside": 332,
+                "nominal": 0.9,
+                "valid": 491
+              },
+              "0.95": {
+                "absolute_error": 0.21272912423625245,
+                "chi_square_df3_threshold": 7.814727903251179,
+                "coverage_event_Brier": 0.23895621181262727,
+                "empirical": 0.7372708757637475,
+                "inside": 362,
+                "nominal": 0.95,
+                "valid": 491
+              },
+              "0.99": {
+                "absolute_error": 0.15089613034623217,
+                "chi_square_df3_threshold": 11.344866730144373,
+                "coverage_event_Brier": 0.15777820773930754,
+                "empirical": 0.8391038696537678,
+                "inside": 412,
+                "nominal": 0.99,
+                "valid": 491
+              }
+            },
+            "valid": 491
+          },
+          "0.5": {
+            "coverage_ECE": 0.2088943089430894,
+            "levels": {
+              "0.50": {
+                "absolute_error": 0.1565040650406504,
+                "chi_square_df3_threshold": 2.3659738843753377,
+                "coverage_event_Brier": 0.25,
+                "empirical": 0.3434959349593496,
+                "inside": 169,
+                "nominal": 0.5,
+                "valid": 492
+              },
+              "0.80": {
+                "absolute_error": 0.23902439024390243,
+                "chi_square_df3_threshold": 4.64162767608745,
+                "coverage_event_Brier": 0.3034146341463415,
+                "empirical": 0.5609756097560976,
+                "inside": 276,
+                "nominal": 0.8,
+                "valid": 492
+              },
+              "0.90": {
+                "absolute_error": 0.23943089430894315,
+                "chi_square_df3_threshold": 6.251388631170325,
+                "coverage_event_Brier": 0.2815447154471544,
+                "empirical": 0.6605691056910569,
+                "inside": 325,
+                "nominal": 0.9,
+                "valid": 492
+              },
+              "0.95": {
+                "absolute_error": 0.22642276422764218,
+                "chi_square_df3_threshold": 7.814727903251179,
+                "coverage_event_Brier": 0.25128048780487805,
+                "empirical": 0.7235772357723578,
+                "inside": 356,
+                "nominal": 0.95,
+                "valid": 492
+              },
+              "0.99": {
+                "absolute_error": 0.18308943089430896,
+                "chi_square_df3_threshold": 11.344866730144373,
+                "coverage_event_Brier": 0.1893276422764228,
+                "empirical": 0.806910569105691,
+                "inside": 397,
+                "nominal": 0.99,
+                "valid": 492
+              }
+            },
+            "valid": 492
+          },
+          "1.0": {
+            "coverage_ECE": 0.22027642276422768,
+            "levels": {
+              "0.50": {
+                "absolute_error": 0.1646341463414634,
+                "chi_square_df3_threshold": 2.3659738843753377,
+                "coverage_event_Brier": 0.25,
+                "empirical": 0.3353658536585366,
+                "inside": 165,
+                "nominal": 0.5,
+                "valid": 492
+              },
+              "0.80": {
+                "absolute_error": 0.23699186991869925,
+                "chi_square_df3_threshold": 4.64162767608745,
+                "coverage_event_Brier": 0.30219512195121956,
+                "empirical": 0.5630081300813008,
+                "inside": 277,
+                "nominal": 0.8,
+                "valid": 492
+              },
+              "0.90": {
+                "absolute_error": 0.25569105691056915,
+                "chi_square_df3_threshold": 6.251388631170325,
+                "coverage_event_Brier": 0.29455284552845523,
+                "empirical": 0.6443089430894309,
+                "inside": 317,
+                "nominal": 0.9,
+                "valid": 492
+              },
+              "0.95": {
+                "absolute_error": 0.2528455284552845,
+                "chi_square_df3_threshold": 7.814727903251179,
+                "coverage_event_Brier": 0.2750609756097561,
+                "empirical": 0.6971544715447154,
+                "inside": 343,
+                "nominal": 0.95,
+                "valid": 492
+              },
+              "0.99": {
+                "absolute_error": 0.1912195121951219,
+                "chi_square_df3_threshold": 11.344866730144373,
+                "coverage_event_Brier": 0.1972951219512195,
+                "empirical": 0.7987804878048781,
+                "inside": 393,
+                "nominal": 0.99,
+                "valid": 492
+              }
+            },
+            "valid": 492
+          }
+        },
+        "confidence_level_weighting": "equal_macro",
+        "confidence_levels": [
+          0.5,
+          0.8,
+          0.9,
+          0.95,
+          0.99
+        ],
+        "coverage_ECE_macro": 0.18362046536363294,
+        "coverage_MAE_macro": 0.18362046536363294,
+        "coverage_event_Brier": 0.2397821951219512,
+        "global_levels": {
+          "0.50": {
+            "absolute_error": 0.1255081300813008,
+            "empirical": 0.3744918699186992,
+            "inside": 737,
+            "nominal": 0.5,
+            "valid": 1968
+          },
+          "0.80": {
+            "absolute_error": 0.20853658536585373,
+            "empirical": 0.5914634146341463,
+            "inside": 1164,
+            "nominal": 0.8,
+            "valid": 1968
+          },
+          "0.90": {
+            "absolute_error": 0.2165650406504065,
+            "empirical": 0.6834349593495935,
+            "inside": 1345,
+            "nominal": 0.9,
+            "valid": 1968
+          },
+          "0.95": {
+            "absolute_error": 0.21067073170731698,
+            "empirical": 0.739329268292683,
+            "inside": 1455,
+            "nominal": 0.95,
+            "valid": 1968
+          },
+          "0.99": {
+            "absolute_error": 0.15666666666666662,
+            "empirical": 0.8333333333333334,
+            "inside": 1640,
+            "nominal": 0.99,
+            "valid": 1968
+          }
+        },
+        "horizon_weighting": "equal_macro"
+      }
+    }
+  },
+  "observation_interface": {
+    "Stage2": "frozen_full_degraded",
+    "association": "frozen_Stage3_estimated_GNN",
+    "formal_cache_resumable": true,
+    "measurement_covariance_R_t": "real_input"
+  },
+  "regression": {
+    "tests_passed": 114,
+    "tests_total": 114
+  },
+  "reproducibility": {
+    "exact_repeat": true,
+    "formal_inference_repeat_scenes": 4,
+    "merged_formal_content_sha256": "fe5cf7e413b8142c0670d05727affd4fa573cf4607665e4a9bda951f1d9bd0d5",
+    "merged_formal_file_sha256": "a3e8af17962a28a533070db23e53cee10571d13ab641c74b9db21e79c9a5c8c9"
+  },
+  "stage": 4,
+  "status": "PASS",
+  "storage": {
+    "free_gib": 1055.0686569213867,
+    "pass": true,
+    "reserve_gib": 250.0
+  }
+}

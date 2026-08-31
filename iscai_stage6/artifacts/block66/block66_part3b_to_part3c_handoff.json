@@ -1,0 +1,45 @@
+{
+  "Part3C_is_allowed_to": [
+    "add runtime implementation matching the frozen Part3B semantics",
+    "add unit/regression tests",
+    "materialize vehicle relevant-region N8192 evidence using the same frozen samples",
+    "run synthetic/operator smoke tests"
+  ],
+  "Part3C_is_not_allowed_to": [
+    "run class-policy parameter sweep",
+    "select gamma",
+    "select class margin numerics",
+    "select floors",
+    "select smoothing time",
+    "select rate limits",
+    "read formal outcomes",
+    "use future GT in controller",
+    "claim actual windshield/mirror locations",
+    "claim vertical/pixel ADB actuation"
+  ],
+  "PartA_continuity": {
+    "generic_margin_preserved": true,
+    "original_reactive_baseline_preserved": true,
+    "raised_cosine_preserved": true
+  },
+  "formal_outcomes_read": false,
+  "freeze_manifest": {
+    "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3b_preregistration_freeze_manifest.json",
+    "sha256": "a1d13bced062c2f2303b7166ab4f8b24f1ff17a236950dc569dcf16c580108c1"
+  },
+  "from": "6.6-Part3B",
+  "preregistration": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json",
+    "sha256": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e"
+  },
+  "runtime_components_to_add": [
+    "class_aware_policy_composition",
+    "class_aware_predictive_margin_operator",
+    "class_overlap_priority_rule",
+    "temporal_smoothing_operator",
+    "actuation_rate_limit_operator"
+  ],
+  "stage": 6,
+  "status": "PASS_READY_TO_IMPLEMENT_PREREGISTERED_CLASS_AWARE_RUNTIME",
+  "to": "6.6-Part3C"
+}

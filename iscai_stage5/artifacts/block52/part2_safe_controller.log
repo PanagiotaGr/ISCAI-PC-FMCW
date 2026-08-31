@@ -1,0 +1,98 @@
+============================================================
+BLOCK 5.2 PART 2/2 — SAFE EXECUTION
+============================================================
+
+===== CONTROLLED COMPILE =====
+angular_monte_carlo.py = PASS
+test_block52_monte_carlo.py = PASS
+run_block52_part2_freeze.py = PASS
+run_block52_part2_safe.py = PASS
+
+===== BLOCK5.2 PART2 UNIT TESTS =====
+
+..................
+----------------------------------------------------------------------
+Ran 18 tests in 0.060s
+
+OK
+
+Block5.2 Part2 tests = 18 / 18 PASS
+
+===== PRE-FREEZE FULL STAGE5 REGRESSION =====
+
+........................................................................
+----------------------------------------------------------------------
+Ran 72 tests in 0.063s
+
+OK
+
+pre-freeze Stage5 regression = 72 / 72 PASS
+
+===== FINAL BLOCK5.2 FREEZE =====
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py", line 2667, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py", line 1372, in main
+    discover_dev_gaussian_npz()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py", line 521, in discover_dev_gaussian_npz
+    require(
+    ~~~~~~~^
+        candidates,
+        ^^^^^^^^^^^
+    ...<5 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage5/scripts/run_block52_part2_freeze.py", line 222, in require
+    raise RuntimeError(
+        message
+    )
+RuntimeError: Could not resolve a frozen Block4.4 development Gaussian NPZ with mean[...,4,3] and covariance[...,4,3,3]. Diagnostics=[]
+============================================================
+STAGE 5 — BLOCK 5.2 PART 2/2
+DETERMINISTIC MC RECEIVER/ANGULAR POSTERIOR
+============================================================
+
+===== A. BLOCK5.1 / BLOCK5.2 PART1 CONTINUITY =====
+Block5.1                  = PASS
+Block5.2 Part1            = PASS
+historical implementation= PASS
+receiver policy           = FROZEN PASS
+
+===== B. FROZEN STAGE4 GAUSSIAN → MC CONTRACT =====
+Stage4 mean               = UNCHANGED
+Stage4 covariance         = CALIBRATED alpha_h PASS
+measurement R_t           = NOT MODIFIED
+cross-horizon covariance  = NOT INVENTED
+joint MC semantics        = PRODUCT OF FROZEN MARGINALS
+
+===== C. NON-FORMAL BLOCK4.4 DEVELOPMENT POSTERIOR =====
+
+============================================================
+BLOCK 5.2 PART 2/2 = BLOCKED
+============================================================
+exception = RuntimeError Could not resolve a frozen Block4.4 development Gaussian NPZ with mean[...,4,3] and covariance[...,4,3,3]. Diagnostics=[]
+
+formal N=120 used        = NO
+formal evaluation        = NO
+Stage4 model inference   = NO
+beam codebook            = NOT STARTED
+training/recalibration   = NO
+upstream modified        = NO
+terminal remains open    = YES
+
+Block5.2 freeze raw code = 0
+
+============================================================
+BLOCK 5.2 PART 2/2 SAFE CONTROLLER
+============================================================
+STATUS = BLOCKED
+phase = structured_report
+reason = Final Block5.2 report was not written.
+recovery = Inspect artifacts/block52/part2_safe.log.
+formal N=120 used = NO
+training/inference = NO
+terminal remains open = YES

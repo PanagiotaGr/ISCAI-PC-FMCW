@@ -1,0 +1,135 @@
+============================================================
+BLOCK 5.5 PART 1/2 — SAFE EXECUTION
+============================================================
+
+===== CONTROLLED COMPILE =====
+adaptive_topk.py = PASS
+test_block55_adaptive_topk.py = PASS
+run_block55_part1_gate.py = PASS
+run_block55_part1_safe.py = PASS
+
+===== BLOCK5.5 PART1 UNIT TESTS =====
+
+....................
+----------------------------------------------------------------------
+Ran 20 tests in 0.002s
+
+OK
+
+Block5.5 Part1 tests = 20 / 20 PASS
+
+===== PRE-GATE FULL STAGE5 REGRESSION =====
+
+......................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 166 tests in 0.084s
+
+OK
+
+pre-gate Stage5 regression = 166 / 166 PASS
+
+===== BLOCK5.5 PART1 SCIENTIFIC GATE =====
+============================================================
+STAGE 5 — BLOCK 5.5 PART 1/2
+ADAPTIVE TOP-K PROBABILITY-MASS CORE
+============================================================
+
+===== A. BLOCK5.4 FROZEN CONTINUITY =====
+Block5.4                = COMPLETE / FROZEN
+implementation SHA      = PASS
+baseline policy SHA      = PASS
+codebook policy SHA      = PASS
+
+===== B. COVERAGE TARGET CONTRACT =====
+coverage targets         = 90 / 95 / 97.5 / 99 %
+nominal target           = 95 %
+selection rule           = SMALLEST MASS-COVERING SET
+ranking                  = DESCENDING P_b
+tie-break                = LOWER BEAM INDEX
+
+===== C. ADAPTIVE MINIMALITY =====
+synthetic nominal K      = 3 PASS
+selected mass            = 0.9500000000000001
+minimal-prefix rule      = PASS
+
+===== D. COVERAGE-TARGET MONOTONICITY =====
+q= 90.0% -> K=3 mass=0.950000
+q= 95.0% -> K=3 mass=0.950000
+q= 97.5% -> K=4 mass=1.000000
+q= 99.0% -> K=4 mass=1.000000
+K monotonicity           = PASS
+
+===== E. OUTSIDE-SUPPORT COVERAGE CONTRACT =====
+outside-support mass     = EXPLICIT
+renormalization away     = NO
+false coverage claim      = BLOCKED PASS
+
+===== F. KMAX STRUCTURAL CONTRACT =====
+Kmax API                 = SUPPORTED
+numeric Kmax freeze      = DEFERRED TO PART2
+Kmax failure reporting   = EXPLICIT PASS
+
+===== G. SCOPE / LEAKAGE =====
+formal N=120 used        = NO
+Stage4 inference         = NO
+development tuning       = NO
+training/recalibration   = NO
+hysteresis               = NOT STARTED
+neighbor sweep           = NOT STARTED
+fallback/reacquisition   = NOT STARTED
+optical link             = NOT STARTED
+
+============================================================
+BLOCK 5.5 PART 1/2 GATE
+============================================================
+Block5.4 continuity       = PASS
+coverage q                = 90 / 95 / 97.5 / 99 % FROZEN
+nominal q                 = 95 % FROZEN
+adaptive rule             = SMALLEST MASS-COVERING SET
+ranking                   = P_b
+tie-break                 = LOWER BEAM INDEX
+outside-support mass      = EXPLICIT
+outside renormalization   = NO
+Kmax support              = PASS
+numeric Kmax              = NOT YET FROZEN
+hysteresis/fallback       = NOT STARTED
+formal N=120 used         = NO
+Stage4 inference          = NO
+implementation files      = 65
+implementation SHA256     = feb6353ff320ac9c8f7839d546fe9df3a7a3a6baacab7fa978d5875caadb4997
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage5/reports/block55_part1_adaptive_topk_core.json
+next = BLOCK 5.5 PART 2/2
+terminal remains open = YES
+
+Block5.5 gate raw code = 0
+
+===== FINAL FULL STAGE5 REGRESSION =====
+
+......................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 166 tests in 0.079s
+
+OK
+
+final Stage5 regression = 166 / 166 PASS
+
+============================================================
+BLOCK 5.5 PART 1/2 FINAL
+============================================================
+Block5.4 continuity       = PASS
+coverage targets          = 90 / 95 / 97.5 / 99 % FROZEN
+nominal coverage          = 95 % FROZEN
+adaptive selection        = SMALLEST MASS-COVERING SET
+ranking                   = DESCENDING P_b
+outside-support mass      = EXPLICIT
+outside renormalization   = NO
+Kmax API                  = SUPPORTED
+numeric Kmax              = NOT YET FROZEN
+hysteresis/fallback       = NOT STARTED
+formal N=120 used         = NO
+Stage4 inference          = NO
+Stage5 regression         = 166 / 166 PASS
+STATUS = PASS
+next = BLOCK 5.5 PART 2/2
+terminal remains open = YES

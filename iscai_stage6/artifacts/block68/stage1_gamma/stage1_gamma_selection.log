@@ -1,0 +1,116 @@
+============================================================
+STAGE 6 — BLOCK 6.8
+DEVELOPMENT STAGE-1 CLASS-GAMMA SELECTION
+FIRST FROZEN P_OCC ARRAY ACCESS
+VARY k_c ONLY — NO MARGIN/FLOOR/TEMPORAL/RATE TUNING
+============================================================
+
+===== A. EXACT PRE-SELECTION BOUNDARY =====
+prereg                = EXACT PASS
+pocc_manifest         = EXACT PASS
+predictive_matches    = EXACT PASS
+ledger                = EXACT PASS
+grid_binding          = EXACT PASS
+timestamp_binding     = EXACT PASS
+preoutcome            = EXACT PASS
+ni_delta              = EXACT PASS
+acceptance            = EXACT PASS
+runtime bind             = PASS
+geometry bind            = PASS
+candidate k              = 0..8191 EXACT
+threshold semantics      = count > k
+equivalent gamma         = k / 8192
+NI deltas                = IMMUTABLE
+formal evaluation        = NO
+Stage6 pre regression    = 224 / 224 PASS
+
+===== B. FROZEN DEVELOPMENT POPULATION JOIN =====
+P_occ actors             = 877
+vehicle actors           = 719
+pedestrian actors        = 110
+cyclist actors           = 48
+predictive-match join    = EXACT PASS
+track-identity join      = EXACT PASS
+future validity selector = NO
+
+===== C. FIRST FROZEN P_OCC ARRAY ACCESS / IoU SWEEP =====
+processed predictive actors = 100 / 877
+development scenarios       = 20 / 120
+processed predictive actors = 200 / 877
+processed predictive actors = 300 / 877
+development scenarios       = 40 / 120
+processed predictive actors = 400 / 877
+development scenarios       = 60 / 120
+processed predictive actors = 500 / 877
+processed predictive actors = 600 / 877
+development scenarios       = 80 / 120
+processed predictive actors = 700 / 877
+development scenarios       = 100 / 120
+processed predictive actors = 800 / 877
+development scenarios       = 120 / 120
+
+===== D. EXACT PREREGISTERED CLASSWISE SELECTION =====
+
+TYPE_VEHICLE
+  scored pairs          = 2819
+  invalid future / NA   = 57
+  empty valid oracle    = 40
+  selected k            = 980
+  equivalent gamma      = 0.11962890625
+  macro actor×h IoU     = 0.442779087781594
+  exact maximizer count = 1
+  tie break             = smaller_k_first
+
+TYPE_PEDESTRIAN
+  scored pairs          = 412
+  invalid future / NA   = 28
+  empty valid oracle    = 6
+  selected k            = 499
+  equivalent gamma      = 0.0609130859375
+  macro actor×h IoU     = 0.25486530932489326
+  exact maximizer count = 1
+  tie break             = larger_k_first
+
+TYPE_CYCLIST
+  scored pairs          = 182
+  invalid future / NA   = 10
+  empty valid oracle    = 0
+  selected k            = 557
+  equivalent gamma      = 0.0679931640625
+  macro actor×h IoU     = 0.2451696448623915
+  exact maximizer count = 1
+  tie break             = larger_k_first
+
+===== E. POST-SELECTION REGRESSION =====
+Stage6 regression = 224 / 224 PASS
+
+===== F. WRITE-ONCE STAGE-1 GAMMA FREEZE =====
+objective curves SHA = 6603a02b57bb5a78438fe0e3dcc5799d0224b92ba538191239e6a81dadda6a77
+pair support SHA      = 45c07dd21e97385bd688f0870f4b66aeae9986c296e6a3eac6406f41c5f862a8
+Stage-1 freeze SHA    = a55f21589f55a75afcb660a8a7278e802dd9e102f4c75ca7863697359bbb2a87
+
+============================================================
+BLOCK 6.8 STAGE-1 CLASS-GAMMA SELECTION — FINAL
+============================================================
+development scenarios        = 120 / 120
+predictive actors            = 877
+P_occ arrays                 = OPENED, FROZEN INPUT
+objective                    = MACRO ACTOR×HORIZON FULL-BOX IoU
+vehicle selected k           = 980
+vehicle gamma                = 0.11962890625
+pedestrian selected k        = 499
+pedestrian gamma             = 0.0609130859375
+cyclist selected k           = 557
+cyclist gamma                = 0.0679931640625
+Stage-1 gamma                = FROZEN
+margin selection             = NOT EXECUTED
+floor selection              = NOT EXECUTED
+temporal/rate selection      = NOT EXECUTED
+primary acceptance gate      = NOT TESTED
+NI deltas                    = IMMUTABLE / UNCHANGED
+formal evaluation            = NO
+Stage6 regression            = 224 / 224 PASS
+free GiB                     = 1052.633
+STATUS = PASS_STAGE1_CLASS_GAMMA_SELECTED_FROZEN
+report = /home/agni/waymo/iscai_stage6/reports/block68_stage1_class_gamma_selection.json
+terminal remains open = YES

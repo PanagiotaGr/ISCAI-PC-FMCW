@@ -1,0 +1,402 @@
+============================================================
+STAGE 6 — BLOCK 6.3 PRE-IMPLEMENTATION AUDIT
+FROZEN PREDICTOR → FUTURE BOX INTERFACE
+============================================================
+
+===== A. FROZEN SEALS =====
+Block6.2 closure SHA = EXACT PASS
+Stage4 closure SHA   = 570da4feb918b1025b5e85cc919360d922b471c468c85b3844f13fb7774e7c2f
+Stage4 handoff SHA   = 491bce010d35c2a394f879ecf35ed26ef1de92f7fff1465dcbf46b072a87c6fd
+Stage5 closure SHA   = c83731948749f3ca20742aaac6b7474f53c755cbc8209dd31db969d229f60610
+Stage5 handoff SHA   = c900ccbd63e7c680af28ed5cd8046f408463eceb7ce943b324b266dda73500eb
+
+===== B1. STAGE4 CLOSURE RELEVANT FIELDS =====
+relevant flattened fields = 33
+Stage5_handoff_sha256 = 491bce010d35c2a394f879ecf35ed26ef1de92f7fff1465dcbf46b072a87c6fd
+critical_artifacts.Gaussian_checkpoint.path = /home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt
+critical_artifacts.Gaussian_checkpoint.sha256 = 49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f
+critical_artifacts.Stage5_handoff.path = /home/agni/waymo/iscai_stage4/artifacts/block410/stage4_to_stage5_handoff.json
+critical_artifacts.Stage5_handoff.sha256 = 491bce010d35c2a394f879ecf35ed26ef1de92f7fff1465dcbf46b072a87c6fd
+critical_artifacts.covariance_calibrator.path = /home/agni/waymo/iscai_stage4/artifacts/block45/covariance_scaler.json
+critical_artifacts.covariance_calibrator.sha256 = 508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087
+critical_artifacts.deterministic_checkpoint.path = /home/agni/waymo/iscai_stage4/artifacts/block43/deterministic_gru.pt
+critical_artifacts.deterministic_checkpoint.sha256 = 5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5
+formal_N120.calibrated_Gaussian_ADE_m = 1.9848952833749467
+formal_N120.calibrated_coverage_event_Brier = 0.19413178861788616
+formal_N120.calibrated_macro_ECE = 0.11165527003334381
+formal_N120.calibrated_metric_Gaussian_NLL = 3.6848268203287406
+formal_N120.classical_baselines_beaten = ['CA', 'CTRV', 'CV', 'IMM_CV_CA_CTRV', 'Kalman_EKF']
+formal_N120.raw_metric_Gaussian_NLL = 4.15760466880646
+formal_N120.scenarios = 120
+formal_leakage.calibrator_fit_on_formal = False
+formal_leakage.tracks_to_predict_accessed_after_prediction = True
+formal_leakage.tracks_to_predict_model_input = False
+primary_downstream_posterior.family = calibrated_Gaussian_GRU
+primary_downstream_posterior.full_3D_SPD_covariance = True
+primary_downstream_posterior.horizons_s = [0.1, 0.3, 0.5, 1.0]
+primary_downstream_posterior.mean_preserved = True
+primary_downstream_posterior.measurement_R_t_remains_separate = True
+primary_downstream_posterior.variance_scale_alpha_h = [1.2347064500315355, 1.3451250295202921, 1.354822057728461, 1.2829700217319266]
+recalibration_performed_in_Block410 = False
+scientific_acceptance.GMM_selected_downstream = False
+scientific_acceptance.formal_calibration_ECE_improved = True
+scientific_acceptance.formal_calibration_measured = True
+scientific_acceptance.internal_Gaussian_less_than_frozen_CV = True
+scientific_acceptance.probabilistic_beats_at_least_one_classical = True
+scope_boundary.optical_ADB_done = False
+scope_boundary.receiver_angular_posterior_done = False
+
+===== B2. STAGE4→5 HANDOFF RELEVANT FIELDS =====
+relevant flattened fields = 42
+Stage5_must_not = ['fit_or_recalibrate_the_Stage4_trajectory_posterior_on_formal_N120', 'reinterpret_tracks_to_predict_as_a_model_input', 'merge_measurement_R_t_and_predictive_covariance_semantics', 'silently_switch_to_GMM_based_on_formal_performance']
+Stage5_scope_start.communication_beam_and_ADB = distinct_actuators
+Stage5_scope_start.trajectory_posterior_source = calibrated_Gaussian_GRU
+alternative_frozen_models.GMM_GRU.calibrated = False
+alternative_frozen_models.GMM_GRU.selected_as_default_downstream = False
+alternative_frozen_models.GMM_GRU.trajectory_level_modes = True
+alternative_frozen_models.deterministic_GRU.checkpoint_path = /home/agni/waymo/iscai_stage4/artifacts/block43/deterministic_gru.pt
+alternative_frozen_models.deterministic_GRU.checkpoint_sha256 = 5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5
+alternative_frozen_models.deterministic_GRU.role = deterministic_baseline
+causal_input_contract.history_feature_dimension = 14
+causal_input_contract.map_context_dimension = 10
+causal_input_contract.maximum_neighbors = 8
+causal_input_contract.measurement_covariance_feature_indices = [6, 7, 8, 9, 10, 11]
+causal_input_contract.perfect_track_ID_as_numeric_feature = False
+causal_input_contract.tracks_to_predict_as_model_input = False
+default_downstream_posterior.calibrator_path = /home/agni/waymo/iscai_stage4/artifacts/block45/covariance_scaler.json
+default_downstream_posterior.calibrator_sha256 = 508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087
+default_downstream_posterior.checkpoint_path = /home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt
+default_downstream_posterior.checkpoint_sha256 = 49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f
+default_downstream_posterior.covariance_family = full_3D_SPD
+default_downstream_posterior.covariance_parameterization = Cholesky
+default_downstream_posterior.family = calibrated_Gaussian_GRU
+default_downstream_posterior.formal_covariance_SPD = True
+default_downstream_posterior.horizons_s = [0.1, 0.3, 0.5, 1.0]
+default_downstream_posterior.mandatory_default = True
+default_downstream_posterior.normalization_path = /home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json
+default_downstream_posterior.normalization_sha256 = 3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6
+default_downstream_posterior.predictive_covariance = Sigma_cal,h = alpha_h * Sigma_raw,h
+default_downstream_posterior.predictive_mean = unchanged_by_calibration
+default_downstream_posterior.standard_deviation_scale = [1.1111734563206301, 1.1597952532754616, 1.1639682374225084, 1.1326826659448475]
+default_downstream_posterior.variance_scale_alpha_h = [1.2347064500315355, 1.3451250295202921, 1.354822057728461, 1.2829700217319266]
+formal_evidence.Gaussian_FDE_1s_m = 3.3198138702547295
+formal_evidence.PDF_calibration_measured = True
+formal_evidence.calibrated_Gaussian_ADE_m = 1.9848952833749467
+formal_evidence.calibrated_Gaussian_NLL = 3.6848268203287406
+formal_evidence.calibrated_macro_ECE = 0.11165527003334381
+formal_evidence.classical_baselines_beaten = ['CA', 'CTRV', 'CV', 'IMM_CV_CA_CTRV', 'Kalman_EKF']
+formal_evidence.internal_Gaussian_less_than_CV = True
+formal_evidence.raw_Gaussian_NLL = 4.15760466880646
+formal_evidence.scenario_count = 120
+measurement_predictive_uncertainty_separation.calibration_applies_to = predictive_covariance_only
+measurement_predictive_uncertainty_separation.measurement_R_t_modified_by_calibration = False
+
+===== B3. STAGE5 CLOSURE RELEVANT FIELDS =====
+relevant flattened fields = 10
+Stage5_to_Stage6_handoff.path = /home/agni/waymo/iscai_stage5/artifacts/block510/stage5_to_stage6_handoff.json
+Stage5_to_Stage6_handoff.sha256 = c900ccbd63e7c680af28ed5cd8046f408463eceb7ce943b324b266dda73500eb
+Stage5_to_Stage6_handoff.status = FROZEN_HANDOFF
+causality.tracks_to_predict_used_as_receiver_selector = False
+formal_evaluation.prediction_horizons_s = [0.1, 0.3, 0.5, 1.0]
+formal_evaluation.same_immutable_Stage3_4_population = True
+formal_evaluation.scenario_count = 120
+required_components.receiver_angular_posterior = PASS
+scope_boundary.joint_beam_ADB_evaluation = STAGE7
+scope_boundary.predictive_ADB = STAGE6
+
+===== B4. STAGE5→6 HANDOFF RELEVANT FIELDS =====
+relevant flattened fields = 25
+Stage6_required_next_layer.communication_beam_actuator_reused_as_ADB = False
+communication_controller_frozen.adaptive_probability_targets = [0.9, 0.95, 0.975, 0.99]
+communication_controller_frozen.codebooks = [16, 32, 64]
+communication_controller_frozen.empirical_probability_coverage = 0.9959473150962512
+communication_controller_frozen.latency_fallback_controller = True
+communication_controller_frozen.loss_of_lock_recovery = widened fallback followed by exhaustive current-codebook sweep
+communication_controller_frozen.nominal_q = 0.95
+communication_controller_frozen.optical_chain = pointing_error -> gain -> received_power -> SNR -> DPSK_BER -> effective_rate
+communication_controller_frozen.overhead_reduction_vs_exhaustive = 0.865216565349544
+communication_controller_frozen.primary_acceptance_geometry = uncertain
+deferred_beyond_Stage6.joint_communication_illumination_tradeoffs = Stage7
+provenance.Stage4_handoff_path = /home/agni/waymo/iscai_stage4/artifacts/block410/stage4_to_stage5_handoff.json
+provenance.Stage4_handoff_sha256 = 491bce010d35c2a394f879ecf35ed26ef1de92f7fff1465dcbf46b072a87c6fd
+scientific_execution_at_handoff.formal_inference = False
+scientific_execution_at_handoff.parameter_tuning = False
+scientific_execution_at_handoff.recalibration = False
+scientific_execution_at_handoff.training = False
+shared_posterior.future_ground_truth_as_controller_input = False
+shared_posterior.measurement_uncertainty_R_t = remains distinct from predictive covariance
+shared_posterior.prediction_horizons_s = [0.1, 0.3, 0.5, 1.0]
+shared_posterior.receiver_aware = True
+shared_posterior.receiver_geometry_modes = ['centroid', 'known', 'uncertain']
+shared_posterior.semantics = calibrated future trajectory posterior propagated analytically/deterministically to receiver-aware position and angular uncertainty
+shared_posterior.tracks_to_predict_as_receiver_selector = False
+shared_posterior.upstream_trajectory_family = calibrated_Gaussian_GRU
+
+===== C. STAGE4 PREDICTOR API INVENTORY =====
+candidate APIs = 40
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/contracts.py:129 | class GaussianHorizonPosterior
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/contracts.py:156 | class TrajectoryGaussianPosterior
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py:154 | def _zero_covariance()
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py:624 | def _extract_prediction_id(associated_track)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py:677 | def _extract_covariance(observation)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/supervision.py:77 | class FutureTrajectoryLabel
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/supervision.py:150 | class SupervisedTrajectorySample
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/training_index.py:36 | class TrainingScenarioRecord
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/training_index.py:247 | def iter_compact_motion_records(path: Path)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/ablation_runtime.py:409 | def is_measurement_covariance_feature(name)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/ablation_runtime.py:494 | def measurement_covariance_indices(feature_names)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration.py:25 | class CovarianceScaleCalibration
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration.py:670 | def _horizon_coverage_mae(q_values: np.ndarray, alpha: float)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration.py:712 | def _horizon_scale_nll_term(q_values: np.ndarray, alpha: float)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration.py:882 | def fit_per_horizon_covariance_scale(mahalanobis_squared, validity_mask)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py:33 | class CalibrationNormalizer
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py:374 | def build_gaussian_model(configuration, *, device)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py:563 | def prediction_sha256(mean, scale_tril)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py:593 | def infer_scene_statistics(model, samples, normalizer, *, device)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py:855 | def calibrated_nll_per_horizon(raw_metric_nll, mahalanobis_squared_raw, variance_scale)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py:1121 | def probe_calibrated_output(model, samples, normalizer, variance_scale, *, device)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/deterministic_gru.py:16 | class DeterministicTrajectoryGRU
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/formal_runtime.py:209 | def tracks_to_predict_indices(scenario)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/formal_runtime.py:525 | def extract_deterministic_prediction(output)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/formal_runtime.py:646 | def trajectory_point_metrics(mean, truth, validity, class_id, *, class_id_to_name)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_gru.py:28 | class GaussianTrajectoryOutput
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_gru.py:189 | class GaussianTrajectoryGRU
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py:40 | def covariance_from_scale_tril(scale_tril: torch.Tensor)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py:62 | def gaussian_nll_per_horizon(mean: torch.Tensor, scale_tril: torch.Tensor, target: torch.Tensor)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py:182 | def masked_gaussian_nll(mean: torch.Tensor, scale_tril: torch.Tensor, target: torch.Tensor, validity_mask: torch.Tensor)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py:279 | def denormalize_gaussian(mean_normalized: torch.Tensor, scale_tril_normalized: torch.Tensor, label_mean: torch.Tensor, label_std: torch.Tensor)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gmm_gru.py:34 | class GMMTrajectoryOutput
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gmm_gru.py:117 | class GMMTrajectoryGRU
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gmm_gru.py:437 | def initialize_gmm_from_gaussian(gmm_model: GMMTrajectoryGRU, gaussian_state_dict, *, second_coordinate_offsets=INITIAL_SECOND_COORDINATE_OFFSETS)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gmm_math.py:10 | def component_gaussian_nll_per_horizon(means: torch.Tensor, scale_tril: torch.Tensor, target: torch.Tensor)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gmm_runtime.py:469 | def prediction_sha256(mixture_logits, means, scale_tril)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/uncertainty_analysis.py:109 | def latest_measurement_covariance(target_history)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/uncertainty_analysis.py:640 | def predictive_sigma_rms_m(scale_tril_metric)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/uncertainty_analysis.py:668 | def evaluate_gaussian_condition(model, arrays, normalizer, *, device, ablation_mode=ABLATION_FULL, R_variance_scale=1.0, covariance_indices=EXPECTED_R_INDICES, batch_size=1024, return_sample_arrays=False)
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/models/deterministic_gru.py:35 | class DeterministicTrajectoryGRU
+
+===== D. STAGE5 POSTERIOR API INVENTORY =====
+candidate APIs = 19
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_monte_carlo.py:85 | class ReceiverOffsetGaussianBody
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_monte_carlo.py:114 | class HorizonAngularSummary
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_monte_carlo.py:153 | class ReceiverAngularMonteCarloPosterior
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_monte_carlo.py:224 | def _finite_horizon_positions(values, *, name: str)
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_monte_carlo.py:254 | def _psd_covariance3(values, *, name: str)
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_monte_carlo.py:315 | def _horizon_covariances(values)
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_monte_carlo.py:355 | def calibrate_stage4_horizon_covariances(raw_covariance_h0_m2, variance_scale_alpha_h=FROZEN_VARIANCE_SCALE_ALPHA_H)
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_monte_carlo.py:517 | def _sample_gaussian3(*, mean, covariance, standard_normal_samples)
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_monte_carlo.py:566 | def sample_product_of_horizon_gaussians(*, trajectory_mean_h0_m, calibrated_covariance_h0_m2, sample_count: int, seed: int)
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_monte_carlo.py:1201 | def deterministic_receiver_angular_posterior(*, trajectory_mean_h0_m, raw_trajectory_covariance_h0_m2, current_position_h0_m, current_heading_h0_rad: float, receiver_geometry_mode: str, receiver_offset: ReceiverOffsetGaussianBody | None, sample_count: int, seed: int=MONTE_CARLO_BASE_SEED, low_speed_threshold_mps: float=LOW_SPEED_HEADING_THRESHOLD_MPS)
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_monte_carlo.py:1622 | def single_horizon_gaussian_angular_summary(*, mean_h0_m, covariance_h0_m2, sample_count: int, seed: int)
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_posterior.py:40 | class GaussianPositionH0
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_posterior.py:101 | class LinearizedAngularGaussian
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_posterior.py:179 | def _psd_covariance3(values, *, name: str)
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_posterior.py:537 | def linearized_position_gaussian_to_angular(gaussian_position: GaussianPositionH0)
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/beam_directional_gain.py:133 | def normalized_gaussian_directional_gain(cell: BeamDecisionCell, azimuth_samples_rad)
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/beam_latency.py:132 | class LatencyPredictionRequest
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/beam_latency.py:444 | def latency_prediction_request(budget: LatencyBudget)
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/receiver_geometry.py:123 | def _valid_covariance3(values, *, name: str)
+
+===== E. STAGE4 CANDIDATE OUTPUT ARTIFACTS =====
+/home/agni/waymo/iscai_stage4/artifacts/block41/calibration.jsonl
+/home/agni/waymo/iscai_stage4/artifacts/block410/stage4_to_stage5_handoff.json
+/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt
+/home/agni/waymo/iscai_stage4/artifacts/block45/calibration_cache_manifest.json
+/home/agni/waymo/iscai_stage4/artifacts/block45/calibration_sufficient_statistics.npz
+/home/agni/waymo/iscai_stage4/artifacts/block45/part2_real_calibration.log
+/home/agni/waymo/iscai_stage4/artifacts/block45/run_block45_real_calibration.pre_model_config_repair.py
+/home/agni/waymo/iscai_stage4/artifacts/block47/actor_only_gaussian.pt
+/home/agni/waymo/iscai_stage4/artifacts/block47/no_map_gaussian.pt
+/home/agni/waymo/iscai_stage4/artifacts/block47/no_measurement_covariance_gaussian.pt
+/home/agni/waymo/iscai_stage4/artifacts/block48/formal_cache_manifest.json
+/home/agni/waymo/iscai_stage4/artifacts/block48/formal_neural_outputs.npz
+/home/agni/waymo/iscai_stage4/artifacts/block48/run_block48_formal_evaluation.pre_canonical_validation_repair.py
+/home/agni/waymo/iscai_stage4/artifacts/block48/run_block48_formal_evaluation.pre_class_semantics_repair.py
+/home/agni/waymo/iscai_stage4/configs/stage4_calibration.json
+/home/agni/waymo/iscai_stage4/configs/stage4_gaussian_gru.json
+/home/agni/waymo/iscai_stage4/reports/block44_gaussian_gru.json
+/home/agni/waymo/iscai_stage4/reports/block45_calibration.json
+/home/agni/waymo/iscai_stage4/reports/block48_formal_evaluation.json
+
+===== F. STAGE5 CANDIDATE OUTPUT ARTIFACTS =====
+/home/agni/waymo/iscai_stage5/artifacts/block510/stage5_to_stage6_handoff.json
+/home/agni/waymo/iscai_stage5/artifacts/block52/actual_stage4_gaussian_route_audit.json
+/home/agni/waymo/iscai_stage5/artifacts/block52/actual_stage4_gaussian_route_audit.log
+/home/agni/waymo/iscai_stage5/artifacts/block52/calibrated_runtime_api_audit.json
+/home/agni/waymo/iscai_stage5/artifacts/block52/calibrated_runtime_api_audit.log
+/home/agni/waymo/iscai_stage5/artifacts/block52/dev_posterior_materialization.log
+/home/agni/waymo/iscai_stage5/artifacts/block52/dev_posterior_materialization_v2.log
+/home/agni/waymo/iscai_stage5/artifacts/block52/dev_posterior_resolver_audit.json
+/home/agni/waymo/iscai_stage5/artifacts/block52/dev_posterior_resolver_audit.log
+/home/agni/waymo/iscai_stage5/artifacts/block52/dev_posterior_resolver_summary.json
+/home/agni/waymo/iscai_stage5/artifacts/block52/dev_posterior_resolver_summary.log
+/home/agni/waymo/iscai_stage5/artifacts/block52/development_gaussian_posterior.json
+/home/agni/waymo/iscai_stage5/artifacts/block52/development_gaussian_posterior.npz
+/home/agni/waymo/iscai_stage5/artifacts/block52/stage4_prediction_coordinate_semantics.json
+/home/agni/waymo/iscai_stage5/artifacts/block58/__pycache__/resolve_exact_formal_route_semantics.cpython-313.pyc
+/home/agni/waymo/iscai_stage5/artifacts/block58/debug_quarantine_20260821_155135/block58_formal_failure.json
+/home/agni/waymo/iscai_stage5/artifacts/block58/exact_formal_route_semantics.json
+/home/agni/waymo/iscai_stage5/artifacts/block58/exact_formal_route_semantics.log
+/home/agni/waymo/iscai_stage5/artifacts/block58/formal_clean_records.jsonl
+/home/agni/waymo/iscai_stage5/artifacts/block58/formal_input_route_audit.json
+/home/agni/waymo/iscai_stage5/artifacts/block58/invalidated_pre_complete_partition_20260821_162730/block58_formal_evaluation.json
+/home/agni/waymo/iscai_stage5/artifacts/block58/invalidated_pre_complete_partition_20260821_162730/formal_clean_records.jsonl
+/home/agni/waymo/iscai_stage5/artifacts/block58/part1_formal_route_audit.log
+/home/agni/waymo/iscai_stage5/artifacts/block58/resolve_exact_formal_route_semantics.py
+/home/agni/waymo/iscai_stage5/configs/angular_posterior_policy.json
+/home/agni/waymo/iscai_stage5/configs/formal_stage5_acceptance_policy.json
+/home/agni/waymo/iscai_stage5/reports/block52_receiver_angular_posterior.json
+/home/agni/waymo/iscai_stage5/reports/block58_formal_evaluation.json
+/home/agni/waymo/iscai_stage5/reports/block58_part2_formal_gate.json
+
+===== G. STAGE6 FUTURE-BOX GEOMETRY API =====
+Box3D signature = (center_xyz: 'tuple[float, float, float]', length_m: 'float', width_m: 'float', height_m: 'float', yaw_rad: 'float') -> None
+Box3D fields = ['center_xyz', 'length_m', 'width_m', 'height_m', 'yaw_rad']
+project_box_to_headlamp signature = (box: 'Box3D', *, state_source: 'str', orientation_source: 'str', controller_path: 'bool' = True) -> 'ProjectedBox'
+
+project_box_to_headlamp source:
+def project_box_to_headlamp(
+    box: Box3D,
+    *,
+    state_source: str,
+    orientation_source: str,
+    controller_path: bool = True,
+) -> ProjectedBox:
+    """
+    Full 3D actor-box projection.
+
+    Centroid projection is retained only as diagnostic metadata;
+    all extent fields are derived from all 8 physical corners.
+    """
+
+    validate_controller_provenance(
+        state_source=state_source,
+        orientation_source=orientation_source,
+        controller_path=controller_path,
+    )
+
+    corners_xyz = box_corners_headlamp(
+        box
+    )
+
+    corners = project_points_to_headlamp(
+        corners_xyz
+    )
+
+    centroid = project_points_to_headlamp(
+        box.center[
+            None,
+            :
+        ]
+    )
+
+    (
+        theta_center,
+        theta_span,
+        theta_min,
+        theta_max,
+    ) = _minimal_circular_interval(
+        corners.theta_rad
+    )
+
+    return ProjectedBox(
+        box=box,
+        corners=corners,
+        centroid=centroid,
+
+        theta_center_rad=theta_center,
+        theta_span_rad=theta_span,
+        theta_min_unwrapped_rad=theta_min,
+        theta_max_unwrapped_rad=theta_max,
+
+        ground_range_min_m=float(
+            np.min(
+                corners.ground_range_m
+            )
+        ),
+
+        ground_range_max_m=float(
+            np.max(
+                corners.ground_range_m
+            )
+        ),
+
+        range_3d_min_m=float(
+            np.min(
+                corners.range_3d_m
+            )
+        ),
+
+        range_3d_max_m=float(
+            np.max(
+                corners.range_3d_m
+            )
+        ),
+
+        phi_min_rad=float(
+            np.min(
+                corners.phi_rad
+            )
+        ),
+
+        phi_max_rad=float(
+            np.max(
+                corners.phi_rad
+            )
+        ),
+
+        state_source=str(
+            state_source
+        ),
+
+        orientation_source=str(
+            orientation_source
+        ),
+
+        controller_path=bool(
+            controller_path
+        ),
+    )
+
+
+===== H. BLOCK6.3 BINDING QUESTIONS =====
+deterministic_ADB_point_source = UNRESOLVED: deterministic predictor output vs calibrated-Gaussian mean
+prediction_record_identity = UNRESOLVED: exact scenario/actor key used to join prediction to causal box
+future_center_dimensionality = UNRESOLVED: exact predicted center fields and coordinate frame
+future_yaw_policy = UNRESOLVED: predicted heading/yaw if present; otherwise documented causal-or-derived fallback
+box_dimensions_policy = EXPECTED: causal current l/w/h held explicit unless frozen predictor output supplies dimensions
+deterministic_covariance_use = MUST BE NONE for deterministic masking; covariance retained for later uncertainty-aware block
+future_GT_controller_use = False
+tracks_to_predict_controller_use = False
+centroid_only_predictive_geometry = False
+communication_codebook_reuse = False
+formal_grid_freeze = BLOCK6.8_PRE_FORMAL
+
+===== I. IMMUTABILITY =====
+Stage4          = UNCHANGED
+Stage5          = UNCHANGED
+Block6.2        = UNCHANGED
+scientific code = UNCHANGED
+
+audit report = /home/agni/waymo/iscai_stage6/reports/block63_predictor_interface_audit.json
+audit SHA256 = 14fb92076b40c73e378a2ca249b7ebb7f95b011a0d31ad5062ac75fde01e7e9d
+
+============================================================
+BLOCK 6.3 PRE-IMPLEMENTATION AUDIT — FINAL
+============================================================
+Block6.2 prerequisite      = EXACT PASS
+Stage4 handoff             = INSPECTED
+Stage5 handoff             = INSPECTED
+predictor API inventory    = CAPTURED
+posterior API inventory    = CAPTURED
+Stage6 full-box API        = CAPTURED
+deterministic source choice= NOT GUESSED
+future yaw policy          = NOT GUESSED
+future GT controller use   = NO
+centroid-only predictive   = FORBIDDEN
+probabilistic masks        = NOT STARTED
+class-aware policies       = NOT STARTED
+formal grid freeze         = NO
+upstream modified          = NO
+STATUS = PASS_INTERFACE_AUDIT_COMPLETE
+terminal remains open = YES

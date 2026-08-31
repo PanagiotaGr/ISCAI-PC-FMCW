@@ -1,0 +1,89 @@
+{
+  "Stage6_completion_criterion_met": false,
+  "Stage6_regression": 224,
+  "block": "6.8_development_failure_closure",
+  "complete_frozen": false,
+  "failure_reason": {
+    "excess_beyond_allowed_delta": 0.056592882894233684,
+    "interpretation": "predictive ADB improves vehicle shadow-zone protection and VRU visibility but violates the frozen over-masking non-inferiority bound",
+    "maximum_allowed_delta": 0.02,
+    "maximum_allowed_predictive": 0.20862460571658453,
+    "metric": "over_masking_area",
+    "predictive": 0.26521748861081823,
+    "predictive_minus_reactive": 0.07659288289423369,
+    "reactive": 0.18862460571658454
+  },
+  "frozen_policy": {
+    "Stage1_gamma": "IMMUTABLE",
+    "Stage2_margins": "IMMUTABLE",
+    "Stage3_floors": {
+      "cyclist": 1.0,
+      "pedestrian": 1.0,
+      "vehicle": 0.15
+    },
+    "Stage4_temporal_rate": {
+      "rho_bright_per_s": 1,
+      "rho_dim_per_s": 1,
+      "time_constant_ms": 200
+    },
+    "post_outcome_retuning_allowed": false
+  },
+  "next": "STOP_CURRENT_STAGE6_PROTOCOL_NO_FORMAL_NO_STAGE7",
+  "primary_development_acceptance": {
+    "cyclist_visibility_noninferiority": true,
+    "overall_pass": false,
+    "overmask_noninferiority": false,
+    "pedestrian_visibility_noninferiority": true,
+    "status": "FAIL_PRIMARY_DEVELOPMENT_ACCEPTANCE_FROZEN",
+    "vehicle_strict_improvement": true
+  },
+  "primary_result": {
+    "detail": "/home/agni/waymo/iscai_stage6/artifacts/block68/primary_development_gate/block68_primary_development_acceptance_detail.json",
+    "detail_sha256": "41ef7d6249bbb4efcef1eafa8f315e7bcb89fb193338cdd3f5139e585efb5bf9",
+    "report": "/home/agni/waymo/iscai_stage6/reports/block68_primary_development_acceptance_gate.json",
+    "report_sha256": "e77dd8fb42e0d4641d1f2bf86d4cdb3aba2c2fb89a610181304556b468edda59"
+  },
+  "protocol_boundary": {
+    "Stage7_handoff_allowed": false,
+    "current_protocol_may_be_retuned": false,
+    "formal_evaluation_allowed_after_failure": false,
+    "formal_evaluation_run": false,
+    "negative_result_preserved": true
+  },
+  "scientific_result": {
+    "cyclist_visibility_proxy": {
+      "delta": 0.14816452754567255,
+      "predictive": 0.8869782482483739,
+      "reactive": 0.7388137207027013
+    },
+    "over_masking_area": {
+      "delta": 0.07659288289423369,
+      "predictive": 0.26521748861081823,
+      "reactive": 0.18862460571658454
+    },
+    "pedestrian_visibility_proxy": {
+      "delta": 0.3292728945187666,
+      "predictive": 0.8992267609505494,
+      "reactive": 0.5699538664317828
+    },
+    "vehicle_shadow_zone_violation": {
+      "delta": -0.0816963005312995,
+      "predictive": 0.013116180708780553,
+      "reactive": 0.09481248124008006
+    }
+  },
+  "stage": 6,
+  "status": "STAGE6_DEVELOPMENT_ACCEPTANCE_FAILED_FROZEN",
+  "upstream_seals": {
+    "acceptance": "e103466b1a6eb62be4e6746029147cbda9671b05130acba5210a3ab7328e6b81",
+    "primary_detail": "41ef7d6249bbb4efcef1eafa8f315e7bcb89fb193338cdd3f5139e585efb5bf9",
+    "primary_report": "e77dd8fb42e0d4641d1f2bf86d4cdb3aba2c2fb89a610181304556b468edda59",
+    "reactive_comparator": "5925f1e02dc3cb9dbad42f40f200337f60ccb87f4c919c4dd7c628eb3725c2fa",
+    "reactive_materialization": "b8a99017d7502dd704ed646fc45925bba8a22e135c502cea91f871541168a9c4",
+    "schema_repair": "a3c2adb2aa5697bab1a211bd1c19fe6b78e9f10f974732bbb8ebe7b492f8c8ca",
+    "stage1": "a55f21589f55a75afcb660a8a7278e802dd9e102f4c75ca7863697359bbb2a87",
+    "stage2": "b061541f0563181cd07a91107a211b3519c6fdcc2e08243171db5b3bd9393ae8",
+    "stage3": "c8536a1a2f888ebc3310cb900626cf0c8c0c2ca3ce34c2d321120a269c548d00",
+    "stage4": "780e134a66153c52783bc18d55f607c891b9a6983f8cfc8ac78e2e7367874885"
+  }
+}

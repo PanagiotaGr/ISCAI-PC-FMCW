@@ -1,0 +1,113 @@
+{
+  "block": "6.8_Part2B_Part1of2",
+  "formal_evaluation_allowed": false,
+  "frozen_outputs": {
+    "ledger": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_decision_ledger.jsonl",
+      "rows": 120,
+      "sha256": "ac2b954571cdd0166bbcfa5bb8b2956785d1e132288dbe4af7fe2d55adeafcaa"
+    },
+    "maps": {
+      "dtype": "float64",
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block68/block68_original_reactive_t0_maps.npy",
+      "sha256": "7c5d63c76c3d9ef74adbbd7a68e3ce7483b1dd80fd262cba06f6ce1909994993",
+      "shape": [
+        120,
+        501,
+        301
+      ]
+    }
+  },
+  "geometry_parity_max": {
+    "center_m": 0.0,
+    "dimension_m": 0.0,
+    "yaw_rad": 0.0
+  },
+  "grid": {
+    "constructor_signature": "(theta_min_rad: 'float', theta_max_rad: 'float', range_min_m: 'float', range_max_m: 'float', n_theta: 'int', n_range: 'int') -> None",
+    "grid_config_path": "/home/agni/waymo/iscai_stage6/configs/block64_mc_grid_numeric_freeze.json",
+    "grid_config_sha256": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73",
+    "numeric_values_invented": false,
+    "resolution_attempts": [
+      {
+        "binding_path": "/home/agni/waymo/iscai_stage6/configs/stage6_frozen_illumination_grid_runtime_binding.json",
+        "binding_sha256": "be5145fe60a941e7906639916cfa384d5674dc29f294f5a42e12c962bc4df4bc",
+        "constructor": {
+          "n_range": 301,
+          "n_theta": 501,
+          "range_max_m": 150.0,
+          "range_min_m": 0.0,
+          "theta_max_rad": 0.4363323129985824,
+          "theta_min_rad": -0.4363323129985824
+        },
+        "future_truth_used": false,
+        "heuristic_discovery": false,
+        "label": "frozen_stage6_runtime_grid_binding",
+        "numeric_values_invented": false,
+        "outcomes_used": false,
+        "status": "ACCEPTED"
+      }
+    ],
+    "shape": [
+      501,
+      301
+    ]
+  },
+  "next": "Part2B Part2of2 may now access evaluator-only future truth, construct exact future oracle/full-box supports, compute original-reactive overmask and pedestrian/cyclist visibility values, then apply the already frozen NI rule. Predictive performance must remain unused until all three exact NI deltas freeze.",
+  "population": {
+    "actor_class_totals": {
+      "TYPE_CYCLIST": 56,
+      "TYPE_PEDESTRIAN": 178,
+      "TYPE_VEHICLE": 890
+    },
+    "cohort_path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_class_aware_development_cohort_120.jsonl",
+    "cohort_sha256": "57440e3d976e7aeff44811b5eeb075dc56e0e0e070a3832ec72d354253b998c9",
+    "predictive_selector_path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_predictive_matches.jsonl",
+    "predictive_selector_sha256": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6",
+    "reactive_fallback_selector_path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_reactive_fallbacks.jsonl",
+    "reactive_fallback_selector_sha256": "7618c699c336b3ff283d96cad299a737124a3ddcdd51521289bb7531eec9c9aa",
+    "scenario_count": 120,
+    "selector_union_complete_disjoint": true,
+    "selector_union_count": 1124,
+    "vehicle_centers_used_total": 890
+  },
+  "project": "Agni",
+  "reactive_decision_semantics": {
+    "baseline": "original_reactive_ADB",
+    "constructed_oracle_input": false,
+    "controller_actor_input": "selected_headlamp_relevant_TYPE_VEHICLE_centers_only",
+    "decision_time": "current_causal_t0",
+    "future_controller_refresh": false,
+    "future_input": false,
+    "future_reobservation": false,
+    "future_scoring_schedule": "hold_t0_action_at_0.1_0.3_0.5_1.0s",
+    "posterior_input": false
+  },
+  "regression": {
+    "post": 224,
+    "pre": 224,
+    "status": "PASS"
+  },
+  "scientific_boundary": {
+    "P_occ_content_opened": false,
+    "controller_modified": false,
+    "development_current_causal_data_read": true,
+    "development_performance_metric_values_read": false,
+    "exact_NI_deltas_computed": false,
+    "formal_content_opened_by_runner": false,
+    "formal_evaluation": false,
+    "future_state_fields_accessed_by_runner": false,
+    "future_truth_scoring": false,
+    "parameter_tuning": false,
+    "policy_tuning": false,
+    "predictive_performance_outcomes_read": false,
+    "reactive_performance_outcomes_read": false
+  },
+  "stage": 6,
+  "status": "PASS_REACTIVE_DECISION_LEDGER_FROZEN",
+  "storage": {
+    "free_GiB": 1052.6361961364746,
+    "pass": true,
+    "reserve_GiB": 250.0
+  }
+}

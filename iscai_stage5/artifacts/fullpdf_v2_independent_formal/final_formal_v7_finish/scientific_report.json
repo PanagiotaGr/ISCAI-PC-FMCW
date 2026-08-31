@@ -1,0 +1,144 @@
+{
+  "PDF_compliance": "FAIL",
+  "PDF_requirement_matrix": [
+    {
+      "pass": true,
+      "requirement": "receiver centroid/known/uncertain"
+    },
+    {
+      "pass": true,
+      "requirement": "receiver uncertainty explicit"
+    },
+    {
+      "pass": true,
+      "requirement": "codebooks 16/32/64"
+    },
+    {
+      "pass": true,
+      "requirement": "Top-K q=90/95/97.5/99%"
+    },
+    {
+      "pass": true,
+      "requirement": "causal decisions frozen before truth"
+    },
+    {
+      "pass": true,
+      "requirement": "persistence/hysteresis/recovery/fallback"
+    },
+    {
+      "pass": true,
+      "requirement": "no hidden/free evaluated beams"
+    },
+    {
+      "pass": false,
+      "requirement": "requested empirical probability coverage"
+    },
+    {
+      "pass": false,
+      "requirement": "probing overhead reduction"
+    },
+    {
+      "pass": true,
+      "requirement": "latency charged from probing workload"
+    },
+    {
+      "pass": true,
+      "requirement": "pointing-gain-power-SNR-DPSK-BER-rate"
+    },
+    {
+      "pass": true,
+      "requirement": "full receiver-codebook-horizon-q matrix"
+    },
+    {
+      "pass": true,
+      "requirement": "no Stage4 recalibration/retraining"
+    },
+    {
+      "pass": true,
+      "requirement": "no formal/post-outcome tuning"
+    }
+  ],
+  "Stage6_allowed": false,
+  "decision_ledger_sha256": "751703975b3fc837cc1cf660cf1321db5768323d6cf2fbef524d05a3dbb48af4",
+  "evaluator_rows": 17280,
+  "evaluator_rows_sha256": "15db5689628b99543b26dd1cc074a8b86b2793387b8a40c52de6412ef7c79bb5",
+  "formal_metrics_computed": true,
+  "formal_parameter_tuning": false,
+  "formal_summary_sha256": "f9f7094fa6bd4fc277c0b3bbc2aae5a8821e5bfccb97ab2f8d5c472f3bc16334",
+  "gates": {
+    "G13_exact_repeat_decisions": true,
+    "G14_decisions_sealed_before_truth": true,
+    "G15_truth_after_seal": true,
+    "G16_requested_coverage": false,
+    "G17_overhead_reduction": false,
+    "G18_no_free_probes": true,
+    "G19_latency": true,
+    "G20_optical_chain": true,
+    "G21_recovery_controls": true,
+    "G22_no_post_outcome_mutation": true,
+    "G23_PDF_matrix": false,
+    "G24_full_144_strata": true,
+    "G25_complete_evaluator_rows": true
+  },
+  "post_outcome_tuning": false,
+  "recalibration": false,
+  "representation_bridge": {
+    "amendment_sha256": "ed58d7108bccbd1dae1bf7dfe6329aa510ea4acf1bdaf6e917b5722fcb63bd34",
+    "checker_source_modified": false,
+    "events": [
+      {
+        "aliases": [
+          "linear",
+          "snr",
+          "snr_linear"
+        ],
+        "container_length": 2,
+        "container_type": "tuple",
+        "selected_index": 0,
+        "strategy": "snr_linear_db_identity"
+      },
+      {
+        "aliases": [
+          "db",
+          "snr_db"
+        ],
+        "container_length": 2,
+        "container_type": "tuple",
+        "selected_index": 1,
+        "strategy": "snr_linear_db_identity"
+      },
+      {
+        "aliases": [
+          "linear",
+          "snr",
+          "snr_linear"
+        ],
+        "container_length": 2,
+        "container_type": "tuple",
+        "selected_index": 0,
+        "strategy": "unique_numeric_member"
+      },
+      {
+        "aliases": [
+          "db",
+          "snr_db"
+        ],
+        "container_length": 2,
+        "container_type": "tuple",
+        "selected_index": 0,
+        "strategy": "unique_numeric_member"
+      }
+    ],
+    "runtime_source_modified": false,
+    "scientific_parameters_modified": false,
+    "seal_sha256": "a329a484f4a2fbcc44ce8766fdd92ba30689d1f861c8b68a74273bfb4d3f9481"
+  },
+  "retraining": false,
+  "stage": 5,
+  "status": "FAIL_CLOSED_SCIENTIFIC_FULLPDF_V2",
+  "strata_count": 144,
+  "training": false,
+  "truth_binding_sha256": "1c9582cdf62dfc02cc36c6e0a56c6ce1a1b25eedc09e9fd10af00618d51a5961",
+  "truth_map_hash": "d27dda703e69f0d260747e608bbd47c03c619de92201e15bc716ca867d454763",
+  "version": "fullpdf_v2"
+}

@@ -1,0 +1,60 @@
+==============================================================================
+BLOCK 6.8 STAGE-3 ROAD-ROI SCHEDULE-SHAPE REPAIR
+REPRESENTATION ADAPTER ONLY — SCIENTIFIC ROI UNCHANGED
+==============================================================================
+
+===== A. EXACT PRE-PATCH BOUNDARY =====
+runner pre-patch SHA256 = 0b351f8cd7f4d51ff259b5a9132f012ffe3b58ea3fdc420d912d2db76dd459e4
+synthetic parity repair = PRESERVED
+Stage-1 gamma          = FROZEN / UNCHANGED
+Stage-2 margins        = FROZEN / UNCHANGED
+Stage-3 floor outcome  = NOT YET SELECTED
+Stage-4 temporal/rate  = NOT SELECTED
+primary acceptance     = NOT TESTED
+formal evaluation      = NO
+
+===== B. EXACT SHAPE DIAGNOSIS =====
+schedule GRID_SHAPE    = (4, 501, 301)
+frozen_road_roi domain = (theta, range)
+spatial ROI shape      = (501, 301)
+metric schedule shape  = (4, 501, 301)
+repair semantics       = replicate identical 2-D frozen ROI over four horizons
+road spatial support   = UNCHANGED
+horizon weighting      = UNCHANGED / EQUAL
+
+===== C. VERIFIED BACKUP =====
+backup SHA256 = 0b351f8cd7f4d51ff259b5a9132f012ffe3b58ea3fdc420d912d2db76dd459e4
+
+===== D. BUILD REPRESENTATION-ONLY PATCH =====
+patch syntax             = PASS
+evaluator_reference.py   = UNCHANGED
+metric_semantics.py      = UNCHANGED
+frozen spatial ROI       = UNCHANGED
+Stage-3 comparator       = UNCHANGED
+3270 candidate space     = UNCHANGED
+
+===== E. TRANSACTIONAL PATCH + REGRESSION =====
+patched runner compile = PASS
+Stage6 regression      = 224 / 224 PASS
+runner post-patch SHA  = 83da4be5cade13a6fee574d6e1d1afad76dde931e8facff5d40c447d478bc831
+
+==============================================================================
+BLOCK 6.8 ROAD-ROI SHAPE REPAIR — FINAL
+==============================================================================
+frozen road ROI native shape = (501, 301)
+schedule ROI shape           = (4, 501, 301)
+spatial cells changed        = 0
+horizon replication          = EXACT
+evaluator runtime            = UNCHANGED
+metric runtime               = UNCHANGED
+Stage-3 scoring comparator   = UNCHANGED
+Stage-1 gamma                = UNCHANGED
+Stage-2 margins              = UNCHANGED
+Stage-3 floor selected       = NO
+Stage-4 temporal/rate        = NOT SELECTED
+primary acceptance           = NOT TESTED
+formal evaluation            = NO
+Stage6 regression            = 224 / 224 PASS
+STATUS = PASS_STAGE3_ROAD_ROI_SCHEDULE_SHAPE_REPAIRED
+report = /home/agni/waymo/iscai_stage6/reports/block68_stage3_road_roi_schedule_shape_repair.json
+terminal remains open = YES

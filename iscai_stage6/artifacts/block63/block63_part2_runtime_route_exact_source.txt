@@ -1,0 +1,779 @@
+
+============================================================
+build_gaussian_model
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py:374
+sha256=5ca10326848286fe4475907d6e8ae13bbf708d4263f6122d47f2ebfa2038419a
+============================================================
+def build_gaussian_model(
+    configuration,
+    *,
+    device,
+):
+    model_config = (
+        configuration[
+            "model"
+        ]
+    )
+
+    return GaussianTrajectoryGRU(
+        target_hidden_dim=int(
+            model_config[
+                "target_hidden_dim"
+            ]
+        ),
+        neighbor_hidden_dim=int(
+            model_config[
+                "neighbor_hidden_dim"
+            ]
+        ),
+        map_hidden_dim=int(
+            model_config[
+                "map_hidden_dim"
+            ]
+        ),
+        fusion_hidden_dim=int(
+            model_config[
+                "fusion_hidden_dim"
+            ]
+        ),
+        use_neighbors=True,
+        use_map=True,
+    ).to(device)
+
+============================================================
+probe_calibrated_output
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py:1121
+sha256=8ecf1e33de66dffdb9df5da47affdd101b8f1b1f8b9af75e4f744442813a3e74
+============================================================
+def probe_calibrated_output(
+    model,
+    samples,
+    normalizer,
+    variance_scale,
+    *,
+    device,
+):
+    arrays = samples_to_arrays(
+        samples
+    )
+
+    if (
+        arrays[
+            "target"
+        ].shape[0]
+        ==
+        0
+    ):
+        raise ValueError(
+            "Probe requires "
+            "non-empty samples."
+        )
+
+    batch = normalizer.prepare(
+        arrays,
+        device=device,
+    )
+
+    model.eval()
+
+    with torch.inference_mode():
+        output = model(
+            batch["target"],
+            batch["neighbors"],
+            batch[
+                "neighbor_mask"
+            ],
+            batch[
+                "map_context"
+            ],
+        )
+
+        raw_mean = output.mean.clone()
+
+        calibrated_scale = (
+            apply_variance_scale(
+                output.scale_tril,
+                variance_scale,
+            )
+        )
+
+        # Calibration has no mean operation.
+        calibrated_mean = (
+            output.mean
+        )
+
+        mean_exact = torch.equal(
+            raw_mean,
+            calibrated_mean,
+        )
+
+        (
+            _,
+            calibrated_scale_metric,
+        ) = denormalize_gaussian(
+            calibrated_mean,
+            calibrated_scale,
+            normalizer.label_mean,
+            normalizer.label_std,
+        )
+
+        covariance = (
+            covariance_from_scale_tril(
+                calibrated_scale_metric
+            )
+        )
+
+        (
+            _,
+            info,
+        ) = torch.linalg.cholesky_ex(
+            covariance
+        )
+
+        spd = bool(
+            torch.all(
+                info == 0
+            )
+        )
+
+    return {
+        "mean_exactly_unchanged":
+            mean_exact,
+
+        "calibrated_covariance_SPD":
+            spd,
+    }
+
+============================================================
+infer_scene_statistics
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py:593
+sha256=05821db2dcc30570966f50382a14d09cb06dc72a3647daa380e828b359e3aa22
+============================================================
+def infer_scene_statistics(
+    model,
+    samples,
+    normalizer,
+    *,
+    device,
+):
+    arrays = samples_to_arrays(
+        samples
+    )
+
+    count = int(
+        arrays[
+            "target"
+        ].shape[0]
+    )
+
+    if count == 0:
+        return {
+            "mahalanobis_squared":
+                np.zeros(
+                    (
+                        0,
+                        4,
+                    ),
+                    dtype=np.float32,
+                ),
+
+            "validity":
+                np.zeros(
+                    (
+                        0,
+                        4,
+                    ),
+                    dtype=np.float32,
+                ),
+
+            "raw_metric_nll":
+                np.zeros(
+                    (
+                        0,
+                        4,
+                    ),
+                    dtype=np.float32,
+                ),
+
+            "planar_error_m":
+                np.zeros(
+                    (
+                        0,
+                        4,
+                    ),
+                    dtype=np.float32,
+                ),
+
+            "class_id":
+                np.zeros(
+                    (0,),
+                    dtype=np.int64,
+                ),
+
+            "prediction_sha256":
+                sha256(
+                    b""
+                ).hexdigest(),
+        }
+
+    batch = normalizer.prepare(
+        arrays,
+        device=device,
+    )
+
+    model.eval()
+
+    with torch.inference_mode():
+        output = model(
+            batch["target"],
+            batch["neighbors"],
+            batch[
+                "neighbor_mask"
+            ],
+            batch[
+                "map_context"
+            ],
+        )
+
+        (
+            mean_metric,
+            scale_metric,
+        ) = denormalize_gaussian(
+            output.mean,
+            output.scale_tril,
+            normalizer.label_mean,
+            normalizer.label_std,
+        )
+
+        truth = batch[
+            "true_displacement"
+        ]
+
+        q = mahalanobis_squared(
+            mean_metric,
+            scale_metric,
+            truth,
+        )
+
+        raw_nll = (
+            gaussian_nll_per_horizon(
+                mean_metric,
+                scale_metric,
+                truth,
+            )
+        )
+
+        planar = torch.sqrt(
+            (
+                mean_metric[
+                    :,
+                    :,
+                    0
+                ]
+                -
+                truth[
+                    :,
+                    :,
+                    0
+                ]
+            ).square()
+            +
+            (
+                mean_metric[
+                    :,
+                    :,
+                    1
+                ]
+                -
+                truth[
+                    :,
+                    :,
+                    1
+                ]
+            ).square()
+        )
+
+        valid = batch[
+            "future_mask"
+        ]
+
+        valid_bool = (
+            valid
+            >
+            0.5
+        )
+
+        if not bool(
+            torch.isfinite(
+                q[
+                    valid_bool
+                ]
+            ).all()
+        ):
+            raise RuntimeError(
+                "Non-finite calibration "
+                "Mahalanobis values."
+            )
+
+        if not bool(
+            torch.isfinite(
+                raw_nll[
+                    valid_bool
+                ]
+            ).all()
+        ):
+            raise RuntimeError(
+                "Non-finite calibration "
+                "raw NLL values."
+            )
+
+        covariance = (
+            covariance_from_scale_tril(
+                scale_metric
+            )
+        )
+
+        (
+            _,
+            info,
+        ) = torch.linalg.cholesky_ex(
+            covariance
+        )
+
+        if bool(
+            torch.any(
+                info != 0
+            )
+        ):
+            raise RuntimeError(
+                "Raw Gaussian calibration "
+                "inference produced "
+                "non-SPD covariance."
+            )
+
+        prediction_hash = (
+            prediction_sha256(
+                output.mean,
+                output.scale_tril,
+            )
+        )
+
+    return {
+        "mahalanobis_squared":
+            q.detach()
+            .cpu()
+            .numpy()
+            .astype(
+                np.float32,
+                copy=False,
+            ),
+
+        "validity":
+            valid.detach()
+            .cpu()
+            .numpy()
+            .astype(
+                np.float32,
+                copy=False,
+            ),
+
+        "raw_metric_nll":
+            raw_nll.detach()
+            .cpu()
+            .numpy()
+            .astype(
+                np.float32,
+                copy=False,
+            ),
+
+        "planar_error_m":
+            planar.detach()
+            .cpu()
+            .numpy()
+            .astype(
+                np.float32,
+                copy=False,
+            ),
+
+        "class_id":
+            batch[
+                "class_id"
+            ].detach()
+            .cpu()
+            .numpy()
+            .astype(
+                np.int64,
+                copy=False,
+            ),
+
+        "prediction_sha256":
+            prediction_hash,
+    }
+
+============================================================
+prediction_sha256
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py:563
+sha256=c16df220da97cdf503df12973f56151046809f0bd358204fb29bdb820075a1fb
+============================================================
+def prediction_sha256(
+    mean,
+    scale_tril,
+):
+    digest = sha256()
+
+    for tensor in (
+        mean,
+        scale_tril,
+    ):
+        value = (
+            tensor.detach()
+            .cpu()
+            .contiguous()
+            .numpy()
+            .astype(
+                np.float32,
+                copy=False,
+            )
+        )
+
+        digest.update(
+            value.tobytes(
+                order="C"
+            )
+        )
+
+    return digest.hexdigest()
+
+============================================================
+extract_deterministic_prediction
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/formal_runtime.py:525
+sha256=687a9c7bc73e4cd6b7be82ae4f421a9e76acbdd29a9a8d6147d18bc6652f140f
+============================================================
+def extract_deterministic_prediction(
+    output,
+):
+    if isinstance(
+        output,
+        torch.Tensor,
+    ):
+        candidate = output
+
+    else:
+        candidate = None
+
+        for name in (
+            "prediction",
+            "mean",
+            "trajectory",
+            "positions",
+        ):
+            value = getattr(
+                output,
+                name,
+                None,
+            )
+
+            if isinstance(
+                value,
+                torch.Tensor,
+            ):
+                candidate = value
+                break
+
+        if (
+            candidate is None
+            and
+            isinstance(
+                output,
+                (
+                    tuple,
+                    list,
+                ),
+            )
+            and
+            output
+            and
+            isinstance(
+                output[
+                    0
+                ],
+                torch.Tensor,
+            )
+        ):
+            candidate = output[
+                0
+            ]
+
+    if candidate is None:
+        raise RuntimeError(
+            "Could not extract deterministic "
+            "trajectory tensor from model output."
+        )
+
+    if (
+        candidate.ndim != 3
+        or
+        tuple(
+            candidate.shape[
+                1:
+            ]
+        )
+        !=
+        (
+            4,
+            3,
+        )
+    ):
+        raise RuntimeError(
+            "Deterministic prediction shape "
+            f"changed: {tuple(candidate.shape)}"
+        )
+
+    return candidate
+
+============================================================
+build_causal_track_history
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py:796
+sha256=e373b82c49b821f13a13225f079d70ccc7180cb50a693813a5f86add0c7a863d
+============================================================
+def build_causal_track_history(
+    associated_track,
+    *,
+    context,
+    timestamps_s: tuple[
+        float,
+        ...,
+    ],
+) -> CausalTrackHistory:
+    if len(
+        timestamps_s
+    ) != HISTORY_STEPS:
+        raise ValueError(
+            "Stage4 requires 11 "
+            "causal timestamps."
+        )
+
+    observations = tuple(
+        cartesianize_associated_track(
+            associated_track,
+            context=context,
+        )
+    )
+
+    if not observations:
+        raise ValueError(
+            "Associated track has no "
+            "Cartesian observations."
+        )
+
+    by_frame = {}
+
+    for observation in observations:
+        frame_index = (
+            _extract_frame_index(
+                observation,
+                timestamps_s=(
+                    timestamps_s
+                ),
+            )
+        )
+
+        by_frame[
+            frame_index
+        ] = (
+            _extract_position(
+                observation
+            ),
+            _extract_covariance(
+                observation
+            ),
+        )
+
+    steps = []
+
+    previous_position = None
+    previous_timestamp = None
+
+    for frame_index, timestamp in (
+        enumerate(
+            timestamps_s
+        )
+    ):
+        if frame_index not in by_frame:
+            steps.append(
+                HistoryStep(
+                    frame_index=frame_index,
+                    timestamp_s=(
+                        float(timestamp)
+                    ),
+                    position_H0_m=(
+                        0.0,
+                        0.0,
+                        0.0,
+                    ),
+                    velocity_H0_mps=(
+                        0.0,
+                        0.0,
+                        0.0,
+                    ),
+                    measurement_covariance_H0_m2=(
+                        _zero_covariance()
+                    ),
+                    observed=False,
+                    velocity_valid=False,
+                )
+            )
+
+            continue
+
+        (
+            position,
+            covariance,
+        ) = by_frame[
+            frame_index
+        ]
+
+        velocity = (
+            0.0,
+            0.0,
+            0.0,
+        )
+
+        velocity_valid = False
+
+        if (
+            previous_position
+            is not None
+            and
+            previous_timestamp
+            is not None
+        ):
+            dt = (
+                float(timestamp)
+                -
+                previous_timestamp
+            )
+
+            if dt <= 0.0:
+                raise RuntimeError(
+                    "Non-positive causal "
+                    "velocity interval."
+                )
+
+            velocity = tuple(
+                (
+                    position[axis]
+                    -
+                    previous_position[axis]
+                )
+                /
+                dt
+                for axis in range(3)
+            )
+
+            velocity_valid = True
+
+        steps.append(
+            HistoryStep(
+                frame_index=frame_index,
+                timestamp_s=(
+                    float(timestamp)
+                ),
+                position_H0_m=(
+                    position
+                ),
+                velocity_H0_mps=(
+                    velocity
+                ),
+                measurement_covariance_H0_m2=(
+                    covariance
+                ),
+                observed=True,
+                velocity_valid=(
+                    velocity_valid
+                ),
+            )
+        )
+
+        previous_position = position
+        previous_timestamp = float(
+            timestamp
+        )
+
+    observed = [
+        step
+        for step in steps
+        if step.observed
+    ]
+
+    latest = observed[-1]
+
+    return CausalTrackHistory(
+        prediction_id=(
+            _extract_prediction_id(
+                associated_track
+            )
+        ),
+        steps=tuple(
+            steps
+        ),
+        latest_observed_frame_index=(
+            latest.frame_index
+        ),
+        latest_position_H0_m=(
+            latest.position_H0_m
+        ),
+    )
+
+============================================================
+build_causal_scene_inputs
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/data/neural_inputs.py:986
+sha256=f2d98461eeaa5ba4a53bc3bcd6480444e758d7a9318c1bfcf52b520bb1889e16
+============================================================
+def build_causal_scene_inputs(
+    associated_tracks,
+    *,
+    scenario_id: str,
+    context,
+    timestamps_s: tuple[
+        float,
+        ...,
+    ],
+) -> CausalSceneInputs:
+    histories = []
+
+    for associated_track in (
+        associated_tracks
+    ):
+        try:
+            history = (
+                build_causal_track_history(
+                    associated_track,
+                    context=context,
+                    timestamps_s=(
+                        timestamps_s
+                    ),
+                )
+            )
+
+        except ValueError:
+            continue
+
+        histories.append(
+            history
+        )
+
+    histories.sort(
+        key=lambda history:
+            history.prediction_id
+    )
+
+    return CausalSceneInputs(
+        scenario_id=scenario_id,
+        timestamps_s=(
+            timestamps_s
+        ),
+        histories=tuple(
+            histories
+        ),
+    )

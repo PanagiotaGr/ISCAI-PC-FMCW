@@ -1,0 +1,86 @@
+{
+  "PDF_scope": {
+    "ADB_actuation_latency": true,
+    "ADB_controller_FLOPs_or_not_applicable": true,
+    "ADB_controller_memory_footprint": true,
+    "ADB_controller_parameter_count": true,
+    "ADB_generation_latency": true,
+    "full_joint_total_frame_latency": "STAGE7"
+  },
+  "adb_actuation_latency": {
+    "calls": 120,
+    "max_s": 0.09744581999257207,
+    "mean_s": 0.03615516898959565,
+    "median_s": 0.03282158693764359,
+    "min_s": 0.011488276068121195,
+    "p95_s": 0.07085567252943292
+  },
+  "adb_generation_latency": {
+    "calls": 120,
+    "max_s": 0.09744581999257207,
+    "mean_s": 0.03615516898959565,
+    "median_s": 0.03282158693764359,
+    "min_s": 0.011488276068121195,
+    "p95_s": 0.07085567252943292
+  },
+  "controller_complexity": {
+    "FLOPs": null,
+    "FLOPs_applicable": false,
+    "FLOPs_not_applicable_analytic_declaration": "N/A analytic ADB controller: NumPy boolean masking, array reductions, geometric/radial mapping, temporal smoothing, clipping and budgeted residual projection; no trainable neural forward pass exists inside the ADB controller. Parameter count = 0.",
+    "adb_controller_parameter_count": 0,
+    "trainable_parameters": false
+  },
+  "executor_alias_numeric_bindings": {
+    "actuation_latency": 0.03615516898959565,
+    "actuation_latency_s": 0.03615516898959565,
+    "adb_actuation_latency_s": 0.03615516898959565,
+    "adb_controller_latency_s": 0.03615516898959565,
+    "adb_controller_memory_bytes": 878731264,
+    "adb_controller_memory_footprint_bytes": 878731264,
+    "adb_controller_parameter_count": 0,
+    "adb_generation_latency_s": 0.03615516898959565,
+    "adb_memory_bytes": 878731264.0,
+    "controller_latency_s": 0.03615516898959565,
+    "controller_memory_bytes": 878731264,
+    "controller_parameter_count": 0,
+    "memory_usage_bytes": 878731264,
+    "n_parameters": 0,
+    "nn.Parameter": 0,
+    "parameter_count": 0,
+    "peak_memory_bytes": 878731264,
+    "torch.nn.Parameter": 0
+  },
+  "frozen_V3_residual_projection_latency": {
+    "calls": 7320,
+    "max_s": 0.005211804993450642,
+    "mean_s": 0.0033076429321962446,
+    "median_s": 0.0032752915285527706,
+    "p95_s": 0.003587140399031341
+  },
+  "measurement_boundary": {
+    "controller": "predictive_uncertainty_common_policy_v1",
+    "disk_IO_inside_timed_region": false,
+    "end": "final four-horizon RateLimitedSchedule.illumination",
+    "future_GT_controller_input": false,
+    "new_MC_sampling": false,
+    "retuning": false,
+    "sealed_output_identity_check": "120/120 exact np.array_equal",
+    "start": "P_occ tensors and current causal geometry/state already loaded in memory",
+    "training": false
+  },
+  "memory": {
+    "adb_controller_memory_footprint_bytes": 878731264,
+    "measurement": "Linux process peak RSS during real N=120 benchmark",
+    "peak_rss_bytes": 878731264,
+    "peak_rss_mib": 838.0234375
+  },
+  "provenance": {
+    "P_occ_manifest_sha256": "c361ed640b91850831d7e7177d89733fedd3e171f5f3111bcd93698c74a4a300",
+    "V3_result_sha256": "e76ec51e2ca875c16c2e7a0e168be3b2cc54ac37882bf5ef7e2eea0c33ffef44",
+    "V3_runtime_sha256": "664c52dc3a61a1498b11cf2d6ba0700332f9fe1c711a3d7c7235bac5a0e78985",
+    "reactive_t0_sha256": "7c5d63c76c3d9ef74adbbd7a68e3ce7483b1dd80fd262cba06f6ce1909994993",
+    "sealed_common_output_sha256": "814623c55c368e23fbb2b7fd6a9016323d602f532578f7f8816f008cbdc957a5"
+  },
+  "stage": 6,
+  "status": "PASS_REAL_ADB_LATENCY_RESOURCE_MEASUREMENT"
+}

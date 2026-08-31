@@ -1,0 +1,78 @@
+============================================================
+STAGE 6 — BLOCK 6.8 PART 2B — PART 1/2
+ORIGINAL-REACTIVE CAUSAL DECISION LEDGER FREEZE
+NO FUTURE-TRUTH SCORING / NO PERFORMANCE METRICS
+============================================================
+
+===== A. EXACT FROZEN BOUNDARY =====
+metric/evaluator/NI/reactive freezes = EXACT PASS
+
+===== B. PRE-RUN REGRESSION =====
+pre-run regression = 224 / 224 PASS
+
+===== C. CURRENT-ONLY DEVELOPMENT POPULATION =====
+development cohort   = 120 / 120 PASS
+selector records     = 1124
+selector union       = COMPLETE + DISJOINT PASS
+future eligibility   = NOT USED
+
+===== D. FROZEN GRID RUNTIME BIND =====
+grid map shape       = [501, 301] PASS
+numeric invention    = NO
+
+===== E. MATERIALIZE 120 CAUSAL t0 DECISIONS =====
+t0 decisions          = 10 / 120
+t0 decisions          = 20 / 120
+t0 decisions          = 30 / 120
+t0 decisions          = 40 / 120
+t0 decisions          = 50 / 120
+t0 decisions          = 60 / 120
+t0 decisions          = 70 / 120
+t0 decisions          = 80 / 120
+t0 decisions          = 90 / 120
+t0 decisions          = 100 / 120
+t0 decisions          = 110 / 120
+t0 decisions          = 120 / 120
+future truth scoring = NO
+P_occ content         = NOT OPENED
+performance metrics  = NOT COMPUTED
+
+===== F. EXACT LEDGER READBACK =====
+map rows/hash         = 120 / 120 EXACT PASS
+ledger/map binding    = EXACT PASS
+
+===== G. IMMUTABILITY + POST-RUN REGRESSION =====
+scientific sources    = UNCHANGED
+Stage6 regression     = 224 / 224 PASS
+
+===== H. STORAGE =====
+free GiB              = 1052.636
+250-GiB reserve       = PASS
+
+===== I. FREEZE REPORT =====
+t0 maps SHA256        = 7c5d63c76c3d9ef74adbbd7a68e3ce7483b1dd80fd262cba06f6ce1909994993
+ledger SHA256         = ac2b954571cdd0166bbcfa5bb8b2956785d1e132288dbe4af7fe2d55adeafcaa
+report SHA256         = 6ca868dbdf13e8a675813d4af2d3c814ce5297155126e5124ac452131670903b
+
+============================================================
+BLOCK 6.8 REACTIVE DECISION LEDGER — FINAL
+============================================================
+development cohort        = 120 / 120
+selector union             = COMPLETE + DISJOINT PASS
+current geometry parity    = PASS
+original reactive input    = CURRENT VEHICLE CENTERS ONLY
+reactive t0 maps           = 120 FROZEN
+4-horizon scoring          = HOLD t0 ACTION
+future state field access  = NO
+future truth scoring       = NO
+P_occ content              = NOT OPENED
+reactive performance       = NOT COMPUTED
+predictive performance     = NOT COMPUTED
+exact NI deltas            = NOT COMPUTED
+formal content             = NOT OPENED BY RUNNER
+controller/policy tuning   = NO
+Stage6 regression          = 224 / 224 PASS
+formal evaluation allowed  = NO
+STATUS = PASS_REACTIVE_DECISION_LEDGER_FROZEN
+report = /home/agni/waymo/iscai_stage6/reports/block68_reactive_decision_ledger_freeze.json
+terminal remains open = YES

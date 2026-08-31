@@ -1,0 +1,95 @@
+{
+  "PartA_physical_communication_gain": {
+    "Stage5_action": "freeze_explicit_constructed_normalized_directional_gain_surrogate",
+    "strong_pattern_hits": [],
+    "usable_numeric_pattern_found": false
+  },
+  "PartA_support_evidence": {
+    "assignment_hits": [
+      {
+        "keywords": [
+          "theta",
+          "fov",
+          "headlamp"
+        ],
+        "location": "cell:6",
+        "numbers": [
+          "3",
+          "-25.0",
+          "25.0",
+          "501",
+          "0.0",
+          "180.0",
+          "361",
+          "-5.0",
+          "0.0",
+          "150.0",
+          "1.9",
+          "1.0",
+          "4.0",
+          "20.0",
+          "0.75",
+          "3",
+          "3",
+          "40.0",
+          "3",
+          "30.0"
+        ],
+        "path": "/home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb",
+        "score": 42,
+        "source_root": "PartA",
+        "text": "# -----------------------------\n# Module 3/ADB deterministic parameters and axes\n# -----------------------------\ntheta_grid_deg = np.linspace(-25.0, 25.0, 501)\nrange_grid_m = np.linspace(0.0, 180.0, 361)\n\ntheta_c_deg = -5.0\ndelta_theta_deg = 0.0\n\ntarget_range_m = 150.0\ntarget_width_m = 1.9\nlateral_safety_margin_m = 1.0\nradial_safety_margin_m = 4.0\ntransition_length_m = 20.0\n\nepsilon_deg = 0.75\nr_shadow_end_m = target_range_m + radial_safety_margin_m\nr_transition_end_m = r_shadow_end_m + transition_length_m\n\n# Fig. 3(a): Oncoming vehicle\nadb_fig3a_host_speed_kmh = 40.0\nadb_fig3a_oncoming_speed_kmh = 30.0\nadb_fig3a_initial_separation_m = 150.0\n\n# Fig. 3(b): Multiple preceding vehicles\nadb_fig3b_host_speed_kmh = 50.0\nadb_fig3b_num_preceding_vehicles = 2\nadb_fig3b_initial_spacing_m = 30.0\nadb_fig3b_lane_relation = \"adjacent lanes\"\n\nadb_fig3_num_time_samples = 200\nadb_fig3_time_stop_fraction = 0.95\n\n# Assumed visualization parameters\nassumed_lane_width_m = 3.5\nassumed_vehicle_width_m = target_width_m\nassumed_safety_margin_deg = 0.5\nassumed_headlamp_fov_deg = 12.0\n\nassumed_vehicle_half_width_m = 0.5 * assumed_vehicle_width_m\nassumed_safety_margin_rad = np.deg2rad(assumed_safety_margin_deg)\nassumed_headlamp_fov_rad = np.deg2rad(assumed_headlamp_fov_deg)\n\nassumed_adb_r_min_m = 30.0\nassumed_adb_r_max_m = 80.0\n\nadb_angle_deg = np.linspace(-assumed_headlamp_fov_deg, assumed_headlamp_fov_deg, 301)\nadb_range_m = np.linspace(0.0, adb_fig3a_initial_separation_m, 301)\n\n# Dynamic ADB / track reconstruction visualization settings.\nadb_trz_front_margin_units = 4.0\nadb_trz_transition_length_units = 8.0\nadb_trz_num_snapshots = 4\nadb_rc_requested_frame = 0"
+      }
+    ],
+    "assumption_label_hits": [
+      {
+        "keywords": [
+          "fov",
+          "headlamp"
+        ],
+        "location": "cell:57",
+        "numbers": [
+          "2",
+          "3",
+          "3",
+          "3",
+          "1",
+          "3",
+          "3",
+          "1",
+          "3",
+          "3",
+          "1",
+          "3",
+          "3",
+          "1",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3"
+        ],
+        "path": "/home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb",
+        "score": 40,
+        "source_root": "PartA",
+        "text": "# ============================================================\n# Simulation 2 - Cell 3\n# ============================================================\n\nprint(\"Geometry parameters\")\nprint(\"--------------------------------------\")\n\nprint(\"Paper-given quantities:\")\nprint(f\"  Fig. 3(a) host speed             : {adb_fig3a_host_speed_kmh:.1f} km/h\")\nprint(f\"  Fig. 3(a) oncoming speed         : {adb_fig3a_oncoming_speed_kmh:.1f} km/h\")\nprint(f\"  Fig. 3(a) initial separation     : {adb_fig3a_initial_separation_m:.1f} m\")\nprint(f\"  Fig. 3(b) host speed             : {adb_fig3b_host_speed_kmh:.1f} km/h\")\nprint(f\"  Fig. 3(b) preceding vehicles     : {adb_fig3b_num_preceding_vehicles}\")\nprint(f\"  Fig. 3(b) lane relation          : {adb_fig3b_lane_relation}\")\nprint(f\"  Fig. 3(b) initial spacing        : {adb_fig3b_initial_spacing_m:.1f} m\")\n\n# ============================================================\n# Explicit visualization assumptions for missing geometry\n# ============================================================\nprint(\"--------------------------------------\")\nprint(f\"Lane width assumption        : {assumed_lane_width_m:.2f} m\")\nprint(f\"Vehicle width assumption     : {assumed_vehicle_width_m:.2f} m\")\nprint(f\"Vehicle half-width           : {assumed_vehicle_half_width_m:.2f} m\")\nprint(f\"Safety margin assumption     : {assumed_safety_margin_deg:.2f} deg\")\nprint(f\"Headlamp half-FOV assumption : \u00b1{assumed_headlamp_fov_deg:.1f} deg\")"
+      }
+    ],
+    "classification": "explicit_visualization_assumption",
+    "communication_beamwidth": false,
+    "measured": false,
+    "paper_given": false,
+    "reuse_in_Stage5": "constructed_support_for_consistency_only",
+    "value_half_FOV_deg": 12.0
+  },
+  "false_positive_note": "generic substring 'gain' may occur inside words such as 'against'; such hits are not optical-gain evidence",
+  "scientific_execution": {
+    "Stage4_inference": false,
+    "filesystem_rescan": false,
+    "formal_N120_read": false,
+    "training": false,
+    "upstream_modified": false
+  },
+  "status": "PASS"
+}

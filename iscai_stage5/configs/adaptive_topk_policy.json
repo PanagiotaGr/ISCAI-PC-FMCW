@@ -1,0 +1,71 @@
+{
+  "Kmax": {
+    "development_tuned": false,
+    "formal_tuned": false,
+    "rule": "full_codebook_size",
+    "values_by_codebook": {
+      "16": 16,
+      "32": 32,
+      "64": 64
+    }
+  },
+  "adaptive_selection": {
+    "outside_support_renormalized": false,
+    "rule": "smallest_descending_P_b_prefix_reaching_requested_coverage",
+    "tie_break": "lower_beam_index"
+  },
+  "block": "5.5",
+  "coverage": {
+    "empirical_future_receiver_containment": "REPORT_SEPARATELY_NOT_CONTROLLER_INPUT",
+    "nominal": 0.95,
+    "posterior_mass_numerical_tolerance": 0.00048828125,
+    "targets": [
+      0.9,
+      0.95,
+      0.975,
+      0.99
+    ],
+    "tolerance_provenance": "one_MC_probability_quantum_1_over_2048"
+  },
+  "hysteresis_persistence": {
+    "changes_selected_mass_covering_set": false,
+    "numeric_margin": null,
+    "rule": "retain_previous_primary_if_it_remains_inside_current_mass_covering_set",
+    "switch_penalty": "unit_switch_event_indicator_no_tuned_weight",
+    "switch_weight_tuned": false
+  },
+  "local_neighbor_sweep": {
+    "graph_adjacency_only": true,
+    "radius_parameter": null,
+    "rule": "immediate_codebook_graph_neighbors_around_current_primary"
+  },
+  "loss_of_lock": {
+    "exhaustive_current_codebook": true,
+    "false_coverage_claim": false,
+    "recovery": "widened_fallback_probe_then_exhaustive_current_codebook_sweep",
+    "rule": "requested_coverage_not_achievable_with_available_in_support_posterior_mass"
+  },
+  "project": "Agni",
+  "scope": {
+    "ADB_started": false,
+    "Stage4_inference": false,
+    "development_tuning": false,
+    "formal_N120_read": false,
+    "future_truth_controller_input": false,
+    "optical_link_started": false,
+    "oracle_controller_input": false,
+    "recalibration": false,
+    "training": false
+  },
+  "stage": 5,
+  "status": "FROZEN",
+  "widened_fallback": {
+    "codebook_chain": {
+      "16": null,
+      "32": 16,
+      "64": 32
+    },
+    "new_beamwidth_parameter": false,
+    "rule": "next_coarser_frozen_codebook_nearest_center_to_current_primary"
+  }
+}

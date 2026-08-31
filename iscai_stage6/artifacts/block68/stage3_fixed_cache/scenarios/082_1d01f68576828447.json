@@ -1,0 +1,54 @@
+{
+  "array_content_sha256": "e7def9956baf11ca1691a764848e62308174723455547fdd6582d092925441ba",
+  "block": "6.8_stage3_fixed_cache",
+  "cohort_index": 82,
+  "cohort_rank": 82,
+  "contract_id": "block68_stage3_fixed_mask_and_evaluator_cache_v1",
+  "controller_future_truth_access": false,
+  "future_offsets_from_anchor": [
+    1,
+    3,
+    5,
+    10
+  ],
+  "future_time_indices": [
+    11,
+    13,
+    15,
+    20
+  ],
+  "future_truth_role": "EVALUATOR_ONLY_AFTER_CONTROLLER_DECISION",
+  "npz_path": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage3_fixed_cache/scenarios/082_1d01f68576828447.npz",
+  "orientation_source": "oracle_evaluator_only",
+  "predictive_actor_count": 5,
+  "predictive_actor_counts_by_class": {
+    "TYPE_CYCLIST": 0,
+    "TYPE_PEDESTRIAN": 0,
+    "TYPE_VEHICLE": 5
+  },
+  "predictive_margin_dilation_input": "additional_class_margin_m_only",
+  "scenario_id": "1d01f68576828447",
+  "scientific_boundary": {
+    "Stage3_floor_metrics_computed": false,
+    "Stage3_floor_selected": false,
+    "Stage4_temporal_or_rate_selected": false,
+    "floor_values_evaluated": false,
+    "formal_evaluation": false,
+    "primary_acceptance_tested": false
+  },
+  "stage": 6,
+  "status": "PASS_SCENARIO_FIXED_CACHE",
+  "upstream_seals": {
+    "class_runtime": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b",
+    "grid_binding": "be5145fe60a941e7906639916cfa384d5674dc29f294f5a42e12c962bc4df4bc",
+    "metric_runtime": "bf8358b5a7edfe40ffac2718ca7cd5af6e7b5fdb3ff8a2823caad6d0f40f057a",
+    "pocc_manifest": "c361ed640b91850831d7e7177d89733fedd3e171f5f3111bcd93698c74a4a300",
+    "posterior": "f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd",
+    "predictive_matches": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6",
+    "prereg": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e",
+    "stage1": "a55f21589f55a75afcb660a8a7278e802dd9e102f4c75ca7863697359bbb2a87",
+    "stage2": "b061541f0563181cd07a91107a211b3519c6fdcc2e08243171db5b3bd9393ae8",
+    "stage3_execution": "28cc6e986d89ac449cce4b5180f3879567e0f6a8bd77a2bd6054fcb262cba091",
+    "stage3_scoring": "a8bf30b29056562eb303f287acfcca6d8aee011f26a353897f8d18b47325e1b3"
+  }
+}

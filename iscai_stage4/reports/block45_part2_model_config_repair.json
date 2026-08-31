@@ -1,0 +1,17 @@
+{
+  "block": "4.5_part_2_repair",
+  "block43_modified": false,
+  "block44_modified": false,
+  "calibration_scientific_contract_modified": false,
+  "constructor_smoke": true,
+  "deterministic_checkpoint_sha256": "5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5",
+  "deterministic_state_sha256": "d2ffbc03c7cb2826fef2175c95f48725707ec6d791eaeffbd6f59bc507b8595a",
+  "gaussian_checkpoint_sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f",
+  "gaussian_state_sha256": "1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3",
+  "regression": "76/76 PASS",
+  "repair": "Construct GaussianTrajectoryGRU from frozen Block4.3 deterministic architecture configuration, then strictly load frozen Block4.4 Gaussian state_dict.",
+  "root_cause": "Block4.4 Gaussian checkpoint experiment configuration has no 'model' section; Block4.5 had incorrectly treated it as an architecture configuration.",
+  "stage": 4,
+  "status": "PASS",
+  "strict_state_dict_load": true
+}

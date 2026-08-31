@@ -1,0 +1,101 @@
+{
+  "stage": 3,
+  "block": "3.5",
+
+  "baseline": "IMM_CV_CA_CTRV",
+
+  "interaction_state": {
+    "frame": "H0",
+    "order": [
+      "px",
+      "py",
+      "pz",
+      "vx",
+      "vy",
+      "vz",
+      "ax",
+      "ay",
+      "az",
+      "turn_rate"
+    ],
+    "dimension": 10
+  },
+
+  "modes": [
+    "CV",
+    "CA",
+    "CTRV"
+  ],
+
+  "initial_mode_probabilities": [
+    0.3333333333333333,
+    0.3333333333333333,
+    0.3333333333333333
+  ],
+
+  "transition_matrix_source_to_destination": [
+    [0.90, 0.05, 0.05],
+    [0.05, 0.90, 0.05],
+    [0.05, 0.05, 0.90]
+  ],
+
+  "interaction": {
+    "state_mixing": true,
+    "covariance_mixing": true,
+    "between_mode_mean_spread_in_covariance": true
+  },
+
+  "mode_dynamics": {
+    "CV": "constant_velocity",
+    "CA": "constant_acceleration",
+    "CTRV": "constant_turn_rate_and_velocity"
+  },
+
+  "measurement_model": {
+    "same_for_all_modes": true,
+    "frame": "Ht",
+    "vector_order": [
+      "range",
+      "radial_velocity",
+      "azimuth",
+      "elevation"
+    ],
+    "nonlinear": true,
+    "uses_full_stage2_R_t": true,
+    "azimuth_innovation_wrapped": true
+  },
+
+  "mode_probability_update": {
+    "likelihood": "multivariate_gaussian_measurement_likelihood",
+    "innovation_covariance_used": true,
+    "log_domain_normalization": true
+  },
+
+  "combined_posterior": {
+    "mean": "mode_probability_weighted",
+    "covariance": "within_mode_plus_between_mode_spread"
+  },
+
+  "open_loop_prediction": {
+    "prediction_step_s": 0.1,
+    "interaction_repeated_without_future_measurements": true,
+    "future_mode_probabilities_propagated_by_transition_matrix": true,
+    "prediction_horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ]
+  },
+
+  "information_policy": {
+    "truth_used": false,
+    "annotated_womd_velocity": false,
+    "annotated_womd_heading": false,
+    "future_information": false
+  },
+
+  "formal_validation_tuning": false,
+
+  "status": "FROZEN_BEFORE_FORMAL_VALIDATION"
+}

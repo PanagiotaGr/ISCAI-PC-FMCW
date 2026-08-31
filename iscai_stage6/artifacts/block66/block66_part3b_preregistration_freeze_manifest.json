@@ -1,0 +1,82 @@
+{
+  "authoritative_upstream": {
+    "Part3A3_handoff": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3a3_to_part3b_handoff.json",
+      "sha256": "0067239bf65d32d7bd40fdd33c02b74aff509265e8a86070a3d2a0ed404cb1ee"
+    },
+    "Part3A3_report": {
+      "path": "/home/agni/waymo/iscai_stage6/reports/block66_part3a3_operator_capability_correction.json",
+      "sha256": "d76474b09f88b6809e30f4a59615feb3d0e5687b93e0b7083816028d40704fe3"
+    },
+    "development_cohort": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_class_aware_development_cohort_120.jsonl",
+      "sha256": "57440e3d976e7aeff44811b5eeb075dc56e0e0e070a3832ec72d354253b998c9"
+    },
+    "eligibility_freeze": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligibility_freeze_manifest.json",
+      "sha256": "2d9dcd668b6b07824793a4773430edf98ce4e96311f7cf756b2947520468efc0"
+    },
+    "geometry_source": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/geometry.py",
+      "sha256": "f6e6cc0dd362338eeeaae9d8e25947434a3e7c64b350f0baf81a79a46159f94e"
+    },
+    "illumination_source": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/illumination.py",
+      "sha256": "daeb96029ff6e1720d17cd20d3e8f00155c566eeecec3b3726f4adcc8b05d832"
+    },
+    "mc_numeric_config": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/block64_mc_grid_numeric_freeze.json",
+      "sha256": "993c4248a902e7dff3a4383ac343e7222cc43ef9b9372ed2efd0ee08d6d20a73"
+    },
+    "part2c2a_report": {
+      "path": "/home/agni/waymo/iscai_stage6/reports/block66_part2c2a_probabilistic_kernel_binding_audit.json",
+      "sha256": "4c79d9ba8084aa3cfbfed03945bf989703769feb5303827844413c2ee71ac0dc"
+    },
+    "part_a_reactive_source": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/part_a_reactive.py",
+      "sha256": "19f80f325aebc03b5257ca3c0408d1ddea1ac3a8ff4ad875914224584e2ef173"
+    },
+    "pocc_freeze": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c2b_pocc_freeze_manifest.json",
+      "sha256": "b0df9df17c6008f9bdf3a993d08b103dc694607be90abe3307bc8d4877f9f6a7"
+    },
+    "pocc_manifest": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c2b_eligible_actor_pocc_manifest.jsonl",
+      "sha256": "c361ed640b91850831d7e7177d89733fedd3e171f5f3111bcd93698c74a4a300"
+    },
+    "pocc_report": {
+      "path": "/home/agni/waymo/iscai_stage6/reports/block66_part2c2b_eligible_n8192_pocc.json",
+      "sha256": "41257fbc43bcd6e0a01925c0f96648f3cb67850785e8f39d9787547ce1511348"
+    },
+    "predictive_mask_source": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/predictive_mask.py",
+      "sha256": "239611ddb1cc21b9ddd46962eb561e58e0d1474be58878f9c79c256ba1940575"
+    },
+    "probabilistic_occupancy_source": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_occupancy.py",
+      "sha256": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e"
+    }
+  },
+  "block": "6.6-Part3B",
+  "numeric_policy_selected": false,
+  "preregistration": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json",
+    "sha256": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e"
+  },
+  "prohibited_until_next_freeze": [
+    "formal_outcome_read",
+    "formal_tuning",
+    "candidate-grid modification",
+    "selection-objective modification",
+    "metric-formula modification after seeing sweep outcomes",
+    "road-ROI modification after seeing sweep outcomes",
+    "class-overlap-rule modification after seeing sweep outcomes"
+  ],
+  "report": {
+    "path": "/home/agni/waymo/iscai_stage6/reports/block66_part3b_class_aware_policy_preregistration.json",
+    "sha256": "1bf01b44a1cd842a1e1bf78f094da9dbb50c622ff895161851e901e1d36a53ac"
+  },
+  "scientific_source_modified": false,
+  "stage": 6,
+  "status": "FROZEN_BEFORE_POLICY_SWEEP"
+}

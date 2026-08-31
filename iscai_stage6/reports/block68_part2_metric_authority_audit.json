@@ -1,0 +1,155 @@
+{
+  "authority": {
+    "PDF_role": "defines required metric set and Stage6 completion objective; does not uniquely define every numerical metric formula",
+    "binding_rule": "earliest explicit pre-outcome Block6.6 metric preregistration is authoritative unless an explicit scientific amendment is documented before any development/formal outcome inspection",
+    "development_outcomes_seen_before_reconciliation": false,
+    "earliest_internal_preregistration": "/home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json",
+    "earliest_preregistration_precedes_Block68": true,
+    "formal_outcomes_seen_before_reconciliation": false,
+    "recommended_resolution": "repair Block6.8 protocol/runtime to preserve Block6.6 preregistered semantics, then rerun regression and only afterwards permit development-bound evaluation",
+    "silent_Block68_override_allowed": false
+  },
+  "block": "6.8",
+  "comparison_matrix": {
+    "actuation_latency": {
+      "Block66_direction": null,
+      "Block66_formula": "wall-clock runtime from loaded P_occ/current geometry to final four-horizon illumination schedule",
+      "Block66_name": "actuation_latency",
+      "Block68_direction": "lower_is_better",
+      "Block68_formula": null,
+      "direction_status": "MISSING_DIRECTION_FIELD",
+      "formula_status": "MISSING_FORMULA_FIELD"
+    },
+    "cyclist_visibility_proxy": {
+      "Block66_direction": "higher_is_better",
+      "Block66_formula": "mean(I_final over future GT cyclist projected full-box footprint cells)",
+      "Block66_name": "cyclist_visibility_proxy",
+      "Block68_direction": "higher_is_better",
+      "Block68_formula": "mean normalized intensity inside frozen cyclist visibility region",
+      "direction_status": "SAME",
+      "formula_status": "DIFFERENT"
+    },
+    "energy_consumption": {
+      "Block66_direction": "reported_not_primary_safety_target",
+      "Block66_formula": "mean over horizon/grid of I_final",
+      "Block66_name": "energy_consumption",
+      "Block68_direction": "report_tradeoff",
+      "Block68_formula": "mean normalized intensity over valid headlamp energy ROI",
+      "direction_status": "DIFFERENT",
+      "formula_status": "DIFFERENT"
+    },
+    "false_dimming": {
+      "Block66_direction": "lower_is_better",
+      "Block66_formula": "|D \\ O| / |D|; 0 when |D|=0",
+      "Block66_name": "false_dimming",
+      "Block68_direction": "lower_is_better",
+      "Block68_formula": "mean(1-intensity) on road cells outside constructed oracle mask",
+      "direction_status": "SAME",
+      "formula_status": "DIFFERENT"
+    },
+    "flicker_change_rate": {
+      "Block66_direction": "lower_is_better",
+      "Block66_formula": "mean_h(count(I_h != I_prev)/grid_cell_count)",
+      "Block66_name": "flicker_change_rate",
+      "Block68_direction": "lower_is_better",
+      "Block68_formula": "fraction of cell transitions with absolute normalized intensity change >= 0.10",
+      "direction_status": "SAME",
+      "formula_status": "DIFFERENT"
+    },
+    "glare_risk_exposure": {
+      "Block66_direction": "lower_is_better",
+      "Block66_formula": "mean final normalized intensity over vehicle constructed front-upper/rear-upper surrogate reference cells",
+      "Block66_name": "glare_risk_exposure",
+      "Block68_direction": "lower_is_better",
+      "Block68_formula": "mean normalized intensity inside constructed vehicle protection region",
+      "direction_status": "SAME",
+      "formula_status": "DIFFERENT"
+    },
+    "mask_IoU_with_constructed_oracle_future_mask": {
+      "Block66_direction": null,
+      "Block66_formula": "|D\u2229O| / |D\u222aO|",
+      "Block66_name": "mask_IoU",
+      "Block68_direction": "higher_is_better",
+      "Block68_formula": "intersection(candidate_mask, oracle_mask) / union(candidate_mask, oracle_mask)",
+      "direction_status": "MISSING_DIRECTION_FIELD",
+      "formula_status": "DIFFERENT"
+    },
+    "over_masking_area": {
+      "Block66_direction": "lower_is_better",
+      "Block66_formula": "|D \\ O| / |full actuator grid|",
+      "Block66_name": "over_masking_area",
+      "Block68_direction": "lower_is_better",
+      "Block68_formula": "road_roi AND candidate_mask AND NOT oracle_mask divided by road_roi cell count",
+      "direction_status": "SAME",
+      "formula_status": "DIFFERENT"
+    },
+    "pedestrian_visibility_proxy": {
+      "Block66_direction": "higher_is_better",
+      "Block66_formula": "mean(I_final over future GT pedestrian projected full-box footprint cells)",
+      "Block66_name": "pedestrian_visibility_proxy",
+      "Block68_direction": "higher_is_better",
+      "Block68_formula": "mean normalized intensity inside frozen pedestrian visibility region",
+      "direction_status": "SAME",
+      "formula_status": "DIFFERENT"
+    },
+    "road_illumination_retention": {
+      "Block66_direction": "higher_is_better",
+      "Block66_formula": "mean(I_final over frozen road ROI)",
+      "Block66_name": "road_illumination_retention",
+      "Block68_direction": "higher_is_better",
+      "Block68_formula": "mean normalized intensity inside frozen road ROI",
+      "direction_status": "SAME",
+      "formula_status": "DIFFERENT"
+    },
+    "temporal_smoothness": {
+      "Block66_direction": "lower_is_better",
+      "Block66_formula": "mean_h(mean_grid(|I_h-I_prev|)/delta_t_h)",
+      "Block66_name": "temporal_smoothness",
+      "Block68_direction": "higher_is_better",
+      "Block68_formula": "1 - mean absolute normalized intensity change between consecutive frames",
+      "direction_status": "DIFFERENT",
+      "formula_status": "DIFFERENT"
+    },
+    "vehicle_shadow_zone_violation": {
+      "Block66_direction": "lower_is_better",
+      "Block66_formula": "|O_vehicle \\ D| / |O_vehicle|",
+      "Block66_name": "vehicle_shadow_zone_violation",
+      "Block68_direction": "lower_is_better",
+      "Block68_formula": "missed_required_vehicle_cells / required_vehicle_cells",
+      "direction_status": "SAME",
+      "formula_status": "DIFFERENT"
+    }
+  },
+  "counts": {
+    "direction_conflicts": 2,
+    "formula_missing_fields": 1,
+    "formula_text_mismatches": 11
+  },
+  "frozen_hashes": {
+    "Block66_preregistration": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e",
+    "Block67_closure": "67d168ed7678164b8d85885e6e81f41f7206bd8f754e13ec5cc28c3a65aa20e7",
+    "Block68_protocol": "c12b95c24ba64f48ac8dc3890fa550613ea597875f6a5a759762b88629623ac0",
+    "Block68_runtime": "fdca66a1a9af74d24baaafe4e17d12acdb2db538e037503aba6ee04684eac362"
+  },
+  "next": "Controlled pre-outcome repair: align Block6.8 numerical metric protocol/runtime with the earlier Block6.6 preregistration before development-bound evaluation.",
+  "part": "2/2_metric_authority_audit",
+  "project": "Agni",
+  "regression": {
+    "status": "PASS",
+    "tests": 196
+  },
+  "scientific_boundary": {
+    "development_outcomes_read": false,
+    "formal_evaluation": false,
+    "formal_outcomes_read": false,
+    "policy_tuning": false
+  },
+  "semantic_conflicts": {
+    "false_dimming": true,
+    "flicker_change_rate": true,
+    "over_masking_area": true,
+    "temporal_smoothness": true
+  },
+  "stage": 6,
+  "status": "BLOCKED_PREOUTCOME_METRIC_RECONCILIATION_REQUIRED"
+}

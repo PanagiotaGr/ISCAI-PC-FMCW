@@ -1,0 +1,671 @@
+============================================================
+STAGE 6 — BLOCK 6.8 PART 2/2
+DEVELOPMENT-EVALUATION API PREFLIGHT
+READ-ONLY WITH RESPECT TO SCIENTIFIC OUTCOMES
+============================================================
+
+===== A. FROZEN CONTINUITY =====
+Block6.7 closure       = EXACT PASS
+Block6.8 Part1         = FROZEN PASS
+metric protocol SHA    = EXACT PASS
+metric runtime SHA     = EXACT PASS
+class-aware policy     = EXACT PASS
+
+===== B. STAGE6 ADB SOURCE API INVENTORY =====
+
+MODULE = baseline_metric_contract.py
+  CLASS ADBBaseline @L11
+  CLASS ADBMetric @L48
+  CLASS ADBBaselineSpec @L99
+  CLASS ConstructedOracleContract @L136
+  CLASS ADBMetricInterface @L171
+  FUNC  required_baseline_specs @L201
+  FUNC  required_metric_interfaces @L403
+  FUNC  baseline_by_label @L552
+  FUNC  metric_by_name @L569
+
+MODULE = class_aware_policy.py
+  CLASS MarginComputation @L32
+  CLASS ClassAwareComposition @L45
+  FUNC  _validate_actor_class @L80
+  FUNC  threshold_occupancy_counts_strict_k @L176
+  FUNC  compute_class_aware_margin @L248
+  FUNC  angular_margin_cells @L521
+  FUNC  dilate_mask_theta @L579
+  FUNC  predictive_mask_to_illumination @L657
+  FUNC  compose_class_aware_illumination @L807
+
+MODULE = class_margin_binding.py
+  CLASS PredictiveClassMarginBinding @L13
+  FUNC  bind_predictive_class_margin @L78
+
+MODULE = deterministic_association.py
+  CLASS PredictorAnchor @L18
+
+MODULE = deterministic_predictive.py
+  CLASS DeterministicSharedMeanPrediction @L77
+  CLASS DeterministicFutureProjectedBox @L205
+  CLASS MatchedDeterministicActorForecast @L220
+  CLASS DeterministicPredictivePlan @L238
+  FUNC  _validate_causal_actor_box @L270
+  FUNC  build_deterministic_future_full_boxes @L347
+  FUNC  build_deterministic_predictive_plan @L524
+
+MODULE = grid.py
+  CLASS IlluminationGridSpec @L10
+
+MODULE = illumination.py
+  CLASS ReactiveShadowRegion @L22
+  FUNC  angular_shadow_mask @L405
+  FUNC  static_adb_map @L495
+  FUNC  single_region_illumination_map @L510
+  FUNC  combine_illumination_maps_minimum @L556
+  FUNC  reactive_adb_map @L626
+
+MODULE = metric_semantics.py
+  FUNC  mask_iou @L152
+  FUNC  over_masking_area @L309
+  FUNC  road_illumination_retention @L374
+
+MODULE = part_a_reactive.py
+  CLASS PartAReactiveGeometry @L65
+  FUNC  part_a_original_reactive_map_from_h0_centers @L504
+
+MODULE = predictive_mask.py
+  CLASS BinaryActorPredictiveMask @L156
+  CLASS ClassAgnosticPredictiveMaskPlan @L188
+  FUNC  threshold_actor_occupancy @L240
+  FUNC  aggregate_binary_actor_masks @L279
+  FUNC  exact_original_reactive_fallback_map @L397
+  FUNC  build_class_agnostic_predictive_mask_plan @L462
+
+MODULE = probabilistic_full_box.py
+  CLASS CalibratedGaussianFullBoxPrediction @L211
+  CLASS StochasticFutureProjectedBox @L284
+  FUNC  _require_causal_actor_box @L163
+  FUNC  sample_calibrated_future_positions_H0_m @L392
+  FUNC  build_stochastic_future_full_boxes @L476
+
+MODULE = probabilistic_occupancy.py
+  CLASS OccupancyGrid @L14
+  CLASS ActorOccupancyProbability @L124
+  FUNC  estimate_actor_occupancy_probability @L736
+
+MODULE = womd_geometry.py
+  CLASS CausalADBActorBox @L32
+  FUNC  build_causal_adb_actor_boxes @L151
+  FUNC  causal_actor_boxes_sha256 @L507
+
+===== C. STAGE6 RUNNER / SCRIPT INVENTORY =====
+run_block60_part2_part_a_adb_audit.py
+run_block61_data_access_audit.py
+  FUNC scan_single_tfrecord_for_scenario @L334
+run_block61_part2_stage1_integration.py
+  FUNC read_scenario_at_tfrecord_offset @L473
+  FUNC discover_class_module @L557
+run_block62_part1_static_reactive_kernel.py
+  FUNC ensure_adb_exports @L377
+run_block62_part2_exact_part_a_reactive.py
+run_block63_actor_identity_boundary_audit.py
+  FUNC class_fields @L248
+run_block63_causal_association_policy_audit.py
+  FUNC dataclass_defaults @L228
+run_block63_exact_prediction_route_audit.py
+run_block63_part1_deterministic_future_box.py
+run_block63_part2_dev_posterior_binding.py
+  FUNC scenario_candidates @L274
+run_block63_part2b1_frozen_gaussian_forward.py
+  FUNC prediction_digest @L1519
+run_block63_part2b2_real_future_full_box.py
+  FUNC construct_prediction @L359
+  FUNC future_sequence @L532
+run_block63_predictor_interface_audit.py
+run_block64_part2a_probabilistic_occupancy_kernel.py
+run_block64_part2b1_real_mc_convergence.py
+  FUNC convergence_metrics @L377
+run_block64_part2b2_development_numeric_freeze.py
+  FUNC active_metrics @L285
+run_block65_part1_parameterized_mask_kernel.py
+run_block65_part2b_gamma_freeze_real_mask_smoke.py
+run_block66_part1a_forward_headlamp_census.py
+  FUNC class_count_dict @L203
+run_block66_part1b_development_cohort_freeze.py
+  FUNC scenario_order_key @L285
+run_block66_part2b_cohort_posterior_association.py
+  FUNC class_counter @L411
+  FUNC increment_class @L419
+  FUNC posterior_numeric_digest @L867
+run_block66_part2c1_headlamp_eligibility_join.py
+  FUNC empty_class_counter @L333
+run_block66_part2c2b_resumable_pocc.py
+  FUNC cache_paths @L481
+  FUNC validate_cached_actor @L790
+run_block66_part3c1_class_aware_runtime.py
+run_block66_part3c2b0_persistence_sufficiency_audit.py
+  FUNC locate_posterior @L251
+run_block67_part1_margin_binding_gate.py
+run_block67_part2_baseline_metric_gate.py
+run_block68_part1_metric_freeze_gate.py
+
+===== D. CONFIG-ONLY DEVELOPMENT/SPLIT DISCOVERY =====
+
+CONFIG = block61_geometry_contract.json
+  box_semantics.centroid_is_sufficient_for_ADB = False
+  causality.oracle_future_box = EVALUATOR_ONLY
+  headlamp_coordinates.axis_contract_validation_against_frozen_Stage1 = BLOCK6.1_PART2
+  scope_boundary.ADB_mask_generation = NOT_YET
+  scope_boundary.reactive_L_theta_r = BLOCK6.2
+
+CONFIG = block61_stage1_integration_contract.json
+  ADB_actor_geometry.centroid_only = False
+  ADB_actor_geometry.classes[0] = TYPE_VEHICLE
+  ADB_actor_geometry.classes[1] = TYPE_PEDESTRIAN
+  ADB_actor_geometry.classes[2] = TYPE_CYCLIST
+  ADB_actor_geometry.corner_count = 8
+  ADB_actor_geometry.dimensions[0] = length
+  ADB_actor_geometry.dimensions[1] = width
+  ADB_actor_geometry.dimensions[2] = height
+  ADB_actor_geometry.exclude_SDC = True
+  ADB_actor_geometry.full_box = True
+  ADB_actor_geometry.future_validity_selector = False
+  ADB_actor_geometry.heading_source = current_causal_anchor
+  ADB_actor_geometry.heading_transform = world forward vector rotated by frozen T_H0_from_W
+  ADB_actor_geometry.objects_of_interest_selector = False
+  ADB_actor_geometry.requires_anchor_valid = True
+  ADB_actor_geometry.tracks_to_predict_selector = False
+  Stage1.pilot_manifest_sha256 = 2b6fd3d7e5c411455708d325fc8595af11d99f3fcba4dde621928150695ca859
+  data_access.WOMD_annotation_role = GEOMETRY_INTEGRATION_VALIDATION_ONLY
+  data_access.historical_source_shard = /waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00000-of-00150
+  data_access.manifest_reader = read_validation_manifest
+  data_access.reader_module = iscai_stage3.validation.womd_access
+  data_access.runtime_motion_shard = /home/agni/waymo/data/paired_womd_lidar_v1_3_0/validation/motion/paired-from-validation.tfrecord-00000-of-00150
+  illumination_grid.freeze_stage = Block6.8 development-only pre-formal freeze
+  timing_clarification.correct_binding_rule = final ADB grid values freeze in Block6.8 before formal evaluation
+
+CONFIG = block62_part_a_reactive_binding.json
+  TRZ_visualization_geometry.source_function = adb_trz_shadow_geometry_from_xy
+  baseline = original_reactive_ADB
+  formal_input_policy.formal_original_reactive_input = CAUSAL_TRACK_BASED_PC_FMCW_LIKE_PIPELINE
+  illumination_control_radial_semantics.source_function = adb_intensity_map
+  legacy_original_reactive_scope.Stage1_adapter = iscai_stage1.actors.womd_adapter.adapt_causal_womd_scenario
+  legacy_original_reactive_scope.actor_box_builder = build_causal_adb_actor_boxes(scenario=..., adapted=...)
+  legacy_original_reactive_scope.centroid_center_semantics = ALLOWED_ONLY_AS_FROZEN_ORIGINAL_REACTIVE_BASELINE
+  legacy_original_reactive_scope.class_aware_policy = False
+  legacy_original_reactive_scope.class_field = object_type
+  legacy_original_reactive_scope.class_representation = SYMBOLIC_STRING
+  legacy_original_reactive_scope.class_source = object_type_name(track)
+  legacy_original_reactive_scope.communication_codebook = False
+  legacy_original_reactive_scope.covariance_input = False
+  legacy_original_reactive_scope.current_state_only = True
+  legacy_original_reactive_scope.fixed_vehicle_width = True
+  legacy_original_reactive_scope.future_input = False
+  legacy_original_reactive_scope.original_reactive_vehicle_symbol = TYPE_VEHICLE
+  legacy_original_reactive_scope.posterior_input = False
+  legacy_original_reactive_scope.raw_integer_class_comparison = False
+  legacy_original_reactive_scope.supported_classes[0] = TYPE_VEHICLE
+  legacy_original_reactive_scope.supported_classes[1] = TYPE_PEDESTRIAN
+  legacy_original_reactive_scope.supported_classes[2] = TYPE_CYCLIST
+  legacy_original_reactive_scope.vehicle_center_based = True
+  predictive_Stage6_binding.centroid_only_allowed = False
+  predictive_Stage6_binding.class_policy_required = True
+  predictive_Stage6_binding.full_box_projection_required = True
+  predictive_Stage6_binding.implemented_in_Block62 = False
+  predictive_Stage6_binding.uncertainty_required = True
+  source_authority.transitive_audit_sha256 = 7406e5e0342cee6252a536d63edd77ff909b6acd3eea7e6adb870f99e51796b5
+  status = FROZEN_EXACT_PART_A_REACTIVE_BINDING
+
+CONFIG = block62_static_reactive_kernel_contract.json
+  PDF_requirements.arbitrary_replacement_of_ADB_model = False
+  PDF_requirements.original_reactive_ADB_baseline = True
+  PDF_requirements.static_ADB_baseline = True
+  future_extensions.full_box_predictive_region = BLOCK6.3
+  numerical_freeze.final_ADB_grid_freeze = BLOCK6.8_PRE_FORMAL
+  numerical_freeze.final_ADB_grid_frozen = False
+  reactive_baseline.communication_codebook_input = False
+  reactive_baseline.exact_Part_A_numeric_parameter_binding = BLOCK6.2_PART2
+  reactive_baseline.future_trajectory_input = False
+  reactive_baseline.posterior_input = False
+  reactive_baseline.predictive_covariance_input = False
+  reactive_baseline.state_semantics = current_deterministic_region
+  status = STATIC_AND_REACTIVE_KERNEL_CONTRACT
+
+CONFIG = block63_deterministic_predictive_binding.json
+  artifact = deterministic_predictive_binding
+  association_policy.box_anchor = CausalADBActorBox.stage1_anchor_center_H0_m
+  association_policy.diagnostics_required.evaluator_truth_association_accuracy = DEVELOPMENT_AND_FORMAL_REPORTING_ONLY_AFTER_CONTROLLER_DECISION
+  association_policy.diagnostics_required.reactive_fallback_fraction = True
+  association_policy.scientific_role = controller-safe association between Stage4 causal predictor tracks and current causal Stage6 ADB boxes
+  association_policy.unmatched_policy.causal_ADB_box = ORIGINAL_REACTIVE_ADB_FALLBACK
+  association_policy.unmatched_policy.predictor_track = DO_NOT_APPLY_TO_ADB_BOX
+  association_policy.unmatched_policy.silent_drop_of_ADB_actor = False
+  development_policy.association_truth_metadata_role = EVALUATOR_ONLY_AFTER_CONTROLLER_ASSOCIATION
+  development_policy.development_only_validation_required = True
+  development_policy.formal_N120_parameter_selection = False
+  development_policy.formal_results_may_change_association_policy = False
+  development_policy.if_development_validation_reveals_failure = BLOCK_STAGE6_AND_CREATE_EXPLICIT_PRE_FORMAL_BINDING_AMENDMENT
+  development_policy.policy_frozen_before_development_result = True
+  development_policy.silent_posthoc_repair = False
+  future_box_policy.box_geometry_source = matched_current_causal_ADB_box
+  future_box_policy.current_geometry_provenance = CAUSAL_CURRENT_ANNOTATION_ASSISTED_GEOMETRY_NOT_FUTURE_ORACLE
+  future_box_policy.projection.api = iscai_stage6.adb.geometry.project_box_to_headlamp
+  scope.not_in_Block63_deterministic_mask.predictive_covariance = True
+  trajectory_policy.deterministic_ADB_signal = Gaussian_mean_only
+  trajectory_policy.predictive_covariance_used_for_deterministic_mask = False
+
+CONFIG = block63_part2_runtime_route_decision.json
+  runtime_route.record_domain = development_only
+
+CONFIG = block64_mc_grid_numeric_freeze.json
+  MC.reference_role = development_convergence_reference_only
+  MC.selection_rule = select_largest_preexisting_Stage5_candidate_after_confirming_strict_development_active_support_improvement_over_all_lower_candidates
+  scientific_illumination_grid.provenance = frozen_PartA_ADB_actuator_domain_mapped_to_Stage6_H0_headlamp_theta
+  status = FROZEN_DEVELOPMENT_NUMERICS
+
+CONFIG = block64_part1_stochastic_full_box_kernel_contract.json
+  implementation.module = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_full_box.py
+  trajectory_uncertainty.source = calibrated_predictive_covariance_H0_m2
+
+CONFIG = block64_part2a_probabilistic_occupancy_contract.json
+  implementation.module = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_occupancy.py
+  scientific_execution.real_development_posterior_sampled = False
+
+CONFIG = block65_class_agnostic_gamma_freeze.json
+  curve_role = validation_and_sensitivity_only
+  scope = class_agnostic_predictive_ADB_baseline_only
+  validation.global_symmetric_loss_minimizer = True
+  validation.posthoc_selection = False
+  validation.tied_global_minimizers = 2
+
+CONFIG = block65_class_agnostic_gamma_preregistration.json
+  gamma_curve_plan.purpose = sensitivity_and_validation_not_threshold_tuning
+  important_boundary.class_aware_thresholds = must_be_separately_preregistered_on_development_before_formal
+  important_boundary.this_gamma_applies_to = class_agnostic_predictive_baseline
+  scope = class_agnostic_predictive_ADB_baseline
+  selection_rule_details.development_metric_optimization = False
+
+CONFIG = block65_part1_parameterized_mask_contract.json
+  implementation.module = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/predictive_mask.py
+  multi_actor_predictive_mask.actor_order_invariant = True
+  multi_actor_predictive_mask.binary_OR_equivalence = True
+  multi_actor_predictive_mask.empty_actor_set = all_false
+  multi_actor_predictive_mask.equation = M_tau = 1 - product_i(1 - M_i_tau)
+  reactive_fallback.PartA_floor_semantics_preserved = True
+  reactive_fallback.applies_to = unmatched_causal_ADB_actors
+  reactive_fallback.binary_conversion = False
+  reactive_fallback.implementation = exact_call_through_to_frozen_Block6.2_reactive_adb_map
+  reactive_fallback.multi_region_rule = frozen_Block6.2_elementwise_minimum
+  reactive_fallback.output = continuous_normalized_intensity_[0,1]
+  reactive_fallback.raised_cosine_preserved = True
+  representation_boundary.final_predictive_reactive_intensity_composition = False
+  representation_boundary.predictive_binary_mask_shape = [4,N_theta,N_range]
+  representation_boundary.reactive_fallback_shape = [N_theta,N_range]
+  representation_boundary.reason = do_not_invent_dimming_depth_or_destroy_reactive_raised_cosine_before_policy_freeze
+  status = PASS_PARAMETERIZED_CLASS_AGNOSTIC_PREDICTIVE_MASK_CONTRACT
+  still_deferred.development_gamma_selection = True
+
+CONFIG = block66_development_cohort_selection_preregistration.json
+  design_rationale.purpose = balanced_development_class_coverage_before_policy_preregistration
+  source = frozen_Stage4_development_headlamp_relevant_manifest
+
+CONFIG = block66_part3b_class_aware_policy_preregistration.json
+  ADB_metric_formulas.actuation_latency.formula = wall-clock runtime from loaded P_occ/current geometry to final four-horizon illumination schedule
+  ADB_metric_formulas.actuation_latency.units = seconds
+  ADB_metric_formulas.actuation_latency.used_for_policy_selection = False
+  ADB_metric_formulas.binary_dim_support = D_tau = [I_final_tau < 1.0]
+  ADB_metric_formulas.cyclist_visibility_proxy.direction = higher_is_better
+  ADB_metric_formulas.cyclist_visibility_proxy.formula = mean(I_final over future GT cyclist projected full-box footprint cells)
+  ADB_metric_formulas.energy_consumption.direction = reported_not_primary_safety_target
+  ADB_metric_formulas.energy_consumption.formula = mean over horizon/grid of I_final
+  ADB_metric_formulas.energy_consumption.reported_semantics = normalized emitted-light energy proxy, not joules
+  ADB_metric_formulas.false_dimming.direction = lower_is_better
+  ADB_metric_formulas.false_dimming.formula = |D \ O| / |D|; 0 when |D|=0
+  ADB_metric_formulas.flicker_change_rate.direction = lower_is_better
+  ADB_metric_formulas.flicker_change_rate.formula = mean_h(count(I_h != I_prev)/grid_cell_count)
+  ADB_metric_formulas.glare_risk_exposure.direction = lower_is_better
+  ADB_metric_formulas.glare_risk_exposure.formula = mean final normalized intensity over vehicle constructed front-upper/rear-upper surrogate reference cells
+  ADB_metric_formulas.mask_IoU.empty_union = 1.0
+  ADB_metric_formulas.mask_IoU.formula = |D∩O| / |D∪O|
+  ADB_metric_formulas.oracle_dim_support = O_tau = union of constructed future actor shadow supports
+  ADB_metric_formulas.over_masking_area.direction = lower_is_better
+  ADB_metric_formulas.over_masking_area.formula = |D \ O| / |full actuator grid|
+  ADB_metric_formulas.pedestrian_visibility_proxy.direction = higher_is_better
+  ADB_metric_formulas.pedestrian_visibility_proxy.formula = mean(I_final over future GT pedestrian projected full-box footprint cells)
+  ADB_metric_formulas.rate_limit_safety_override_fraction.direction = lower_is_better
+  ADB_metric_formulas.rate_limit_safety_override_fraction.formula = override cells / total actuator-cell transitions
+  ADB_metric_formulas.road_illumination_retention.direction = higher_is_better
+  ADB_metric_formulas.road_illumination_retention.formula = mean(I_final over frozen road ROI)
+  ADB_metric_formulas.temporal_smoothness.direction = lower_is_better
+  ADB_metric_formulas.temporal_smoothness.formula = mean_h(mean_grid(|I_h-I_prev|)/delta_t_h)
+  ADB_metric_formulas.temporal_smoothness.reported_metric = mean_absolute_change_rate
+  ADB_metric_formulas.vehicle_shadow_zone_violation.direction = lower_is_better
+
+CONFIG = block66_part3c_part2of2_deterministic_replay_contract.json
+  persistence.working_cache_resumable = True
+  replay_population.eligible_predictive_vehicles = 719
+  upstream.P_occ_manifest.path = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c2b_eligible_actor_pocc_manifest.jsonl
+  upstream.P_occ_manifest.sha256 = c361ed640b91850831d7e7177d89733fedd3e171f5f3111bcd93698c74a4a300
+  upstream.class_aware_module.path = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/class_aware_policy.py
+  upstream.eligible_predictive_matches.path = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_predictive_matches.jsonl
+  upstream.eligible_predictive_matches.sha256 = d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6
+  upstream.fullbox_module.path = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_full_box.py
+  upstream.illumination.path = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/illumination.py
+  upstream.occupancy_module.path = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_occupancy.py
+  upstream.part_a_reactive.path = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/part_a_reactive.py
+  upstream.part_a_reactive.sha256 = 19f80f325aebc03b5257ca3c0408d1ddea1ac3a8ff4ad875914224584e2ef173
+  upstream.posterior.path = /home/agni/waymo/iscai_stage6/artifacts/block66/block66_development_identity_safe_gaussian_posterior.jsonl
+  upstream.predictive_mask.path = /home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/predictive_mask.py
+  upstream.predictive_mask.sha256 = 239611ddb1cc21b9ddd46962eb561e58e0d1474be58878f9c79c256ba1940575
+
+CONFIG = part_a_reactive_adb_adapter_contract.json
+  Stage6_preservation_contract.predictive_extension_changes_region_source = current deterministic region -> future probabilistic region
+  Stage6_preservation_contract.predictive_extension_may_change_entire_ADB_model = False
+  fair_baseline_semantics.deterministic_predictive_ADB = same downstream illumination semantics driven by predictive mean geometry
+  fair_baseline_semantics.oracle_future_ADB = constructed future reference; not measured ADB ground truth
+  fair_baseline_semantics.original_reactive_ADB = current-state reactive Part-A-style masking
+  fair_baseline_semantics.uncertainty_aware_predictive_ADB = same downstream illumination semantics driven by future occupancy uncertainty
+  input_contract.class_aware_predictive_policy = False
+  input_contract.predictive_covariance = False
+  input_contract.predictive_mean = False
+  known_limitations.Part_A_reactive_ADB_is_fully_calibrated_photometric_model = False
+  known_limitations.Part_A_report_semantics = qualitative implementation of paper ADB/Fig.3 logic
+  known_limitations.WOMD_contains_measured_ADB_commands = False
+  provenance_labels.Part_A_extension = MHT-driven reactive masking
+  provenance_labels.Stage6_contribution = probabilistic predictive class-aware masking
+  provenance_labels.paper_ADB = camera/geometry-informed reactive masking
+  role = Stage6 original_reactive_ADB baseline adapter to frozen Part-A illumination semantics
+  source.source_audit = /home/agni/waymo/iscai_stage6/artifacts/block60/part_a_adb_source_audit.json
+  status = FROZEN_REACTIVE_ADB_ADAPTER_CONTRACT
+
+CONFIG = stage6_contract.json
+  acceptance.primary_comparison = class-aware predictive ADB vs original reactive ADB
+  acceptance.uncontrolled_degradation_numeric_bounds = FREEZE_ON_DEVELOPMENT_BEFORE_FORMAL
+  adb_actor_population.classes[0] = vehicle
+  adb_actor_population.classes[1] = pedestrian
+  adb_actor_population.classes[2] = cyclist
+  adb_actor_population.communication_receiver_only = False
+  adb_actor_population.ego_included = False
+  adb_actor_population.future_track_duration_as_selector = False
+  adb_actor_population.future_truth_for_controller = False
+  adb_actor_population.future_truth_for_scoring_or_oracle_after_decision = True
+  adb_actor_population.future_validity_as_selector = False
+  adb_actor_population.policy = all causal anchor-valid ADB-relevant actors within frozen headlamp FOV/range
+  adb_actor_population.tracks_to_predict_as_control_selector = False
+  adb_actor_population.tracks_to_predict_only = False
+  adb_baselines.artificial_algorithm_difference_for_label_only = False
+  adb_baselines.comparison_framework = factorial_and_explicit_mapping
+  adb_baselines.overlapping_baseline_semantics_disclosed = True
+  adb_baselines.required_pdf_labels[0] = static_ADB
+  adb_baselines.required_pdf_labels[1] = original_reactive_ADB
+  adb_baselines.required_pdf_labels[2] = deterministic_predictive_ADB
+  adb_baselines.required_pdf_labels[3] = uncertainty_aware_predictive_ADB
+  adb_baselines.required_pdf_labels[4] = class_agnostic_predictive_ADB
+  adb_baselines.required_pdf_labels[5] = class_aware_predictive_ADB
+  adb_baselines.required_pdf_labels[6] = oracle_future_ADB
+  adb_baselines.same_grid_and_Part_A_intensity_model_for_fairness = True
+  adb_metrics.energy_metric_definition_frozen_before_formal = True
+  adb_metrics.oracle_semantics = CONSTRUCTED_REFERENCE_NOT_MEASURED_GT
+  adb_metrics.required[0] = mask_IoU_with_constructed_oracle_future_mask
+  adb_metrics.required[1] = vehicle_shadow_zone_violation
+  adb_metrics.required[2] = glare_risk_exposure
+
+CONFIG = stage6_metric_freeze_protocol.json
+  status = FROZEN_METRIC_SEMANTICS_PRE_DEVELOPMENT_BOUNDS
+  metrics.mask_IoU_with_constructed_oracle_future_mask.direction = higher_is_better
+  metrics.mask_IoU_with_constructed_oracle_future_mask.formula = intersection(candidate_mask, oracle_mask) / union(candidate_mask, oracle_mask)
+  metrics.mask_IoU_with_constructed_oracle_future_mask.empty_union = 1.0
+  metrics.over_masking_area.formula = road_roi AND candidate_mask AND NOT oracle_mask divided by road_roi cell count
+  metrics.false_dimming.formula = mean(1-intensity) on road cells outside constructed oracle mask
+  roi_contract.oracle_mask.source = constructed_future_ADB_reference
+  roi_contract.oracle_mask.measured_ground_truth = False
+  roi_contract.oracle_mask.controller_input = False
+  roi_contract.oracle_mask.parameter_tuning_input = False
+  primary_acceptance.comparison = class_aware_predictive_ADB_vs_original_reactive_ADB
+  primary_acceptance.vehicle_shadow_zone_violation.formal_rule = predictive_mean < reactive_mean
+  primary_acceptance.over_masking_area.delta_source = development_only_Block6.8_Part2
+  primary_acceptance.over_masking_area.formal_rule = predictive_minus_reactive <= frozen_delta
+  primary_acceptance.pedestrian_visibility_proxy.delta_source = development_only_Block6.8_Part2
+  primary_acceptance.pedestrian_visibility_proxy.formal_rule = predictive_minus_reactive >= -frozen_delta
+  primary_acceptance.cyclist_visibility_proxy.delta_source = development_only_Block6.8_Part2
+  primary_acceptance.cyclist_visibility_proxy.formal_rule = predictive_minus_reactive >= -frozen_delta
+  part2_bound_freeze_rules.development_partition_only = True
+  next = Block6.8 Part2 development-only metric runtime validation and numeric acceptance-bound freeze
+
+===== E. CANDIDATE DEVELOPMENT ARTIFACT PATHS =====
+
+Stage6 artifact candidates = 120
+   block60/__pycache__/run_block60_part2_part_a_adb_audit.structural_candidate.cpython-313.pyc
+   block60/block60_part2_part_a_adb_audit.log
+   block60/block60_part2_part_a_adb_audit.retry.log
+   block60/block60_part2_part_a_adb_audit.retry2.log
+   block60/block60_part2_part_a_adb_audit.retry3.log
+   block60/part_a_adb_source_audit.json
+   block60/run_block60_part2_part_a_adb_audit.pre_reference_role_repair.py
+   block61/__pycache__/run_block61_part2_stage1_integration.canonical_data_access_candidate.cpython-313.pyc
+   block61/__pycache__/run_block61_part2_stage1_integration.importlib_util_candidate.cpython-313.pyc
+   block61/__pycache__/run_block61_part2_stage1_integration.source_path_v2_candidate.cpython-313.pyc
+   block61/syntax_repair_backup/__pycache__/run_block61_part2_stage1_integration.py.candidate.cpython-313.pyc
+   block61/syntax_repair_backup/__pycache__/womd_geometry.py.candidate.cpython-313.pyc
+   block62/__pycache__/run_block62_part2_exact_part_a_reactive.validated_route_candidate.cpython-313.pyc
+   block62/block62_part1_static_reactive_kernel.log
+   block62/block62_part2_exact_part_a_reactive.log
+   block62/block62_part2_exact_part_a_reactive.retry1.log
+   block62/block62_part2_exact_part_a_reactive.retry2.log
+   block62/block62_part2_exact_part_a_reactive.retry3.log
+   block62/block62_real_causal_reactive_smoke.json
+   block62/part_a_adb_exact_source_excerpt.txt
+   block62/run_block62_part2_exact_part_a_reactive.pre_object_type_binding_repair.py
+   block62/run_block62_part2_exact_part_a_reactive.pre_object_type_binding_repair_v2.py
+   block62/run_block62_part2_exact_part_a_reactive.pre_validated_route_repair.py
+   block63/__pycache__/run_block63_part1_deterministic_future_box.generated_annotation_candidate_v3.cpython-313.pyc
+   block63/__pycache__/run_block63_part1_deterministic_future_box.provenance_candidate_v2.cpython-313.pyc
+   block63/__pycache__/run_block63_part2_dev_posterior_binding.coordinate_evidence_candidate.cpython-313.pyc
+   block63/__pycache__/run_block63_part2b1_frozen_gaussian_forward.block45_architecture_source_candidate.cpython-313.pyc
+   block63/__pycache__/run_block63_part2b1_frozen_gaussian_forward.direct_normalizer_candidate.cpython-313.pyc
+   block63/__pycache__/run_block63_part2b1_frozen_gaussian_forward.exact_map_context_candidate_v2.cpython-313.pyc
+   block63/__pycache__/run_block63_part2b1_frozen_gaussian_forward.exact_prepare_contract_candidate.cpython-313.pyc
+   block63/__pycache__/run_block63_part2b1_frozen_gaussian_forward.normalizer_binding_candidate.cpython-313.pyc
+   block63/__pycache__/run_block63_part2b2_real_future_full_box.exact_prediction_constructor_candidate.cpython-313.pyc
+   block63/block63_exact_prediction_route_audit.log
+   block63/block63_exact_prediction_route_source.txt
+   block63/block63_part2_dev_posterior_binding.log
+   block63/block63_part2_dev_posterior_binding.retry1.log
+   block63/block63_predictor_interface_audit.log
+   block63/identity_safe_development_gaussian_posterior.jsonl
+   block63/identity_safe_development_gaussian_posterior.npz
+   block63/run_block63_part2_dev_posterior_binding.pre_coordinate_evidence_repair.py
+   block63/run_block63_part2b2_real_future_full_box.pre_exact_prediction_constructor_repair.py
+   block64/block64_part2a_probabilistic_occupancy_kernel.log
+   block64/block64_part2b2_development_numeric_freeze.log
+   block64/block64_part2b2_development_numeric_freeze.retry1.log
+   block64/run_block64_part2b2_development_numeric_freeze.pre_orphan_main_footer_repair.py
+   block66/block66_class_aware_development_cohort_120.jsonl
+   block66/block66_development_association_matches.jsonl
+   block66/block66_development_cohort_freeze_manifest.json
+   block66/block66_development_identity_safe_gaussian_posterior.jsonl
+   block66/block66_development_reactive_fallback_boxes.jsonl
+   block66/block66_development_scene_association_summary.jsonl
+   block66/block66_part1b_development_cohort_freeze.log
+   block66/block66_part2b_cohort_posterior_association.log
+   block66/block66_part2b_cohort_posterior_association.retry1.log
+   block66/block66_part2b_cohort_posterior_association.retry2.log
+   block66/block66_part2c1_headlamp_eligible_predictive_matches.jsonl
+   block66/block66_part2c1_headlamp_eligible_reactive_fallbacks.jsonl
+   block66/part2b_scene_cache/000_f72a05a05035feb8.json
+   block66/part2b_scene_cache/001_217d94b9231ed401.json
+   block66/part2b_scene_cache/002_6ccad5b8230fdfaf.json
+   block66/part2b_scene_cache/003_78249f8856cb2c57.json
+   block66/part2b_scene_cache/004_63e96200cbac4d62.json
+   block66/part2b_scene_cache/005_d6a50bc55ce5f19e.json
+   block66/part2b_scene_cache/006_418c1e982b7921eb.json
+   block66/part2b_scene_cache/007_e970e71b3969f6a8.json
+   block66/part2b_scene_cache/008_65d6cd8b194260e3.json
+   block66/part2b_scene_cache/009_6daa131b25b411e1.json
+   block66/part2b_scene_cache/010_87ed599ac076981a.json
+   block66/part2b_scene_cache/011_b6d332d8e9bc222c.json
+   block66/part2b_scene_cache/012_4c4f377a1c147f8e.json
+   block66/part2b_scene_cache/013_3efb1c80ff9f199d.json
+   block66/part2b_scene_cache/014_c490bf21464a12e9.json
+   block66/part2b_scene_cache/015_94fc609eb2e9d4bf.json
+   block66/part2b_scene_cache/016_78edfc551a37bffd.json
+   block66/part2b_scene_cache/017_30971820b847eb66.json
+   block66/part2b_scene_cache/018_c78d67433bfd4c8c.json
+   block66/part2b_scene_cache/019_e697a3e91804731f.json
+   block66/part2b_scene_cache/020_c4abc55d4bca0cb1.json
+   block66/part2b_scene_cache/021_42f94f9b67c492f9.json
+   block66/part2b_scene_cache/022_1eddd4cef7183af3.json
+
+Stage4 artifact candidates = 120
+   block41/development.jsonl
+   block43/cache/development/00001_a6432ee002f8046d.npz
+   block43/cache/development/00002_395ff370ecfc2abd.npz
+   block43/cache/development/00003_96a1481dc541512.npz
+   block43/cache/development/00004_9315db40e0b126b8.npz
+   block43/cache/development/00005_664363d04fabb36a.npz
+   block43/cache/development/00006_1d01f68576828447.npz
+   block43/cache/development/00007_941d04605eef0369.npz
+   block43/cache/development/00008_ea803c5fdc919dcb.npz
+   block43/cache/development/00009_97bc53b662ba6242.npz
+   block43/cache/development/00010_35d41b1ef1460a1a.npz
+   block43/cache/development/00011_f72a05a05035feb8.npz
+   block43/cache/development/00012_b66168b7cf95bf84.npz
+   block43/cache/development/00013_217d94b9231ed401.npz
+   block43/cache/development/00014_e82bc4b58b4c83e8.npz
+   block43/cache/development/00015_b1ea359dde6d8df4.npz
+   block43/cache/development/00016_86e464cce07317e1.npz
+   block43/cache/development/00017_6ccad5b8230fdfaf.npz
+   block43/cache/development/00018_3c764a8be5237f66.npz
+   block43/cache/development/00019_6b72e3b3c2d129fa.npz
+   block43/cache/development/00020_28e0ea7a2ca646d6.npz
+   block43/cache/development/00021_e2327d18c0b1d73d.npz
+   block43/cache/development/00022_e704fc04e258e505.npz
+   block43/cache/development/00023_7dd29b1a494b86d.npz
+   block43/cache/development/00024_191c1f905fd631ad.npz
+   block43/cache/development/00025_78249f8856cb2c57.npz
+   block43/cache/development/00026_a3a1a2a0fbbc95e9.npz
+   block43/cache/development/00027_8a1c6aac44f9bd7e.npz
+   block43/cache/development/00028_b58677c7f2933ea6.npz
+   block43/cache/development/00029_d016957a325c7eeb.npz
+   block43/cache/development/00030_2eb24d7fe448063e.npz
+   block43/cache/development/00031_ad9fba22e5ceeffc.npz
+   block43/cache/development/00032_eb0293da64c344cb.npz
+   block43/cache/development/00033_c29548d27dbc1820.npz
+   block43/cache/development/00034_5d27f514c439978d.npz
+   block43/cache/development/00035_1d14acf963febc80.npz
+   block43/cache/development/00036_91b9bd56c1084d03.npz
+   block43/cache/development/00037_4252985934cfdf28.npz
+   block43/cache/development/00038_86c5b063a876a3a4.npz
+   block43/cache/development/00039_a5545794899ee131.npz
+   block43/cache/development/00040_b05b39c8abae6d7.npz
+   block43/cache/development/00041_e0eef68de47eee18.npz
+   block43/cache/development/00042_298b525580018a99.npz
+   block43/cache/development/00043_3577c657003ea5de.npz
+   block43/cache/development/00044_63e96200cbac4d62.npz
+   block43/cache/development/00045_33279d83114b73dc.npz
+   block43/cache/development/00046_81a3a56be49c4406.npz
+   block43/cache/development/00047_6a8abea31441b640.npz
+   block43/cache/development/00048_43cb883b388c851e.npz
+   block43/cache/development/00049_fb0916c764d46f22.npz
+   block43/cache/development/00050_145c37f2e1aab934.npz
+   block43/cache/development/00051_6d87bd01ab9ebc8c.npz
+   block43/cache/development/00052_d6a50bc55ce5f19e.npz
+   block43/cache/development/00053_726dc0be0b1ff3ac.npz
+   block43/cache/development/00054_c26ea67a45fa79c2.npz
+   block43/cache/development/00055_418c1e982b7921eb.npz
+   block43/cache/development/00056_8e890dd54af4ede9.npz
+   block43/cache/development/00057_43dd5c65c678aced.npz
+   block43/cache/development/00058_3bd80f6f6f6ac8d.npz
+   block43/cache/development/00059_a7aa5ad4a9d9a71a.npz
+   block43/cache/development/00060_5490d8b8a4f13cd0.npz
+   block43/cache/development/00061_e970e71b3969f6a8.npz
+   block43/cache/development/00062_111ba9e426732e40.npz
+   block43/cache/development/00063_36d56590663993da.npz
+   block43/cache/development/00064_89bda4c79cb0ead4.npz
+   block43/cache/development/00065_cc2438675d700358.npz
+   block43/cache/development/00066_1d4ef01e58c6acb.npz
+   block43/cache/development/00067_11b71f69b1973224.npz
+   block43/cache/development/00068_c5442bf32558ab09.npz
+   block43/cache/development/00069_4ca1684295762078.npz
+   block43/cache/development/00070_bd3ebe8f1392de8a.npz
+   block43/cache/development/00071_d904fe36d6f2aa0.npz
+   block43/cache/development/00072_6fe5e19d4a29c9a7.npz
+   block43/cache/development/00073_2cfd77c90dc3f042.npz
+   block43/cache/development/00074_1de60f6ac588697f.npz
+   block43/cache/development/00075_51061211593a5c3a.npz
+   block43/cache/development/00076_c3a49afffa4db5b7.npz
+   block43/cache/development/00077_6cdf4daf0786d51b.npz
+   block43/cache/development/00078_3cb32b1f0e10e5cb.npz
+   block43/cache/development/00079_e9cb186c5d2b4e63.npz
+
+Stage4 report-name candidates = 2
+   block48_validation_resolver_repair.json
+   block48_validation_source_discovery.json
+
+NOTE:
+Only PATH NAMES were inspected above.
+No development result JSON was opened.
+No formal result JSON/manifest was opened.
+
+===== F. FORMAL BOUNDARY =====
+formal-named paths discovered = 285
+   iscai_stage4/artifacts/block48/formal_cache_manifest.json
+   iscai_stage4/artifacts/block48/formal_neural_outputs.npz
+   iscai_stage4/artifacts/block48/run_block48_formal_evaluation.pre_canonical_validation_repair.py
+   iscai_stage4/artifacts/block48/run_block48_formal_evaluation.pre_class_semantics_repair.py
+   iscai_stage4/reports/block48_formal_evaluation.json
+   iscai_stage4/scripts/__pycache__/run_block48_formal_evaluation.cpython-313.pyc
+   iscai_stage4/scripts/run_block48_formal_evaluation.py
+   iscai_stage4/src/iscai_stage4/ml/__pycache__/formal_runtime.cpython-313.pyc
+   iscai_stage4/src/iscai_stage4/ml/formal_runtime.py
+   iscai_stage4/tests/__pycache__/test_block48_formal_runtime.cpython-313.pyc
+   iscai_stage4/tests/test_block48_formal_runtime.py
+   iscai_stage5/artifacts/block58/__pycache__/resolve_exact_formal_route_semantics.cpython-313.pyc
+   iscai_stage5/artifacts/block58/debug_quarantine_20260821_155135/block58_formal_failure.json
+   iscai_stage5/artifacts/block58/debug_quarantine_20260821_155135/formal_clean_cache/001_cfd33c593d645bf5.json
+   iscai_stage5/artifacts/block58/debug_quarantine_20260821_155234_formal_clean_cache/001_cfd33c593d645bf5.json
+   iscai_stage5/artifacts/block58/debug_quarantine_20260821_155250_formal_clean_cache/001_cfd33c593d645bf5.json
+   iscai_stage5/artifacts/block58/debug_quarantine_20260821_155637_formal_clean_cache/001_cfd33c593d645bf5.json
+   iscai_stage5/artifacts/block58/debug_quarantine_20260821_155910_formal_clean_cache/001_cfd33c593d645bf5.json
+   iscai_stage5/artifacts/block58/exact_formal_route_semantics.json
+   iscai_stage5/artifacts/block58/exact_formal_route_semantics.log
+   iscai_stage5/artifacts/block58/formal_clean_cache/001_cfd33c593d645bf5.json
+   iscai_stage5/artifacts/block58/formal_clean_cache/002_b90adbf772ab2317.json
+   iscai_stage5/artifacts/block58/formal_clean_cache/003_b3078e2d1e2a6ed4.json
+   iscai_stage5/artifacts/block58/formal_clean_cache/004_765006a780597dad.json
+   iscai_stage5/artifacts/block58/formal_clean_cache/005_2ecd23f7b38b6be2.json
+   iscai_stage5/artifacts/block58/formal_clean_cache/006_1ddbd21df026a18c.json
+   iscai_stage5/artifacts/block58/formal_clean_cache/007_956c7591f9c52876.json
+   iscai_stage5/artifacts/block58/formal_clean_cache/008_74bef277f8242651.json
+   iscai_stage5/artifacts/block58/formal_clean_cache/009_d9cf27b30d5532a2.json
+   iscai_stage5/artifacts/block58/formal_clean_cache/010_76ef1efb0d6c5c2.json
+formal file CONTENT read = NO
+formal outcomes read     = NO
+
+===== G. FULL STAGE6 REGRESSION =====
+Stage6 regression = 196 / 196 PASS
+
+===== H. STORAGE =====
+free GiB        = 1052.776
+250-GiB reserve = PASS
+
+===== I. DEVELOPMENT-RUNTIME READINESS =====
+predictive_or_occupancy_runtime   = FOUND
+reactive_runtime                  = FOUND
+adb_runtime                       = FOUND
+development_or_dev_artifact       = FOUND
+validation_named_artifact         = NOT PROVEN
+
+============================================================
+BLOCK 6.8 PART 2/2 — DEVELOPMENT PREFLIGHT FINAL
+============================================================
+Block6.8 Part1           = EXACT FROZEN PASS
+Stage6 ADB APIs          = INVENTORIED
+Stage6 runner APIs       = INVENTORIED
+development artifacts    = PATH DISCOVERY ONLY
+development outcomes read= NO
+formal outcomes read     = NO
+formal files opened      = NO
+policy tuning            = NO
+Stage6 regression        = 196 / 196 PASS
+STATUS = PASS_DEVELOPMENT_API_DISCOVERED
+report = /home/agni/waymo/iscai_stage6/reports/block68_part2_development_preflight.json
+terminal remains open = YES

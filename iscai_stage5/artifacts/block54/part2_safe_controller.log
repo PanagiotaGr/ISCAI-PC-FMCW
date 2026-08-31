@@ -1,0 +1,147 @@
+============================================================
+BLOCK 5.4 PART 2/2 — SAFE EXECUTION
+============================================================
+
+===== CONTROLLED COMPILE =====
+beam_baseline_temporal.py = PASS
+test_block54_part2_temporal_policy.py = PASS
+run_block54_part2_freeze.py = PASS
+run_block54_part2_safe.py = PASS
+
+===== BLOCK5.4 PART2 UNIT TESTS =====
+
+..................
+----------------------------------------------------------------------
+Ran 18 tests in 0.002s
+
+OK
+
+Block5.4 Part2 tests = 18 / 18 PASS
+
+===== PRE-FREEZE FULL STAGE5 REGRESSION =====
+
+..................................................................................................................................................
+----------------------------------------------------------------------
+Ran 146 tests in 0.073s
+
+OK
+
+pre-freeze Stage5 regression = 146 / 146 PASS
+
+===== FINAL BLOCK5.4 FREEZE =====
+============================================================
+STAGE 5 — BLOCK 5.4 PART 2/2
+BASELINE POLICY + TEMPORAL CONTRACT FREEZE
+============================================================
+
+===== A. FROZEN CONTINUITY =====
+Block5.4 Part1           = PASS
+historical Part1 SHA     = PASS
+Block5.3                 = COMPLETE / FROZEN
+codebook policy SHA      = PASS
+
+===== B. BASELINE REGISTRY FREEZE =====
+controller baselines      = ['exhaustive_sweep', 'previous_beam_persistence', 'geometry_nearest', 'fixed_top1_probability', 'fixed_top3_probability', 'fixed_top5_probability']
+evaluator-only baselines  = ['oracle_best_gain_eval_only']
+fixed K                   = 1 / 3 / 5
+fixed Top-K ranking       = P_b
+adaptive Top-K            = NOT STARTED
+
+===== C. PERSISTENCE TEMPORAL CONTRACT =====
+state                     = PREVIOUS SELECTED BEAM
+first-step initialization = CAUSAL GEOMETRY NEAREST
+later-step policy         = REUSE PREVIOUS BEAM
+state update              = SELECTED BEAM -> NEXT STATE
+reset semantics           = CLEAR PREVIOUS STATE
+future receiver truth     = NO
+
+===== D. FIXED TOP-K COMPARISON CONTRACT =====
+Top-1                    = FROZEN
+Top-3                    = FROZEN
+Top-5                    = FROZEN
+ranking                  = DESCENDING P_b
+tie-break                = LOWER BEAM INDEX
+adaptive K               = NO
+
+===== E. EVALUATION-ONLY ORACLE CONTRACT =====
+oracle input              = REALIZED RECEIVER AZIMUTH
+oracle timing             = AFTER CONTROLLER DECISION
+oracle controller access  = BLOCKED PASS
+WOMD measured beam label  = NO
+oracle label type         = GEOMETRY/GAIN-DERIVED
+
+===== F. SCOPE / LEAKAGE =====
+formal N=120 used        = NO
+Stage4 inference         = NO
+development tuning       = NO
+training/recalibration   = NO
+adaptive Top-K           = NOT STARTED
+blockage-aware baseline  = OPTIONAL / NOT STARTED
+optical link evaluation  = NOT STARTED
+ADB                      = NOT STARTED
+
+============================================================
+BLOCK 5.4 PART 2/2 GATE
+============================================================
+Part1 continuity             = PASS
+baseline registry            = FROZEN
+exhaustive sweep             = FROZEN
+geometry nearest             = FROZEN / CAUSAL
+previous-beam persistence    = FROZEN / CAUSAL
+persistence initialization   = GEOMETRY NEAREST
+persistence state update     = SELECTED BEAM
+fixed Top-1 / 3 / 5          = FROZEN
+fixed Top-K ranking          = P_b
+oracle                      = EVALUATION ONLY
+oracle controller access    = NO
+WOMD measured beam labels   = NO
+formal N=120 used           = NO
+Stage4 inference            = NO
+development/formal tuning   = NO
+adaptive Top-K              = NOT STARTED
+policy SHA256               = 0eef4bb57955ea6cba011b5e9b3ff0a6506d7696d0691652a3256f03d2a4ca14
+implementation files        = 61
+implementation SHA256       = 1fd8e9417ed64014e176c2536ebbce14db074eff94dea6e270d4d412e4a8daef
+STATUS = PASS
+Block5.4 = COMPLETE / FROZEN
+report = /home/agni/waymo/iscai_stage5/reports/block54_beam_baselines.json
+next = BLOCK 5.5
+terminal remains open = YES
+
+Block5.4 freeze raw code = 0
+
+===== FINAL FULL STAGE5 REGRESSION =====
+
+..................................................................................................................................................
+----------------------------------------------------------------------
+Ran 146 tests in 0.066s
+
+OK
+
+final Stage5 regression = 146 / 146 PASS
+
+============================================================
+BLOCK 5.4 FINAL
+============================================================
+baseline registry           = FROZEN
+exhaustive sweep             = FROZEN
+geometry nearest             = FROZEN / CAUSAL
+previous-beam persistence    = FROZEN / CAUSAL
+persistence initialization   = GEOMETRY NEAREST
+persistence state update     = PREVIOUS SELECTED BEAM
+fixed Top-1 / Top-3 / Top-5  = FROZEN
+fixed Top-K ranking          = P_b
+oracle                       = EVALUATION ONLY
+oracle controller access     = NO
+WOMD measured beam labels    = NO
+formal N=120 used            = NO
+Stage4 inference             = NO
+development/formal tuning    = NO
+adaptive Top-K               = NOT STARTED
+Stage5 regression            = 146 / 146 PASS
+policy SHA256                = 0eef4bb57955ea6cba011b5e9b3ff0a6506d7696d0691652a3256f03d2a4ca14
+implementation SHA256        = 1fd8e9417ed64014e176c2536ebbce14db074eff94dea6e270d4d412e4a8daef
+scientific STATUS            = PASS
+Block5.4                     = COMPLETE / FROZEN
+next                         = BLOCK 5.5
+terminal remains open        = YES

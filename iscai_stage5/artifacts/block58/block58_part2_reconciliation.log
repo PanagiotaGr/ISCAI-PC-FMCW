@@ -1,0 +1,96 @@
+============================================================
+BLOCK 5.8 PART 2/2 — FORMAL RECONCILIATION
+NO FORMAL RERUN / NO TUNING
+============================================================
+
+===== A. FROZEN BLOCK 5.3 → 5.7 CHAIN =====
+5.3 codebooks           = PASS
+5.4 baselines           = PASS
+5.5 adaptive Top-K      = PASS
+5.6 optical link        = PASS
+5.7 latency/fallback    = PASS
+
+===== B. FROZEN 16 / 32 / 64 CODEBOOK EVIDENCE =====
+Block5.3 codebooks       = [16, 32, 64] PASS
+formal frozen codebooks = [16, 32, 64] PASS
+old Part2 blocker       = FALSE / STALE EVIDENCE GATE
+
+===== C. PRE-FORMAL ACCEPTANCE FREEZE =====
+pre-formal freeze        = PASS
+nominal q                = 0.95 PASS
+reported q               = [0.9, 0.95, 0.975, 0.99] PASS
+formal tuning            = NO
+
+===== D. FORMAL N=120 / PROVENANCE =====
+formal N                 = 120 PASS
+formal manifest SHA      = PASS
+same Stage3/4 population = PASS
+post-hoc formal tuning   = NO
+acceptance-policy SHA    = PASS
+
+===== E. FORMAL GEOMETRY / CODEBOOK / HORIZON GRID =====
+geometry modes           = centroid / known / uncertain PASS
+codebooks                = 16 / 32 / 64 PASS
+horizons                 = 0.1 / 0.3 / 0.5 / 1.0 PASS
+q curves                 = 0.90 / 0.95 / 0.975 / 0.99 PASS
+
+===== F. PRIMARY STAGE5 ACCEPTANCE EVIDENCE =====
+requested nominal q      = 0.95
+empirical coverage       = 0.9959473150962512 PASS
+overhead reduction       = 0.865216565349544 PASS
+probing overhead fraction= 0.00046970618034447825
+beam-gain loss dB        = 0.05214286133992984
+beam switching rate      = 0.005065856129685917
+BER / effective rate     = PRESENT PASS
+SNR / beam-gain loss     = PRESENT PASS
+reliability-overhead     = PRESENT PASS
+Pareto frontier          = PRESENT PASS
+
+===== G. EXISTING BLOCK5.8 FINAL CLOSURE =====
+block58 formal report    = PASS
+block58 final closure    = PASS-LIKE
+formal inference rerun   = NO
+
+===== H. STALE PART2 GATE RECONCILIATION =====
+historical BLOCKED gate = PRESERVED
+reconciled Part2 gate   = WRITTEN PASS
+formal outputs changed  = NO
+
+===== I. REGRESSION THROUGH BLOCK 5.8 =====
+Block5.8 controlled compile = PASS
+tests through Block5.8   = 254
+downstream Block5.9 tests excluded = 3
+Ran 254 tests in 0.075s
+OK
+regression through 5.8   = PASS
+Block5.9 stale test      = DEFERRED TO BLOCK 5.9
+
+===== J. IMMUTABILITY READBACK =====
+Block5.3–5.7 reports     = UNCHANGED
+pre-formal freeze        = UNCHANGED
+formal evaluation        = UNCHANGED
+Block5.8 final closure   = UNCHANGED
+acceptance policy        = UNCHANGED
+formal manifest          = UNCHANGED
+existing Block5.9 report= UNCHANGED
+
+============================================================
+BLOCK 5.8 PART 2/2 — FINAL
+============================================================
+historical Part2 blocker = STALE / RECONCILED
+formal N                 = 120 PASS
+16/32/64 codebooks       = PASS
+centroid/known/uncertain = PASS
+0.1/0.3/0.5/1.0 s       = PASS
+90/95/97.5/99% curves    = PASS
+nominal q=0.95 coverage  = 0.9959473150962512 PASS
+overhead reduction       = 0.865216565349544 PASS
+optical/system metrics   = PASS
+formal tuning            = NO
+formal rerun             = NO
+scientific outputs changed = NO
+regression through 5.8   = PASS
+Block5.9 modified        = NO
+STATUS = PASS_RECONCILED_COMPLETE
+report = /home/agni/waymo/iscai_stage5/artifacts/block58/block58_part2_reconciliation.json
+terminal remains open = YES

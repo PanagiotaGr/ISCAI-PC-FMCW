@@ -1,0 +1,119 @@
+{
+  "actuator_representation": {
+    "classification": "GEOMETRY_ONLY_NOT_ACTUATOR_DOF",
+    "full_3D_geometry": true,
+    "pedestrian_supported_branch": "partial_dimming_via_nonzero_intensity_floor",
+    "scientific_axes": [
+      "theta",
+      "range"
+    ],
+    "vertical_actuator_axis": false
+  },
+  "authoritative_capabilities": {
+    "actuation_rate_limit_operator": "NOT_IMPLEMENTED_RUNTIME_API",
+    "class_margin_operator": "NOT_IMPLEMENTED_RUNTIME_API",
+    "class_priority_operator": "NOT_IMPLEMENTED_RUNTIME_API",
+    "class_specific_policy_composition": "NOT_IMPLEMENTED_RUNTIME_API",
+    "full_3D_box_geometry": "IMPLEMENTED_RUNTIME_API",
+    "predictive_gamma_threshold": "IMPLEMENTED_RUNTIME_API",
+    "reactive_intensity_floor": "IMPLEMENTED_RUNTIME_API",
+    "reactive_raised_cosine": "IMPLEMENTED_RUNTIME_API",
+    "temporal_smoothing_operator": "IMPLEMENTED_RUNTIME_API",
+    "vertical_pixel_or_elevation_actuation": "GEOMETRY_ONLY_NOT_ACTUATOR_DOF"
+  },
+  "block": "6.6-Part3A2",
+  "continuity_constraints": {
+    "communication_beam_actuator_reused": false,
+    "normalized_intensity_range": [
+      0.0,
+      1.0
+    ],
+    "preserve_PartA_raised_cosine": true,
+    "preserve_original_reactive_fallback": true
+  },
+  "next": "BLOCK6.6_PART3B_FREEZE_POLICY_PARAMETERIZATION_METRICS_CANDIDATE_SPACE_AND_DEVELOPMENT_SELECTION_RULE_BEFORE_ANY_SWEEP",
+  "operator_candidates": {
+    "actuation_rate": {},
+    "class_margin": {},
+    "class_policy": {},
+    "class_priority": {},
+    "temporal_smoothing": {
+      "predictive_mask.aggregate_binary_actor_masks": "(actor_masks: 'Iterable[BinaryActorPredictiveMask]', *, grid_shape) -> 'np.ndarray'",
+      "predictive_mask.build_class_agnostic_predictive_mask_plan": "(actor_occupancies: 'Iterable[ActorOccupancyProbability]', *, gamma: 'float', grid_shape, reactive_grid: 'Any | None' = None, reactive_fallback_regions: 'Iterable[ReactiveShadowRegion]' = ()) -> 'ClassAgnosticPredictiveMaskPlan'",
+      "predictive_mask.threshold_actor_occupancy": "(actor_occupancy: 'ActorOccupancyProbability', *, gamma: 'float') -> 'BinaryActorPredictiveMask'"
+    }
+  },
+  "previous_blocker": {
+    "classification": "AUDIT_WRAPPER_ONLY_FALSE_NEGATIVE",
+    "correct_resolution": "single_region_illumination_map transitively calls part_a_radial_profile; radial profile numerically reproduces frozen Part-A raised-cosine equation",
+    "failed_check": "searched for cosine token directly inside single_region_illumination_map",
+    "scientific_source_changed": false
+  },
+  "raised_cosine_runtime_proof": {
+    "equation_reference": [
+      0.0,
+      0.0,
+      0.1464466094067262,
+      0.49999999999999994,
+      0.8535533905932737,
+      1.0,
+      1.0
+    ],
+    "maximum_absolute_error": 0.0,
+    "pass": true,
+    "radial_kernel": "part_a_radial_profile",
+    "runtime_output": [
+      0.0,
+      0.0,
+      0.1464466094067262,
+      0.49999999999999994,
+      0.8535533905932737,
+      1.0,
+      1.0
+    ],
+    "runtime_signature": "(range_m, *, r_shadow_end_m: 'float', r_transition_end_m: 'float', intensity_floor: 'float' = 0.0)",
+    "sample_ranges_m": [
+      0.0,
+      20.0,
+      25.0,
+      30.0,
+      35.0,
+      40.0,
+      60.0
+    ],
+    "wrapper": "single_region_illumination_map",
+    "wrapper_calls": [
+      "angular_shadow_mask",
+      "part_a_radial_profile",
+      "static_adb_map"
+    ]
+  },
+  "regression": {
+    "status": "PASS",
+    "tests": 145
+  },
+  "required_new_runtime_components": [
+    "class_aware_policy_composition",
+    "class_aware_margin_operator",
+    "class_overlap_priority_rule",
+    "actuation_rate_limit_operator"
+  ],
+  "runtime_gamma_callables": {
+    "build_class_agnostic_predictive_mask_plan": "(actor_occupancies: 'Iterable[ActorOccupancyProbability]', *, gamma: 'float', grid_shape, reactive_grid: 'Any | None' = None, reactive_fallback_regions: 'Iterable[ReactiveShadowRegion]' = ()) -> 'ClassAgnosticPredictiveMaskPlan'",
+    "threshold_actor_occupancy": "(actor_occupancy: 'ActorOccupancyProbability', *, gamma: 'float') -> 'BinaryActorPredictiveMask'"
+  },
+  "scientific_execution": {
+    "actuation_rate_parameter_selected": false,
+    "class_policy_parameter_selected": false,
+    "floor_selected": false,
+    "formal_outcomes_read": false,
+    "formal_tuning": false,
+    "gamma_selected": false,
+    "margin_selected": false,
+    "priority_selected": false,
+    "source_modified": false,
+    "temporal_parameter_selected": false
+  },
+  "stage": 6,
+  "status": "PASS_EXECUTABLE_CLASS_POLICY_CAPABILITY_RESOLUTION"
+}

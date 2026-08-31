@@ -1,0 +1,74 @@
+========================================================================
+BLOCK 6.3 — FINAL DETERMINISTIC PREDICTIVE BASELINE CLOSURE
+========================================================================
+
+===== A. EXACT BLOCK6.3 PREREQUISITE SEAL =====
+binding                = EXACT PASS
+Part1                  = EXACT PASS
+Part2A                 = EXACT PASS
+Part2B/1               = EXACT PASS
+Part2B/2               = EXACT PASS
+Part2B/2 artifact      = EXACT PASS
+posterior JSONL        = EXACT PASS
+Part2B/2 runner        = EXACT PASS
+posterior NPZ          = EXACT PASS
+
+===== B. SCIENTIFIC SEMANTIC CLOSURE =====
+identity-safe posterior     = PASS
+Gaussian mean only          = PASS
+association                 = 6 matched / 3 fallback
+future boxes                = 24
+full projected corners      = 192
+predicted_sample provenance = PASS
+predicted_tangent provenance= PASS
+future GT / perfect ID      = NO / NO
+covariance used in Block6.3 = NO
+
+===== C. FRESH STAGE6 REGRESSION =====
+..................................................................................................
+----------------------------------------------------------------------
+Ran 98 tests in 0.034s
+
+OK
+fresh regression = PASS | tests = 98
+
+===== D. IMPLEMENTATION FREEZE INVENTORY =====
+deterministic_association.py = 5a4cc1803f9e45a8af23a57d89f47d9df6cc06af57823b2ce00063afa0a110a8
+deterministic_predictive.py = a81834dee7203d37b045d070d6e448010dd9add88eb2d054ccfb56e207156d3e
+womd_geometry.py = b90f47289bd091474658e3864c4b1ccc8c2fc841aaa38160f38f0b95ece7187c
+geometry.py = f6e6cc0dd362338eeeaae9d8e25947434a3e7c64b350f0baf81a79a46159f94e
+test_block63_part1_deterministic_future_box.py = f31c526a97574f8fe54df73c5aebfc5326173a79032578e9c3a4fe75ad72c014
+
+===== E. BLOCK6.3 FINAL CLOSURE =====
+closure = /home/agni/waymo/iscai_stage6/reports/block63_final_closure.json
+closure SHA256 = c451c965fa4b8a237f36358da9c1c36436a4317ee0b1501e170be2c804977d1c
+
+===== F. BLOCK6.3 → BLOCK6.4 HANDOFF =====
+handoff = /home/agni/waymo/iscai_stage6/artifacts/block63/block63_to_block64_handoff.json
+handoff SHA256 = 611f1679b83fb1273cf2d1836a03073e3c557704c9656741d46ea19f80ca18c6
+
+===== G. BLOCK6.3 FINAL FREEZE MANIFEST =====
+freeze manifest = /home/agni/waymo/iscai_stage6/artifacts/block63/block63_final_freeze_manifest.json
+freeze SHA256 = 230b800e3889a412202306c450824152b7bff2aa6e35d12376a22d007597e8f2
+
+========================================================================
+BLOCK 6.3 — FINAL
+========================================================================
+STATUS = PASS_BLOCK63_DETERMINISTIC_PREDICTIVE_BASELINE_FROZEN
+posterior records        = 27
+matched / fallback       = 6 / 3
+future boxes             = 24
+projected corners        = 192
+Gaussian signal          = MEAN ONLY
+predictive covariance    = RETAINED FOR BLOCK6.4
+future GT                = NO
+perfect actor identity   = NO
+formal evaluation        = NO
+training/recalibration   = NO / NO
+fresh Stage6 regression  = PASS | tests = 98
+closure SHA256           = c451c965fa4b8a237f36358da9c1c36436a4317ee0b1501e170be2c804977d1c
+handoff SHA256           = 611f1679b83fb1273cf2d1836a03073e3c557704c9656741d46ea19f80ca18c6
+freeze SHA256            = 230b800e3889a412202306c450824152b7bff2aa6e35d12376a22d007597e8f2
+NEXT = BLOCK6.4 PROBABILISTIC FULL-BOX OCCUPANCY
+terminal remains open = YES
+========================================================================

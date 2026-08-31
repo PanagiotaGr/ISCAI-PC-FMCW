@@ -1,0 +1,243 @@
+{
+  "Part3B_preregistration": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block66_part3b_class_aware_policy_preregistration.json",
+    "sha256": "5704494a89b4b3c7a3c19b0df8176c550c00795ed17cf2906c343f340461429e"
+  },
+  "PartA_continuity": {
+    "generic_lateral_margin": "PRESERVED",
+    "generic_radial_margin": "PRESERVED",
+    "original_reactive_baseline_modified": false,
+    "raised_cosine": "PRESERVED"
+  },
+  "block": "6.6-Part3C",
+  "deterministic_replay": {
+    "PRNG_deterministic_replay_executed": true,
+    "contract_path": "/home/agni/waymo/iscai_stage6/configs/block66_part3c_part2of2_deterministic_replay_contract.json",
+    "contract_sha256": "ff1816222564b519514e1fad342128010bd19ac31fe0291cd4b28045e339b5c1",
+    "full_box_exact_parity": "PASS_719_OF_719",
+    "new_random_seed": false,
+    "new_stochastic_realization": false,
+    "replayed_this_run": 719,
+    "reused_from_resumable_cache": 0,
+    "same_seed_per_actor": true,
+    "sample_count_per_actor": 8192,
+    "seed": 20260821,
+    "tolerance": null,
+    "vehicles": 719
+  },
+  "geometry_binding": {
+    "all_candidates": [
+      {
+        "axis": "X_LENGTH_Y_WIDTH",
+        "rotation": "CCW_STANDARD",
+        "worst_error": 3.552713678800501e-15
+      },
+      {
+        "axis": "X_WIDTH_Y_LENGTH",
+        "rotation": "CCW_STANDARD",
+        "worst_error": 1.299596856365259
+      },
+      {
+        "axis": "X_WIDTH_Y_LENGTH",
+        "rotation": "CLOCKWISE",
+        "worst_error": 3.379833896808613
+      },
+      {
+        "axis": "X_LENGTH_Y_WIDTH",
+        "rotation": "CLOCKWISE",
+        "worst_error": 4.673613590063706
+      }
+    ],
+    "axis_semantics": "X_LENGTH_Y_WIDTH",
+    "rotation_semantics": "CCW_STANDARD",
+    "worst_probe_error": 3.552713678800501e-15
+  },
+  "integration_smoke": {
+    "development_objective_evaluated": false,
+    "formal_outcomes_read": false,
+    "future_GT_used": false,
+    "numeric_policy_selected": false,
+    "results": [
+      {
+        "active_cells_after_margin": 29212,
+        "active_cells_before_margin": 23029,
+        "actor_class": "TYPE_VEHICLE",
+        "final_max": 1.0,
+        "final_mean": 0.9078852668776621,
+        "final_min": 2.0611536224388346e-09,
+        "margin": [
+          {
+            "additional_margin_m": 0.36685084841369864,
+            "dilation_cells": 29,
+            "horizon_s": 0.1,
+            "total_margin_m": 1.3668508484136987
+          },
+          {
+            "additional_margin_m": 0.47324462842014725,
+            "dilation_cells": 29,
+            "horizon_s": 0.3,
+            "total_margin_m": 1.4732446284201473
+          },
+          {
+            "additional_margin_m": 0.6003596645944657,
+            "dilation_cells": 29,
+            "horizon_s": 0.5,
+            "total_margin_m": 1.6003596645944658
+          },
+          {
+            "additional_margin_m": 0.899633746530175,
+            "dilation_cells": 29,
+            "horizon_s": 1.0,
+            "total_margin_m": 1.8996337465301751
+          }
+        ],
+        "objective_metric_evaluated": false,
+        "prediction_id": "s3trk-000027",
+        "rate_limit_safety_override_fraction": 0.0,
+        "scenario_id": "f72a05a05035feb8"
+      },
+      {
+        "active_cells_after_margin": 2546,
+        "active_cells_before_margin": 1648,
+        "actor_class": "TYPE_PEDESTRIAN",
+        "final_max": 1.0,
+        "final_mean": 0.9607129506832015,
+        "final_min": 0.05000000195809594,
+        "margin": [
+          {
+            "additional_margin_m": 0.31185064284323866,
+            "dilation_cells": 11,
+            "horizon_s": 0.1,
+            "total_margin_m": 1.3118506428432386
+          },
+          {
+            "additional_margin_m": 0.3453228854355918,
+            "dilation_cells": 11,
+            "horizon_s": 0.3,
+            "total_margin_m": 1.3453228854355919
+          },
+          {
+            "additional_margin_m": 0.37969071663033543,
+            "dilation_cells": 12,
+            "horizon_s": 0.5,
+            "total_margin_m": 1.3796907166303354
+          },
+          {
+            "additional_margin_m": 0.5058511451794291,
+            "dilation_cells": 13,
+            "horizon_s": 1.0,
+            "total_margin_m": 1.5058511451794292
+          }
+        ],
+        "objective_metric_evaluated": false,
+        "prediction_id": "s3trk-000022",
+        "rate_limit_safety_override_fraction": 0.0,
+        "scenario_id": "78249f8856cb2c57"
+      },
+      {
+        "active_cells_after_margin": 14727,
+        "active_cells_before_margin": 9581,
+        "actor_class": "TYPE_CYCLIST",
+        "final_max": 1.0,
+        "final_mean": 0.9288636349930395,
+        "final_min": 0.05000000195809594,
+        "margin": [
+          {
+            "additional_margin_m": 0.45468369949315823,
+            "dilation_cells": 21,
+            "horizon_s": 0.1,
+            "total_margin_m": 1.4546836994931582
+          },
+          {
+            "additional_margin_m": 0.5427117427524912,
+            "dilation_cells": 23,
+            "horizon_s": 0.3,
+            "total_margin_m": 1.5427117427524912
+          },
+          {
+            "additional_margin_m": 0.6350353119889571,
+            "dilation_cells": 24,
+            "horizon_s": 0.5,
+            "total_margin_m": 1.6350353119889571
+          },
+          {
+            "additional_margin_m": 0.8693834022671043,
+            "dilation_cells": 28,
+            "horizon_s": 1.0,
+            "total_margin_m": 1.8693834022671043
+          }
+        ],
+        "objective_metric_evaluated": false,
+        "prediction_id": "s3trk-000021",
+        "rate_limit_safety_override_fraction": 0.0,
+        "scenario_id": "f72a05a05035feb8"
+      }
+    ],
+    "status": "PASS_ALL_CORE_CLASSES",
+    "tuple": {
+      "base_margin_m": 0.0,
+      "cyclist_floor": 0.05,
+      "cyclist_motion_multiplier": 0.25,
+      "gamma_k": 0,
+      "pedestrian_floor": 0.05,
+      "rho_bright_per_s": 1.0,
+      "rho_dim_per_s": 1.0,
+      "selection_status": "NOT_SELECTED_STRUCTURAL_SMOKE_ONLY",
+      "smoothing_time_constant_s": 0.05,
+      "uncertainty_multiplier": 0.5,
+      "vehicle_floor": 0.0,
+      "vehicle_motion_multiplier": 0.05
+    }
+  },
+  "next": "BLOCK6.7_PART1_OF_2_DEVELOPMENT_ONLY_CLASS_AWARE_POLICY_SELECTION",
+  "part": "2/2-FINAL",
+  "regression": {
+    "status": "PASS",
+    "tests": 166
+  },
+  "runtime_implementation": {
+    "operators": [
+      "strict integer-k occupancy threshold",
+      "class-aware predictive margin",
+      "theta-only predictive dilation",
+      "Part-A raised-cosine illumination conversion",
+      "class-aware composition",
+      "VRU floor guard",
+      "overlap priority",
+      "temporal smoothing",
+      "finite actuation-rate limiting",
+      "rate-limit safety override accounting"
+    ],
+    "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/class_aware_policy.py",
+    "sha256": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b"
+  },
+  "runtime_seconds": 5595.71404337883,
+  "scientific_boundary": {
+    "formal_outcomes_read": false,
+    "formal_tuning": false,
+    "future_GT_controller_input": false,
+    "new_model_forward": false,
+    "numeric_policy_selected": false,
+    "objects_of_interest_selection": false,
+    "perfect_ID_controller_input": false,
+    "policy_parameter_sweep_executed": false,
+    "recalibration": false,
+    "tracks_to_predict_selection": false,
+    "training": false
+  },
+  "stage": 6,
+  "status": "PASS_BLOCK66_PART3C_COMPLETE",
+  "vehicle_surrogate_evidence": {
+    "actor_count": 719,
+    "actual_mirror_annotation_claim": false,
+    "actual_windshield_annotation_claim": false,
+    "controller_primary_occupancy": "full-box P_occ",
+    "dense_samplewise_arrays_persisted": false,
+    "manifest_path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part3c_vehicle_surrogate_evidence.jsonl",
+    "manifest_sha256": "bfe8eb6d8b605d58f9b99d8097744b71b99ecb9ed9fd169191222375f31bc826",
+    "oncoming": "front-upper geometry surrogate",
+    "preceding": "rear-upper geometry surrogate",
+    "samplewise_projection_hash_per_actor": true,
+    "vertical_actuator_DOF": false
+  }
+}

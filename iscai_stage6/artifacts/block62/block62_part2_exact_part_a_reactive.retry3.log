@@ -1,0 +1,158 @@
+============================================================
+STAGE 6 — BLOCK 6.2 PART 2/2
+EXACT PART-A ORIGINAL REACTIVE ADB ADAPTER
+============================================================
+
+===== A. FROZEN PREREQUISITE SEAL =====
+notebook                 = EXACT PASS
+part_a_reference         = EXACT PASS
+block61_closure          = EXACT PASS
+part1_report             = EXACT PASS
+part1_contract           = EXACT PASS
+prebind                  = EXACT PASS
+transitive               = EXACT PASS
+pilot_manifest           = EXACT PASS
+stage5_closure           = EXACT PASS
+transitive source semantics = PASS
+
+===== B. EXACT NOTEBOOK PARAMETER BINDING =====
+EPS                      = EXACT SOURCE PASS
+target_width             = EXACT SOURCE PASS
+lateral_margin           = EXACT SOURCE PASS
+radial_margin            = EXACT SOURCE PASS
+control_transition       = EXACT SOURCE PASS
+delta_theta              = EXACT SOURCE PASS
+fixed_epsilon            = EXACT SOURCE PASS
+trz_front_margin         = EXACT SOURCE PASS
+trz_transition           = EXACT SOURCE PASS
+theta_grid               = EXACT SOURCE PASS
+range_grid               = EXACT SOURCE PASS
+effective_half_width     = EXACT SOURCE PASS
+dynamic_epsilon          = EXACT SOURCE PASS
+intensity_radial_margin  = EXACT SOURCE PASS
+intensity_transition_length = EXACT SOURCE PASS
+raised_cosine            = EXACT SOURCE PASS
+multi_actor_minimum      = EXACT SOURCE PASS
+trz_visual_rmin          = EXACT SOURCE PASS
+trz_visual_rmax          = EXACT SOURCE PASS
+
+CONTROL L(theta,r) radial transition = 20.0 m
+TRZ visualization radial transition  = 8.0 units
+control/visual transition conflated  = NO
+fixed epsilon 0.75 used dynamically  = NO
+
+===== C. CAUSAL BOX INTERFACE BINDING =====
+center field = stage1_anchor_center_H0_m
+class field  = object_type
+centroid/current-center use = LEGACY REACTIVE BASELINE ONLY
+predictive centroid-only use = FORBIDDEN
+
+===== D. ORIGINAL REACTIVE ADAPTER MODULE =====
+part_a_reactive.py = WRITTEN
+
+===== E. PACKAGE EXPORT CONTRACT =====
+adb/__init__.py = UPDATED_BLOCK62_PART2
+
+===== F. EXACT PART-A BINDING CONTRACT =====
+binding = WRITTEN
+binding SHA256 = a9773e94de81c1d2d081ddb7264f062690c761057ee8dc2c303b1c0e7f6554b0
+
+===== G. EXACT REACTIVE ADAPTER TESTS =====
+test file = WRITTEN
+
+===== H. CONTROLLED COMPILE =====
+module/init/tests compile = PASS
+
+===== I. EXACT SOURCE-PARITY SMOKE =====
+dynamic angular formula = EXACT PASS
+H0↔Part-A conversion    = PASS
+L(theta,r) control      = EXACT PASS
+multi-target minimum    = EXACT PASS
+max map parity error    = 0.0
+
+===== J. REAL CAUSAL ORIGINAL-REACTIVE SMOKE =====
+scenario ID              = b85e1bd6cc8e74c0
+runtime shard            = /home/agni/waymo/data/paired_womd_lidar_v1_3_0/validation/motion/paired-from-validation.tfrecord-00000-of-00150
+compact offset           = 0
+causal ADB boxes         = 9
+original-reactive vehicles= 9
+real source parity error = 0.0
+dimmed raster cells      = 23492
+minimum intensity        = 0.0
+WOMD annotation role     = GEOMETRY_INTEGRATION_ONLY
+formal sensor mode       = NOT EXECUTED HERE
+
+===== K. STRICT CAUSALITY / SELECTOR INVARIANCE =====
+tracks_to_predict mutation = INVARIANT PASS
+objects_of_interest mutation= INVARIANT PASS
+future-state mutation       = INVARIANT PASS
+future states modified      = 1120
+reactive map SHA256         = 2dc05eff8a9acd473d932b3c0b314c6925ed89998346e5dc90e07250231cbd01
+
+===== L. REAL-SCENE EVIDENCE =====
+real-scene artifact = /home/agni/waymo/iscai_stage6/artifacts/block62/block62_real_causal_reactive_smoke.json
+real-scene SHA256   = f8d84cf63804da1581ff751a965f6f066d0f90038ce66f961fab45d00f9d95e3
+
+===== M. FULL STAGE6 REGRESSION =====
+Ran 78 tests in 0.032s
+OK
+
+===== N. BLOCK6.2 PDF-SCOPE GUARDS =====
+static ADB baseline        = IMPLEMENTED
+original reactive ADB      = IMPLEMENTED
+legacy center-based input  = PRESERVED
+predictive centroid-only   = FORBIDDEN
+predictive full boxes      = DEFERRED BLOCK6.3+
+probabilistic occupancy    = DEFERRED BLOCK6.4
+class-aware policy         = DEFERRED BLOCK6.5
+temporal smoothing/rate    = DEFERRED BLOCK6.6
+formal grid freeze         = BLOCK6.8 PRE-FORMAL
+communication codebook     = NOT REUSED
+
+===== O. IMMUTABILITY / STORAGE =====
+Part-A notebook      = UNCHANGED
+Block6.1             = UNCHANGED
+Block6.2 Part1       = UNCHANGED
+Stage5 closure       = UNCHANGED
+free GiB             = 1054.832
+250-GiB reserve      = PASS
+
+===== P. BLOCK6.2 PART2 REPORT =====
+Part2 report SHA256 = b9b2eebc55cba4c996732d236455e82b41227e95cad792d6960eafde60bedaeb
+
+===== Q. BLOCK6.2 CLOSURE =====
+Block6.2 closure = WRITTEN
+closure SHA256   = 23b299b4dc6a123ce64a6ab1350b3ed9cb149c8fed176b37e9715d9935704d92
+
+============================================================
+BLOCK 6.2 PART 2/2 — FINAL
+============================================================
+Part-A source identity       = EXACT PASS
+static ADB baseline          = COMPLETE
+original reactive ADB        = COMPLETE
+dynamic width+margin epsilon = EXACT PASS
+fixed epsilon 0.75           = FIXED-DEMO ONLY
+H0 -> Part-A conversion      = VERIFIED PASS
+control radial margin        = 4.0 m
+control transition           = 20.0 m EXACT
+TRZ visual transition        = 8.0 / SEPARATE
+raised-cosine L(theta,r)     = EXACT PASS
+multi-vehicle minimum        = EXACT PASS
+real causal reactive smoke   = PASS
+source-map parity            = PASS
+tracks_to_predict selector   = NO / INVARIANT
+objects_of_interest selector = NO / INVARIANT
+future-state leakage         = NO / INVARIANT
+legacy center-based geometry = BASELINE ONLY
+predictive centroid-only     = FORBIDDEN
+communication codebook       = NOT REUSED
+formal Stage6 grid           = NOT YET FROZEN
+predictive ADB               = NOT STARTED
+Stage6 completion claimed    = NO
+Stage6 regression            = PASS
+upstream modified            = NO
+training/model inference     = NO
+formal evaluation/tuning     = NO
+STATUS = PASS_COMPLETE
+closure = /home/agni/waymo/iscai_stage6/reports/block62_closure.json
+terminal remains open = YES

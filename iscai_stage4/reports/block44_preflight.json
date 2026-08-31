@@ -1,0 +1,121 @@
+{
+  "block": "4.4_preflight",
+  "cache_shapes": {
+    "development": {
+      "class_id": [
+        13682
+      ],
+      "future": [
+        13682,
+        4,
+        3
+      ],
+      "future_mask": [
+        13682,
+        4
+      ],
+      "map_context": [
+        13682,
+        10
+      ],
+      "neighbor_mask": [
+        13682,
+        8
+      ],
+      "neighbors": [
+        13682,
+        8,
+        11,
+        14
+      ],
+      "target": [
+        13682,
+        11,
+        14
+      ]
+    },
+    "fit": {
+      "class_id": [
+        114906
+      ],
+      "future": [
+        114906,
+        4,
+        3
+      ],
+      "future_mask": [
+        114906,
+        4
+      ],
+      "map_context": [
+        114906,
+        10
+      ],
+      "neighbor_mask": [
+        114906,
+        8
+      ],
+      "neighbors": [
+        114906,
+        8,
+        11,
+        14
+      ],
+      "target": [
+        114906,
+        11,
+        14
+      ]
+    }
+  },
+  "cuda_smoke": {
+    "Gaussian_NLL": true,
+    "SPD_cholesky": true,
+    "backward": true,
+    "finite": true,
+    "forward": true,
+    "metric_covariance_transform": true,
+    "raw_coverage_metrics": true
+  },
+  "environment": {
+    "cuda_runtime": "13.2",
+    "gpu": "NVIDIA RTX A6000",
+    "torch": "2.13.0+cu132"
+  },
+  "not_yet_claimed": [
+    "probabilistic model training",
+    "trained Gaussian NLL",
+    "calibration",
+    "ECE",
+    "Brier score",
+    "GMM",
+    "formal validation superiority"
+  ],
+  "probabilistic_contract": {
+    "SPD_by_construction": true,
+    "cholesky_parameters_per_horizon": 6,
+    "distribution": "full_covariance_Gaussian",
+    "horizons": 4,
+    "initial_mean_exactly_matches_deterministic": true,
+    "initial_predictive_std_normalized": 0.5,
+    "measurement_covariance_is_input": true,
+    "measurement_predictive_uncertainty_separate": true,
+    "position_dimension": 3,
+    "predictive_covariance_is_output": true
+  },
+  "regression": {
+    "tests_passed": 60,
+    "tests_total": 60
+  },
+  "stage": 4,
+  "status": "PASS",
+  "upstream": {
+    "block43": "PASS",
+    "block43_implementation_sha256": "7f42e0cf534ed3ffb8d69e7230f5e04eecde8639428911017af771c7b2993def",
+    "deterministic_checkpoint_sha256": "5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5",
+    "deterministic_state_dict_sha256": "d2ffbc03c7cb2826fef2175c95f48725707ec6d791eaeffbd6f59bc507b8595a",
+    "development_cache_unchanged": true,
+    "fit_cache_unchanged": true,
+    "fit_normalization_unchanged": true
+  }
+}

@@ -1,0 +1,57 @@
+============================================================================
+BLOCK 6.8 STAGE-3 EVALUATOR RASTERIZATION REPAIR
+RESTORE FROZEN HALF-CELL OVERLAP SEMANTICS
+============================================================================
+
+===== A. EXACT CURRENT BOUNDARY =====
+target SHA256           = EXACT PASS
+posterior subset repair = PRESERVED
+scenario-loader repair  = PRESERVED
+Stage-1 gamma           = IMMUTABLE
+Stage-2 margins         = IMMUTABLE
+Stage-3 scoring         = IMMUTABLE
+Stage-3 floor outcomes  = NOT COMPUTED
+formal evaluation       = NO
+
+===== B. RASTERIZATION MISMATCH DIAGNOSIS =====
+current angular rule = CELL CENTER ONLY
+current radial rule  = CELL CENTER ONLY
+frozen angular rule  = HALF-CELL OVERLAP
+frozen radial rule   = HALF-CELL OVERLAP
+repair scope         = EVALUATOR RASTER SUPPORT ONLY
+
+===== C. VERIFIED BACKUP =====
+backup SHA256 = 5c4952829354d8f2dc090d514bc1144f1fb42b530214233add5601073791833f
+
+===== D. BUILD MINIMAL RASTERIZATION PATCH =====
+patch syntax              = PASS
+Stage-1 k                = UNCHANGED
+Stage-2 margins          = UNCHANGED
+timestamp rule           = UNCHANGED
+actor population         = UNCHANGED
+future GT provenance     = UNCHANGED
+metric formulas          = UNCHANGED
+Stage-3 scoring contract = UNCHANGED
+
+===== E. TRANSACTIONAL PATCH =====
+patched runner compile = PASS
+Stage6 regression      = 224 / 224 PASS
+post-patch SHA256      = 66961b9cf6976f4f7d1e9066365b243da8c73e98c5a3e462c0b81f32f473ea7b
+
+============================================================================
+BLOCK 6.8 EVALUATOR RASTERIZATION REPAIR — FINAL
+============================================================================
+cell-center-only raster = REMOVED
+theta half-cell overlap = RESTORED
+range half-cell overlap = RESTORED
+posterior subset repair = PRESERVED
+scenario-loader repair  = PRESERVED
+Stage-1 gamma           = UNCHANGED
+Stage-2 margins         = UNCHANGED
+Stage-3 scoring         = UNCHANGED
+Stage-3 floor outcomes  = NOT COMPUTED
+formal evaluation       = NO
+Stage6 regression       = 224 / 224 PASS
+STATUS = PASS_STAGE3_EVALUATOR_RASTERIZATION_REPAIRED
+report = /home/agni/waymo/iscai_stage6/reports/block68_stage3_evaluator_rasterization_repair.json
+terminal remains open = YES

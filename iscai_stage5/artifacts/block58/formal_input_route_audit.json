@@ -1,0 +1,1515 @@
+{
+  "Block48_source_windows": [
+    {
+      "end_line": 21,
+      "start_line": 15,
+      "text": "0015: import torch\n0016: \n0017: from iscai_stage3.validation import (\n0018:     read_motion_scenario,\n0019:     read_validation_manifest,\n0020: )\n0021: "
+    },
+    {
+      "end_line": 62,
+      "start_line": 40,
+      "text": "0040:     samples_to_arrays,\n0041: )\n0042: \n0043: from iscai_stage4.ml.formal_runtime import (\n0044:     construct_deterministic_model,\n0045:     eligible_formal_targets,\n0046:     extract_deterministic_prediction,\n0047:     gmm_formal_metrics,\n0048:     resolve_sample_truth_track_index,\n0049:     tensor_bundle_sha256,\n0050:     trajectory_point_metrics,\n0051: )\n0052: \n0053: from iscai_stage4.ml.gaussian_gru import (\n0054:     GaussianTrajectoryGRU,\n0055: )\n0056: \n0057: from iscai_stage4.ml.gaussian_math import (\n0058:     denormalize_gaussian,\n0059:     gaussian_nll_per_horizon,\n0060:     mahalanobis_squared,\n0061: )\n0062: "
+    },
+    {
+      "end_line": 113,
+      "start_line": 107,
+      "text": "0107: #\n0108: # Canonical frozen validation catalog from Stage0/data-prep.\n0109: # Do not discover validation manifests heuristically during\n0110: # formal evaluation.\n0111: CANONICAL_VALIDATION_MANIFEST = (\n0112:     ROOT\n0113:     / \"iscai_data_prep/manifests/\""
+    },
+    {
+      "end_line": 206,
+      "start_line": 132,
+      "text": "0132:     / \"reports/block47_ablation_analysis.json\"\n0133: )\n0134: \n0135: FORMAL_MANIFEST = (\n0136:     STAGE3\n0137:     / \"artifacts/block38e/\"\n0138:       \"formal_validation_120.jsonl\"\n0139: )\n0140: \n0141: STAGE3_FORMAL_REPORT = (\n0142:     STAGE3\n0143:     / \"reports/\"\n0144:       \"block38f_formal_evaluation.json\"\n0145: )\n0146: \n0147: DET_CHECKPOINT = (\n0148:     STAGE4\n0149:     / \"artifacts/block43/\"\n0150:       \"deterministic_gru.pt\"\n0151: )\n0152: \n0153: GAUSSIAN_CHECKPOINT = (\n0154:     STAGE4\n0155:     / \"artifacts/block44/\"\n0156:       \"gaussian_gru.pt\"\n0157: )\n0158: \n0159: CALIBRATOR = (\n0160:     STAGE4\n0161:     / \"artifacts/block45/\"\n0162:       \"covariance_scaler.json\"\n0163: )\n0164: \n0165: GMM_CHECKPOINT = (\n0166:     STAGE4\n0167:     / \"artifacts/block46/\"\n0168:       \"gmm_gru.pt\"\n0169: )\n0170: \n0171: NORMALIZATION = (\n0172:     STAGE4\n0173:     / \"artifacts/block43/\"\n0174:       \"fit_normalization.json\"\n0175: )\n0176: \n0177: CACHE_DIR = (\n0178:     STAGE4\n0179:     / \"artifacts/block48/cache\"\n0180: )\n0181: \n0182: CACHE_REPORT = (\n0183:     STAGE4\n0184:     / \"artifacts/block48/\"\n0185:       \"formal_cache_manifest.json\"\n0186: )\n0187: \n0188: MERGED = (\n0189:     STAGE4\n0190:     / \"artifacts/block48/\"\n0191:       \"formal_neural_outputs.npz\"\n0192: )\n0193: \n0194: REPORT = (\n0195:     STAGE4\n0196:     / \"reports/\"\n0197:       \"block48_formal_evaluation.json\"\n0198: )\n0199: \n0200: FAILURE = (\n0201:     STAGE4\n0202:     / \"reports/\"\n0203:       \"block48_formal_evaluation_failure.json\"\n0204: )\n0205: \n0206: LOG = ("
+    },
+    {
+      "end_line": 225,
+      "start_line": 209,
+      "text": "0209:       \"implementation_log.md\"\n0210: )\n0211: \n0212: EXPECTED_FORMAL_MANIFEST_SHA = (\n0213:     \"2208e7287ddf6439fda4597c435a9cba\"\n0214:     \"1d1b9d0e4c4547bc5dd92e56e8124e46\"\n0215: )\n0216: \n0217: EXPECTED_STAGE3_FORMAL_REPORT_SHA = (\n0218:     \"35ef1353c30f2c871fd79250192ee47b\"\n0219:     \"ed1f8c17962a979336e97585dec80367\"\n0220: )\n0221: \n0222: EXPECTED_STAGE3_FORMAL_RUN_SHA = (\n0223:     \"5fbb4642f87ab8e62cf1e1b3ef4214d9\"\n0224:     \"2df5b5a1423bd9fb72b9733ced02e433\"\n0225: )"
+    },
+    {
+      "end_line": 240,
+      "start_line": 234,
+      "text": "0234:     \"a245e0d36d60883519654f809996dbc5\"\n0235: )\n0236: \n0237: EXPECTED_GAUSSIAN_SHA = (\n0238:     \"49ff64d145eaa633f295c16f660df380\"\n0239:     \"c35383e7e3b61279a5aad7cd700d619f\"\n0240: )"
+    },
+    {
+      "end_line": 361,
+      "start_line": 355,
+      "text": "0355:     with temporary.open(\n0356:         \"wb\"\n0357:     ) as stream:\n0358:         np.savez(\n0359:             stream,\n0360:             **arrays,\n0361:         )"
+    },
+    {
+      "end_line": 450,
+      "start_line": 438,
+      "text": "0438:     )\n0439: \n0440: \n0441: def read_formal_rows():\n0442:     rows = tuple(\n0443:         json.loads(\n0444:             line\n0445:         )\n0446:         for line in (\n0447:             FORMAL_MANIFEST\n0448:             .read_text(\n0449:                 encoding=\"utf-8\"\n0450:             )"
+    },
+    {
+      "end_line": 461,
+      "start_line": 453,
+      "text": "0453:         if line.strip()\n0454:     )\n0455: \n0456:     if len(rows) != 120:\n0457:         raise RuntimeError(\n0458:             \"Formal manifest is not N=120.\"\n0459:         )\n0460: \n0461:     return rows"
+    },
+    {
+      "end_line": 525,
+      "start_line": 516,
+      "text": "0516: \n0517: \n0518: def resolve_validation_manifest(\n0519:     formal_rows,\n0520: ):\n0521:     \"\"\"\n0522:     Resolve formal scenarios only through the\n0523:     canonical frozen Stage0/data-prep validation\n0524:     manifest.\n0525: "
+    },
+    {
+      "end_line": 603,
+      "start_line": 567,
+      "text": "0567:     by_id = {}\n0568: \n0569:     for row in rows:\n0570:         scenario_id = str(\n0571:             row.scenario_id\n0572:         )\n0573: \n0574:         if scenario_id in by_id:\n0575:             raise RuntimeError(\n0576:                 \"Duplicate scenario_id in \"\n0577:                 \"canonical validation manifest.\"\n0578:             )\n0579: \n0580:         by_id[\n0581:             scenario_id\n0582:         ] = row\n0583: \n0584:     for formal in formal_rows:\n0585:         scenario_id = str(\n0586:             formal[\n0587:                 \"scenario_id\"\n0588:             ]\n0589:         )\n0590: \n0591:         row = by_id.get(\n0592:             scenario_id\n0593:         )\n0594: \n0595:         if row is None:\n0596:             raise RuntimeError(\n0597:                 \"Frozen formal scenario is \"\n0598:                 \"missing from canonical \"\n0599:                 \"validation manifest: \"\n0600:                 f\"{scenario_id}\"\n0601:             )\n0602: \n0603:         if ("
+    },
+    {
+      "end_line": 620,
+      "start_line": 606,
+      "text": "0606:             )\n0607:             !=\n0608:             str(\n0609:                 formal[\n0610:                     \"source_shard\"\n0611:                 ]\n0612:             )\n0613:         ):\n0614:             raise RuntimeError(\n0615:                 \"Formal/canonical source_shard \"\n0616:                 \"mismatch for \"\n0617:                 f\"{scenario_id}\"\n0618:             )\n0619: \n0620:         if ("
+    },
+    {
+      "end_line": 637,
+      "start_line": 623,
+      "text": "0623:             )\n0624:             !=\n0625:             str(\n0626:                 formal[\n0627:                     \"selection_hash\"\n0628:                 ]\n0629:             )\n0630:         ):\n0631:             raise RuntimeError(\n0632:                 \"Formal/canonical selection_hash \"\n0633:                 \"mismatch for \"\n0634:                 f\"{scenario_id}\"\n0635:             )\n0636: \n0637:         if ("
+    },
+    {
+      "end_line": 650,
+      "start_line": 642,
+      "text": "0642:             \"validation\"\n0643:         ):\n0644:             raise RuntimeError(\n0645:                 \"Formal scenario does not map \"\n0646:                 \"to validation split: \"\n0647:                 f\"{scenario_id}\"\n0648:             )\n0649: \n0650:     return ("
+    },
+    {
+      "end_line": 660,
+      "start_line": 654,
+      "text": "0654:     )\n0655: \n0656: \n0657: def build_gaussian(\n0658:     architecture,\n0659:     *,\n0660:     device,"
+    },
+    {
+      "end_line": 669,
+      "start_line": 663,
+      "text": "0663:         \"model\"\n0664:     ]\n0665: \n0666:     return GaussianTrajectoryGRU(\n0667:         target_hidden_dim=int(\n0668:             section[\n0669:                 \"target_hidden_dim\""
+    },
+    {
+      "end_line": 757,
+      "start_line": 730,
+      "text": "0730: \n0731: def cache_path(\n0732:     rank,\n0733:     scenario_id,\n0734: ):\n0735:     return (\n0736:         CACHE_DIR\n0737:         /\n0738:         (\n0739:             f\"{rank:03d}_\"\n0740:             f\"{scenario_id}.npz\"\n0741:         )\n0742:     )\n0743: \n0744: \n0745: def cache_contract_sha():\n0746:     payload = {\n0747:         \"formal_manifest\":\n0748:             EXPECTED_FORMAL_MANIFEST_SHA,\n0749: \n0750:         \"deterministic\":\n0751:             EXPECTED_DET_SHA,\n0752: \n0753:         \"Gaussian\":\n0754:             EXPECTED_GAUSSIAN_SHA,\n0755: \n0756:         \"calibrator\":\n0757:             EXPECTED_CALIBRATOR_SHA,"
+    },
+    {
+      "end_line": 769,
+      "start_line": 762,
+      "text": "0762:         \"Block47\":\n0763:             EXPECTED_BLOCK47_IMPL_SHA,\n0764: \n0765:         \"Stage3_formal\":\n0766:             EXPECTED_STAGE3_FORMAL_RUN_SHA,\n0767: \n0768:         \"class_identity_mapping\":\n0769:             ("
+    },
+    {
+      "end_line": 799,
+      "start_line": 793,
+      "text": "0793: \n0794: def validate_shard(\n0795:     path,\n0796:     scenario_id,\n0797: ):\n0798:     if not path.is_file():\n0799:         return False"
+    },
+    {
+      "end_line": 816,
+      "start_line": 806,
+      "text": "0806:             if (\n0807:                 str(\n0808:                     data[\n0809:                         \"scenario_id\"\n0810:                     ].item()\n0811:                 )\n0812:                 !=\n0813:                 scenario_id\n0814:             ):\n0815:                 return False\n0816: "
+    },
+    {
+      "end_line": 888,
+      "start_line": 868,
+      "text": "0868: \n0869:             if np.asarray(\n0870:                 data[\n0871:                     \"det_mean\"\n0872:                 ]\n0873:             ).shape != truth.shape:\n0874:                 return False\n0875: \n0876:             if np.asarray(\n0877:                 data[\n0878:                     \"gaussian_mean\"\n0879:                 ]\n0880:             ).shape != truth.shape:\n0881:                 return False\n0882: \n0883:             if np.asarray(\n0884:                 data[\n0885:                     \"gaussian_scale\"\n0886:                 ]\n0887:             ).shape != (\n0888:                 len("
+    },
+    {
+      "end_line": 914,
+      "start_line": 908,
+      "text": "0908: \n0909:             if np.asarray(\n0910:                 data[\n0911:                     \"gmm_means\"\n0912:                 ]\n0913:             ).shape != (\n0914:                 len("
+    },
+    {
+      "end_line": 940,
+      "start_line": 934,
+      "text": "0934: \n0935:             if not bool(\n0936:                 data[\n0937:                     \"tracks_to_predict_accessed_after_prediction\"\n0938:                 ].item()\n0939:             ):\n0940:                 return False"
+    },
+    {
+      "end_line": 974,
+      "start_line": 968,
+      "text": "0968: # BLOCK48_SEMANTIC_CLASS_MAPPING_REPAIR\n0969: #\n0970: # Stage4 internal class IDs and WOMD protobuf object_type\n0971: # integers are different numeric domains. Formal evaluation\n0972: # therefore compares semantic enum names and explicitly maps\n0973: # WOMD truth classes into the frozen Stage4 internal IDs.\n0974: "
+    },
+    {
+      "end_line": 1116,
+      "start_line": 1077,
+      "text": "1077: \n1078: \n1079: def infer_scene(\n1080:     formal_row,\n1081:     validation_row,\n1082:     *,\n1083:     normalizer,\n1084:     deterministic_model,\n1085:     Gaussian_model,\n1086:     GMM_model,\n1087:     clean_config,\n1088:     degraded_config,\n1089:     device,\n1090: ):\n1091:     scenario = read_motion_scenario(\n1092:         validation_row,\n1093:         paired_root=PAIRED_ROOT,\n1094:         compact_record_offset=int(\n1095:             formal_row[\n1096:                 \"compact_record_offset\"\n1097:             ]\n1098:         ),\n1099:     )\n1100: \n1101:     if (\n1102:         scenario.scenario_id\n1103:         !=\n1104:         formal_row[\n1105:             \"scenario_id\"\n1106:         ]\n1107:     ):\n1108:         raise RuntimeError(\n1109:             \"Formal scenario ID mismatch.\"\n1110:         )\n1111: \n1112:     built = build_real_causal_inputs(\n1113:         scenario,\n1114:         clean_config=clean_config,\n1115:         degraded_config=degraded_config,\n1116:     )"
+    },
+    {
+      "end_line": 1125,
+      "start_line": 1119,
+      "text": "1119:         built[\n1120:             \"scene_inputs\"\n1121:         ],\n1122:         scenario,\n1123:         T_H0_from_W=(\n1124:             built[\n1125:                 \"adapted\""
+    },
+    {
+      "end_line": 1194,
+      "start_line": 1188,
+      "text": "1188:         )\n1189: \n1190:         deterministic_model.eval()\n1191:         Gaussian_model.eval()\n1192:         GMM_model.eval()\n1193: \n1194:         with torch.inference_mode():"
+    },
+    {
+      "end_line": 1222,
+      "start_line": 1210,
+      "text": "1210:             )\n1211: \n1212:             det_normalized = (\n1213:                 extract_deterministic_prediction(\n1214:                     det_output\n1215:                 )\n1216:             )\n1217: \n1218:             Gaussian_output = (\n1219:                 Gaussian_model(\n1220:                     batch[\n1221:                         \"target\"\n1222:                     ],"
+    },
+    {
+      "end_line": 1257,
+      "start_line": 1249,
+      "text": "1249:                 )\n1250:             )\n1251: \n1252:             # Prediction hash is computed BEFORE\n1253:             # tracks_to_predict is accessed.\n1254:             all_prediction_sha = (\n1255:                 tensor_bundle_sha256(\n1256:                     (\n1257:                         ("
+    },
+    {
+      "end_line": 1278,
+      "start_line": 1259,
+      "text": "1259:                             det_normalized,\n1260:                         ),\n1261:                         (\n1262:                             \"gaussian_mean\",\n1263:                             Gaussian_output.mean,\n1264:                         ),\n1265:                         (\n1266:                             \"gaussian_scale\",\n1267:                             Gaussian_output.scale_tril,\n1268:                         ),\n1269:                         (\n1270:                             \"gmm_logits\",\n1271:                             GMM_output.mixture_logits,\n1272:                         ),\n1273:                         (\n1274:                             \"gmm_means\",\n1275:                             GMM_output.means,\n1276:                         ),\n1277:                         (\n1278:                             \"gmm_scale\","
+    }
+  ],
+  "Block57_continuity": {
+    "beam_latency_policy_sha256": "aa04f2e73da591b87f2ab2e962d1b69c1bad645c043c0d15970dbf0990080ed0",
+    "historical_implementation_sha256": "ee5afade5b566f030bb286e030b6a6b685113410651cccf6d294f67760255ee9"
+  },
+  "formal_candidates": [
+    {
+      "path": "/home/agni/waymo/iscai_stage3/reports/block38e_formal_manifest_gate.json",
+      "sha256": "4992e4c2971f4452a65cbde8515f3aa2738cd193ff4cbd76158f78e13edae090",
+      "size_bytes": 1522,
+      "suffix": ".json"
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage3/reports/block38f_formal_evaluation.json",
+      "sha256": "35ef1353c30f2c871fd79250192ee47bed1f8c17962a979336e97585dec80367",
+      "size_bytes": 109522,
+      "suffix": ".json"
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block48/formal_cache_manifest.json",
+      "sha256": "3f2cc58393fdf2ed2aace41bbf7ba4c915f92cc7d16e5b6f55f063af344e0baa",
+      "size_bytes": 70408,
+      "suffix": ".json"
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block48/formal_neural_outputs.npz",
+      "sha256": "a3e8af17962a28a533070db23e53cee10571d13ab641c74b9db21e79c9a5c8c9",
+      "size_bytes": 448064,
+      "suffix": ".npz"
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage4/reports/block48_formal_evaluation.json",
+      "sha256": "402ab3d771e9a3c77de0c091c893e9a0d6ee5826ec52d07d27b919c68276b353",
+      "size_bytes": 41819,
+      "suffix": ".json"
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage3/reports/block38c_real_one_scenario_integration.json",
+      "sha256": "fba45aeb301f59c16ff82cf65e94698f9e9a51737a135dfb60fb70951f5f3b42",
+      "size_bytes": 77784,
+      "suffix": ".json"
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage3/reports/stage3_final_closure.json",
+      "sha256": "1dd15551d9fc181f9f2e7f85c7388672f7af8d0d988a016a1345b910723102c9",
+      "size_bytes": 3215,
+      "suffix": ".json"
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block410/stage4_to_stage5_handoff.json",
+      "sha256": "491bce010d35c2a394f879ecf35ed26ef1de92f7fff1465dcbf46b072a87c6fd",
+      "size_bytes": 5316,
+      "suffix": ".json"
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage4/reports/block44_gaussian_gru.json",
+      "sha256": "78ccc780a9d753e9619e215fee0e83a706f1607445741b032983e526efd97a54",
+      "size_bytes": 15803,
+      "suffix": ".json"
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage4/reports/block48_class_semantics_discovery.json",
+      "sha256": "32822bed8036a076ef3764411fa78cf4a6e4f3121ca6db168696ccdd2593ef74",
+      "size_bytes": 1368,
+      "suffix": ".json"
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage4/reports/block48_class_semantics_repair.json",
+      "sha256": "3fd4d7c32de4a12afd6c525daf5af636fa5f51ef33fd93773b8fcf0c093be48b",
+      "size_bytes": 834,
+      "suffix": ".json"
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage4/reports/block48_part1_discovery.json",
+      "sha256": "b473b39a331e32c02132f37bc570daf73a6f0f89be019218219041055d9c2b87",
+      "size_bytes": 252489,
+      "suffix": ".json"
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage4/reports/block48_validation_resolver_repair.json",
+      "sha256": "a8185dffb394418de785c4c9cc7e4d778c2934885116741d4941e44e5b0f7861",
+      "size_bytes": 727,
+      "suffix": ".json"
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage4/reports/block48_validation_source_discovery.json",
+      "sha256": "132106f9446c79351a3dbacb3d4c449255309e5a83c3ae9531a515b352c6b304",
+      "size_bytes": 82540,
+      "suffix": ".json"
+    },
+    {
+      "path": "/home/agni/waymo/iscai_stage4/reports/stage4_final_closure.json",
+      "sha256": "570da4feb918b1025b5e85cc919360d922b471c468c85b3844f13fb7774e7c2f",
+      "size_bytes": 5645,
+      "suffix": ".json"
+    }
+  ],
+  "formal_policy": {
+    "future_truth_controller_input": false,
+    "future_truth_evaluator_only": true,
+    "posthoc_tuning": false,
+    "receiver_selection_uses_tracks_to_predict": false,
+    "same_immutable_population_as_Stage4": true,
+    "silent_receiver_dropping": false
+  },
+  "materialized_formal_candidates": [
+    {
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block48/formal_neural_outputs.npz",
+      "sha256": "a3e8af17962a28a533070db23e53cee10571d13ab641c74b9db21e79c9a5c8c9",
+      "size_bytes": 448064,
+      "suffix": ".npz"
+    }
+  ],
+  "next": "resolve exact frozen formal scenario/posterior artifact route; then run Block5.8 Part2 formal Stage5 evaluation exactly once",
+  "route_status": "READY_FOR_EXACT_ROUTE_SELECTION",
+  "scientific_execution": {
+    "Stage4_inference": false,
+    "formal_N120_metadata_read": true,
+    "formal_metrics_computed": false,
+    "parameter_tuning": false,
+    "recalibration": false,
+    "training": false,
+    "upstream_modified": false
+  },
+  "status": "PASS_READ_ONLY_AUDIT",
+  "summaries": {
+    "Stage4 -> Stage5 handoff": {
+      "exists": true,
+      "interesting": [
+        {
+          "path": "Stage4_role",
+          "value": "causal uncertainty-aware trajectory posterior"
+        },
+        {
+          "path": "Stage5_must_not[0]",
+          "value": "fit_or_recalibrate_the_Stage4_trajectory_posterior_on_formal_N120"
+        },
+        {
+          "path": "Stage5_must_not[1]",
+          "value": "reinterpret_tracks_to_predict_as_a_model_input"
+        },
+        {
+          "path": "Stage5_must_not[2]",
+          "value": "merge_measurement_R_t_and_predictive_covariance_semantics"
+        },
+        {
+          "path": "Stage5_must_not[3]",
+          "value": "silently_switch_to_GMM_based_on_formal_performance"
+        },
+        {
+          "path": "Stage5_scope_start.next_required_layer",
+          "value": "receiver_angular_posterior"
+        },
+        {
+          "path": "Stage5_scope_start.trajectory_posterior_source",
+          "value": "calibrated_Gaussian_GRU"
+        },
+        {
+          "path": "causal_input_contract.measurement_covariance_feature_indices[0]",
+          "value": "6"
+        },
+        {
+          "path": "causal_input_contract.measurement_covariance_feature_indices[1]",
+          "value": "7"
+        },
+        {
+          "path": "causal_input_contract.measurement_covariance_feature_indices[2]",
+          "value": "8"
+        },
+        {
+          "path": "causal_input_contract.measurement_covariance_feature_indices[3]",
+          "value": "9"
+        },
+        {
+          "path": "causal_input_contract.measurement_covariance_feature_indices[4]",
+          "value": "10"
+        },
+        {
+          "path": "causal_input_contract.measurement_covariance_feature_indices[5]",
+          "value": "11"
+        },
+        {
+          "path": "causal_input_contract.tracks_to_predict_as_model_input",
+          "value": "False"
+        },
+        {
+          "path": "default_downstream_posterior.calibrator_path",
+          "value": "/home/agni/waymo/iscai_stage4/artifacts/block45/covariance_scaler.json"
+        },
+        {
+          "path": "default_downstream_posterior.calibrator_sha256",
+          "value": "508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087"
+        },
+        {
+          "path": "default_downstream_posterior.checkpoint_path",
+          "value": "/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt"
+        },
+        {
+          "path": "default_downstream_posterior.checkpoint_sha256",
+          "value": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f"
+        },
+        {
+          "path": "default_downstream_posterior.covariance_family",
+          "value": "full_3D_SPD"
+        },
+        {
+          "path": "default_downstream_posterior.covariance_parameterization",
+          "value": "Cholesky"
+        },
+        {
+          "path": "default_downstream_posterior.family",
+          "value": "calibrated_Gaussian_GRU"
+        },
+        {
+          "path": "default_downstream_posterior.formal_covariance_SPD",
+          "value": "True"
+        },
+        {
+          "path": "default_downstream_posterior.horizons_s[0]",
+          "value": "0.1"
+        },
+        {
+          "path": "default_downstream_posterior.horizons_s[1]",
+          "value": "0.3"
+        },
+        {
+          "path": "default_downstream_posterior.horizons_s[2]",
+          "value": "0.5"
+        },
+        {
+          "path": "default_downstream_posterior.horizons_s[3]",
+          "value": "1.0"
+        },
+        {
+          "path": "default_downstream_posterior.mandatory_default",
+          "value": "True"
+        },
+        {
+          "path": "default_downstream_posterior.normalization_path",
+          "value": "/home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json"
+        },
+        {
+          "path": "default_downstream_posterior.normalization_sha256",
+          "value": "3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6"
+        },
+        {
+          "path": "default_downstream_posterior.predictive_covariance",
+          "value": "Sigma_cal,h = alpha_h * Sigma_raw,h"
+        },
+        {
+          "path": "default_downstream_posterior.predictive_mean",
+          "value": "unchanged_by_calibration"
+        },
+        {
+          "path": "default_downstream_posterior.standard_deviation_scale[0]",
+          "value": "1.1111734563206301"
+        },
+        {
+          "path": "default_downstream_posterior.standard_deviation_scale[1]",
+          "value": "1.1597952532754616"
+        },
+        {
+          "path": "default_downstream_posterior.standard_deviation_scale[2]",
+          "value": "1.1639682374225084"
+        },
+        {
+          "path": "default_downstream_posterior.standard_deviation_scale[3]",
+          "value": "1.1326826659448475"
+        },
+        {
+          "path": "default_downstream_posterior.variance_scale_alpha_h[0]",
+          "value": "1.2347064500315355"
+        },
+        {
+          "path": "default_downstream_posterior.variance_scale_alpha_h[1]",
+          "value": "1.3451250295202921"
+        },
+        {
+          "path": "default_downstream_posterior.variance_scale_alpha_h[2]",
+          "value": "1.354822057728461"
+        },
+        {
+          "path": "default_downstream_posterior.variance_scale_alpha_h[3]",
+          "value": "1.2829700217319266"
+        },
+        {
+          "path": "do_not_reopen_without_structural_defect[3]",
+          "value": "Stage4_Gaussian_checkpoint"
+        },
+        {
+          "path": "do_not_reopen_without_structural_defect[4]",
+          "value": "Stage4_covariance_calibrator"
+        },
+        {
+          "path": "do_not_reopen_without_structural_defect[6]",
+          "value": "Stage4_formal_N120_results"
+        },
+        {
+          "path": "formal_evidence.Gaussian_FDE_1s_m",
+          "value": "3.3198138702547295"
+        },
+        {
+          "path": "formal_evidence.PDF_calibration_measured",
+          "value": "True"
+        },
+        {
+          "path": "formal_evidence.PDF_performance_gate",
+          "value": "True"
+        },
+        {
+          "path": "formal_evidence.calibrated_Gaussian_ADE_m",
+          "value": "1.9848952833749467"
+        },
+        {
+          "path": "formal_evidence.calibrated_Gaussian_NLL",
+          "value": "3.6848268203287406"
+        },
+        {
+          "path": "formal_evidence.calibrated_macro_ECE",
+          "value": "0.11165527003334381"
+        },
+        {
+          "path": "formal_evidence.classical_baselines_beaten[0]",
+          "value": "CA"
+        },
+        {
+          "path": "formal_evidence.classical_baselines_beaten[1]",
+          "value": "CTRV"
+        },
+        {
+          "path": "formal_evidence.classical_baselines_beaten[2]",
+          "value": "CV"
+        },
+        {
+          "path": "formal_evidence.classical_baselines_beaten[3]",
+          "value": "IMM_CV_CA_CTRV"
+        },
+        {
+          "path": "formal_evidence.classical_baselines_beaten[4]",
+          "value": "Kalman_EKF"
+        },
+        {
+          "path": "formal_evidence.eligible_targets",
+          "value": "547"
+        },
+        {
+          "path": "formal_evidence.formal_output_content_sha256",
+          "value": "fe5cf7e413b8142c0670d05727affd4fa573cf4607665e4a9bda951f1d9bd0d5"
+        },
+        {
+          "path": "formal_evidence.internal_Gaussian_less_than_CV",
+          "value": "True"
+        },
+        {
+          "path": "formal_evidence.matched_target_recall",
+          "value": "0.903107861060329"
+        },
+        {
+          "path": "formal_evidence.matched_targets",
+          "value": "494"
+        },
+        {
+          "path": "formal_evidence.population",
+          "value": "immutable_Stage3_N120"
+        },
+        {
+          "path": "formal_evidence.raw_Gaussian_NLL",
+          "value": "4.15760466880646"
+        },
+        {
+          "path": "formal_evidence.raw_macro_ECE",
+          "value": "0.18362046536363294"
+        },
+        {
+          "path": "formal_evidence.scenario_count",
+          "value": "120"
+        },
+        {
+          "path": "measurement_predictive_uncertainty_separation.calibration_applies_to",
+          "value": "predictive_covariance_only"
+        },
+        {
+          "path": "measurement_predictive_uncertainty_separation.predictive_uncertainty",
+          "value": "Stage4_learned_Gaussian_covariance_output"
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage4/artifacts/block410/stage4_to_stage5_handoff.json",
+      "sha256": "491bce010d35c2a394f879ecf35ed26ef1de92f7fff1465dcbf46b072a87c6fd"
+    },
+    "Stage4 final closure": {
+      "exists": true,
+      "interesting": [
+        {
+          "path": "critical_artifacts.Gaussian_checkpoint.path",
+          "value": "/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt"
+        },
+        {
+          "path": "critical_artifacts.Gaussian_checkpoint.sha256",
+          "value": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f"
+        },
+        {
+          "path": "critical_artifacts.covariance_calibrator.path",
+          "value": "/home/agni/waymo/iscai_stage4/artifacts/block45/covariance_scaler.json"
+        },
+        {
+          "path": "critical_artifacts.covariance_calibrator.sha256",
+          "value": "508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087"
+        },
+        {
+          "path": "critical_artifacts.formal_manifest.path",
+          "value": "/home/agni/waymo/iscai_stage3/artifacts/block38e/formal_validation_120.jsonl"
+        },
+        {
+          "path": "critical_artifacts.formal_manifest.sha256",
+          "value": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46"
+        },
+        {
+          "path": "formal_N120.calibrated_Gaussian_ADE_m",
+          "value": "1.9848952833749467"
+        },
+        {
+          "path": "formal_N120.calibrated_coverage_event_Brier",
+          "value": "0.19413178861788616"
+        },
+        {
+          "path": "formal_N120.calibrated_macro_ECE",
+          "value": "0.11165527003334381"
+        },
+        {
+          "path": "formal_N120.calibrated_metric_Gaussian_NLL",
+          "value": "3.6848268203287406"
+        },
+        {
+          "path": "formal_N120.classical_baselines_beaten[0]",
+          "value": "CA"
+        },
+        {
+          "path": "formal_N120.classical_baselines_beaten[1]",
+          "value": "CTRV"
+        },
+        {
+          "path": "formal_N120.classical_baselines_beaten[2]",
+          "value": "CV"
+        },
+        {
+          "path": "formal_N120.classical_baselines_beaten[3]",
+          "value": "IMM_CV_CA_CTRV"
+        },
+        {
+          "path": "formal_N120.classical_baselines_beaten[4]",
+          "value": "Kalman_EKF"
+        },
+        {
+          "path": "formal_N120.eligible_targets",
+          "value": "547"
+        },
+        {
+          "path": "formal_N120.formal_content_sha256",
+          "value": "fe5cf7e413b8142c0670d05727affd4fa573cf4607665e4a9bda951f1d9bd0d5"
+        },
+        {
+          "path": "formal_N120.frozen_CV_ADE_m",
+          "value": "9.538706032921292"
+        },
+        {
+          "path": "formal_N120.matched_target_recall",
+          "value": "0.903107861060329"
+        },
+        {
+          "path": "formal_N120.matched_targets",
+          "value": "494"
+        },
+        {
+          "path": "formal_N120.raw_coverage_event_Brier",
+          "value": "0.2397821951219512"
+        },
+        {
+          "path": "formal_N120.raw_macro_ECE",
+          "value": "0.18362046536363294"
+        },
+        {
+          "path": "formal_N120.raw_metric_Gaussian_NLL",
+          "value": "4.15760466880646"
+        },
+        {
+          "path": "formal_N120.scenarios",
+          "value": "120"
+        },
+        {
+          "path": "formal_inference_performed_in_Block410",
+          "value": "False"
+        },
+        {
+          "path": "formal_leakage.calibrator_fit_on_formal",
+          "value": "False"
+        },
+        {
+          "path": "formal_leakage.future_model_input",
+          "value": "False"
+        },
+        {
+          "path": "formal_leakage.model_selection_on_formal",
+          "value": "False"
+        },
+        {
+          "path": "formal_leakage.normalization_fit_on_formal",
+          "value": "False"
+        },
+        {
+          "path": "formal_leakage.tracks_to_predict_accessed_after_prediction",
+          "value": "True"
+        },
+        {
+          "path": "formal_leakage.tracks_to_predict_model_input",
+          "value": "False"
+        },
+        {
+          "path": "formal_leakage.training_on_formal",
+          "value": "False"
+        },
+        {
+          "path": "primary_downstream_posterior.family",
+          "value": "calibrated_Gaussian_GRU"
+        },
+        {
+          "path": "primary_downstream_posterior.full_3D_SPD_covariance",
+          "value": "True"
+        },
+        {
+          "path": "primary_downstream_posterior.horizons_s[0]",
+          "value": "0.1"
+        },
+        {
+          "path": "primary_downstream_posterior.horizons_s[1]",
+          "value": "0.3"
+        },
+        {
+          "path": "primary_downstream_posterior.horizons_s[2]",
+          "value": "0.5"
+        },
+        {
+          "path": "primary_downstream_posterior.horizons_s[3]",
+          "value": "1.0"
+        },
+        {
+          "path": "primary_downstream_posterior.mean_preserved",
+          "value": "True"
+        },
+        {
+          "path": "primary_downstream_posterior.measurement_R_t_remains_separate",
+          "value": "True"
+        },
+        {
+          "path": "primary_downstream_posterior.variance_scale_alpha_h[0]",
+          "value": "1.2347064500315355"
+        },
+        {
+          "path": "primary_downstream_posterior.variance_scale_alpha_h[1]",
+          "value": "1.3451250295202921"
+        },
+        {
+          "path": "primary_downstream_posterior.variance_scale_alpha_h[2]",
+          "value": "1.354822057728461"
+        },
+        {
+          "path": "primary_downstream_posterior.variance_scale_alpha_h[3]",
+          "value": "1.2829700217319266"
+        },
+        {
+          "path": "reproducibility.formal_cache_content_verified",
+          "value": "True"
+        },
+        {
+          "path": "scientific_acceptance.formal_calibration_ECE_improved",
+          "value": "True"
+        },
+        {
+          "path": "scientific_acceptance.formal_calibration_measured",
+          "value": "True"
+        },
+        {
+          "path": "scientific_acceptance.internal_Gaussian_less_than_frozen_CV",
+          "value": "True"
+        },
+        {
+          "path": "scientific_scope_completed[1]",
+          "value": "measurement_covariance_R_t_conditioning"
+        },
+        {
+          "path": "scientific_scope_completed[3]",
+          "value": "full_3D_Gaussian_predictive_posterior"
+        },
+        {
+          "path": "scientific_scope_completed[8]",
+          "value": "frozen_formal_N120_evaluation"
+        },
+        {
+          "path": "scope_boundary.Stage4_ends_at",
+          "value": "calibrated_probabilistic_trajectory_posterior"
+        },
+        {
+          "path": "scope_boundary.Stage5_begins_with",
+          "value": "receiver_angular_posterior"
+        },
+        {
+          "path": "scope_boundary.receiver_angular_posterior_done",
+          "value": "False"
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage4/reports/stage4_final_closure.json",
+      "sha256": "570da4feb918b1025b5e85cc919360d922b471c468c85b3844f13fb7774e7c2f"
+    },
+    "Stage4 formal report": {
+      "exists": true,
+      "interesting": [
+        {
+          "path": "availability.classes.TYPE_CYCLIST.eligible_truth_tracks",
+          "value": "27"
+        },
+        {
+          "path": "availability.classes.TYPE_CYCLIST.matched_tracks",
+          "value": "25"
+        },
+        {
+          "path": "availability.classes.TYPE_PEDESTRIAN.eligible_truth_tracks",
+          "value": "62"
+        },
+        {
+          "path": "availability.classes.TYPE_PEDESTRIAN.matched_tracks",
+          "value": "55"
+        },
+        {
+          "path": "availability.classes.TYPE_VEHICLE.eligible_truth_tracks",
+          "value": "458"
+        },
+        {
+          "path": "availability.classes.TYPE_VEHICLE.matched_tracks",
+          "value": "414"
+        },
+        {
+          "path": "availability.eligible_truth_tracks",
+          "value": "547"
+        },
+        {
+          "path": "availability.horizons.0.1.available_predictions",
+          "value": "493"
+        },
+        {
+          "path": "availability.horizons.0.1.eligible_truth_tracks",
+          "value": "546"
+        },
+        {
+          "path": "availability.horizons.0.3.available_predictions",
+          "value": "491"
+        },
+        {
+          "path": "availability.horizons.0.3.eligible_truth_tracks",
+          "value": "544"
+        },
+        {
+          "path": "availability.horizons.0.5.available_predictions",
+          "value": "492"
+        },
+        {
+          "path": "availability.horizons.0.5.eligible_truth_tracks",
+          "value": "544"
+        },
+        {
+          "path": "availability.horizons.1.0.available_predictions",
+          "value": "492"
+        },
+        {
+          "path": "availability.horizons.1.0.eligible_truth_tracks",
+          "value": "544"
+        },
+        {
+          "path": "availability.matched_target_recall",
+          "value": "0.903107861060329"
+        },
+        {
+          "path": "availability.matched_tracks",
+          "value": "494"
+        },
+        {
+          "path": "comparison.calibrated_Gaussian_ADE_m",
+          "value": "1.9848952833749467"
+        },
+        {
+          "path": "formal_calibration_generalization.ECE_nonworsening",
+          "value": "True"
+        },
+        {
+          "path": "formal_calibration_generalization.calibrated_coverage_event_Brier",
+          "value": "0.19413178861788616"
+        },
+        {
+          "path": "formal_calibration_generalization.calibrated_macro_ECE",
+          "value": "0.11165527003334381"
+        },
+        {
+          "path": "formal_calibration_generalization.calibrated_metric_Gaussian_NLL",
+          "value": "3.6848268203287406"
+        },
+        {
+          "path": "formal_calibration_generalization.raw_coverage_event_Brier",
+          "value": "0.2397821951219512"
+        },
+        {
+          "path": "formal_calibration_generalization.raw_macro_ECE",
+          "value": "0.18362046536363294"
+        },
+        {
+          "path": "formal_calibration_generalization.raw_metric_Gaussian_NLL",
+          "value": "4.15760466880646"
+        },
+        {
+          "path": "formal_population.Stage3_formal_run_sha256",
+          "value": "5fbb4642f87ab8e62cf1e1b3ef4214d92df5b5a1423bd9fb72b9733ced02e433"
+        },
+        {
+          "path": "formal_population.manifest_sha256",
+          "value": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46"
+        },
+        {
+          "path": "formal_population.same_frozen_population",
+          "value": "True"
+        },
+        {
+          "path": "formal_population.scenario_count",
+          "value": "120"
+        },
+        {
+          "path": "leakage_contract.calibrator_fit_on_formal",
+          "value": "False"
+        },
+        {
+          "path": "leakage_contract.model_selection_on_formal",
+          "value": "False"
+        },
+        {
+          "path": "leakage_contract.normalization_fit_on_formal",
+          "value": "False"
+        },
+        {
+          "path": "leakage_contract.tracks_to_predict_accessed_after_prediction",
+          "value": "True"
+        },
+        {
+          "path": "leakage_contract.tracks_to_predict_model_input",
+          "value": "False"
+        },
+        {
+          "path": "leakage_contract.training_on_formal",
+          "value": "False"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_CYCLIST.horizons.0.1.available_predictions",
+          "value": "25"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_CYCLIST.horizons.0.1.mean_planar_error_m",
+          "value": "0.7509714188566402"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_CYCLIST.horizons.0.3.available_predictions",
+          "value": "25"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_CYCLIST.horizons.0.3.mean_planar_error_m",
+          "value": "1.1528130152010378"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_CYCLIST.horizons.0.5.available_predictions",
+          "value": "25"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_CYCLIST.horizons.0.5.mean_planar_error_m",
+          "value": "1.6156093452247022"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_CYCLIST.horizons.1.0.available_predictions",
+          "value": "25"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_CYCLIST.horizons.1.0.mean_planar_error_m",
+          "value": "2.796765371139449"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_CYCLIST.matched_tracks",
+          "value": "25"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_PEDESTRIAN.horizons.0.1.available_predictions",
+          "value": "55"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_PEDESTRIAN.horizons.0.1.mean_planar_error_m",
+          "value": "0.50738443126402"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_PEDESTRIAN.horizons.0.3.available_predictions",
+          "value": "54"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_PEDESTRIAN.horizons.0.3.mean_planar_error_m",
+          "value": "0.6618002725999673"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_PEDESTRIAN.horizons.0.5.available_predictions",
+          "value": "55"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_PEDESTRIAN.horizons.0.5.mean_planar_error_m",
+          "value": "0.8614849808267797"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_PEDESTRIAN.horizons.1.0.available_predictions",
+          "value": "55"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_PEDESTRIAN.horizons.1.0.mean_planar_error_m",
+          "value": "1.353528143571616"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_PEDESTRIAN.matched_tracks",
+          "value": "55"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_VEHICLE.horizons.0.1.available_predictions",
+          "value": "413"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_VEHICLE.horizons.0.1.mean_planar_error_m",
+          "value": "1.195449225872889"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_VEHICLE.horizons.0.3.available_predictions",
+          "value": "412"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_VEHICLE.horizons.0.3.mean_planar_error_m",
+          "value": "1.6303045104645344"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_VEHICLE.horizons.0.5.available_predictions",
+          "value": "412"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_VEHICLE.horizons.0.5.mean_planar_error_m",
+          "value": "2.175125871062898"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_VEHICLE.horizons.1.0.available_predictions",
+          "value": "412"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_VEHICLE.horizons.1.0.mean_planar_error_m",
+          "value": "3.6061792235646286"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.classes.TYPE_VEHICLE.matched_tracks",
+          "value": "414"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.horizons.0.1.available_predictions",
+          "value": "493"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.horizons.0.1.mean_3d_error_m",
+          "value": "1.1308518675129413"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.horizons.0.1.mean_planar_error_m",
+          "value": "1.0961479908244223"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.horizons.0.3.available_predictions",
+          "value": "491"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.horizons.0.3.mean_3d_error_m",
+          "value": "1.525242342359777"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.horizons.0.3.mean_planar_error_m",
+          "value": "1.499476575176807"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.horizons.0.5.available_predictions",
+          "value": "492"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.horizons.0.5.mean_3d_error_m",
+          "value": "2.0201022010404115"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.horizons.0.5.mean_planar_error_m",
+          "value": "1.9998450537683015"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.horizons.1.0.available_predictions",
+          "value": "492"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.horizons.1.0.mean_3d_error_m",
+          "value": "3.327193223492686"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.horizons.1.0.mean_planar_error_m",
+          "value": "3.31322972008852"
+        },
+        {
+          "path": "neural_models.GMM_ablation.MAP_point_metrics.matched_track_count",
+          "value": "494"
+        },
+        {
+          "path": "neural_models.GMM_ablation.joint_GMM_NLL_per_sample",
+          "value": "12.149566182246462"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mean_mixture_probability[0]",
+          "value": "0.23141049009513628"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mean_mixture_probability[1]",
+          "value": "0.5298547023471922"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mean_mixture_probability[2]",
+          "value": "0.23873480755767076"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.ade_3d_m",
+          "value": "1.997437000472699"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.ade_m",
+          "value": "1.9739866668992556"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.ade_point_count",
+          "value": "1968"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_CYCLIST.ade_3d_m",
+          "value": "1.5983235888821332"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_CYCLIST.ade_m",
+          "value": "1.5815639142647893"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_CYCLIST.fde_1.0s_m",
+          "value": "2.8043735179897156"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_CYCLIST.horizons.0.1.available_predictions",
+          "value": "25"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_CYCLIST.horizons.0.1.mean_planar_error_m",
+          "value": "0.748904966255654"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_CYCLIST.horizons.0.3.available_predictions",
+          "value": "25"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_CYCLIST.horizons.0.3.mean_planar_error_m",
+          "value": "1.1531566796705033"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_CYCLIST.horizons.0.5.available_predictions",
+          "value": "25"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_CYCLIST.horizons.0.5.mean_planar_error_m",
+          "value": "1.619820493143285"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_CYCLIST.horizons.1.0.available_predictions",
+          "value": "25"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_CYCLIST.horizons.1.0.mean_planar_error_m",
+          "value": "2.8043735179897156"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_CYCLIST.matched_tracks",
+          "value": "25"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_PEDESTRIAN.ade_3d_m",
+          "value": "0.8837905632202118"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_PEDESTRIAN.ade_m",
+          "value": "0.8456164509870228"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_PEDESTRIAN.fde_1.0s_m",
+          "value": "1.3520341982933919"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_PEDESTRIAN.horizons.0.1.available_predictions",
+          "value": "55"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_PEDESTRIAN.horizons.0.1.mean_planar_error_m",
+          "value": "0.5070901169715278"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_PEDESTRIAN.horizons.0.3.available_predictions",
+          "value": "54"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_PEDESTRIAN.horizons.0.3.mean_planar_error_m",
+          "value": "0.6602930842484517"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_PEDESTRIAN.horizons.0.5.available_predictions",
+          "value": "55"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_PEDESTRIAN.horizons.0.5.mean_planar_error_m",
+          "value": "0.8596788886758367"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_PEDESTRIAN.horizons.1.0.available_predictions",
+          "value": "55"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_PEDESTRIAN.horizons.1.0.mean_planar_error_m",
+          "value": "1.3520341982933919"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_PEDESTRIAN.matched_tracks",
+          "value": "55"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_VEHICLE.ade_3d_m",
+          "value": "2.1695412520902555"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_VEHICLE.ade_m",
+          "value": "2.14764061022747"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_VEHICLE.fde_1.0s_m",
+          "value": "3.600364174446198"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_VEHICLE.horizons.0.1.available_predictions",
+          "value": "413"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_VEHICLE.horizons.0.1.mean_planar_error_m",
+          "value": "1.1923349947899036"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_VEHICLE.horizons.0.3.available_predictions",
+          "value": "412"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_VEHICLE.horizons.0.3.mean_planar_error_m",
+          "value": "1.6276952682324937"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_VEHICLE.horizons.0.5.available_predictions",
+          "value": "412"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_VEHICLE.horizons.0.5.mean_planar_error_m",
+          "value": "2.1724867063913766"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_VEHICLE.horizons.1.0.available_predictions",
+          "value": "412"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_VEHICLE.horizons.1.0.mean_planar_error_m",
+          "value": "3.600364174446198"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.classes.TYPE_VEHICLE.matched_tracks",
+          "value": "414"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.fde_1.0s_m",
+          "value": "3.3085797941620183"
+        },
+        {
+          "path": "neural_models.GMM_ablation.mixture_mean_point_metrics.fde_1.0s_track_count",
+          "value": "492"
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage4/reports/block48_formal_evaluation.json",
+      "sha256": "402ab3d771e9a3c77de0c091c893e9a0d6ee5826ec52d07d27b919c68276b353"
+    },
+    "Stage5 angular report": {
+      "exists": true,
+      "interesting": [
+        {
+          "path": "angular_policy.path",
+          "value": "/home/agni/waymo/iscai_stage5/configs/angular_posterior_policy.json"
+        },
+        {
+          "path": "development_convergence.formal_data_used",
+          "value": "False"
+        },
+        {
+          "path": "development_convergence.selected_sample_count",
+          "value": "2048"
+        },
+        {
+          "path": "development_convergence.source_prediction_artifact",
+          "value": "/home/agni/waymo/iscai_stage5/artifacts/block52/development_gaussian_posterior.npz"
+        },
+        {
+          "path": "development_convergence.source_prediction_sha256",
+          "value": "39dacd4a1dd83ac9951244328403384421731dcffc1cf01617bcc6c6395460b4"
+        },
+        {
+          "path": "exact_repeat.synthetic_receiver_posterior_SHA256",
+          "value": "921688c06b8717099de24d3d8b73de9f3ba23970b4e8d566022eaf4b96a5fcd9"
+        },
+        {
+          "path": "next",
+          "value": "Block5.3 directional codebooks and posterior beam probabilities"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.analytic_Jacobian_crosscheck",
+          "value": "True"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.azimuth_circular_statistics",
+          "value": "True"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.base_seed",
+          "value": "20260821"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.centroid_mode",
+          "value": "True"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.cross_horizon_covariance_invented",
+          "value": "False"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.future_GT_heading",
+          "value": "False"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.horizons_s[0]",
+          "value": "0.1"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.horizons_s[1]",
+          "value": "0.3"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.horizons_s[2]",
+          "value": "0.5"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.horizons_s[3]",
+          "value": "1.0"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.known_offset_mode",
+          "value": "True"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.low_speed_threshold_mps",
+          "value": "0.25"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.method",
+          "value": "deterministic_monte_carlo"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.receiver_offset_shared_across_horizons",
+          "value": "True"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.sample_count",
+          "value": "2048"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.samplewise_heading",
+          "value": "True"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.trajectory_family",
+          "value": "calibrated_Gaussian_GRU"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.trajectory_joint_sampling",
+          "value": "product_of_frozen_calibrated_per_horizon_Gaussian_marginals"
+        },
+        {
+          "path": "primary_receiver_angular_posterior.uncertain_offset_mode",
+          "value": "True"
+        },
+        {
+          "path": "remaining_development_fields[1]",
+          "value": "formal_empirical_coverage_tolerance"
+        },
+        {
+          "path": "resolved_development_fields.angular_monte_carlo_sample_count.formal_data_used",
+          "value": "False"
+        },
+        {
+          "path": "resolved_development_fields.angular_monte_carlo_sample_count.selection",
+          "value": "development_numerical_convergence"
+        },
+        {
+          "path": "resolved_development_fields.angular_monte_carlo_sample_count.value",
+          "value": "2048"
+        },
+        {
+          "path": "resolved_development_fields.low_speed_heading_threshold.formal_data_used",
+          "value": "False"
+        },
+        {
+          "path": "scientific_execution.formal_N120_read",
+          "value": "False"
+        },
+        {
+          "path": "scientific_execution.formal_evaluation",
+          "value": "False"
+        },
+        {
+          "path": "uncertainty_semantics.Stage4_predictive_covariance",
+          "value": "CALIBRATED"
+        },
+        {
+          "path": "uncertainty_semantics.joint_receiver_propagation",
+          "value": "PASS"
+        },
+        {
+          "path": "uncertainty_semantics.receiver_placement_covariance",
+          "value": "SEPARATE_INPUT"
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage5/reports/block52_receiver_angular_posterior.json",
+      "sha256": "7102a2a87ab783ccfcd0b6e9ca01ac70d1022076d3a8c821201eac237ca4bfb8"
+    },
+    "Stage5 receiver report": {
+      "exists": true,
+      "interesting": [
+        {
+          "path": "Part1.report",
+          "value": "/home/agni/waymo/iscai_stage5/reports/block51_part1_receiver_contract.json"
+        },
+        {
+          "path": "causal_bridge.tracks_to_predict",
+          "value": "False"
+        },
+        {
+          "path": "next",
+          "value": "Block5.2 receiver-aware trajectory-to-angular posterior"
+        },
+        {
+          "path": "receiver_geometry.modes[0]",
+          "value": "centroid_baseline"
+        },
+        {
+          "path": "receiver_geometry.modes[1]",
+          "value": "known_receiver_offset"
+        },
+        {
+          "path": "receiver_geometry.modes[2]",
+          "value": "uncertain_receiver_offset"
+        },
+        {
+          "path": "receiver_geometry.placement_covariance",
+          "value": "receiver_placement_uncertainty_only"
+        },
+        {
+          "path": "receiver_geometry.trajectory_plus_placement_uncertainty",
+          "value": "Block5.2"
+        },
+        {
+          "path": "receiver_policy.connectivity",
+          "value": "constructed_hypothetical_connected_vehicle"
+        },
+        {
+          "path": "receiver_policy.distance_still_evaluated",
+          "value": "True"
+        },
+        {
+          "path": "receiver_policy.max_planar_range_m",
+          "value": "None"
+        },
+        {
+          "path": "receiver_policy.max_range_performance_tuned",
+          "value": "False"
+        },
+        {
+          "path": "receiver_policy.max_range_semantics",
+          "value": "no_additional_receiver_eligibility_range_cutoff"
+        },
+        {
+          "path": "receiver_policy.minimum_forward_H0_m",
+          "value": "0.0"
+        },
+        {
+          "path": "receiver_policy.path",
+          "value": "/home/agni/waymo/iscai_stage5/configs/receiver_policy.json"
+        },
+        {
+          "path": "receiver_policy.primary_policy",
+          "value": "nearest_causal_vehicle_ahead"
+        },
+        {
+          "path": "receiver_policy.sha256",
+          "value": "b5b6fc2b0a3c4575ed9567aff15f36f3430f4887862c245f045fae7cf9e349c0"
+        },
+        {
+          "path": "receiver_policy.status",
+          "value": "FROZEN"
+        },
+        {
+          "path": "remaining_development_fields_for_later_blocks[1]",
+          "value": "angular_monte_carlo_sample_count"
+        },
+        {
+          "path": "remaining_development_fields_for_later_blocks[3]",
+          "value": "formal_empirical_coverage_tolerance"
+        },
+        {
+          "path": "resolved_development_fields.receiver_eligibility_max_range.formal_data_used",
+          "value": "False"
+        },
+        {
+          "path": "resolved_development_fields.receiver_eligibility_max_range.performance_tuned",
+          "value": "False"
+        },
+        {
+          "path": "resolved_development_fields.receiver_eligibility_max_range.semantics",
+          "value": "no_additional_receiver_eligibility_range_cutoff"
+        },
+        {
+          "path": "resolved_development_fields.receiver_eligibility_max_range.value_m",
+          "value": "None"
+        },
+        {
+          "path": "scientific_execution.formal_N120_read",
+          "value": "False"
+        },
+        {
+          "path": "scientific_execution.receiver_posterior_inference",
+          "value": "False"
+        }
+      ],
+      "path": "/home/agni/waymo/iscai_stage5/reports/block51_receiver_geometry.json",
+      "sha256": "a7a79c4f0083e0668b1d6313c990dd2456efb3cd4cc4589b718bb93c2459f9b3"
+    }
+  }
+}

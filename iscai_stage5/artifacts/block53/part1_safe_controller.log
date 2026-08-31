@@ -1,0 +1,1196 @@
+============================================================
+BLOCK 5.3 PART 1/2 — SAFE EXECUTION
+============================================================
+
+===== CONTROLLED COMPILE =====
+beam_codebook.py = PASS
+test_block53_codebook_probability.py = PASS
+run_block53_part1_reference_audit.py = PASS
+run_block53_part1_gate.py = PASS
+run_block53_part1_safe.py = PASS
+
+===== BLOCK5.3 PART1 UNIT TESTS =====
+
+..................
+----------------------------------------------------------------------
+Ran 18 tests in 0.032s
+
+OK
+
+Block5.3 Part1 tests = 18 / 18 PASS
+
+===== PRE-GATE STAGE5 REGRESSION =====
+
+..........................................................................................
+----------------------------------------------------------------------
+Ran 90 tests in 0.064s
+
+OK
+
+pre-gate Stage5 regression = 90 / 90 PASS
+
+===== PART-A / LEGACY REFERENCE AUDIT =====
+============================================================
+BLOCK 5.3 PART 1 — PART-A BEAM REFERENCE AUDIT
+============================================================
+read-only                  = YES
+formal N=120 used          = NO
+Stage4 inference           = NO
+training/recalibration     = NO
+beam support frozen here   = NO
+physical gain frozen here  = NO
+
+===== PART-A REFERENCE =====
+files scanned = 3
+beam/gain hits = 33
+
+[PartA 1]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:60
+keywords = ['theta', 'fov', 'headlamp']
+numbers = ['2', '6', '0', '-1', '0', '-1', '0.0', '1.0', '2', '2', '13', '8', '3', '0', '0', '3', '3', '2', '3', '3']
+text = # ============================================================
+# Simulation 2 - Cell 6
+# ============================================================
+
+def plot_adb_intensity_panel(ax, intensity_map, title):
+    image = ax.imshow(
+        intensity_map,
+        extent=[adb_angle_deg[0], adb_angle_deg[-1], adb_range_m[0], adb_range_m[-1]],
+        origin="lower",
+        aspect="auto",
+        vmin=0.0,
+        vmax=1.0
+    )
+
+    ax.set_title(title)
+    ax.set_xlabel("Horizontal angle [deg]")
+    ax.set_ylabel("Range [m]")
+
+    return image
+
+
+fig, axes = plt.subplots(2, 2, figsize=(13, 8))
+
+# ------------------------------------------------------------
+# Fig. 3(a): dynamic shadow angle for oncoming vehicle
+# ------------------------------------------------------------
+ax = axes[0, 0]
+
+ax.plot(adb_fig3_time_s, adb_fig3a_theta_center_deg, linewidth=2, label="center angle")
+ax.plot(adb_fig3_time_s, adb_fig3a_theta_min_deg, linestyle="--", linewidth=1.5, label="shadow min")
+ax.plot(adb_fig3_time_s, adb_fig3a_theta_max_deg, linestyle="--", linewidth=1.5, label="shadow max")
+ax.fill_between(adb_fig3_time_s, adb_fig3a_theta_min_deg, adb_fig3a_theta_max_deg, alpha=0.20, label="shadow interval")
+
+ax.set_title("Fig. 3(a): Oncoming vehicle shadow angle")
+ax.set_xlabel("Time [s]")
+ax.set_ylabel("Horizontal angle [deg]")
+ax.grid(True, alpha=0.25)
+ax.legend(loc="best")
+
+# ------------------------------------------------------------
+# Fig. 3(b): shadow intervals for two preceding vehicles
+# ------------------------------------------------------------
+ax = axes[0, 1]
+
+for i in range(adb_fig
+
+[PartA 2]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:6
+keywords = ['theta', 'fov', 'headlamp']
+numbers = ['3', '-25.0', '25.0', '501', '0.0', '180.0', '361', '-5.0', '0.0', '150.0', '1.9', '1.0', '4.0', '20.0', '0.75', '3', '3', '40.0', '3', '30.0']
+text = # -----------------------------
+# Module 3/ADB deterministic parameters and axes
+# -----------------------------
+theta_grid_deg = np.linspace(-25.0, 25.0, 501)
+range_grid_m = np.linspace(0.0, 180.0, 361)
+
+theta_c_deg = -5.0
+delta_theta_deg = 0.0
+
+target_range_m = 150.0
+target_width_m = 1.9
+lateral_safety_margin_m = 1.0
+radial_safety_margin_m = 4.0
+transition_length_m = 20.0
+
+epsilon_deg = 0.75
+r_shadow_end_m = target_range_m + radial_safety_margin_m
+r_transition_end_m = r_shadow_end_m + transition_length_m
+
+# Fig. 3(a): Oncoming vehicle
+adb_fig3a_host_speed_kmh = 40.0
+adb_fig3a_oncoming_speed_kmh = 30.0
+adb_fig3a_initial_separation_m = 150.0
+
+# Fig. 3(b): Multiple preceding vehicles
+adb_fig3b_host_speed_kmh = 50.0
+adb_fig3b_num_preceding_vehicles = 2
+adb_fig3b_initial_spacing_m = 30.0
+adb_fig3b_lane_relation = "adjacent lanes"
+
+adb_fig3_num_time_samples = 200
+adb_fig3_time_stop_fraction = 0.95
+
+# Assumed visualization parameters
+assumed_lane_width_m = 3.5
+assumed_vehicle_width_m = target_width_m
+assumed_safety_margin_deg = 0.5
+assumed_headlamp_fov_deg = 12.0
+
+assumed_vehicle_half_width_m = 0.5 * assumed_vehicle_width_m
+assumed_safety_margin_rad = np.deg2rad(assumed_safety_margin_deg)
+assumed_headlamp_fov_rad = np.deg2rad(assumed_headlamp_fov_deg)
+
+assumed_adb_r_min_m = 30.0
+assumed_adb_r_max_m = 80.0
+
+adb_angle_deg = np.linspace(-assumed_headlamp_fov_deg, assumed_headlamp_fov_deg, 301)
+adb_range_m = np.linspace(0.0, adb_fig3a_initial_separation_m, 301)
+
+# Dynamic ADB / track reconstruction visualization settings.
+adb_trz_front_margin_units = 4.0
+adb_trz_transition_length_un
+
+[PartA 3]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:57
+keywords = ['fov', 'headlamp']
+numbers = ['2', '3', '3', '3', '1', '3', '3', '1', '3', '3', '1', '3', '3', '1', '3', '3', '3', '3', '3', '3']
+text = # ============================================================
+# Simulation 2 - Cell 3
+# ============================================================
+
+print("Geometry parameters")
+print("--------------------------------------")
+
+print("Paper-given quantities:")
+print(f"  Fig. 3(a) host speed             : {adb_fig3a_host_speed_kmh:.1f} km/h")
+print(f"  Fig. 3(a) oncoming speed         : {adb_fig3a_oncoming_speed_kmh:.1f} km/h")
+print(f"  Fig. 3(a) initial separation     : {adb_fig3a_initial_separation_m:.1f} m")
+print(f"  Fig. 3(b) host speed             : {adb_fig3b_host_speed_kmh:.1f} km/h")
+print(f"  Fig. 3(b) preceding vehicles     : {adb_fig3b_num_preceding_vehicles}")
+print(f"  Fig. 3(b) lane relation          : {adb_fig3b_lane_relation}")
+print(f"  Fig. 3(b) initial spacing        : {adb_fig3b_initial_spacing_m:.1f} m")
+
+# ============================================================
+# Explicit visualization assumptions for missing geometry
+# ============================================================
+print("--------------------------------------")
+print(f"Lane width assumption        : {assumed_lane_width_m:.2f} m")
+print(f"Vehicle width assumption     : {assumed_vehicle_width_m:.2f} m")
+print(f"Vehicle half-width           : {assumed_vehicle_half_width_m:.2f} m")
+print(f"Safety margin assumption     : {assumed_safety_margin_deg:.2f} deg")
+print(f"Headlamp half-FOV assumption : ±{assumed_headlamp_fov_deg:.1f} deg")
+
+[PartA 4]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:65
+keywords = ['fov']
+numbers = ['64', '0', '3', '7', '4', '9', '3', '8', '8', '2', '2', '4', '1', '7', '2', '5', '2713', '4', '61', '76']
+text = ![image.png](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA3sAAAJ7CAYAAABauohXAAAgAElEQVR4Xuy9CZhVxbX+/ZpOcCDBSDAaUGlJkElBIiiKCEYJ3CARhNaA8yUQUFG8YACJbWiCooKCOBCQgAMSaEESxA+COAQRFf2jICCi2A4YDUQBRbQNyVe1p7OHqj2cqU+ffvt5uLl2713Dr4Zdb61Vqw76r/gBf0iABEiABEiABEiABEiABEiABIqKwEEUe0XVnqwMCZAACZAACZAACZAACZAACRgEKPbYEUiABEiABEiABEiABEiABEigCAlQ7BVho7JKJEACJEACJEACJEACJEACJECxxz5AAiRAAiRAAiRAAiRAAiRAAkVIgGKvCBuVVSIBEiABEiABEiABEiABEiABij32ARIgARIgARIgARIgARIgARIoQgIUe0XYqKwSCZAACZAACZAACZAACZAACVDssQ+QAAmQAAmQAAmQAAmQAAmQQBESoNgrwkZllUiABEiABEiABEiABEiABEig1ou9BWUNMHiFtyFLR6zBhoqT4rXuxnK07TwVVZ6nSzFizQbETSJeRnyq5ggsQFmDwUh1kx6YtbcSF9VcgWo4Zz8PWRz2+RpuFH329hxVOgJrNlTAnNn2Y/OTzwBn/wKtD3W9Wr0Di8cOwOgHX8Mn1SVofeNavDimpXigGjsWj8WA0Q/itU+qUdL6Rqx9cQzkX2rHj6a+UYVXsot6iX9Pn8BGlLftjKlVWZ5P2I7pN0mtfLMa2x6+FoMmLsHGj77EAVGHet87Es06XYUps0eiy/drZaVYaBKoMQLJxJ5SGKXK3mPWXlTmcQVtCj3fwn1BGRo81h97kxZEvidUo7oO5uJ4axIRmfUmLYQyZL1SWUjQWly0mKVuc6vPtnD1TWW/yUJJCjEJo65b3SLBEno9vLzkc4/1z+/4haJtap7hh5jSpTXGv3EGJr+1HEOOrPkS2ZyqXGLvwyld0Hr860DzG/DyqzdZoq0aywc1w4WVe1Fy2I/R6dyjcdiJt2PRmJNQvXwQml1Yib0lh+HHnc7F0YediNsXjbGEYwHUMaII6vrGKHdckaD8tpXgsCOa4ISzLsDwG0bi/LaHo547S9U7gu8RzTtj2G0zMOZsd+cRYnvlnbh23Cy8uH0nPq+WCdXD945rjWse+DvGdjITtjcv/RuWO8X3qb34Pu0taY4RT69FRXtPSWKAyNcjdVzsWX3i07KF2D67p7e/5KsJiiGfVUNxTN9HIWYyHNb4JJx+/FfYsGE7dn7euIA24q2+vlOsQbeIzWMK0GLoeUVbh2Riz/UxyrewC7ZAxCI/QZNtLG+Lzkv6uHbNfS9LITixlf7vCfJK+9FCKEPahc/hi8bHdQvGKS11uj5SV4SzrOdEtHJbqQtIYBnjbsu45BszOexO2D0TPY8bhY9qdGPHV0GFYNm96DKc/OulQO8H8NpD/WCuMxZh4BFX4okDQavKooFH4MonDiCR10MuOevSrnoC5TfdjoXvdkfl8zc5YlRd3xgFTCz2hAA78nAcYiT9b+z79DN8Kc0KYtHZ8Ly7sWbup
+
+[PartA 5]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:49
+keywords = ['theta', 'gain']
+numbers = ['3', '4.11', '2', '2', '-2', '2', '2', '2', '2', '2', '2', '2', '1', '2', '1', '2', '2', '2', '1', '2']
+text = # ============================================================
+# Module 3 - Cell 4.11
+# ============================================================
+
+def m2_track_support_union(track):
+    return set().union(*(segment["support_ids"] for segment in track["segments"]))
+
+
+def m2_track_passes_final_filters(track):
+    """
+    This is NOT keep-top-2: every track either passes or fails fixed criteria.
+    """
+    points_by_frame = m2_track_points_by_frame(track)
+    support_count = len(m2_track_support_union(track))
+    coverage = len(points_by_frame) / m2_num_frames
+
+    passes = (
+        coverage >= m2_min_final_coverage
+        and support_count >= m2_min_final_support
+        and len(track["segments"]) >= m2_min_final_segments
+    )
+
+    return passes, {
+        "coverage": coverage,
+        "support_count": support_count,
+        "num_segments": len(track["segments"]),
+        "num_frames": len(points_by_frame),
+    }
+
+def m2_ground_truth_by_label(label):
+    if label == 1:
+        track = m2_gt1_clean
+    elif label == 2:
+        track = m2_gt2_clean
+    else:
+        raise ValueError("label must be 1 or 2.")
+
+    return {
+        int(frame): np.array([x, y])
+        for x, y, frame, _ in track
+    }
+
+def m2_evaluate_track_against_gt(track):
+    """
+    Evaluation only. Ground-truth labels are NOT used by the algorithm.
+    """
+    support_ids = m2_track_support_union(track)
+    rows = m2_rows_for_support_ids(support_ids)
+    labels = np.array([int(label) for label in rows[:, m2_label_col]])
+
+    positive_labels = labels[labels > 0]
+    if len(positive_labels) == 0:
+      
+
+[PartA 6]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:76
+keywords = ['theta']
+numbers = ['3', '1', '3', '3', '1', '3', '2', '0', '3', '2', '3', '2', '1', '3', '3', '3', '1', '3', '2', '3']
+text = # ============================================================
+# Module 3 - TODO Cell 1O (clean annotation version)
+# Final Fig. 3 / ADB-style result
+# Based on dynamic shadow-angle boundaries from reconstructed tracks
+# ============================================================
+
+# ------------------------------------------------------------
+# Extract reconstructed tracks
+# ------------------------------------------------------------
+adb_fig3_clean_track1 = adb_fig3_clean_track_series(m2_final_tracks[0])
+adb_fig3_clean_track2 = adb_fig3_clean_track_series(m2_final_tracks[1])
+
+adb_fig3_clean_layout_values = adb_fig3_clean_plot(
+    adb_fig3_clean_track1,
+    adb_fig3_clean_track2,
+    source_label="reconstructed"
+)
+
+adb_fig3_clean_all_theta = adb_fig3_clean_layout_values["all_theta"]
+adb_fig3_clean_data_ymin = adb_fig3_clean_layout_values["data_ymin"]
+adb_fig3_clean_data_ymax = adb_fig3_clean_layout_values["data_ymax"]
+adb_fig3_clean_key_space = adb_fig3_clean_layout_values["key_space"]
+adb_fig3_clean_ymin = adb_fig3_clean_layout_values["ymin"]
+adb_fig3_clean_ymax = adb_fig3_clean_layout_values["ymax"]
+adb_fig3_clean_xmin = adb_fig3_clean_layout_values["xmin"]
+adb_fig3_clean_xmax = adb_fig3_clean_layout_values["xmax"]
+adb_fig3_clean_xlim_left = adb_fig3_clean_layout_values["xlim_left"]
+adb_fig3_clean_xlim_right = adb_fig3_clean_layout_values["xlim_right"]
+adb_fig3_clean_key_y1 = adb_fig3_clean_layout_values["key_y1"]
+adb_fig3_clean_key_y2 = adb_fig3_clean_layout_values["key_y2"]
+adb_fig3_clean_key_y3 = adb_fig3_clean_layout_values["key_y3"]
+adb_fig3_clean_key_x0 = adb_fig3
+
+[PartA 7]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:75
+keywords = ['theta']
+numbers = ['3', '1', '3', '3', '1', '3', '2', '1', '2', '1', '3', '2', '3', '2', '2', '2', '2', '3', '3', '3']
+text = # ============================================================
+# Module 3 - TODO Cell 1O (clean annotation version)
+# Final Fig. 3 / ADB-style result
+# Based on dynamic shadow-angle boundaries from GT tracks
+# ============================================================
+
+# ------------------------------------------------------------
+# Extract GT tracks
+# ------------------------------------------------------------
+adb_fig3_clean_track1 = adb_fig3_clean_track_series_from_gt(m2_gt1_x, m2_gt1_y)
+adb_fig3_clean_track2 = adb_fig3_clean_track_series_from_gt(m2_gt2_x, m2_gt2_y)
+
+adb_fig3_clean_layout_values = adb_fig3_clean_plot(
+    adb_fig3_clean_track1,
+    adb_fig3_clean_track2,
+    source_label="GT"
+)
+
+adb_fig3_clean_all_theta = adb_fig3_clean_layout_values["all_theta"]
+adb_fig3_clean_data_ymin = adb_fig3_clean_layout_values["data_ymin"]
+adb_fig3_clean_data_ymax = adb_fig3_clean_layout_values["data_ymax"]
+adb_fig3_clean_key_space = adb_fig3_clean_layout_values["key_space"]
+adb_fig3_clean_ymin = adb_fig3_clean_layout_values["ymin"]
+adb_fig3_clean_ymax = adb_fig3_clean_layout_values["ymax"]
+adb_fig3_clean_xmin = adb_fig3_clean_layout_values["xmin"]
+adb_fig3_clean_xmax = adb_fig3_clean_layout_values["xmax"]
+adb_fig3_clean_xlim_left = adb_fig3_clean_layout_values["xlim_left"]
+adb_fig3_clean_xlim_right = adb_fig3_clean_layout_values["xlim_right"]
+adb_fig3_clean_key_y1 = adb_fig3_clean_layout_values["key_y1"]
+adb_fig3_clean_key_y2 = adb_fig3_clean_layout_values["key_y2"]
+adb_fig3_clean_key_y3 = adb_fig3_clean_layout_values["key_y3"]
+adb_fig3_clean_key_x0 = adb_fig3_clean_layout_val
+
+[PartA 8]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:74
+keywords = ['theta']
+numbers = ['3', '1', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3']
+text = # ============================================================
+# Module 3 - TODO Cell 1O shared helpers
+# Consolidated helpers for the clean final Fig. 3 / ADB-style plots
+# ============================================================
+
+# ------------------------------------------------------------
+# Helper: extract dynamic shadow-angle series from one GT track
+# ------------------------------------------------------------
+def adb_fig3_clean_track_series_from_gt(x_track, y_track):
+    """
+    Return frame-wise dynamic shadow-angle quantities for one GT track.
+    """
+    adb_fig3_clean_frames = np.arange(len(x_track))
+
+    adb_fig3_clean_geom = adb_trz_shadow_geometry_from_xy(
+        x_track,
+        y_track
+    )
+
+    return {
+        "frames": adb_fig3_clean_frames,
+        "theta_c": adb_fig3_clean_geom["theta_c"],
+        "shadow_center": adb_fig3_clean_geom["shadow_center"],
+        "theta_min": adb_fig3_clean_geom["theta_min"],
+        "theta_max": adb_fig3_clean_geom["theta_max"],
+        "epsilon": adb_fig3_clean_geom["epsilon"],
+    }
+
+
+# ------------------------------------------------------------
+# Helper: extract dynamic shadow-angle series from one track
+# ------------------------------------------------------------
+def adb_fig3_clean_track_series(track):
+    """
+    Return frame-wise dynamic shadow-angle quantities for one reconstructed track.
+    """
+    adb_fig3_clean_frames, adb_fig3_clean_x, adb_fig3_clean_y = adb_trz_track_arrays(track)
+
+    adb_fig3_clean_geom = adb_trz_shadow_geometry_from_xy(
+        adb_fig3_clean_x,
+        adb_fig3_clean_y
+    )
+
+  
+
+[PartA 9]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:73
+keywords = ['theta']
+numbers = ['3', '1', '2', '2', '2', '2', '3', '2', '2', '2', '2', '2', '2', '2', '1', '2', '2', '2', '2', '2']
+text = # ============================================================
+# Module 3 - TODO Cell 1N (clean labels version)
+# Dynamic intensity / top-down ADB plot
+# Only for reconstructed track 2 (curved track)
+#
+# Design change requested:
+# - no legend
+# - no labels placed on top of the shaded cone/line
+# - only small labels / boxes away from the geometry
+# - no arrows in the first plot
+#
+# Uses helpers from previous cells:
+# - adb_trz_track_arrays()
+# - adb_trz_shadow_geometry_from_xy()
+# - adb_trz_select_snapshot_indices()
+# - ray_xy_from_yaxis()
+# - add_ego_vehicle(), add_target_vehicle()
+# - add_label_box()
+# - COLOR_THETA_C, COLOR_CENTER, COLOR_THETA_BOUNDS, COLOR_FORWARD
+# - m2_final_tracks, m2_x_range, m2_y_range
+#
+# Does NOT redefine the older static Module 3 variables.
+# ============================================================
+
+if len(m2_final_tracks) < 2:
+    raise ValueError(
+        "This cell expects at least 2 reconstructed tracks. "
+        "Reconstructed track 2 was not found."
+    )
+
+# ------------------------------------------------------------
+# Select only reconstructed track 2
+# ------------------------------------------------------------
+adb_int2_track = m2_final_tracks[1]
+adb_int2_track_label = "Reconstructed track 2"
+adb_int2_track_color = "tab:orange"
+
+adb_int2_frames, adb_int2_x_track, adb_int2_y_track = adb_trz_track_arrays(adb_int2_track)
+adb_int2_geom = adb_trz_shadow_geometry_from_xy(adb_int2_x_track, adb_int2_y_track)
+
+adb_int2_num_snapshots = globals().get("adb_trz_num_snapshots", 4)
+adb_int2_snapshot_indices = adb_trz_select_snapshot_indices(
+    
+
+[PartA 10]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:72
+keywords = ['theta']
+numbers = ['3', '1', '1', '2', '0', '2', '2', '4', '2.2', '3', '1', '90.0', '2', '90.0', '0.0', '0.0', '2.0', '2.0', '0.0', '1']
+text = # ============================================================
+# Module 3 - TODO Cell 1M (educational version)
+# Dynamic angle mapping:
+# top-down geometry  ->  1D shadow-angle axis
+# ============================================================
+
+if len(m2_final_tracks) == 0:
+    raise ValueError("m2_final_tracks is empty. Run Module 2 first.")
+
+
+# ------------------------------------------------------------
+# Small plotting helpers
+# ------------------------------------------------------------
+adb_angmap_num_snapshots = globals().get("adb_trz_num_snapshots", 4)
+adb_angmap_track_colors = ["tab:blue", "tab:orange", "tab:green", "tab:red"]
+
+
+def adb_angmap_add_arc(ax, angle_start_deg, angle_end_deg, radius_value, label_text, color_value, lw=2.2):
+    """
+    Draw an angle arc using the Module 3 convention:
+    angle measured from the forward +y axis.
+    """
+    adb_angmap_low = min(angle_start_deg, angle_end_deg)
+    adb_angmap_high = max(angle_start_deg, angle_end_deg)
+
+    adb_angmap_theta1 = 90.0 - adb_angmap_high
+    adb_angmap_theta2 = 90.0 - adb_angmap_low
+
+    adb_angmap_arc = Arc(
+        (0.0, 0.0),
+        width=2.0 * radius_value,
+        height=2.0 * radius_value,
+        angle=0.0,
+        theta1=adb_angmap_theta1,
+        theta2=adb_angmap_theta2,
+        linewidth=lw,
+        color=color_value
+    )
+    ax.add_patch(adb_angmap_arc)
+
+    adb_angmap_mid_angle = 0.5 * (angle_start_deg + angle_end_deg)
+    adb_angmap_label_x, adb_angmap_label_y = ray_xy_from_yaxis(
+        adb_angmap_mid_angle,
+        radius_value + 2.0
+    )
+
+    ax.text(
+        adb_angmap_label
+
+[PartA 11]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:70
+keywords = ['theta']
+numbers = ['3', '1', '2', '2', '0', '2', '2', '2', '0', '0', '2', '4', '80', '0.0', '0.0', '0.0', '2', '1', '8.0', '1.0']
+text = # ============================================================
+# Module 3 - TODO Cell 1K
+# Dynamic transition zone snapshots in top-down view
+# Driven by Module 2 reconstructed tracks
+# ============================================================
+
+if len(m2_final_tracks) == 0:
+    raise ValueError("m2_final_tracks is empty. Run Module 2 first.")
+
+# ------------------------------------------------------------
+# Helpers
+# ------------------------------------------------------------
+def adb_trz_track_arrays(track):
+    """
+    Convert one reconstructed Module 2 track into ordered frame, x, y arrays.
+    """
+    return adb_track_arrays(track)
+
+
+def adb_trz_shadow_geometry_from_xy(x_track, y_track):
+    """
+    Dynamic ADB geometry from reconstructed x(t), y(t).
+
+    Coordinate convention:
+        ego at (0, 0)
+        +y forward
+        +x right
+        theta = atan2(x, y), in degrees
+    """
+    return adb_shadow_geometry_from_xy(x_track, y_track, include_radial_zone=True)
+
+
+def adb_trz_select_snapshot_indices(frames, n_snapshots=4):
+    """
+    Select representative available frames from a reconstructed track.
+    """
+    return adb_select_snapshot_indices(frames, n_snapshots)
+
+
+def adb_trz_sector_polygon_xy(angle_min_deg, angle_max_deg, r_inner, r_outer, n_points=80):
+    """
+    Build polygon coordinates for an angular sector / ring sector.
+    Angles are measured from the forward y-axis.
+    """
+    adb_trz_outer_angles = np.linspace(angle_min_deg, angle_max_deg, n_points)
+    adb_trz_inner_angles = np.linspace(angle_max_deg, angle_min_deg, n_points)
+
+    adb_trz_outer_x, 
+
+[PartA 12]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:69
+keywords = ['theta']
+numbers = ['3', '1', '2', '2', '2', '0', '1', '0', '0', '2', '2', '2', '2', '2', '2.0', '2', '5', '0', '0', '1']
+text = # ============================================================
+# Module 3 - TODO Cell 1J
+# Dynamic shadow interval from Module 2 reconstructed tracks
+# ============================================================
+
+# ------------------------------------------------------------
+# Helper: convert one reconstructed track to ordered arrays
+# ------------------------------------------------------------
+def adb_track_arrays(track):
+    """
+    Convert one reconstructed Module 2 track into ordered frame, x, y arrays.
+    """
+    points_by_frame = m2_track_points_by_frame(track)
+    frames = np.array(sorted(points_by_frame.keys()))
+    xy = np.array([points_by_frame[frame] for frame in frames])
+
+    return frames, xy[:, 0], xy[:, 1]
+
+
+def adb_shadow_geometry_from_xy(x_track, y_track, include_radial_zone=False):
+    """
+    Convert reconstructed x(t), y(t) into dynamic ADB shadow geometry.
+
+    Coordinate convention:
+        ego vehicle at (0, 0)
+        +y = forward
+        +x = right
+        theta = atan2(x, y), in degrees
+
+    Dynamic quantities:
+        r(t)
+        theta_c(t)
+        theta_center(t) = theta_c(t) - Delta theta
+        epsilon(t)
+        theta_min(t)
+        theta_max(t)
+    """
+    target_range = np.sqrt(x_track**2 + y_track**2)
+    theta_c = np.rad2deg(np.arctan2(x_track, y_track))
+    shadow_center = theta_c - delta_theta_deg
+    effective_half_width = target_width_m / 2.0 + lateral_safety_margin_m
+    epsilon = np.rad2deg(np.arctan(effective_half_width / np.maximum(target_range, EPS)))
+
+    geometry = {
+        "range": target_range,
+        "range_target": ta
+
+[PartA 13]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:68
+keywords = ['theta']
+numbers = ['3', '1', '3', '-28.0', '0.3', '45.0', '1.9', '1.0', '2', '2', '45.0', '65.0', '4.5', '1.9', '0.55', '0', '0', '0', '2', '3.0']
+text = # ============================================================
+# Module 3 - TODO Cell 1I
+# Final staged top-down construction with:
+# - consistent colors across all panels
+# - clearer Δθ visibility
+# - label boxes instead of many arrows
+# Uses existing Module 3 variables only.
+# ============================================================
+
+demo_theta_c_deg = -28.0
+demo_delta_theta_deg = 0.3
+
+demo_target_range_m = 45.0
+demo_target_width_m = 1.9
+demo_lateral_safety_margin_m = 1.0
+demo_epsilon_deg = np.rad2deg(np.arctan((demo_target_width_m / 2 + demo_lateral_safety_margin_m) / demo_target_range_m))
+
+# Shadow-zone angular boundaries [degrees]
+demo_shadow_center_deg = demo_theta_c_deg - demo_delta_theta_deg
+
+demo_theta_shadow_min_deg = demo_shadow_center_deg - demo_epsilon_deg
+demo_theta_shadow_max_deg = demo_shadow_center_deg + demo_epsilon_deg
+
+# ------------------------------------------------------------
+# Plotting-only geometry
+# ------------------------------------------------------------
+demo_target_range_for_arcs_m = 45.0
+demo_plot_range_for_arcs_m = 65.0
+demo_car_length_for_arcs_m = 4.5
+demo_car_width_for_arcs_m = 1.9
+
+# ------------------------------------------------------------
+# Consistent color convention
+# ------------------------------------------------------------
+COLOR_THETA_C = "crimson"      # θc / target ray
+COLOR_DELTA = "darkorange"         # Δθ
+COLOR_CENTER = "forestgreen"   # θc - Δθ
+COLOR_EPS = "crimson"       # ε
+COLOR_THETA_BOUNDS = "dodgerblue"   # θmin, θmax, Θ
+COLOR_FORWARD = "0.55"         # forward axis
+
+def ray_xy_from_yaxis(angle_deg, length_m
+
+[PartA 14]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:67
+keywords = ['theta']
+numbers = ['3', '1', '3', '10.5', '5.8', '0.20', '0.90', '0.9', '0.35', '1', '4.2', '1.0', '5', '5', '1', '5', '0.08', '0.08', '0.8', '0.28']
+text = # ============================================================
+# Module 3 - TODO Cell 1B
+# Clear construction plot for angular grid and shadow interval
+# Uses existing Module 3 variables only.
+# ============================================================
+
+adb_shadow_interval_center_deg = theta_c_deg - delta_theta_deg
+
+fig, ax = plt.subplots(figsize=(10.5, 5.8))
+
+# Small white background behind text labels
+label_box = dict(
+    boxstyle="round,pad=0.20",
+    facecolor="white",
+    edgecolor="none",
+    alpha=0.90
+)
+
+# Useful horizontal offsets for labels when theta_min/theta_max are close
+label_offset_deg = max(0.9, 0.35 * abs(theta_shadow_max_deg - theta_shadow_min_deg))
+
+# ------------------------------------------------------------
+# 1) Angular grid baseline
+# ------------------------------------------------------------
+y_grid = 4.2
+
+ax.hlines(
+    y=y_grid,
+    xmin=theta_grid_deg.min(),
+    xmax=theta_grid_deg.max(),
+    linewidth=1.0
+)
+
+for tick in np.arange(
+    np.ceil(theta_grid_deg.min() / 5) * 5,
+    theta_grid_deg.max() + 1,
+    5
+):
+    ax.vlines(tick, y_grid - 0.08, y_grid + 0.08, linewidth=0.8)
+
+ax.text(
+    theta_grid_deg.min(),
+    y_grid + 0.28,
+    "1) Angular grid: possible horizontal angles θ",
+    ha="left",
+    va="bottom",
+    bbox=label_box
+)
+
+# ------------------------------------------------------------
+# 2) Target center and offset correction
+# ------------------------------------------------------------
+y_center = 3.05
+
+ax.hlines(
+    y=y_center,
+    xmin=theta_grid_deg.min(),
+    xmax=theta_grid_deg.max(),
+    linewidth=0.8,
+    alpha=0.35
+)
+
+a
+
+[PartA 15]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:66
+keywords = ['theta']
+numbers = ['2', '4.11', '2', '2', '0', '-1', '0', '0', '1', '1', '2', '2', '1', '0', '-90', '90', '90.0', '180.0', '-90.0', '180.0']
+text = # ============================================================
+# Module 2 - Cell 4.11B
+# Validated Hough candidates after AND-logic / final track validation
+# ============================================================
+
+validated_hough_rows = []
+
+for track in m2_final_tracks:
+    points_by_frame = m2_track_points_by_frame(track)
+    frames = sorted(points_by_frame.keys())
+    xy = np.array([points_by_frame[frame] for frame in frames])
+
+    center = xy.mean(axis=0)
+    _, _, vh = np.linalg.svd(xy - center)
+
+    normal = vh[-1]
+    rho = float(normal[0] * center[0] + normal[1] * center[1])
+    theta_deg = float(np.rad2deg(np.arctan2(normal[1], normal[0])))
+
+    # Keep the same Hough convention as the accumulator:
+    # theta in approximately [-90, 90] deg, rho may be signed.
+    if theta_deg > 90.0:
+        theta_deg -= 180.0
+        rho = -rho
+
+    if theta_deg < -90.0:
+        theta_deg += 180.0
+        rho = -rho
+
+    validated_hough_rows.append({
+        "track_id": track["track_id"],
+        "rho": rho,
+        "theta_deg": theta_deg,
+        "support": len(frames),
+    })
+
+
+fig, ax = plt.subplots(figsize=(8.2, 4.9))
+
+ax.imshow(
+    m2_demo_smooth,
+    aspect="auto",
+    origin="lower",
+    extent=[m2_demo_theta[0], m2_demo_theta[-1], m2_demo_rho[0], m2_demo_rho[-1]],
+    cmap=hough_cmap,
+    alpha=0.85
+)
+
+m2_plot_hough_curves(ax, m2_demo_xy, m2_demo_labels)
+
+# Validated candidates after AND-logic / final track validation.
+for row in validated_hough_rows:
+    ax.scatter(
+        row["theta_deg"],
+        row["rho"],
+        s=130,
+        marker="o",
+        facecolors=
+
+[PartA 16]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:64
+keywords = ['theta']
+numbers = ['2', '80', '1', '2', '12', '4.5', '1', '2', '0.05', '1.6', '0.05', '0', '1', '-0.25', '1.35', '0.25', '-1', '2', '2', '0']
+text = # ============================================================
+# Presentation-only plots - DPSK communication recovery
+# Uses the validated Module 2 receiver outputs. No second receiver is simulated here.
+# ============================================================
+
+presentation_comm_bit_count = min(80, comm_bits_reference.size, comm_bits_hat.size)
+presentation_comm_bit_index = np.arange(presentation_comm_bit_count)
+
+presentation_comm_fig, presentation_comm_axes = plt.subplots(1, 2, figsize=(12, 4.5))
+presentation_comm_bit_ax, presentation_comm_symbol_ax = presentation_comm_axes
+
+# ------------------------------------------------------------
+# Plot 1: transmitted vs recovered bits
+# ------------------------------------------------------------
+presentation_comm_bit_ax.step(
+    presentation_comm_bit_index,
+    comm_bits_reference[:presentation_comm_bit_count],
+    where="post",
+    linewidth=2,
+    label="transmitted bits"
+)
+
+presentation_comm_bit_ax.step(
+    presentation_comm_bit_index,
+    comm_bits_hat[:presentation_comm_bit_count] + 0.05,
+    where="post",
+    linestyle="--",
+    linewidth=1.6,
+    label="recovered bits + 0.05 offset"
+)
+
+presentation_comm_bit_ax.set_title("DPSK communication recovery")
+presentation_comm_bit_ax.set_xlabel("Differential symbol index")
+presentation_comm_bit_ax.set_ylabel("Bit value")
+presentation_comm_bit_ax.set_yticks([0, 1])
+presentation_comm_bit_ax.set_ylim(-0.25, 1.35)
+presentation_comm_bit_ax.grid(True, alpha=0.25)
+presentation_comm_bit_ax.legend(loc="upper right")
+
+presentation_comm_info_text = (
+    "FFT carrier extraction + DPSK 
+
+[PartA 17]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:59
+keywords = ['theta']
+numbers = ['2', '5', '1', '0.0', '0.5', '1.0', '3', '3', '3', '2', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3']
+text = # ============================================================
+# Simulation 2 - Cell 5
+# ============================================================
+
+adb_angle_grid_deg, adb_range_grid_m = np.meshgrid(adb_angle_deg, adb_range_m)
+
+def adb_intensity_map(theta_min_deg, theta_max_deg, x_m, y_m):
+    # Current distance from ego vehicle to target center
+    target_range_m = np.hypot(x_m, y_m)
+    # Same logic as the simulation 1's example intensity map
+    r_min_m = target_range_m + radial_safety_margin_m
+    r_max_m = r_min_m + transition_length_m
+
+    intensity = np.ones_like(adb_range_grid_m, dtype=float)
+
+    inside_shadow = (
+        (adb_angle_grid_deg >= theta_min_deg)
+        & (adb_angle_grid_deg <= theta_max_deg)
+    )
+
+    full_shadow = inside_shadow & (adb_range_grid_m <= r_min_m)
+    transition = (
+        inside_shadow
+        & (adb_range_grid_m > r_min_m)
+        & (adb_range_grid_m < r_max_m)
+    )
+    intensity[full_shadow] = 0.0
+
+    u = (adb_range_grid_m[transition] - r_min_m) / (r_max_m - r_min_m)
+    intensity[transition] = 0.5 * (1.0 - np.cos(np.pi * u))
+
+    return intensity
+
+def adb_combine_intensity_maps(theta_min_values, theta_max_values, x_values, y_values):
+    """Combine ADB intensity maps from multiple vehicles."""
+
+    combined = np.ones_like(adb_range_grid_m, dtype=float)
+
+    for theta_min_deg, theta_max_deg, x_m, y_m in zip(
+        theta_min_values,
+        theta_max_values,
+        x_values,
+        y_values
+    ):
+        vehicle_map = adb_intensity_map(theta_min_deg, theta_max_deg, x_m, y_m)
+        combined = np.minimum(combined, vehicle_m
+
+[PartA 18]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:58
+keywords = ['theta']
+numbers = ['2', '4', '2', '2', '2', '2', '2', '2', '1', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '2']
+text = # ============================================================
+# Simulation 2 - Cell 4
+# ============================================================
+
+def adb_shadow_angles_deg(x_m, y_m):
+    rho_m = np.hypot(x_m, y_m)
+    epsilon_dyn_rad = np.arctan(lateral_safety_margin_m / rho_m)
+
+    theta_center = np.arctan2(y_m, x_m)
+    theta_min = np.arctan2(y_m - assumed_vehicle_half_width_m, x_m) - epsilon_dyn_rad
+    theta_max = np.arctan2(y_m + assumed_vehicle_half_width_m, x_m) + epsilon_dyn_rad
+
+    return np.rad2deg(theta_center), np.rad2deg(theta_min), np.rad2deg(theta_max)
+
+# ------------------------------------------------------------
+# Scenario 1 - Fig. 3(a): Oncoming vehicle
+# ------------------------------------------------------------
+adb_fig3a_x_m = adb_fig3a_range_m
+adb_fig3a_y_m = -assumed_lane_width_m * np.ones_like(adb_fig3a_x_m)
+
+adb_fig3a_theta_center_deg, adb_fig3a_theta_min_deg, adb_fig3a_theta_max_deg = adb_shadow_angles_deg(
+    adb_fig3a_x_m,
+    adb_fig3a_y_m
+)
+
+# ------------------------------------------------------------
+# Scenario 2 - Fig. 3(b): Multiple preceding vehicles
+# ------------------------------------------------------------
+adb_fig3b_x_m = adb_fig3b_initial_range_m * np.ones(adb_fig3b_num_preceding_vehicles)
+adb_fig3b_y_m = np.array([-assumed_lane_width_m, assumed_lane_width_m])
+
+adb_fig3b_theta_center_deg, adb_fig3b_theta_min_deg, adb_fig3b_theta_max_deg = adb_shadow_angles_deg(
+    adb_fig3b_x_m,
+    adb_fig3b_y_m
+)
+
+print("ADB / Fig. 3 shadow-angle boundaries")
+print("------------------------------------")
+
+print("Fig. 3(a): Oncoming vehi
+
+[PartA 19]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:54
+keywords = ['theta']
+numbers = ['1', '3', '2', '2', '2', '7', '7', '0.0', '0.0', '80', '80', '-3.5', '0.0', '3.5', '1.0', '0.5', '-25', '25', '0', '180']
+text = # ============================================================
+# Simulation 1 - Cell 3
+# ============================================================
+
+THETA_RAD = np.deg2rad(THETA_DEG)
+
+X_M = R_M * np.sin(THETA_RAD)
+Y_M = R_M * np.cos(THETA_RAD)
+
+target_x_m = target_range_m * np.sin(np.deg2rad(theta_c_deg))
+target_y_m = target_range_m * np.cos(np.deg2rad(theta_c_deg))
+
+fig, ax = plt.subplots(figsize=(7, 7))
+
+im = ax.pcolormesh(
+    X_M,
+    Y_M,
+    L,
+    shading="auto"
+)
+
+cbar = fig.colorbar(im, ax=ax)
+cbar.set_label("Normalized light intensity L(theta, r)")
+
+ax.scatter(0.0, 0.0, marker="s", s=80, label="Ego vehicle")
+
+ax.scatter(target_x_m, target_y_m, marker="o", s=80, label="Target vehicle")
+
+for lane_x in [-3.5, 0.0, 3.5]:
+    ax.axvline(lane_x, linestyle="--", linewidth=1.0, alpha=0.5)
+
+ax.set_title("Raised-cosine intensity visualization")
+ax.set_xlabel("Lateral position x [m]")
+ax.set_ylabel("Forward range y [m]")
+
+ax.set_xlim(-25, 25)
+ax.set_ylim(0, 180)
+ax.legend(loc="upper right")
+
+plt.tight_layout()
+plt.show()
+
+[PartA 20]
+path = /home/agni/waymo/part_a_reference/ISCAI_pc_fmcw/notebooks/ISCAI_PC_FMCW.ipynb
+location = cell:52
+keywords = ['theta']
+numbers = ['1', '1', '2']
+text = # ============================================================
+# Simulation 1 - Cell 1
+# ============================================================
+
+# Shadow-zone angular boundaries [degrees]
+theta_shadow_min_deg = theta_c_deg - delta_theta_deg - epsilon_deg
+theta_shadow_max_deg = theta_c_deg - delta_theta_deg + epsilon_deg
+
+# Create a 2D polar grid:
+# rows    -> range samples [m]
+# columns -> angle samples [deg]
+THETA_DEG, R_M = np.meshgrid(theta_grid_deg, range_grid_m)
+
+angular_shadow_mask = (
+    (THETA_DEG >= theta_shadow_min_deg) &
+    (THETA_DEG <= theta_shadow_max_deg)
+)
+
+# Range masks:
+full_shadow_range_mask = R_M <= r_shadow_end_m
+
+# Smooth transition for r_min < r < r_max
+transition_range_mask = (
+    (R_M > r_shadow_end_m) &
+    (R_M < r_transition_end_m)
+)
+
+# Combined masks:
+# These are the actual regions where the illumination function will change.
+full_shadow_mask = angular_shadow_mask & full_shadow_range_mask
+transition_mask = angular_shadow_mask & transition_range_mask
+
+===== LEGACY STAGE5 REFERENCE =====
+files scanned = 6229
+beam/gain hits = 38723
+
+[Legacy 1]
+path = /home/agni/waymo/iscai_stage5_panagiota/.venv_stage5/lib/python3.13/site-packages/sympy/vector/tests/test_field_functions.py
+location = line:280
+keywords = ['theta', 'divergence']
+numbers = ['3', '1']
+text =     assert divergence(B.r*B.i + B.theta*B.j + B.z*B.k) == 3 + 1/B.r
+
+[Legacy 2]
+path = /home/agni/waymo/iscai_stage5_panagiota/.venv_stage5/lib/python3.13/site-packages/sympy/vector/tests/test_field_functions.py
+location = line:264
+keywords = ['theta', 'divergence']
+numbers = ['3']
+text =     assert divergence(3*A.r*A.phi*A.i + A.theta*A.j + A.r*A.theta*A.phi*A.k) == \
+
+[Legacy 3]
+path = /home/agni/waymo/iscai_stage5_panagiota/scripts/run_stage5_adaptive_topk_evaluation.py
+location = line:361
+keywords = ['codebook']
+numbers = ['1']
+text =             actors_this_codebook += 1
+
+[Legacy 4]
+path = /home/agni/waymo/iscai_stage5_panagiota/scripts/run_stage5_adaptive_topk_evaluation.py
+location = line:273
+keywords = ['codebook']
+numbers = ['0']
+text =         actors_this_codebook = 0
+
+[Legacy 5]
+path = /home/agni/waymo/iscai_stage5_panagiota/scripts/evaluate_stage5_real_gaussian_topk.py
+location = line:46
+keywords = ['codebook']
+numbers = ['16', '32', '64']
+text = CODEBOOKS = [16, 32, 64]
+
+[Legacy 6]
+path = /home/agni/waymo/iscai_stage5_panagiota/.venv_stage5/lib/python3.13/site-packages/torch/testing/_internal/common_mps.py
+location = line:778
+keywords = ['divergence']
+numbers = ['16']
+text =             # half/bfloat16 precision, causing unbounded divergence.
+
+[Legacy 7]
+path = /home/agni/waymo/iscai_stage5_panagiota/.venv_stage5/lib/python3.13/site-packages/torch/distributions/kl.py
+location = line:444
+keywords = ['divergence']
+numbers = ['2', '80', '93']
+text =     # From https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Kullback%E2%80%93Leibler_divergence
+
+[Legacy 8]
+path = /home/agni/waymo/iscai_stage5_panagiota/.venv_stage5/lib/python3.13/site-packages/torch/_subclasses/fake_tensor.py
+location = line:2709
+keywords = ['divergence']
+numbers = ['2', '3', '3', '2', '2', '3']
+text =             # shape from (2,3) to (3,2), while fake_a.shape still reports (2,3) → divergence.
+
+[Legacy 9]
+path = /home/agni/waymo/iscai_stage5_panagiota/.venv_stage5/lib/python3.13/site-packages/torch/_inductor/__init__.py
+location = line:182
+keywords = ['divergence']
+numbers = ['64']
+text =      is a meaningful fp64 divergence
+
+[Legacy 10]
+path = /home/agni/waymo/iscai_stage5_panagiota/.venv_stage5/lib/python3.13/site-packages/torch/_dynamo/repro/after_aot.py
+location = line:8
+keywords = ['divergence']
+numbers = ['4']
+text = 4. Debugging compiler errors and accuracy divergences
+
+============================================================
+REFERENCE AUDIT FINAL
+============================================================
+Part-A files scanned        = 3
+Part-A beam/gain hits       = 33
+legacy runtime dependency   = NO
+angular support             = NOT YET FROZEN
+physical gain pattern       = NOT YET FROZEN
+formal N=120 used           = NO
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage5/artifacts/block53/parta_beam_reference_audit.json
+terminal remains open = YES
+
+reference-audit raw code = 0
+
+===== BLOCK5.3 PART1 SCIENTIFIC GATE =====
+============================================================
+STAGE 5 — BLOCK 5.3 PART 1/2
+DIRECTIONAL CODEBOOK + BEAM-PROBABILITY KERNEL
+============================================================
+
+===== A. BLOCK5.2 FROZEN CONTINUITY =====
+Block5.2 report          = PASS
+implementation SHA       = PASS
+angular policy SHA       = PASS
+MC convergence SHA       = PASS
+MC sample count          = 2048 FROZEN
+
+===== B. DEVELOPMENT POSTERIOR PROVENANCE =====
+historical Block4.4 SHA = EXACT PASS
+source materialization  = DEVELOPMENT-ONLY
+frozen Stage4 inference = YES — EARLIER MATERIALIZATION
+additional inference now= NO
+formal N=120            = NO
+
+===== C. DIRECTIONAL CODEBOOK STRUCTURE =====
+16-beam cells           = PASS
+32-beam cells           = PASS
+64-beam cells           = PASS
+decision cells           = NON-OVERLAPPING
+physical gain patterns  = SEPARATE / MAY OVERLAP
+synthetic support used   = KERNEL TEST ONLY
+angular support frozen   = NO
+
+===== D. POSTERIOR BEAM PROBABILITY MASS =====
+P_b definition           = POSTERIOR MASS IN CELL
+probability accounting   = PASS
+outside-support mass     = EXPLICIT PASS
+mass total               = 1 PASS
+
+===== E. EXPECTED PHYSICAL GAIN SCORE =====
+P_b                     = DECISION-CELL MASS
+S_b                     = E_p[G_b(theta)]
+P_b != S_b semantics    = PASS
+physical gain frozen    = NO
+
+===== F. PART-A / LEGACY REFERENCE AUDIT =====
+Part-A files scanned      = 3
+Part-A beam/gain hits     = 33
+legacy runtime dependency = NO
+support decision           = DEFERRED TO PART2
+gain-pattern decision      = DEFERRED TO PART2
+
+===== G. SCOPE / LEAKAGE =====
+formal N=120 used       = NO
+Stage4 inference now    = NO
+beam selection policy   = NOT STARTED
+adaptive Top-K          = NOT STARTED
+ADB                     = NOT STARTED
+optical BER chain       = NOT STARTED
+
+============================================================
+BLOCK 5.3 PART 1/2 GATE
+============================================================
+Block5.2 frozen continuity = PASS
+MC N                       = 2048 FROZEN
+16/32/64 codebook kernel   = PASS
+non-overlapping cells      = PASS
+P_b posterior mass         = PASS
+outside-support mass       = EXPLICIT
+S_b expected gain          = DISTINCT PASS
+physical gain overlap      = SUPPORTED
+Part-A reference audit     = PASS
+angular support            = NOT YET FROZEN
+physical gain pattern      = NOT YET FROZEN
+formal N=120 used          = NO
+Stage4 inference now       = NO
+adaptive Top-K             = NOT STARTED
+implementation files       = 46
+implementation SHA256      = 1a705734d1de3a36e10ccd900633726afa6ca3a2fe0ff9ccfbf917cfd1867b75
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage5/reports/block53_part1_codebook_kernel.json
+next = BLOCK 5.3 PART 2/2
+terminal remains open = YES
+
+Block5.3 gate raw code = 0
+
+===== FINAL STAGE5 REGRESSION =====
+
+..........................................................................................
+----------------------------------------------------------------------
+Ran 90 tests in 0.062s
+
+OK
+
+final Stage5 regression = 90 / 90 PASS
+
+============================================================
+BLOCK 5.3 PART 1/2 FINAL
+============================================================
+Block5.2 continuity         = PASS
+16/32/64 codebook kernel    = PASS
+posterior P_b kernel        = PASS
+outside-support probability = EXPLICIT
+expected gain S_b kernel    = PASS / DISTINCT
+Part-A reference audit      = PASS
+angular support             = DEVELOPMENT/REFERENCE PENDING
+physical gain pattern       = DEVELOPMENT/REFERENCE PENDING
+formal N=120 used           = NO
+Stage4 inference now        = NO
+adaptive Top-K              = NOT STARTED
+Stage5 regression           = 90 / 90 PASS
+STATUS = PASS
+next = BLOCK 5.3 PART 2/2
+terminal remains open = YES

@@ -1,0 +1,79 @@
+==============================================================================
+STAGE 6 — BLOCK 6.8
+DEVELOPMENT ACCEPTANCE FAILURE CLOSURE
+FREEZE NEGATIVE RESULT / NO RETUNING / NO FORMAL
+==============================================================================
+
+===== A. EXACT FROZEN FAILURE BOUNDARY =====
+primary_report           = EXACT PASS
+primary_detail           = EXACT PASS
+stage1                   = EXACT PASS
+stage2                   = EXACT PASS
+stage3                   = EXACT PASS
+stage4                   = EXACT PASS
+acceptance               = EXACT PASS
+reactive_comparator      = EXACT PASS
+reactive_materialization = EXACT PASS
+schema_repair            = STATUS + SHA SEALED
+schema repair SHA        = a3c2adb2aa5697bab1a211bd1c19fe6b78e9f10f974732bbb8ebe7b492f8c8ca
+
+===== B. PRIMARY GATE RESULT READBACK =====
+vehicle gate             = PASS
+overmask gate            = FAIL
+pedestrian gate          = PASS
+cyclist gate             = PASS
+overall primary gate     = FAIL
+
+===== C. EXACT FAILURE NUMERICS =====
+vehicle delta P-R       = -0.0816963005312995
+overmask reactive       = 0.18862460571658454
+overmask predictive     = 0.26521748861081823
+overmask delta P-R      = 0.07659288289423369
+allowed overmask delta  = 0.02
+allowed predictive max  = 0.20862460571658453
+excess beyond bound     = 0.056592882894233684
+ped visibility delta    = 0.3292728945187666
+cyclist visibility delta= 0.14816452754567255
+
+===== D. SCIENTIFIC COMPLETION STATUS =====
+vehicle protection improvement = YES
+VRU visibility loss            = NO
+over-masking controlled         = NO
+Stage-6 completion gate         = NOT MET
+formal Stage-6 evaluation       = BLOCKED BY FROZEN PROTOCOL
+Stage-7 handoff                 = NOT ALLOWED
+post-outcome tuning             = FORBIDDEN
+
+===== E. FULL STAGE6 REGRESSION =====
+Stage6 regression = 224 / 224 PASS
+
+===== F. WRITE-ONCE FAILURE CLOSURE =====
+closure state = WRITTEN
+closure SHA   = a233b1765455a6f3467c395bf79b278843004e7d601637bf5dbe92c680fd9410
+
+===== G. WRITE-ONCE FAILURE FREEZE MANIFEST =====
+manifest state = WRITTEN
+manifest SHA   = 59b6d4221a42029844968c23766483221abc676bc73b95f6ce8e0ced242d2f08
+
+==============================================================================
+BLOCK 6.8 DEVELOPMENT FAILURE CLOSURE — FINAL
+==============================================================================
+vehicle protection             = PASS
+pedestrian visibility          = PASS
+cyclist visibility             = PASS
+overmask noninferiority        = FAIL
+overmask delta                 = 0.07659288289423369
+overmask allowed delta         = 0.02
+overmask excess beyond bound   = 0.056592882894233684
+primary development acceptance = FAIL / FROZEN
+Stage-6 completion criterion   = NOT MET
+Stage1/2/3/4 policy            = IMMUTABLE
+post-outcome retuning          = FORBIDDEN
+Block 6.9 formal evaluation    = NOT ALLOWED
+Stage-7 handoff                = NOT ALLOWED
+Stage6 regression              = 224 / 224 PASS
+failure closure SHA            = a233b1765455a6f3467c395bf79b278843004e7d601637bf5dbe92c680fd9410
+failure freeze manifest SHA    = 59b6d4221a42029844968c23766483221abc676bc73b95f6ce8e0ced242d2f08
+STATUS = STAGE6_DEVELOPMENT_ACCEPTANCE_FAILED_FROZEN
+NEXT = STOP CURRENT FROZEN STAGE6 PROTOCOL
+terminal remains open = YES

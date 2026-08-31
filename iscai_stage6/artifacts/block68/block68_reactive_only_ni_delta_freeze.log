@@ -1,0 +1,98 @@
+============================================================
+STAGE 6 — BLOCK 6.8 PART2C
+FIRST EVALUATOR-ONLY FUTURE-TRUTH RUN
+ORIGINAL-REACTIVE ONLY → NI DELTA FREEZE
+NO PREDICTIVE PERFORMANCE / NO P_OCC / NO FORMAL
+============================================================
+
+===== A. EXACT FROZEN BOUNDARY =====
+ledger                   = EXACT PASS
+t0_maps                  = EXACT PASS
+reactive_freeze_report   = EXACT PASS
+grid_binding             = EXACT PASS
+evaluator_contract       = EXACT PASS
+ni_runtime               = EXACT PASS
+geometry/identity bind    = EXACT RUNTIME PASS
+
+===== B. DEVELOPMENT POPULATION / IDENTITY =====
+development cohort       = 120 / 120 PASS
+reactive ledger          = 120 / 120 PASS
+scenario set parity      = EXACT PASS
+future validity selector = NO
+future duration selector = NO
+
+===== C. PRE-OUTCOME SCORING CONTRACT FREEZE =====
+rasterization semantics = FROZEN PRE-OUTCOME
+nominal offset labels    = [1, 3, 5, 10] (diagnostic only)
+future validity selector = NO
+predictive values        = FORBIDDEN
+contract SHA256          = 8364c7cdfa4b66d820823c804d45905a207f77f66b53f06a6383e7722b8a9970
+
+===== D. PRE-SCIENTIFIC-RUN GATES =====
+Stage6 regression = 224 / 224 PASS
+free GiB          = 1052.635
+250-GiB reserve   = PASS
+timestamp alignment       = NEAREST OBSERVED FUTURE SAMPLE
+interpolation             = NO
+timestamp tolerance gate  = NONE
+
+===== E. FIRST LEGAL FUTURE-TRUTH REACTIVE SCORING =====
+reactive evaluator scenarios = 10 / 120
+reactive evaluator scenarios = 20 / 120
+reactive evaluator scenarios = 30 / 120
+reactive evaluator scenarios = 40 / 120
+reactive evaluator scenarios = 50 / 120
+reactive evaluator scenarios = 60 / 120
+reactive evaluator scenarios = 70 / 120
+reactive evaluator scenarios = 80 / 120
+reactive evaluator scenarios = 90 / 120
+reactive evaluator scenarios = 100 / 120
+reactive evaluator scenarios = 110 / 120
+reactive evaluator scenarios = 120 / 120
+
+===== F. REACTIVE-ONLY NI DELTA DERIVATION =====
+overmask n/mean/std/delta = 120 0.188624606 0.085923235 0.020000000
+ped n/mean/std/delta      = 54 0.569953866 0.412988021 0.050000000
+cyclist n/mean/std/delta  = 40 0.738813721 0.351536697 0.050000000
+
+===== G. POST-SCIENTIFIC-RUN REGRESSION =====
+Stage6 regression = 224 / 224 PASS
+
+===== H. WRITE-ONCE NI DELTA / ACCEPTANCE FREEZE =====
+reactive raw values SHA  = 3a81d6d39b29a2d30247f30f06f0e02bedd47ecc754a0eb550611947f6e9b0d5
+NI delta freeze SHA      = a77e548e060c314dd98a7220b0f9ed3aebd5d1978eb70f456b82920e792a29d4
+acceptance policy SHA    = e103466b1a6eb62be4e6746029147cbda9671b05130acba5210a3ab7328e6b81
+
+===== I. FINAL SCIENTIFIC BOUNDARY =====
+future truth opened       = YES, EVALUATOR ONLY
+future population selector= NO
+reactive metrics computed = EXACTLY 3
+predictive performance    = NOT COMPUTED
+P_occ content             = NOT OPENED
+formal content            = NOT OPENED
+formal evaluation         = NO
+policy/controller tuning  = NO
+NI deltas                 = FROZEN
+Stage6 regression         = 224 / 224 PASS
+free GiB                  = 1052.635
+
+============================================================
+BLOCK 6.8 REACTIVE-ONLY NI DELTA FREEZE — FINAL
+============================================================
+development population     = 120 / 120
+frozen t0 decisions         = USED
+future GT role              = EVALUATOR ONLY
+future validity selector    = NO
+full future box corners     = YES
+reactive schedule           = HOLD t0 ACTION
+overmask observations       = 120
+ped visibility observations = 54
+cyclist visibility obs      = 40
+delta overmask              = 0.02
+delta pedestrian            = 0.05
+delta cyclist               = 0.05
+predictive outcomes seen     = NO
+formal evaluation allowed    = NO
+STATUS = PASS_REACTIVE_ONLY_NI_DELTAS_FROZEN
+report = /home/agni/waymo/iscai_stage6/reports/block68_reactive_only_ni_delta_freeze.json
+terminal remains open = YES

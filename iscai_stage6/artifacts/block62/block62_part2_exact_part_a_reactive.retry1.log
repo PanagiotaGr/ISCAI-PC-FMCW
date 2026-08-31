@@ -1,0 +1,77 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block62_part2_exact_part_a_reactive.py", line 4268, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block62_part2_exact_part_a_reactive.py", line 936, in main
+    require(
+    ~~~~~~~^
+        len(
+        ^^^^
+    ...<9 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block62_part2_exact_part_a_reactive.py", line 299, in require
+    raise RuntimeError(
+        message
+    )
+RuntimeError: Could not uniquely bind CausalADBActorBox class field. fields=['box', 'center_consistency_error_m', 'future_state_used', 'object_type', 'objects_of_interest_used', 'orientation_source', 'scenario_id', 'source_time_index', 'stage1_anchor_bearing_H0_rad', 'stage1_anchor_center_H0_m', 'state_source', 'track_id', 'track_index', 'tracks_to_predict_used'] candidates=[]
+============================================================
+STAGE 6 — BLOCK 6.2 PART 2/2
+EXACT PART-A ORIGINAL REACTIVE ADB ADAPTER
+============================================================
+
+===== A. FROZEN PREREQUISITE SEAL =====
+notebook                 = EXACT PASS
+part_a_reference         = EXACT PASS
+block61_closure          = EXACT PASS
+part1_report             = EXACT PASS
+part1_contract           = EXACT PASS
+prebind                  = EXACT PASS
+transitive               = EXACT PASS
+pilot_manifest           = EXACT PASS
+stage5_closure           = EXACT PASS
+transitive source semantics = PASS
+
+===== B. EXACT NOTEBOOK PARAMETER BINDING =====
+EPS                      = EXACT SOURCE PASS
+target_width             = EXACT SOURCE PASS
+lateral_margin           = EXACT SOURCE PASS
+radial_margin            = EXACT SOURCE PASS
+control_transition       = EXACT SOURCE PASS
+delta_theta              = EXACT SOURCE PASS
+fixed_epsilon            = EXACT SOURCE PASS
+trz_front_margin         = EXACT SOURCE PASS
+trz_transition           = EXACT SOURCE PASS
+theta_grid               = EXACT SOURCE PASS
+range_grid               = EXACT SOURCE PASS
+effective_half_width     = EXACT SOURCE PASS
+dynamic_epsilon          = EXACT SOURCE PASS
+intensity_radial_margin  = EXACT SOURCE PASS
+intensity_transition_length = EXACT SOURCE PASS
+raised_cosine            = EXACT SOURCE PASS
+multi_actor_minimum      = EXACT SOURCE PASS
+trz_visual_rmin          = EXACT SOURCE PASS
+trz_visual_rmax          = EXACT SOURCE PASS
+
+CONTROL L(theta,r) radial transition = 20.0 m
+TRZ visualization radial transition  = 8.0 units
+control/visual transition conflated  = NO
+fixed epsilon 0.75 used dynamically  = NO
+
+===== C. CAUSAL BOX INTERFACE BINDING =====
+
+============================================================
+BLOCK 6.2 PART 2/2 = BLOCKED
+============================================================
+exception = RuntimeError Could not uniquely bind CausalADBActorBox class field. fields=['box', 'center_consistency_error_m', 'future_state_used', 'object_type', 'objects_of_interest_used', 'orientation_source', 'scenario_id', 'source_time_index', 'stage1_anchor_bearing_H0_rad', 'stage1_anchor_center_H0_m', 'state_source', 'track_id', 'track_index', 'tracks_to_predict_used'] candidates=[]
+
+
+Part-A modified        = NO
+Stage1–5 modified      = NO
+Block6.1 modified      = NO
+Block6.2 Part1 modified= NO
+formal evaluation      = NO
+parameter tuning       = NO
+terminal remains open  = YES

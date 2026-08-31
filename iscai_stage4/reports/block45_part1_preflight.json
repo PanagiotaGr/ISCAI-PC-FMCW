@@ -1,0 +1,50 @@
+{
+  "block": "4.5_part_1",
+  "calibration_cache_built": false,
+  "formal_validation_used": false,
+  "method": {
+    "family": "per_horizon_scalar_covariance_scaling",
+    "identity_candidate": true,
+    "mean_modified": false,
+    "measurement_R_t_modified": false,
+    "predictive_covariance_modified": true
+  },
+  "metrics": {
+    "Brier": "coverage_event_Brier",
+    "ECE": "macro_absolute_coverage_error",
+    "coverage_levels": [
+      0.5,
+      0.8,
+      0.9,
+      0.95,
+      0.99
+    ],
+    "reliability": "nominal_vs_empirical_coverage"
+  },
+  "real_calibrator_fitted": false,
+  "regression": {
+    "tests_passed": 72,
+    "tests_total": 72
+  },
+  "stage": 4,
+  "status": "PASS",
+  "synthetic_preflight": {
+    "ECE_nonworsening": true,
+    "SPD": true,
+    "calibrated_ECE": 0.0014100000000000028,
+    "raw_ECE": 0.23658500000000005,
+    "variance_scales": [
+      2.010282271206974,
+      1.990556418575038,
+      1.9969698658267707,
+      2.0175296180335147
+    ]
+  },
+  "upstream": {
+    "block44": "FROZEN",
+    "calibration_manifest_sha256": "e003dd5c4d5a253729700b12c3754c47ffb99dadfa035b46627f01ec91eed4be",
+    "calibration_scenarios": 7209,
+    "checkpoint_sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f",
+    "state_dict_sha256": "1d66cf082d0d9be41319f7dcbe18fc259910de7f45de006f9043129837b86be3"
+  }
+}

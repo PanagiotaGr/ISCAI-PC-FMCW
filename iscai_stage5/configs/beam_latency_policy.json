@@ -1,0 +1,69 @@
+{
+  "beam_training_overhead": {
+    "exhaustive_fraction": {
+      "16": 0.0016,
+      "32": 0.0032,
+      "64": 0.0064
+    },
+    "formula": "K*Tbeam/Tframe",
+    "zero_BER_effective_rate_bps": {
+      "16": 998400000.0,
+      "32": 996800000.0,
+      "64": 993600000.0
+    }
+  },
+  "block": "5.7",
+  "latency": {
+    "annotated_ms_ground_truth": false,
+    "data_loading": "reported_separately_not_inside_tau_total",
+    "deadline_s": 0.1,
+    "formula": "tau_total_equals_sensing_plus_preprocessing_plus_tracking_plus_inference_plus_beam_probing_plus_actuation",
+    "inference_decomposition": "tau_inference_equals_predictor_inference_plus_beam_selection",
+    "prediction_target": "t_plus_tau_total_exact",
+    "sub_100ms_policy": "sub_100ms_controller_targets_use_causal_model_based_propagation_or_interpolation_not_annotated_ms_ground_truth"
+  },
+  "multi_rate_timing": {
+    "PartA_Tchirp_s": 1e-05,
+    "PartA_Tchirp_source": "frozen_PartA_notebook_numeric_assignment",
+    "Tbeam_measured_beam_training_time": false,
+    "Tbeam_provenance": "constructed_Stage5_baseline_one_frozen_PartA_PC_FMCW_chirp_per_beam_probe",
+    "Tbeam_s": 1e-05,
+    "Tframe_measured_optical_frame": false,
+    "Tframe_provenance": "WOMD_100ms_scene_controller_accounting_cycle_not_measured_optical_communication_frame",
+    "Tframe_s": 0.1,
+    "WOMD_scene_interval_s": 0.1
+  },
+  "project": "Agni",
+  "recovery_probe_accounting": {
+    "diagnostic_failed_adaptive_set_charged": false,
+    "loss_of_lock": "one_widened_probe_if_available_plus_exhaustive_current_codebook",
+    "normal": "adaptive_mass_covering_K"
+  },
+  "runtime_measurement": {
+    "GPU_policy": "synchronize_before_and_after_GPU_segment",
+    "clock": "time.perf_counter_ns",
+    "components": [
+      "data_loading",
+      "sensing",
+      "preprocessing",
+      "tracking",
+      "predictor_inference",
+      "beam_selection",
+      "beam_probing",
+      "actuation",
+      "online_total"
+    ],
+    "formal_runtime_measurement": "BLOCK5.8"
+  },
+  "scope": {
+    "ADB_started": false,
+    "Stage4_inference": false,
+    "annotated_sub100ms_GT": false,
+    "formal_N120_read": false,
+    "future_truth_controller_input": false,
+    "recalibration": false,
+    "training": false
+  },
+  "stage": 5,
+  "status": "FROZEN"
+}

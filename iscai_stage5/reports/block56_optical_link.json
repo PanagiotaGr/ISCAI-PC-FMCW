@@ -1,0 +1,59 @@
+{
+  "block": "5.6",
+  "completion": "COMPLETE_FROZEN",
+  "effective_rate": {
+    "formula": "Rraw*(1-BER)*max(0,1-K*Tbeam/Tframe)",
+    "formula_frozen": true,
+    "numeric_latency_inputs": "BLOCK5.7"
+  },
+  "headlamp_frame": {
+    "H0_is_transmitter_frame": true,
+    "default_translation_for_L4m": [
+      2.0,
+      0.0,
+      0.0
+    ],
+    "second_extrinsic": false
+  },
+  "implementation": {
+    "file_count": 77,
+    "sha256": "75647e018841a65760b122d619dd11f9cd5e74e551ece0f64ea19e6189486df9"
+  },
+  "link_chain": {
+    "DBPSK_BER": true,
+    "SNR": true,
+    "effective_rate": true,
+    "normalized_received_power": true,
+    "optical_gain": true,
+    "pointing_error": true
+  },
+  "next": "Block5.7 temporal controller latency-awareness + numeric Tbeam/Tframe + fallback/reacquisition integration",
+  "policy": {
+    "path": "/home/agni/waymo/iscai_stage5/configs/optical_link_policy.json",
+    "sha256": "2075f0d0f3128af94c5d5ed99f0da4dba87e08ace69de542bec4c9dd4454302b"
+  },
+  "project": "Agni",
+  "reference_crosscheck": {
+    "aligned_DBPSK_BER": 1.860037988010418e-44,
+    "aligned_gain": 1.0,
+    "aligned_received_power_normalized": 1.0,
+    "aligned_snr_db": 20.0,
+    "aligned_snr_linear": 100.0
+  },
+  "scope": {
+    "Stage4_inference": false,
+    "absolute_Watt_link_budget": false,
+    "formal_N120_read": false,
+    "latency_values_frozen": false,
+    "recalibration": false,
+    "training": false
+  },
+  "source_resolution": {
+    "PartA_AWGN_DPSK_reference": true,
+    "PartA_absolute_mobile_optical_link": false,
+    "PartA_effective_rate": false,
+    "Stage5_constructed_optical_extension": true
+  },
+  "stage": 5,
+  "status": "PASS"
+}

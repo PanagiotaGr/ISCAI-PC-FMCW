@@ -1,0 +1,54 @@
+{
+  "Stage5_final_authority_preserved": true,
+  "Stage6_PDF_completion": "PASS",
+  "Stage7_allowed": true,
+  "V1_negative_result_preserved": true,
+  "V1_threshold_changed": false,
+  "files": {
+    "Stage7_handoff": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/experiment5_v3_recovery_runs/20260829T150302Z/v3/stage6_to_stage7_handoff_v3.json",
+      "sha256": "595e735e2294b50ef01b9cf32eb91a663c020793ecc38d0abfa70fc469e50c24"
+    },
+    "V2_engine_report": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/experiment5_v3_recovery_runs/20260829T150302Z/engine_report.json",
+      "sha256": "b94d0eda593221aba6f98b1c908efe0140de9c07b977ca830615f220efd53035"
+    },
+    "V2_result": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/experiment5_v3_recovery_runs/20260829T150302Z/result.json",
+      "sha256": "9f3d8370927d255502415435e9a1861aab830eb4aa30fb384d0b499e50b5c435"
+    },
+    "V2_winner_rows": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/experiment5_v3_recovery_runs/20260829T150302Z/v3/development_engine/winner_scenario_metrics.jsonl",
+      "sha256": "f4b6541c7df119105a81c1d07d5fe58fcb715bcba267b3698e91ecbf2eb411ce"
+    },
+    "development_engine": {
+      "modified_on_disk": false,
+      "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_stage4_temporal_rate_selection.py",
+      "sha256": "5ad8662612affff0aa5fbd87af558fd6746f04d3d181b7d38c6e9e9ac59e2697"
+    },
+    "final_closure": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/experiment5_v3_recovery_runs/20260829T150302Z/closure.json",
+      "sha256": "ce34b34601d98f0691a8751ae0688ea4318405ef72f5b9ea1f6274edd831ec70"
+    },
+    "protocol": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/experiment5_v3_recovery_runs/20260829T150302Z/protocol.json",
+      "sha256": "d748e6bae34de723b95181b29d3af6759aa8df48e0dea6229b39d7bfa55b984f"
+    },
+    "regression_log": {
+      "path": "/home/agni/waymo/iscai_stage6/artifacts/experiment5_v3_recovery_runs/20260829T150302Z/v3/stage6_v3_regression.log",
+      "sha256": "9281830bf7bbb6a4d494a6f7ef02e31974214939583759fe8b18c7f943c15e4d"
+    },
+    "runtime": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/budgeted_residual_v2.py",
+      "sha256": "664c52dc3a61a1498b11cf2d6ba0700332f9fe1c711a3d7c7235bac5a0e78985"
+    },
+    "tests": {
+      "path": "/home/agni/waymo/iscai_stage6/tests/test_stage6_v2_budgeted_residual.py",
+      "sha256": "9dffdee4a67c5df9a1649ec1d00928bf5b6ec33bad0444c539213a5a987f28c9"
+    }
+  },
+  "post_outcome_retuning_of_V1": false,
+  "stage": 6,
+  "status": "FINAL_STAGE6_V3_FREEZE_MANIFEST",
+  "version": "Stage6-V3-conservative-budgeted-residual"
+}

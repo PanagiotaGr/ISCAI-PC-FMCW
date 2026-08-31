@@ -1,0 +1,69 @@
+{
+  "block": "6.4-Part2A",
+  "geometry": {
+    "Gaussian_ellipse_as_box_surrogate": false,
+    "centroid_only": false,
+    "physical_corners_per_box": 8,
+    "projection_coordinates": "theta_and_ground_range",
+    "raster_envelope": "convex_hull_of_all_eight_projected_physical_corners",
+    "rectangular_bounding_box_as_mask": false,
+    "source": "sampled_future_full_Box3D"
+  },
+  "grid": {
+    "PartA_grid_reused_as_final_without_study": false,
+    "range_axis": "strictly_increasing_nonnegative_meters",
+    "scientific_grid_frozen": false,
+    "theta_axis": "strictly_increasing_radians",
+    "type": "caller_parameterized_cell_centers"
+  },
+  "implementation": {
+    "module": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_occupancy.py",
+    "module_sha256": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e",
+    "test": "/home/agni/waymo/iscai_stage6/tests/test_block64_part2a_probabilistic_occupancy.py",
+    "test_sha256": "eaa732ca2bf2a9b1463d5b560d8d59a5a5fcd48821284f66b3652138076e035d"
+  },
+  "not_applied_here": {
+    "actuation_rate_limit": true,
+    "binary_actor_mask": true,
+    "class_aware_policy": true,
+    "class_margin": true,
+    "dimming_floor": true,
+    "multi_actor_mask_aggregation": true,
+    "occupancy_gamma": true,
+    "temporal_smoothing": true
+  },
+  "not_yet_frozen": {
+    "MC_sample_count": true,
+    "MC_seed_policy": true,
+    "occupancy_gamma": true,
+    "scientific_grid": true
+  },
+  "occupancy_definition": {
+    "estimator": "Monte_Carlo_fraction_of_sampled_full_boxes_covering_cell_center",
+    "exact_formula": "occupancy_count(theta,r,tau) / sample_count",
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "per_actor": true,
+    "shape": "[4,N_theta,N_range]",
+    "symbol": "P_occ(theta,r,tau)"
+  },
+  "scientific_execution": {
+    "formal_evaluation": false,
+    "model_forward": false,
+    "parameter_tuning": false,
+    "real_development_posterior_sampled": false,
+    "recalibration": false,
+    "training": false
+  },
+  "stage": 6,
+  "status": "PASS_PARAMETERIZED_PROBABILISTIC_OCCUPANCY_CONTRACT",
+  "upstream": {
+    "part1_contract_sha256": "030148d9ab49e8dff2b434fa0fb7b819da77ad3d5faf3d42744bb13ef8024808",
+    "part1_report_sha256": "8bcc13051c93f216d7365ee44d6079df6a14567bc1b6b879b33e748473b206a4",
+    "part1_scientific_module_sha256": "51daeab95713d6e7d2738ced466be4844b73dce70a09138b2b769de880462995"
+  }
+}

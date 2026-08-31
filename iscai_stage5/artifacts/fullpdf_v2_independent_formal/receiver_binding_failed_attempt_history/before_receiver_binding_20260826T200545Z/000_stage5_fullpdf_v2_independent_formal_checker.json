@@ -1,0 +1,211 @@
+{
+  "Stage5": "REPAIRED_AND_FROZEN_PRE_FORMAL",
+  "Stage6_allowed": false,
+  "decision_ledger_sealed": false,
+  "events": [
+    {
+      "event": "PRETRUTH_TECHNICAL_RERUN_ADMITTED",
+      "previous_decision_ledger_sealed": false,
+      "previous_formal_outcomes_read": false,
+      "previous_formal_truth_opened": false,
+      "previous_report_sha256": "bf211b128c3065f3c851ba050e1147ae9668d9c17ae330f73fe108e0a8c95a3e",
+      "sequence": 1
+    },
+    {
+      "evaluator_truth_opened": false,
+      "event": "FORMAL_CHECKER_STARTED",
+      "sequence": 2
+    },
+    {
+      "event": "REGRESSION_STARTED",
+      "formal_truth_opened": false,
+      "sequence": 3
+    },
+    {
+      "evaluator_truth_opened": false,
+      "event": "CAUSAL_BINDING_RESOLUTION_STARTED",
+      "sequence": 4
+    }
+  ],
+  "evidence": {
+    "G01_storage_hard_reserve": {
+      "free_bytes": 1129846579200,
+      "required_bytes": 268435456000
+    },
+    "G02_frozen_hashes": {
+      "Stage4_prediction_ledger": "2dd3c396d5c365677c41b3a0df6344a7c28d423daaa368dbe466bd4b17b4c2a8",
+      "protocol": "91dec3cc3d3a7b72385f012d1d2bfdb8981a497e1344f585d38f3e05f2e4fa5a",
+      "runtime": "e57708e9332bb40e84f18270e483d91165e26c149b80e82c8f10b4df44376249"
+    },
+    "G03_protocol_preoutcome_freeze": {
+      "adaptive_TopK": {
+        "all_evaluated_beams_charged": true,
+        "coverage_targets": [
+          0.9,
+          0.95,
+          0.975,
+          0.99
+        ],
+        "free_hidden_probes": false,
+        "hysteresis": "retain_previous_primary_if_still_in_current_mass_covering_set",
+        "local_neighbor_sweep": "immediate_adjacent_cells_on_recovery",
+        "loss_of_lock": "full_exhaustive_base_codebook",
+        "nominal": 0.95,
+        "persistence": true,
+        "rule": "minimum_beam_set_reaching_requested_mass",
+        "widened_fallback": "actual_next_coarser_beam_geometry; coarsest_uses_union_of_local_cells"
+      },
+      "angular_posterior": {
+        "future_GT_heading": false,
+        "method": "deterministic_seeded_Monte_Carlo",
+        "receiver_uncertainty_integrated": true,
+        "sample_count": 2048,
+        "trajectory_covariance_input": "already_calibrated_Stage4_predictive_covariance"
+      },
+      "codebooks": {
+        "azimuth_clipping": false,
+        "azimuth_support_deg": [
+          -12.0,
+          12.0
+        ],
+        "outside_support_mass": "explicit",
+        "sizes": [
+          16,
+          32,
+          64
+        ],
+        "support_semantics": "constructed_PartA_visualization_FOV_assumption"
+      },
+      "formal": {
+        "completion": [
+          "requested_empirical_coverage",
+          "reduced_overhead_vs_fixed_or_exhaustive"
+        ],
+        "parameter_tuning_on_formal": false,
+        "run_in_repair": false
+      },
+      "latency": {
+        "existing_frozen_Stage5_timing_contract_reused": true,
+        "latency_aware_horizon": true
+      },
+      "optical": {
+        "claim": "normalized_constructed_optical_surrogate",
+        "existing_Stage5_chain_reused": true,
+        "measured_optical_claim": false,
+        "probe_count_source": "exact_actual_probe_plan_only",
+        "required_chain": [
+          "pointing_error",
+          "optical_gain",
+          "received_power",
+          "SNR",
+          "DPSK_BER",
+          "effective_rate"
+        ]
+      },
+      "receiver_geometry": {
+        "declared_assumption": true,
+        "known": "rear_face_center",
+        "known_offset_body": "[-length/2, 0, 0]",
+        "measured_receiver_placement": false,
+        "modes": [
+          "centroid",
+          "known",
+          "uncertain"
+        ],
+        "uncertain_covariance_body": "diag(0,width^2/12,height^2/12)",
+        "uncertain_distribution": "x=-length/2; y~U[-width/2,width/2]; z~U[-height/2,height/2]",
+        "uncertain_mean_body": "[-length/2,0,0]"
+      },
+      "stage": 5,
+      "status": "FROZEN_BEFORE_STAGE5_V2_FORMAL",
+      "upstream": {
+        "Stage4_calibration_reapplied": false,
+        "Stage4_closure_sha256": "01dbc5edcb4c67a56f1042655becf2ac04ed4130bb499f8d0aff6349e7cb0b5e",
+        "Stage4_handoff_sha256": "7b1d2f8903f8ea27fe7567559a2b868beebe9d834ee0a602155335339f6e204b",
+        "Stage4_status": "COMPLETE_FROZEN_FULLPDF_V2",
+        "posterior": "calibrated_full_3D_Gaussian_GRU"
+      },
+      "version": "fullpdf_v2"
+    },
+    "G04_no_Stage4_recalibration": {
+      "covariance_semantics": "already calibrated Stage4 covariance",
+      "forbidden_runtime_calls": []
+    },
+    "G05_public_controller_API_causal": {
+      "forbidden_args": []
+    },
+    "G06B_authoritative_horizon_contract": {
+      "Stage4_future_step_count_expected": 4,
+      "authoritative_PDF_main_short_horizons_s": [
+        0.1,
+        0.3,
+        0.5,
+        1.0
+      ],
+      "frozen_Stage3_formal_path": "/home/agni/waymo/iscai_stage3/reports/block38f_formal_evaluation.json",
+      "frozen_Stage3_formal_sha256": "6fe96ae16a897ed2cf4b41de81efafa88b1cf130f30a7f07fafa456a2a53e653",
+      "frozen_Stage3_prediction_horizons_s": [
+        0.1,
+        0.3,
+        0.5,
+        1.0
+      ],
+      "post_outcome_selection": false
+    },
+    "G06_Stage4_COMPLETE_FROZEN_FULLPDF_V2": {
+      "closure_path": "/home/agni/waymo/iscai_stage4/reports/stage4_fullpdf_v2_final_closure.json",
+      "closure_sha256": "01dbc5edcb4c67a56f1042655becf2ac04ed4130bb499f8d0aff6349e7cb0b5e",
+      "handoff_path": "/home/agni/waymo/iscai_stage4/artifacts/fullpdf_v2/stage4_to_stage5_handoff_fullpdf_v2.json",
+      "handoff_sha256": "7b1d2f8903f8ea27fe7567559a2b868beebe9d834ee0a602155335339f6e204b"
+    },
+    "G07_full_Stage5_regression_271": {
+      "expected": 271,
+      "log": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/stage5_regression.log",
+      "returncode": 0,
+      "tests": 271
+    },
+    "G08_Stage4_input_contract": {
+      "annotated_velocity_input": false,
+      "direct_noisy_Stage2_vr": true,
+      "future_truth_input": false,
+      "measurement_R_input": true,
+      "rows": 3952,
+      "tracks_to_predict_input": false,
+      "unique_predictions": 3952
+    },
+    "frozen_prediction_horizons_s": {
+      "Stage4_V2_output_steps": 4,
+      "authority": "authoritative_PDF_plus_frozen_Stage3_formal_interface",
+      "values": [
+        0.1,
+        0.3,
+        0.5,
+        1.0
+      ]
+    }
+  },
+  "exception": "FailClosed('No unique frozen V2 causal receiver binding could be proven without future/evaluator data.')",
+  "failure_reason": "No unique frozen V2 causal receiver binding could be proven without future/evaluator data.",
+  "formal_evaluator_truth_opened": false,
+  "formal_outcomes_read": false,
+  "gates": {
+    "G01_storage_hard_reserve": true,
+    "G02_frozen_hashes": true,
+    "G03_protocol_preoutcome_freeze": true,
+    "G04_no_Stage4_recalibration": true,
+    "G05_public_controller_API_causal": true,
+    "G06B_authoritative_horizon_contract": true,
+    "G06_Stage4_COMPLETE_FROZEN_FULLPDF_V2": true,
+    "G07_full_Stage5_regression_271": true,
+    "G08_Stage4_input_contract": true
+  },
+  "handoff_written": false,
+  "no_parameter_tuning": true,
+  "no_post_outcome_tuning": true,
+  "no_recalibration": true,
+  "no_retraining": true,
+  "no_training": true,
+  "stage": 5,
+  "status": "FAIL_CLOSED_FULLPDF_V2_FORMAL",
+  "version": "fullpdf_v2"
+}

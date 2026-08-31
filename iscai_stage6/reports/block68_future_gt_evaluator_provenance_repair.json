@@ -1,0 +1,43 @@
+{
+  "block": "6.8_Part2C_future_GT_evaluator_provenance_repair",
+  "diagnosis": {
+    "failure": "runner supplied an orientation_source label not accepted by frozen geometry provenance validator",
+    "future_box_transform_failure": false,
+    "geometry_failure": false,
+    "metric_failure": false,
+    "rasterization_failure": false
+  },
+  "next": "rerun the same reactive-only NI delta freeze runner; preoutcome scoring contract remains byte-identical",
+  "provenance_binding": {
+    "controller_path": false,
+    "orientation_source": "oracle_evaluator_only",
+    "path": "/home/agni/waymo/iscai_stage6/configs/stage6_future_gt_evaluator_provenance_binding.json",
+    "sha256": "24119c2a029eaf20dc33c5baa66693c31b6a41f61966304ce02f9c5793ae50b7",
+    "state_source": "WOMD_future_GT_evaluator_only"
+  },
+  "regression": {
+    "status": "PASS",
+    "tests": 224
+  },
+  "runner_patch": {
+    "backup_path": "/home/agni/waymo/iscai_stage6/artifacts/block68/provenance_repair/run_block68_reactive_only_ni_delta_freeze.pre_provenance_patch.py",
+    "backup_sha256": "759ea459a228560c9757380b0255a0357c16a4d6965ba0245b24dd5f3b0ec036",
+    "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_reactive_only_ni_delta_freeze.py",
+    "post_sha256": "35fedb5ac974140626ec64ab95ff142328366a77bffeb2815bce16e4953249dd",
+    "pre_sha256": "759ea459a228560c9757380b0255a0357c16a4d6965ba0245b24dd5f3b0ec036",
+    "scientific_algorithm_change": false,
+    "scope": "single orientation_source AST literal only"
+  },
+  "scientific_boundary": {
+    "NI_deltas_computed": false,
+    "P_occ_opened": false,
+    "controller_policy_tuning": false,
+    "formal_evaluation": false,
+    "future_truth_opened": true,
+    "future_truth_role": "evaluator_only",
+    "predictive_performance_computed": false,
+    "reactive_metric_values_computed_before_repair": false
+  },
+  "stage": 6,
+  "status": "PASS_FUTURE_GT_EVALUATOR_PROVENANCE_REPAIRED"
+}

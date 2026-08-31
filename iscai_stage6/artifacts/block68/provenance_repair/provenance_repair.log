@@ -1,0 +1,142 @@
+/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/metric_semantics.py:204: SyntaxWarning: invalid escape sequence '\ '
+  |O_vehicle \ D| / |O_vehicle|
+/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/metric_semantics.py:312: SyntaxWarning: invalid escape sequence '\ '
+  |D \ O|
+/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/metric_semantics.py:521: SyntaxWarning: invalid escape sequence '\ '
+  |D \ O|
+============================================================
+STAGE 6 — BLOCK 6.8 PART2C
+FUTURE-GT EVALUATOR PROVENANCE LABEL REPAIR
+NO METRIC OUTCOMES / NO PREDICTIVE / NO FORMAL
+============================================================
+
+===== A. EXACT FAILURE BOUNDARY =====
+preoutcome scoring contract = EXACT PASS
+reactive raw metrics        = ABSENT
+NI delta freeze             = ABSENT
+acceptance policy           = ABSENT
+predictive performance      = NOT COMPUTED
+P_occ content               = NOT OPENED
+formal evaluation           = NO
+future GT                   = OPENED, EVALUATOR ONLY
+metric values before failure= ZERO
+
+===== B. FROZEN GEOMETRY PROVENANCE AUTHORITY =====
+geometry.py SHA256 = EXACT PASS
+
+validate_controller_provenance source:
+def validate_controller_provenance(
+    *,
+    state_source: str,
+    orientation_source: str,
+    controller_path: bool,
+) -> None:
+
+    state_source = str(
+        state_source
+    )
+
+    orientation_source = str(
+        orientation_source
+    )
+
+    if (
+        orientation_source
+        not in
+        _ALLOWED_ORIENTATION_SOURCES
+    ):
+        raise ValueError(
+            "Unknown orientation source: "
+            f"{orientation_source}"
+        )
+
+    if not controller_path:
+        return
+
+    if (
+        state_source
+        in
+        _FORBIDDEN_CONTROLLER_STATE_SOURCES
+    ):
+        raise ValueError(
+            "Future/oracle annotation is forbidden "
+            "on the Stage6 controller path: "
+            f"{state_source}"
+        )
+
+    if (
+        state_source
+        not in
+        _ALLOWED_CONTROLLER_STATE_SOURCES
+    ):
+        raise ValueError(
+            "Unapproved controller state source: "
+            f"{state_source}"
+        )
+
+    if (
+        orientation_source
+        ==
+        "oracle_evaluator_only"
+    ):
+        raise ValueError(
+            "Oracle orientation is forbidden "
+            "on the controller path"
+        )
+
+
+===== C. EXISTING NON-FORMAL PROVENANCE CALLS =====
+controller_path=False literal call sites = 0
+
+===== D. EXACT ORIENTATION-SOURCE RESOLUTION =====
+candidate strings = 13
+accepted with state_source='WOMD_future_GT_evaluator_only' and controller_path=False:
+   'current_causal'
+   'frozen_low_speed_fallback'
+   'oracle_evaluator_only'
+   'predicted_orientation'
+   'predicted_tangent'
+
+semantic evidence ranking:
+   30 'oracle_evaluator_only' ['semantic_token:evaluator']
+   10 'predicted_orientation' ['semantic_token:orientation']
+   0 'current_causal' []
+   0 'frozen_low_speed_fallback' []
+   0 'predicted_tangent' []
+
+selected orientation_source = 'oracle_evaluator_only'
+validator synthetic gate    = PASS
+outcome-driven choice       = NO
+
+===== E. PROVENANCE BINDING FREEZE =====
+provenance binding SHA256 = 24119c2a029eaf20dc33c5baa66693c31b6a41f61966304ce02f9c5793ae50b7
+
+===== F. PATCH ORIENTATION LABEL ONLY =====
+runner pre-patch SHA256 = 759ea459a228560c9757380b0255a0357c16a4d6965ba0245b24dd5f3b0ec036
+target call line         = 1907
+old orientation source   = 'WOMD_future_GT_evaluator_only'
+new orientation source   = 'oracle_evaluator_only'
+patched runner compile = PASS
+Stage6 regression      = 224 / 224 PASS
+
+============================================================
+BLOCK 6.8 FUTURE-GT PROVENANCE REPAIR — FINAL
+============================================================
+geometry implementation     = UNCHANGED
+preoutcome contract         = UNCHANGED
+state_source               = 'WOMD_future_GT_evaluator_only'
+orientation_source         = 'oracle_evaluator_only'
+controller_path            = False
+provenance validator       = PASS
+runner patch scope         = ONE AST LITERAL
+reactive metrics before repair = 0
+future truth               = OPENED, EVALUATOR ONLY
+predictive performance     = NOT COMPUTED
+P_occ content              = NOT OPENED
+NI deltas                  = NOT COMPUTED
+formal evaluation          = NO
+Stage6 regression          = 224 / 224 PASS
+patched runner SHA256      = 35fedb5ac974140626ec64ab95ff142328366a77bffeb2815bce16e4953249dd
+STATUS = PASS_FUTURE_GT_EVALUATOR_PROVENANCE_REPAIRED
+report = /home/agni/waymo/iscai_stage6/reports/block68_future_gt_evaluator_provenance_repair.json
+terminal remains open = YES

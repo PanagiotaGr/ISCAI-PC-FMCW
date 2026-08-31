@@ -1,0 +1,106 @@
+{
+  "MC": {
+    "active_support_convergence": {
+      "2048": {
+        "mean_mass_relative_error": 0.00043141383411403377,
+        "mean_normalized_l1": 0.046085209414047396,
+        "mean_support_iou": 0.740575689961359,
+        "mean_support_mae": 0.0016364311317885137,
+        "sample_count": 2048,
+        "worst_max_abs": 0.0318603515625,
+        "worst_normalized_l1": 0.056339624942798684,
+        "worst_support_mae": 0.001947229593144452
+      },
+      "4096": {
+        "mean_mass_relative_error": 0.00032994395110509504,
+        "mean_normalized_l1": 0.03286620846232582,
+        "mean_support_iou": 0.8145151476793564,
+        "mean_support_mae": 0.0011744810264003114,
+        "sample_count": 4096,
+        "worst_max_abs": 0.01983642578125,
+        "worst_normalized_l1": 0.03969633553946226,
+        "worst_support_mae": 0.0014149345483400856
+      },
+      "8192": {
+        "mean_mass_relative_error": 0.00032007723834683147,
+        "mean_normalized_l1": 0.022853106650183697,
+        "mean_support_iou": 0.8795847061904716,
+        "mean_support_mae": 0.0008147155185110194,
+        "sample_count": 8192,
+        "worst_max_abs": 0.014373779296875,
+        "worst_normalized_l1": 0.027728594328747753,
+        "worst_support_mae": 0.0009769962615921424
+      }
+    },
+    "candidate_counts_considered": [
+      2048,
+      4096,
+      8192
+    ],
+    "joint_sampling_semantics": "product_of_frozen_calibrated_per_horizon_Gaussian_marginals",
+    "reference_role": "development_convergence_reference_only",
+    "reference_sample_count": 32768,
+    "runtime_sample_count": 8192,
+    "runtime_seed": 20260821,
+    "seed_policy": "same_frozen_Stage5_base_seed_for_each_actor_posterior_evaluation",
+    "selection_population": {
+      "formal": false,
+      "inactive_reason": "deterministic_mean_full_boxes_outside_forward_headlamp_angular_domain",
+      "reference_active_actor_indices": [
+        2,
+        4
+      ],
+      "reference_inactive_actor_indices": [
+        0,
+        1,
+        3,
+        5
+      ],
+      "scenario_id": "b85e1bd6cc8e74c0"
+    },
+    "selection_rule": "select_largest_preexisting_Stage5_candidate_after_confirming_strict_development_active_support_improvement_over_all_lower_candidates"
+  },
+  "block": "6.4-Part2B/2",
+  "explicitly_not_frozen_yet": {
+    "actuation_rate_limits": true,
+    "class_margins": true,
+    "class_specific_gamma": true,
+    "dimming_floors": true,
+    "occupancy_gamma": true,
+    "safety_metric_acceptance_thresholds": true,
+    "temporal_smoothing": true
+  },
+  "formal_boundary": {
+    "formal_outcomes_read": false,
+    "formal_parameter_tuning": false,
+    "formal_population_read": false
+  },
+  "freeze_scope": [
+    "MC_runtime_sample_count",
+    "MC_runtime_seed",
+    "scientific_illumination_grid"
+  ],
+  "scientific_illumination_grid": {
+    "coordinate_frame": "Stage6_H0_headlamp",
+    "formal_tuning": false,
+    "provenance": "frozen_PartA_ADB_actuator_domain_mapped_to_Stage6_H0_headlamp_theta",
+    "range_centers_m": {
+      "count": 301,
+      "maximum": 150.0,
+      "minimum": 0.0,
+      "step": 0.5
+    },
+    "shape": [
+      501,
+      301
+    ],
+    "theta_centers_deg": {
+      "count": 501,
+      "maximum": 25.0,
+      "minimum": -25.0,
+      "step": 0.1
+    }
+  },
+  "stage": 6,
+  "status": "FROZEN_DEVELOPMENT_NUMERICS"
+}

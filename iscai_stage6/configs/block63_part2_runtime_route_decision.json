@@ -1,0 +1,37 @@
+{
+  "anonymous_batch": {
+    "allowed_roles": [
+      "schema_evidence",
+      "calibration_evidence",
+      "coordinate_invariant_evidence",
+      "regression_evidence"
+    ],
+    "arbitrary_row_selection": false,
+    "controller_input_role": false,
+    "row_count": 13682,
+    "row_selector": null,
+    "truth_based_row_reconstruction": false
+  },
+  "block": "6.3",
+  "decision": "USE_IDENTITY_PRESERVING_FROZEN_STAGE4_RUNTIME",
+  "forbidden": {
+    "WOMD_perfect_identity_join": true,
+    "anonymous_batch_row_zero": true,
+    "future_GT_selection": true,
+    "tracks_to_predict_selection": true,
+    "truth_id_join": true,
+    "truth_track_index_join": true
+  },
+  "part": "2/2",
+  "project": "Agni",
+  "runtime_route": {
+    "deterministic_covariance_use": false,
+    "formal_N120": false,
+    "identity_preservation": "retain causal prediction_id and latest_position_H0_m in memory before posterior serialization",
+    "output_mean_semantics": "metric_H0_displacement",
+    "parameter_tuning": false,
+    "record_domain": "development_only",
+    "source": "frozen_Stage4_calibrated_Gaussian_runtime"
+  },
+  "stage": 6
+}

@@ -1,0 +1,74 @@
+{
+  "block": "6.8_Part2A",
+  "formal_evaluation_allowed": false,
+  "frozen_outputs": {
+    "contract": {
+      "path": "/home/agni/waymo/iscai_stage6/configs/stage6_reactive_development_scoring_contract.json",
+      "sha256": "454d22a2f067025fd8dde877546b7305c4357000126585c860a4a2d9ef3535d5"
+    },
+    "module": {
+      "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/reactive_development_scoring.py",
+      "sha256": "e3114093406da9e4f8088a70cfcf98843055634a6e45ef30e1f3f0420f586d7b"
+    },
+    "test": {
+      "path": "/home/agni/waymo/iscai_stage6/tests/test_block68_reactive_development_scoring.py",
+      "sha256": "164658d78f5d20b321e6b11a9edbb1202432a4750fdf9e7ab92e615c4ccda394"
+    }
+  },
+  "next": "reactive-only development metric execution and exact NI delta freeze",
+  "project": "Agni",
+  "reactive_scoring": {
+    "decision": "current_causal_t0",
+    "dim_support": "I_final < 1.0",
+    "future_controller_refresh": false,
+    "future_reobservation": false,
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "schedule": "hold_t0_action_across_all_horizons"
+  },
+  "regression": {
+    "post": 224,
+    "pre": 217,
+    "status": "PASS",
+    "targeted": 7
+  },
+  "scientific_boundary": {
+    "controller_modified": false,
+    "development_metric_values_read": false,
+    "formal_content_opened": false,
+    "formal_evaluation": false,
+    "formal_outcomes_read": false,
+    "numeric_NI_deltas_computed": false,
+    "parameter_tuning": false,
+    "policy_tuning": false,
+    "predictive_outcomes_read": false,
+    "reactive_outcomes_read": false
+  },
+  "stage": 6,
+  "status": "PASS_REACTIVE_SCORING_SEMANTICS_FROZEN",
+  "storage": {
+    "free_GiB": 1052.7728424072266,
+    "pass": true,
+    "reserve_GiB": 250.0
+  },
+  "upstream": {
+    "/home/agni/waymo/iscai_stage6/artifacts/block68/frozen_road_roi_definition.json": "832f4bc3215fe585fee781080c98b2928157f26e8a66d22f428f15604afb75e0",
+    "/home/agni/waymo/iscai_stage6/configs/stage6_evaluator_reference_contract.json": "c9ff0390820a3c37702fb391ba603244fffcf7c03c476045b590aa483e89bd7e",
+    "/home/agni/waymo/iscai_stage6/configs/stage6_metric_freeze_protocol.json": "409fbb2785e4ff13f29fdff96c91d608c245e009fcbb86ce57099d6a4e1815c9",
+    "/home/agni/waymo/iscai_stage6/configs/stage6_noninferiority_bound_selection_rule.json": "b5c0f40725e26578a4739f0582e4467ec48b72db8bb077d13862cc83dee98d24",
+    "/home/agni/waymo/iscai_stage6/reports/block67_final_closure.json": "67d168ed7678164b8d85885e6e81f41f7206bd8f754e13ec5cc28c3a65aa20e7",
+    "/home/agni/waymo/iscai_stage6/reports/block68_evaluator_reference_contract_freeze.json": "5885424d164a058a151c50dd663acec4da7aeba66a56d5e0191c777682e113a8",
+    "/home/agni/waymo/iscai_stage6/reports/block68_exact_evaluator_binding_repair.json": "1505c780423efbe27735c3729b95a18c3da2093f49826bd96cbfad8fdce5d5f1",
+    "/home/agni/waymo/iscai_stage6/reports/block68_noninferiority_bound_rule_freeze.json": "289f9369735566daa2344a90cb312d4c06ede76b73827f07e408855c4e06ce6b",
+    "/home/agni/waymo/iscai_stage6/reports/block68_preoutcome_metric_reconciliation.json": "077a89fa5163f8862a3a5b7489d98929d9ae3e160ed9e030eb75f42a91d48f9f",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/baseline_metric_contract.py": "39518597079f65d556ee8f0fd3b00ce525319623c9eb8a83f6e3c608954213e9",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/class_aware_policy.py": "b998f468b98c2770c48c84a2c0aaaa2177c2d84b8fc838e80fef9b9da1ebc14b",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/evaluator_reference.py": "2015136fdcbfe3f837bcba5a2ee05578a4d8a01c4ecfd52e4dfac9f864349891",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/metric_semantics.py": "bf8358b5a7edfe40ffac2718ca7cd5af6e7b5fdb3ff8a2823caad6d0f40f057a",
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/noninferiority_bounds.py": "3c67a7f152359710cb24db1a6e01c4b580728e6480b7c5d8f9c40a41349cf1cd"
+  }
+}

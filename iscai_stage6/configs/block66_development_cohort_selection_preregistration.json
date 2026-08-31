@@ -1,0 +1,31 @@
+{
+  "block": "6.6-Part1B",
+  "cohort_size": 120,
+  "design_rationale": {
+    "PDF_literal_requirement": false,
+    "formal_outcome_used": false,
+    "future_used": false,
+    "model_output_used": false,
+    "performance_used": false,
+    "purpose": "balanced_development_class_coverage_before_policy_preregistration",
+    "reuse_existing_40_40_40_scenario_stratum_structure": true
+  },
+  "important_boundary": {
+    "actor_count_balanced": false,
+    "class_policy_numeric_freeze": false,
+    "class_policy_parameter_selection": false,
+    "new_model_forward": false,
+    "scenario_balanced": true
+  },
+  "member_ordering_rule": "ascending_frozen_selection_hash_then_scenario_id",
+  "selection_hash_semantics": "SHA256(scenario_id)",
+  "source": "frozen_Stage4_development_headlamp_relevant_manifest",
+  "stage": 6,
+  "status": "PREREGISTERED_BEFORE_COHORT_MEMBER_SELECTION",
+  "strata": {
+    "cyclist": 40,
+    "pedestrian_no_cyclist": 40,
+    "vehicle_only": 40
+  },
+  "stratum_definition": "mutually_exclusive_current_causal_headlamp_relevance_priority_cyclist_then_pedestrian_then_vehicle"
+}

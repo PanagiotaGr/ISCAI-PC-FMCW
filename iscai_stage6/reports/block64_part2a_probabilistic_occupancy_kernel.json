@@ -1,0 +1,43 @@
+{
+  "block": "6.4-Part2A",
+  "contract": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block64_part2a_probabilistic_occupancy_contract.json",
+    "sha256": "3c61222ca829849ee77b276ff21a199b016b0fe8455b6f4045d4e980f4874ae8"
+  },
+  "implementation": {
+    "module": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_occupancy.py",
+    "module_sha256": "d4206761fc70495563d53a6ab58aefe6db5d8bd1b2d09736bfc5bbc6b6f50e3e",
+    "test": "/home/agni/waymo/iscai_stage6/tests/test_block64_part2a_probabilistic_occupancy.py",
+    "test_sha256": "eaa732ca2bf2a9b1463d5b560d8d59a5a5fcd48821284f66b3652138076e035d"
+  },
+  "next": "BLOCK6.4_PART2B_REAL_DEVELOPMENT_MC_CONVERGENCE_AND_NUMERIC_FREEZE",
+  "scope": {
+    "MC_N_frozen": false,
+    "formal_evaluation": false,
+    "gamma_frozen": false,
+    "grid_frozen": false,
+    "real_development_sampling": false,
+    "seed_policy_frozen": false
+  },
+  "semantics": {
+    "P_occ_parameterized": true,
+    "centroid_only": false,
+    "class_aware": false,
+    "eight_corner_hull": true,
+    "full_box": true,
+    "gamma_applied": false,
+    "multi_actor_aggregation": false
+  },
+  "stage": 6,
+  "status": "PASS_BLOCK64_PART2A_PROBABILISTIC_OCCUPANCY_KERNEL",
+  "tests": {
+    "dedicated": {
+      "count": 15,
+      "status": "PASS"
+    },
+    "full_stage6": {
+      "count": 127,
+      "status": "PASS"
+    }
+  }
+}

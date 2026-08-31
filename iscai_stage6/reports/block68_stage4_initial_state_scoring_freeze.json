@@ -1,0 +1,37 @@
+{
+  "Stage6_regression": 224,
+  "block": "6.8_stage4_initial_state_scoring_freeze",
+  "current_state_binding": {
+    "artifact": "/home/agni/waymo/iscai_stage6/artifacts/block68/stage4_preoutcome/stage4_current_state_scenario_binding.jsonl",
+    "ledger_sha256": "ac2b954571cdd0166bbcfa5bb8b2956785d1e132288dbe4af7fe2d55adeafcaa",
+    "rows": 120,
+    "sha256": "3a1c689484fdbd8dbf763cfb0a52b3a987a5930a236fe9692f0b084cb178387d",
+    "t0_maps_sha256": "7c5d63c76c3d9ef74adbbd7a68e3ce7483b1dd80fd262cba06f6ce1909994993"
+  },
+  "next": "RUN_EXACT_60_STAGE4_TEMPORAL_RATE_DEVELOPMENT_SWEEP",
+  "scientific_boundary": {
+    "Stage1_gamma": "IMMUTABLE",
+    "Stage2_margins": "IMMUTABLE",
+    "Stage3_floors": "IMMUTABLE",
+    "Stage4_candidate_outcomes_computed": false,
+    "Stage4_winner_selected": false,
+    "formal_evaluation": false,
+    "policy_tuning": false,
+    "primary_acceptance_tested": false
+  },
+  "semantic_resolution": {
+    "I_prev": "already-issued current causal frozen Part-A t0 actuator map",
+    "all_on_smoke_allowed": false,
+    "future_information": false,
+    "new_current_state_policy": false,
+    "resolution_before_stage4_outcomes": true
+  },
+  "stage": 6,
+  "stage4_scoring_freeze": {
+    "candidate_count": 60,
+    "path": "/home/agni/waymo/iscai_stage6/configs/stage6_development_stage4_temporal_rate_scoring_freeze.json",
+    "rate_pair_count": 15,
+    "sha256": "f8a0850610e4cee4984b668d5f7046c4ec6a5f873b28f645776d5f3a5ced2717"
+  },
+  "status": "PASS_STAGE4_INITIAL_STATE_AND_SCORING_FROZEN"
+}

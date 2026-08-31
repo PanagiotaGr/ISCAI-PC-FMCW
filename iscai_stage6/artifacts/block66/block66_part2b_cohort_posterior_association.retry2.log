@@ -1,0 +1,122 @@
+============================================================================
+BLOCK 6.6 PART2B — RESUMABLE DEVELOPMENT POSTERIOR + ASSOCIATION CENSUS
+============================================================================
+
+===== A. IMMUTABLE FROZEN SEAL =====
+cohort                       = EXACT PASS
+part2a                       = EXACT PASS
+gaussian_checkpoint          = EXACT PASS
+architecture_checkpoint      = EXACT PASS
+normalization                = EXACT PASS
+calibrator                   = EXACT PASS
+association_module           = EXACT PASS
+womd_geometry_module         = EXACT PASS
+storage reserve             = PASS
+
+===== B. FROZEN DEVELOPMENT COHORT =====
+cohort scenarios            = 120
+unique scenario IDs         = PASS
+partition                   = DEVELOPMENT
+formal outcomes             = NOT READ
+
+===== C. EXACT FROZEN RUNTIME IMPORTS =====
+CalibrationNormalizer       = calibration_runtime
+Gaussian model builder      = calibration_runtime
+Gaussian metric math        = gaussian_math
+covariance calibration      = angular_monte_carlo
+association                 = reciprocal unique nearest anchor
+association threshold       = NONE
+association class gate      = NONE
+
+===== D. FROZEN GAUSSIAN RUNTIME =====
+device                      = cuda:0
+GPU                         = NVIDIA RTX A6000
+Gaussian parameters         = 48484
+Gaussian predictive weights = Block4.4 FROZEN
+architecture metadata       = Block4.3 FROZEN
+normalization               = FIT-ONLY FROZEN
+mean calibration            = UNCHANGED
+covariance alpha            = [1.2347064500315355, 1.3451250295202921, 1.354822057728461, 1.2829700217319266]
+
+===== E. FROZEN CAUSAL INPUT CONFIG =====
+Stage2 configs              = LOADED FROZEN
+future labels               = NOT REQUESTED
+truth/perfect ID            = NOT USED
+tracks_to_predict           = NOT USED
+
+===== F. RESUMABLE 120-SCENARIO EXECUTION =====
+[001/120] f72a05a05035feb8 = RESUME CACHE PASS
+[010/120] 6daa131b25b411e1 = RESUME CACHE PASS
+[020/120] e697a3e91804731f = RESUME CACHE PASS
+[030/120] 1d879936662232aa = RESUME CACHE PASS
+[040/120] 1b0c763aeef8ba69 = RESUME CACHE PASS
+[050/120] 91b9bd56c1084d03 = RESUME CACHE PASS
+[060/120] 74ca33b01f8adc34 = RESUME CACHE PASS
+[070/120] 9b55dd4a2eb55f33 = RESUME CACHE PASS
+[080/120] c9d6f61d94824305 = RESUME CACHE PASS
+[090/120] 28e0ea7a2ca646d6 = RESUME CACHE PASS
+[100/120] 5d27f514c439978d = RESUME CACHE PASS
+[110/120] 43cb883b388c851e = RESUME CACHE PASS
+[120/120] 89bda4c79cb0ead4 = RESUME CACHE PASS
+
+===== G. CACHE COMPLETENESS =====
+complete scene artifacts    = 120/120 PASS
+executed this run           = 0
+reused from cache           = 120
+
+===== H. DETERMINISTIC CONSOLIDATION =====
+posterior records           = 6925
+causal ADB boxes            = 4971
+association matches         = 3937
+reactive fallback boxes     = 1034
+unmatched predictors        = 2988
+boxes by class              = {'TYPE_VEHICLE': 4350, 'TYPE_PEDESTRIAN': 525, 'TYPE_CYCLIST': 96}
+matches by class            = {'TYPE_VEHICLE': 3500, 'TYPE_PEDESTRIAN': 358, 'TYPE_CYCLIST': 79}
+fallback by class           = {'TYPE_VEHICLE': 850, 'TYPE_PEDESTRIAN': 167, 'TYPE_CYCLIST': 17}
+all classes matched somewhere = True
+
+===== I. FRESH STAGE6 REGRESSION =====
+.................................................................................................................................................
+----------------------------------------------------------------------
+Ran 145 tests in 0.175s
+
+OK
+
+Stage6 regression          = PASS
+tests passed               = 145
+
+===== J. BLOCK6.6 PART2B REPORT =====
+report                      = /home/agni/waymo/iscai_stage6/reports/block66_part2b_cohort_posterior_association_census.json
+report SHA256               = 96dfccd808fd06d77b6f9d4b1c100f6a59db7d090a405f41b88d4fa6854c9705
+posterior JSONL SHA256      = f022471fbf86c3121106011bfd7f035c5d895f2c5aeeaa2fa3a20c04b3439acd
+match JSONL SHA256          = 1011d443998e7b33600911954d67c4377aefc63ec4455fb3d67b24e281661848
+fallback JSONL SHA256       = 32af5397b3ae4a3311dcf401a36bd247cfbca5fbdb9bf7e883b0a9a4e34bbb3b
+scene summary SHA256        = c37b33883a9929ae6dc1a6089bfd3cdff7744c0e1bf75e2843a238cef499b87a
+
+============================================================================
+BLOCK 6.6 PART2B — FINAL
+============================================================================
+STATUS = PASS_BLOCK66_PART2B_COHORT_POSTERIOR_ASSOCIATION_MATERIALIZED
+development scenarios       = 120/120
+posterior records           = 6925
+causal ADB boxes            = 4971
+association matches         = 3937
+reactive fallback boxes     = 1034
+unmatched predictors        = 2988
+ADB boxes by class          = {'TYPE_VEHICLE': 4350, 'TYPE_PEDESTRIAN': 525, 'TYPE_CYCLIST': 96}
+matches by class            = {'TYPE_VEHICLE': 3500, 'TYPE_PEDESTRIAN': 358, 'TYPE_CYCLIST': 79}
+fallback by class           = {'TYPE_VEHICLE': 850, 'TYPE_PEDESTRIAN': 167, 'TYPE_CYCLIST': 17}
+all classes matched         = True
+association threshold       = NONE
+association class gate      = NO
+perfect/truth ID            = NO / NO
+future GT                   = NO
+training/recalibration      = NO / NO
+N_MC=8192 executed          = NO
+P_occ materialized          = NO
+class policy frozen         = NO
+formal evaluation           = NO
+Stage6 regression           = PASS
+NEXT = BLOCK6.6 PART2C EXACT HEADLAMP-ELIGIBILITY JOIN THEN ELIGIBLE N8192 P_OCC
+terminal remains open       = YES
+============================================================================

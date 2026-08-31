@@ -1,0 +1,46 @@
+{
+  "block": "6.5-Part1",
+  "contract": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block65_part1_parameterized_mask_contract.json",
+    "sha256": "8b447f2ea141064a940eb098de3c0632ad4e960e89180bb9b0deab9547e13870"
+  },
+  "implementation": {
+    "module": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/predictive_mask.py",
+    "module_sha256": "239611ddb1cc21b9ddd46962eb561e58e0d1474be58878f9c79c256ba1940575",
+    "test": "/home/agni/waymo/iscai_stage6/tests/test_block65_part1_parameterized_mask.py",
+    "test_sha256": "71f56693bd16259f6037e2c1fb317fbeaeda2a3bf62a765f511cb3fc551e92cb"
+  },
+  "next": "BLOCK6.5_PART2_REAL_DEVELOPMENT_GAMMA_CURVES_AND_PREREGISTRATION",
+  "scope": {
+    "actuation_rate_limits": false,
+    "class_policy_frozen": false,
+    "formal_evaluation": false,
+    "gamma_frozen": false,
+    "model_forward": false,
+    "recalibration": false,
+    "temporal_smoothing": false,
+    "training": false
+  },
+  "semantics": {
+    "binary_OR_equivalent": true,
+    "class_agnostic": true,
+    "exact_multi_actor_formula": true,
+    "final_intensity_composition": false,
+    "gamma_equal_probability_inactive": true,
+    "original_reactive_fallback_exact": true,
+    "reactive_fallback_binarized": false,
+    "strict_gamma_threshold": true
+  },
+  "stage": 6,
+  "status": "PASS_BLOCK65_PART1_PARAMETERIZED_MASK_KERNEL",
+  "tests": {
+    "dedicated": {
+      "count": 18,
+      "status": "PASS"
+    },
+    "full_stage6": {
+      "count": 145,
+      "status": "PASS"
+    }
+  }
+}

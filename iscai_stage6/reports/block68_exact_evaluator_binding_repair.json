@@ -1,0 +1,63 @@
+{
+  "block": "6.8",
+  "correct_runtime_chain": {
+    "final_metric_intensity": "RateLimitedSchedule.illumination",
+    "final_result_type": "RateLimitedSchedule",
+    "final_shape_semantics": "[horizon,theta,range]",
+    "pre_temporal_raw_map_used_as_final_metric_input": false,
+    "rate_limit_operator": "apply_actuation_rate_limit",
+    "raw_predictive_class_aware_map": "ClassAwareComposition.raw_class_aware_illumination",
+    "safety_override_diagnostic": "RateLimitedSchedule.safety_override_mask",
+    "smoothed_pre_rate_limit_map_used_as_final_metric_input": false,
+    "temporal_operator": "temporal_smooth_schedule"
+  },
+  "next": "Bind the evaluator-only future-oracle/full-box and road-ROI inputs, then execute the development-only ADB evaluation and freeze numeric non-inferiority bounds.",
+  "part": "2/2_exact_evaluator_binding_repair",
+  "previous_false_assumption": "ClassAwareComposition.illumination",
+  "project": "Agni",
+  "regression": {
+    "status": "PASS",
+    "tests": 202
+  },
+  "repair_type": "EVIDENCE_ROUTE_ONLY",
+  "scientific_boundary": {
+    "development_metrics_computed": false,
+    "development_outcomes_read": false,
+    "formal_content_opened": false,
+    "formal_evaluation": false,
+    "formal_outcomes_read": false,
+    "numeric_bounds_selected": false,
+    "parameter_tuning": false,
+    "policy_tuning": false
+  },
+  "scientific_controller_changed": false,
+  "stage": 6,
+  "status": "PASS_FINAL_ACTUATION_OUTPUT_BOUND",
+  "storage": {
+    "free_GiB": 1052.7752952575684,
+    "hard_reserve_GiB": 250.0,
+    "pass": true
+  },
+  "synthetic_structural_execution": {
+    "bounded_0_1": true,
+    "final_shape": [
+      4,
+      5,
+      7
+    ],
+    "final_type": "RateLimitedSchedule",
+    "finite": true,
+    "performed": true,
+    "raw_shape": [
+      4,
+      5,
+      7
+    ],
+    "scientific_performance_claim": false,
+    "smoothed_shape": [
+      4,
+      5,
+      7
+    ]
+  }
+}

@@ -1,0 +1,481 @@
+============================================================
+STAGE 6 — BLOCK 6.8 PART 2/2
+EXACT DEVELOPMENT EVALUATOR RUNTIME BIND
+NO PERFORMANCE METRICS / NO FORMAL CONTENT
+============================================================
+
+===== A. FROZEN DEVELOPMENT BIND SEAL =====
+reconciliation report     = EXACT PASS
+metric protocol           = EXACT PASS
+metric runtime            = EXACT PASS
+metric interface          = EXACT PASS
+development route bind     = PASS
+formal evaluation          = BLOCKED
+
+===== B. EXACT RUNTIME PYTHON API =====
+predictive_mask_to_illumination
+    (mask, *, range_centers_m, intensity_floor: 'float') -> 'np.ndarray'
+compose_class_aware_illumination
+    (*, class_illumination: 'Mapping[str, np.ndarray]', class_active_masks: 'Mapping[str, np.ndarray]', class_floors: 'Mapping[str, float]') -> 'ClassAwareComposition'
+threshold_actor_occupancy
+    (actor_occupancy: 'ActorOccupancyProbability', *, gamma: 'float') -> 'BinaryActorPredictiveMask'
+aggregate_binary_actor_masks
+    (actor_masks: 'Iterable[BinaryActorPredictiveMask]', *, grid_shape) -> 'np.ndarray'
+exact_original_reactive_fallback_map
+    (illumination_grid, reactive_regions: 'Iterable[ReactiveShadowRegion]') -> 'np.ndarray'
+reactive_adb_map
+    (grid: 'IlluminationGridSpec', regions: 'Iterable[ReactiveShadowRegion]') -> 'np.ndarray'
+part_a_original_reactive_map_from_h0_centers
+    (grid, centers_H0_m: 'Iterable') -> 'np.ndarray'
+
+dataclass fields:
+
+ClassAwareComposition
+    illumination_minimum : np.ndarray
+    vru_floor_guard : np.ndarray
+    raw_class_aware_illumination : np.ndarray
+    semantics : str
+
+MarginComputation
+    actor_class : str
+    predicted_center_H0_xy_m : tuple[float, float]
+    predicted_range_m : float
+    lateral_predictive_sigma_m : float
+    closing_speed_mps : float
+    cyclist_lateral_rate_mps : float
+    part_a_generic_lateral_margin_m : float
+    additional_class_margin_m : float
+    total_lateral_margin_m : float
+
+BinaryActorPredictiveMask
+    prediction_id : str
+    gamma : float
+    mask : np.ndarray
+
+ClassAgnosticPredictiveMaskPlan
+    gamma : float
+    actor_masks : tuple[BinaryActorPredictiveMask, ...]
+    predictive_mask : np.ndarray
+    reactive_fallback_illumination : np.ndarray | None
+    reactive_fallback_region_count : int
+    predictive_aggregation_semantics : str
+    reactive_fallback_semantics : str
+    final_illumination_composition_applied : bool
+    class_aware_policy_applied : bool
+    temporal_smoothing_applied : bool
+    actuation_rate_limit_applied : bool
+
+ReactiveShadowRegion
+    theta_center_rad : float
+    theta_span_rad : float
+    r_shadow_end_m : float
+    r_transition_end_m : float
+    intensity_floor : float
+    source_semantics : str
+
+PartAReactiveGeometry
+    center_H0_m : tuple[float, float, float]
+    x_partA_right_m : float
+    y_partA_forward_m : float
+    target_range_m : float
+    theta_c_partA_deg : float
+    shadow_center_partA_deg : float
+    epsilon_dynamic_deg : float
+    theta_min_partA_deg : float
+    theta_max_partA_deg : float
+    theta_min_H0_deg : float
+    theta_max_H0_deg : float
+    control_r_min_m : float
+    control_r_max_m : float
+    trz_visual_r_min_m : float
+    trz_visual_r_max_m : float
+
+ActorOccupancyProbability
+    prediction_id : str
+    sample_count : int
+    horizons_s : tuple[float, float, float, float]
+    occupancy_counts : np.ndarray
+    occupancy_probability : np.ndarray
+    rasterization_semantics : str
+
+OccupancyGrid
+    theta_centers_rad : tuple[float, ...]
+    range_centers_m : tuple[float, ...]
+
+CausalADBActorBox
+    scenario_id : str
+    track_index : int
+    track_id : str
+    object_type : str
+    box : Box3D
+    stage1_anchor_center_H0_m : tuple[float, float, float] | None
+    stage1_anchor_bearing_H0_rad : float | None
+    center_consistency_error_m : float
+    source_time_index : int
+    state_source : str
+    orientation_source : str
+    tracks_to_predict_used : bool
+    objects_of_interest_used : bool
+    future_state_used : bool
+
+===== C. EXACT ACTOR IDENTITY / JOIN SCHEMAS =====
+
+RECORD = predictive_match
+top-level keys = ['actor_box_index', 'association_anchor_distance_m', 'centroid_only', 'cohort_index', 'current_box_H0', 'current_headlamp_eligible', 'eligibility_geometry', 'eligibility_time', 'future_used_for_eligibility', 'maximum_range_m', 'object_type', 'objects_of_interest_used', 'posterior_key', 'posterior_sha_source', 'prediction_id', 'route', 'scenario_id', 'theta_domain_deg', 'tracks_to_predict_used']
+nested key paths:
+    actor_box_index
+    association_anchor_distance_m
+    centroid_only
+    cohort_index
+    current_box_H0
+    current_box_H0.center_xyz_H0_m
+    current_box_H0.center_xyz_H0_m[]
+    current_box_H0.height_m
+    current_box_H0.length_m
+    current_box_H0.width_m
+    current_box_H0.yaw_rad
+    current_headlamp_eligible
+    eligibility_geometry
+    eligibility_time
+    future_used_for_eligibility
+    maximum_range_m
+    object_type
+    objects_of_interest_used
+    posterior_key
+    posterior_key.prediction_id
+    posterior_key.scenario_id
+    posterior_sha_source
+    prediction_id
+    route
+    scenario_id
+    theta_domain_deg
+    theta_domain_deg[]
+    tracks_to_predict_used
+
+RECORD = reactive_fallback
+top-level keys = ['actor_box_index', 'centroid_only', 'cohort_index', 'current_box_H0', 'current_headlamp_eligible', 'eligibility_geometry', 'eligibility_time', 'fallback', 'future_used_for_eligibility', 'maximum_range_m', 'object_type', 'objects_of_interest_used', 'route', 'scenario_id', 'theta_domain_deg', 'tracks_to_predict_used']
+nested key paths:
+    actor_box_index
+    centroid_only
+    cohort_index
+    current_box_H0
+    current_box_H0.center_xyz_H0_m
+    current_box_H0.center_xyz_H0_m[]
+    current_box_H0.height_m
+    current_box_H0.length_m
+    current_box_H0.width_m
+    current_box_H0.yaw_rad
+    current_headlamp_eligible
+    eligibility_geometry
+    eligibility_time
+    fallback
+    future_used_for_eligibility
+    maximum_range_m
+    object_type
+    objects_of_interest_used
+    route
+    scenario_id
+    theta_domain_deg
+    theta_domain_deg[]
+    tracks_to_predict_used
+
+RECORD = posterior
+top-level keys = ['calibrated_predictive_covariance_H0_m2', 'cohort_index', 'future_GT_used', 'horizons_s', 'latest_position_H0_m', 'mean_calibration', 'mean_displacement_H0_m', 'objects_of_interest_used', 'posterior_family', 'prediction_id', 'raw_predictive_covariance_H0_m2', 'scenario_id', 'tracks_to_predict_used', 'truth_id_used', 'variance_scale_alpha_h']
+nested key paths:
+    calibrated_predictive_covariance_H0_m2
+    calibrated_predictive_covariance_H0_m2[]
+    calibrated_predictive_covariance_H0_m2[][]
+    calibrated_predictive_covariance_H0_m2[][][]
+    cohort_index
+    future_GT_used
+    horizons_s
+    horizons_s[]
+    latest_position_H0_m
+    latest_position_H0_m[]
+    mean_calibration
+    mean_displacement_H0_m
+    mean_displacement_H0_m[]
+    mean_displacement_H0_m[][]
+    objects_of_interest_used
+    posterior_family
+    prediction_id
+    raw_predictive_covariance_H0_m2
+    raw_predictive_covariance_H0_m2[]
+    raw_predictive_covariance_H0_m2[][]
+    raw_predictive_covariance_H0_m2[][][]
+    scenario_id
+    tracks_to_predict_used
+    truth_id_used
+    variance_scale_alpha_h
+    variance_scale_alpha_h[]
+
+RECORD = P_occ_manifest
+top-level keys = ['actor_box_index', 'actor_rank', 'cohort_index', 'object_type', 'occupancy_counts_path', 'occupancy_counts_sha256', 'prediction_id', 'sample_count', 'scenario_id', 'seed', 'summary']
+nested key paths:
+    actor_box_index
+    actor_rank
+    cohort_index
+    object_type
+    occupancy_counts_path
+    occupancy_counts_sha256
+    prediction_id
+    sample_count
+    scenario_id
+    seed
+    summary
+    summary.has_any_support
+    summary.maximum_count_by_horizon
+    summary.maximum_count_by_horizon[]
+    summary.maximum_probability_by_horizon
+    summary.maximum_probability_by_horizon[]
+    summary.nonzero_cells_by_horizon
+    summary.nonzero_cells_by_horizon[]
+    summary.occupancy_count_mass_by_horizon
+    summary.occupancy_count_mass_by_horizon[]
+    summary.occupancy_probability_mass_by_horizon
+    summary.occupancy_probability_mass_by_horizon[]
+
+RECORD = vehicle_surrogate
+top-level keys = ['actor_box_index', 'actor_rank', 'causality', 'cohort_index', 'full_box_parity_exact', 'full_box_parity_tolerance', 'geometry_semantics', 'object_type', 'persisted_occupancy_content_sha256', 'persisted_occupancy_file_sha256', 'persisted_occupancy_path', 'prediction_id', 'recovery_contract_sha256', 'replayed_occupancy_content_sha256', 'sample_count', 'scenario_id', 'seed', 'status', 'vehicle_surrogate']
+nested key paths:
+    actor_box_index
+    actor_rank
+    causality
+    causality.future_GT
+    causality.objects_of_interest
+    causality.tracks_to_predict
+    causality.truth_ID
+    cohort_index
+    full_box_parity_exact
+    full_box_parity_tolerance
+    geometry_semantics
+    geometry_semantics.axis
+    geometry_semantics.rotation
+    object_type
+    persisted_occupancy_content_sha256
+    persisted_occupancy_file_sha256
+    persisted_occupancy_path
+    prediction_id
+    recovery_contract_sha256
+    replayed_occupancy_content_sha256
+    sample_count
+    scenario_id
+    seed
+    status
+    vehicle_surrogate
+    vehicle_surrogate.heading_samples_sha256
+    vehicle_surrogate.horizon_summaries
+    vehicle_surrogate.horizon_summaries[]
+    vehicle_surrogate.horizon_summaries[].angular_span_max_rad
+    vehicle_surrogate.horizon_summaries[].angular_span_mean_rad
+    vehicle_surrogate.horizon_summaries[].horizon_s
+    vehicle_surrogate.horizon_summaries[].oncoming_fraction
+    vehicle_surrogate.horizon_summaries[].oncoming_samples
+    vehicle_surrogate.horizon_summaries[].preceding_samples
+    vehicle_surrogate.horizon_summaries[].range_far_max_m
+    vehicle_surrogate.horizon_summaries[].range_far_mean_m
+    vehicle_surrogate.horizon_summaries[].range_near_mean_m
+    vehicle_surrogate.horizon_summaries[].range_near_min_m
+    vehicle_surrogate.horizon_summaries[].sample_count
+    vehicle_surrogate.horizon_summaries[].theta_center_mean_rad
+    vehicle_surrogate.horizon_summaries[].z_max_mean_m
+    vehicle_surrogate.horizon_summaries[].z_min_mean_m
+    vehicle_surrogate.oncoming
+    vehicle_surrogate.physical_annotation_claim
+    vehicle_surrogate.preceding
+    vehicle_surrogate.samplewise_projection_sha256
+    vehicle_surrogate.trajectory_samples_sha256
+    vehicle_surrogate.vertical_actuator_claim
+
+identity-key presence matrix:
+scenario_id = {'predictive_match': True, 'reactive_fallback': True, 'posterior': True, 'P_occ_manifest': True, 'vehicle_surrogate': True}
+prediction_id = {'predictive_match': True, 'reactive_fallback': False, 'posterior': True, 'P_occ_manifest': True, 'vehicle_surrogate': True}
+actor_box_index = {'predictive_match': True, 'reactive_fallback': True, 'posterior': False, 'P_occ_manifest': True, 'vehicle_surrogate': True}
+track_index = {'predictive_match': False, 'reactive_fallback': False, 'posterior': False, 'P_occ_manifest': False, 'vehicle_surrogate': False}
+actor_rank = {'predictive_match': False, 'reactive_fallback': False, 'posterior': False, 'P_occ_manifest': True, 'vehicle_surrogate': True}
+cohort_index = {'predictive_match': True, 'reactive_fallback': True, 'posterior': True, 'P_occ_manifest': True, 'vehicle_surrogate': True}
+
+scenario identity route = PASS
+predictive actor join keys = ['scenario_id', 'prediction_id', 'actor_box_index', 'cohort_index']
+
+===== D. PERSISTED P_OCC PAYLOAD METADATA =====
+payload path = /home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache/actor_0000__f72a05a05035feb8__s3trk-000027.counts.npy
+shape = [4, 501, 301]
+dtype = uint32
+P_occ payload values analyzed = NO
+P_occ performance computed    = NO
+
+===== E. SCENE CACHE STRUCTURE =====
+scene cache file = /home/agni/waymo/iscai_stage6/artifacts/block66/part2b_scene_cache/000_f72a05a05035feb8.json
+scene cache top keys = ['association', 'association_matches', 'block', 'causal_predictor', 'cohort_index', 'cohort_metadata', 'current_causal_ADB_boxes', 'frozen_seals', 'posterior_records', 'reactive_fallback_boxes', 'runtime_s', 'scenario_id', 'scientific_execution', 'scope_boundary', 'stage', 'status']
+scene nested keys:
+    association
+    association.anchor_distance_m
+    association.anchor_distance_m.maximum
+    association.anchor_distance_m.mean
+    association.anchor_distance_m.minimum
+    association.class_gate
+    association.covariance_gate
+    association.hard_distance_threshold
+    association.match_count
+    association.matched_by_class
+    association.matched_by_class.TYPE_CYCLIST
+    association.matched_by_class.TYPE_PEDESTRIAN
+    association.matched_by_class.TYPE_VEHICLE
+    association.perfect_ID
+    association.policy
+    association.reactive_fallback_box_count
+    association.reactive_fallback_by_class
+    association.reactive_fallback_by_class.TYPE_CYCLIST
+    association.reactive_fallback_by_class.TYPE_PEDESTRIAN
+    association.reactive_fallback_by_class.TYPE_VEHICLE
+    association.truth_identity
+    association.unmatched_predictor_count
+    association_matches
+    association_matches[]
+    association_matches[].actor_box_index
+    association_matches[].association_anchor_distance_m
+    association_matches[].association_policy
+    association_matches[].box_second_nearest_distance_m
+    association_matches[].class_gate
+    association_matches[].cohort_index
+    association_matches[].distance_threshold_m
+    association_matches[].future_GT_used
+    association_matches[].object_type
+    association_matches[].perfect_ID_used
+    association_matches[].prediction_id
+    association_matches[].predictor_index
+    association_matches[].predictor_second_nearest_distance_m
+    association_matches[].scenario_id
+    association_matches[].truth_id_used
+    block
+    causal_predictor
+    causal_predictor.future_GT_used
+    causal_predictor.history_count
+    causal_predictor.objects_of_interest_used
+    causal_predictor.posterior_numeric_digest_sha256
+    causal_predictor.posterior_record_count
+    causal_predictor.prediction_id_unique
+    causal_predictor.raw_prediction_sha256
+    causal_predictor.tracks_to_predict_used
+    causal_predictor.truth_id_used
+    cohort_index
+    cohort_metadata
+    cohort_metadata.frozen_headlamp_relevant_counts
+    cohort_metadata.frozen_headlamp_relevant_counts.TYPE_CYCLIST
+    cohort_metadata.frozen_headlamp_relevant_counts.TYPE_PEDESTRIAN
+    cohort_metadata.frozen_headlamp_relevant_counts.TYPE_VEHICLE
+    cohort_metadata.stratum
+    current_causal_ADB_boxes
+    current_causal_ADB_boxes.by_class
+    current_causal_ADB_boxes.by_class.TYPE_CYCLIST
+    current_causal_ADB_boxes.by_class.TYPE_PEDESTRIAN
+    current_causal_ADB_boxes.by_class.TYPE_VEHICLE
+    current_causal_ADB_boxes.count
+    current_causal_ADB_boxes.future_state_used
+    current_causal_ADB_boxes.source
+    frozen_seals
+    frozen_seals.architecture_checkpoint_sha256
+    frozen_seals.association_module_sha256
+    frozen_seals.calibrator_sha256
+    frozen_seals.cohort_sha256
+    frozen_seals.gaussian_checkpoint_sha256
+    frozen_seals.normalization_sha256
+    frozen_seals.part2a_route_sha256
+    frozen_seals.womd_geometry_module_sha256
+    posterior_records
+    posterior_records[]
+    posterior_records[].calibrated_predictive_covariance_H0_m2
+    posterior_records[].calibrated_predictive_covariance_H0_m2[]
+    posterior_records[].calibrated_predictive_covariance_H0_m2[][]
+    posterior_records[].calibrated_predictive_covariance_H0_m2[][][]
+    posterior_records[].cohort_index
+    posterior_records[].future_GT_used
+    posterior_records[].horizons_s
+    posterior_records[].horizons_s[]
+    posterior_records[].latest_position_H0_m
+    posterior_records[].latest_position_H0_m[]
+    posterior_records[].mean_calibration
+    posterior_records[].mean_displacement_H0_m
+    posterior_records[].mean_displacement_H0_m[]
+    posterior_records[].mean_displacement_H0_m[][]
+    posterior_records[].objects_of_interest_used
+    posterior_records[].posterior_family
+    posterior_records[].prediction_id
+    posterior_records[].raw_predictive_covariance_H0_m2
+    posterior_records[].raw_predictive_covariance_H0_m2[]
+    posterior_records[].raw_predictive_covariance_H0_m2[][]
+    posterior_records[].raw_predictive_covariance_H0_m2[][][]
+    posterior_records[].scenario_id
+    posterior_records[].tracks_to_predict_used
+    posterior_records[].truth_id_usedTraceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block68_part2_exact_evaluator_runtime_bind.py", line 2031, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block68_part2_exact_evaluator_runtime_bind.py", line 1422, in main
+    require(
+    ~~~~~~~^
+        required_composition_fields.issubset(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block68_part2_exact_evaluator_runtime_bind.py", line 207, in require
+    raise RuntimeError(
+        message
+    )
+RuntimeError: ClassAwareComposition does not expose final illumination.
+
+    posterior_records[].variance_scale_alpha_h
+    posterior_records[].variance_scale_alpha_h[]
+    reactive_fallback_boxes
+    reactive_fallback_boxes[]
+    reactive_fallback_boxes[].actor_box_index
+    reactive_fallback_boxes[].association_threshold_m
+    reactive_fallback_boxes[].class_gate
+    reactive_fallback_boxes[].cohort_index
+    reactive_fallback_boxes[].fallback
+    reactive_fallback_boxes[].future_GT_used
+    reactive_fallback_boxes[].object_type
+    reactive_fallback_boxes[].perfect_ID_used
+    reactive_fallback_boxes[].scenario_id
+    runtime_s
+    scenario_id
+    scientific_execution
+    scientific_execution.Monte_Carlo_sampling
+    scientific_execution.P_occ_materialization
+    scientific_execution.class_policy_freeze
+    scientific_execution.formal_evaluation
+    scientific_execution.frozen_model_forward
+    scientific_execution.gamma_tuning
+    scientific_execution.recalibration
+    scientific_execution.training
+    scope_boundary
+    scope_boundary.association_runs_on_all_current_causal_core_ADB_boxes
+    scope_boundary.headlamp_eligibility_rejoin_deferred
+    scope_boundary.new_headlamp_filter_inserted_into_association
+    scope_boundary.original_reactive_fallback_preserved
+    stage
+    status
+
+===== F. FINAL ILLUMINATION RUNTIME BINDING =====
+
+============================================================
+BLOCK 6.8 EXACT EVALUATOR RUNTIME BIND = BLOCKED
+============================================================
+exception = RuntimeError ClassAwareComposition does not expose final illumination.
+
+
+development performance metrics = NOT COMPUTED
+numeric bounds                 = NOT SELECTED
+formal content                 = NOT OPENED
+formal outcomes                = NOT READ
+formal evaluation              = NO
+policy tuning                  = NO
+
+Do not run development metric evaluation.
+Do not run formal Stage6 evaluation.
+Send this BLOCKED output for targeted repair.
+terminal remains open = YES

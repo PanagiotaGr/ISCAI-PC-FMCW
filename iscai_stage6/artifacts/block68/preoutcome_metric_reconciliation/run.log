@@ -1,0 +1,99 @@
+metric_semantics.py:204: SyntaxWarning: invalid escape sequence '\ '
+metric_semantics.py:312: SyntaxWarning: invalid escape sequence '\ '
+metric_semantics.py:521: SyntaxWarning: invalid escape sequence '\ '
+============================================================
+STAGE 6 — BLOCK 6.8
+CONTROLLED PRE-OUTCOME METRIC RECONCILIATION
+============================================================
+
+===== A. AUTHORITY / PRE-OUTCOME BOUNDARY =====
+Block6.6 preregistration = EXACT PASS
+Block6.7 closure          = EXACT PASS
+class-aware policy        = EXACT PASS
+development outcomes      = NOT READ
+formal outcomes           = NOT READ
+authority                 = BLOCK6.6
+
+===== B. PRE-REPAIR REGRESSION =====
+pre-repair regression = 196 / 196 PASS
+
+===== C. LEGACY METRIC API DEPENDENCY CHECK =====
+unexpected *_latency_ms dependencies = NONE
+
+===== D. BUILD RECONCILED CANDIDATES =====
+candidate Python syntax = PASS
+candidate protocol JSON = PASS
+
+===== E. VERIFIED BACKUP =====
+backup verified = /home/agni/waymo/iscai_stage6/artifacts/block68/preoutcome_metric_reconciliation/configs__stage6_metric_freeze_protocol.json
+backup verified = /home/agni/waymo/iscai_stage6/artifacts/block68/preoutcome_metric_reconciliation/src__iscai_stage6__adb__metric_semantics.py
+backup verified = /home/agni/waymo/iscai_stage6/artifacts/block68/preoutcome_metric_reconciliation/src__iscai_stage6__adb__baseline_metric_contract.py
+backup verified = /home/agni/waymo/iscai_stage6/artifacts/block68/preoutcome_metric_reconciliation/tests__test_block68_metric_semantics.py
+
+===== F. APPLY EXPLICIT PRE-OUTCOME AMENDMENT =====
+protocol semantics      = BLOCK6.6 ALIGNED
+metric runtime          = BLOCK6.6 ALIGNED
+Block6.7 ROI flags      = EXPLICITLY AMENDED
+historical reports      = PRESERVED
+
+===== G. TARGETED RECONCILIATION TESTS =====
+metric semantics tests = 15 / 15 PASS
+authority tests        = 6 / 6 PASS
+
+===== H. FULL STAGE6 REGRESSION =====
+full Stage6 regression = 202 / 202 PASS
+
+===== I. AUTHORITY / SEMANTIC READBACK =====
+overmask denominator     = FULL ACTUATOR GRID
+false dimming            = |D\O| / |D|
+temporal metric          = CHANGE RATE
+temporal direction       = LOWER IS BETTER
+flicker threshold        = NONE
+vehicle empty support    = NA
+energy domain            = FULL HORIZON/GRID
+latency units            = SECONDS
+
+===== J. PROTECTED IMMUTABILITY =====
+Block6.6 preregistration = UNCHANGED
+Block6.7 closure          = UNCHANGED
+class-aware policy        = UNCHANGED
+m_extra binding           = UNCHANGED
+authority audit           = UNCHANGED
+historical Block6.8 Part1 = UNCHANGED
+
+===== K. STORAGE =====
+free GiB        = 1052.776
+250-GiB reserve = PASS
+
+===== L. RECONCILIATION FREEZE =====
+reconciled protocol SHA = 409fbb2785e4ff13f29fdff96c91d608c245e009fcbb86ce57099d6a4e1815c9
+reconciled runtime SHA  = bf8358b5a7edfe40ffac2718ca7cd5af6e7b5fdb3ff8a2823caad6d0f40f057a
+reconciled interface SHA= 39518597079f65d556ee8f0fd3b00ce525319623c9eb8a83f6e3c608954213e9
+reconciliation report SHA= 077a89fa5163f8862a3a5b7489d98929d9ae3e160ed9e030eb75f42a91d48f9f
+
+============================================================
+BLOCK 6.8 PRE-OUTCOME RECONCILIATION — FINAL
+============================================================
+earliest prereg authority = BLOCK6.6 EXACT
+semantic conflicts        = RECONCILED
+silent override           = NO
+historical Part1          = PRESERVED / SUPERSEDED
+Block6.7 interface change = EXPLICIT AMENDMENT
+overmask                  = |D\O| / FULL GRID
+false dimming             = |D\O| / |D|
+temporal smoothness label = MEAN ABS CHANGE RATE
+temporal direction        = LOWER IS BETTER
+flicker threshold         = NONE
+vehicle no-support        = NA
+energy                    = FULL HORIZON/GRID MEAN
+actuation latency         = SECONDS
+development outcomes      = NOT READ
+formal outcomes           = NOT READ
+formal evaluation         = STILL BLOCKED
+policy/parameter tuning   = NO
+metric tests              = 15 / 15 PASS
+reconciliation tests      = 6 / 6 PASS
+full Stage6 regression    = 202 / 202 PASS
+STATUS = PASS_PREOUTCOME_METRIC_RECONCILED
+report = /home/agni/waymo/iscai_stage6/reports/block68_preoutcome_metric_reconciliation.json
+terminal remains open = YES

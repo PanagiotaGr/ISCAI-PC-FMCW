@@ -1,0 +1,101 @@
+============================================================
+STAGE 6 — BLOCK 6.3 PART 1/2
+DETERMINISTIC FUTURE FULL-BOX PROJECTION
+============================================================
+
+===== A. FROZEN BINDING SEAL =====
+binding            = EXACT PASS
+binding_freeze     = EXACT PASS
+block62            = EXACT PASS
+association policy  = FROZEN PASS
+shared mean policy  = FROZEN PASS
+future box policy   = FROZEN PASS
+
+===== B. RUNTIME API / PROVENANCE PREFLIGHT =====
+Stage5 heading API      = EXACT PASS
+predictive state source = predicted_sample PASS
+predictive yaw source   = predicted_tangent PASS
+controller_path=True    = PASS
+probe corner count      = 8 PASS
+
+===== C. CAUSAL ASSOCIATION MODULE =====
+deterministic_association.py = WRITTEN
+
+===== D. DETERMINISTIC FUTURE FULL-BOX MODULE =====
+deterministic_predictive.py = WRITTEN
+
+===== E. BLOCK6.3 PART1 UNIT TESTS =====
+test file = WRITTEN
+
+===== F. CONTROLLED COMPILE =====
+association module = PASS
+predictive module  = PASS
+tests              = PASS
+
+===== G. DEDICATED BLOCK6.3 PART1 TESTS =====
+Ran 20 tests in 0.016s
+OK
+
+===== H. INDEPENDENT FUTURE-BOX SEMANTIC SMOKE =====
+association pair count     = 1
+association anchor error m = 0.1999999999999993
+WOMD track-ID equality used= NO
+first future center H0     = (21.0, 0.0, 0.0)
+box-center recentering     = NO PASS
+corner counts              = [8, 8, 8, 8]
+reactive fallback boxes    = ()
+
+===== I. BLOCK6.3 PART1 SCOPE GUARDS =====
+predictive covariance      = NOT USED
+probabilistic occupancy    = NOT IMPLEMENTED
+class-aware policy         = NOT IMPLEMENTED
+association threshold      = NONE
+pre-association class gate = NONE
+perfect actor ID           = NONE
+future GT                  = NONE
+communication codebook     = NOT USED
+formal grid freeze         = NO
+
+===== J. FULL STAGE6 REGRESSION =====
+Ran 98 tests in 0.036s
+OK
+
+===== K. IMMUTABILITY / STORAGE =====
+binding freeze      = UNCHANGED
+Block6.2            = UNCHANGED
+Stage5 heading code = UNCHANGED
+Stage6 geometry      = UNCHANGED
+free GiB             = 1054.831
+250-GiB reserve      = PASS
+
+===== L. BLOCK6.3 PART1 REPORT =====
+report = /home/agni/waymo/iscai_stage6/reports/block63_part1_deterministic_future_box.json
+report SHA256 = 871c8a81e43048ff2ccf7ef1844ad5433a859ff15b944749e13be9160b08256a
+
+============================================================
+BLOCK 6.3 PART 1/2 — FINAL
+============================================================
+binding prerequisite       = EXACT PASS
+association                = RECIPROCAL UNIQUE NEAREST H0
+association threshold      = NONE
+forced assignment          = NO
+perfect actor identity     = NO
+unmatched actor handling   = EXPLICIT REACTIVE FALLBACK
+deterministic trajectory   = SHARED GAUSSIAN MEAN
+future center              = PREDICTOR ANCHOR + MEAN DISPLACEMENT
+annotation recentering     = NO
+future yaw                 = STAGE5 TANGENT RULE
+future dimensions          = CURRENT CAUSAL L/W/H
+future projections         = 4 HORIZONS
+physical corners           = 8 PER FUTURE BOX
+controller provenance      = PASS
+predictive covariance      = NO
+probabilistic occupancy    = NOT STARTED
+class-aware ADB            = NOT STARTED
+formal evaluation          = NO
+training/model inference   = NO
+dataset access             = NO
+Stage6 completion claimed  = NO
+upstream modified          = NO
+STATUS = PASS_DETERMINISTIC_FUTURE_FULL_BOX
+terminal remains open = YES

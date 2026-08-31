@@ -1,0 +1,45 @@
+{
+  "PDF_compliance": "PASS",
+  "Stage4_recalibration": false,
+  "Stage6_allowed": true,
+  "Stage6_modified_by_reconciliation": false,
+  "V7": {
+    "artifacts_preserved": true,
+    "invalidation_sha256": "522c92868efe96b282bf06050895af779cdbfcb5ffc07f9c7cc7b691b4888df3",
+    "status": "INVALIDATED_NONAUTHORITATIVE_COORDINATE_BINDING_DEFECT"
+  },
+  "causality": {
+    "formal_outcomes_used_for_parameter_selection": false,
+    "formal_population_used_for_tuning": false,
+    "future_truth_used_as_controller_input": false,
+    "tracks_to_predict_used_as_receiver_selector": false
+  },
+  "completion_gate": {
+    "empirical_probability_coverage": 0.9959473150962512,
+    "overhead_reduction_vs_exhaustive": 0.865216565349544,
+    "overhead_reduction_vs_fixed_or_exhaustive": "PASS",
+    "requested_coverage": "PASS"
+  },
+  "mandatory_acceptance": {
+    "passed": 17,
+    "status": "PASS",
+    "total": 17
+  },
+  "post_outcome_tuning": false,
+  "retraining": false,
+  "scientific_authority": {
+    "formal_evaluation_sha256": "76c23c21e667cf5acec1a6b1273256b915f8c12d0bba6417459e56c27203fc55",
+    "original_closure_sha256": "c83731948749f3ca20742aaac6b7474f53c755cbc8209dd31db969d229f60610",
+    "reproducibility_sha256": "980bfbd2007ed798742bd7c36b5e8b6bcd0e808590c0dc5d9608db1ec6211845",
+    "source": "frozen_Block58"
+  },
+  "scientific_rerun_during_reconciliation": false,
+  "stage": 5,
+  "status": "COMPLETE_FROZEN_FULLPDF_V2_RECONCILED",
+  "superseding_reconciliation": {
+    "path": "/home/agni/waymo/iscai_stage5/reports/stage5_fullpdf_v2_reconciliation_authority_v1.json",
+    "sha256": "f0d1a4af9e50202bf4379f03cfa411c481e081281020eb5450efd03760168f76"
+  },
+  "training": false,
+  "version": "fullpdf_v2"
+}

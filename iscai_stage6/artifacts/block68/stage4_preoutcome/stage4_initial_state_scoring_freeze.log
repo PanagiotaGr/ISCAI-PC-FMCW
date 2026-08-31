@@ -1,0 +1,126 @@
+==============================================================================
+STAGE 6 — BLOCK 6.8
+STAGE-4 INITIAL-STATE + SCORING FREEZE
+WRITE-ONCE PRE-OUTCOME SEMANTIC RESOLUTION
+NO 60-CANDIDATE SWEEP / NO PRIMARY GATE / NO FORMAL
+==============================================================================
+
+===== A. EXACT IMMUTABLE BOUNDARY =====
+block66_part3b_class_aware_policy_preregistration.json = EXACT PASS
+stage6_development_stage3_class_floor_freeze.json = EXACT PASS
+stage6_development_stage3_floor_scoring_semantics.json = EXACT PASS
+stage6_reactive_development_scoring_contract.json = EXACT PASS
+block68_reactive_decision_ledger_freeze.json = EXACT PASS
+block68_original_reactive_decision_ledger.jsonl = EXACT PASS
+block68_original_reactive_t0_maps.npy = EXACT PASS
+class_aware_policy.py = EXACT PASS
+metric_semantics.py = EXACT PASS
+evaluator_reference.py = EXACT PASS
+frozen_road_roi_definition.json = EXACT PASS
+reactive_development_scoring.py = EXACT PASS
+Stage-1 gamma         = IMMUTABLE
+Stage-2 margins       = IMMUTABLE
+Stage-3 floors        = IMMUTABLE
+Stage-4 outcomes      = NOT COMPUTED
+Stage-4 winner        = NOT SELECTED
+primary acceptance    = NOT TESTED
+formal evaluation     = NO
+
+===== B. EXACT STAGE-4 PREREGISTRATION =====
+time constants ms = [50, 100, 200, 400]
+rate values / s   = [1, 2, 4, 8, 16]
+zero smoothing    = NO
+class parameters  = FIXED FROM STAGES 1-3
+selection order   = EXACT PREREGISTERED
+
+===== C. EXACT 60-CANDIDATE SPACE =====
+rate pairs = 15
+T × rate pairs = 60 EXACT
+canonical final tie tuple = (T_ms, rho_dim_per_s, rho_bright_per_s)
+candidate outcomes evaluated = NO
+
+===== D. FROZEN CAUSAL t0 ACTUATOR STATE =====
+ledger scenarios = 120 / 120
+map stack shape  = (120, 501, 301)
+map dtype        = float64
+finite/in-range  = 120 / 120 PASS
+future input     = NO
+whole NPY seal   = EXACT PASS
+whole ledger seal= EXACT PASS
+row SHA metadata = PRESERVED UNDER DUAL IMMUTABLE FILE SEALS
+
+===== E. INITIAL-STATE SEMANTIC RESOLUTION =====
+literal prereg wording = current causal CLASS-AWARE reactive illumination
+materialized actuator state = frozen current causal original Part-A reactive t0 map
+silent equivalence claim = NO
+resolved I_prev = already-issued causal t0 actuator command
+class-aware target enters = I_raw + VRU floor guard
+future information in I_prev = NO
+new current-state controller invented = NO
+resolution timing = BEFORE ANY STAGE-4 OUTCOME
+
+===== F. EXACT FINAL-SCHEDULE RUNTIME ROUTE =====
+I_raw -> temporal_smooth_schedule = EXACT
+smoothing I_prev = frozen scenario t0 map
+smoothed -> apply_actuation_rate_limit = EXACT
+rate I_prev = SAME frozen scenario t0 map
+VRU guard after rate limit = REQUIRED
+I_final = RateLimitedSchedule.illumination
+
+===== G. STAGE-4 SCORING SEMANTICS =====
+risk vector = ['vehicle_shadow_zone_violation', 'glare_risk_exposure', '1-pedestrian_visibility_proxy', '1-cyclist_visibility_proxy', '1-road_illumination_retention']
+metric authority = frozen Block6.6/reconciled runtime
+candidate I_final = final rate-limited illumination
+scenario weighting = equal scenario macro
+class-specific NA values = excluded exactly as metric contract
+outcome-dependent normalization = NO
+weighted-sum objective = NO
+epsilon tie tolerance = NONE
+round-before-selection = NO
+exact key =
+   max(macro_safety_risk_vector)
+   mean(macro_safety_risk_vector)
+   macro_temporal_mean_absolute_change_rate
+   macro_flicker_change_rate
+   macro_rate_limit_safety_override_fraction
+   macro_over_masking_area
+   time_constant_ms
+   rho_dim_per_s
+   rho_bright_per_s
+
+===== H. WRITE-ONCE CURRENT-STATE BINDING =====
+binding state = WRITTEN
+binding rows  = 120
+binding SHA   = 3a1c689484fdbd8dbf763cfb0a52b3a987a5930a236fe9692f0b084cb178387d
+
+===== I. WRITE-ONCE STAGE-4 SCORING FREEZE =====
+freeze state = WRITTEN
+freeze SHA   = f8a0850610e4cee4984b668d5f7046c4ec6a5f873b28f645776d5f3a5ced2717
+
+===== J. POST-FREEZE REGRESSION =====
+Stage6 regression = 224 / 224 PASS
+
+==============================================================================
+BLOCK 6.8 STAGE-4 PRE-OUTCOME FREEZE — FINAL
+==============================================================================
+Stage-1 gamma             = IMMUTABLE
+Stage-2 margins           = IMMUTABLE
+Stage-3 floors            = IMMUTABLE
+current I_prev scenarios  = 120 / 120
+I_prev source             = FROZEN CAUSAL t0 ACTUATOR MAP
+all-on structural smoke   = FORBIDDEN FOR SCORING
+Stage-4 rate pairs        = 15 EXACT
+Stage-4 candidates        = 60 EXACT
+Stage-4 outcomes computed = NO
+Stage-4 winner selected   = NO
+primary acceptance        = NOT TESTED
+formal evaluation         = NO
+Stage6 regression         = 224 / 224 PASS
+binding SHA               = 3a1c689484fdbd8dbf763cfb0a52b3a987a5930a236fe9692f0b084cb178387d
+Stage-4 freeze SHA        = f8a0850610e4cee4984b668d5f7046c4ec6a5f873b28f645776d5f3a5ced2717
+report state              = WRITTEN
+report SHA                = 0e9462d9a811f4df9283a90fa74f303e6b41c817fce44e0fbcf39658ed69aa8e
+STATUS = PASS_STAGE4_INITIAL_STATE_AND_SCORING_FROZEN
+report = /home/agni/waymo/iscai_stage6/reports/block68_stage4_initial_state_scoring_freeze.json
+NEXT = EXACT 60-CANDIDATE STAGE-4 SWEEP
+terminal remains open = YES

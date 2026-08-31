@@ -1,0 +1,92 @@
+{
+  "acceptance_scope": "classical trajectory baselines and Multidimensional Hough under the frozen Stage2 observation interface",
+  "formal_primary_metrics": {
+    "CA": {
+      "ADE_m": 30.181022663322686,
+      "FDE_m": 81.64107028549039,
+      "reconstruction_F1": 0.45033112582781454,
+      "reconstruction_precision": 0.3508771929824561,
+      "reconstruction_recall": 0.6284658040665434
+    },
+    "CTRV": {
+      "ADE_m": 4.751655395634982,
+      "FDE_m": 8.14569026429422,
+      "reconstruction_F1": 0.5430067314884068,
+      "reconstruction_precision": 0.45603015075376885,
+      "reconstruction_recall": 0.6709796672828097
+    },
+    "CV": {
+      "ADE_m": 6.750980085118079,
+      "FDE_m": 13.782748133798378,
+      "reconstruction_F1": 0.5197889182058048,
+      "reconstruction_precision": 0.4041025641025641,
+      "reconstruction_recall": 0.7282809611829945
+    },
+    "IMM_CV_CA_CTRV": {
+      "ADE_m": 3.6461820971860464,
+      "FDE_m": 7.228342160283656,
+      "reconstruction_F1": 0.3130262506191183,
+      "reconstruction_precision": 0.21380243572395127,
+      "reconstruction_recall": 0.5841035120147874
+    },
+    "Kalman_EKF": {
+      "ADE_m": 3.537295300341883,
+      "FDE_m": 6.756186058918238,
+      "reconstruction_F1": 0.27389325610260656,
+      "reconstruction_precision": 0.17643923240938167,
+      "reconstruction_recall": 0.6118299445471349
+    },
+    "Multidimensional_Hough": {
+      "ADE_m": 1.6147003361796544,
+      "FDE_m": 2.536680875181824,
+      "reconstruction_F1": 0.6057692307692307,
+      "reconstruction_precision": 0.865979381443299,
+      "reconstruction_recall": 0.4658040665434381
+    }
+  },
+  "formal_validation": {
+    "N": 120,
+    "deterministic_run_sha256": "9151ef8714fb710b57b8cc762bb809cebf29b6174d1aeb8dab609b42f6641e7b",
+    "exact_reproducibility": true,
+    "manifest_sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "strata": {
+      "cyclist": 40,
+      "pedestrian_no_cyclist": 40,
+      "vehicle_only": 40
+    }
+  },
+  "implementation": {
+    "file_count": 90,
+    "sha256": "e80f7c593954bffdb2981232db9bd9f8b52ae92dfda5635083183a0ece737525"
+  },
+  "regression": {
+    "tests_passed": 109,
+    "tests_total": 109
+  },
+  "scientific_boundaries": {
+    "MHT_semantics": "Multidimensional Hough Transform",
+    "downstream_stage_dependencies": false,
+    "estimated_association_semantics": "deterministic_gated_greedy_nearest_neighbor",
+    "future_truth_algorithm_input": false,
+    "future_truth_assignment": false,
+    "future_truth_evaluation_only": true,
+    "global_anchor_alignment_enforced": true,
+    "legacy_runtime_dependencies": false,
+    "measured_FMCW_claim": false,
+    "measurement_uncertainty_consumed": true,
+    "primary_real_nontarget_predictions_ignored": true,
+    "terminated_tracks_forecast": false
+  },
+  "scope_not_claimed_by_stage3": {
+    "ADB_policy": "later stage",
+    "DeepSense_external_validation": "later stage",
+    "all_final_PDF_metrics_completed": false,
+    "beam_policy": "later stage",
+    "joint_shared_posterior": "Stage4",
+    "optical_link_chain": "later stage",
+    "probabilistic_NLL_Brier_calibration": "Stage4"
+  },
+  "stage": 3,
+  "stage3_completion_statement": "Stage3 classical-baseline acceptance criterion satisfied: reproducible real-WOMD CV/CA/CTRV/Kalman/IMM metrics and Multidimensional Hough evaluation on the frozen Stage2 observation interface.",
+  "status": "COMPLETE_FROZEN"
+}

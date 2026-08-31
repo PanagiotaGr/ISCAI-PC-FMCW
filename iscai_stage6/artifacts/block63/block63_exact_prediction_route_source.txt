@@ -1,0 +1,638 @@
+
+============================================================
+GaussianHorizonPosterior
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/contracts.py
+sha256=4dc14562f5a4005b3f424b6cca65712077738833d66f7adae1c19e0801836123
+============================================================
+class GaussianHorizonPosterior:
+    horizon_s: float
+    mean_H0_m: Vector3
+    covariance_H0_m2: Matrix3
+
+    def __post_init__(self) -> None:
+        if self.horizon_s not in (
+            PRIMARY_HORIZONS_S
+        ):
+            raise ValueError(
+                "Unsupported Stage4 horizon."
+            )
+
+        if not all(
+            isfinite(float(x))
+            for x in self.mean_H0_m
+        ):
+            raise ValueError(
+                "Posterior mean must be finite."
+            )
+
+        _validate_spd3(
+            self.covariance_H0_m2
+        )
+
+============================================================
+TrajectoryGaussianPosterior
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/contracts.py
+sha256=642ad998ec68c83b4b09293d220ba894b88be5d9447f993a0adb22341553a964
+============================================================
+class TrajectoryGaussianPosterior:
+    prediction_id: str
+    horizons: tuple[
+        GaussianHorizonPosterior,
+        ...,
+    ]
+
+    def __post_init__(self) -> None:
+        if not self.prediction_id:
+            raise ValueError(
+                "prediction_id cannot be empty."
+            )
+
+        actual = tuple(
+            item.horizon_s
+            for item in self.horizons
+        )
+
+        if actual != PRIMARY_HORIZONS_S:
+            raise ValueError(
+                "Stage4 posterior must contain "
+                "exactly the frozen primary horizons."
+            )
+
+============================================================
+GaussianTrajectoryOutput
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_gru.py
+sha256=c3668b76d3767f7c9315f8d82b43bd387ba9ca4f523fcd508b754cd214449340
+============================================================
+class GaussianTrajectoryOutput:
+    """
+    Predictive distribution in normalized
+    future-displacement coordinates.
+
+    This predictive covariance is NOT
+    Stage2 measurement covariance R_t.
+
+    Stage2 R_t remains part of the model
+    input history. scale_tril below is an
+    output of the learned predictor.
+    """
+
+    mean: torch.Tensor
+
+    scale_tril: torch.Tensor
+
+    def __post_init__(self) -> None:
+        if self.mean.ndim != 3:
+            raise ValueError(
+                "Gaussian mean must be "
+                "[B,H,3]."
+            )
+
+        if self.mean.shape[1:] != (
+            PREDICTION_HORIZONS,
+            POSITION_DIM,
+        ):
+            raise ValueError(
+                "Gaussian mean shape changed."
+            )
+
+        if self.scale_tril.ndim != 4:
+            raise ValueError(
+                "scale_tril must be "
+                "[B,H,3,3]."
+            )
+
+        if self.scale_tril.shape != (
+            self.mean.shape[0],
+            PREDICTION_HORIZONS,
+            POSITION_DIM,
+            POSITION_DIM,
+        ):
+            raise ValueError(
+                "Gaussian scale_tril "
+                "shape changed."
+            )
+
+    @property
+    def covariance(
+        self,
+    ) -> torch.Tensor:
+        return (
+            self.scale_tril
+            @
+            self.scale_tril.transpose(
+                -1,
+                -2,
+            )
+        )
+
+============================================================
+extract_deterministic_prediction
+/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/formal_runtime.py
+sha256=687a9c7bc73e4cd6b7be82ae4f421a9e76acbdd29a9a8d6147d18bc6652f140f
+============================================================
+def extract_deterministic_prediction(
+    output,
+):
+    if isinstance(
+        output,
+        torch.Tensor,
+    ):
+        candidate = output
+
+    else:
+        candidate = None
+
+        for name in (
+            "prediction",
+            "mean",
+            "trajectory",
+            "positions",
+        ):
+            value = getattr(
+                output,
+                name,
+                None,
+            )
+
+            if isinstance(
+                value,
+                torch.Tensor,
+            ):
+                candidate = value
+                break
+
+        if (
+            candidate is None
+            and
+            isinstance(
+                output,
+                (
+                    tuple,
+                    list,
+                ),
+            )
+            and
+            output
+            and
+            isinstance(
+                output[
+                    0
+                ],
+                torch.Tensor,
+            )
+        ):
+            candidate = output[
+                0
+            ]
+
+    if candidate is None:
+        raise RuntimeError(
+            "Could not extract deterministic "
+            "trajectory tensor from model output."
+        )
+
+    if (
+        candidate.ndim != 3
+        or
+        tuple(
+            candidate.shape[
+                1:
+            ]
+        )
+        !=
+        (
+            4,
+            3,
+        )
+    ):
+        raise RuntimeError(
+            "Deterministic prediction shape "
+            f"changed: {tuple(candidate.shape)}"
+        )
+
+    return candidate
+
+============================================================
+deterministic_receiver_angular_posterior
+/home/agni/waymo/iscai_stage5/src/iscai_stage5/angular_monte_carlo.py
+sha256=cc60315f47752c6743b4f8c89ad1b30af5737f0b0164bd612ee30287465937a8
+============================================================
+def deterministic_receiver_angular_posterior(
+    *,
+    trajectory_mean_h0_m,
+    raw_trajectory_covariance_h0_m2,
+    current_position_h0_m,
+    current_heading_h0_rad: float,
+    receiver_geometry_mode: str,
+    receiver_offset: ReceiverOffsetGaussianBody | None,
+    sample_count: int,
+    seed: int = MONTE_CARLO_BASE_SEED,
+    low_speed_threshold_mps: float = (
+        LOW_SPEED_HEADING_THRESHOLD_MPS
+    ),
+) -> ReceiverAngularMonteCarloPosterior:
+    """
+    Primary Stage5 receiver-aware angular posterior.
+
+    Pipeline:
+
+      frozen Gaussian mean/cov
+      → frozen covariance calibration
+      → product-of-horizon Gaussian sampling
+      → samplewise predicted trajectory heading
+      → shared receiver placement draw
+      → receiver position in H0
+      → range/azimuth/elevation samples
+    """
+
+    if (
+        receiver_geometry_mode
+        not in
+        RECEIVER_GEOMETRY_MODES
+    ):
+        raise ValueError(
+            "Unsupported receiver geometry mode."
+        )
+
+    mean = _finite_horizon_positions(
+        trajectory_mean_h0_m,
+        name="trajectory_mean_h0_m",
+    )
+
+    calibrated_covariance = (
+        calibrate_stage4_horizon_covariances(
+            raw_trajectory_covariance_h0_m2
+        )
+    )
+
+    sample_count = int(
+        sample_count
+    )
+
+    if (
+        sample_count
+        <
+        MONTE_CARLO_MINIMUM_SAMPLE_COUNT
+    ):
+        raise ValueError(
+            "sample_count is below the frozen "
+            "Stage5 minimum probability-resolution "
+            "requirement."
+        )
+
+    trajectory_samples = (
+        sample_product_of_horizon_gaussians(
+            trajectory_mean_h0_m=mean,
+
+            calibrated_covariance_h0_m2=(
+                calibrated_covariance
+            ),
+
+            sample_count=sample_count,
+
+            seed=int(
+                seed
+            ),
+        )
+    )
+
+    (
+        heading_samples,
+        fallback_mask,
+    ) = resolve_samplewise_headings(
+        trajectory_samples_h0_m=(
+            trajectory_samples
+        ),
+
+        current_position_h0_m=(
+            current_position_h0_m
+        ),
+
+        current_heading_h0_rad=(
+            current_heading_h0_rad
+        ),
+
+        low_speed_threshold_mps=(
+            low_speed_threshold_mps
+        ),
+    )
+
+    if (
+        receiver_geometry_mode
+        ==
+        "centroid_baseline"
+    ):
+        receiver_positions = (
+            trajectory_samples.copy()
+        )
+
+    else:
+        if receiver_offset is None:
+            raise ValueError(
+                "known/uncertain receiver mode "
+                "requires receiver_offset."
+            )
+
+        offset_mean = _finite_vector3(
+            receiver_offset.mean_body_m,
+            name="receiver_offset.mean_body_m",
+        )
+
+        offset_covariance = (
+            _psd_covariance3(
+                receiver_offset.covariance_body_m2,
+                name=(
+                    "receiver_offset."
+                    "covariance_body_m2"
+                ),
+            )
+        )
+
+        if (
+            receiver_geometry_mode
+            ==
+            "known_receiver_offset"
+        ):
+            body_offsets = np.repeat(
+                offset_mean[
+                    None,
+                    :
+                ],
+                sample_count,
+                axis=0,
+            )
+
+        else:
+            #
+            # Separate RNG stream from trajectory sampling.
+            #
+            # One physical receiver-placement draw is shared
+            # across all future horizons of the same MC sample.
+            #
+            generator = np.random.Generator(
+                np.random.PCG64(
+                    int(
+                        seed
+                    )
+                    +
+                    1_000_003
+                )
+            )
+
+            z = generator.standard_normal(
+                (
+                    sample_count,
+                    3,
+                ),
+                dtype=np.float64,
+            )
+
+            body_offsets = (
+                _sample_gaussian3(
+                    mean=offset_mean,
+
+                    covariance=(
+                        offset_covariance
+                    ),
+
+                    standard_normal_samples=z,
+                )
+            )
+
+        offset_h0 = _yaw_rotate_samples(
+            body_offsets,
+            heading_samples,
+        )
+
+        receiver_positions = (
+            trajectory_samples
+            +
+            offset_h0
+        )
+
+    (
+        range_samples,
+        azimuth_samples,
+        elevation_samples,
+    ) = _angular_samples_from_positions(
+        receiver_positions
+    )
+
+    summaries = []
+
+    for horizon_index, horizon in enumerate(
+        HORIZONS_S
+    ):
+        ranges = range_samples[
+            :,
+            horizon_index
+        ]
+
+        azimuths = azimuth_samples[
+            :,
+            horizon_index
+        ]
+
+        elevations = elevation_samples[
+            :,
+            horizon_index
+        ]
+
+        range_mean = float(
+            np.mean(
+                ranges
+            )
+        )
+
+        azimuth_mean = (
+            _circular_mean(
+                azimuths
+            )
+        )
+
+        elevation_mean = float(
+            np.mean(
+                elevations
+            )
+        )
+
+        residuals = np.empty(
+            (
+                sample_count,
+                3,
+            ),
+            dtype=np.float64,
+        )
+
+        residuals[
+            :,
+            0
+        ] = (
+            ranges
+            -
+            range_mean
+        )
+
+        residuals[
+            :,
+            1
+        ] = np.asarray(
+            [
+                circular_angle_difference(
+                    float(
+                        angle
+                    ),
+                    azimuth_mean,
+                )
+                for angle in azimuths
+            ],
+            dtype=np.float64,
+        )
+
+        residuals[
+            :,
+            2
+        ] = (
+            elevations
+            -
+            elevation_mean
+        )
+
+        covariance_rae = (
+            residuals.T
+            @
+            residuals
+            /
+            float(
+                sample_count
+                -
+                1
+            )
+        )
+
+        covariance_rae = (
+            0.5
+            *
+            (
+                covariance_rae
+                +
+                covariance_rae.T
+            )
+        )
+
+        summaries.append(
+            HorizonAngularSummary(
+                horizon_s=(
+                    float(
+                        horizon
+                    )
+                ),
+
+                range_mean_m=(
+                    range_mean
+                ),
+
+                range_std_m=(
+                    float(
+                        np.std(
+                            ranges,
+                            ddof=1,
+                        )
+                    )
+                ),
+
+                azimuth_circular_mean_rad=(
+                    azimuth_mean
+                ),
+
+                azimuth_circular_std_rad=(
+                    _circular_std(
+                        azimuths
+                    )
+                ),
+
+                elevation_mean_rad=(
+                    elevation_mean
+                ),
+
+                elevation_std_rad=(
+                    float(
+                        np.std(
+                            elevations,
+                            ddof=1,
+                        )
+                    )
+                ),
+
+                covariance_rae=tuple(
+                    tuple(
+                        float(
+                            value
+                        )
+                        for value in row
+                    )
+                    for row in covariance_rae
+                ),
+
+                heading_fallback_fraction=(
+                    float(
+                        np.mean(
+                            fallback_mask[
+                                :,
+                                horizon_index
+                            ]
+                        )
+                    )
+                ),
+            )
+        )
+
+    sample_sha = _sample_hash(
+        range_samples,
+        azimuth_samples,
+        elevation_samples,
+        heading_samples,
+        receiver_positions,
+    )
+
+    return ReceiverAngularMonteCarloPosterior(
+        range_samples_m=(
+            range_samples
+        ),
+
+        azimuth_samples_rad=(
+            azimuth_samples
+        ),
+
+        elevation_samples_rad=(
+            elevation_samples
+        ),
+
+        heading_samples_rad=(
+            heading_samples
+        ),
+
+        receiver_position_samples_h0_m=(
+            receiver_positions
+        ),
+
+        summaries=tuple(
+            summaries
+        ),
+
+        sample_count=(
+            sample_count
+        ),
+
+        seed=int(
+            seed
+        ),
+
+        receiver_geometry_mode=(
+            receiver_geometry_mode
+        ),
+
+        sample_sha256=(
+            sample_sha
+        ),
+    )

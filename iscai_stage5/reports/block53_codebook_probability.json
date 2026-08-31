@@ -1,0 +1,70 @@
+{
+  "Part1_continuity": {
+    "historical_implementation_sha256": "1a705734d1de3a36e10ccd900633726afa6ca3a2fe0ff9ccfbf917cfd1867b75",
+    "status": "PASS"
+  },
+  "beam_metrics": {
+    "P_b": "posterior_mass",
+    "P_b_and_S_b_distinct": true,
+    "S_b": "expected_directional_gain",
+    "outside_support_mass_explicit": true
+  },
+  "block": "5.3",
+  "completion": "COMPLETE_FROZEN",
+  "frozen_codebook": {
+    "beam_counts": [
+      16,
+      32,
+      64
+    ],
+    "decision_width_deg": {
+      "16": 1.5,
+      "32": 0.75,
+      "64": 0.375
+    },
+    "formal_tuning": false,
+    "support_deg": [
+      -12.0,
+      12.0
+    ],
+    "support_is_constructed": true
+  },
+  "frozen_gain_contract": {
+    "HPBW": "decision_cell_width",
+    "adjacent_boundary_gain": [
+      0.5,
+      0.5
+    ],
+    "constructed": true,
+    "formal_tuning": false,
+    "is_final_optical_link_gain": false,
+    "model": "constructed_normalized_Gaussian_main_lobe_HPBW_equals_decision_cell_width",
+    "overlap": true
+  },
+  "implementation": {
+    "file_count": 52,
+    "sha256": "23dac64bed4ca76438f4303ff354f12c190a1cd5a097b9f3a40008facc23aa53"
+  },
+  "next": "Block5.4 beam-policy baselines",
+  "policy": {
+    "path": "/home/agni/waymo/iscai_stage5/configs/beam_codebook_policy.json",
+    "sha256": "bd94f8609393a7c9fe02762cc4bf38e3a77a90cc31adef5f2e6b06aece4074d7"
+  },
+  "project": "Agni",
+  "reference_resolution": {
+    "PartA_half_FOV_deg": 12.0,
+    "classification": "explicit_visualization_assumption",
+    "usable_PartA_communication_beamwidth": false,
+    "usable_PartA_physical_gain_pattern": false
+  },
+  "scientific_execution": {
+    "Stage4_inference": false,
+    "development_tuning": false,
+    "formal_N120_read": false,
+    "recalibration": false,
+    "training": false,
+    "upstream_modified": false
+  },
+  "stage": 5,
+  "status": "PASS"
+}

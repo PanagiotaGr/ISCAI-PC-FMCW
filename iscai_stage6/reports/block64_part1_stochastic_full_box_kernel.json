@@ -1,0 +1,48 @@
+{
+  "block": "6.4-Part1",
+  "contract": {
+    "path": "/home/agni/waymo/iscai_stage6/configs/block64_part1_stochastic_full_box_kernel_contract.json",
+    "sha256": "030148d9ab49e8dff2b434fa0fb7b819da77ad3d5faf3d42744bb13ef8024808"
+  },
+  "implementation": {
+    "module": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/probabilistic_full_box.py",
+    "module_sha256": "51daeab95713d6e7d2738ced466be4844b73dce70a09138b2b769de880462995",
+    "runner": "/home/agni/waymo/iscai_stage6/scripts/run_block64_part1_stochastic_full_box_kernel.py",
+    "runner_sha256": "72d9a31e97646c12a89edc03d86d0b840301f1c7fe2d364f84a06c2f6c6b2c9e",
+    "test": "/home/agni/waymo/iscai_stage6/tests/test_block64_part1_stochastic_full_box.py",
+    "test_sha256": "8ca464ef17ace511aa04676f1a9a3962b00102e5e4cc16a8cb5d56483971bbac"
+  },
+  "next": "BLOCK6.4_PART2_DEVELOPMENT_MC_CONVERGENCE_AND_OCCUPANCY_KERNEL",
+  "scientific_semantics": {
+    "calibrated_covariance_used": true,
+    "centroid_only": false,
+    "corners_per_sampled_box": 8,
+    "cross_horizon_covariance_invented": false,
+    "full_box_uncertainty_propagation": true,
+    "future_GT": false,
+    "perfect_identity": false,
+    "samplewise_tangent_heading": true
+  },
+  "scope": {
+    "MC_N_frozen": false,
+    "formal_evaluation": false,
+    "gamma_frozen": false,
+    "real_posterior_sampled": false,
+    "recalibration": false,
+    "scientific_grid_frozen": false,
+    "seed_set_frozen": false,
+    "training": false
+  },
+  "stage": 6,
+  "status": "PASS_BLOCK64_PART1_STOCHASTIC_FULL_BOX_KERNEL",
+  "tests": {
+    "dedicated": {
+      "count": 14,
+      "status": "PASS"
+    },
+    "full_stage6": {
+      "count": 112,
+      "status": "PASS"
+    }
+  }
+}

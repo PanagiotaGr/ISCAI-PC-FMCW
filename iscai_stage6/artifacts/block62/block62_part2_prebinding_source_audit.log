@@ -1,0 +1,226 @@
+============================================================
+BLOCK 6.2 PART 2/2 — PRE-BINDING SOURCE AUDIT
+READ-ONLY CANONICAL PART-A NOTEBOOK INSPECTION
+============================================================
+
+===== A. FROZEN PRE-BINDING SEAL =====
+notebook                     = EXACT PASS
+part_a_reference             = EXACT PASS
+block60_source_audit         = EXACT PASS
+block60_adapter_contract     = EXACT PASS
+block61_closure              = EXACT PASS
+block62_part1_contract       = EXACT PASS
+block62_part1_report         = EXACT PASS
+Part-A git HEAD              = EXACT PASS
+
+===== B. CANONICAL NOTEBOOK READ-ONLY LOAD =====
+notebook SHA256       = b5a80a6d3441de6d571db4f65b4a43ed4052cc2b3ccba935ad31b5dd51316ef3
+total cells           = 77
+code cells            = 66
+notebook execution    = NO
+source modification   = NO
+
+===== C. ADB SOURCE CELL DISCOVERY =====
+candidate ADB cells = [3, 5, 6, 44, 49, 52, 53, 55, 56, 57, 58, 59, 60, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76]
+candidate count     = 23
+
+===== D. STATIC PARAMETER EXTRACTION =====
+relevant assignments = 109
+COLOR_EPS | cell=68 | {'kind': 'str', 'value': 'crimson'}
+COLOR_THETA_BOUNDS | cell=68 | {'kind': 'str', 'value': 'dodgerblue'}
+COLOR_THETA_C | cell=68 | {'kind': 'str', 'value': 'crimson'}
+EPS | cell=3 | {'kind': 'float', 'value': 1e-12}
+adb_angle_deg | cell=6 | {'kind': 'ndarray', 'shape': [301], 'size': 301, 'minimum': -12.0, 'maximum': 12.0, 'first': -12.0, 'last': 12.0, 'uniform_step': 0.08000000000000007}
+adb_angmap_num_snapshots | cell=72 | EXPR=globals().get('adb_trz_num_snapshots', 4)
+adb_angmap_track_colors | cell=72 | {'kind': 'list', 'value': ['tab:blue', 'tab:orange', 'tab:green', 'tab:red']}
+adb_fig3_clean_all_theta | cell=76 | EXPR=adb_fig3_clean_layout_values['all_theta']
+adb_fig3_clean_data_ymax | cell=76 | EXPR=adb_fig3_clean_layout_values['data_ymax']
+adb_fig3_clean_data_ymin | cell=76 | EXPR=adb_fig3_clean_layout_values['data_ymin']
+adb_fig3_clean_key_space | cell=76 | EXPR=adb_fig3_clean_layout_values['key_space']
+adb_fig3_clean_key_x0 | cell=76 | EXPR=adb_fig3_clean_layout_values['key_x0']
+adb_fig3_clean_key_x1 | cell=76 | EXPR=adb_fig3_clean_layout_values['key_x1']
+adb_fig3_clean_key_y1 | cell=76 | EXPR=adb_fig3_clean_layout_values['key_y1']
+adb_fig3_clean_key_y2 | cell=76 | EXPR=adb_fig3_clean_layout_values['key_y2']
+adb_fig3_clean_key_y3 | cell=76 | EXPR=adb_fig3_clean_layout_values['key_y3']
+adb_fig3_clean_layout_values | cell=76 | EXPR=adb_fig3_clean_plot(adb_fig3_clean_track1, adb_fig3_clean_track2, source_label='reconstructed')
+adb_fig3_clean_track1 | cell=76 | EXPR=adb_fig3_clean_track_series(m2_final_tracks[0])
+adb_fig3_clean_track2 | cell=76 | EXPR=adb_fig3_clean_track_series(m2_final_tracks[1])
+adb_fig3_clean_xlim_left | cell=76 | EXPR=adb_fig3_clean_layout_values['xlim_left']
+adb_fig3_clean_xlim_right | cell=76 | EXPR=adb_fig3_clean_layout_values['xlim_right']
+adb_fig3_clean_xmax | cell=76 | EXPR=adb_fig3_clean_layout_values['xmax']
+adb_fig3_clean_xmin | cell=76 | EXPR=adb_fig3_clean_layout_values['xmin']
+adb_fig3_clean_ymax | cell=76 | EXPR=adb_fig3_clean_layout_values['ymax']
+adb_fig3_clean_ymin | cell=76 | EXPR=adb_fig3_clean_layout_values['ymin']
+adb_fig3_num_time_samples | cell=6 | {'kind': 'int', 'value': 200}
+adb_fig3_time_s | cell=56 | {'kind': 'ndarray', 'shape': [200], 'size': 200, 'minimum': 0.0, 'maximum': 7.328571428571429, 'first': 0.0, 'last': 7.328571428571429, 'uniform_step': 0.036826992103374014}
+adb_fig3_time_stop_fraction | cell=6 | {'kind': 'float', 'value': 0.95}
+adb_fig3_time_stop_s | cell=56 | {'kind': 'float', 'value': 7.328571428571429}
+adb_fig3a_closing_speed_mps | cell=55 | {'kind': 'float', 'value': 19.444444444444443}
+adb_fig3a_host_speed_kmh | cell=6 | {'kind': 'float', 'value': 40.0}
+adb_fig3a_host_speed_mps | cell=55 | {'kind': 'float', 'value': 11.11111111111111}
+adb_fig3a_initial_separation_m | cell=6 | {'kind': 'float', 'value': 150.0}
+adb_fig3a_intensity | cell=59 | EXPR=adb_intensity_map(adb_fig3a_theta_min_deg[adb_fig3a_snapshot_idx], adb_fig3a_theta_max_deg[adb_fig3a_snapshot_idx], adb_fig3a_x_m[adb_fig3a_snapshot_idx], adb_f
+adb_fig3a_oncoming_speed_kmh | cell=6 | {'kind': 'float', 'value': 30.0}
+adb_fig3a_oncoming_speed_mps | cell=55 | {'kind': 'float', 'value': 8.333333333333334}
+adb_fig3a_range_m | cell=56 | {'kind': 'ndarray', 'shape': [200], 'size': 200, 'minimum': 7.5, 'maximum': 150.0, 'first': 150.0, 'last': 7.5, 'uniform_step': -0.71608040201005}
+adb_fig3a_snapshot_idx | cell=59 | EXPR=len(adb_fig3_time_s) // 2
+adb_fig3a_time_to_meet_s | cell=55 | {'kind': 'float', 'value': 7.714285714285715}
+adb_fig3a_x_m | cell=58 | {'kind': 'ndarray', 'shape': [200], 'size': 200, 'minimum': 7.5, 'maximum': 150.0, 'first': 150.0, 'last': 7.5, 'uniform_step': -0.71608040201005}
+adb_fig3a_y_m | cell=58 | EXPR=-assumed_lane_width_m * np.ones_like(adb_fig3a_x_m)
+adb_fig3b_host_speed_kmh | cell=6 | {'kind': 'float', 'value': 50.0}
+adb_fig3b_host_speed_mps | cell=55 | {'kind': 'float', 'value': 13.88888888888889}
+adb_fig3b_initial_range_m | cell=56 | {'kind': 'float', 'value': 30.0}
+adb_fig3b_initial_spacing_m | cell=6 | {'kind': 'float', 'value': 30.0}
+adb_fig3b_intensity | cell=59 | EXPR=adb_combine_intensity_maps(adb_fig3b_theta_min_deg, adb_fig3b_theta_max_deg, adb_fig3b_x_m, adb_fig3b_y_m)
+adb_fig3b_lane_relation | cell=6 | {'kind': 'str', 'value': 'adjacent lanes'}
+adb_fig3b_num_preceding_vehicles | cell=6 | {'kind': 'int', 'value': 2}
+adb_fig3b_x_m | cell=58 | EXPR=adb_fig3b_initial_range_m * np.ones(adb_fig3b_num_preceding_vehicles)
+adb_fig3b_y_m | cell=58 | EXPR=np.array([-assumed_lane_width_m, assumed_lane_width_m])
+adb_int2_geom | cell=73 | EXPR=adb_trz_shadow_geometry_from_xy(adb_int2_x_track, adb_int2_y_track)
+adb_int2_num_snapshots | cell=73 | EXPR=globals().get('adb_trz_num_snapshots', 4)
+adb_int2_snapshot_indices | cell=73 | EXPR=adb_trz_select_snapshot_indices(adb_int2_frames, n_snapshots=adb_int2_num_snapshots)
+adb_int2_track | cell=73 | EXPR=m2_final_tracks[1]
+adb_int2_track_color | cell=73 | {'kind': 'str', 'value': 'tab:orange'}
+adb_int2_track_label | cell=73 | {'kind': 'str', 'value': 'Reconstructed track 2'}
+adb_range_m | cell=6 | {'kind': 'ndarray', 'shape': [301], 'size': 301, 'minimum': 0.0, 'maximum': 150.0, 'first': 0.0, 'last': 150.0, 'uniform_step': 0.5}
+adb_rc_frame0_items | cell=71 | {'kind': 'list', 'value': []}
+adb_rc_requested_frame | cell=6 | {'kind': 'int', 'value': 0}
+adb_rec_colors | cell=69 | {'kind': 'list', 'value': ['tab:blue', 'tab:orange', 'tab:green', 'tab:red']}
+adb_rec_num_tracks | cell=69 | EXPR=len(m2_final_tracks)
+adb_shadow_interval_center_deg | cell=67 | {'kind': 'float', 'value': -5.0}
+adb_shadow_interval_profile | cell=67 | EXPR=np.where((theta_grid_deg >= theta_shadow_min_deg) & (theta_grid_deg <= theta_shadow_max_deg), 1.0, 0.0)
+adb_trz_colors | cell=70 | {'kind': 'list', 'value': ['tab:blue', 'tab:orange', 'tab:green', 'tab:red']}
+adb_trz_cols | cell=70 | {'kind': 'int', 'value': 4}
+adb_trz_front_margin_units | cell=6 | {'kind': 'float', 'value': 4.0}
+adb_trz_num_snapshots | cell=6 | {'kind': 'int', 'value': 4}
+adb_trz_num_tracks | cell=70 | EXPR=len(m2_final_tracks)
+adb_trz_transition_length_units | cell=6 | {'kind': 'float', 'value': 8.0}
+angular_shadow_mask | cell=52 | EXPR=(THETA_DEG >= theta_shadow_min_deg) & (THETA_DEG <= theta_shadow_max_deg)
+assumed_adb_r_max_m | cell=6 | {'kind': 'float', 'value': 80.0}
+assumed_adb_r_min_m | cell=6 | {'kind': 'float', 'value': 30.0}
+assumed_lane_width_m | cell=6 | {'kind': 'float', 'value': 3.5}
+assumed_safety_margin_deg | cell=6 | {'kind': 'float', 'value': 0.5}
+assumed_safety_margin_rad | cell=6 | {'kind': 'float', 'value': 0.008726646259971648}
+assumed_vehicle_half_width_m | cell=6 | {'kind': 'float', 'value': 0.95}
+assumed_vehicle_width_m | cell=6 | {'kind': 'float', 'value': 1.9}
+delta_theta_deg | cell=6 | {'kind': 'float', 'value': 0.0}
+demo_car_width_for_arcs_m | cell=68 | {'kind': 'float', 'value': 1.9}
+demo_delta_theta_deg | cell=68 | {'kind': 'float', 'value': 0.3}
+demo_epsilon_deg | cell=68 | EXPR=np.rad2deg(np.arctan((demo_target_width_m / 2 + demo_lateral_safety_margin_m) / demo_target_range_m))
+demo_lateral_safety_margin_m | cell=68 | {'kind': 'float', 'value': 1.0}
+demo_shadow_center_deg | cell=68 | {'kind': 'float', 'value': -28.3}
+demo_target_width_m | cell=68 | {'kind': 'float', 'value': 1.9}
+demo_theta_c_deg | cell=68 | {'kind': 'float', 'value': -28.0}
+demo_theta_shadow_max_deg | cell=68 | EXPR=demo_shadow_center_deg + demo_epsilon_deg
+demo_theta_shadow_min_deg | cell=68 | EXPR=demo_shadow_center_deg - demo_epsilon_deg
+epsilon_deg | cell=6 | {'kind': 'float', 'value': 0.75}
+full_shadow_mask | cell=52 | EXPR=angular_shadow_mask & full_shadow_range_mask
+full_shadow_range_mask | cell=52 | EXPR=R_M <= r_shadow_end_m
+lateral_safety_margin_m | cell=6 | {'kind': 'float', 'value': 1.0}
+m2_num_theta_bins | cell=5 | {'kind': 'int', 'value': 181}
+m2_rho_bin_width | cell=5 | {'kind': 'float', 'value': 1.0}
+m2_support_eps | cell=5 | {'kind': 'float', 'value': 1.6}
+m2_theta_max_deg | cell=5 | {'kind': 'float', 'value': 90.0}
+m2_theta_min_deg | cell=5 | {'kind': 'float', 'value': -90.0}
+r_shadow_end_m | cell=6 | {'kind': 'float', 'value': 154.0}
+r_transition_end_m | cell=6 | {'kind': 'float', 'value': 174.0}
+radial_safety_margin_m | cell=6 | {'kind': 'float', 'value': 4.0}
+range_grid_m | cell=6 | {'kind': 'ndarray', 'shape': [361], 'size': 361, 'minimum': 0.0, 'maximum': 180.0, 'first': 0.0, 'last': 180.0, 'uniform_step': 0.5}
+target_width_m | cell=6 | {'kind': 'float', 'value': 1.9}
+theta_c_deg | cell=6 | {'kind': 'float', 'value': -5.0}
+theta_grid_deg | cell=6 | {'kind': 'ndarray', 'shape': [501], 'size': 501, 'minimum': -25.0, 'maximum': 25.0, 'first': -25.0, 'last': 25.0, 'uniform_step': 0.10000000000000142}
+theta_shadow_max_deg | cell=52 | {'kind': 'float', 'value': -4.25}
+theta_shadow_min_deg | cell=52 | {'kind': 'float', 'value': -5.75}
+transition_fraction | cell=53 | EXPR=(R_M[transition_mask] - r_shadow_end_m) / (r_transition_end_m - r_shadow_end_m)
+transition_length_m | cell=6 | {'kind': 'float', 'value': 20.0}
+transition_mask | cell=52 | EXPR=angular_shadow_mask & transition_range_mask
+transition_range_mask | cell=52 | EXPR=(R_M > r_shadow_end_m) & (R_M < r_transition_end_m)
+
+===== E. EXACT SOURCE-LINE EVIDENCE =====
+exact matched source lines = 897
+full source excerpt        = /home/agni/waymo/iscai_stage6/artifacts/block62/part_a_adb_exact_source_excerpt.txt
+compact evidence preview:
+  C03:L013 | B = 10e9            # chirp bandwidth [Hz]
+  C03:L034 | EPS = 1e-12
+  C03:L049 | PAPER_REPORTED_MHT_LINEAR_ERRORS_UNITS = (0.1251, 0.2348)
+  C03:L050 | PAPER_REPORTED_MHT_MEAN_DEVIATION_UNITS = 1.6787
+  C05:L002 | # Module 2/MHT deterministic parameters and conventions
+  C05:L023 | m2_rho_bin_width = 1.0
+  C05:L029 | m2_support_eps = 1.6
+  C05:L047 | m2_deviation_threshold = np.ceil(PAPER_REPORTED_MHT_MEAN_DEVIATION_UNITS)
+  C06:L002 | # Module 3/ADB deterministic parameters and axes
+  C06:L004 | theta_grid_deg = np.linspace(-25.0, 25.0, 501)
+  C06:L011 | target_width_m = 1.9
+  C06:L014 | transition_length_m = 20.0
+  C06:L016 | epsilon_deg = 0.75
+  C06:L017 | r_shadow_end_m = target_range_m + radial_safety_margin_m
+  C06:L018 | r_transition_end_m = r_shadow_end_m + transition_length_m
+  C06:L021 | adb_fig3a_host_speed_kmh = 40.0
+  C06:L022 | adb_fig3a_oncoming_speed_kmh = 30.0
+  C06:L023 | adb_fig3a_initial_separation_m = 150.0
+  C06:L026 | adb_fig3b_host_speed_kmh = 50.0
+  C06:L027 | adb_fig3b_num_preceding_vehicles = 2
+  C06:L028 | adb_fig3b_initial_spacing_m = 30.0
+  C06:L029 | adb_fig3b_lane_relation = "adjacent lanes"
+  C06:L031 | adb_fig3_num_time_samples = 200
+  C06:L032 | adb_fig3_time_stop_fraction = 0.95
+  C06:L035 | assumed_lane_width_m = 3.5
+  C06:L036 | assumed_vehicle_width_m = target_width_m
+  C06:L040 | assumed_vehicle_half_width_m = 0.5 * assumed_vehicle_width_m
+  C06:L044 | assumed_adb_r_min_m = 30.0
+  C06:L045 | assumed_adb_r_max_m = 80.0
+  C06:L047 | adb_angle_deg = np.linspace(-assumed_headlamp_fov_deg, assumed_headlamp_fov_deg, 301)
+  C06:L048 | adb_range_m = np.linspace(0.0, adb_fig3a_initial_separation_m, 301)
+  C06:L050 | # Dynamic ADB / track reconstruction visualization settings.
+  C06:L051 | adb_trz_front_margin_units = 4.0
+  C06:L052 | adb_trz_transition_length_units = 8.0
+  C06:L053 | adb_trz_num_snapshots = 4
+  C06:L054 | adb_rc_requested_frame = 0
+  C44:L008 |     padded = np.pad(acc, pad_width=1, mode="edge")
+  C44:L017 | def m2_detect_hough_peaks(smoothed_accumulator, rho_grid, theta_grid_deg):
+  C44:L043 |             "theta_deg": float(theta_grid_deg[theta_idx]),
+  C44:L067 |     mask = distances < m2_support_eps
+  ... 857 additional exact lines saved to artifact
+
+===== F. PARAMETER-BINDING READINESS =====
+angular_grid                     = FOUND
+range_grid                       = FOUND
+angular_shadow                   = FOUND
+radial_shadow_or_threshold       = FOUND
+transition                       = FOUND
+full_width_or_edge_geometry      = FOUND
+multi_actor_minimum              = FOUND
+MHT_reactive_connection          = FOUND
+
+epsilon-like assignments = ['COLOR_EPS', 'EPS', 'demo_epsilon_deg', 'epsilon_deg', 'm2_support_eps']
+margin/transition assignments = ['adb_trz_front_margin_units', 'adb_trz_transition_length_units', 'assumed_safety_margin_deg', 'assumed_safety_margin_rad', 'demo_lateral_safety_margin_m', 'lateral_safety_margin_m', 'r_transition_end_m', 'radial_safety_margin_m', 'transition_fraction', 'transition_length_m', 'transition_mask', 'transition_range_mask']
+
+===== G. AUDIT ARTIFACT =====
+audit report = /home/agni/waymo/iscai_stage6/reports/block62_part2_prebinding_source_audit.json
+audit SHA256 = fab4821ce11e8969a2ed8c7a36e74e7b85bc1e27116cf23a445ce32c3e3f0ffb
+
+===== H. IMMUTABILITY RECHECK =====
+Part-A notebook/repo = UNCHANGED
+Block6.0/6.1        = UNCHANGED
+Block6.2 Part1      = UNCHANGED
+
+============================================================
+PRE-BINDING SOURCE AUDIT — FINAL
+============================================================
+Part-A identity           = EXACT PASS
+canonical notebook        = EXACT SHA PASS
+notebook execution        = NO
+ADB source cells          = DISCOVERED PASS
+static parameter scan     = COMPLETE
+exact source excerpt      = WRITTEN
+0.75 vs 0.745 arbitrated  = NO / SOURCE EXPOSED
+Part-A parameter binding  = NOT YET
+Stage6 final grid freeze  = NO
+dataset access            = NO
+training/inference        = NO
+formal evaluation/tuning  = NO
+upstream modified         = NO
+STATUS = PASS_READY_FOR_EXACT_PARAMETER_BINDING
+report = /home/agni/waymo/iscai_stage6/reports/block62_part2_prebinding_source_audit.json
+source excerpt = /home/agni/waymo/iscai_stage6/artifacts/block62/part_a_adb_exact_source_excerpt.txt
+terminal remains open = YES

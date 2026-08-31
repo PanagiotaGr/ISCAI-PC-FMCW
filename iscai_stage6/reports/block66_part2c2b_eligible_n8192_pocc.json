@@ -1,0 +1,210 @@
+{
+  "all_core_classes_have_nonzero_P_occ": true,
+  "artifacts": {
+    "actor_cache_directory": "/home/agni/waymo/iscai_stage6/artifacts/block66/part2c2b_actor_pocc_cache",
+    "manifest_path": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c2b_eligible_actor_pocc_manifest.jsonl",
+    "manifest_scientific_digest_sha256": "c361ed640b91850831d7e7177d89733fedd3e171f5f3111bcd93698c74a4a300",
+    "manifest_sha256": "c361ed640b91850831d7e7177d89733fedd3e171f5f3111bcd93698c74a4a300"
+  },
+  "block": "6.6-Part2C/2B",
+  "causality": {
+    "centroid_only": false,
+    "future_GT_controller_input": false,
+    "objects_of_interest": false,
+    "perfect_ID_association": false,
+    "tracks_to_predict": false,
+    "truth_ID": false
+  },
+  "classwise_evidence": {
+    "TYPE_CYCLIST": {
+      "actor_count": 48,
+      "actors_with_any_support": 48,
+      "actors_with_support_by_horizon": [
+        48,
+        48,
+        48,
+        48
+      ],
+      "actors_with_zero_support": 0,
+      "maximum_count_observed_by_horizon": [
+        8192,
+        7995,
+        7970,
+        6008
+      ],
+      "maximum_probability_observed_by_horizon": [
+        1.0,
+        0.9759521484375,
+        0.972900390625,
+        0.7333984375
+      ],
+      "occupancy_count_mass_sum_by_horizon": [
+        22993287,
+        23362263,
+        23338271,
+        23406736
+      ],
+      "occupancy_probability_mass_sum_by_horizon": [
+        2806.7977294921875,
+        2851.8387451171875,
+        2848.9100341796875,
+        2857.267578125
+      ],
+      "support_cells_sum_by_horizon": [
+        44413,
+        66294,
+        89466,
+        185194
+      ]
+    },
+    "TYPE_PEDESTRIAN": {
+      "actor_count": 110,
+      "actors_with_any_support": 110,
+      "actors_with_support_by_horizon": [
+        110,
+        110,
+        110,
+        110
+      ],
+      "actors_with_zero_support": 0,
+      "maximum_count_observed_by_horizon": [
+        7249,
+        6256,
+        4888,
+        2924
+      ],
+      "maximum_probability_observed_by_horizon": [
+        0.8848876953125,
+        0.763671875,
+        0.5966796875,
+        0.35693359375
+      ],
+      "occupancy_count_mass_sum_by_horizon": [
+        27652844,
+        27120845,
+        26511030,
+        25039492
+      ],
+      "occupancy_probability_mass_sum_by_horizon": [
+        3375.59130859375,
+        3310.6500244140625,
+        3236.209716796875,
+        3056.57861328125
+      ],
+      "support_cells_sum_by_horizon": [
+        109268,
+        150522,
+        190839,
+        353076
+      ]
+    },
+    "TYPE_VEHICLE": {
+      "actor_count": 719,
+      "actors_with_any_support": 719,
+      "actors_with_support_by_horizon": [
+        719,
+        719,
+        718,
+        718
+      ],
+      "actors_with_zero_support": 0,
+      "maximum_count_observed_by_horizon": [
+        8192,
+        8192,
+        8192,
+        8190
+      ],
+      "maximum_probability_observed_by_horizon": [
+        1.0,
+        1.0,
+        1.0,
+        0.999755859375
+      ],
+      "occupancy_count_mass_sum_by_horizon": [
+        2012766460,
+        1988523292,
+        1966572623,
+        1897303343
+      ],
+      "occupancy_probability_mass_sum_by_horizon": [
+        245699.03076171875,
+        242739.65966796875,
+        240060.1346435547,
+        231604.4119873047
+      ],
+      "support_cells_sum_by_horizon": [
+        1883000,
+        2555578,
+        3227119,
+        5739508
+      ]
+    }
+  },
+  "eligible_predictive": {
+    "actor_count": 877,
+    "by_class": {
+      "TYPE_CYCLIST": 48,
+      "TYPE_PEDESTRIAN": 110,
+      "TYPE_VEHICLE": 719
+    },
+    "source_manifest": "/home/agni/waymo/iscai_stage6/artifacts/block66/block66_part2c1_headlamp_eligible_predictive_matches.jsonl",
+    "source_manifest_sha256": "d7ce8769deee08286974b0327cdfd55c08ad7ea326cf9d6450a48a82b3e251b6"
+  },
+  "next": "BLOCK6.6_PART3_CLASS_AWARE_POLICY_DEVELOPMENT_PREREGISTRATION_FROM_FROZEN_P_OCC_EVIDENCE",
+  "persistence": {
+    "canonical_statistic": "uint32 occupancy_counts",
+    "contract_path": "/home/agni/waymo/iscai_stage6/configs/block66_part2c2b_pocc_persistence_contract.json",
+    "contract_sha256": "2777e25003a2c76d506609130e7927501f15a868fa6ec37dfd192bbb58ea79e5",
+    "lossy_conversion": false,
+    "probability_definition": "occupancy_counts / 8192",
+    "probability_file_persisted": false
+  },
+  "policy_boundary": {
+    "actuation_rate_limit_frozen": false,
+    "class_dimming_floors_frozen": false,
+    "class_margins_frozen": false,
+    "class_priority_frozen": false,
+    "class_specific_gamma_frozen": false,
+    "gamma_applied": false,
+    "gamma_reoptimized": false,
+    "reactive_fallback_changed": false,
+    "temporal_smoothing_frozen": false
+  },
+  "probabilistic_kernel": {
+    "future_geometry": "full_box_all_eight_physical_corners",
+    "grid_shape": [
+      501,
+      301
+    ],
+    "heading": "samplewise_predicted_trajectory_tangent_with_frozen_low_speed_carry_forward",
+    "joint_sampling_semantics": "product_of_frozen_calibrated_per_horizon_Gaussian_marginals",
+    "range_m": [
+      0.0,
+      150.0
+    ],
+    "rasterization": "convex_hull_of_all_eight_projected_physical_box_corners_cell_center_inclusion",
+    "same_seed_for_each_actor": true,
+    "sample_count_per_actor": 8192,
+    "seed_per_actor": 20260821,
+    "theta_deg": [
+      -25.0,
+      25.0
+    ],
+    "trajectory_family": "calibrated_Gaussian_GRU"
+  },
+  "regression": {
+    "status": "PASS",
+    "tests": 145
+  },
+  "scientific_execution": {
+    "Monte_Carlo_sampling": true,
+    "formal_evaluation": false,
+    "formal_outcomes_read": false,
+    "formal_tuning": false,
+    "new_model_forward": false,
+    "recalibration": false,
+    "training": false
+  },
+  "stage": 6,
+  "status": "PASS_ELIGIBLE_N8192_P_OCC_MATERIALIZED"
+}

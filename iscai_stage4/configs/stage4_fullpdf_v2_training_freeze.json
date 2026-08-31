@@ -1,0 +1,95 @@
+{
+  "LiDAR_ablation": {
+    "development_scenarios": 256,
+    "fit_scenarios": 1000,
+    "primary_sensor_to_track_claim": false,
+    "selection": "first_N_of_same_frozen_partitions",
+    "semantics": "causal_annotation_assisted_actor_box_ablation_only"
+  },
+  "architecture": {
+    "GMM_components": 3,
+    "GMM_semantics": "trajectory_level_shared_mode",
+    "Gaussian_covariance": "full_3D_SPD_per_horizon",
+    "fusion_hidden": 128,
+    "map_hidden": 32,
+    "neighbor_hidden": 32,
+    "target_hidden": 64
+  },
+  "calibration": {
+    "confidence_levels": [
+      0.5,
+      0.8,
+      0.9,
+      0.95,
+      0.99
+    ],
+    "measurement_R_modified": false,
+    "method": "per_horizon_scalar_predictive_covariance_scaling",
+    "predictive_mean_modified": false,
+    "source": "calibration_partition_only"
+  },
+  "epochs": {
+    "GMM_max": 15,
+    "Gaussian_max": 25,
+    "ablation_max": 12,
+    "early_stopping_patience": 5,
+    "early_stopping_source": "development_only",
+    "primary_deterministic_max": 20
+  },
+  "formal": {
+    "allowed_only_after_freeze": true,
+    "comparison": "exact_common_actor_horizon_support_vs_repaired_Stage3",
+    "run_in_repair": false
+  },
+  "normalization": {
+    "featurewise_validity_aware": true,
+    "label_source": "fit_only",
+    "source": "fit_only"
+  },
+  "optimizer": {
+    "batch_size": 512,
+    "gradient_clip": 5.0,
+    "learning_rate": 0.001,
+    "name": "AdamW",
+    "weight_decay": 0.0001
+  },
+  "partition_policy": {
+    "calibration_scenarios": 512,
+    "development_scenarios": 512,
+    "fit_scenarios": 4096,
+    "future_based": false,
+    "performance_based": false,
+    "selection": "first_N_of_existing_SHA_ordered_frozen_partitions"
+  },
+  "primary": {
+    "actor_LiDAR": false,
+    "actual_Stage2_noisy_vr": true,
+    "annotated_velocity": false,
+    "future_input": false,
+    "map_context": true,
+    "measurement_covariance": true,
+    "model": "full_covariance_Gaussian_GRU",
+    "multi_agent": true,
+    "perfect_track_ID_numeric_input": false
+  },
+  "required_PDF_input_ablations": [
+    "position_only",
+    "position_plus_annotated_velocity",
+    "position_plus_past_only_estimated_velocity",
+    "position_plus_geometry_derived_radial_velocity",
+    "position_plus_PC_FMCW_noisy_radial_velocity",
+    "position_plus_measurement_covariance",
+    "position_plus_actor_level_LiDAR_features",
+    "actor_only_vs_multi_agent",
+    "no_map_vs_map",
+    "no_LiDAR_vs_LiDAR_context"
+  ],
+  "sampling": {
+    "class_balanced": true,
+    "method": "inverse_class_frequency_WeightedRandomSampler",
+    "sample_cap_per_scene": 32
+  },
+  "seed": 20260826,
+  "stage": 4,
+  "status": "FROZEN_BEFORE_V2_TRAINING_OUTCOMES"
+}

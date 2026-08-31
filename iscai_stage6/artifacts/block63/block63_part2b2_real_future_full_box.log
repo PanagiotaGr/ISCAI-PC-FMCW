@@ -1,0 +1,45 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b2_real_future_full_box.py", line 2541, in main
+    scientific_run()
+    ~~~~~~~~~~~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b2_real_future_full_box.py", line 1034, in scientific_run
+    require(
+    ~~~~~~~^
+        required_record_keys
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<8 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block63_part2b2_real_future_full_box.py", line 123, in require
+    raise ScientificBlock(
+        message
+    )
+ScientificBlock: Identity-safe posterior schema changed at row 0; required=['anchor_position_H0_m', 'mean_displacement_H0_m', 'prediction_id', 'scenario_id'], actual=['calibrated_predictive_covariance_H0_m2', 'deterministic_Block63_signal', 'future_GT_used', 'horizons_s', 'latest_position_H0_m', 'mean_calibration', 'mean_displacement_H0_m', 'prediction_id', 'raw_predictive_covariance_H0_m2', 'scenario_id', 'tracks_to_predict_used', 'truth_id_used']
+========================================================================
+BLOCK 6.3 PART 2B/2 — REAL FUTURE FULL-BOX EXECUTION
+========================================================================
+
+===== A. FROZEN PREREQUISITE SEAL =====
+Part2A       = EXACT PASS
+Part2B/1     = EXACT PASS
+binding      = EXACT PASS
+Part1        = EXACT PASS
+Part2A status  = PASS
+Part2B/1 status= PASS
+
+===== B. IDENTITY-SAFE POSTERIOR LOAD =====
+
+========================================================================
+CONTROLLED BLOCK — NO SCIENTIFIC STATE ADVANCE
+========================================================================
+exception type = ScientificBlock
+exception      = Identity-safe posterior schema changed at row 0; required=['anchor_position_H0_m', 'mean_displacement_H0_m', 'prediction_id', 'scenario_id'], actual=['calibrated_predictive_covariance_H0_m2', 'deterministic_Block63_signal', 'future_GT_used', 'horizons_s', 'latest_position_H0_m', 'mean_calibration', 'mean_displacement_H0_m', 'prediction_id', 'raw_predictive_covariance_H0_m2', 'scenario_id', 'tracks_to_predict_used', 'truth_id_used']
+
+
+training/recalibration = NO / NO
+formal evaluation      = NO
+upstream modification  = NO
+terminal remains open  = YES
+========================================================================

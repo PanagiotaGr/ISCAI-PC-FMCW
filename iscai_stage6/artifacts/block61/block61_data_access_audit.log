@@ -1,0 +1,81 @@
+============================================================
+BLOCK 6.1 — READ-ONLY DATA-ACCESS AUDIT
+PROVENANCE PATH vs CANONICAL RUNTIME MOTION PATH
+============================================================
+
+===== A. SOURCE BOOTSTRAP / FROZEN SEALS =====
+project source bootstrap = PASS
+Stage1 pilot manifest    = EXACT PASS
+Block6.0 closure         = EXACT PASS
+Block6.1 Part1           = EXACT PASS
+Stage5 closure           = EXACT PASS
+current Part2 generator  = EXACT PASS
+
+===== B. FROZEN PILOT PROVENANCE =====
+scenario_id              = b85e1bd6cc8e74c0
+historical source_shard  = /waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00000-of-00150
+historical record offset = None
+historical path exists   = False
+source_shard semantics   = PROVENANCE / ORIGINAL LOCATION
+
+===== C. CANONICAL PAIRED CORPUS =====
+paired root = /home/agni/waymo/data/paired_womd_lidar_v1_3_0
+paired root exists = PASS
+Stage1 closure mentions paired root = True
+historical shard suffix = 00000-of-00150
+resolved local motion   = /home/agni/waymo/data/paired_womd_lidar_v1_3_0/validation/motion/paired-from-validation.tfrecord-00000-of-00150
+resolved local exists   = PASS
+mapping                 = validation -> paired-from-validation
+
+===== D. EXACT LOCAL SCENARIO IDENTITY =====
+scenario_id match      = EXACT PASS
+local record offset    = 0
+historical offset      = None
+offset equality needed = NO
+records examined       = 1
+local payload length   = 647785
+local payload SHA256   = dd0d633a6f44807c26a26acfb41bf98c3da44a98ea0b70a33d96a9970c0a2ff1
+
+===== E. UPSTREAM MOTION READER DISCOVERY =====
+
+function = build_compact_motion_offset_index
+module   = iscai_stage3.validation.womd_access
+source   = /home/agni/waymo/iscai_stage3/src/iscai_stage3/validation/womd_access.py
+signature= (rows: 'Iterable[ValidationManifestRow]') -> 'dict[str, int]'
+import_error = None
+
+function = read_motion_scenario
+module   = iscai_stage3.validation.womd_access
+source   = /home/agni/waymo/iscai_stage3/src/iscai_stage3/validation/womd_access.py
+signature= (row: 'ValidationManifestRow', *, paired_root: 'Path', compact_record_offset: 'int')
+import_error = None
+
+read_motion_scenario             = DISCOVERED PASS
+build_compact_motion_offset_index= DISCOVERED PASS
+
+===== F. DATA-ACCESS CONTRACT VERDICT =====
+historical source path = PROVENANCE ONLY
+runtime data source     = CANONICAL PAIRED CORPUS
+scenario identity       = EXACT MATCH
+historical/local offsets= FILE-SPECIFIC / MAY DIFFER
+final repair reader     = REUSE UPSTREAM API
+WOMD GT role in Block6.1= GEOMETRY VALIDATION ONLY
+
+============================================================
+BLOCK 6.1 DATA-ACCESS AUDIT — FINAL
+============================================================
+historical source_shard   = PROVENANCE ONLY
+canonical paired root     = PRESENT PASS
+local paired motion file  = PRESENT PASS
+target scenario_id        = EXACT MATCH PASS
+local runtime offset      = RESOLVED
+offset equality required = NO
+upstream motion reader    = DISCOVERED PASS
+upstream offset-index API = DISCOVERED PASS
+WOMD annotation role      = GEOMETRY VALIDATION ONLY
+Stage6 primary mode       = UNCHANGED
+upstream modified         = NO
+generator modified        = NO
+STATUS = PASS_READY_FOR_DATA_ACCESS_REPAIR
+report = /home/agni/waymo/iscai_stage6/reports/block61_data_access_audit.json
+terminal remains open = YES

@@ -1,0 +1,69 @@
+Traceback (most recent call last):
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block61_part2_stage1_integration.py", line 3355, in <module>
+    main()
+    ~~~~^^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block61_part2_stage1_integration.py", line 1927, in main
+    require(
+    ~~~~~~~^
+        compile_process.returncode == 0,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/agni/waymo/iscai_stage6/scripts/run_block61_part2_stage1_integration.py", line 159, in require
+    raise RuntimeError(message)
+RuntimeError: Block6.1 Part2 compile failed:
+  File "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/womd_geometry.py", line 40
+    stage1_anchor_center_H0_m:
+                              ^
+SyntaxError: invalid syntax
+============================================================
+STAGE 6 — BLOCK 6.1 PART 2/2
+FROZEN STAGE1 INTEGRATION + REAL FULL-BOX SMOKE
+============================================================
+
+===== A. FROZEN PREREQUISITES =====
+Block6.1 Part1       = EXACT PASS
+Stage1 closure       = PASS_COMPLETE
+H0                   = front_face_midpoint_surrogate
+axes                 = +x forward / +y left / +z up
+future-box dependency= NO
+tracks_to_predict use= NO
+
+===== B. STAGE1 HEADLAMP API / EXTRINSIC AUDIT =====
+HeadlampSurrogateConfig module = iscai_stage1.contracts.stage1a
+default roll                 = 0.0
+default pitch                = 0.0
+yaw-only Stage6 box basis    = COMPATIBLE PASS
+
+===== C. CAUSAL WOMD → FULL BOX H0 ADAPTER =====
+womd_geometry.py = WRITTEN
+
+===== D. PACKAGE EXPORT CONTRACT =====
+adb/__init__.py = UPDATED_PART2
+
+===== E. ADAPTER UNIT TESTS =====
+test file = WRITTEN
+
+===== F. CONTROLLED COMPILE =====
+
+============================================================
+BLOCK 6.1 PART 2/2 = BLOCKED
+============================================================
+exception = RuntimeError Block6.1 Part2 compile failed:
+  File "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/womd_geometry.py", line 40
+    stage1_anchor_center_H0_m:
+                              ^
+SyntaxError: invalid syntax
+
+
+Stage1 modified         = NO
+Stage5 modified         = NO
+corpus scan             = NO
+training                = NO
+trajectory inference    = NO
+formal evaluation       = NO
+parameter tuning        = NO
+terminal remains open   = YES

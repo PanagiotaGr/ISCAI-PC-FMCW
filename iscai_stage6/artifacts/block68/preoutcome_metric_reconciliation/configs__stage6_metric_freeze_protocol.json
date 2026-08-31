@@ -1,0 +1,148 @@
+{
+  "project": "Agni",
+  "stage": 6,
+  "block": "6.8",
+  "part": "1/2",
+  "status": "FROZEN_METRIC_SEMANTICS_PRE_DEVELOPMENT_BOUNDS",
+  "source_semantics": {
+    "pdf_specifies_metric_names": true,
+    "pdf_specifies_unique_formula_for_every_metric": false,
+    "implementation_formulas_frozen_before_formal": true
+  },
+  "mask_semantics": {
+    "true": "protected_or_dimmed_cell",
+    "false": "not_masked_cell"
+  },
+  "intensity_semantics": {
+    "minimum": 0.0,
+    "maximum": 1.0,
+    "zero": "minimum_normalized_illumination",
+    "one": "full_normalized_illumination"
+  },
+  "metrics": {
+    "mask_IoU_with_constructed_oracle_future_mask": {
+      "direction": "higher_is_better",
+      "formula": "intersection(candidate_mask, oracle_mask) / union(candidate_mask, oracle_mask)",
+      "empty_union": 1.0
+    },
+    "vehicle_shadow_zone_violation": {
+      "direction": "lower_is_better",
+      "formula": "missed_required_vehicle_cells / required_vehicle_cells",
+      "empty_vehicle_support": 0.0,
+      "empty_support_counted_as_class_observation": false
+    },
+    "glare_risk_exposure": {
+      "direction": "lower_is_better",
+      "formula": "mean normalized intensity inside constructed vehicle protection region",
+      "empty_vehicle_support": 0.0
+    },
+    "over_masking_area": {
+      "direction": "lower_is_better",
+      "formula": "road_roi AND candidate_mask AND NOT oracle_mask divided by road_roi cell count"
+    },
+    "road_illumination_retention": {
+      "direction": "higher_is_better",
+      "formula": "mean normalized intensity inside frozen road ROI"
+    },
+    "pedestrian_visibility_proxy": {
+      "direction": "higher_is_better",
+      "formula": "mean normalized intensity inside frozen pedestrian visibility region",
+      "empty_support": "NaN_and_excluded_from_class_aggregate"
+    },
+    "cyclist_visibility_proxy": {
+      "direction": "higher_is_better",
+      "formula": "mean normalized intensity inside frozen cyclist visibility region",
+      "empty_support": "NaN_and_excluded_from_class_aggregate"
+    },
+    "false_dimming": {
+      "direction": "lower_is_better",
+      "formula": "mean(1-intensity) on road cells outside constructed oracle mask"
+    },
+    "temporal_smoothness": {
+      "direction": "higher_is_better",
+      "formula": "1 - mean absolute normalized intensity change between consecutive frames"
+    },
+    "flicker_change_rate": {
+      "direction": "lower_is_better",
+      "formula": "fraction of cell transitions with absolute normalized intensity change >= 0.10",
+      "delta_threshold": 0.1
+    },
+    "energy_consumption": {
+      "direction": "report_tradeoff",
+      "formula": "mean normalized intensity over valid headlamp energy ROI",
+      "units": "fraction_of_full_normalized_optical_energy",
+      "physical_joule_claim": false
+    },
+    "actuation_latency": {
+      "direction": "lower_is_better",
+      "summary": [
+        "mean_ms",
+        "median_ms",
+        "p95_ms",
+        "max_ms"
+      ],
+      "negative_samples_allowed": false
+    }
+  },
+  "roi_contract": {
+    "road_roi": {
+      "source": "frozen_Stage6_headlamp_grid_and_causal_map_geometry",
+      "future_truth_used": false,
+      "must_be_frozen_before_formal": true
+    },
+    "vehicle_required_region": {
+      "source": "constructed_future_vehicle_geometry_evaluator_only_for_scoring",
+      "controller_input": false
+    },
+    "pedestrian_visibility_region": {
+      "source": "constructed_future_pedestrian_geometry_evaluator_only_for_scoring",
+      "controller_input": false
+    },
+    "cyclist_visibility_region": {
+      "source": "constructed_future_cyclist_geometry_evaluator_only_for_scoring",
+      "controller_input": false
+    },
+    "oracle_mask": {
+      "source": "constructed_future_ADB_reference",
+      "measured_ground_truth": false,
+      "controller_input": false,
+      "parameter_tuning_input": false
+    }
+  },
+  "primary_acceptance": {
+    "comparison": "class_aware_predictive_ADB_vs_original_reactive_ADB",
+    "vehicle_shadow_zone_violation": {
+      "requirement": "strict_improvement",
+      "formal_rule": "predictive_mean < reactive_mean"
+    },
+    "over_masking_area": {
+      "requirement": "non_inferiority",
+      "numeric_delta": null,
+      "delta_source": "development_only_Block6.8_Part2",
+      "formal_rule": "predictive_minus_reactive <= frozen_delta"
+    },
+    "pedestrian_visibility_proxy": {
+      "requirement": "non_inferiority",
+      "numeric_delta": null,
+      "delta_source": "development_only_Block6.8_Part2",
+      "formal_rule": "predictive_minus_reactive >= -frozen_delta"
+    },
+    "cyclist_visibility_proxy": {
+      "requirement": "non_inferiority",
+      "numeric_delta": null,
+      "delta_source": "development_only_Block6.8_Part2",
+      "formal_rule": "predictive_minus_reactive >= -frozen_delta"
+    }
+  },
+  "part2_bound_freeze_rules": {
+    "development_partition_only": true,
+    "formal_partition_read_before_freeze": false,
+    "formal_outcome_used_for_bound_selection": false,
+    "all_numeric_deltas_must_be_finite": true,
+    "all_numeric_deltas_must_be_nonnegative": true,
+    "single_freeze_before_formal": true,
+    "post_formal_adjustment_forbidden": true
+  },
+  "formal_evaluation_allowed_after_part1": false,
+  "next": "Block6.8 Part2 development-only metric runtime validation and numeric acceptance-bound freeze"
+}

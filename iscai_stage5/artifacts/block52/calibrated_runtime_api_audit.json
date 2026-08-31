@@ -1,0 +1,876 @@
+{
+  "coordinate_semantics": {
+    "Stage4_prediction": "H0_displacement",
+    "absolute_H0_mean": "latest_causal_observed_position_H0_plus_predicted_displacement",
+    "translation_changes_covariance": false
+  },
+  "handoff": {
+    "interesting_fields": [
+      {
+        "key": "Stage5_scope_start.trajectory_posterior_source",
+        "value": "calibrated_Gaussian_GRU"
+      },
+      {
+        "key": "alternative_frozen_models.GMM_GRU.calibrated",
+        "value": false
+      },
+      {
+        "key": "alternative_frozen_models.GMM_GRU.checkpoint_path",
+        "value": "/home/agni/waymo/iscai_stage4/artifacts/block46/gmm_gru.pt"
+      },
+      {
+        "key": "alternative_frozen_models.GMM_GRU.checkpoint_sha256",
+        "value": "5aebeaf40d522d58345d424ae2557d6f87e2c02bdc26c23635cc6e3a28cbe3ee"
+      },
+      {
+        "key": "alternative_frozen_models.GMM_GRU.selected_as_default_downstream",
+        "value": false
+      },
+      {
+        "key": "alternative_frozen_models.deterministic_GRU.checkpoint_path",
+        "value": "/home/agni/waymo/iscai_stage4/artifacts/block43/deterministic_gru.pt"
+      },
+      {
+        "key": "alternative_frozen_models.deterministic_GRU.checkpoint_sha256",
+        "value": "5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5"
+      },
+      {
+        "key": "causal_input_contract.measurement_covariance_feature_indices[0]",
+        "value": 6
+      },
+      {
+        "key": "causal_input_contract.measurement_covariance_feature_indices[1]",
+        "value": 7
+      },
+      {
+        "key": "causal_input_contract.measurement_covariance_feature_indices[2]",
+        "value": 8
+      },
+      {
+        "key": "causal_input_contract.measurement_covariance_feature_indices[3]",
+        "value": 9
+      },
+      {
+        "key": "causal_input_contract.measurement_covariance_feature_indices[4]",
+        "value": 10
+      },
+      {
+        "key": "causal_input_contract.measurement_covariance_feature_indices[5]",
+        "value": 11
+      },
+      {
+        "key": "default_downstream_posterior.calibrator_path",
+        "value": "/home/agni/waymo/iscai_stage4/artifacts/block45/covariance_scaler.json"
+      },
+      {
+        "key": "default_downstream_posterior.calibrator_sha256",
+        "value": "508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087"
+      },
+      {
+        "key": "default_downstream_posterior.checkpoint_path",
+        "value": "/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt"
+      },
+      {
+        "key": "default_downstream_posterior.checkpoint_sha256",
+        "value": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f"
+      },
+      {
+        "key": "default_downstream_posterior.covariance_family",
+        "value": "full_3D_SPD"
+      },
+      {
+        "key": "default_downstream_posterior.covariance_parameterization",
+        "value": "Cholesky"
+      },
+      {
+        "key": "default_downstream_posterior.family",
+        "value": "calibrated_Gaussian_GRU"
+      },
+      {
+        "key": "default_downstream_posterior.formal_covariance_SPD",
+        "value": true
+      },
+      {
+        "key": "default_downstream_posterior.horizons_s[0]",
+        "value": 0.1
+      },
+      {
+        "key": "default_downstream_posterior.horizons_s[1]",
+        "value": 0.3
+      },
+      {
+        "key": "default_downstream_posterior.horizons_s[2]",
+        "value": 0.5
+      },
+      {
+        "key": "default_downstream_posterior.horizons_s[3]",
+        "value": 1.0
+      },
+      {
+        "key": "default_downstream_posterior.mandatory_default",
+        "value": true
+      },
+      {
+        "key": "default_downstream_posterior.normalization_path",
+        "value": "/home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json"
+      },
+      {
+        "key": "default_downstream_posterior.normalization_sha256",
+        "value": "3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6"
+      },
+      {
+        "key": "default_downstream_posterior.predictive_covariance",
+        "value": "Sigma_cal,h = alpha_h * Sigma_raw,h"
+      },
+      {
+        "key": "default_downstream_posterior.predictive_mean",
+        "value": "unchanged_by_calibration"
+      },
+      {
+        "key": "default_downstream_posterior.standard_deviation_scale[0]",
+        "value": 1.1111734563206301
+      },
+      {
+        "key": "default_downstream_posterior.standard_deviation_scale[1]",
+        "value": 1.1597952532754616
+      },
+      {
+        "key": "default_downstream_posterior.standard_deviation_scale[2]",
+        "value": 1.1639682374225084
+      },
+      {
+        "key": "default_downstream_posterior.standard_deviation_scale[3]",
+        "value": 1.1326826659448475
+      },
+      {
+        "key": "default_downstream_posterior.variance_scale_alpha_h[0]",
+        "value": 1.2347064500315355
+      },
+      {
+        "key": "default_downstream_posterior.variance_scale_alpha_h[1]",
+        "value": 1.3451250295202921
+      },
+      {
+        "key": "default_downstream_posterior.variance_scale_alpha_h[2]",
+        "value": 1.354822057728461
+      },
+      {
+        "key": "default_downstream_posterior.variance_scale_alpha_h[3]",
+        "value": 1.2829700217319266
+      },
+      {
+        "key": "formal_evidence.Gaussian_FDE_1s_m",
+        "value": 3.3198138702547295
+      },
+      {
+        "key": "formal_evidence.PDF_calibration_measured",
+        "value": true
+      },
+      {
+        "key": "formal_evidence.calibrated_Gaussian_ADE_m",
+        "value": 1.9848952833749467
+      },
+      {
+        "key": "formal_evidence.calibrated_Gaussian_NLL",
+        "value": 3.6848268203287406
+      },
+      {
+        "key": "formal_evidence.calibrated_macro_ECE",
+        "value": 0.11165527003334381
+      },
+      {
+        "key": "formal_evidence.internal_Gaussian_less_than_CV",
+        "value": true
+      },
+      {
+        "key": "formal_evidence.raw_Gaussian_NLL",
+        "value": 4.15760466880646
+      },
+      {
+        "key": "measurement_predictive_uncertainty_separation.calibration_applies_to",
+        "value": "predictive_covariance_only"
+      },
+      {
+        "key": "measurement_predictive_uncertainty_separation.measurement_R_t_modified_by_calibration",
+        "value": false
+      }
+    ],
+    "path": "/home/agni/waymo/iscai_stage4/artifacts/block410/stage4_to_stage5_handoff.json",
+    "sha256": "491bce010d35c2a394f879ecf35ed26ef1de92f7fff1465dcbf46b072a87c6fd"
+  },
+  "next_decision": "reuse_canonical_calibrated_runtime_if_prediction_API_is_exposed_else_reproduce_exact_frozen_Block44_route",
+  "runtime": {
+    "critical_source_hits": [
+      {
+        "line": 9,
+        "text": "from iscai_stage4.ml.calibration import ("
+      },
+      {
+        "line": 13,
+        "text": "from iscai_stage4.ml.gaussian_gru import ("
+      },
+      {
+        "line": 14,
+        "text": "    GaussianTrajectoryGRU,"
+      },
+      {
+        "line": 17,
+        "text": "from iscai_stage4.ml.gaussian_math import ("
+      },
+      {
+        "line": 18,
+        "text": "    covariance_from_scale_tril,"
+      },
+      {
+        "line": 19,
+        "text": "    denormalize_gaussian,"
+      },
+      {
+        "line": 20,
+        "text": "    gaussian_nll_per_horizon,"
+      },
+      {
+        "line": 33,
+        "text": "class CalibrationNormalizer:"
+      },
+      {
+        "line": 35,
+        "text": "    Frozen Block4.3 fit-only normalization."
+      },
+      {
+        "line": 37,
+        "text": "    Calibration data never contributes"
+      },
+      {
+        "line": 38,
+        "text": "    normalization statistics."
+      },
+      {
+        "line": 47,
+        "text": "        self.feature_mean = torch.tensor("
+      },
+      {
+        "line": 49,
+        "text": "                \"continuous_feature_mean\""
+      },
+      {
+        "line": 63,
+        "text": "        self.map_mean = torch.tensor("
+      },
+      {
+        "line": 65,
+        "text": "                \"map_mean\""
+      },
+      {
+        "line": 79,
+        "text": "        self.label_mean = torch.tensor("
+      },
+      {
+        "line": 81,
+        "text": "                \"label_displacement_mean\""
+      },
+      {
+        "line": 89,
+        "text": "                \"label_displacement_std\""
+      },
+      {
+        "line": 244,
+        "text": "                self.feature_mean"
+      },
+      {
+        "line": 256,
+        "text": "        target_normalized = torch.cat("
+      },
+      {
+        "line": 293,
+        "text": "                self.feature_mean"
+      },
+      {
+        "line": 305,
+        "text": "        neighbors_normalized = torch.cat("
+      },
+      {
+        "line": 326,
+        "text": "        map_normalized = ("
+      },
+      {
+        "line": 330,
+        "text": "                self.map_mean"
+      },
+      {
+        "line": 336,
+        "text": "        origin = self._latest_position("
+      },
+      {
+        "line": 340,
+        "text": "        displacement = ("
+      },
+      {
+        "line": 343,
+        "text": "            origin["
+      },
+      {
+        "line": 352,
+        "text": "                target_normalized,"
+      },
+      {
+        "line": 355,
+        "text": "                neighbors_normalized,"
+      },
+      {
+        "line": 361,
+        "text": "                map_normalized,"
+      },
+      {
+        "line": 363,
+        "text": "            \"true_displacement\":"
+      },
+      {
+        "line": 364,
+        "text": "                displacement,"
+      },
+      {
+        "line": 374,
+        "text": "def build_gaussian_model("
+      },
+      {
+        "line": 385,
+        "text": "    return GaussianTrajectoryGRU("
+      },
+      {
+        "line": 563,
+        "text": "def prediction_sha256("
+      },
+      {
+        "line": 564,
+        "text": "    mean,"
+      },
+      {
+        "line": 570,
+        "text": "        mean,"
+      },
+      {
+        "line": 596,
+        "text": "    normalizer,"
+      },
+      {
+        "line": 654,
+        "text": "            \"prediction_sha256\":"
+      },
+      {
+        "line": 660,
+        "text": "    batch = normalizer.prepare("
+      },
+      {
+        "line": 680,
+        "text": "            mean_metric,"
+      },
+      {
+        "line": 682,
+        "text": "        ) = denormalize_gaussian("
+      },
+      {
+        "line": 683,
+        "text": "            output.mean,"
+      },
+      {
+        "line": 685,
+        "text": "            normalizer.label_mean,"
+      },
+      {
+        "line": 686,
+        "text": "            normalizer.label_std,"
+      },
+      {
+        "line": 690,
+        "text": "            \"true_displacement\""
+      },
+      {
+        "line": 694,
+        "text": "            mean_metric,"
+      },
+      {
+        "line": 700,
+        "text": "            gaussian_nll_per_horizon("
+      },
+      {
+        "line": 701,
+        "text": "                mean_metric,"
+      },
+      {
+        "line": 709,
+        "text": "                mean_metric["
+      },
+      {
+        "line": 723,
+        "text": "                mean_metric["
+      },
+      {
+        "line": 754,
+        "text": "            raise RuntimeError("
+      },
+      {
+        "line": 755,
+        "text": "                \"Non-finite calibration \""
+      },
+      {
+        "line": 766,
+        "text": "            raise RuntimeError("
+      },
+      {
+        "line": 767,
+        "text": "                \"Non-finite calibration \""
+      },
+      {
+        "line": 771,
+        "text": "        covariance = ("
+      },
+      {
+        "line": 772,
+        "text": "            covariance_from_scale_tril("
+      },
+      {
+        "line": 781,
+        "text": "            covariance"
+      },
+      {
+        "line": 789,
+        "text": "            raise RuntimeError("
+      },
+      {
+        "line": 790,
+        "text": "                \"Raw Gaussian calibration \""
+      },
+      {
+        "line": 792,
+        "text": "                \"non-SPD covariance.\""
+      },
+      {
+        "line": 795,
+        "text": "        prediction_hash = ("
+      },
+      {
+        "line": 796,
+        "text": "            prediction_sha256("
+      },
+      {
+        "line": 797,
+        "text": "                output.mean,"
+      },
+      {
+        "line": 850,
+        "text": "        \"prediction_sha256\":"
+      },
+      {
+        "line": 851,
+        "text": "            prediction_hash,"
+      },
+      {
+        "line": 855,
+        "text": "def calibrated_nll_per_horizon("
+      },
+      {
+        "line": 1025,
+        "text": "            np.mean("
+      },
+      {
+        "line": 1034,
+        "text": "        \"metric_Gaussian_NLL\":"
+      },
+      {
+        "line": 1036,
+        "text": "                np.mean("
+      },
+      {
+        "line": 1093,
+        "text": "                np.mean("
+      },
+      {
+        "line": 1103,
+        "text": "                    np.mean("
+      },
+      {
+        "line": 1121,
+        "text": "def probe_calibrated_output("
+      },
+      {
+        "line": 1124,
+        "text": "    normalizer,"
+      },
+      {
+        "line": 1145,
+        "text": "    batch = normalizer.prepare("
+      },
+      {
+        "line": 1164,
+        "text": "        raw_mean = output.mean.clone()"
+      },
+      {
+        "line": 1166,
+        "text": "        calibrated_scale = ("
+      },
+      {
+        "line": 1173,
+        "text": "        # Calibration has no mean operation."
+      },
+      {
+        "line": 1174,
+        "text": "        calibrated_mean = ("
+      },
+      {
+        "line": 1175,
+        "text": "            output.mean"
+      },
+      {
+        "line": 1178,
+        "text": "        mean_exact = torch.equal("
+      },
+      {
+        "line": 1179,
+        "text": "            raw_mean,"
+      },
+      {
+        "line": 1180,
+        "text": "            calibrated_mean,"
+      },
+      {
+        "line": 1185,
+        "text": "            calibrated_scale_metric,"
+      },
+      {
+        "line": 1186,
+        "text": "        ) = denormalize_gaussian("
+      },
+      {
+        "line": 1187,
+        "text": "            calibrated_mean,"
+      },
+      {
+        "line": 1188,
+        "text": "            calibrated_scale,"
+      },
+      {
+        "line": 1189,
+        "text": "            normalizer.label_mean,"
+      },
+      {
+        "line": 1190,
+        "text": "            normalizer.label_std,"
+      },
+      {
+        "line": 1193,
+        "text": "        covariance = ("
+      },
+      {
+        "line": 1194,
+        "text": "            covariance_from_scale_tril("
+      },
+      {
+        "line": 1195,
+        "text": "                calibrated_scale_metric"
+      },
+      {
+        "line": 1203,
+        "text": "            covariance"
+      },
+      {
+        "line": 1213,
+        "text": "        \"mean_exactly_unchanged\":"
+      },
+      {
+        "line": 1214,
+        "text": "            mean_exact,"
+      },
+      {
+        "line": 1216,
+        "text": "        \"calibrated_covariance_SPD\":"
+      }
+    ],
+    "module": "iscai_stage4.ml.calibration_runtime",
+    "public_callables": [
+      {
+        "definition_line": 33,
+        "kind": "class",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "CalibrationNormalizer",
+        "signature": "(statistics, *, device)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "class CalibrationNormalizer:\n    \"\"\"\n    Frozen Block4.3 fit-only normalization.\n\n    Calibration data never contributes\n    normalization statistics.\n    \"\"\"\n\n    def __init__(\n        self,\n        statistics,\n        *,\n        device,\n    ):\n        self.feature_mean = torch.tensor(\n            statistics[\n                \"continuous_feature_mean\"\n            ],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        self.feature_std = torch.tensor(\n            statistics[\n                \"continuous_feature_std\"\n            ],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        self.map_mean = torch.tensor(\n            statistics[\n                \"map_mean\"\n            ],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        self.map_std = torch.tensor(\n            statistics[\n                \"map_std\"\n            ],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        self.label_mean = torch.tensor(\n            statistics[\n                \"label_displacement_mean\"\n            ],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        self.label_std = torch.tensor(\n            statistics[\n                \"label_displacement_std\"\n            ],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        for name, value in (\n            (\n                \"feature_std\",\n                self.feature_std,\n            ),\n            (\n                \"map_std\",\n                self.map_std,\n            ),\n            (\n                \"label_std\",\n                self.label_std,\n            ),\n        ):\n            if bool(\n                torch.any(\n                    value <= 0.0\n                )\n"
+      },
+      {
+        "definition_line": 189,
+        "kind": "class",
+        "module": "iscai_stage4.ml.gaussian_gru",
+        "name": "GaussianTrajectoryGRU",
+        "signature": "(*, target_hidden_dim: 'int' = 64, neighbor_hidden_dim: 'int' = 32, map_hidden_dim: 'int' = 32, fusion_hidden_dim: 'int' = 128, use_neighbors: 'bool' = True, use_map: 'bool' = True)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_gru.py",
+        "source_preview": "class GaussianTrajectoryGRU(\n    nn.Module\n):\n    \"\"\"\n    Probabilistic extension of the frozen\n    Block4.3 deterministic architecture.\n\n    Input:\n        same causal target history,\n        same Stage2 R_t conditioning,\n        same neighbours,\n        same map context.\n\n    Output per horizon:\n        predictive mean in R^3\n        full 3x3 SPD predictive covariance.\n    \"\"\"\n\n    def __init__(\n        self,\n        *,\n        target_hidden_dim: int = 64,\n        neighbor_hidden_dim: int = 32,\n        map_hidden_dim: int = 32,\n        fusion_hidden_dim: int = 128,\n        use_neighbors: bool = True,\n        use_map: bool = True,\n    ):\n        super().__init__()\n\n        if min(\n            target_hidden_dim,\n            neighbor_hidden_dim,\n            map_hidden_dim,\n            fusion_hidden_dim,\n        ) <= 0:\n            raise ValueError(\n                \"Hidden dimensions \"\n                \"must be positive.\"\n            )\n\n        self.use_neighbors = bool(\n            use_neighbors\n        )\n\n        self.use_map = bool(\n            use_map\n        )\n\n        self.target_gru = nn.GRU(\n            input_size=FEATURE_DIM,\n            hidden_size=(\n                target_hidden_dim\n            ),\n            num_layers=1,\n            batch_first=True,\n        )\n\n        self.neighbor_gru = nn.GRU(\n            input_size=FEATURE_DIM,\n            hidden_size=(\n                neighbor_hidden_dim\n            ),\n            num_layers=1,\n            batch_first=True,\n        )\n\n        self.map_encoder = (\n            nn.Sequential(\n                nn.Linear(\n                    MAP_CONTEXT_DIM,\n                    map_hidden_dim,\n                ),\n                nn.ReLU(),\n\n                nn.Linear(\n                    map_hidden_dim,\n                    map_hidden_dim,\n                ),\n                nn.ReLU(),\n"
+      },
+      {
+        "definition_line": 30,
+        "kind": "function",
+        "module": "iscai_stage4.ml.training_utils",
+        "name": "actor_class_id",
+        "signature": "(actor_class: 'str') -> 'int'",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/training_utils.py",
+        "source_preview": "def actor_class_id(\n    actor_class: str,\n) -> int:\n    if actor_class == (\n        \"TYPE_VEHICLE\"\n    ):\n        return CLASS_VEHICLE\n\n    if actor_class == (\n        \"TYPE_PEDESTRIAN\"\n    ):\n        return CLASS_PEDESTRIAN\n\n    if actor_class == (\n        \"TYPE_CYCLIST\"\n    ):\n        return CLASS_CYCLIST\n\n    return CLASS_OTHER\n"
+      },
+      {
+        "definition_line": 131,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration",
+        "name": "apply_variance_scale",
+        "signature": "(scale_tril: 'torch.Tensor', variance_scale) -> 'torch.Tensor'",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration.py",
+        "source_preview": "def apply_variance_scale(\n    scale_tril: torch.Tensor,\n    variance_scale,\n) -> torch.Tensor:\n    \"\"\"\n    Apply alpha_h to predictive covariance by\n    multiplying Cholesky factor by sqrt(alpha_h).\n    \"\"\"\n\n    if scale_tril.ndim != 4:\n        raise ValueError(\n            \"scale_tril must be \"\n            \"[B,H,3,3].\"\n        )\n\n    if scale_tril.shape[1:] != (\n        HORIZON_COUNT,\n        POSITION_DIM,\n        POSITION_DIM,\n    ):\n        raise ValueError(\n            \"Predictive Cholesky \"\n            \"shape changed.\"\n        )\n\n    scale = torch.as_tensor(\n        variance_scale,\n        dtype=scale_tril.dtype,\n        device=scale_tril.device,\n    )\n\n    if scale.shape != (\n        HORIZON_COUNT,\n    ):\n        raise ValueError(\n            \"variance_scale must \"\n            \"have shape [4].\"\n        )\n\n    if not bool(\n        torch.isfinite(\n            scale\n        ).all()\n    ):\n        raise ValueError(\n            \"Variance scale contains \"\n            \"non-finite values.\"\n        )\n\n    if bool(\n        torch.any(\n            scale\n            <\n            MIN_VARIANCE_SCALE\n        )\n    ):\n        raise ValueError(\n            \"Variance scale below \"\n            \"frozen lower bound.\"\n        )\n\n    if bool(\n        torch.any(\n            scale\n            >\n            MAX_VARIANCE_SCALE\n        )\n    ):\n        raise ValueError(\n            \"Variance scale above \"\n            \"frozen upper bound.\"\n        )\n\n    return (\n        scale_tril\n        *\n        torch.sqrt(\n            scale\n        )[\n            None,\n"
+      },
+      {
+        "definition_line": 374,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "build_gaussian_model",
+        "signature": "(configuration, *, device)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "def build_gaussian_model(\n    configuration,\n    *,\n    device,\n):\n    model_config = (\n        configuration[\n            \"model\"\n        ]\n    )\n\n    return GaussianTrajectoryGRU(\n        target_hidden_dim=int(\n            model_config[\n                \"target_hidden_dim\"\n            ]\n        ),\n        neighbor_hidden_dim=int(\n            model_config[\n                \"neighbor_hidden_dim\"\n            ]\n        ),\n        map_hidden_dim=int(\n            model_config[\n                \"map_hidden_dim\"\n            ]\n        ),\n        fusion_hidden_dim=int(\n            model_config[\n                \"fusion_hidden_dim\"\n            ]\n        ),\n        use_neighbors=True,\n        use_map=True,\n    ).to(device)\n"
+      },
+      {
+        "definition_line": 855,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "calibrated_nll_per_horizon",
+        "signature": "(raw_metric_nll, mahalanobis_squared_raw, variance_scale)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "def calibrated_nll_per_horizon(\n    raw_metric_nll,\n    mahalanobis_squared_raw,\n    variance_scale,\n):\n    \"\"\"\n    Exact NLL adjustment for:\n\n        Sigma_cal = alpha * Sigma_raw\n\n    in d=3:\n\n      NLL_cal =\n        NLL_raw\n        + 0.5 * [\n            3 log(alpha)\n            + q_raw * (1/alpha - 1)\n          ]\n    \"\"\"\n\n    raw = np.asarray(\n        raw_metric_nll,\n        dtype=np.float64,\n    )\n\n    q = np.asarray(\n        mahalanobis_squared_raw,\n        dtype=np.float64,\n    )\n\n    alpha = np.asarray(\n        variance_scale,\n        dtype=np.float64,\n    )\n\n    if raw.shape != q.shape:\n        raise ValueError(\n            \"raw NLL/q shape mismatch.\"\n        )\n\n    if raw.ndim != 2:\n        raise ValueError(\n            \"Expected [N,H].\"\n        )\n\n    if raw.shape[1] != 4:\n        raise ValueError(\n            \"Expected four horizons.\"\n        )\n\n    if alpha.shape != (4,):\n        raise ValueError(\n            \"Expected four \"\n            \"variance scales.\"\n        )\n\n    if np.any(\n        alpha <= 0.0\n    ):\n        raise ValueError(\n            \"Variance scales \"\n            \"must be positive.\"\n        )\n\n    adjustment = (\n        0.5\n        *\n        (\n            POSITION_DIM\n            *\n            np.log(\n                alpha\n            )[\n                None,\n                :\n            ]\n            +\n            q\n            *\n            (\n"
+      },
+      {
+        "definition_line": 40,
+        "kind": "function",
+        "module": "iscai_stage4.ml.gaussian_math",
+        "name": "covariance_from_scale_tril",
+        "signature": "(scale_tril: 'torch.Tensor') -> 'torch.Tensor'",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py",
+        "source_preview": "def covariance_from_scale_tril(\n    scale_tril: torch.Tensor,\n) -> torch.Tensor:\n    if scale_tril.shape[-2:] != (\n        POSITION_DIM,\n        POSITION_DIM,\n    ):\n        raise ValueError(\n            \"scale_tril must end \"\n            \"in [3,3].\"\n        )\n\n    return (\n        scale_tril\n        @\n        scale_tril.transpose(\n            -1,\n            -2,\n        )\n    )\n"
+      },
+      {
+        "definition_line": 279,
+        "kind": "function",
+        "module": "iscai_stage4.ml.gaussian_math",
+        "name": "denormalize_gaussian",
+        "signature": "(mean_normalized: 'torch.Tensor', scale_tril_normalized: 'torch.Tensor', label_mean: 'torch.Tensor', label_std: 'torch.Tensor')",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py",
+        "source_preview": "def denormalize_gaussian(\n    mean_normalized: torch.Tensor,\n    scale_tril_normalized:\n        torch.Tensor,\n    label_mean: torch.Tensor,\n    label_std: torch.Tensor,\n):\n    \"\"\"\n    Transform normalized Gaussian output\n    into metric H0-displacement coordinates.\n\n    If:\n        y_metric = D y_norm + b\n\n    then:\n        mu_metric = D mu_norm + b\n        L_metric  = D L_norm\n        Sigma_metric =\n            D Sigma_norm D^T\n    \"\"\"\n\n    if label_mean.shape != (\n        mean_normalized.shape[1],\n        POSITION_DIM,\n    ):\n        raise ValueError(\n            \"label_mean shape mismatch.\"\n        )\n\n    if label_std.shape != (\n        mean_normalized.shape[1],\n        POSITION_DIM,\n    ):\n        raise ValueError(\n            \"label_std shape mismatch.\"\n        )\n\n    if bool(\n        torch.any(\n            label_std\n            <=\n            0.0\n        )\n    ):\n        raise ValueError(\n            \"label_std must be positive.\"\n        )\n\n    mean_metric = (\n        mean_normalized\n        *\n        label_std.unsqueeze(\n            0\n        )\n        +\n        label_mean.unsqueeze(\n            0\n        )\n    )\n\n    scale_metric = (\n        scale_tril_normalized\n        *\n        label_std[\n            None,\n            :,\n            :,\n            None,\n        ]\n    )\n\n    return (\n        mean_metric,\n        scale_metric,\n    )\n"
+      },
+      {
+        "definition_line": 62,
+        "kind": "function",
+        "module": "iscai_stage4.ml.gaussian_math",
+        "name": "gaussian_nll_per_horizon",
+        "signature": "(mean: 'torch.Tensor', scale_tril: 'torch.Tensor', target: 'torch.Tensor') -> 'torch.Tensor'",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py",
+        "source_preview": "def gaussian_nll_per_horizon(\n    mean: torch.Tensor,\n    scale_tril: torch.Tensor,\n    target: torch.Tensor,\n) -> torch.Tensor:\n    \"\"\"\n    Full 3-D Gaussian negative log likelihood.\n\n    Returns:\n        [B,H]\n    \"\"\"\n\n    if mean.shape != target.shape:\n        raise ValueError(\n            \"Gaussian mean/target \"\n            \"shape mismatch.\"\n        )\n\n    if mean.ndim != 3:\n        raise ValueError(\n            \"mean and target must \"\n            \"be [B,H,3].\"\n        )\n\n    if mean.shape[-1] != (\n        POSITION_DIM\n    ):\n        raise ValueError(\n            \"Expected 3-D trajectory.\"\n        )\n\n    if scale_tril.shape != (\n        mean.shape[0],\n        mean.shape[1],\n        POSITION_DIM,\n        POSITION_DIM,\n    ):\n        raise ValueError(\n            \"scale_tril shape mismatch.\"\n        )\n\n    diagonal = torch.diagonal(\n        scale_tril,\n        dim1=-2,\n        dim2=-1,\n    )\n\n    if bool(\n        torch.any(\n            diagonal\n            <=\n            0.0\n        )\n    ):\n        raise ValueError(\n            \"Cholesky diagonal must \"\n            \"be strictly positive.\"\n        )\n\n    residual = (\n        target\n        -\n        mean\n    )\n\n    solved = (\n        torch.linalg\n        .solve_triangular(\n            scale_tril,\n            residual.unsqueeze(\n                -1\n            ),\n            upper=False,\n        )\n        .squeeze(\n            -1\n        )\n    )\n\n    mahalanobis = (\n"
+      },
+      {
+        "definition_line": 593,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "infer_scene_statistics",
+        "signature": "(model, samples, normalizer, *, device)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "def infer_scene_statistics(\n    model,\n    samples,\n    normalizer,\n    *,\n    device,\n):\n    arrays = samples_to_arrays(\n        samples\n    )\n\n    count = int(\n        arrays[\n            \"target\"\n        ].shape[0]\n    )\n\n    if count == 0:\n        return {\n            \"mahalanobis_squared\":\n                np.zeros(\n                    (\n                        0,\n                        4,\n                    ),\n                    dtype=np.float32,\n                ),\n\n            \"validity\":\n                np.zeros(\n                    (\n                        0,\n                        4,\n                    ),\n                    dtype=np.float32,\n                ),\n\n            \"raw_metric_nll\":\n                np.zeros(\n                    (\n                        0,\n                        4,\n                    ),\n                    dtype=np.float32,\n                ),\n\n            \"planar_error_m\":\n                np.zeros(\n                    (\n                        0,\n                        4,\n                    ),\n                    dtype=np.float32,\n                ),\n\n            \"class_id\":\n                np.zeros(\n                    (0,),\n                    dtype=np.int64,\n                ),\n\n            \"prediction_sha256\":\n                sha256(\n                    b\"\"\n                ).hexdigest(),\n        }\n\n    batch = normalizer.prepare(\n        arrays,\n        device=device,\n    )\n\n    model.eval()\n\n    with torch.inference_mode():\n        output = model(\n            batch[\"target\"],\n            batch[\"neighbors\"],\n            batch[\n                \"neighbor_mask\"\n"
+      },
+      {
+        "definition_line": 230,
+        "kind": "function",
+        "module": "iscai_stage4.ml.gaussian_math",
+        "name": "mahalanobis_squared",
+        "signature": "(mean: 'torch.Tensor', scale_tril: 'torch.Tensor', target: 'torch.Tensor') -> 'torch.Tensor'",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py",
+        "source_preview": "def mahalanobis_squared(\n    mean: torch.Tensor,\n    scale_tril: torch.Tensor,\n    target: torch.Tensor,\n) -> torch.Tensor:\n    if mean.shape != target.shape:\n        raise ValueError(\n            \"Mean/target shape mismatch.\"\n        )\n\n    if scale_tril.shape != (\n        mean.shape[0],\n        mean.shape[1],\n        POSITION_DIM,\n        POSITION_DIM,\n    ):\n        raise ValueError(\n            \"scale_tril shape mismatch.\"\n        )\n\n    residual = (\n        target\n        -\n        mean\n    )\n\n    solved = (\n        torch.linalg\n        .solve_triangular(\n            scale_tril,\n            residual.unsqueeze(\n                -1\n            ),\n            upper=False,\n        )\n        .squeeze(\n            -1\n        )\n    )\n\n    return (\n        solved\n        .square()\n        .sum(\n            dim=-1\n        )\n    )\n"
+      },
+      {
+        "definition_line": 954,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "masked_nll_metrics",
+        "signature": "(nll, validity)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "def masked_nll_metrics(\n    nll,\n    validity,\n):\n    value = np.asarray(\n        nll,\n        dtype=np.float64,\n    )\n\n    mask = (\n        np.asarray(\n            validity\n        )\n        >\n        0.5\n    )\n\n    if value.shape != mask.shape:\n        raise ValueError(\n            \"NLL/mask shape mismatch.\"\n        )\n\n    if (\n        value.ndim != 2\n        or\n        value.shape[1] != 4\n    ):\n        raise ValueError(\n            \"Expected NLL [N,4].\"\n        )\n\n    if not np.all(\n        np.isfinite(\n            value[\n                mask\n            ]\n        )\n    ):\n        raise ValueError(\n            \"Valid NLL values \"\n            \"must be finite.\"\n        )\n\n    horizon_names = (\n        \"0.1\",\n        \"0.3\",\n        \"0.5\",\n        \"1.0\",\n    )\n\n    by_horizon = {}\n\n    for horizon, name in enumerate(\n        horizon_names\n    ):\n        hmask = mask[\n            :,\n            horizon\n        ]\n\n        if not np.any(\n            hmask\n        ):\n            raise ValueError(\n                f\"No valid labels \"\n                f\"at horizon {name}.\"\n            )\n\n        by_horizon[\n            name\n        ] = float(\n            np.mean(\n                value[\n                    hmask,\n                    horizon\n                ]\n            )\n        )\n\n    return {\n"
+      },
+      {
+        "definition_line": 1053,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "masked_planar_ade",
+        "signature": "(planar_error, validity)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "def masked_planar_ade(\n    planar_error,\n    validity,\n):\n    error = np.asarray(\n        planar_error,\n        dtype=np.float64,\n    )\n\n    mask = (\n        np.asarray(\n            validity\n        )\n        >\n        0.5\n    )\n\n    if error.shape != mask.shape:\n        raise ValueError(\n            \"Planar-error/mask \"\n            \"shape mismatch.\"\n        )\n\n    if not np.any(\n        mask\n    ):\n        raise ValueError(\n            \"No valid planar errors.\"\n        )\n\n    horizon_names = (\n        \"0.1\",\n        \"0.3\",\n        \"0.5\",\n        \"1.0\",\n    )\n\n    return {\n        \"planar_ADE_m\":\n            float(\n                np.mean(\n                    error[\n                        mask\n                    ]\n                )\n            ),\n\n        \"horizon_planar_error_m\": {\n            name:\n                float(\n                    np.mean(\n                        error[\n                            mask[\n                                :,\n                                horizon\n                            ],\n                            horizon\n                        ]\n                    )\n                )\n            for horizon, name\n            in enumerate(\n                horizon_names\n            )\n        },\n    }\n"
+      },
+      {
+        "definition_line": 563,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "prediction_sha256",
+        "signature": "(mean, scale_tril)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "def prediction_sha256(\n    mean,\n    scale_tril,\n):\n    digest = sha256()\n\n    for tensor in (\n        mean,\n        scale_tril,\n    ):\n        value = (\n            tensor.detach()\n            .cpu()\n            .contiguous()\n            .numpy()\n            .astype(\n                np.float32,\n                copy=False,\n            )\n        )\n\n        digest.update(\n            value.tobytes(\n                order=\"C\"\n            )\n        )\n\n    return digest.hexdigest()\n"
+      },
+      {
+        "definition_line": 1121,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "probe_calibrated_output",
+        "signature": "(model, samples, normalizer, variance_scale, *, device)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "def probe_calibrated_output(\n    model,\n    samples,\n    normalizer,\n    variance_scale,\n    *,\n    device,\n):\n    arrays = samples_to_arrays(\n        samples\n    )\n\n    if (\n        arrays[\n            \"target\"\n        ].shape[0]\n        ==\n        0\n    ):\n        raise ValueError(\n            \"Probe requires \"\n            \"non-empty samples.\"\n        )\n\n    batch = normalizer.prepare(\n        arrays,\n        device=device,\n    )\n\n    model.eval()\n\n    with torch.inference_mode():\n        output = model(\n            batch[\"target\"],\n            batch[\"neighbors\"],\n            batch[\n                \"neighbor_mask\"\n            ],\n            batch[\n                \"map_context\"\n            ],\n        )\n\n        raw_mean = output.mean.clone()\n\n        calibrated_scale = (\n            apply_variance_scale(\n                output.scale_tril,\n                variance_scale,\n            )\n        )\n\n        # Calibration has no mean operation.\n        calibrated_mean = (\n            output.mean\n        )\n\n        mean_exact = torch.equal(\n            raw_mean,\n            calibrated_mean,\n        )\n\n        (\n            _,\n            calibrated_scale_metric,\n        ) = denormalize_gaussian(\n            calibrated_mean,\n            calibrated_scale,\n            normalizer.label_mean,\n            normalizer.label_std,\n        )\n\n        covariance = (\n            covariance_from_scale_tril(\n                calibrated_scale_metric\n            )\n        )\n\n        (\n            _,\n"
+      },
+      {
+        "definition_line": 411,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "samples_to_arrays",
+        "signature": "(samples)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "def samples_to_arrays(\n    samples,\n):\n    count = len(samples)\n\n    if count == 0:\n        return {\n            \"target\":\n                np.zeros(\n                    (\n                        0,\n                        11,\n                        14,\n                    ),\n                    dtype=np.float32,\n                ),\n\n            \"neighbors\":\n                np.zeros(\n                    (\n                        0,\n                        8,\n                        11,\n                        14,\n                    ),\n                    dtype=np.float32,\n                ),\n\n            \"neighbor_mask\":\n                np.zeros(\n                    (\n                        0,\n                        8,\n                    ),\n                    dtype=np.float32,\n                ),\n\n            \"map_context\":\n                np.zeros(\n                    (\n                        0,\n                        10,\n                    ),\n                    dtype=np.float32,\n                ),\n\n            \"future\":\n                np.zeros(\n                    (\n                        0,\n                        4,\n                        3,\n                    ),\n                    dtype=np.float32,\n                ),\n\n            \"future_mask\":\n                np.zeros(\n                    (\n                        0,\n                        4,\n                    ),\n                    dtype=np.float32,\n                ),\n\n            \"class_id\":\n                np.zeros(\n                    (0,),\n                    dtype=np.int64,\n                ),\n        }\n\n    return {\n        \"target\":\n            np.asarray(\n                [\n                    sample\n                    .model_input\n                    .target_history\n                    for sample in samples\n"
+      }
+    ],
+    "relevant_callables": [
+      {
+        "definition_line": 33,
+        "kind": "class",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "CalibrationNormalizer",
+        "signature": "(statistics, *, device)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "class CalibrationNormalizer:\n    \"\"\"\n    Frozen Block4.3 fit-only normalization.\n\n    Calibration data never contributes\n    normalization statistics.\n    \"\"\"\n\n    def __init__(\n        self,\n        statistics,\n        *,\n        device,\n    ):\n        self.feature_mean = torch.tensor(\n            statistics[\n                \"continuous_feature_mean\"\n            ],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        self.feature_std = torch.tensor(\n            statistics[\n                \"continuous_feature_std\"\n            ],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        self.map_mean = torch.tensor(\n            statistics[\n                \"map_mean\"\n            ],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        self.map_std = torch.tensor(\n            statistics[\n                \"map_std\"\n            ],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        self.label_mean = torch.tensor(\n            statistics[\n                \"label_displacement_mean\"\n            ],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        self.label_std = torch.tensor(\n            statistics[\n                \"label_displacement_std\"\n            ],\n            dtype=torch.float32,\n            device=device,\n        )\n\n        for name, value in (\n            (\n                \"feature_std\",\n                self.feature_std,\n            ),\n            (\n                \"map_std\",\n                self.map_std,\n            ),\n            (\n                \"label_std\",\n                self.label_std,\n            ),\n        ):\n            if bool(\n                torch.any(\n                    value <= 0.0\n                )\n"
+      },
+      {
+        "definition_line": 189,
+        "kind": "class",
+        "module": "iscai_stage4.ml.gaussian_gru",
+        "name": "GaussianTrajectoryGRU",
+        "signature": "(*, target_hidden_dim: 'int' = 64, neighbor_hidden_dim: 'int' = 32, map_hidden_dim: 'int' = 32, fusion_hidden_dim: 'int' = 128, use_neighbors: 'bool' = True, use_map: 'bool' = True)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_gru.py",
+        "source_preview": "class GaussianTrajectoryGRU(\n    nn.Module\n):\n    \"\"\"\n    Probabilistic extension of the frozen\n    Block4.3 deterministic architecture.\n\n    Input:\n        same causal target history,\n        same Stage2 R_t conditioning,\n        same neighbours,\n        same map context.\n\n    Output per horizon:\n        predictive mean in R^3\n        full 3x3 SPD predictive covariance.\n    \"\"\"\n\n    def __init__(\n        self,\n        *,\n        target_hidden_dim: int = 64,\n        neighbor_hidden_dim: int = 32,\n        map_hidden_dim: int = 32,\n        fusion_hidden_dim: int = 128,\n        use_neighbors: bool = True,\n        use_map: bool = True,\n    ):\n        super().__init__()\n\n        if min(\n            target_hidden_dim,\n            neighbor_hidden_dim,\n            map_hidden_dim,\n            fusion_hidden_dim,\n        ) <= 0:\n            raise ValueError(\n                \"Hidden dimensions \"\n                \"must be positive.\"\n            )\n\n        self.use_neighbors = bool(\n            use_neighbors\n        )\n\n        self.use_map = bool(\n            use_map\n        )\n\n        self.target_gru = nn.GRU(\n            input_size=FEATURE_DIM,\n            hidden_size=(\n                target_hidden_dim\n            ),\n            num_layers=1,\n            batch_first=True,\n        )\n\n        self.neighbor_gru = nn.GRU(\n            input_size=FEATURE_DIM,\n            hidden_size=(\n                neighbor_hidden_dim\n            ),\n            num_layers=1,\n            batch_first=True,\n        )\n\n        self.map_encoder = (\n            nn.Sequential(\n                nn.Linear(\n                    MAP_CONTEXT_DIM,\n                    map_hidden_dim,\n                ),\n                nn.ReLU(),\n\n                nn.Linear(\n                    map_hidden_dim,\n                    map_hidden_dim,\n                ),\n                nn.ReLU(),\n"
+      },
+      {
+        "definition_line": 131,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration",
+        "name": "apply_variance_scale",
+        "signature": "(scale_tril: 'torch.Tensor', variance_scale) -> 'torch.Tensor'",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration.py",
+        "source_preview": "def apply_variance_scale(\n    scale_tril: torch.Tensor,\n    variance_scale,\n) -> torch.Tensor:\n    \"\"\"\n    Apply alpha_h to predictive covariance by\n    multiplying Cholesky factor by sqrt(alpha_h).\n    \"\"\"\n\n    if scale_tril.ndim != 4:\n        raise ValueError(\n            \"scale_tril must be \"\n            \"[B,H,3,3].\"\n        )\n\n    if scale_tril.shape[1:] != (\n        HORIZON_COUNT,\n        POSITION_DIM,\n        POSITION_DIM,\n    ):\n        raise ValueError(\n            \"Predictive Cholesky \"\n            \"shape changed.\"\n        )\n\n    scale = torch.as_tensor(\n        variance_scale,\n        dtype=scale_tril.dtype,\n        device=scale_tril.device,\n    )\n\n    if scale.shape != (\n        HORIZON_COUNT,\n    ):\n        raise ValueError(\n            \"variance_scale must \"\n            \"have shape [4].\"\n        )\n\n    if not bool(\n        torch.isfinite(\n            scale\n        ).all()\n    ):\n        raise ValueError(\n            \"Variance scale contains \"\n            \"non-finite values.\"\n        )\n\n    if bool(\n        torch.any(\n            scale\n            <\n            MIN_VARIANCE_SCALE\n        )\n    ):\n        raise ValueError(\n            \"Variance scale below \"\n            \"frozen lower bound.\"\n        )\n\n    if bool(\n        torch.any(\n            scale\n            >\n            MAX_VARIANCE_SCALE\n        )\n    ):\n        raise ValueError(\n            \"Variance scale above \"\n            \"frozen upper bound.\"\n        )\n\n    return (\n        scale_tril\n        *\n        torch.sqrt(\n            scale\n        )[\n            None,\n"
+      },
+      {
+        "definition_line": 374,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "build_gaussian_model",
+        "signature": "(configuration, *, device)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "def build_gaussian_model(\n    configuration,\n    *,\n    device,\n):\n    model_config = (\n        configuration[\n            \"model\"\n        ]\n    )\n\n    return GaussianTrajectoryGRU(\n        target_hidden_dim=int(\n            model_config[\n                \"target_hidden_dim\"\n            ]\n        ),\n        neighbor_hidden_dim=int(\n            model_config[\n                \"neighbor_hidden_dim\"\n            ]\n        ),\n        map_hidden_dim=int(\n            model_config[\n                \"map_hidden_dim\"\n            ]\n        ),\n        fusion_hidden_dim=int(\n            model_config[\n                \"fusion_hidden_dim\"\n            ]\n        ),\n        use_neighbors=True,\n        use_map=True,\n    ).to(device)\n"
+      },
+      {
+        "definition_line": 855,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "calibrated_nll_per_horizon",
+        "signature": "(raw_metric_nll, mahalanobis_squared_raw, variance_scale)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "def calibrated_nll_per_horizon(\n    raw_metric_nll,\n    mahalanobis_squared_raw,\n    variance_scale,\n):\n    \"\"\"\n    Exact NLL adjustment for:\n\n        Sigma_cal = alpha * Sigma_raw\n\n    in d=3:\n\n      NLL_cal =\n        NLL_raw\n        + 0.5 * [\n            3 log(alpha)\n            + q_raw * (1/alpha - 1)\n          ]\n    \"\"\"\n\n    raw = np.asarray(\n        raw_metric_nll,\n        dtype=np.float64,\n    )\n\n    q = np.asarray(\n        mahalanobis_squared_raw,\n        dtype=np.float64,\n    )\n\n    alpha = np.asarray(\n        variance_scale,\n        dtype=np.float64,\n    )\n\n    if raw.shape != q.shape:\n        raise ValueError(\n            \"raw NLL/q shape mismatch.\"\n        )\n\n    if raw.ndim != 2:\n        raise ValueError(\n            \"Expected [N,H].\"\n        )\n\n    if raw.shape[1] != 4:\n        raise ValueError(\n            \"Expected four horizons.\"\n        )\n\n    if alpha.shape != (4,):\n        raise ValueError(\n            \"Expected four \"\n            \"variance scales.\"\n        )\n\n    if np.any(\n        alpha <= 0.0\n    ):\n        raise ValueError(\n            \"Variance scales \"\n            \"must be positive.\"\n        )\n\n    adjustment = (\n        0.5\n        *\n        (\n            POSITION_DIM\n            *\n            np.log(\n                alpha\n            )[\n                None,\n                :\n            ]\n            +\n            q\n            *\n            (\n"
+      },
+      {
+        "definition_line": 40,
+        "kind": "function",
+        "module": "iscai_stage4.ml.gaussian_math",
+        "name": "covariance_from_scale_tril",
+        "signature": "(scale_tril: 'torch.Tensor') -> 'torch.Tensor'",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py",
+        "source_preview": "def covariance_from_scale_tril(\n    scale_tril: torch.Tensor,\n) -> torch.Tensor:\n    if scale_tril.shape[-2:] != (\n        POSITION_DIM,\n        POSITION_DIM,\n    ):\n        raise ValueError(\n            \"scale_tril must end \"\n            \"in [3,3].\"\n        )\n\n    return (\n        scale_tril\n        @\n        scale_tril.transpose(\n            -1,\n            -2,\n        )\n    )\n"
+      },
+      {
+        "definition_line": 279,
+        "kind": "function",
+        "module": "iscai_stage4.ml.gaussian_math",
+        "name": "denormalize_gaussian",
+        "signature": "(mean_normalized: 'torch.Tensor', scale_tril_normalized: 'torch.Tensor', label_mean: 'torch.Tensor', label_std: 'torch.Tensor')",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py",
+        "source_preview": "def denormalize_gaussian(\n    mean_normalized: torch.Tensor,\n    scale_tril_normalized:\n        torch.Tensor,\n    label_mean: torch.Tensor,\n    label_std: torch.Tensor,\n):\n    \"\"\"\n    Transform normalized Gaussian output\n    into metric H0-displacement coordinates.\n\n    If:\n        y_metric = D y_norm + b\n\n    then:\n        mu_metric = D mu_norm + b\n        L_metric  = D L_norm\n        Sigma_metric =\n            D Sigma_norm D^T\n    \"\"\"\n\n    if label_mean.shape != (\n        mean_normalized.shape[1],\n        POSITION_DIM,\n    ):\n        raise ValueError(\n            \"label_mean shape mismatch.\"\n        )\n\n    if label_std.shape != (\n        mean_normalized.shape[1],\n        POSITION_DIM,\n    ):\n        raise ValueError(\n            \"label_std shape mismatch.\"\n        )\n\n    if bool(\n        torch.any(\n            label_std\n            <=\n            0.0\n        )\n    ):\n        raise ValueError(\n            \"label_std must be positive.\"\n        )\n\n    mean_metric = (\n        mean_normalized\n        *\n        label_std.unsqueeze(\n            0\n        )\n        +\n        label_mean.unsqueeze(\n            0\n        )\n    )\n\n    scale_metric = (\n        scale_tril_normalized\n        *\n        label_std[\n            None,\n            :,\n            :,\n            None,\n        ]\n    )\n\n    return (\n        mean_metric,\n        scale_metric,\n    )\n"
+      },
+      {
+        "definition_line": 62,
+        "kind": "function",
+        "module": "iscai_stage4.ml.gaussian_math",
+        "name": "gaussian_nll_per_horizon",
+        "signature": "(mean: 'torch.Tensor', scale_tril: 'torch.Tensor', target: 'torch.Tensor') -> 'torch.Tensor'",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py",
+        "source_preview": "def gaussian_nll_per_horizon(\n    mean: torch.Tensor,\n    scale_tril: torch.Tensor,\n    target: torch.Tensor,\n) -> torch.Tensor:\n    \"\"\"\n    Full 3-D Gaussian negative log likelihood.\n\n    Returns:\n        [B,H]\n    \"\"\"\n\n    if mean.shape != target.shape:\n        raise ValueError(\n            \"Gaussian mean/target \"\n            \"shape mismatch.\"\n        )\n\n    if mean.ndim != 3:\n        raise ValueError(\n            \"mean and target must \"\n            \"be [B,H,3].\"\n        )\n\n    if mean.shape[-1] != (\n        POSITION_DIM\n    ):\n        raise ValueError(\n            \"Expected 3-D trajectory.\"\n        )\n\n    if scale_tril.shape != (\n        mean.shape[0],\n        mean.shape[1],\n        POSITION_DIM,\n        POSITION_DIM,\n    ):\n        raise ValueError(\n            \"scale_tril shape mismatch.\"\n        )\n\n    diagonal = torch.diagonal(\n        scale_tril,\n        dim1=-2,\n        dim2=-1,\n    )\n\n    if bool(\n        torch.any(\n            diagonal\n            <=\n            0.0\n        )\n    ):\n        raise ValueError(\n            \"Cholesky diagonal must \"\n            \"be strictly positive.\"\n        )\n\n    residual = (\n        target\n        -\n        mean\n    )\n\n    solved = (\n        torch.linalg\n        .solve_triangular(\n            scale_tril,\n            residual.unsqueeze(\n                -1\n            ),\n            upper=False,\n        )\n        .squeeze(\n            -1\n        )\n    )\n\n    mahalanobis = (\n"
+      },
+      {
+        "definition_line": 593,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "infer_scene_statistics",
+        "signature": "(model, samples, normalizer, *, device)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "def infer_scene_statistics(\n    model,\n    samples,\n    normalizer,\n    *,\n    device,\n):\n    arrays = samples_to_arrays(\n        samples\n    )\n\n    count = int(\n        arrays[\n            \"target\"\n        ].shape[0]\n    )\n\n    if count == 0:\n        return {\n            \"mahalanobis_squared\":\n                np.zeros(\n                    (\n                        0,\n                        4,\n                    ),\n                    dtype=np.float32,\n                ),\n\n            \"validity\":\n                np.zeros(\n                    (\n                        0,\n                        4,\n                    ),\n                    dtype=np.float32,\n                ),\n\n            \"raw_metric_nll\":\n                np.zeros(\n                    (\n                        0,\n                        4,\n                    ),\n                    dtype=np.float32,\n                ),\n\n            \"planar_error_m\":\n                np.zeros(\n                    (\n                        0,\n                        4,\n                    ),\n                    dtype=np.float32,\n                ),\n\n            \"class_id\":\n                np.zeros(\n                    (0,),\n                    dtype=np.int64,\n                ),\n\n            \"prediction_sha256\":\n                sha256(\n                    b\"\"\n                ).hexdigest(),\n        }\n\n    batch = normalizer.prepare(\n        arrays,\n        device=device,\n    )\n\n    model.eval()\n\n    with torch.inference_mode():\n        output = model(\n            batch[\"target\"],\n            batch[\"neighbors\"],\n            batch[\n                \"neighbor_mask\"\n"
+      },
+      {
+        "definition_line": 230,
+        "kind": "function",
+        "module": "iscai_stage4.ml.gaussian_math",
+        "name": "mahalanobis_squared",
+        "signature": "(mean: 'torch.Tensor', scale_tril: 'torch.Tensor', target: 'torch.Tensor') -> 'torch.Tensor'",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_math.py",
+        "source_preview": "def mahalanobis_squared(\n    mean: torch.Tensor,\n    scale_tril: torch.Tensor,\n    target: torch.Tensor,\n) -> torch.Tensor:\n    if mean.shape != target.shape:\n        raise ValueError(\n            \"Mean/target shape mismatch.\"\n        )\n\n    if scale_tril.shape != (\n        mean.shape[0],\n        mean.shape[1],\n        POSITION_DIM,\n        POSITION_DIM,\n    ):\n        raise ValueError(\n            \"scale_tril shape mismatch.\"\n        )\n\n    residual = (\n        target\n        -\n        mean\n    )\n\n    solved = (\n        torch.linalg\n        .solve_triangular(\n            scale_tril,\n            residual.unsqueeze(\n                -1\n            ),\n            upper=False,\n        )\n        .squeeze(\n            -1\n        )\n    )\n\n    return (\n        solved\n        .square()\n        .sum(\n            dim=-1\n        )\n    )\n"
+      },
+      {
+        "definition_line": 954,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "masked_nll_metrics",
+        "signature": "(nll, validity)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "def masked_nll_metrics(\n    nll,\n    validity,\n):\n    value = np.asarray(\n        nll,\n        dtype=np.float64,\n    )\n\n    mask = (\n        np.asarray(\n            validity\n        )\n        >\n        0.5\n    )\n\n    if value.shape != mask.shape:\n        raise ValueError(\n            \"NLL/mask shape mismatch.\"\n        )\n\n    if (\n        value.ndim != 2\n        or\n        value.shape[1] != 4\n    ):\n        raise ValueError(\n            \"Expected NLL [N,4].\"\n        )\n\n    if not np.all(\n        np.isfinite(\n            value[\n                mask\n            ]\n        )\n    ):\n        raise ValueError(\n            \"Valid NLL values \"\n            \"must be finite.\"\n        )\n\n    horizon_names = (\n        \"0.1\",\n        \"0.3\",\n        \"0.5\",\n        \"1.0\",\n    )\n\n    by_horizon = {}\n\n    for horizon, name in enumerate(\n        horizon_names\n    ):\n        hmask = mask[\n            :,\n            horizon\n        ]\n\n        if not np.any(\n            hmask\n        ):\n            raise ValueError(\n                f\"No valid labels \"\n                f\"at horizon {name}.\"\n            )\n\n        by_horizon[\n            name\n        ] = float(\n            np.mean(\n                value[\n                    hmask,\n                    horizon\n                ]\n            )\n        )\n\n    return {\n"
+      },
+      {
+        "definition_line": 1053,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "masked_planar_ade",
+        "signature": "(planar_error, validity)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "def masked_planar_ade(\n    planar_error,\n    validity,\n):\n    error = np.asarray(\n        planar_error,\n        dtype=np.float64,\n    )\n\n    mask = (\n        np.asarray(\n            validity\n        )\n        >\n        0.5\n    )\n\n    if error.shape != mask.shape:\n        raise ValueError(\n            \"Planar-error/mask \"\n            \"shape mismatch.\"\n        )\n\n    if not np.any(\n        mask\n    ):\n        raise ValueError(\n            \"No valid planar errors.\"\n        )\n\n    horizon_names = (\n        \"0.1\",\n        \"0.3\",\n        \"0.5\",\n        \"1.0\",\n    )\n\n    return {\n        \"planar_ADE_m\":\n            float(\n                np.mean(\n                    error[\n                        mask\n                    ]\n                )\n            ),\n\n        \"horizon_planar_error_m\": {\n            name:\n                float(\n                    np.mean(\n                        error[\n                            mask[\n                                :,\n                                horizon\n                            ],\n                            horizon\n                        ]\n                    )\n                )\n            for horizon, name\n            in enumerate(\n                horizon_names\n            )\n        },\n    }\n"
+      },
+      {
+        "definition_line": 563,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "prediction_sha256",
+        "signature": "(mean, scale_tril)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "def prediction_sha256(\n    mean,\n    scale_tril,\n):\n    digest = sha256()\n\n    for tensor in (\n        mean,\n        scale_tril,\n    ):\n        value = (\n            tensor.detach()\n            .cpu()\n            .contiguous()\n            .numpy()\n            .astype(\n                np.float32,\n                copy=False,\n            )\n        )\n\n        digest.update(\n            value.tobytes(\n                order=\"C\"\n            )\n        )\n\n    return digest.hexdigest()\n"
+      },
+      {
+        "definition_line": 1121,
+        "kind": "function",
+        "module": "iscai_stage4.ml.calibration_runtime",
+        "name": "probe_calibrated_output",
+        "signature": "(model, samples, normalizer, variance_scale, *, device)",
+        "source_file": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+        "source_preview": "def probe_calibrated_output(\n    model,\n    samples,\n    normalizer,\n    variance_scale,\n    *,\n    device,\n):\n    arrays = samples_to_arrays(\n        samples\n    )\n\n    if (\n        arrays[\n            \"target\"\n        ].shape[0]\n        ==\n        0\n    ):\n        raise ValueError(\n            \"Probe requires \"\n            \"non-empty samples.\"\n        )\n\n    batch = normalizer.prepare(\n        arrays,\n        device=device,\n    )\n\n    model.eval()\n\n    with torch.inference_mode():\n        output = model(\n            batch[\"target\"],\n            batch[\"neighbors\"],\n            batch[\n                \"neighbor_mask\"\n            ],\n            batch[\n                \"map_context\"\n            ],\n        )\n\n        raw_mean = output.mean.clone()\n\n        calibrated_scale = (\n            apply_variance_scale(\n                output.scale_tril,\n                variance_scale,\n            )\n        )\n\n        # Calibration has no mean operation.\n        calibrated_mean = (\n            output.mean\n        )\n\n        mean_exact = torch.equal(\n            raw_mean,\n            calibrated_mean,\n        )\n\n        (\n            _,\n            calibrated_scale_metric,\n        ) = denormalize_gaussian(\n            calibrated_mean,\n            calibrated_scale,\n            normalizer.label_mean,\n            normalizer.label_std,\n        )\n\n        covariance = (\n            covariance_from_scale_tril(\n                calibrated_scale_metric\n            )\n        )\n\n        (\n            _,\n"
+      }
+    ],
+    "source": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/calibration_runtime.py",
+    "source_sha256": "58d633182d9147100f7b830eb54b181cab9cf754dfc3b325d71036295658c727"
+  },
+  "scientific_execution": {
+    "dataset_scan": false,
+    "formal_N120_read": false,
+    "model_forward": false,
+    "recalibration": false,
+    "training": false,
+    "upstream_modified": false
+  },
+  "status": "PASS_READ_ONLY_RUNTIME_AUDIT"
+}

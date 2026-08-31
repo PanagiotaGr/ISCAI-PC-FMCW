@@ -1,0 +1,136 @@
+============================================================
+BLOCK 5.1 PART 2/2 — SAFE EXECUTION
+============================================================
+
+===== CONTROLLED COMPILE =====
+receiver_policy.py = PASS
+stage3_receiver_bridge.py = PASS
+test_block51_stage3_bridge.py = PASS
+run_block51_part2_freeze.py = PASS
+run_block51_part2_safe.py = PASS
+
+===== BLOCK5.1 PART2 UNIT TESTS =====
+
+............
+----------------------------------------------------------------------
+Ran 12 tests in 0.000s
+
+OK
+
+Block5.1 Part2 tests = 12 / 12 PASS
+
+===== PRE-FREEZE FULL STAGE5 REGRESSION =====
+
+........................................
+----------------------------------------------------------------------
+Ran 40 tests in 0.015s
+
+OK
+
+pre-freeze Stage5 regression = 40 / 40 PASS
+
+===== FINAL BLOCK5.1 FREEZE =====
+============================================================
+STAGE 5 — BLOCK 5.1 PART 2/2
+CAUSAL RECEIVER BRIDGE + POLICY FREEZE
+============================================================
+
+===== A. BLOCK5.0 / BLOCK5.1 PART1 CONTINUITY =====
+Block5.0                   = PASS
+Block5.1 Part1             = PASS
+historical implementation = PASS
+Stage5 structural contract= PASS
+
+===== B. FROZEN STAGE3 OBSERVATION-INTERFACE PROVENANCE =====
+Stage3 observation contract = PASS
+Stage2 degraded bridge       = PASS
+algorithm-facing semantics   = FROZEN
+future-truth bridge          = NOT INTRODUCED
+
+===== C. CAUSAL CURRENT-ACTOR BRIDGE =====
+source = CURRENT CAUSAL ASSOCIATED ACTOR ESTIMATE
+semantic class            = CURRENT METADATA ONLY
+current H0 position       = PASS
+association validity      = PASS
+tracks_to_predict         = NOT AVAILABLE
+future truth              = NOT AVAILABLE
+perfect track ID          = NOT AVAILABLE
+
+===== D. FINAL RECEIVER-ELIGIBILITY RANGE POLICY =====
+minimum forward H0       = > 0 m
+max receiver range       = NONE
+range cutoff tuning      = NO
+formal tuning            = NO
+distance remains         = REPORTED / SLICED LATER
+resolution basis         = preregistered_structural_choice_not_performance_tuned
+
+===== E. FINAL BLOCK5.1 ANTI-LEAKAGE =====
+tracks_to_predict        = NO
+future truth             = NO
+perfect track ID         = NO
+oracle connectivity      = NO
+formal N=120 read        = NO
+Stage4 inference         = NO
+training/recalibration   = NO
+
+===== F. WRITING FROZEN RECEIVER POLICY =====
+receiver policy JSON     = FROZEN
+receiver policy SHA256   = b5b6fc2b0a3c4575ed9567aff15f36f3430f4887862c245f045fae7cf9e349c0
+
+============================================================
+BLOCK 5.1 PART 2/2 GATE
+============================================================
+Block5.0 continuity           = PASS
+Block5.1 Part1 continuity     = PASS
+Stage3 degraded observation   = PASS
+current associated actor bridge= PASS
+primary receiver policy       = FROZEN
+constructed connectivity      = FROZEN
+max receiver range            = NONE
+range-cutoff tuning           = NO
+distance evaluation           = PRESERVED
+tracks_to_predict             = NO
+future truth                  = NO
+perfect track ID              = NO
+oracle connectivity           = NO
+formal N=120 used             = NO
+Stage4 inference              = NO
+training/recalibration        = NO
+receiver policy SHA256        = b5b6fc2b0a3c4575ed9567aff15f36f3430f4887862c245f045fae7cf9e349c0
+implementation files          = 19
+implementation SHA256         = 604c0ea15353830ed6dd74b40ff7e42313bf9f86c816aa1e76f0057ab6bc8a53
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage5/reports/block51_receiver_geometry.json
+next = BLOCK 5.2
+terminal remains open = YES
+
+Block5.1 freeze raw code = 0
+
+===== FINAL FULL STAGE5 REGRESSION =====
+
+........................................
+----------------------------------------------------------------------
+Ran 40 tests in 0.014s
+
+OK
+
+final Stage5 regression = 40 / 40 PASS
+
+============================================================
+BLOCK 5.1 FINAL
+============================================================
+Part1 receiver kernels        = PASS
+Part2 causal bridge           = PASS
+Stage3 observation provenance = PASS
+primary receiver policy       = FROZEN
+receiver range cutoff         = NONE
+range performance tuning      = NO
+centroid/known/uncertain      = FROZEN CONTRACT
+future/oracle leakage         = NONE
+formal N=120 used             = NO
+training/inference            = NO
+Stage5 regression             = 40 / 40 PASS
+scientific STATUS             = PASS
+Block5.1                      = COMPLETE
+next                          = BLOCK 5.2
+terminal remains open         = YES

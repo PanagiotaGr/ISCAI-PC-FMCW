@@ -1,0 +1,1194 @@
+============================================================
+BLOCK 4.8 — VALIDATION DATA-SOURCE DISCOVERY
+READ ONLY / NO FORMAL INFERENCE
+============================================================
+formal rows             = 120
+first formal scenario   = cfd33c593d645bf5
+
+============================================================
+A1. read_motion_scenario SOURCE
+============================================================
+source file = /home/agni/waymo/iscai_stage3/src/iscai_stage3/validation/womd_access.py
+signature   = (row: 'ValidationManifestRow', *, paired_root: 'Path', compact_record_offset: 'int')
+
+def read_motion_scenario(
+    row: ValidationManifestRow,
+    *,
+    paired_root: Path,
+    compact_record_offset: int,
+):
+    """
+    Random-access one Scenario from the
+    canonical compact paired motion shard.
+
+    IMPORTANT:
+    compact_record_offset is reconstructed
+    from the frozen manifest ordering.
+
+    row.record_offset remains provenance for
+    the deleted/original WOMD source shard and
+    is deliberately NOT used against the
+    canonical paired-from-* shard.
+    """
+
+    offset = int(
+        compact_record_offset
+    )
+
+    if offset < 0:
+        raise ValueError(
+            "Negative compact record offset."
+        )
+
+    shard = resolve_motion_shard(
+        row,
+        paired_root=paired_root,
+    )
+
+    with shard.open("rb") as stream:
+        stream.seek(offset)
+
+        header = stream.read(12)
+
+        if len(header) != 12:
+            raise IOError(
+                "Short canonical TFRecord "
+                "header read."
+            )
+
+        payload_length = struct.unpack(
+            "<Q",
+            header[:8],
+        )[0]
+
+        if (
+            payload_length
+            !=
+            row.payload_length
+        ):
+            raise ValueError(
+                "Canonical payload length "
+                "differs from frozen manifest: "
+                f"{payload_length} != "
+                f"{row.payload_length}"
+            )
+
+        payload = stream.read(
+            payload_length
+        )
+
+        if (
+            len(payload)
+            !=
+            payload_length
+        ):
+            raise IOError(
+                "Short canonical motion "
+                "payload read."
+            )
+
+        data_crc = stream.read(4)
+
+        if len(data_crc) != 4:
+            raise IOError(
+                "Short canonical TFRecord "
+                "data CRC read."
+            )
+
+    scenario = scenario_pb2.Scenario()
+
+    scenario.ParseFromString(
+        payload
+    )
+
+    if (
+        scenario.scenario_id
+        !=
+        row.scenario_id
+    ):
+        raise ValueError(
+            "Canonical Scenario ID mismatch: "
+            f"{scenario.scenario_id!r} != "
+            f"{row.scenario_id!r}"
+        )
+
+    return scenario
+
+
+============================================================
+A2. read_validation_manifest SOURCE
+============================================================
+source file = /home/agni/waymo/iscai_stage3/src/iscai_stage3/validation/womd_access.py
+signature   = (path: 'Path') -> 'tuple[ValidationManifestRow, ...]'
+
+def read_validation_manifest(
+    path: Path,
+) -> tuple[
+    ValidationManifestRow,
+    ...
+]:
+    rows = []
+
+    with path.open(
+        "r",
+        encoding="utf-8",
+    ) as stream:
+        for line_number, line in enumerate(
+            stream,
+            start=1,
+        ):
+            stripped = line.strip()
+
+            if not stripped:
+                continue
+
+            try:
+                raw = json.loads(stripped)
+            except json.JSONDecodeError as exc:
+                raise ValueError(
+                    "Invalid JSON on validation "
+                    f"manifest line {line_number}."
+                ) from exc
+
+            rows.append(
+                ValidationManifestRow
+                .from_mapping(raw)
+            )
+
+    ids = [
+        row.scenario_id
+        for row in rows
+    ]
+
+    if len(ids) != len(set(ids)):
+        raise ValueError(
+            "Duplicate validation scenario_id."
+        )
+
+    return tuple(rows)
+
+
+============================================================
+B. PATH-LIKE STRINGS IN FROZEN STAGE3 REPORTS
+============================================================
+
+--- block38f_formal_evaluation.json ---
+{'json_key': 'aggregation_semantics.horizon_endpoint_miss', 'value': 'sum endpoint misses / sum eligible truth tracks', 'exists_as_written': False, 'exists_under_waymo_root': False, 'waymo_root_candidate': '/home/agni/waymo/sum endpoint misses / sum eligible truth tracks'}
+{'json_key': 'aggregation_semantics.reconstruction', 'value': 'micro TP/FP/FN pooled over the 120 frozen scenarios', 'exists_as_written': False, 'exists_under_waymo_root': False, 'waymo_root_candidate': '/home/agni/waymo/micro TP/FP/FN pooled over the 120 frozen scenarios'}
+{'json_key': 'per_scenario_artifact', 'value': '/home/agni/waymo/iscai_stage3/artifacts/block38f/formal_per_scenario.jsonl', 'exists_as_written': True}
+
+--- stage3_final_closure.json ---
+{'json_key': 'stage3_completion_statement', 'value': 'Stage3 classical-baseline acceptance criterion satisfied: reproducible real-WOMD CV/CA/CTRV/Kalman/IMM metrics and Multidimensional Hough evaluation on the frozen Stage2 observation interface.', 'exists_as_written': False, 'exists_under_waymo_root': False, 'waymo_root_candidate': '/home/agni/waymo/Stage3 classical-baseline acceptance criterion satisfied: reproducible real-WOMD CV/CA/CTRV/Kalman/IMM metrics and Multidimensional Hough evaluation on the frozen Stage2 observation interface.'}
+
+============================================================
+C. STAGE3 SOURCE CALL-SITE EVIDENCE
+============================================================
+
+FILE: /home/agni/waymo/iscai_stage3/src/iscai_stage3/validation/womd_access.py
+-----
+    9: 
+   10: from waymo_open_dataset.protos import scenario_pb2
+   11: 
+   12: 
+   13: @dataclass(frozen=True)
+   14: class ValidationManifestRow:
+   15:     scenario_id: str
+   16:     split: str
+   17:     source_shard: str
+   18: 
+   19:     record_offset: int
+-----
+   29: 
+   30:     @classmethod
+   31:     def from_mapping(
+   32:         cls,
+   33:         row: dict,
+   34:     ) -> "ValidationManifestRow":
+   35:         required = (
+   36:             "scenario_id",
+   37:             "split",
+   38:             "source_shard",
+   39:             "record_offset",
+-----
+  140:             digest.update(chunk)
+  141: 
+  142:     return digest.hexdigest()
+  143: 
+  144: 
+  145: def read_validation_manifest(
+  146:     path: Path,
+  147: ) -> tuple[
+  148:     ValidationManifestRow,
+  149:     ...
+  150: ]:
+-----
+  143: 
+  144: 
+  145: def read_validation_manifest(
+  146:     path: Path,
+  147: ) -> tuple[
+  148:     ValidationManifestRow,
+  149:     ...
+  150: ]:
+  151:     rows = []
+  152: 
+  153:     with path.open(
+-----
+  170:                     "Invalid JSON on validation "
+  171:                     f"manifest line {line_number}."
+  172:                 ) from exc
+  173: 
+  174:             rows.append(
+  175:                 ValidationManifestRow
+  176:                 .from_mapping(raw)
+  177:             )
+  178: 
+  179:     ids = [
+  180:         row.scenario_id
+-----
+  189:     return tuple(rows)
+  190: 
+  191: 
+  192: def deterministic_manifest_order(
+  193:     rows: Iterable[
+  194:         ValidationManifestRow
+  195:     ],
+  196: ) -> tuple[
+  197:     ValidationManifestRow,
+  198:     ...
+  199: ]:
+-----
+  192: def deterministic_manifest_order(
+  193:     rows: Iterable[
+  194:         ValidationManifestRow
+  195:     ],
+  196: ) -> tuple[
+  197:     ValidationManifestRow,
+  198:     ...
+  199: ]:
+  200:     return tuple(
+  201:         sorted(
+  202:             rows,
+-----
+  209: 
+  210: 
+  211: 
+  212: def build_compact_motion_offset_index(
+  213:     rows: Iterable[
+  214:         ValidationManifestRow
+  215:     ],
+  216: ) -> dict[str, int]:
+  217:     """
+  218:     Reconstruct canonical offsets inside the
+  219:     compact paired-from-* motion shards.
+-----
+  232:     not the original source offsets.
+  233:     """
+  234: 
+  235:     grouped: dict[
+  236:         str,
+  237:         list[ValidationManifestRow],
+  238:     ] = {}
+  239: 
+  240:     for row in rows:
+  241:         grouped.setdefault(
+  242:             row.source_shard,
+-----
+  300: 
+  301:     return offsets
+  302: 
+  303: 
+  304: def resolve_motion_shard(
+  305:     row: ValidationManifestRow,
+  306:     *,
+  307:     paired_root: Path,
+  308: ) -> Path:
+  309:     """
+  310:     Resolve the canonical compact motion shard.
+-----
+  354:         )
+  355: 
+  356:     return path
+  357: 
+  358: def expected_lidar_path(
+  359:     row: ValidationManifestRow,
+  360:     *,
+  361:     paired_root: Path,
+  362: ) -> Path:
+  363:     return (
+  364:         paired_root
+-----
+  372:         f"{row.scenario_id}.tfrecord"
+  373:     )
+  374: 
+  375: 
+  376: 
+  377: def read_motion_scenario(
+  378:     row: ValidationManifestRow,
+  379:     *,
+  380:     paired_root: Path,
+  381:     compact_record_offset: int,
+  382: ):
+-----
+  373:     )
+  374: 
+  375: 
+  376: 
+  377: def read_motion_scenario(
+  378:     row: ValidationManifestRow,
+  379:     *,
+  380:     paired_root: Path,
+  381:     compact_record_offset: int,
+  382: ):
+  383:     """
+-----
+  376: 
+  377: def read_motion_scenario(
+  378:     row: ValidationManifestRow,
+  379:     *,
+  380:     paired_root: Path,
+  381:     compact_record_offset: int,
+  382: ):
+  383:     """
+  384:     Random-access one Scenario from the
+  385:     canonical compact paired motion shard.
+  386: 
+-----
+  383:     """
+  384:     Random-access one Scenario from the
+  385:     canonical compact paired motion shard.
+  386: 
+  387:     IMPORTANT:
+  388:     compact_record_offset is reconstructed
+  389:     from the frozen manifest ordering.
+  390: 
+  391:     row.record_offset remains provenance for
+  392:     the deleted/original WOMD source shard and
+  393:     is deliberately NOT used against the
+-----
+  393:     is deliberately NOT used against the
+  394:     canonical paired-from-* shard.
+  395:     """
+  396: 
+  397:     offset = int(
+  398:         compact_record_offset
+  399:     )
+  400: 
+  401:     if offset < 0:
+  402:         raise ValueError(
+  403:             "Negative compact record offset."
+
+FILE: /home/agni/waymo/iscai_stage3/src/iscai_stage3/validation/__init__.py
+-----
+    1: 
+    2: 
+    3: from .womd_access import (
+    4:     ValidationManifestRow,
+    5:     build_compact_motion_offset_index,
+    6:     deterministic_manifest_order,
+    7:     expected_lidar_path,
+    8:     read_motion_scenario,
+    9:     read_validation_manifest,
+-----
+    3: from .womd_access import (
+    4:     ValidationManifestRow,
+    5:     build_compact_motion_offset_index,
+    6:     deterministic_manifest_order,
+    7:     expected_lidar_path,
+    8:     read_motion_scenario,
+    9:     read_validation_manifest,
+   10:     resolve_motion_shard,
+   11:     sha256_file,
+   12: )
+-----
+    4:     ValidationManifestRow,
+    5:     build_compact_motion_offset_index,
+    6:     deterministic_manifest_order,
+    7:     expected_lidar_path,
+    8:     read_motion_scenario,
+    9:     read_validation_manifest,
+   10:     resolve_motion_shard,
+   11:     sha256_file,
+   12: )
+
+FILE: /home/agni/waymo/iscai_stage3/scripts/run_block38g_reproducibility_gate.py
+-----
+   10: )
+   11: 
+   12: REFERENCE = (
+   13:     ROOT
+   14:     / "artifacts/block38g/"
+   15:       "reference_block38f_report.json"
+   16: )
+   17: 
+   18: REPEAT = (
+   19:     ROOT
+   20:     / "artifacts/block38g/"
+-----
+   16: )
+   17: 
+   18: REPEAT = (
+   19:     ROOT
+   20:     / "artifacts/block38g/"
+   21:       "repeat_block38f_report.json"
+   22: )
+   23: 
+   24: REFERENCE_SCENES = (
+   25:     ROOT
+   26:     / "artifacts/block38g/"
+-----
+   34: )
+   35: 
+   36: FORMAL_MANIFEST = (
+   37:     ROOT
+   38:     / "artifacts/block38e/"
+   39:       "formal_validation_120.jsonl"
+   40: )
+   41: 
+   42: REPORT = (
+   43:     ROOT
+   44:     / "reports/"
+
+FILE: /home/agni/waymo/iscai_stage3/scripts/run_block38e_freeze_formal_manifest.py
+-----
+   10:     scenario_pb2,
+   11: )
+   12: 
+   13: from iscai_stage3.validation import (
+   14:     build_compact_motion_offset_index,
+   15:     read_motion_scenario,
+   16:     read_validation_manifest,
+   17:     sha256_file,
+   18: )
+   19: 
+   20: 
+-----
+   11: )
+   12: 
+   13: from iscai_stage3.validation import (
+   14:     build_compact_motion_offset_index,
+   15:     read_motion_scenario,
+   16:     read_validation_manifest,
+   17:     sha256_file,
+   18: )
+   19: 
+   20: 
+   21: ROOT = Path(
+-----
+   49: 
+   50: OUTPUT = (
+   51:     STAGE3
+   52:     /
+   53:     "artifacts/block38e/"
+   54:     "formal_validation_120.jsonl"
+   55: )
+   56: 
+   57: INVENTORY = (
+   58:     STAGE3
+   59:     /
+-----
+  220:     raise SystemExit(
+  221:         "FAIL: frozen validation "
+  222:         "manifest SHA changed."
+  223:     )
+  224: 
+  225: rows = read_validation_manifest(
+  226:     MANIFEST
+  227: )
+  228: 
+  229: if len(rows) != 44097:
+  230:     raise SystemExit(
+-----
+  262: 
+  263: for number, row in enumerate(
+  264:     rows,
+  265:     start=1,
+  266: ):
+  267:     scenario = read_motion_scenario(
+  268:         row,
+  269:         paired_root=PAIRED,
+  270:         compact_record_offset=(
+  271:             offsets[
+  272:                 row.scenario_id
+-----
+  265:     start=1,
+  266: ):
+  267:     scenario = read_motion_scenario(
+  268:         row,
+  269:         paired_root=PAIRED,
+  270:         compact_record_offset=(
+  271:             offsets[
+  272:                 row.scenario_id
+  273:             ]
+  274:         ),
+  275:     )
+-----
+  294:             row.selection_hash,
+  295: 
+  296:         "source_shard":
+  297:             row.source_shard,
+  298: 
+  299:         "compact_record_offset":
+  300:             offsets[
+  301:                 row.scenario_id
+  302:             ],
+  303: 
+  304:         "anchor_class_counts":
+
+FILE: /home/agni/waymo/iscai_stage3/scripts/run_block38f_formal_evaluation.py
+-----
+   69:     estimate_causal_ctrv_state,
+   70:     estimate_causal_cv_state,
+   71: )
+   72: from iscai_stage3.validation import (
+   73:     build_compact_motion_offset_index,
+   74:     read_motion_scenario,
+   75:     read_validation_manifest,
+   76:     sha256_file,
+   77: )
+   78: 
+   79: 
+-----
+   70:     estimate_causal_cv_state,
+   71: )
+   72: from iscai_stage3.validation import (
+   73:     build_compact_motion_offset_index,
+   74:     read_motion_scenario,
+   75:     read_validation_manifest,
+   76:     sha256_file,
+   77: )
+   78: 
+   79: 
+   80: ROOT = Path("/home/agni/waymo")
+-----
+   93: )
+   94: 
+   95: FORMAL_MANIFEST = (
+   96:     STAGE3
+   97:     / "artifacts/block38e/"
+   98:       "formal_validation_120.jsonl"
+   99: )
+  100: 
+  101: CONFIG = (
+  102:     STAGE3
+  103:     / "configs/stage3_real_validation.json"
+-----
+  109:       "run_stage2_degraded_scene_smoke.py"
+  110: )
+  111: 
+  112: PER_SCENARIO = (
+  113:     STAGE3
+  114:     / "artifacts/block38f/"
+  115:       "formal_per_scenario.jsonl"
+  116: )
+  117: 
+  118: REPORT = (
+  119:     STAGE3
+-----
+  115:       "formal_per_scenario.jsonl"
+  116: )
+  117: 
+  118: REPORT = (
+  119:     STAGE3
+  120:     / "reports/block38f_formal_evaluation.json"
+  121: )
+  122: 
+  123: EXPECTED_BASE_SHA = (
+  124:     "dc10609ef18a2ba881657eb3da3a3df7"
+  125:     "a81bdcc8345ecbc2227102ab16b8833c"
+-----
+ 1667:         "Frozen formal config changed."
+ 1668:     )
+ 1669: 
+ 1670: 
+ 1671: base_rows = (
+ 1672:     read_validation_manifest(
+ 1673:         BASE_MANIFEST
+ 1674:     )
+ 1675: )
+ 1676: 
+ 1677: row_by_id = {
+-----
+ 1747:         scenario_start = (
+ 1748:             time.perf_counter()
+ 1749:         )
+ 1750: 
+ 1751:         scenario = (
+ 1752:             read_motion_scenario(
+ 1753:                 row,
+ 1754:                 paired_root=PAIRED,
+ 1755:                 compact_record_offset=(
+ 1756:                     compact_offsets[sid]
+ 1757:                 ),
+-----
+ 1750: 
+ 1751:         scenario = (
+ 1752:             read_motion_scenario(
+ 1753:                 row,
+ 1754:                 paired_root=PAIRED,
+ 1755:                 compact_record_offset=(
+ 1756:                     compact_offsets[sid]
+ 1757:                 ),
+ 1758:             )
+ 1759:         )
+ 1760: 
+
+FILE: /home/agni/waymo/iscai_stage3/scripts/run_block38b_data_truth_gate.py
+-----
+    8: 
+    9: from iscai_stage3.validation import (
+   10:     build_compact_motion_offset_index,
+   11:     deterministic_manifest_order,
+   12:     expected_lidar_path,
+   13:     read_motion_scenario,
+   14:     read_validation_manifest,
+   15:     resolve_motion_shard,
+   16:     sha256_file,
+   17: )
+   18: 
+-----
+    9: from iscai_stage3.validation import (
+   10:     build_compact_motion_offset_index,
+   11:     deterministic_manifest_order,
+   12:     expected_lidar_path,
+   13:     read_motion_scenario,
+   14:     read_validation_manifest,
+   15:     resolve_motion_shard,
+   16:     sha256_file,
+   17: )
+   18: 
+   19: 
+-----
+  107:     raise SystemExit(
+  108:         "FAIL: frozen validation manifest "
+  109:         "SHA256 changed."
+  110:     )
+  111: 
+  112: rows = read_validation_manifest(
+  113:     MANIFEST
+  114: )
+  115: 
+  116: if len(rows) != EXPECTED_COUNT:
+  117:     raise SystemExit(
+-----
+  252: 
+  253:         if row not in probe_rows:
+  254:             probe_rows.append(row)
+  255: 
+  256: for row in probe_rows:
+  257:     scenario = read_motion_scenario(
+  258:         row,
+  259:         paired_root=PAIRED_ROOT,
+  260:         compact_record_offset=(
+  261:             offsets[
+  262:                 row.scenario_id
+-----
+  255: 
+  256: for row in probe_rows:
+  257:     scenario = read_motion_scenario(
+  258:         row,
+  259:         paired_root=PAIRED_ROOT,
+  260:         compact_record_offset=(
+  261:             offsets[
+  262:                 row.scenario_id
+  263:             ]
+  264:         ),
+  265:     )
+-----
+  303: # 5. First frozen scenario + temporal contract
+  304: # ============================================================
+  305: 
+  306: first = rows[0]
+  307: 
+  308: scenario = read_motion_scenario(
+  309:     first,
+  310:     paired_root=PAIRED_ROOT,
+  311:     compact_record_offset=(
+  312:         offsets[
+  313:             first.scenario_id
+-----
+  306: first = rows[0]
+  307: 
+  308: scenario = read_motion_scenario(
+  309:     first,
+  310:     paired_root=PAIRED_ROOT,
+  311:     compact_record_offset=(
+  312:         offsets[
+  313:             first.scenario_id
+  314:         ]
+  315:     ),
+  316: )
+
+FILE: /home/agni/waymo/iscai_stage3/scripts/run_stage3_final_closure.py
+-----
+   21: )
+   22: 
+   23: FORMAL_MANIFEST = (
+   24:     STAGE3
+   25:     / "artifacts/block38e/"
+   26:       "formal_validation_120.jsonl"
+   27: )
+   28: 
+   29: FORMAL_CONFIG = (
+   30:     STAGE3
+   31:     / "configs/stage3_real_validation.json"
+-----
+   71:           "block38e_formal_manifest_gate.json",
+   72: 
+   73:     "3.8F":
+   74:         STAGE3
+   75:         / "reports/"
+   76:           "block38f_formal_evaluation.json",
+   77: 
+   78:     "3.8G":
+   79:         STAGE3
+   80:         / "reports/"
+   81:           "block38g_reproducibility_gate.json",
+-----
+   82: }
+   83: 
+   84: REFERENCE_38F = (
+   85:     STAGE3
+   86:     / "artifacts/block38g/"
+   87:       "reference_block38f_report.json"
+   88: )
+   89: 
+   90: REFERENCE_SCENES = (
+   91:     STAGE3
+   92:     / "artifacts/block38g/"
+-----
+   93:       "reference_formal_per_scenario.jsonl"
+   94: )
+   95: 
+   96: CANONICAL_SCENES = (
+   97:     STAGE3
+   98:     / "artifacts/block38f/"
+   99:       "formal_per_scenario.jsonl"
+  100: )
+  101: 
+  102: FINAL_REPORT = (
+  103:     STAGE3
+
+FILE: /home/agni/waymo/iscai_stage3/scripts/run_block38d_degraded_pilot.py
+-----
+   71:     estimate_causal_cv_state,
+   72: )
+   73: from iscai_stage3.validation import (
+   74:     build_compact_motion_offset_index,
+   75:     deterministic_manifest_order,
+   76:     read_motion_scenario,
+   77:     read_validation_manifest,
+   78:     sha256_file,
+   79: )
+   80: 
+   81: 
+-----
+   72: )
+   73: from iscai_stage3.validation import (
+   74:     build_compact_motion_offset_index,
+   75:     deterministic_manifest_order,
+   76:     read_motion_scenario,
+   77:     read_validation_manifest,
+   78:     sha256_file,
+   79: )
+   80: 
+   81: 
+   82: ROOT = Path("/home/agni/waymo")
+-----
+  809:         time.perf_counter()
+  810:     )
+  811: 
+  812:     load_start = time.perf_counter()
+  813: 
+  814:     scenario = read_motion_scenario(
+  815:         row,
+  816:         paired_root=PAIRED,
+  817:         compact_record_offset=(
+  818:             compact_offset
+  819:         ),
+-----
+  812:     load_start = time.perf_counter()
+  813: 
+  814:     scenario = read_motion_scenario(
+  815:         row,
+  816:         paired_root=PAIRED,
+  817:         compact_record_offset=(
+  818:             compact_offset
+  819:         ),
+  820:     )
+  821: 
+  822:     load_ms = (
+-----
+ 1140:     raise RuntimeError(
+ 1141:         "Frozen validation manifest "
+ 1142:         "SHA changed."
+ 1143:     )
+ 1144: 
+ 1145: rows = read_validation_manifest(
+ 1146:     MANIFEST
+ 1147: )
+ 1148: 
+ 1149: if len(rows) != 44097:
+ 1150:     raise RuntimeError(
+-----
+ 1197:                 row.scenario_id,
+ 1198:             "selection_hash":
+ 1199:                 row.selection_hash,
+ 1200:             "source_shard":
+ 1201:                 row.source_shard,
+ 1202:             "compact_record_offset":
+ 1203:                 offsets[
+ 1204:                     row.scenario_id
+ 1205:                 ],
+ 1206:             "selection_basis":
+ 1207:                 "ascending_sha256_scenario_id",
+
+FILE: /home/agni/waymo/iscai_stage3/scripts/finalize_block38f_checkpoint.py
+-----
+   15:     build_womd_truth_sidecar,
+   16: )
+   17: 
+   18: from iscai_stage3.validation import (
+   19:     build_compact_motion_offset_index,
+   20:     read_motion_scenario,
+   21:     read_validation_manifest,
+   22:     sha256_file,
+   23: )
+   24: 
+   25: 
+-----
+   16: )
+   17: 
+   18: from iscai_stage3.validation import (
+   19:     build_compact_motion_offset_index,
+   20:     read_motion_scenario,
+   21:     read_validation_manifest,
+   22:     sha256_file,
+   23: )
+   24: 
+   25: 
+   26: ROOT = Path("/home/agni/waymo")
+-----
+   38: )
+   39: 
+   40: FORMAL_MANIFEST = (
+   41:     STAGE3
+   42:     / "artifacts/block38e/"
+   43:       "formal_validation_120.jsonl"
+   44: )
+   45: 
+   46: CHECKPOINT = (
+   47:     STAGE3
+   48:     / "artifacts/block38f/"
+-----
+   43:       "formal_validation_120.jsonl"
+   44: )
+   45: 
+   46: CHECKPOINT = (
+   47:     STAGE3
+   48:     / "artifacts/block38f/"
+   49:       "formal_per_scenario.jsonl"
+   50: )
+   51: 
+   52: REPORT = (
+   53:     STAGE3
+-----
+   50: )
+   51: 
+   52: REPORT = (
+   53:     STAGE3
+   54:     / "reports/"
+   55:       "block38f_formal_evaluation.json"
+   56: )
+   57: 
+   58: EXPECTED_FORMAL_SHA = (
+   59:     "2208e7287ddf6439fda4597c435a9cba"
+   60:     "1d1b9d0e4c4547bc5dd92e56e8124e46"
+-----
+  915:     for method in methods
+  916: }
+  917: 
+  918: 
+  919: base_rows = (
+  920:     read_validation_manifest(
+  921:         BASE_MANIFEST
+  922:     )
+  923: )
+  924: 
+  925: row_by_id = {
+-----
+  945: 
+  946:     primary_meta = record[
+  947:         "primary_truth"
+  948:     ]
+  949: 
+  950:     scenario = read_motion_scenario(
+  951:         row_by_id[sid],
+  952:         paired_root=PAIRED,
+  953:         compact_record_offset=(
+  954:             offsets[sid]
+  955:         ),
+-----
+  948:     ]
+  949: 
+  950:     scenario = read_motion_scenario(
+  951:         row_by_id[sid],
+  952:         paired_root=PAIRED,
+  953:         compact_record_offset=(
+  954:             offsets[sid]
+  955:         ),
+  956:     )
+  957: 
+  958:     adapted = (
+
+============================================================
+D. METADATA FILE CANDIDATES
+============================================================
+candidate count = 159
+/home/agni/waymo/iscai_data_prep/manifests/approved_branch_deletion_manifest.jsonl | bytes = 375121
+/home/agni/waymo/iscai_data_prep/manifests/selected_validation.jsonl | bytes = 25320603
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00000-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00001-of-00150.json | bytes = 1839
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00002-of-00150.json | bytes = 1843
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00003-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00004-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00005-of-00150.json | bytes = 1841
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00006-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00007-of-00150.json | bytes = 1831
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00008-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00009-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00010-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00011-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00012-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00013-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00014-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00015-of-00150.json | bytes = 1841
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00016-of-00150.json | bytes = 1841
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00017-of-00150.json | bytes = 1843
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00018-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00019-of-00150.json | bytes = 1841
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00020-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00021-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00022-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00023-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00024-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00025-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00026-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00027-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00028-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00029-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00030-of-00150.json | bytes = 1845
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00031-of-00150.json | bytes = 1841
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00032-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00033-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00034-of-00150.json | bytes = 1839
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00035-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00036-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00037-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00038-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00039-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00040-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00041-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00042-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00043-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00044-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00045-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00046-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00047-of-00150.json | bytes = 1839
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00048-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00049-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00050-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00051-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00052-of-00150.json | bytes = 1843
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00053-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00054-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00055-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00056-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00057-of-00150.json | bytes = 1841
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00058-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00059-of-00150.json | bytes = 1845
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00060-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00061-of-00150.json | bytes = 1839
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00062-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00063-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00064-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00065-of-00150.json | bytes = 1831
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00066-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00067-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00068-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00069-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00070-of-00150.json | bytes = 1839
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00071-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00072-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00073-of-00150.json | bytes = 1839
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00074-of-00150.json | bytes = 1843
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00075-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00076-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00077-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00078-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00079-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00080-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00081-of-00150.json | bytes = 1841
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00082-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00083-of-00150.json | bytes = 1841
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00084-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00085-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00086-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00087-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00088-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00089-of-00150.json | bytes = 1845
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00090-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00091-of-00150.json | bytes = 1841
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00092-of-00150.json | bytes = 1839
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00093-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00094-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00095-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00096-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00097-of-00150.json | bytes = 1839
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00098-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00099-of-00150.json | bytes = 1839
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00100-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00101-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00102-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00103-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00104-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00105-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00106-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00107-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00108-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00109-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00110-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00111-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00112-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00113-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00114-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00115-of-00150.json | bytes = 1851
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00116-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00117-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00118-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00119-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00120-of-00150.json | bytes = 1841
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00121-of-00150.json | bytes = 1841
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00122-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00123-of-00150.json | bytes = 1845
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00124-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00125-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00126-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00127-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00128-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00129-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00130-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00131-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00132-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00133-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00134-of-00150.json | bytes = 1851
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00135-of-00150.json | bytes = 1841
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00136-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00137-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00138-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00139-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00140-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00141-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00142-of-00150.json | bytes = 1839
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00143-of-00150.json | bytes = 1841
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00144-of-00150.json | bytes = 1835
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00145-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00146-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00147-of-00150.json | bytes = 1837
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00148-of-00150.json | bytes = 1841
+/home/agni/waymo/iscai_data_prep/reports/class_audit_parts/validation/validation.tfrecord-00149-of-00150.json | bytes = 1833
+/home/agni/waymo/iscai_stage3/artifacts/block38e/formal_validation_120.jsonl | bytes = 66602
+/home/agni/waymo/iscai_stage3/artifacts/block38f/formal_per_scenario.jsonl | bytes = 16886278
+/home/agni/waymo/iscai_stage3/artifacts/block38g/reference_formal_per_scenario.jsonl | bytes = 16886278
+/home/agni/waymo/iscai_stage3/artifacts/block38g/repeat_formal_per_scenario.jsonl | bytes = 16886329
+/home/agni/waymo/iscai_stage3/configs/stage3_real_validation.json | bytes = 4887
+/home/agni/waymo/iscai_stage3/reports/block38e_formal_manifest_gate.json | bytes = 1522
+/home/agni/waymo/iscai_stage3/reports/block38f_formal_evaluation.json | bytes = 109522
+
+============================================================
+E. FIRST FORMAL SCENARIO ID IN METADATA
+============================================================
+
+{
+  "path": "/home/agni/waymo/iscai_data_prep/manifests/selected_validation.jsonl",
+  "size_bytes": 25320603,
+  "status": "FOUND",
+  "matches": [
+    [
+      8867,
+      "{\"lidar_bytes\": 4813720, \"lidar_uri\": \"gs://waymo_open_dataset_motion_v_1_3_0/uncompressed/lidar_and_camera/validation/cfd33c593d645bf5.tfrecord\", \"motion_record_bytes\": 925492, \"pair_bytes\": 5739212, \"payload_length\": 925476, \"record_offset\": 8396022, \"scenario_id\": \"cfd33c593d645bf5\", \"selection_hash\": \"0021a46ed3fb1c08471876e4d92ecc4387ba05a76fdbbf53282ace145e0f9217\", \"selection_hash_rank\": null, \"selection_policy\": \"all_exact_matching_validation\", \"source_shard\": \"/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00030-of-00150\", \"split\": \"validation\"}"
+    ]
+  ]
+}
+
+{
+  "path": "/home/agni/waymo/iscai_stage3/artifacts/block38e/formal_validation_120.jsonl",
+  "size_bytes": 66602,
+  "status": "FOUND",
+  "matches": [
+    [
+      1,
+      "{\"anchor_class_counts\": {\"TYPE_CYCLIST\": 1, \"TYPE_PEDESTRIAN\": 3, \"TYPE_VEHICLE\": 59}, \"compact_record_offset\": 8396022, \"degraded_outcome_used\": false, \"formal_rank\": 1, \"formal_selection_policy\": \"current_anchor_class_stratum_then_ascending_sha256_scenario_id\", \"future_used\": false, \"performance_used\": false, \"scenario_id\": \"cfd33c593d645bf5\", \"selection_hash\": \"0021a46ed3fb1c08471876e4d92ecc4387ba05a76fdbbf53282ace145e0f9217\", \"source_shard\": \"/waymo/data/v1_3_0_scenario/validation/validation.tfrecord-00030-of-00150\", \"stratum\": \"cyclist\", \"stratum_rank\": 1}"
+    ]
+  ]
+}
+
+{
+  "path": "/home/agni/waymo/iscai_stage3/artifacts/block38f/formal_per_scenario.jsonl",
+  "size_bytes": 16886278,
+  "status": "FOUND",
+  "matches": [
+    [
+      1,
+      "{\"algorithm_input_immutable\": true, \"association_runtime_ms\": 33.57607405632734, \"deterministic_sha256\": \"cf5552a1a2fe5b61626d9e8f838bd9439610c6c79519ce94aba6b982dbadc064\", \"formal_rank\": 1, \"prediction_info\": {\"CA\": {\"association_runtime_ms\": 33.57607405632734, \"model_runtime_ms\": 21.981966914609075, \"prediction_count\": 48, \"rejected_count\": 31, \"rejections\": {\"CA state requires at least three causal observations.\": 31}}, \"CTRV\": {\"association_runtime_ms\": 33.57607405632734, \"model_runtime_ms\": 15.69962699431926, \"prediction_count\": 48, \"rejected_count\": 31, \"rejections\": {\"CTRV state requires at least three causal observations.\": 31}}, \"CV\": {\"association_runtime_ms\": 33.57607405632734, \"model_runtime_ms\": 17.24895101506263, \"prediction_count\": 60, \"rejected_count\": 19, \"rejections\": {\"CV state requires at least two causal observations.\": 19}}, \"IMM_CV_CA_CTRV\": {\"association_runtime_ms\": 33.57607405632734, \"model_runtime_ms\": 431.7580139031634, \"prediction_count\": 48, \"rejected_coun"
+    ]
+  ]
+}
+
+{
+  "path": "/home/agni/waymo/iscai_stage3/artifacts/block38g/reference_formal_per_scenario.jsonl",
+  "size_bytes": 16886278,
+  "status": "FOUND",
+  "matches": [
+    [
+      1,
+      "{\"algorithm_input_immutable\": true, \"association_runtime_ms\": 33.57607405632734, \"deterministic_sha256\": \"cf5552a1a2fe5b61626d9e8f838bd9439610c6c79519ce94aba6b982dbadc064\", \"formal_rank\": 1, \"prediction_info\": {\"CA\": {\"association_runtime_ms\": 33.57607405632734, \"model_runtime_ms\": 21.981966914609075, \"prediction_count\": 48, \"rejected_count\": 31, \"rejections\": {\"CA state requires at least three causal observations.\": 31}}, \"CTRV\": {\"association_runtime_ms\": 33.57607405632734, \"model_runtime_ms\": 15.69962699431926, \"prediction_count\": 48, \"rejected_count\": 31, \"rejections\": {\"CTRV state requires at least three causal observations.\": 31}}, \"CV\": {\"association_runtime_ms\": 33.57607405632734, \"model_runtime_ms\": 17.24895101506263, \"prediction_count\": 60, \"rejected_count\": 19, \"rejections\": {\"CV state requires at least two causal observations.\": 19}}, \"IMM_CV_CA_CTRV\": {\"association_runtime_ms\": 33.57607405632734, \"model_runtime_ms\": 431.7580139031634, \"prediction_count\": 48, \"rejected_coun"
+    ]
+  ]
+}
+
+{
+  "path": "/home/agni/waymo/iscai_stage3/artifacts/block38g/repeat_formal_per_scenario.jsonl",
+  "size_bytes": 16886329,
+  "status": "FOUND",
+  "matches": [
+    [
+      1,
+      "{\"algorithm_input_immutable\": true, \"association_runtime_ms\": 33.74760097358376, \"deterministic_sha256\": \"cf5552a1a2fe5b61626d9e8f838bd9439610c6c79519ce94aba6b982dbadc064\", \"formal_rank\": 1, \"prediction_info\": {\"CA\": {\"association_runtime_ms\": 33.74760097358376, \"model_runtime_ms\": 21.97302703280002, \"prediction_count\": 48, \"rejected_count\": 31, \"rejections\": {\"CA state requires at least three causal observations.\": 31}}, \"CTRV\": {\"association_runtime_ms\": 33.74760097358376, \"model_runtime_ms\": 15.47315705101937, \"prediction_count\": 48, \"rejected_count\": 31, \"rejections\": {\"CTRV state requires at least three causal observations.\": 31}}, \"CV\": {\"association_runtime_ms\": 33.74760097358376, \"model_runtime_ms\": 17.182298004627228, \"prediction_count\": 60, \"rejected_count\": 19, \"rejections\": {\"CV state requires at least two causal observations.\": 19}}, \"IMM_CV_CA_CTRV\": {\"association_runtime_ms\": 33.74760097358376, \"model_runtime_ms\": 433.0846939701587, \"prediction_count\": 48, \"rejected_coun"
+    ]
+  ]
+}
+
+{
+  "path": "/home/agni/waymo/iscai_stage3/configs/stage3_real_validation.json",
+  "size_bytes": 4887,
+  "status": "FOUND",
+  "matches": [
+    [
+      20,
+      "      \"cfd33c593d645bf5\","
+    ]
+  ]
+}
+
+============================================================
+BLOCK 4.8 VALIDATION SOURCE DISCOVERY
+============================================================
+reader source captured     = PASS
+Stage3 call sites captured = PASS
+metadata inventory         = PASS
+formal inference started   = NO
+upstream modified          = NO
+STATUS = PASS
+report = /home/agni/waymo/iscai_stage4/reports/block48_validation_source_discovery.json
+terminal remains open      = YES

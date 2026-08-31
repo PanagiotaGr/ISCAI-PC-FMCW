@@ -1,0 +1,58 @@
+============================================================
+STAGE4 BLOCK 4.6 PART 1/2 PREFLIGHT
+============================================================
+
+===== CONTROLLED COMPILE =====
+gmm_gru.py = PASS
+gmm_math.py = PASS
+test_block46_gmm.py = PASS
+
+Block4.5 frozen upstream = PASS
+Gaussian checkpoint       = PASS
+calibrator                = PASS
+
+GMM components            = 3 PASS
+trajectory-level weights  = PASS
+central Gaussian mean     = EXACT MATCH
+symmetry break            = PASS
+component covariance SPD  = PASS
+CUDA GMM NLL              = PASS
+CUDA GMM backward         = PASS
+
+===== BLOCK4.6 UNIT TESTS =====
+
+............
+----------------------------------------------------------------------
+Ran 12 tests in 0.050s
+
+OK
+
+
+===== FULL STAGE4 REGRESSION =====
+
+........................................................................................
+----------------------------------------------------------------------
+Ran 88 tests in 0.277s
+
+OK
+
+
+============================================================
+STAGE4 BLOCK 4.6 PART 1/2 SAFE GATE
+============================================================
+Block4.5 frozen upstream  = PASS
+mandatory Gaussian        = UNCHANGED
+GMM components            = 3
+mode scope                = TRAJECTORY LEVEL
+independent mode switching= NO
+central Gaussian mean     = EXACT MATCH
+component covariance      = FULL 3D SPD
+joint GMM NLL             = PASS
+CUDA backward             = PASS
+maneuver labels used      = NO
+future model input        = NO
+GMM training started      = NO
+formal validation used    = NO
+full Stage4 regression    = 88 / 88 PASS
+STATUS = PASS
+terminal remains open     = YES
