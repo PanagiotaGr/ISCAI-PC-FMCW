@@ -2,63 +2,64 @@
 
 A research implementation of a **predictive, uncertainty-aware extension of a phase-coded FMCW (PC-FMCW) automotive Integrated Sensing, Communication, and Illumination (ISCAI) framework**.
 
-The project studies how uncertainty in the current sensing state and uncertainty in future road-user motion can be propagated into **joint communication-beam management** and **predictive Adaptive Driving Beam (ADB)** control. Realistic scene dynamics are taken from the **Waymo Open Motion Dataset (WOMD)** and WOMD-LiDAR context, while the PC-FMCW sensing interface is generated from the real trajectories through a physics-inspired observation model.
-
-The central research idea is simple but important:
+The project studies how uncertainty in the current sensing state and uncertainty in future road-user motion can be propagated into **communication beam management** and **predictive Adaptive Driving Beam (ADB)** control. Real traffic dynamics are taken from the **Waymo Open Motion Dataset (WOMD)** and WOMD-LiDAR context, while the PC-FMCW sensing interface is generated from those real trajectories through a physics-grounded observation and uncertainty model.
 
 > **Part A estimates the present and reacts; Part B estimates uncertainty, predicts the future, and acts proactively.**
 
-The same calibrated future-motion posterior is reused downstream for receiver-aware beam selection and predictive illumination, so communication and ADB decisions are driven by a common probabilistic scene representation rather than by independent deterministic heuristics.
+The central idea is to use one calibrated future-motion posterior as a common interface between sensing/prediction and downstream control: the same probabilistic representation is transformed into a receiver-aware angular posterior for communication and into future actor occupancy for illumination.
 
 ---
 
-## 1. Research motivation
+## 1. Research objective
 
-The previous PC-FMCW ISCAI framework couples sensing, communication, and Adaptive Driving Beam illumination, but its tracking and ADB evaluation is primarily based on synthetic motion and simulated scenes. This repository replaces that less realistic scene-level component with a data-driven, causal pipeline based on real traffic trajectories, real actor interactions, ego motion, map context, and available LiDAR history from WOMD.
+The previous PC-FMCW ISCAI framework combines sensing, communication and Adaptive Driving Beam illumination, but its tracking and ADB evaluation is primarily based on synthetic trajectories and simulated scenes. This repository replaces that less realistic scene-level block with a causal data-driven pipeline based on real multi-agent traffic motion.
 
-The goal is **not** to build a generic motion-forecasting project. Motion prediction is used as an intermediate uncertainty representation for two downstream control problems:
+The goal is **not** to build a generic motion-forecasting benchmark. Forecasting is an intermediate uncertainty representation for two control problems:
 
 1. **adaptive directional beam management**, and
 2. **predictive, class-aware ADB control**.
 
-The project therefore focuses on the complete chain
+The complete research chain is
 
 ```text
-real traffic dynamics
-      -> sensing observations + measurement uncertainty
-      -> causal tracking / forecasting
-      -> calibrated future trajectory distribution
-      -> receiver / angular posterior
-      -> adaptive beam probing + predictive ADB
-      -> joint communication–illumination evaluation
+real WOMD traffic dynamics
+        -> PC-FMCW-like sensing observations
+        -> measurement uncertainty
+        -> causal tracking / forecasting
+        -> calibrated future trajectory posterior
+        -> receiver / angular posterior + future occupancy
+        -> adaptive Top-K beam control + predictive ADB
+        -> system-level evaluation
 ```
 
 ---
 
-## 2. Scientific scope and an important limitation
+## 2. Scientific scope and boundaries
 
 ### WOMD-LiDAR is not FMCW
 
-A critical boundary of this repository is that **WOMD-LiDAR does not provide measured FMCW Doppler or point-wise radial velocity**. It provides real scene geometry and calibrated LiDAR context, but it is not a PC-FMCW sensing dataset.
+A critical boundary of this repository is that **WOMD-LiDAR does not provide measured FMCW Doppler or point-wise radial velocity**. It provides real scene geometry and synchronized LiDAR context, but it is not a PC-FMCW sensing dataset.
 
-Accordingly, this repository does **not** claim that WOMD-LiDAR supplies real FMCW radial-velocity measurements.
+The scientific formulation used here is therefore
 
-The scientific formulation used here is instead:
+> **real traffic dynamics + real non-FMCW LiDAR context + simulated PC-FMCW-like observations**
 
-> **real scene dynamics + real non-FMCW LiDAR context + simulated PC-FMCW observations**
+Range, bearing and geometry-derived radial velocity are computed from real WOMD actor/ego motion and passed through a configurable PC-FMCW-like observation model with SNR-dependent uncertainty, corruption, missed detections and false alarms.
 
-Range, bearing, and geometry-derived radial velocity are computed from real WOMD actor/ego motion and then passed through a configurable PC-FMCW-like observation model with SNR-dependent noise, covariance, missed detections, and false alarms.
+This is a **real-trajectory, PC-FMCW sensor-in-the-loop evaluation**, not a real-PC-FMCW measurement campaign.
 
-This makes the experimental setup a **real-trajectory, PC-FMCW sensor-in-the-loop evaluation**, not a real-PC-FMCW measurement campaign.
+### Measurement uncertainty is different from predictive uncertainty
 
-### Measurement uncertainty is not predictive uncertainty
+Two uncertainty sources are modeled explicitly and separately:
 
-The repository explicitly separates two different uncertainty sources:
+- **measurement uncertainty** describes uncertainty in the current sensing observations and is represented by the Stage-2 measurement covariance;
+- **predictive uncertainty** describes uncertainty in future motion, including maneuver ambiguity, interaction effects and multi-modal behavior.
 
-- **measurement uncertainty**: uncertainty in the current sensing observations, represented by Stage-2 measurement covariance;
-- **predictive uncertainty**: uncertainty in future actor motion, including multiple possible maneuvers, interactions, and long-horizon ambiguity.
+The predictor is conditioned on the first and learns the second.
 
-The second is learned by the probabilistic predictor and is not treated as a synonym for the first.
+### Causality and leakage prevention
+
+Future WOMD states are used only as labels/evaluator truth. The causal pipeline does not use future actor states, future validity masks, future LiDAR or benchmark-selection metadata as numerical predictor inputs.
 
 ---
 
@@ -73,7 +74,7 @@ WOMD / WOMD-LiDAR causal history
                     |
                     v
        PC-FMCW-like observation generator
-(range, radial velocity, bearing, SNR, covariance,
+(range, radial velocity, angles, SNR, covariance,
  noise, missed detections, false alarms)
                     |
                     v
@@ -87,8 +88,8 @@ WOMD / WOMD-LiDAR causal history
           +---------+----------+
           |                    |
           v                    v
- receiver-aware future     future actor occupancy
- angular posterior             posterior
+ receiver-aware future      future actor occupancy
+ angular posterior          distribution
           |                    |
           v                    v
  adaptive Top-K beam       predictive class-aware
@@ -97,408 +98,346 @@ WOMD / WOMD-LiDAR causal history
           +---------+----------+
                     |
                     v
-        joint ISCAI system evaluation
+          system-level evaluation
 ```
-
-The shared posterior is the key interface between perception/prediction and control.
 
 ---
 
-## 4. Dataset role
+# 4. Formal results
 
-The project uses the **Waymo Open Motion Dataset (WOMD)** for real multi-agent traffic dynamics and map context. WOMD provides actor trajectories for vehicles, pedestrians, and cyclists together with ego motion and road context. WOMD-LiDAR adds synchronized LiDAR history for the observed portion of the forecasting window.
+The values below are taken from the repository's frozen scientific closure/evaluation artifacts. They should be interpreted **within the documented evaluation protocol and frozen cohorts**, not as general claims beyond this experimental setup.
 
-The LiDAR information is useful for, for example:
+## 4.1 Stage 4 — Probabilistic trajectory forecasting
+
+The frozen Stage-4 formal evaluation contains **120 scenarios**. The primary downstream posterior is the calibrated Gaussian GRU; a deterministic GRU and a trajectory-level GMM are also evaluated.
+
+### Overall formal forecasting results
+
+| Model | Formal ADE |
+| --- | ---: |
+| Oracle future trajectory | **0.000 m** |
+| Trajectory-level GMM, expected ADE | **1.450 m** |
+| Calibrated Gaussian GRU | **1.454 m** |
+| Deterministic GRU | **1.537 m** |
+
+The GMM gives the lowest non-oracle expected ADE in this frozen formal report, but the **calibrated Gaussian GRU remains the frozen posterior used by downstream stages** because it provides the required mean/covariance interface and calibrated uncertainty representation.
+
+### Calibration
+
+| Metric | Before calibration | After calibration |
+| --- | ---: | ---: |
+| Macro ECE | 0.1438 | **0.0806** |
+
+Calibration reduces macro ECE by approximately **44% relative to the uncalibrated posterior**. This is important because Stage 5 selects beam sets by integrating predicted probability mass; a poorly calibrated posterior would make a nominal 95% beam set scientifically difficult to interpret.
+
+### Exact common-support comparison against the frozen CV comparator
+
+On the final exact common-support evaluation:
+
+| Horizon | CV ADE | Gaussian ADE | Common samples |
+| --- | ---: | ---: | ---: |
+| 0.1 s | 1.650 m | **0.614 m** | 331 |
+| 0.3 s | 3.863 m | **0.938 m** | 323 |
+| 0.5 s | 6.216 m | **1.307 m** | 320 |
+| 1.0 s | 11.950 m | **2.335 m** | 312 |
+| **Aggregate** | **5.841 m** | **1.285 m** | 332 actors / 1286 events |
+
+On this exact common support, the Gaussian predictor reduces aggregate ADE by about **78% relative to CV**. The gap increases with prediction horizon, which is consistent with the intended use of learned motion context rather than simple constant-velocity propagation.
+
+The Stage-4 closure also confirms the causal experimental contract: no future truth is used as model input, annotated velocity is not the primary input, track IDs are not used numerically, and measurement covariance remains distinct from predictive covariance.
+
+---
+
+## 4.2 Stage 5 — Receiver-aware adaptive Top-K beam management
+
+Stage 5 converts the trajectory posterior into a receiver-aware angular posterior and then chooses the **smallest beam set whose cumulative predicted probability reaches a requested target**. The primary formal acceptance uses **q = 0.95** and the uncertain-receiver-geometry setting.
+
+### Probability coverage at q = 0.95
+
+| Codebook | 0.1 s | 0.3 s | 0.5 s | 1.0 s |
+| --- | ---: | ---: | ---: | ---: |
+| 16 beams | 100.0% | 100.0% | 100.0% | **98.78%** |
+| 32 beams | 100.0% | 100.0% | 100.0% | **98.78%** |
+| 64 beams | 100.0% | 100.0% | **98.78%** | **98.78%** |
+
+All frozen coverage tests pass the pre-specified statistical acceptance rule for the requested 95% mass.
+
+### Adaptive probing cost
+
+| Codebook | Mean adaptive probes | Exhaustive probes | Approx. probe reduction |
+| --- | ---: | ---: | ---: |
+| 16 beams | **2.54** | 16 | **84.1%** |
+| 32 beams | **4.17** | 32 | **87.0%** |
+| 64 beams | **7.39** | 64 | **88.5%** |
+
+The formal acceptance artifact therefore supports the central Stage-5 claim: **high empirical coverage can be maintained while probing only a small fraction of the full codebook**.
+
+For 16 beams, adaptive probing also passes against the valid fixed Top-K baselines with fixed Top-3 as the best valid comparator; for 32 beams, fixed Top-5 is the valid comparator. At 64 beams, none of the tested fixed Top-1/3/5 alternatives satisfy the required coverage criterion, while the adaptive policy still passes the formal coverage and exhaustive-overhead conditions.
+
+The Stage-5 evaluation additionally propagates pointing decisions through the optical communication chain:
+
+```text
+beam pointing
+    -> optical / beam gain
+    -> received power
+    -> SNR
+    -> DPSK BER
+    -> effective rate
+```
+
+This makes the beam controller a communication-system evaluation rather than only a beam-index classification experiment.
+
+**Stage-5 formal status: PASS.**
+
+---
+
+## 4.3 Stage 6 — Predictive class-aware ADB
+
+Stage 6 tests whether the shared probabilistic future occupancy can improve ADB behavior while preserving vehicle/VRU safety constraints.
+
+The implementation successfully satisfies the functional requirements for:
+
+- future 3D box projection;
+- probabilistic occupancy masks;
+- predictive covariance use;
+- vehicle/pedestrian/cyclist class-aware policies;
+- continuity with the Part-A reactive illumination model;
+- temporal smoothing and actuation handling.
+
+The frozen scientific outcome, however, is deliberately preserved as a **negative result** rather than being post-hoc retuned into a pass.
+
+### Frozen scientific outcome
+
+| Criterion | Outcome |
+| --- | --- |
+| Vehicle shadow-zone violation | **PASS — strict improvement** |
+| Pedestrian visibility | **PASS — non-inferior** |
+| Cyclist visibility | **PASS — non-inferior** |
+| Over-masking non-inferiority | **FAIL** |
+
+The over-masking result is:
+
+| Quantity | Value |
+| --- | ---: |
+| Reactive over-masking area | **0.1886** |
+| Predictive over-masking area | **0.2652** |
+| Predictive − reactive | **+0.0766** |
+| Pre-outcome allowed delta | **+0.0200** |
+| Excess beyond allowed delta | **+0.0566** |
+
+Thus, the predictive controller reduces vehicle shadow-zone violations and preserves pedestrian/cyclist visibility, but does so with **too much additional masking under the frozen non-inferiority criterion**.
+
+This is scientifically important: the repository does **not** change the threshold after observing the result, does not reinterpret the failure as a pass, and does not use post-outcome retuning. The Stage-6 closure explicitly records the negative result and requires a **new scientific protocol/method version** for a future pass.
+
+**Stage-6 implementation status: COMPLETE.**  
+**Stage-6 scientific completion gate: FAIL.**
+
+---
+
+## 4.4 Stage 7 — Joint communication–illumination evaluation
+
+The intended Stage-7 goal is to evaluate communication and illumination jointly using the frozen shared posterior. However, the authoritative Stage-6 closure blocks progression of the current scientific protocol because the Stage-6 over-masking criterion failed.
+
+Therefore, this README does **not** present final Stage-7 system-level outcome numbers for the current protocol.
+
+The repository may contain Stage-7 implementation, handoff, pre-formal and evaluator-development artifacts, but these must not be interpreted as a valid final joint scientific result that supersedes the frozen Stage-6 gate.
+
+---
+
+## 5. Dataset and scene representation
+
+The project uses the **Waymo Open Motion Dataset (WOMD)** for real multi-agent traffic dynamics and map context. Actor classes include vehicles, pedestrians and cyclists. WOMD-LiDAR provides synchronized LiDAR history for the observed part of the forecasting window.
+
+LiDAR context can support:
 
 - actor geometry;
 - point-density confidence;
 - visibility / occlusion proxies;
 - intensity and elongation statistics;
-- occupancy or BEV extensions;
-- realistic clutter and partial observations;
-- optional future sensor-to-track extensions.
+- occupancy / BEV extensions;
+- clutter and partial-observation modeling;
+- future sensor-to-track extensions.
 
-It is **not** used as Doppler ground truth.
+It is **not** used as FMCW Doppler ground truth.
 
-The repository does not redistribute the original Waymo data. Users must obtain the dataset separately and comply with the applicable Waymo dataset license and attribution requirements.
+The repository does not redistribute the original Waymo data. Users must obtain the data independently and comply with the applicable dataset license and attribution requirements.
 
 ---
 
-## 5. Coordinate and receiver modeling
+## 6. Coordinate and receiver modeling
 
-All causal actor states are transformed into an ego/headlamp-centered coordinate frame before downstream sensing and control.
+All causal actor states are transformed into an ego/headlamp-centered coordinate frame before sensing and control.
 
-The transmitter location is configurable and can represent, for example, the headlamp midpoint or another fixed communication-module extrinsic.
-
-For communication control, the target vehicle centroid is not automatically assumed to be the receiver location. Stage 5 supports:
+The transmitter extrinsic is configurable. For communication, the target vehicle centroid is not automatically treated as the receiver location. Stage 5 supports:
 
 - **centroid baseline**;
 - **known receiver offset**;
 - **uncertain receiver offset**.
 
-This distinction matters because beam management should ultimately act on the predicted receiver position, not merely on the predicted vehicle-box center.
+This distinction is important because the communication controller acts on a **receiver posterior**, not merely a vehicle-center posterior.
 
 ---
 
-## 6. Stage-by-stage implementation
+## 7. Stage-by-stage implementation
 
 ### Stage 0 — Environment and dataset audit
 
-Stage 0 establishes a reproducible dataset and software foundation before any modeling begins. It audits:
-
-- dataset release/layout;
-- available train/validation/test files;
-- schema and coordinate conventions;
-- actor and map fields;
-- LiDAR availability and decompression;
-- scenario counts and split integrity;
-- class frequencies and track lengths;
-- available causal metadata.
-
-This stage exists to prevent silent assumptions about the actual WOMD version or data layout.
-
----
+Audits dataset layout, schema, coordinate conventions, map content, LiDAR availability, splits and reproducibility assumptions before modeling begins.
 
 ### Stage 1 — Causal scene representation
 
-Stage 1 converts WOMD information into the canonical algorithm-facing scene representation.
+Builds actor histories, ego/headlamp transforms, map context, receiver geometry and optional causal LiDAR context while enforcing strict past-only information flow.
 
-Main responsibilities include:
+### Stage 2 — PC-FMCW-like sensing observations
 
-- extracting actor histories and ego motion;
-- transforming global coordinates to ego/headlamp coordinates;
-- enforcing past-only information flow;
-- separating labels from inputs;
-- extracting map context;
-- representing receiver geometry;
-- exposing optional causal LiDAR-derived context.
+Generates range, geometry-derived radial velocity, angular information, SNR, measurement covariance, Gaussian corruption, missed detections, unlabeled detections and false alarms/clutter.
 
-A central anti-leakage rule is that future WOMD states are used only as labels/evaluator truth and are never passed into the online predictor or controller.
+### Stage 3 — Classical baselines
 
----
-
-### Stage 2 — PC-FMCW-like sensing interface
-
-Stage 2 converts the clean causal scene geometry into noisy sensing observations suitable for the tracking and forecasting stages.
-
-Supported quantities include:
-
-- range;
-- geometry-derived radial velocity;
-- azimuth and elevation from scene/perception geometry;
-- configurable sensing SNR;
-- SNR-/geometry-dependent measurement covariance;
-- Gaussian corruption;
-- missed detections;
-- unlabeled detection frames;
-- false alarms / clutter;
-- Monte Carlo covariance-consistency checks.
-
-The angular information is not claimed to arise automatically from the monostatic Range–Doppler waveform. It comes from the scene geometry or an explicitly declared angular-sensing model.
-
-The preferred main experimental mode is the **track-based PC-FMCW observation mode**, in which real WOMD trajectories are converted into realistic noisy PC-FMCW-like measurements rather than given directly to the predictor as perfect states.
-
----
-
-### Stage 3 — Classical tracking and forecasting baselines
-
-Stage 3 places classical estimators behind the same Stage-2 observation interface so that comparisons are scientifically fair.
-
-The frozen baseline set includes:
-
-- Constant Velocity (CV);
-- Constant Acceleration (CA);
-- Constant Turn Rate and Velocity (CTRV);
-- Kalman / Extended Kalman filtering;
-- IMM using CV / CA / CTRV motion models;
-- Multidimensional Hough Transform.
+Implements CV, CA, CTRV, EKF/Kalman, IMM and Multidimensional Hough Transform behind a common observation interface.
 
 > In this repository, **MHT means Multidimensional Hough Transform**, not Multiple Hypothesis Tracking.
 
-The standard track-based branch uses deterministic gated greedy nearest-neighbor association, while the Hough baseline can consume unlabeled detections directly. Measurement covariance is propagated rather than silently replaced by a fixed hand-tuned noise matrix.
-
-A frozen formal validation cohort contains **120 scenarios**, stratified into cyclist, pedestrian-without-cyclist, and vehicle-only scene groups.
-
----
-
 ### Stage 4 — Probabilistic trajectory prediction
 
-Stage 4 introduces the learned uncertainty-aware forecaster.
+Implements deterministic GRU, Gaussian probabilistic GRU, covariance calibration and a trajectory-level GMM extension at the main horizons 0.1, 0.3, 0.5 and 1.0 s.
 
-Training data are split at **scenario level** into independent fit, development, and calibration subsets. Neural samples are constructed only from causal Stage-2/Stage-3 information and may include:
+### Stage 5 — Adaptive beam management
 
-- actor history;
-- multi-agent context;
-- map context;
-- measurement covariance;
-- optional LiDAR-derived actor or scene features.
+Transforms the receiver posterior into beam probabilities over 16-, 32- and 64-beam codebooks and evaluates fixed and adaptive Top-K policies, probing overhead, link quality, BER and effective rate.
 
-The implemented progression includes:
+### Stage 6 — Predictive class-aware ADB
 
-1. deterministic GRU;
-2. Gaussian probabilistic GRU;
-3. covariance calibration;
-4. trajectory-level GMM extension.
+Projects future actor occupancy into the illumination controller and evaluates vehicle glare protection, pedestrian/cyclist visibility and masking cost. The current frozen protocol produces a scientifically preserved negative result due to over-masking.
 
-The Gaussian predictor outputs a future mean together with a full positive-definite 3D covariance for the main short horizons:
+### Stage 7 — Joint evaluation
 
-- 0.1 s;
-- 0.3 s;
-- 0.5 s;
-- 1.0 s.
-
-The covariance is calibrated on a separate calibration partition using per-horizon covariance scaling.
-
-The repository also evaluates the trajectory-level GMM extension for multi-modality, but the frozen downstream posterior used by later stages is the **calibrated Gaussian GRU**.
-
-On the frozen 120-scenario formal evaluation, the calibrated Gaussian predictor records an ADE of approximately **1.985 m** and improves calibration metrics relative to the uncalibrated posterior. In the recorded Stage-4 comparison it outperforms the frozen CV, CA, CTRV, Kalman/EKF, and IMM baselines; the repository does not claim universal dominance over every possible classical or neural baseline.
+Contains the implementation path for common-posterior communication/illumination analysis, but the current protocol cannot claim final Stage-7 closure because Stage 6 did not satisfy its frozen completion gate.
 
 ---
 
-### Stage 5 — Receiver-aware adaptive beam management
+## 8. Experimental modes
 
-Stage 5 propagates the future trajectory posterior into a future **receiver-position / angular posterior**.
-
-The controller then maps that posterior into a directional codebook and chooses an adaptive beam set.
-
-Implemented concepts include:
-
-- receiver-aware geometry rather than centroid-only geometry;
-- Monte-Carlo / distribution-based angular propagation;
-- 16-, 32-, and 64-beam codebooks;
-- beam probability computation;
-- fixed Top-1 / Top-3 / Top-5 baselines;
-- geometry-nearest-beam baseline;
-- previous-beam persistence;
-- adaptive Top-K selection;
-- fallback / reacquisition logic;
-- latency-aware evaluation;
-- optical link-budget evaluation.
-
-The adaptive policy chooses the **smallest beam set whose cumulative predicted probability mass reaches a requested target**, with the main frozen formal acceptance using **q = 0.95**.
-
-The communication evaluation does not stop at beam-index accuracy. Pointing error is propagated through the optical chain:
-
-```text
-pointing error
-    -> beam / optical gain
-    -> received power
-    -> SNR
-    -> DPSK BER
-    -> effective communication rate
-```
-
-Beam-probing overhead is incorporated into the effective-rate analysis.
-
-The frozen Stage-5 acceptance audit passes the mandatory communication-control, performance-evidence, handoff, and reproducibility gates. Blockage-aware Top-K is treated as an optional extension rather than a mandatory acceptance requirement.
-
----
-
-### Stage 6 — Predictive class-aware Adaptive Driving Beam control
-
-Stage 6 replaces purely reactive current-region dimming with **future probabilistic occupancy control**.
-
-Predicted actor geometry is projected into the headlamp control representation using full actor boxes rather than only box centroids. The controller preserves the existing ADB semantics while adding a predictive residual component.
-
-The class-aware policy distinguishes the safety objectives of different road users:
-
-#### Vehicles
-
-- stronger glare protection;
-- uncertainty-aware angular margins;
-- increased protection under larger closing speed / uncertainty;
-- windshield/mirror-relevant shadowing semantics.
-
-#### Pedestrians
-
-- avoid full blackout;
-- preserve body and road visibility;
-- use partial dimming or face-height protection;
-- maintain an appropriate minimum illumination floor;
-- account for larger lateral uncertainty.
-
-#### Cyclists
-
-- preserve rider/bicycle visibility;
-- use larger lateral maneuver margins;
-- treat crossing trajectories explicitly;
-- balance glare protection against loss of detectability.
-
-The frozen accepted method is a **causal, budgeted predictive residual ADB controller**. The final Stage-6 closure records class-aware-policy compliance together with preserved pedestrian/cyclist visibility, controlled over-masking, and reduced vehicle shadow violations for the accepted configuration. Future ground truth and oracle controller inputs are not allowed.
-
----
-
-### Stage 7 — Joint communication and illumination evaluation
-
-Stage 7 is the common evaluation layer for the frozen upstream components.
-
-It is designed to test whether the same predictive posterior can support both downstream branches without retraining or silently modifying the Stage-4, Stage-5, or Stage-6 models.
-
-The analysis covers:
-
-- shared-posterior consistency;
-- beam reliability and probability coverage;
-- probing overhead;
-- beam switching and reacquisition behavior;
-- ADB glare protection;
-- pedestrian/cyclist visibility;
-- over-masking;
-- latency;
-- uncertainty sweeps;
-- codebook sweeps;
-- failure-case slices;
-- confidence intervals.
-
-The current repository contains the Stage-7 joint-evaluation implementation and handoff/analysis workflow. Its minimal handoff artifact explicitly records that Stage-7 formal outcomes have not yet been read or computed in that handoff snapshot, so this README intentionally avoids inventing final Stage-7 numerical conclusions.
-
----
-
-## 7. Experimental modes
-
-The project distinguishes three evaluation levels so that dataset annotations, realistic observations, and optional raw-sensor processing are not conflated.
+The project distinguishes three levels of realism.
 
 ### Oracle-track mode
 
-Perfect historical WOMD actor states are provided up to the anchor time. Future states remain labels only. This is an upper-bound experiment for the forecasting/beam/ADB blocks rather than a fully realistic online system.
+Perfect historical WOMD states are supplied up to the anchor time. Future states remain evaluator truth only. This provides an upper-bound experiment rather than a realistic online sensing system.
 
-### Track-based PC-FMCW observation mode — main mode
+### Track-based PC-FMCW observation mode — primary mode
 
-Real WOMD tracks generate range, bearing, radial velocity, PC-FMCW measurement noise, missed detections, false alarms, and uncertainty. The predictor receives these noisy observations rather than perfect actor states.
+Real WOMD motion generates PC-FMCW-like range/radial-velocity/angular observations, noise, covariance, missed detections and false alarms. The predictor receives these degraded observations rather than perfect current states.
 
-### Sensor-to-track mode — optional realism extension
+### Sensor-to-track mode — optional extension
 
-A future extension can place a LiDAR detector/tracker in front of forecasting, for example:
+A future realism extension can use
 
 ```text
 raw LiDAR
-  -> 3D detection
-  -> association / tracking
+  -> 3D detector
+  -> data association / tracking
   -> probabilistic forecasting
   -> beam + ADB control
 ```
 
-This is intentionally optional and is not required for the first complete trajectory-to-control pipeline.
+This is not required for the frozen core trajectory-to-control pipeline.
 
 ---
 
-## 8. Evaluation metrics
+## 9. Evaluation metrics
 
-### Trajectory and uncertainty metrics
-
-The evaluation supports metrics such as:
+### Trajectory and uncertainty
 
 - ADE / FDE;
 - minADE / minFDE where applicable;
 - miss rate;
 - angular MAE / RMSE;
-- radial and velocity error;
-- heading error;
+- radial, velocity and heading errors;
 - negative log-likelihood;
 - Brier score;
 - calibration error;
 - empirical confidence-region coverage.
 
-Results can be sliced by actor class, horizon, distance, maneuver type, visibility/occlusion, point density, and measurement-uncertainty level.
-
-### Beam-management metrics
-
-Beam evaluation includes:
+### Beam management
 
 - Top-1 / Top-K hit rate;
-- average selected K;
-- probability coverage;
+- empirical probability coverage;
+- average selected K / probe count;
 - probing overhead and overhead reduction;
-- beam-gain loss;
-- received-power loss;
+- beam-gain and received-power loss;
 - SNR loss;
 - DPSK BER;
 - effective-rate loss;
 - outage probability;
 - beam-switching rate;
-- reacquisition latency;
-- reliability–overhead trade-offs.
+- reacquisition latency.
 
-### ADB metrics
+### Adaptive Driving Beam
 
-Because WOMD does not provide true ADB commands, ADB evaluation uses a **constructed oracle reference**, not measured ground truth.
+Because WOMD does not contain measured ADB command ground truth, the ADB evaluation uses constructed references and controller-specific metrics rather than claiming real ADB labels.
 
 Metrics include:
 
-- predictive mask IoU against the constructed reference;
 - vehicle shadow-zone violations;
 - glare-risk exposure;
 - over-masking;
-- road-illumination retention;
-- pedestrian visibility proxy;
-- cyclist visibility proxy;
+- road illumination retention;
+- pedestrian visibility;
+- cyclist visibility;
 - false dimming;
 - temporal smoothness / flicker;
 - actuation latency.
 
 ---
 
-## 9. Repository structure
+## 10. Repository structure
 
 | Directory | Purpose |
 | --- | --- |
 | `iscai_data_prep/` | Dataset manifests and deterministic data-selection utilities. |
-| `iscai_stage0/` | Environment, dataset-layout, schema, coordinate, map, and LiDAR alignment audits. |
-| `iscai_stage1/` | Causal WOMD preprocessing, ego/headlamp geometry, map context, receiver geometry, and causal annotation/LiDAR interfaces. |
-| `iscai_stage2/` | PC-FMCW-like observations, sensing SNR, measurement covariance, corruption, missed detections, and false alarms/clutter. |
-| `iscai_stage3/` | Classical tracking and forecasting baselines: CV, CA, CTRV, EKF, IMM, and Multidimensional Hough Transform. |
-| `iscai_stage4/` | Deterministic/probabilistic GRU forecasting, calibration, GMM extension, uncertainty analysis, and formal evaluation. |
-| `iscai_stage5/` | Receiver-aware angular posterior, adaptive Top-K beam control, and optical pointing/gain/SNR/BER/effective-rate evaluation. |
-| `iscai_stage6/` | Predictive class-aware ADB and causal future-occupancy control. |
-| `iscai_stage7/` | Joint communication–illumination evaluation using the frozen shared predictive pipeline. |
+| `iscai_stage0/` | Environment, dataset-layout, schema, coordinate, map and LiDAR audits. |
+| `iscai_stage1/` | Causal WOMD preprocessing, ego/headlamp geometry, map and receiver representation. |
+| `iscai_stage2/` | PC-FMCW-like observations, sensing SNR, covariance, corruption, misses and clutter. |
+| `iscai_stage3/` | Classical tracking and forecasting baselines. |
+| `iscai_stage4/` | Deterministic/probabilistic GRU forecasting, GMM, calibration and formal evaluation. |
+| `iscai_stage5/` | Receiver-aware angular posterior, adaptive Top-K beam control and optical link evaluation. |
+| `iscai_stage6/` | Predictive class-aware ADB and frozen scientific closure. |
+| `iscai_stage7/` | Joint communication–illumination implementation and evaluation-development artifacts. |
 | `part_a_reference/` | Frozen reference to the previous PC-FMCW ISCAI implementation. |
-| `audits.zip`, `manifests.zip` | Archived audit and manifest material used by the staged reproducibility workflow. |
+| `audits.zip`, `manifests.zip` | Archived reproducibility material. |
 
 ---
 
-## 10. Reproducibility and leakage prevention
+## 11. Reproducibility philosophy
 
-The repository follows a staged **freeze-and-audit** workflow rather than a single monolithic training script.
+The repository follows a staged **freeze-and-audit** workflow. Major stages generate machine-readable reports, deterministic manifests, hashes, leakage checks, regression-test evidence and frozen handoff artifacts.
 
-Major blocks produce, where applicable:
+Important principles are:
 
-- deterministic manifests;
-- machine-readable reports;
-- leakage checks;
-- implementation hashes;
-- regression-test counts;
-- frozen upstream/downstream handoff artifacts;
-- fixed evaluation cohorts;
-- calibration partitions separate from model fitting;
-- scenario-level split discipline.
+- scenario-level split discipline;
+- separate fit/development/calibration roles;
+- no post-hoc use of formal outcomes for tuning;
+- frozen acceptance criteria before outcome interpretation;
+- preservation of negative results;
+- explicit separation between implementation completion and scientific acceptance.
 
-Important leakage rules include:
-
-- no future states as model inputs;
-- no future validity masks as causal features;
-- no future LiDAR;
-- no train/validation leakage through overlapping windows;
-- no validation/test normalization statistics during training;
-- no benchmark-selection metadata as numerical sensing features.
-
-Because each stage was developed and frozen independently, **individual stage directories are the authoritative source for exact commands, dependencies, configuration files, frozen reports, and audit outputs**. A single root-level one-command installation is intentionally not assumed.
+Individual stage directories and their frozen reports are the authoritative source for exact commands, dependencies, configurations and numerical results.
 
 ---
 
-## 11. Relationship to Part A
-
-The repository is an extension of the previous PC-FMCW automotive ISCAI implementation.
+## 12. Relationship to Part A
 
 ### Previous framework
 
 ```text
 PC-FMCW / DPSK sensing
       -> coherent processing
-      -> Range–Doppler / CFAR
+      -> Range-Doppler / CFAR
       -> current-state tracking
       -> reactive communication / ADB
 ```
 
-### This repository
+### Part B
 
 ```text
 PC-FMCW-conditioned uncertain sensing
@@ -507,67 +446,63 @@ PC-FMCW-conditioned uncertain sensing
       -> receiver-aware angular posterior
       -> adaptive communication beam control
       -> predictive class-aware ADB
-      -> joint evaluation
+      -> scientific evaluation
 ```
 
-The intent is therefore continuity rather than replacement: Part A contributes the sensing/communication/illumination reference and legacy Hough context; Part B adds realistic traffic dynamics, explicit uncertainty propagation, forecasting, and proactive control.
+Part A provides the sensing/communication/illumination reference and the Hough-based legacy tracking context. Part B adds real traffic dynamics, explicit uncertainty propagation, probabilistic forecasting and proactive downstream control.
 
 ---
 
-## 12. Scientific claims the repository intentionally does not make
+## 13. Scientific claims intentionally not made
 
-The project deliberately avoids over-claiming.
-
-It does **not** claim that:
+This repository does **not** claim that:
 
 - WOMD-LiDAR is FMCW;
 - geometry-derived radial velocity is measured FMCW Doppler;
 - the monostatic PC-FMCW waveform alone estimates full 3D bearing;
 - WOMD contains real optical communication beam labels;
 - WOMD contains measured ADB ground-truth commands;
-- the constructed ADB oracle is measured ground truth;
-- predictive ADB by itself is novel;
-- trajectory forecasting by itself is novel;
-- uncertainty-aware beam management by itself is novel;
-- using a Transformer alone constitutes the research contribution.
-
-The research contribution is the **integration and calibration of these components in a common PC-FMCW-conditioned automotive ISCAI pipeline**, with a shared future-motion posterior driving both communication and illumination decisions.
+- the constructed ADB reference is measured ground truth;
+- trajectory forecasting alone is the novelty;
+- predictive ADB alone is the novelty;
+- adaptive Top-K beam management alone is the novelty;
+- a Transformer architecture by itself constitutes the contribution;
+- the current Stage-6 protocol has passed its scientific completion criterion;
+- final Stage-7 joint conclusions exist for the currently frozen failed Stage-6 protocol.
 
 ---
 
-## 13. Main research contribution
+## 14. Main research contribution
 
-The strongest contribution of the project is the combination of:
+The project combines:
 
-1. real multi-agent vehicle/VRU trajectories;
+1. real multi-agent vehicle/VRU motion from WOMD;
 2. PC-FMCW physics-grounded measurement uncertainty;
 3. explicit separation of measurement and predictive uncertainty;
 4. calibrated probabilistic future motion;
-5. receiver-aware future angular uncertainty;
-6. adaptive resource-constrained Top-K beam probing;
+5. receiver-aware angular uncertainty;
+6. adaptive probability-mass-constrained beam probing;
 7. predictive class-aware ADB;
 8. a shared posterior for communication and illumination;
-9. mapping beam-pointing uncertainty to optical SNR, DPSK BER, and effective rate;
-10. a staged, leakage-aware reproducibility workflow.
+9. mapping beam-pointing uncertainty to received power, SNR, DPSK BER and effective rate;
+10. a reproducible workflow that preserves both positive and negative scientific results.
 
-A compact description of the research direction is:
+A compact project description is:
 
-> **We develop a real-traffic, PC-FMCW-conditioned vehicular ISCAI framework in which calibrated multi-agent trajectory uncertainty is transformed into a shared future receiver/angular occupancy representation that jointly controls adaptive directional beam probing and predictive class-aware ADB illumination.**
-
----
-
-## 14. Status
-
-- **Stages 0–6:** implemented with frozen completion / acceptance artifacts in the repository.
-- **Stage 7:** joint-evaluation implementation and handoff/analysis workflow are present; final formal Stage-7 outcome values are not asserted here unless backed by the corresponding frozen report.
-- **Advanced extensions:** blockage prediction, LiDAR BEV encoders, sensor-to-track integration, graph/Transformer variants, conformal beam sets, ray tracing, and external beam-data validation remain optional research directions.
-
-Reported numerical values in this README should be interpreted only within the scope of the corresponding frozen stage reports and documented evaluation protocol.
+> **We develop a real-traffic, PC-FMCW-conditioned vehicular ISCAI framework in which calibrated multi-agent trajectory uncertainty is transformed into future receiver/angular and occupancy representations for adaptive directional beam probing and predictive class-aware illumination.**
 
 ---
 
-## 15. Suggested citation / project description
+## 15. Current scientific status
 
-For a report, thesis, or project summary, the repository can be described as:
+| Stage | Status |
+| --- | --- |
+| Stages 0–3 | Implemented / frozen upstream pipeline |
+| Stage 4 | **COMPLETE — formal probabilistic forecasting evaluation frozen** |
+| Stage 5 | **PASS — formal adaptive beam-management acceptance** |
+| Stage 6 | **IMPLEMENTATION COMPLETE, SCIENTIFIC GATE FAIL — over-masking non-inferiority** |
+| Stage 7 | **Not scientifically closed for the current protocol because Stage 6 blocks progression** |
 
-> A staged uncertainty-aware automotive ISCAI framework that uses real WOMD traffic dynamics to generate causal PC-FMCW-like sensing observations, predicts calibrated future multi-agent motion, and converts the resulting shared posterior into receiver-aware adaptive communication beams and predictive class-aware Adaptive Driving Beam control.
+The most important current conclusion is therefore not simply that every downstream component succeeds. Rather, the repository demonstrates a strong probabilistic forecasting and adaptive beam-management result, while the first frozen predictive-ADB protocol exposes a real **safety/utility trade-off between glare reduction and excess masking** that must be addressed in a new Stage-6 method version.
+
+That negative result is part of the scientific contribution: it identifies where uncertainty-aware proactive illumination improves one objective while violating another pre-specified constraint, without changing the evaluation rules after observing the outcome.
