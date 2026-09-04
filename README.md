@@ -29,7 +29,8 @@ real WOMD traffic dynamics
         -> calibrated future trajectory posterior
         -> receiver / angular posterior + future occupancy
         -> adaptive Top-K beam control + predictive ADB
-        -> system-level evaluation
+        -> joint system-level evaluation
+        -> external measured-beam validation
 ```
 
 ---
@@ -60,6 +61,10 @@ The predictor is conditioned on the first and learns the second.
 ### Causality and leakage prevention
 
 Future WOMD states are used only as labels/evaluator truth. The causal pipeline does not use future actor states, future validity masks, future LiDAR or benchmark-selection metadata as numerical predictor inputs.
+
+### Oracle results are evaluation bounds, not deployable predictors
+
+Whenever an **oracle future trajectory** is reported, it uses evaluator-only future ground truth as the reference trajectory. Therefore its trajectory displacement error is identically zero by construction. It is included only as a **non-deployable ideal evaluation bound** and must not be interpreted as a trained forecasting model or an online system result.
 
 ---
 
@@ -98,16 +103,40 @@ WOMD / WOMD-LiDAR causal history
           +---------+----------+
                     |
                     v
-          system-level evaluation
+       frozen joint Stage-7 evaluation
+                    |
+                    v
+      measured DeepSense beam validation
 ```
 
 ---
 
-# 4. Formal results
+# 4. Frozen and formal results
 
-The values below are taken from the repository's frozen scientific closure/evaluation artifacts. They should be interpreted **within the documented evaluation protocol and frozen cohorts**, not as general claims beyond this experimental setup.
+The numerical values below are taken from the repository's **final frozen closure/evaluation artifacts** rather than intermediate development logs. Older repair logs and pre-freeze runs remain in the repository for auditability, but they are not treated as the reporting authority when a later frozen closure exists.
 
-## 4.1 Stage 4 — Probabilistic trajectory forecasting
+Results should be interpreted **within the documented protocol and frozen cohorts**. They are not universal claims beyond this experimental setup.
+
+## 4.1 Stage 3 — Classical tracking and forecasting baselines
+
+Stage 3 evaluates classical baselines behind the same frozen Stage-2 observation interface. The final validation cohort contains **120 scenarios**, stratified as 40 cyclist, 40 pedestrian-without-cyclist and 40 vehicle-only scenarios. The final closure records **109/109 regression tests passed** and exact reproducibility of the frozen formal run.
+
+| Method | ADE | FDE | Reconstruction recall |
+| --- | ---: | ---: | ---: |
+| Constant Acceleration | 30.181 m | 81.641 m | 0.628 |
+| Constant Velocity | 6.751 m | 13.783 m | 0.728 |
+| CTRV | 4.752 m | 8.146 m | 0.671 |
+| IMM (CV/CA/CTRV) | 3.646 m | 7.228 m | 0.584 |
+| Kalman / EKF | 3.537 m | 6.756 m | 0.612 |
+| **Multidimensional Hough** | **1.615 m** | **2.537 m** | **0.466** |
+
+The Hough baseline has the lowest matched-track displacement error among these Stage-3 methods, but this result must be interpreted together with reconstruction coverage: its recall is lower than several classical track-based baselines. Therefore the repository does **not** claim that Hough universally dominates the other methods based on ADE/FDE alone.
+
+> In this repository, **MHT means Multidimensional Hough Transform**, not Multiple Hypothesis Tracking.
+
+---
+
+## 4.2 Stage 4 — Probabilistic trajectory forecasting
 
 The frozen Stage-4 formal evaluation contains **120 scenarios**. The primary downstream posterior is the calibrated Gaussian GRU; a deterministic GRU and a trajectory-level GMM are also evaluated.
 
@@ -115,10 +144,12 @@ The frozen Stage-4 formal evaluation contains **120 scenarios**. The primary dow
 
 | Model | Formal ADE |
 | --- | ---: |
-| Oracle future trajectory | **0.000 m** |
+| Oracle future-GT reference — non-deployable evaluation bound | **0.000 m** |
 | Trajectory-level GMM, expected ADE | **1.450 m** |
 | Calibrated Gaussian GRU | **1.454 m** |
 | Deterministic GRU | **1.537 m** |
+
+The oracle value is zero because its trajectory equals evaluator ground truth by definition. It is not an online predictor.
 
 The GMM gives the lowest non-oracle expected ADE in this frozen formal report, but the **calibrated Gaussian GRU remains the frozen posterior used by downstream stages** because it provides the required mean/covariance interface and calibrated uncertainty representation.
 
@@ -128,11 +159,9 @@ The GMM gives the lowest non-oracle expected ADE in this frozen formal report, b
 | --- | ---: | ---: |
 | Macro ECE | 0.1438 | **0.0806** |
 
-Calibration reduces macro ECE by approximately **44% relative to the uncalibrated posterior**. This is important because Stage 5 selects beam sets by integrating predicted probability mass; a poorly calibrated posterior would make a nominal 95% beam set scientifically difficult to interpret.
+Calibration reduces macro ECE by approximately **44% relative to the uncalibrated posterior**. This matters directly to Stage 5 because adaptive beam sets are chosen from predicted probability mass; nominal 95% sets are only meaningful when posterior probabilities are reasonably calibrated.
 
 ### Exact common-support comparison against the frozen CV comparator
-
-On the final exact common-support evaluation:
 
 | Horizon | CV ADE | Gaussian ADE | Common samples |
 | --- | ---: | ---: | ---: |
@@ -142,13 +171,15 @@ On the final exact common-support evaluation:
 | 1.0 s | 11.950 m | **2.335 m** | 312 |
 | **Aggregate** | **5.841 m** | **1.285 m** | 332 actors / 1286 events |
 
-On this exact common support, the Gaussian predictor reduces aggregate ADE by about **78% relative to CV**. The gap increases with prediction horizon, which is consistent with the intended use of learned motion context rather than simple constant-velocity propagation.
+On this exact common support, the Gaussian predictor reduces aggregate ADE by about **78% relative to CV**.
 
-The Stage-4 closure also confirms the causal experimental contract: no future truth is used as model input, annotated velocity is not the primary input, track IDs are not used numerically, and measurement covariance remains distinct from predictive covariance.
+The Stage-4 closure also confirms the causal experimental contract: no future truth is used as model input, annotated velocity is not the primary predictor input, track IDs are not used numerically, and measurement covariance remains distinct from predictive covariance.
+
+**Stage-4 status: COMPLETE / FROZEN.**
 
 ---
 
-## 4.2 Stage 5 — Receiver-aware adaptive Top-K beam management
+## 4.3 Stage 5 — Receiver-aware adaptive Top-K beam management
 
 Stage 5 converts the trajectory posterior into a receiver-aware angular posterior and then chooses the **smallest beam set whose cumulative predicted probability reaches a requested target**. The primary formal acceptance uses **q = 0.95** and the uncertain-receiver-geometry setting.
 
@@ -170,11 +201,11 @@ All frozen coverage tests pass the pre-specified statistical acceptance rule for
 | 32 beams | **4.17** | 32 | **87.0%** |
 | 64 beams | **7.39** | 64 | **88.5%** |
 
-The formal acceptance artifact therefore supports the central Stage-5 claim: **high empirical coverage can be maintained while probing only a small fraction of the full codebook**.
+The formal acceptance artifact therefore supports the central Stage-5 result: **high empirical coverage is maintained while probing only a small fraction of the full codebook**.
 
-For 16 beams, adaptive probing also passes against the valid fixed Top-K baselines with fixed Top-3 as the best valid comparator; for 32 beams, fixed Top-5 is the valid comparator. At 64 beams, none of the tested fixed Top-1/3/5 alternatives satisfy the required coverage criterion, while the adaptive policy still passes the formal coverage and exhaustive-overhead conditions.
+For 16 beams, adaptive probing also passes against the valid fixed Top-K alternatives with fixed Top-3 as the best valid comparator; for 32 beams, fixed Top-5 is the valid comparator. At 64 beams, none of the tested fixed Top-1/3/5 alternatives satisfies the frozen coverage criterion, while the adaptive policy still passes the formal coverage and exhaustive-overhead conditions.
 
-The Stage-5 evaluation additionally propagates pointing decisions through the optical communication chain:
+The communication evaluation propagates beam pointing through
 
 ```text
 beam pointing
@@ -185,26 +216,19 @@ beam pointing
     -> effective rate
 ```
 
-This makes the beam controller a communication-system evaluation rather than only a beam-index classification experiment.
+so the Stage-5 controller is evaluated as a communication-system policy rather than only as beam-index classification.
 
 **Stage-5 formal status: PASS.**
 
 ---
 
-## 4.3 Stage 6 — Predictive class-aware ADB
+## 4.4 Stage 6 — Predictive class-aware ADB
 
-Stage 6 tests whether the shared probabilistic future occupancy can improve ADB behavior while preserving vehicle/VRU safety constraints.
+Stage 6 tests whether probabilistic future occupancy can improve ADB behavior while preserving vehicle/VRU safety constraints.
 
-The implementation successfully satisfies the functional requirements for:
+The implementation satisfies the functional requirements for future 3D box projection, probabilistic occupancy, predictive covariance use, class-aware vehicle/pedestrian/cyclist policies, continuity with the Part-A reactive controller, and temporal smoothing/actuation handling.
 
-- future 3D box projection;
-- probabilistic occupancy masks;
-- predictive covariance use;
-- vehicle/pedestrian/cyclist class-aware policies;
-- continuity with the Part-A reactive illumination model;
-- temporal smoothing and actuation handling.
-
-The frozen scientific outcome, however, is deliberately preserved as a **negative result** rather than being post-hoc retuned into a pass.
+The frozen scientific result is deliberately preserved as a **negative result** rather than being post-hoc retuned into a pass.
 
 ### Frozen scientific outcome
 
@@ -215,8 +239,6 @@ The frozen scientific outcome, however, is deliberately preserved as a **negativ
 | Cyclist visibility | **PASS — non-inferior** |
 | Over-masking non-inferiority | **FAIL** |
 
-The over-masking result is:
-
 | Quantity | Value |
 | --- | ---: |
 | Reactive over-masking area | **0.1886** |
@@ -225,22 +247,82 @@ The over-masking result is:
 | Pre-outcome allowed delta | **+0.0200** |
 | Excess beyond allowed delta | **+0.0566** |
 
-Thus, the predictive controller reduces vehicle shadow-zone violations and preserves pedestrian/cyclist visibility, but does so with **too much additional masking under the frozen non-inferiority criterion**.
+Thus, the predictive controller reduces vehicle shadow-zone violations and preserves pedestrian/cyclist visibility, but it does so with **too much additional masking under the frozen non-inferiority criterion**.
 
-This is scientifically important: the repository does **not** change the threshold after observing the result, does not reinterpret the failure as a pass, and does not use post-outcome retuning. The Stage-6 closure explicitly records the negative result and requires a **new scientific protocol/method version** for a future pass.
+The repository does not change the acceptance threshold after observing this result, does not reinterpret the failure as a pass, and does not use post-outcome retuning. This negative result therefore identifies a real safety/utility trade-off rather than a software failure.
 
 **Stage-6 implementation status: COMPLETE.**  
-**Stage-6 scientific completion gate: FAIL.**
+**Stage-6 frozen scientific gate: FAIL for the evaluated Stage-6 protocol.**
 
 ---
 
-## 4.4 Stage 7 — Joint communication–illumination evaluation
+## 4.5 Stage 7 — Frozen joint communication–illumination evaluation
 
-The intended Stage-7 goal is to evaluate communication and illumination jointly using the frozen shared posterior. However, the authoritative Stage-6 closure blocks progression of the current scientific protocol because the Stage-6 over-masking criterion failed.
+The repository now contains a later **final frozen Stage-7 evaluation**. This must be distinguished from the earlier Stage-6 protocol gate: the Stage-7 result does **not** erase or reinterpret the frozen Stage-6 over-masking failure.
 
-Therefore, this README does **not** present final Stage-7 system-level outcome numbers for the current protocol.
+The final Stage-7 formal evaluator records:
 
-The repository may contain Stage-7 implementation, handoff, pre-formal and evaluator-development artifacts, but these must not be interpreted as a valid final joint scientific result that supersedes the frozen Stage-6 gate.
+| Item | Frozen result |
+| --- | --- |
+| Formal scenarios | **120** |
+| Five-system joint rows | **600** |
+| Formal evaluation status | **PASS_FROZEN** |
+| Future GT used as controller input | **No** |
+| Controllers rerun after future-GT access | **No** |
+| Post-outcome tuning | **No** |
+| Historical Stage-6 outcomes reused | **No** |
+
+Future ground truth is accessed by the evaluator to score already-frozen controller outputs, not as an online controller feature.
+
+The subsequent Stage-7 statistical block operates on the same **600 joint rows**, performs **10,000 bootstrap resamples**, and records status **PASS** without new model forward passes or post-outcome tuning.
+
+The frozen Stage-7 sweep block also records:
+
+- codebook sweep: **PASS**;
+- coverage sweep: **PASS**;
+- uncertainty sweep: **PASS**;
+- exact reproduction check: **PASS**;
+- 120 scenario sweep records;
+- no new model forward pass;
+- no post-outcome tuning.
+
+### Important Stage-7 latency limitation
+
+The Stage-7 latency/resource closure explicitly states that **full joint end-to-end latency is not evaluable from the exact frozen authorities**, because complete measurements for data loading, preprocessing, predictor inference, beam selection and ADB generation are not all available in the frozen authority set.
+
+Therefore this README does **not** fabricate a total end-to-end latency number.
+
+**Stage-7 formal joint-evaluation status: PASS_FROZEN, with the stated latency limitation.**
+
+---
+
+## 4.6 Stage 8 — External measured-beam validation with DeepSense
+
+Stage 8 provides a separate external validation layer using **measured mmWave beam-power data**. It validates the **adaptive beam-selection policy**, not the optical headlamp hardware, and it does not pool optical and mmWave measurements as if they were the same physical modality.
+
+For the primary policy `adaptive_topk_q095`, the final reproducibility report records **n = 1030** measured samples:
+
+| Metric | Point estimate | 95% bootstrap interval |
+| --- | ---: | ---: |
+| Empirical coverage | **96.89%** | 95.73% – 97.96% |
+| Mean selected K | **5.02** | 4.93 – 5.12 |
+| Probing overhead | **7.85%** | 7.70% – 8.00% |
+| Mean measured power loss | **0.00864 dB** | 0.00467 – 0.01357 dB |
+| 1 dB outage rate | **0.291%** | 0 – 0.680% |
+| 3 dB outage rate | **0%** | 0 – 0% |
+| 6 dB outage rate | **0%** | 0 – 0% |
+| Normalized SE gap at 10 dB | **0.00259** | 0.00140 – 0.00407 |
+
+The measured result is consistent with the central adaptive-Top-K principle: a requested 95% policy attains approximately **96.9% empirical coverage** while selecting about **5 beams on average**, with small measured power loss and very low measured outage under this DeepSense evaluation.
+
+The Stage-8 closure also explicitly records:
+
+- optical and mmWave evaluations remain separate;
+- DeepSense validates the policy rather than the optical headlamp;
+- no post-outcome tuning;
+- formal outcomes were not modified during final reporting.
+
+**Stage-8 core status: COMPLETE / final reporting reproducibility PASS.**
 
 ---
 
@@ -248,15 +330,7 @@ The repository may contain Stage-7 implementation, handoff, pre-formal and evalu
 
 The project uses the **Waymo Open Motion Dataset (WOMD)** for real multi-agent traffic dynamics and map context. Actor classes include vehicles, pedestrians and cyclists. WOMD-LiDAR provides synchronized LiDAR history for the observed part of the forecasting window.
 
-LiDAR context can support:
-
-- actor geometry;
-- point-density confidence;
-- visibility / occlusion proxies;
-- intensity and elongation statistics;
-- occupancy / BEV extensions;
-- clutter and partial-observation modeling;
-- future sensor-to-track extensions.
+LiDAR context can support actor geometry, point-density confidence, visibility/occlusion proxies, intensity and elongation statistics, occupancy/BEV extensions, clutter and partial-observation modeling, and future sensor-to-track extensions.
 
 It is **not** used as FMCW Doppler ground truth.
 
@@ -294,9 +368,7 @@ Generates range, geometry-derived radial velocity, angular information, SNR, mea
 
 ### Stage 3 — Classical baselines
 
-Implements CV, CA, CTRV, EKF/Kalman, IMM and Multidimensional Hough Transform behind a common observation interface.
-
-> In this repository, **MHT means Multidimensional Hough Transform**, not Multiple Hypothesis Tracking.
+Implements CV, CA, CTRV, EKF/Kalman, IMM and Multidimensional Hough behind a common observation interface, with displacement error interpreted together with reconstruction support.
 
 ### Stage 4 — Probabilistic trajectory prediction
 
@@ -308,21 +380,25 @@ Transforms the receiver posterior into beam probabilities over 16-, 32- and 64-b
 
 ### Stage 6 — Predictive class-aware ADB
 
-Projects future actor occupancy into the illumination controller and evaluates vehicle glare protection, pedestrian/cyclist visibility and masking cost. The current frozen protocol produces a scientifically preserved negative result due to over-masking.
+Projects future actor occupancy into the illumination controller and evaluates vehicle glare protection, pedestrian/cyclist visibility and masking cost. The frozen Stage-6 protocol produces a preserved negative result because the over-masking non-inferiority criterion is not met.
 
 ### Stage 7 — Joint evaluation
 
-Contains the implementation path for common-posterior communication/illumination analysis, but the current protocol cannot claim final Stage-7 closure because Stage 6 did not satisfy its frozen completion gate.
+Runs frozen multi-system communication/illumination evaluation, evaluator-only future-truth scoring, bootstrap statistics, codebook/coverage/uncertainty sweeps and reproducibility checks. The final frozen Stage-7 evaluator records `PASS_FROZEN`; complete joint end-to-end latency remains explicitly not evaluable from the frozen authorities.
+
+### Stage 8 — External measured-beam validation
+
+Evaluates the adaptive Top-K beam policy on measured DeepSense mmWave beam-power data while maintaining strict separation from the optical headlamp/link model.
 
 ---
 
 ## 8. Experimental modes
 
-The project distinguishes three levels of realism.
+The project distinguishes three levels of realism for the WOMD-centered pipeline.
 
 ### Oracle-track mode
 
-Perfect historical WOMD states are supplied up to the anchor time. Future states remain evaluator truth only. This provides an upper-bound experiment rather than a realistic online sensing system.
+Perfect **historical** WOMD states are supplied only up to the anchor time. Future states remain evaluator truth. This is an upper-bound historical-state experiment rather than a realistic sensor-to-track implementation.
 
 ### Track-based PC-FMCW observation mode — primary mode
 
@@ -374,19 +450,13 @@ This is not required for the frozen core trajectory-to-control pipeline.
 
 ### Adaptive Driving Beam
 
-Because WOMD does not contain measured ADB command ground truth, the ADB evaluation uses constructed references and controller-specific metrics rather than claiming real ADB labels.
+Because WOMD does not contain measured ADB command ground truth, the ADB evaluation uses constructed evaluator references and controller-specific metrics rather than claiming real ADB labels.
 
-Metrics include:
+Metrics include vehicle shadow-zone violations, glare-risk exposure, over-masking, road illumination retention, pedestrian visibility, cyclist visibility, false dimming, temporal smoothness/flicker and actuation latency.
 
-- vehicle shadow-zone violations;
-- glare-risk exposure;
-- over-masking;
-- road illumination retention;
-- pedestrian visibility;
-- cyclist visibility;
-- false dimming;
-- temporal smoothness / flicker;
-- actuation latency.
+### External measured-beam validation
+
+DeepSense evaluation includes empirical coverage, selected beam count, probing overhead, measured power loss, outage thresholds and spectral-efficiency-gap metrics with bootstrap uncertainty intervals.
 
 ---
 
@@ -401,8 +471,9 @@ Metrics include:
 | `iscai_stage3/` | Classical tracking and forecasting baselines. |
 | `iscai_stage4/` | Deterministic/probabilistic GRU forecasting, GMM, calibration and formal evaluation. |
 | `iscai_stage5/` | Receiver-aware angular posterior, adaptive Top-K beam control and optical link evaluation. |
-| `iscai_stage6/` | Predictive class-aware ADB and frozen scientific closure. |
-| `iscai_stage7/` | Joint communication–illumination implementation and evaluation-development artifacts. |
+| `iscai_stage6/` | Predictive class-aware ADB and frozen negative-result scientific closure. |
+| `iscai_stage7/` | Frozen joint communication–illumination evaluation, statistics and sweeps. |
+| `iscai_stage8/` | External DeepSense measured-mmWave beam-policy validation and final reporting. |
 | `part_a_reference/` | Frozen reference to the previous PC-FMCW ISCAI implementation. |
 | `audits.zip`, `manifests.zip` | Archived reproducibility material. |
 
@@ -416,10 +487,13 @@ Important principles are:
 
 - scenario-level split discipline;
 - separate fit/development/calibration roles;
-- no post-hoc use of formal outcomes for tuning;
+- no post-hoc use of formal outcomes for model/controller tuning;
 - frozen acceptance criteria before outcome interpretation;
 - preservation of negative results;
-- explicit separation between implementation completion and scientific acceptance.
+- explicit separation between implementation completion and scientific acceptance;
+- evaluator-only access to future ground truth after causal outputs are frozen;
+- separation of optical-model evaluation from measured-mmWave external validation;
+- reporting from final frozen authorities rather than intermediate repair logs.
 
 Individual stage directories and their frozen reports are the authoritative source for exact commands, dependencies, configurations and numerical results.
 
@@ -446,10 +520,11 @@ PC-FMCW-conditioned uncertain sensing
       -> receiver-aware angular posterior
       -> adaptive communication beam control
       -> predictive class-aware ADB
-      -> scientific evaluation
+      -> frozen joint evaluation
+      -> measured beam-policy validation
 ```
 
-Part A provides the sensing/communication/illumination reference and the Hough-based legacy tracking context. Part B adds real traffic dynamics, explicit uncertainty propagation, probabilistic forecasting and proactive downstream control.
+Part A provides the sensing/communication/illumination reference and Hough-based legacy tracking context. Part B adds real traffic dynamics, explicit uncertainty propagation, probabilistic forecasting, proactive downstream control and external measured-beam validation.
 
 ---
 
@@ -463,12 +538,16 @@ This repository does **not** claim that:
 - WOMD contains real optical communication beam labels;
 - WOMD contains measured ADB ground-truth commands;
 - the constructed ADB reference is measured ground truth;
+- the oracle future-GT reference is a deployable predictor;
 - trajectory forecasting alone is the novelty;
 - predictive ADB alone is the novelty;
 - adaptive Top-K beam management alone is the novelty;
-- a Transformer architecture by itself constitutes the contribution;
-- the current Stage-6 protocol has passed its scientific completion criterion;
-- final Stage-7 joint conclusions exist for the currently frozen failed Stage-6 protocol.
+- Hough universally dominates other baselines based only on matched-track ADE;
+- the frozen Stage-6 protocol passed its over-masking scientific gate;
+- the later Stage-7 PASS invalidates or erases the Stage-6 negative result;
+- full joint end-to-end Stage-7 latency has been measured when the frozen authorities explicitly mark it not evaluable;
+- DeepSense validates the optical headlamp or optical PC-FMCW link;
+- mmWave and optical measurements are physically interchangeable.
 
 ---
 
@@ -485,11 +564,13 @@ The project combines:
 7. predictive class-aware ADB;
 8. a shared posterior for communication and illumination;
 9. mapping beam-pointing uncertainty to received power, SNR, DPSK BER and effective rate;
-10. a reproducible workflow that preserves both positive and negative scientific results.
+10. frozen joint system evaluation without future-GT leakage into controller decisions;
+11. external validation of the adaptive beam-selection policy on measured DeepSense beam powers;
+12. a reproducible workflow that preserves both positive and negative scientific outcomes.
 
 A compact project description is:
 
-> **We develop a real-traffic, PC-FMCW-conditioned vehicular ISCAI framework in which calibrated multi-agent trajectory uncertainty is transformed into future receiver/angular and occupancy representations for adaptive directional beam probing and predictive class-aware illumination.**
+> **We develop a real-traffic, PC-FMCW-conditioned vehicular ISCAI framework in which calibrated multi-agent trajectory uncertainty is transformed into future receiver/angular and occupancy representations for adaptive directional beam probing and predictive class-aware illumination, followed by frozen joint evaluation and external measured-beam validation.**
 
 ---
 
@@ -497,12 +578,19 @@ A compact project description is:
 
 | Stage | Status |
 | --- | --- |
-| Stages 0–3 | Implemented / frozen upstream pipeline |
-| Stage 4 | **COMPLETE — formal probabilistic forecasting evaluation frozen** |
+| Stages 0–3 | **IMPLEMENTED / FROZEN upstream pipeline and classical baselines** |
+| Stage 4 | **COMPLETE — frozen probabilistic forecasting evaluation** |
 | Stage 5 | **PASS — formal adaptive beam-management acceptance** |
-| Stage 6 | **IMPLEMENTATION COMPLETE, SCIENTIFIC GATE FAIL — over-masking non-inferiority** |
-| Stage 7 | **Not scientifically closed for the current protocol because Stage 6 blocks progression** |
+| Stage 6 | **IMPLEMENTATION COMPLETE; FROZEN SCIENTIFIC GATE FAIL — excess over-masking** |
+| Stage 7 | **PASS_FROZEN — final joint evaluator and frozen statistical/sweep analysis complete; full joint latency not evaluable from frozen authorities** |
+| Stage 8 | **COMPLETE / PASS — external measured DeepSense beam-policy validation and final reporting reproducibility** |
 
-The most important current conclusion is therefore not simply that every downstream component succeeds. Rather, the repository demonstrates a strong probabilistic forecasting and adaptive beam-management result, while the first frozen predictive-ADB protocol exposes a real **safety/utility trade-off between glare reduction and excess masking** that must be addressed in a new Stage-6 method version.
+The overall scientific picture is intentionally mixed rather than artificially all-positive:
 
-That negative result is part of the scientific contribution: it identifies where uncertainty-aware proactive illumination improves one objective while violating another pre-specified constraint, without changing the evaluation rules after observing the outcome.
+- **trajectory forecasting is strong and calibrated**;
+- **adaptive Top-K beam management achieves high coverage with large probing reduction**;
+- **predictive ADB improves vehicle shadow-zone protection while exposing an over-masking trade-off under the frozen Stage-6 criterion**;
+- **the later frozen Stage-7 evaluator completes a joint communication/illumination evaluation without using future GT as a controller input**;
+- **Stage 8 externally validates the beam-selection policy on measured mmWave beam powers**.
+
+The Stage-6 negative result remains part of the scientific contribution. It identifies where uncertainty-aware proactive illumination improves one safety objective while violating another pre-specified constraint, without changing the rules after observing the outcome.
