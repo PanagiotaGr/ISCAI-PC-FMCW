@@ -1,0 +1,89 @@
+{
+  "block": "8.2B",
+  "canonical_extraction": {
+    "challenge_dataset_extracted": false,
+    "destination": "/home/agni/waymo/iscai_stage8/data/block82b_deepsense_primary",
+    "extract_only": [
+      "LiDAR/Scenario8/development_dataset/",
+      "LiDAR/Scenario9/development_dataset/"
+    ],
+    "input_archive_modified": false,
+    "source": "/home/agni/waymo/deepsense_incoming/block82_primary/LiDAR.zip",
+    "temp_then_atomic_rename": true
+  },
+  "next_block": "8.3 pre-outcome measured-mmWave evaluator contract",
+  "no_calibration_fit": true,
+  "no_formal_metrics": true,
+  "no_training": true,
+  "observed_real_archive_layout": {
+    "challenge_csvs_present": [
+      "LiDAR/Scenario8/challenge_dataset/scenario8_challenge.csv",
+      "LiDAR/Scenario9/challenge_dataset/scenario9_challenge.csv"
+    ],
+    "lidar_pattern": "LiDAR/Scenario{8|9}/development_dataset/unit1/...LiDAR.../*.mat",
+    "mmwave_pattern": "LiDAR/Scenario{8|9}/development_dataset/unit1/mmWave_data/mmWave_power_*.txt",
+    "scenario8_csvs": [
+      "LiDAR/Scenario8/development_dataset/scenario8_dev_train.csv",
+      "LiDAR/Scenario8/development_dataset/scenario8_dev_val.csv",
+      "LiDAR/Scenario8/development_dataset/scenario8_dev_test.csv"
+    ],
+    "scenario9_csvs": [
+      "LiDAR/Scenario9/development_dataset/scenario9_dev_train.csv",
+      "LiDAR/Scenario9/development_dataset/scenario9_dev_val.csv",
+      "LiDAR/Scenario9/development_dataset/scenario9_dev_test.csv"
+    ]
+  },
+  "outcome_access_boundary": {
+    "calibration_beam_labels_may_be_validated_for_range": true,
+    "calibration_power_vectors_decoded": false,
+    "csv_headers_and_path_fields_may_be_read": true,
+    "formal_power_vectors_decoded": false,
+    "formal_test_beam_label_values_must_not_be_used_for_tuning": true,
+    "formal_test_measured_power_numeric_vectors_must_not_be_decoded": true,
+    "structural_power_probe": "exactly first resolved TRAIN power vector per scenario; validate only numeric length=64 and finiteness; do not record vector values",
+    "train_beam_labels_may_be_validated_for_range": true
+  },
+  "project": "Agni",
+  "schema_and_integrity_gates": {
+    "all_csvs_nonempty": true,
+    "all_referenced_lidar_paths_exist": true,
+    "all_referenced_mmwave_paths_exist": true,
+    "at_least_one_lidar_path_field_per_row": true,
+    "beam_index_column_must_exist": true,
+    "exactly_one_mmwave_power_path_field_per_row": true,
+    "formal_beam_index_values_not_reported": true,
+    "six_development_csvs_required": true,
+    "structural_train_power_vector_length": 64,
+    "train_and_calibration_beam_index_range": [
+      0,
+      63
+    ],
+    "train_calibration_formal_exact_lidar_path_overlap": 0,
+    "train_calibration_formal_exact_mmwave_path_overlap": 0
+  },
+  "sequence_leakage_rule": {
+    "if_explicit_sequence_or_group_column_exists": "require zero group overlap across split roles",
+    "otherwise": "record NOT_EVALUABLE_FROM_AVAILABLE_CSV_SCHEMA; exact referenced-sample disjointness still required"
+  },
+  "split_roles": {
+    "challenge_dataset": "EXCLUDED_FROM_LOCAL_CORE_HIDDEN_GT_SUBMISSION_ONLY",
+    "scenario8_dev_test.csv": "FORMAL_EVALUATION",
+    "scenario8_dev_train.csv": "TRAIN",
+    "scenario8_dev_val.csv": "CALIBRATION",
+    "scenario9_dev_test.csv": "FORMAL_EVALUATION",
+    "scenario9_dev_train.csv": "TRAIN",
+    "scenario9_dev_val.csv": "CALIBRATION"
+  },
+  "stage": 8,
+  "status": "FROZEN_PRE_CANONICAL_CORPUS_SCHEMA_SPLIT_CONTRACT",
+  "title": "DeepSense Scenario8/9 canonical corpus extraction, actual schema, split and leakage freeze",
+  "upstream_block82a_final": {
+    "LiDAR_zip_bytes": 73692795,
+    "LiDAR_zip_sha256": "41e14ad39d368b73882f5a93ed4c29d0f86bb208fe628cd8e82248db66ec316d",
+    "inventory_sha256": "202812900ad8d27009e7a8e563328cbb4a89a5151dd30070567d32a415c81359",
+    "manifest_sha256": "901fa695ff4bc6e77012d542ade1bf4b5a7c04ee24f75624e129f5536cb14bec",
+    "report_sha256": "f5808440ba6ffb497396c222f760b60cc847974719e093ce19c59b3c6d19fe9b",
+    "runner_sha256": "98ef3e132100e553deaef4306037c5abd7a3d6382d743ed47da8770a07c6dac2",
+    "seal_sha256": "fcf2c3c5efb5c1626a301012d983c68e617a0088453d60c419a73dd404c7da2f"
+  }
+}

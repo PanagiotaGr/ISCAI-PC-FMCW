@@ -1,0 +1,179 @@
+{
+  "ECE_common": {
+    "bin_count": 15,
+    "binning": "fixed_equal_width_probability_bins",
+    "chosen_before_calibration_outcomes": true,
+    "definition": "sum_b (n_b/N) * abs(empirical_frequency_b - mean_probability_b)",
+    "edges": [
+      0.0,
+      0.06666666666666667,
+      0.13333333333333333,
+      0.2,
+      0.26666666666666666,
+      0.3333333333333333,
+      0.4,
+      0.4666666666666667,
+      0.5333333333333333,
+      0.6,
+      0.6666666666666666,
+      0.7333333333333333,
+      0.8,
+      0.8666666666666667,
+      0.9333333333333333,
+      1.0
+    ],
+    "empty_bin": "zero_weight_no_contribution",
+    "interval_semantics": "[lower,upper) for bins 0..13; [lower,upper] for final bin"
+  },
+  "aggregation_boundary": {
+    "calibration_metrics_used_for_model_selection": false,
+    "calibration_metrics_used_for_probability_remapping": false,
+    "calibration_metrics_used_for_retraining": false,
+    "calibration_metrics_used_for_threshold_selection": false,
+    "formal_outcomes_used": false
+  },
+  "block": "7.4H-F",
+  "calibration_partition": {
+    "development_used": false,
+    "fit_used": false,
+    "formal_N120_used": false,
+    "full_partition": true,
+    "path": "/home/agni/waymo/iscai_stage4/artifacts/block41/calibration.jsonl",
+    "role": "held_out_probability_calibration_diagnostics_only",
+    "scenario_count": 7209,
+    "sha256": "e003dd5c4d5a253729700b12c3754c47ffb99dadfa035b46627f01ec91eed4be"
+  },
+  "content_sha256": "c24b1978af1e0d3f1037280746607780b650d71250ad2aaa6dafae068dce2f78",
+  "direct_ADB": {
+    "Brier_score": {
+      "definition": "mean_over_sampled_coordinate_observations_of_(p-y)^2",
+      "extra_actor_class_weighting": false,
+      "extra_positive_negative_weighting": false
+    },
+    "ECE": {
+      "bins": "ECE_common",
+      "empirical_frequency": "mean_binary_target_in_bin",
+      "event": "future_full_box_cell_occupancy",
+      "probability": "sigmoid_probability"
+    },
+    "evaluation_distribution": {
+      "base_seed": 3232423521,
+      "calibration_scenario_ids_disjoint_from_training": true,
+      "coordinate_sampler": "same frozen Block7.2/B1 sparse-coordinate sampler family applied independently to held-out calibration scenarios",
+      "empty_future_support": "no_probability_observations_for_actor_horizon",
+      "future_target": "same frozen Stage6 future full-box theta-range rasterization semantics",
+      "negative_cells": "uniform deterministic 1:1 negative sample matched to selected positive count",
+      "non_VPC": "not_evaluable",
+      "population": "full frozen calibration partition V/P/C actors",
+      "positive_cells": "all positive cells up to 4096 per actor/horizon"
+    },
+    "mask_rule": "probability_strictly_greater_than_0.5",
+    "mask_threshold": 0.5,
+    "probabilities": "sigmoid_of_frozen_direct_ADB_logits",
+    "reporting": {
+      "overall_micro": true,
+      "per_actor_class": true,
+      "per_horizon": true,
+      "positive_negative_counts": true
+    },
+    "required_metrics": [
+      "Brier_score",
+      "ECE"
+    ],
+    "threshold_tuning_on_calibration": false
+  },
+  "direct_beam": {
+    "Brier_score": {
+      "class_weighting": "none",
+      "definition": "mean over valid observations of sum_c (p_c - one_hot_true_c)^2",
+      "future_invalid": "excluded"
+    },
+    "ECE": {
+      "bins": "ECE_common",
+      "empirical_frequency": "fraction_argmax_equals_true_beam_in_bin",
+      "event": "top_label_correctness",
+      "probability": "maximum_softmax_probability"
+    },
+    "codebooks": [
+      16,
+      32,
+      64
+    ],
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "population": "full frozen calibration partition; actual frozen Stage5 causal receiver-selection semantics; selected prediction unavailable => not evaluable for direct-beam probability metrics; no receiver substitution",
+    "prediction_id_role": "model_payload_bridge",
+    "probabilities": "softmax_of_frozen_direct_beam_logits",
+    "probability_coverage": {
+      "coverage_event": "true_beam_index_in_selected_TopK_set",
+      "probabilities_modified_before_selection": false,
+      "probability_mass_targets": [
+        0.9,
+        0.95,
+        0.975,
+        0.99
+      ],
+      "probability_tie_break": "ascending_beam_index",
+      "report_selected_K": true,
+      "selection_rule": "same frozen Stage5 adaptive Top-K rule: smallest K whose descending ranked beam probability mass reaches target"
+    },
+    "receiver_truth_identity": "causally_selected_actor_track",
+    "reporting": {
+      "overall_micro": true,
+      "per_codebook": true,
+      "per_horizon": true,
+      "unsupported_or_invalid": "explicitly_counted_not_evaluable"
+    },
+    "required_metrics": [
+      "Brier_score",
+      "ECE",
+      "probability_coverage"
+    ]
+  },
+  "exact_sources": {
+    "ADB_future_GT_runner_sha256": "dd58b1de2f01331d69b28726831039b87df8771ae4a4818b7d6c35e56d367e02",
+    "ADB_sampler_binding_sha256": "310ce594b6d243c7c7e6577d146dfd4bebede934cf62e239cfc7c9986aa4fc49",
+    "Block7.2_protocol_sha256": "6eb7d6f0662d35ca44a0b3975ab2fa54830bef4fc171e08370f4e0b4aaaa1c5b",
+    "beam_codebook_source_sha256": "acfc4c26db182bd4cec743bb1ebc2473729e10b5537c0b1dfed6f26d28d4573b",
+    "direct_label_contract_sha256": "3935148b3c5f5182bf06df11b0d2e4cc892fecb2107f309aacd058918163f7c0"
+  },
+  "next": "materialize held-out calibration direct-label observations and run frozen checkpoint inference under this contract; formal N120 remains sealed",
+  "probability_modification": {
+    "checkpoint_weight_update": false,
+    "posthoc_isotonic_regression": false,
+    "posthoc_platt_scaling": false,
+    "posthoc_probability_remapping": false,
+    "posthoc_temperature_scaling": false,
+    "reason": "Block7.2 preregistered calibration metrics for direct heads but no direct-head posthoc calibrator family."
+  },
+  "purpose": "freeze held-out probability-calibration diagnostic semantics before opening calibration predictions/outcomes",
+  "scientific_boundary": {
+    "Stage4_modified": false,
+    "Stage5_modified": false,
+    "Stage6_modified": false,
+    "calibration_future_GT_opened": false,
+    "calibration_manifest_metadata_read": true,
+    "calibration_metric_outcomes_computed": false,
+    "calibrator_fitted": false,
+    "checkpoint_modified": false,
+    "development_reselection": false,
+    "direct_checkpoint_inference_on_calibration": false,
+    "formal_N120_raw_data_opened": false,
+    "formal_outcomes_opened": false,
+    "post_outcome_tuning": false,
+    "raw_calibration_WOMD_opened": false,
+    "retraining": false
+  },
+  "stage": 7,
+  "status": "FROZEN_DIRECT_PROBABILITY_CALIBRATION_EVALUATION_CONTRACT",
+  "trained_direct_authority": {
+    "ADB_state_dict_sha256": "0f18d7b14beb5472936cd79c5a8e6f46197758136863af83cac16bfa6f23ff0e",
+    "beam_state_dict_sha256": "393f17f98f0d619990e1d893c8e0dd686fb2fb7c1cb39b986512f386498dde0a",
+    "path": "/home/agni/waymo/iscai_stage7/configs/stage7_block74h_e_trained_direct_baseline_authority.json",
+    "sha256": "badfb22ac21be82e0c802821422fd0e8d089a1f9bc0424fd9e70fbdc90bf6a3c"
+  }
+}

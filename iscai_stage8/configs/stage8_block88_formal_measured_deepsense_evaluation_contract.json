@@ -1,0 +1,119 @@
+{
+  "block": "8.8",
+  "block88_statistics": {
+    "aggregation": [
+      "Scenario8",
+      "Scenario9",
+      "pooled"
+    ],
+    "bootstrap_CI": "deferred to Block8.9 using immutable per-sample formal records",
+    "post_outcome_tuning": false,
+    "scope": "point estimates only"
+  },
+  "canonical_upstream": {
+    "block82b_files_manifest_sha256": "79dc92fb6a90acd36c4598de436517ebac6c7e7904334dd76a520e1c90a0b895",
+    "block83_evaluator_sha256": "7e2c4ffe589e3d6f58e5b6daf1d8fb9e6e44b2eef074bdf1624a3334f8cbe650",
+    "block84_policy_sha256": "5b7e6c3c4ff7eca4d1db86df90edfa19f0bbfc551255779833485df074d87cb8",
+    "block85b_checkpoint_sha256": "a31e411a4c729b9ff99c20295f849112417420d301296d3f6e6f73d1a1ac99b5",
+    "block86_final_seal_sha256": "6bd11ccb198ee67f6aa15895951e69a663d5474e1630c27643e7d7f8343ed444",
+    "block87_seal_sha256": "b1160dd3f4b9736b3f661baff628dd3242f3887a3642aee3bba2e146d7c207ea"
+  },
+  "controller_policies": [
+    "adaptive_topk_q090",
+    "adaptive_topk_q095",
+    "adaptive_topk_q0975",
+    "adaptive_topk_q099",
+    "fixed_top1",
+    "fixed_top3",
+    "fixed_top5",
+    "exhaustive_64"
+  ],
+  "evaluator_only_reference": {
+    "K": 1,
+    "construction": "official GT best beam after frozen label-to-power consistency gate",
+    "controller": false,
+    "measured_power_or_GT_access": "evaluator-only",
+    "name": "oracle_gt_best_beam_k1"
+  },
+  "formal_boundary_after_execution": {
+    "calibrator_refit": false,
+    "controller_inputs_include_measured_power": false,
+    "evaluator_update": false,
+    "formal_power_access": true,
+    "model_update": false,
+    "policy_update": false
+  },
+  "formal_causal_barrier": {
+    "barrier": "controller JSONL and pre-outcome seal are fsync+rename published before formal measured-power numeric decode",
+    "phase_A_controller": {
+      "forbidden_inputs": [
+        "formal beam label",
+        "formal measured-power numeric values"
+      ],
+      "inputs": [
+        "formal raw LiDAR",
+        "formal SCR LiDAR",
+        "TRAIN-only normalization",
+        "frozen epoch-80 model",
+        "frozen scalar temperature"
+      ],
+      "output": "immutable formal_controller_decisions.jsonl",
+      "power_reference_path_as_identifier_only": true,
+      "sample_id": "Block8.4 stable_sample_id(scenario, FORMAL_EVALUATION, csv_relative_path, official_csv_index, raw_lidar_ref, power_ref)"
+    },
+    "phase_B_evaluator": {
+      "controller_reexecution_after_power_open": false,
+      "inputs": [
+        "frozen controller decisions",
+        "official formal beam label",
+        "formal measured 64-way power vector",
+        "frozen Block8.3 evaluator"
+      ]
+    }
+  },
+  "formal_split": {
+    "challenge_dataset": "excluded",
+    "pooled_rows": 1030,
+    "scenario8_rows": 437,
+    "scenario9_rows": 593,
+    "source": "official dev_test only"
+  },
+  "frozen_evaluator_metrics": {
+    "K": true,
+    "absolute_measured_SE_claim": false,
+    "coverage": "official GT beam in selected set",
+    "measured_power_gap_db": "10*log10(P_selected_best/P_optimum)",
+    "measured_power_loss_db": "-gap_db",
+    "normalized_spectral_efficiency_reference_snr_db": [
+      0,
+      10,
+      20
+    ],
+    "outage_thresholds_db": [
+      1,
+      3,
+      6
+    ],
+    "overhead_reduction_vs_exhaustive": "1-K/64",
+    "primary_outage_db": 3,
+    "primary_reference_snr_db": 10,
+    "probing_overhead": "K/64"
+  },
+  "next_block": "8.9 statistics, failure cases and policy trade-offs",
+  "preformal_train_power_encoding_gate": {
+    "checks": [
+      "exact 64 numeric values",
+      "all finite and strictly positive",
+      "official TRAIN beam label is a measured-power maximum under frozen Block8.3 tolerance"
+    ],
+    "formal_power_access_before_gate_pass": false,
+    "purpose": "validate already-frozen evaluator semantics on TRAIN outcomes before any formal power decode",
+    "rows": 7030,
+    "scientific_tuning_from_train_power_gate": false
+  },
+  "primary_policy": "adaptive_topk_q095",
+  "project": "Agni",
+  "stage": 8,
+  "status": "FROZEN_PRE_FORMAL_MEASURED_DEEPSENSE_EVALUATION_CONTRACT",
+  "title": "Formal DeepSense measured-power evaluation with pre-outcome controller freeze"
+}

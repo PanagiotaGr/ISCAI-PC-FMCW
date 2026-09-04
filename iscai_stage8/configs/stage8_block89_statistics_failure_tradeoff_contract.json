@@ -1,0 +1,115 @@
+{
+  "analysis_only": {
+    "calibrator_refit": false,
+    "controller_reexecution": false,
+    "evaluator_reexecution": false,
+    "label_adapter_update": false,
+    "model_forward": false,
+    "policy_update": false,
+    "post_outcome_tuning": false,
+    "raw_lidar_access": false,
+    "raw_measured_power_file_access": false,
+    "training": false
+  },
+  "block": "8.9",
+  "bootstrap": {
+    "aggregations": [
+      "Scenario8",
+      "Scenario9",
+      "pooled"
+    ],
+    "confidence_level": 0.95,
+    "interval": "percentile [2.5%, 97.5%]",
+    "paired": true,
+    "replicates": 10000,
+    "same_sample_indices_for_all_methods_and_metrics": true,
+    "scenario8_draws_per_replicate": 437,
+    "scenario9_draws_per_replicate": 593,
+    "scenario_stratified": true,
+    "seed": 20260902
+  },
+  "canonical_input": {
+    "block88c_manifest_sha256": "eb32fdf7e0d6b95e5fa942b49f6dd8ecf861452c36f472edb199a52117de46d4",
+    "block88c_report_sha256": "7ebab989e03a987a3a7b04f6149c0975afee18f32910a7f2f9867506a704fd00",
+    "block88c_runner_sha256": "c94dea394cecdc8e74f01b5d7a24c69799da51f6881906bcb8052414be152b09",
+    "block88c_seal_sha256": "f287399f7ddc6070c45f5c42502ae90fc4db0622f6cf42a845aa94d2b8ff8cb4",
+    "formal_controller_decisions_sha256": "8632cfbca75cedc1479730c9eba576492f09fb2fbff3ec4c7042a2f5a9cfb48f",
+    "formal_controller_preoutcome_seal_sha256": "b1f99a850dfb78edf08f4132db9617d947038a029703c55075ff35d51ca3b113",
+    "formal_power_access_authorization_sha256": "da3e945dff15d22e896e61ee4fedc0ccd0e4c6f4d07c59e847e5fea9bfe3af45",
+    "formal_records_sha256": "1984d777f8e649089c7f14ed80df8cd105838496ca03c70adce54fe124dd164b",
+    "formal_summary_sha256": "8f29fd2b3882ffb28b66fdef87a53490eeaf64fe3b501d788495710a989fa0ac"
+  },
+  "core_metrics": {
+    "coverage": "higher is better",
+    "mean_K": "lower is better",
+    "measured_power_loss_db": "lower is better",
+    "normalized_se_gap_10db": "lower is better",
+    "outage_1db": "lower is better",
+    "outage_3db": "lower is better",
+    "outage_6db": "lower is better",
+    "probing_overhead": "lower is better"
+  },
+  "failure_analysis": {
+    "descriptive_only": true,
+    "no_threshold_tuning": true,
+    "predefined_K_bins": [
+      "1-3",
+      "4-5",
+      "6-8",
+      "9+"
+    ],
+    "predefined_flags": [
+      "coverage_miss",
+      "power_loss_gt_0.1dB",
+      "power_loss_gt_0.5dB",
+      "outage_1dB",
+      "outage_3dB"
+    ],
+    "primary_policy": "adaptive_topk_q095",
+    "scenario_slices": [
+      "Scenario8",
+      "Scenario9"
+    ],
+    "worst_cases": "top 20 primary measured-power loss samples, descriptive only"
+  },
+  "methods": [
+    "adaptive_topk_q090",
+    "adaptive_topk_q095",
+    "adaptive_topk_q0975",
+    "adaptive_topk_q099",
+    "fixed_top1",
+    "fixed_top3",
+    "fixed_top5",
+    "exhaustive_64",
+    "oracle_gt_best_beam_k1"
+  ],
+  "next_block": "8.10 optical/mmWave separation and final Stage8 seal",
+  "paired_comparisons": {
+    "all_methods_vs_primary": true,
+    "common_overhead_comparison": "fixed_top5 minus adaptive_topk_q095",
+    "definition": "method minus primary adaptive_topk_q095 on the same bootstrap resample",
+    "reason_common_overhead_comparison_is_preregistered": "fixed Top-5 has K=5 and primary adaptive q=.95 was frozen before outcomes; observed primary mean K is near 5 but does not alter the comparison definition"
+  },
+  "primary_policy": "adaptive_topk_q095",
+  "project": "Agni",
+  "q_tradeoff": {
+    "metrics": [
+      "coverage",
+      "mean_K",
+      "probing_overhead",
+      "measured_power_loss_db",
+      "outage_3db",
+      "normalized_se_gap_10db"
+    ],
+    "q_values": [
+      0.9,
+      0.95,
+      0.975,
+      0.99
+    ],
+    "selection_or_retuning": false
+  },
+  "stage": 8,
+  "status": "FROZEN_POST_FORMAL_STATISTICS_FAILURE_TRADEOFF_CONTRACT",
+  "title": "DeepSense formal statistics, descriptive failure analysis, and preregistered policy trade-offs"
+}

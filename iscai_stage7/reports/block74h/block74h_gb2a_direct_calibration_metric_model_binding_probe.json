@@ -1,0 +1,1005 @@
+{
+  "G_B1": {
+    "binding": "/home/agni/waymo/iscai_stage7/configs/stage7_block74h_gb1_calibration_target_execution_binding.json",
+    "binding_sha256": "9f40911c774e56bae4c5966939f7be70347d8e73b10bfd77fa30591ff7b6c225",
+    "report": "/home/agni/waymo/iscai_stage7/reports/block74h/block74h_gb1_calibration_target_materialization.json",
+    "report_sha256": "3c8fe6fe36d96dc06ddb7ce8132e37f79fc57cf2ab63b4ce73b28013d9177a1b",
+    "summary": {
+      "ADB_observations": 206968168,
+      "beam_prediction_available": 5048,
+      "beam_prediction_unavailable": 2070,
+      "beam_selected_receivers": 7118,
+      "beam_valid_endpoints": [
+        5042,
+        5030,
+        5017,
+        4990
+      ],
+      "materialized_samples": 200756
+    }
+  },
+  "H_E": {
+    "file_sha256": "badfb22ac21be82e0c802821422fd0e8d089a1f9bc0424fd9e70fbdc90bf6a3c",
+    "path": "/home/agni/waymo/iscai_stage7/configs/stage7_block74h_e_trained_direct_baseline_authority.json"
+  },
+  "H_F": {
+    "content_sha256": "8887841947e9b89ba2be89d8737e573264b9dd11d8b16a6dfbfbceb67936f759",
+    "file_sha256": "73867bc5f05707d5dc53ab7db320a37dc1fd777c897467ead08a19ebaf71cf1e",
+    "metric_related_leaves": [
+      {
+        "path": "ECE_common.bin_count",
+        "value": 15
+      },
+      {
+        "path": "ECE_common.binning",
+        "value": "fixed_equal_width_probability_bins"
+      },
+      {
+        "path": "ECE_common.chosen_before_calibration_outcomes",
+        "value": true
+      },
+      {
+        "path": "ECE_common.definition",
+        "value": "sum_b (n_b/N) * abs(empirical_frequency_b - mean_probability_b)"
+      },
+      {
+        "path": "ECE_common.edges[0]",
+        "value": 0.0
+      },
+      {
+        "path": "ECE_common.edges[1]",
+        "value": 0.06666666666666667
+      },
+      {
+        "path": "ECE_common.edges[2]",
+        "value": 0.13333333333333333
+      },
+      {
+        "path": "ECE_common.edges[3]",
+        "value": 0.2
+      },
+      {
+        "path": "ECE_common.edges[4]",
+        "value": 0.26666666666666666
+      },
+      {
+        "path": "ECE_common.edges[5]",
+        "value": 0.3333333333333333
+      },
+      {
+        "path": "ECE_common.edges[6]",
+        "value": 0.4
+      },
+      {
+        "path": "ECE_common.edges[7]",
+        "value": 0.4666666666666667
+      },
+      {
+        "path": "ECE_common.edges[8]",
+        "value": 0.5333333333333333
+      },
+      {
+        "path": "ECE_common.edges[9]",
+        "value": 0.6
+      },
+      {
+        "path": "ECE_common.edges[10]",
+        "value": 0.6666666666666666
+      },
+      {
+        "path": "ECE_common.edges[11]",
+        "value": 0.7333333333333333
+      },
+      {
+        "path": "ECE_common.edges[12]",
+        "value": 0.8
+      },
+      {
+        "path": "ECE_common.edges[13]",
+        "value": 0.8666666666666667
+      },
+      {
+        "path": "ECE_common.edges[14]",
+        "value": 0.9333333333333333
+      },
+      {
+        "path": "ECE_common.edges[15]",
+        "value": 1.0
+      },
+      {
+        "path": "ECE_common.empty_bin",
+        "value": "zero_weight_no_contribution"
+      },
+      {
+        "path": "ECE_common.interval_semantics",
+        "value": "[lower,upper) for bins 0..13; [lower,upper] for final bin"
+      },
+      {
+        "path": "aggregation_boundary.calibration_metrics_used_for_model_selection",
+        "value": false
+      },
+      {
+        "path": "aggregation_boundary.calibration_metrics_used_for_probability_remapping",
+        "value": false
+      },
+      {
+        "path": "aggregation_boundary.calibration_metrics_used_for_retraining",
+        "value": false
+      },
+      {
+        "path": "aggregation_boundary.calibration_metrics_used_for_threshold_selection",
+        "value": false
+      },
+      {
+        "path": "calibration_partition.development_used",
+        "value": false
+      },
+      {
+        "path": "calibration_partition.fit_used",
+        "value": false
+      },
+      {
+        "path": "calibration_partition.formal_N120_used",
+        "value": false
+      },
+      {
+        "path": "calibration_partition.full_partition",
+        "value": true
+      },
+      {
+        "path": "calibration_partition.path",
+        "value": "/home/agni/waymo/iscai_stage4/artifacts/block41/calibration.jsonl"
+      },
+      {
+        "path": "calibration_partition.role",
+        "value": "held_out_probability_calibration_diagnostics_only"
+      },
+      {
+        "path": "calibration_partition.scenario_count",
+        "value": 7209
+      },
+      {
+        "path": "calibration_partition.sha256",
+        "value": "e003dd5c4d5a253729700b12c3754c47ffb99dadfa035b46627f01ec91eed4be"
+      },
+      {
+        "path": "direct_ADB.Brier_score.definition",
+        "value": "mean_over_sampled_coordinate_observations_of_(p-y)^2"
+      },
+      {
+        "path": "direct_ADB.Brier_score.extra_actor_class_weighting",
+        "value": false
+      },
+      {
+        "path": "direct_ADB.Brier_score.extra_positive_negative_weighting",
+        "value": false
+      },
+      {
+        "path": "direct_ADB.ECE.bins",
+        "value": "ECE_common"
+      },
+      {
+        "path": "direct_ADB.ECE.empirical_frequency",
+        "value": "mean_binary_target_in_bin"
+      },
+      {
+        "path": "direct_ADB.ECE.event",
+        "value": "future_full_box_cell_occupancy"
+      },
+      {
+        "path": "direct_ADB.ECE.probability",
+        "value": "sigmoid_probability"
+      },
+      {
+        "path": "direct_ADB.evaluation_distribution.calibration_scenario_ids_disjoint_from_training",
+        "value": true
+      },
+      {
+        "path": "direct_ADB.evaluation_distribution.coordinate_sampler",
+        "value": "same frozen Block7.2/B1 sparse-coordinate sampler family applied independently to held-out calibration scenarios"
+      },
+      {
+        "path": "direct_ADB.evaluation_distribution.empty_future_support",
+        "value": "no_probability_observations_for_actor_horizon"
+      },
+      {
+        "path": "direct_ADB.evaluation_distribution.population",
+        "value": "full frozen calibration partition V/P/C actors"
+      },
+      {
+        "path": "direct_ADB.mask_rule",
+        "value": "probability_strictly_greater_than_0.5"
+      },
+      {
+        "path": "direct_ADB.mask_threshold",
+        "value": 0.5
+      },
+      {
+        "path": "direct_ADB.probabilities",
+        "value": "sigmoid_of_frozen_direct_ADB_logits"
+      },
+      {
+        "path": "direct_ADB.required_metrics[0]",
+        "value": "Brier_score"
+      },
+      {
+        "path": "direct_ADB.required_metrics[1]",
+        "value": "ECE"
+      },
+      {
+        "path": "direct_ADB.threshold_tuning_on_calibration",
+        "value": false
+      },
+      {
+        "path": "direct_beam.Brier_score.class_weighting",
+        "value": "none"
+      },
+      {
+        "path": "direct_beam.Brier_score.definition",
+        "value": "mean over valid observations of sum_c (p_c - one_hot_true_c)^2"
+      },
+      {
+        "path": "direct_beam.Brier_score.future_invalid",
+        "value": "excluded"
+      },
+      {
+        "path": "direct_beam.ECE.bins",
+        "value": "ECE_common"
+      },
+      {
+        "path": "direct_beam.ECE.empirical_frequency",
+        "value": "fraction_argmax_equals_true_beam_in_bin"
+      },
+      {
+        "path": "direct_beam.ECE.event",
+        "value": "top_label_correctness"
+      },
+      {
+        "path": "direct_beam.ECE.probability",
+        "value": "maximum_softmax_probability"
+      },
+      {
+        "path": "direct_beam.population",
+        "value": "full frozen calibration partition; actual frozen Stage5 causal receiver-selection semantics; selected prediction unavailable => not evaluable for direct-beam probability metrics; no receiver substitution"
+      },
+      {
+        "path": "direct_beam.probabilities",
+        "value": "softmax_of_frozen_direct_beam_logits"
+      },
+      {
+        "path": "direct_beam.probability_coverage.coverage_event",
+        "value": "true_beam_index_in_selected_TopK_set"
+      },
+      {
+        "path": "direct_beam.probability_coverage.probabilities_modified_before_selection",
+        "value": false
+      },
+      {
+        "path": "direct_beam.probability_coverage.probability_mass_targets[0]",
+        "value": 0.9
+      },
+      {
+        "path": "direct_beam.probability_coverage.probability_mass_targets[1]",
+        "value": 0.95
+      },
+      {
+        "path": "direct_beam.probability_coverage.probability_mass_targets[2]",
+        "value": 0.975
+      },
+      {
+        "path": "direct_beam.probability_coverage.probability_mass_targets[3]",
+        "value": 0.99
+      },
+      {
+        "path": "direct_beam.probability_coverage.probability_tie_break",
+        "value": "ascending_beam_index"
+      },
+      {
+        "path": "direct_beam.probability_coverage.report_selected_K",
+        "value": true
+      },
+      {
+        "path": "direct_beam.probability_coverage.selection_rule",
+        "value": "same frozen Stage5 adaptive Top-K rule: smallest K whose descending ranked beam probability mass reaches target"
+      },
+      {
+        "path": "direct_beam.receiver_truth_identity",
+        "value": "causally_selected_actor_track"
+      },
+      {
+        "path": "direct_beam.required_metrics[0]",
+        "value": "Brier_score"
+      },
+      {
+        "path": "direct_beam.required_metrics[1]",
+        "value": "ECE"
+      },
+      {
+        "path": "direct_beam.required_metrics[2]",
+        "value": "probability_coverage"
+      },
+      {
+        "path": "exact_sources.ADB_sampler_binding_sha256",
+        "value": "310ce594b6d243c7c7e6577d146dfd4bebede934cf62e239cfc7c9986aa4fc49"
+      },
+      {
+        "path": "next",
+        "value": "materialize held-out calibration direct-label observations and run frozen checkpoint inference under this contract; formal N120 remains sealed"
+      },
+      {
+        "path": "probability_modification.checkpoint_weight_update",
+        "value": false
+      },
+      {
+        "path": "probability_modification.posthoc_isotonic_regression",
+        "value": false
+      },
+      {
+        "path": "probability_modification.posthoc_platt_scaling",
+        "value": false
+      },
+      {
+        "path": "probability_modification.posthoc_probability_remapping",
+        "value": false
+      },
+      {
+        "path": "probability_modification.posthoc_temperature_scaling",
+        "value": false
+      },
+      {
+        "path": "probability_modification.reason",
+        "value": "Block7.2 preregistered calibration metrics for direct heads but no direct-head posthoc calibrator family."
+      },
+      {
+        "path": "purpose",
+        "value": "freeze held-out probability-calibration diagnostic semantics before opening calibration predictions/outcomes"
+      },
+      {
+        "path": "scientific_boundary.calibration_future_GT_opened",
+        "value": false
+      },
+      {
+        "path": "scientific_boundary.calibration_manifest_metadata_read",
+        "value": true
+      },
+      {
+        "path": "scientific_boundary.calibration_metric_outcomes_computed",
+        "value": false
+      },
+      {
+        "path": "scientific_boundary.direct_checkpoint_inference_on_calibration",
+        "value": false
+      },
+      {
+        "path": "scientific_boundary.raw_calibration_WOMD_opened",
+        "value": false
+      },
+      {
+        "path": "status",
+        "value": "FROZEN_DIRECT_PROBABILITY_CALIBRATION_EVALUATION_CONTRACT"
+      }
+    ],
+    "path": "/home/agni/waymo/iscai_stage7/configs/stage7_block74h_f_direct_calibration_evaluation_contract.json"
+  },
+  "block": "7.4H-G-B2a",
+  "checkpoint_schema": {
+    "direct_ADB": {
+      "file_sha256": "c3bbfe83ebde069e5b84e73e54d7d5e71639164761eabc2ed7528a81aeabe88a",
+      "metadata": {
+        "block": "7.4H-D",
+        "calibration_partition_opened": false,
+        "development_task_loss": 0.23317452110117323,
+        "epoch": 4,
+        "formal_N120_raw_data_opened": false,
+        "post_outcome_tuning": false,
+        "preregistration_sha256": "fc0726e3c0d964e48b49a63d775070b1487a3716f160813391881d47cccb1333",
+        "stage": 7,
+        "state_dict_sha256": "0f18d7b14beb5472936cd79c5a8e6f46197758136863af83cac16bfa6f23ff0e",
+        "task": "direct_ADB"
+      },
+      "state_dict_key": "state_dict",
+      "state_dict_tensor_schema": {
+        "decoder.0.bias": {
+          "dtype": "torch.float32",
+          "shape": [
+            64
+          ]
+        },
+        "decoder.0.weight": {
+          "dtype": "torch.float32",
+          "shape": [
+            64,
+            135
+          ]
+        },
+        "decoder.2.bias": {
+          "dtype": "torch.float32",
+          "shape": [
+            64
+          ]
+        },
+        "decoder.2.weight": {
+          "dtype": "torch.float32",
+          "shape": [
+            64,
+            64
+          ]
+        },
+        "decoder.4.bias": {
+          "dtype": "torch.float32",
+          "shape": [
+            1
+          ]
+        },
+        "decoder.4.weight": {
+          "dtype": "torch.float32",
+          "shape": [
+            1,
+            64
+          ]
+        },
+        "encoder.fusion.0.bias": {
+          "dtype": "torch.float32",
+          "shape": [
+            128
+          ]
+        },
+        "encoder.fusion.0.weight": {
+          "dtype": "torch.float32",
+          "shape": [
+            128,
+            128
+          ]
+        },
+        "encoder.fusion.2.bias": {
+          "dtype": "torch.float32",
+          "shape": [
+            128
+          ]
+        },
+        "encoder.fusion.2.weight": {
+          "dtype": "torch.float32",
+          "shape": [
+            128,
+            128
+          ]
+        },
+        "encoder.map_encoder.0.bias": {
+          "dtype": "torch.float32",
+          "shape": [
+            32
+          ]
+        },
+        "encoder.map_encoder.0.weight": {
+          "dtype": "torch.float32",
+          "shape": [
+            32,
+            10
+          ]
+        },
+        "encoder.map_encoder.2.bias": {
+          "dtype": "torch.float32",
+          "shape": [
+            32
+          ]
+        },
+        "encoder.map_encoder.2.weight": {
+          "dtype": "torch.float32",
+          "shape": [
+            32,
+            32
+          ]
+        },
+        "encoder.neighbor_gru.bias_hh_l0": {
+          "dtype": "torch.float32",
+          "shape": [
+            96
+          ]
+        },
+        "encoder.neighbor_gru.bias_ih_l0": {
+          "dtype": "torch.float32",
+          "shape": [
+            96
+          ]
+        },
+        "encoder.neighbor_gru.weight_hh_l0": {
+          "dtype": "torch.float32",
+          "shape": [
+            96,
+            32
+          ]
+        },
+        "encoder.neighbor_gru.weight_ih_l0": {
+          "dtype": "torch.float32",
+          "shape": [
+            96,
+            14
+          ]
+        },
+        "encoder.target_gru.bias_hh_l0": {
+          "dtype": "torch.float32",
+          "shape": [
+            192
+          ]
+        },
+        "encoder.target_gru.bias_ih_l0": {
+          "dtype": "torch.float32",
+          "shape": [
+            192
+          ]
+        },
+        "encoder.target_gru.weight_hh_l0": {
+          "dtype": "torch.float32",
+          "shape": [
+            192,
+            64
+          ]
+        },
+        "encoder.target_gru.weight_ih_l0": {
+          "dtype": "torch.float32",
+          "shape": [
+            192,
+            14
+          ]
+        }
+      },
+      "top_level_keys": [
+        "block",
+        "calibration_partition_opened",
+        "development_task_loss",
+        "epoch",
+        "formal_N120_raw_data_opened",
+        "post_outcome_tuning",
+        "preregistration_sha256",
+        "stage",
+        "state_dict",
+        "state_dict_sha256",
+        "task"
+      ]
+    },
+    "direct_beam": {
+      "file_sha256": "bb0a8fd6dab8277f374216da07ea139730df2267148bfb838022201872fff2d4",
+      "metadata": {
+        "block": "7.4H-D",
+        "calibration_partition_opened": false,
+        "development_task_loss": 1.4727941442418981,
+        "epoch": 20,
+        "formal_N120_raw_data_opened": false,
+        "post_outcome_tuning": false,
+        "preregistration_sha256": "fc0726e3c0d964e48b49a63d775070b1487a3716f160813391881d47cccb1333",
+        "stage": 7,
+        "state_dict_sha256": "393f17f98f0d619990e1d893c8e0dd686fb2fb7c1cb39b986512f386498dde0a",
+        "task": "direct_beam"
+      },
+      "state_dict_key": "state_dict",
+      "state_dict_tensor_schema": {
+        "encoder.fusion.0.bias": {
+          "dtype": "torch.float32",
+          "shape": [
+            128
+          ]
+        },
+        "encoder.fusion.0.weight": {
+          "dtype": "torch.float32",
+          "shape": [
+            128,
+            128
+          ]
+        },
+        "encoder.fusion.2.bias": {
+          "dtype": "torch.float32",
+          "shape": [
+            128
+          ]
+        },
+        "encoder.fusion.2.weight": {
+          "dtype": "torch.float32",
+          "shape": [
+            128,
+            128
+          ]
+        },
+        "encoder.map_encoder.0.bias": {
+          "dtype": "torch.float32",
+          "shape": [
+            32
+          ]
+        },
+        "encoder.map_encoder.0.weight": {
+          "dtype": "torch.float32",
+          "shape": [
+            32,
+            10
+          ]
+        },
+        "encoder.map_encoder.2.bias": {
+          "dtype": "torch.float32",
+          "shape": [
+            32
+          ]
+        },
+        "encoder.map_encoder.2.weight": {
+          "dtype": "torch.float32",
+          "shape": [
+            32,
+            32
+          ]
+        },
+        "encoder.neighbor_gru.bias_hh_l0": {
+          "dtype": "torch.float32",
+          "shape": [
+            96
+          ]
+        },
+        "encoder.neighbor_gru.bias_ih_l0": {
+          "dtype": "torch.float32",
+          "shape": [
+            96
+          ]
+        },
+        "encoder.neighbor_gru.weight_hh_l0": {
+          "dtype": "torch.float32",
+          "shape": [
+            96,
+            32
+          ]
+        },
+        "encoder.neighbor_gru.weight_ih_l0": {
+          "dtype": "torch.float32",
+          "shape": [
+            96,
+            14
+          ]
+        },
+        "encoder.target_gru.bias_hh_l0": {
+          "dtype": "torch.float32",
+          "shape": [
+            192
+          ]
+        },
+        "encoder.target_gru.bias_ih_l0": {
+          "dtype": "torch.float32",
+          "shape": [
+            192
+          ]
+        },
+        "encoder.target_gru.weight_hh_l0": {
+          "dtype": "torch.float32",
+          "shape": [
+            192,
+            64
+          ]
+        },
+        "encoder.target_gru.weight_ih_l0": {
+          "dtype": "torch.float32",
+          "shape": [
+            192,
+            14
+          ]
+        },
+        "heads.16.bias": {
+          "dtype": "torch.float32",
+          "shape": [
+            64
+          ]
+        },
+        "heads.16.weight": {
+          "dtype": "torch.float32",
+          "shape": [
+            64,
+            128
+          ]
+        },
+        "heads.32.bias": {
+          "dtype": "torch.float32",
+          "shape": [
+            128
+          ]
+        },
+        "heads.32.weight": {
+          "dtype": "torch.float32",
+          "shape": [
+            128,
+            128
+          ]
+        },
+        "heads.64.bias": {
+          "dtype": "torch.float32",
+          "shape": [
+            256
+          ]
+        },
+        "heads.64.weight": {
+          "dtype": "torch.float32",
+          "shape": [
+            256,
+            128
+          ]
+        }
+      },
+      "top_level_keys": [
+        "block",
+        "calibration_partition_opened",
+        "development_task_loss",
+        "epoch",
+        "formal_N120_raw_data_opened",
+        "post_outcome_tuning",
+        "preregistration_sha256",
+        "stage",
+        "state_dict",
+        "state_dict_sha256",
+        "task"
+      ]
+    }
+  },
+  "model_runtime_binding": {
+    "accelerated_trainer": "/home/agni/waymo/iscai_stage7/scripts/run_block74h_d2_direct_baseline_training_accelerated.py",
+    "accelerated_trainer_sha256": "88ba6bf380e499b9b2e143e78bbeac8b90928efe4c82c43d9e7529c12d7c043b",
+    "base_trainer": "/home/agni/waymo/iscai_stage7/scripts/run_block74h_d_direct_baseline_training.py",
+    "base_trainer_sha256": "db9be0d9ac4f4363003986ab3cfa52add2f2a498f32928b66a786bfd8f47a2a5",
+    "classes": [
+      {
+        "end_line": 209,
+        "line": 208,
+        "methods": [],
+        "name": "FailClosed"
+      },
+      {
+        "end_line": 658,
+        "line": 445,
+        "methods": [
+          {
+            "args": [
+              "self",
+              "path"
+            ],
+            "line": 446,
+            "name": "__init__"
+          },
+          {
+            "args": [
+              "self",
+              "value"
+            ],
+            "line": 565,
+            "name": "history"
+          },
+          {
+            "args": [
+              "self",
+              "value"
+            ],
+            "line": 638,
+            "name": "map"
+          }
+        ],
+        "name": "FitInputNormalizer"
+      },
+      {
+        "end_line": 892,
+        "line": 665,
+        "methods": [
+          {
+            "args": [
+              "self"
+            ],
+            "line": 668,
+            "name": "__init__"
+          },
+          {
+            "args": [
+              "self",
+              "target_history",
+              "neighbor_histories",
+              "neighbor_mask",
+              "map_context"
+            ],
+            "line": 712,
+            "name": "forward"
+          }
+        ],
+        "name": "MatchedDeterministicEncoder"
+      },
+      {
+        "end_line": 961,
+        "line": 895,
+        "methods": [
+          {
+            "args": [
+              "self"
+            ],
+            "line": 898,
+            "name": "__init__"
+          },
+          {
+            "args": [
+              "self",
+              "target",
+              "neighbors",
+              "neighbor_mask",
+              "map_context"
+            ],
+            "line": 929,
+            "name": "forward"
+          }
+        ],
+        "name": "DirectBeamClassifier"
+      },
+      {
+        "end_line": 1141,
+        "line": 964,
+        "methods": [
+          {
+            "args": [
+              "self"
+            ],
+            "line": 967,
+            "name": "__init__"
+          },
+          {
+            "args": [
+              "self",
+              "target",
+              "neighbors",
+              "neighbor_mask",
+              "map_context"
+            ],
+            "line": 995,
+            "name": "encode"
+          },
+          {
+            "args": [
+              "self",
+              "embedding",
+              "theta_index",
+              "range_index",
+              "horizon_index",
+              "class_id"
+            ],
+            "line": 1009,
+            "name": "decode"
+          }
+        ],
+        "name": "DirectADBField"
+      },
+      {
+        "end_line": 1157,
+        "line": 1149,
+        "methods": [],
+        "name": "BeamArrays"
+      },
+      {
+        "end_line": 1633,
+        "line": 1627,
+        "methods": [],
+        "name": "ADBShard"
+      }
+    ],
+    "fit_only_normalization": "/home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json",
+    "fit_only_normalization_sha256": "3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6",
+    "relevant_functions": [
+      {
+        "args": [
+          "path"
+        ],
+        "line": 322,
+        "name": "load_json"
+      },
+      {
+        "args": [
+          "partition",
+          "normalizer"
+        ],
+        "line": 1160,
+        "name": "build_beam_arrays"
+      },
+      {
+        "args": [
+          "arrays",
+          "indices",
+          "device"
+        ],
+        "line": 1401,
+        "name": "beam_batch_to_device"
+      },
+      {
+        "args": [
+          "outputs",
+          "batch"
+        ],
+        "line": 1472,
+        "name": "beam_loss_sum_count"
+      },
+      {
+        "args": [
+          "model",
+          "arrays",
+          "device"
+        ],
+        "line": 1546,
+        "name": "evaluate_beam"
+      },
+      {
+        "args": [
+          "partition"
+        ],
+        "line": 1636,
+        "name": "scan_adb_partition"
+      },
+      {
+        "args": [
+          "shard",
+          "normalizer"
+        ],
+        "line": 1873,
+        "name": "load_adb_cache"
+      },
+      {
+        "args": [
+          "shard"
+        ],
+        "line": 1922,
+        "name": "load_adb_observations"
+      },
+      {
+        "args": [],
+        "line": 1972,
+        "name": "adb_train_batch"
+      },
+      {
+        "args": [
+          "model",
+          "shards",
+          "normalizer",
+          "device"
+        ],
+        "line": 2160,
+        "name": "evaluate_adb"
+      },
+      {
+        "args": [
+          "model",
+          "path",
+          "device"
+        ],
+        "line": 2436,
+        "name": "load_model_checkpoint"
+      },
+      {
+        "args": [],
+        "line": 2498,
+        "name": "train_beam"
+      },
+      {
+        "args": [],
+        "line": 2995,
+        "name": "save_adb_resume"
+      },
+      {
+        "args": [],
+        "line": 3092,
+        "name": "train_adb"
+      }
+    ]
+  },
+  "next": "implement exact frozen checkpoint inference and H-F metrics directly from captured definitions",
+  "scientific_boundary": {
+    "ADB_threshold_modified": false,
+    "Brier_computed": false,
+    "ECE_computed": false,
+    "calibration_cache_opened": false,
+    "calibration_label_shards_opened": false,
+    "calibrator_fitted": false,
+    "checkpoint_forward_inference": false,
+    "checkpoint_weights_modified": false,
+    "development_outcomes_opened": false,
+    "fit_outcomes_opened": false,
+    "formal_N120_raw_data_opened": false,
+    "future_GT_opened": false,
+    "post_outcome_tuning": false,
+    "probability_coverage_computed": false,
+    "probability_remapping": false
+  },
+  "stage": 7,
+  "status": "PASS_READ_ONLY_DIRECT_CALIBRATION_METRIC_MODEL_BINDING"
+}

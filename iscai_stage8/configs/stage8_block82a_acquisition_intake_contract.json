@@ -1,0 +1,70 @@
+{
+  "archive_policy": {
+    "extraction_in_8.2A": false,
+    "path_traversal_member_names": "FAIL_CLOSED",
+    "supported_for_member_inventory": [
+      ".zip",
+      ".tar",
+      ".tar.gz",
+      ".tgz"
+    ],
+    "unsupported_archive_format": "HASH_AND_REPORT_BUT_FAIL_CLOSED_FOR_8.2B_AUTHORIZATION"
+  },
+  "block": "8.2A",
+  "completion_gate": {
+    "Block82B_authorized": true,
+    "all_input_files_sha256_recorded": true,
+    "at_least_two_nonempty_input_files": true,
+    "no_extraction": true,
+    "no_training_calibration_formal_scoring": true,
+    "scenario8_candidate_identified": true,
+    "scenario9_candidate_identified": true,
+    "upstream_identity_pass": true,
+    "user_access_attested": true
+  },
+  "incoming_root": "/home/agni/waymo/deepsense_incoming/block82_primary",
+  "intake_semantics": {
+    "dataset_bytes_may_exist_in_incoming_after_user_download": true,
+    "runner_calibrates_models": false,
+    "runner_downloads_dataset_bytes": false,
+    "runner_extracts_archives": false,
+    "runner_hashes_every_regular_input_file": true,
+    "runner_modifies_input_archives": false,
+    "runner_opens_measured_power_payloads": false,
+    "runner_reads_archive_member_names_only_if_supported": true,
+    "runner_runs_formal_metrics": false,
+    "runner_trains_models": false
+  },
+  "manual_access_boundary": {
+    "authentication": "USER_PERFORMED_OUTSIDE_RUNNER",
+    "credentials_captured_by_runner": false,
+    "download_all_scenarios_not_required": true,
+    "official_task_page": "https://www.deepsense6g.net/lidar-aided-beam-prediction/",
+    "preferred_download_scope": [
+      "Scenario 8",
+      "Scenario 9"
+    ],
+    "reason": "bounded primary Stage8 task only; avoid unnecessary acquisition"
+  },
+  "project": "Agni",
+  "required_user_attestation": {
+    "environment_variable": "DEEPSENSE_ACCESS_CONFIRMED",
+    "meaning": "user states the files were obtained through the official DeepSense signed-in access flow; no credentials are provided to this runner",
+    "required_value": "YES"
+  },
+  "scenario_scope": [
+    8,
+    9
+  ],
+  "stage": 8,
+  "status": "FROZEN_PRE_INTAKE_ACQUISITION_CONTRACT",
+  "title": "DeepSense primary-task bounded acquisition intake freeze",
+  "upstream_block81_final": {
+    "evidence_sha256": "ac7bda1cf1ce016717a9a98023b2ed17685bd993b502f51726ef23ab896b5e44",
+    "findings_sha256": "d932aeb9a7371996edb145e9b4bb02842692e1e4a249c7ad710ac5eb692ad808",
+    "manifest_sha256": "960ce5fa544d5636d0593835c379f5d0e2530b64d8d91dcee807c8a903747b51",
+    "report_sha256": "828efa4469a435255a2e2960bd52c6248c9e5bdd17ff6eb41fa2f9e94fefc57d",
+    "runner_sha256": "7ceccb3be41856fee80196ad59690e4e75f34bd3583ce716f5ac9693db9ad64b",
+    "seal_sha256": "cbde57e2ecb915e45d1560db6c010132151d03ef269346caad65023905ad97e5"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "after_formal_opening": {
+    "calibrator_refit": false,
+    "evaluator_update": false,
+    "label_adapter_update": false,
+    "model_update": false,
+    "policy_update": false
+  },
+  "block": "8.8C",
+  "block88c_statistics": {
+    "aggregation": [
+      "Scenario8",
+      "Scenario9",
+      "pooled"
+    ],
+    "paired_bootstrap_10000": "deferred to Block8.9",
+    "point_estimates_only": true,
+    "post_outcome_tuning": false
+  },
+  "canonical_upstream": {
+    "block82b_files_manifest_sha256": "79dc92fb6a90acd36c4598de436517ebac6c7e7904334dd76a520e1c90a0b895",
+    "block83_evaluator_sha256": "7e2c4ffe589e3d6f58e5b6daf1d8fb9e6e44b2eef074bdf1624a3334f8cbe650",
+    "block84_policy_sha256": "5b7e6c3c4ff7eca4d1db86df90edfa19f0bbfc551255779833485df074d87cb8",
+    "block85c_checkpoint_sha256": "7aa785741a2929eedc106e77b0e701f02412f5dbf434823e51eed6d0f4eb6417",
+    "block85c_mapping_sha256": "36b7610ebb1cdf7e8004c10baad794d6e074554fa5805e34eac020eb681eac75",
+    "block85c_seal_sha256": "b0dae15111baae6a0cbe132e402459148474c6bad87c58c5a71eccba737de91e",
+    "block86c_calibrator_sha256": "25e7b666a3b8803723e5ade05c3c9c6c1d943995401ef108bf36ffc7c65085d1",
+    "block86c_seal_sha256": "ff895d100129e7f3f1e8c67e75c5d067fe7f0b3aaf40f29717c730e01a6ed60b",
+    "block87c_replay_sha256": "c9186cb1b0de06493fdbf082531a5609f1a1c69b1ce09e8f95cbc2ce89f691fd",
+    "block87c_seal_sha256": "01b0cb67f10cae247fab56bd8214d32a2ea815c7ff9ef88589d4d2f11676e67a",
+    "failed_preformal_block88_runner_sha256": "d03582aba683b11a5f2e7c8d88d2ca2a742b36af2cf4596fae0d3c1ea2795cd5"
+  },
+  "evaluator_only_reference": {
+    "K": 1,
+    "controller": false,
+    "label": "corrected 0-based official GT beam after y-1 mapping",
+    "name": "oracle_gt_best_beam_k1"
+  },
+  "formal_causal_barrier": {
+    "controller_forbidden_inputs": [
+      "formal beam label",
+      "formal measured-power numeric values"
+    ],
+    "controller_reexecution_after_power_open": false,
+    "phase_A_controller_inputs": [
+      "formal raw LiDAR",
+      "formal SCR LiDAR",
+      "TRAIN-only normalization",
+      "corrected 8.5C epoch-80 model",
+      "corrected 8.6C temperature"
+    ],
+    "phase_B_evaluator_label": "beam_index_1 - 1",
+    "power_reference_path": "identifier only before evaluator phase",
+    "preoutcome_artifact": "immutable formal_controller_decisions.jsonl + seal"
+  },
+  "formal_split": {
+    "challenge_dataset": "excluded",
+    "pooled_rows": 1030,
+    "scenario8_rows": 437,
+    "scenario9_rows": 593,
+    "source": "official dev_test only"
+  },
+  "frozen_evaluator_metrics": {
+    "absolute_measured_se_claim": false,
+    "coverage": "corrected official GT beam in selected set",
+    "measured_power_gap_db": "10*log10(P_selected_best/P_optimum)",
+    "normalized_se_reference_snr_db": [
+      0,
+      10,
+      20
+    ],
+    "outage_thresholds_db": [
+      1,
+      3,
+      6
+    ],
+    "probing_overhead": "K/64"
+  },
+  "frozen_label_adapter": {
+    "adapter": "evaluator_beam_index_0based = beam_index_1 - 1",
+    "adapter_discovered_before_any_formal_data_or_power access": true,
+    "model_and_measured_power_index": "0-based 0..63",
+    "official_csv_label": "beam_index_1 is 1-based",
+    "train_evidence": "7030/7030 y-1 == measured-power argmax; identity 0/7030"
+  },
+  "next_block": "8.9 statistics, failure cases and policy trade-offs",
+  "policies": [
+    "adaptive_topk_q090",
+    "adaptive_topk_q095",
+    "adaptive_topk_q0975",
+    "adaptive_topk_q099",
+    "fixed_top1",
+    "fixed_top3",
+    "fixed_top5",
+    "exhaustive_64"
+  ],
+  "preformal_train_power_encoding_gate": {
+    "checks": [
+      "64 numeric values",
+      "finite and strictly positive",
+      "official TRAIN label converted by y-1 is a measured-power maximum"
+    ],
+    "formal_power_access_before_gate_pass": false,
+    "rows": 7030,
+    "scientific_tuning_from_gate": false
+  },
+  "primary_policy": "adaptive_topk_q095",
+  "project": "Agni",
+  "stage": 8,
+  "status": "FROZEN_PRE_FORMAL_CORRECTED_MEASURED_DEEPSENSE_EVALUATION_CONTRACT",
+  "title": "Corrected formal DeepSense measured-power evaluation with explicit 1-based to 0-based label adapter"
+}

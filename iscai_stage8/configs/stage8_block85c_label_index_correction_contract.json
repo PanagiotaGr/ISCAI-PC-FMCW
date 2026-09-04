@@ -1,0 +1,72 @@
+{
+  "block": "8.5C",
+  "discovery_basis": {
+    "argmax0_minus_label_histogram": {
+      "-1": 7030
+    },
+    "formal_dev_test_accessed": false,
+    "formal_mmwave_power_accessed": false,
+    "identity_matches": 0,
+    "label_minus_1_matches": 7030,
+    "rows": 7030,
+    "scope": "TRAIN-only audit after Block8.8 fail-closed before any formal power access"
+  },
+  "frozen_adapter": {
+    "allowed_model_class_range": [
+      0,
+      63
+    ],
+    "allowed_official_label_range": [
+      1,
+      64
+    ],
+    "inverse_mapping": "official_beam_index_1based = class_index_0based + 1",
+    "mapping": "class_index_0based = official_beam_index_1based - 1",
+    "measured_power_vector_semantics": "0-based array position",
+    "model_target_class": "beam_index_1 - 1",
+    "official_csv_label_semantics": "1-based beam index"
+  },
+  "next_block": "8.6C corrected probability calibration",
+  "outcome_boundary": {
+    "calibration_data_access": false,
+    "formal_data_access": false,
+    "formal_power_access": false,
+    "post_outcome_tuning": false,
+    "train_power_access": "allowed only to verify frozen index mapping"
+  },
+  "project": "Agni",
+  "scientific_scope": {
+    "architecture_change": false,
+    "batch_size_change": false,
+    "epoch_change": false,
+    "input_representation_change": false,
+    "model_selection_change": false,
+    "normalization_change": false,
+    "only_change": "supervised target index adapter y -> y-1",
+    "optimizer_change": false,
+    "scheduler_change": false
+  },
+  "stage": 8,
+  "status": "FROZEN_PREFORMAL_LABEL_INDEX_CORRECTION_CONTRACT",
+  "supersession": {
+    "old_8.5B_checkpoint": "preserved append-only, not canonical for downstream use after 8.5C",
+    "old_8.6_and_8.7": "preserved append-only and must be recomputed against corrected checkpoint before formal evaluation"
+  },
+  "title": "DeepSense 1-based official beam label to 0-based 64-way model/power index correction",
+  "training": {
+    "batch_size": 128,
+    "checkpoint_selection": "fixed final epoch 80 only",
+    "device": "CPU deterministic",
+    "epochs": 80,
+    "gradient_clip_norm": 5.0,
+    "model": "DualLiDARConv1D64, 18,208 params",
+    "normalization": "reuse exact frozen TRAIN-only normalization from canonical 8.5B",
+    "optimizer": "AdamW lr=1e-3 wd=1e-4 betas=(0.9,0.999)",
+    "rows": 7030,
+    "scenario8_rows": 2831,
+    "scenario9_rows": 4199,
+    "scheduler": "CosineAnnealingLR T_max=80 eta_min=1e-5",
+    "seed": 20260902,
+    "split": "official dev_train only"
+  }
+}

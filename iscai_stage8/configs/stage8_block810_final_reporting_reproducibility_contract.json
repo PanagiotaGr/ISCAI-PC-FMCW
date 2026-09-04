@@ -1,0 +1,76 @@
+{
+  "analysis_only": {
+    "calibration_refit": false,
+    "controller_reexecution": false,
+    "evaluator_reexecution": false,
+    "label_adapter_update": false,
+    "model_forward": false,
+    "policy_update": false,
+    "post_outcome_tuning": false,
+    "raw_lidar_access": false,
+    "raw_mmwave_power_access": false,
+    "training": false
+  },
+  "block": "8.10",
+  "final_stage8_status": "STAGE8_PDF_CORE_COMPLETE",
+  "project": "Agni",
+  "reporting_separation": {
+    "cross_modal_averaging": false,
+    "cross_modal_pooling": false,
+    "deepSense_SE_metric": "normalized proxy only, frozen reference-SNR semantics",
+    "deepSense_absolute_measured_spectral_efficiency_claim": false,
+    "direct_claim_that_deepsense_validates_optical_headlamp": false,
+    "optical_and_mmwave_tables_separate": true,
+    "required_statement": "DeepSense validates the policy, not the optical headlamp."
+  },
+  "stage": 8,
+  "stage7_optical_provenance": {
+    "final_c3_reproducibility_seal": {
+      "path": "/home/agni/waymo/iscai_stage7/artifacts/stage7_block75c3_final_reproducibility_seal.json",
+      "sha256": "e01ba2e735d4d6403a584f8f1a304e3b3acb926d36fb3adb3cb0f62c5cc44d8a"
+    },
+    "pdf_compliance_complete_superseding_seal": {
+      "path": "/home/agni/waymo/iscai_stage7/artifacts/stage7_pdf_compliance_complete_superseding_seal.json",
+      "sha256": "9f483cc19546b93ed5a28e045965eba39494d7aca9b2ba949fc49584965b0b0a"
+    },
+    "reporting_family": [
+      "pointing loss",
+      "optical SNR",
+      "DPSK BER",
+      "effective optical rate"
+    ],
+    "role": "model-based optical/PC-FMCW results; frozen upstream Stage7 provenance only"
+  },
+  "stage8_completion_criteria": {
+    "Top-K policy evaluated on measured DeepSense beam powers": true,
+    "fail-closed fallback frozen before formal evaluation": true,
+    "failure-case analysis": true,
+    "formal controller decisions frozen before formal measured-power decode": true,
+    "lightweight DeepSense-specific encoder retrained": true,
+    "mmWave results presented separately from optical": true,
+    "paired 10000 bootstrap CIs": true,
+    "policy q trade-off": true,
+    "probability calibration frozen before formal evaluation": true,
+    "zero_shot_WOMD_to_DeepSense": "optional/non-blocking; not required for Stage8 core closure"
+  },
+  "stage8_mmwave_provenance": {
+    "block88c_seal_sha256": "f287399f7ddc6070c45f5c42502ae90fc4db0622f6cf42a845aa94d2b8ff8cb4",
+    "block89_seal_sha256": "73c74faab50ff8b52d76089e093439414894a3e95d87e32348da845e05798a29",
+    "bootstrap_sha256": "a60faacc0c193fad5f8324aefc2dc80036053cf17d574b31790fce104f2bc1ae",
+    "failure_slices_sha256": "99821b0a0b17e4f1d2dad2b20e6284509be07ea13962a06a95285f3d346a6838",
+    "formal_records_sha256": "1984d777f8e649089c7f14ed80df8cd105838496ca03c70adce54fe124dd164b",
+    "formal_summary_sha256": "8f29fd2b3882ffb28b66fdef87a53490eeaf64fe3b501d788495710a989fa0ac",
+    "paired_comparisons_sha256": "3fe13ed2fa61b850b2aa799e0718768c8ec769b61be942577e7caab9d85ed9a0",
+    "q_tradeoff_sha256": "e0d037deff7c955552005a14da247fa9866996a7558d59b6ef8ea90cdc41d8bc",
+    "reporting_family": [
+      "measured power loss",
+      "Top-K coverage",
+      "normalized spectral-efficiency gap",
+      "outage",
+      "probing overhead"
+    ],
+    "role": "measured DeepSense mmWave beam-policy validation"
+  },
+  "status": "FROZEN_STAGE8_FINAL_REPORTING_AND_REPRODUCIBILITY_CONTRACT",
+  "title": "Optical/mmWave reporting separation and final Stage8 DeepSense seal"
+}

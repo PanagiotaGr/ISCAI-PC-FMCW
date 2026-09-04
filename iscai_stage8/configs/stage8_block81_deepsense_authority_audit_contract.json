@@ -1,0 +1,67 @@
+{
+  "block": "8.1",
+  "fail_closed": [
+    "Block8.0 identity changes",
+    "official LiDAR task no longer documents scenarios 8 and 9",
+    "64-way measured-power interface cannot be verified",
+    "train/val/test split names cannot be verified",
+    "measured-power vectors are treated as controller input",
+    "dataset archive download occurs in Block8.1"
+  ],
+  "license_rule": {
+    "dataset_bytes_acquisition_requires_official_download_terms_or_user-accepted access terms to be captured in Block8.2": true,
+    "do_not_infer_dataset_license_identifier_from_a_code_repository": true,
+    "official_site_license_and_citation_section_must_be_snapshotted": true,
+    "task_specific_citation_requirements_must_be_snapshotted": true
+  },
+  "network_boundary": {
+    "calibration": false,
+    "dataset_archives_may_be_downloaded": false,
+    "download_links_may_be_followed": false,
+    "formal_measured_power_scoring": false,
+    "official_web_pages_may_be_fetched": true,
+    "sign_in_or_authentication": false,
+    "training": false
+  },
+  "primary_task_rule": {
+    "reason": "direct PDF match and official 64-way measured-power interface",
+    "required_documented_interface": {
+      "codebook_size": 64,
+      "csv_splits": [
+        "train.csv",
+        "val.csv",
+        "test.csv"
+      ],
+      "label": "beam_index",
+      "lidar_matrix": "416x2",
+      "power_vector": "64x1",
+      "sampling": "approximately 100 ms"
+    },
+    "scenarios": [
+      8,
+      9
+    ],
+    "task": "DeepSense LiDAR-aided beam prediction"
+  },
+  "project": "Agni",
+  "secondary_authority_rule": {
+    "must_not_be_silently_remapped_to_primary_64_way_policy": true,
+    "reason": "four phased arrays produce 64x4 powers and the beam-tracking task uses an overall 0-255 beam index",
+    "role": "SECONDARY_OPTIONAL_UNTIL_SEPARATE_INTERFACE_MAPPING_IS_PREREGISTERED",
+    "task": "DeepSense V2V scenarios 36-39 / 2023 challenge"
+  },
+  "split_rule": {
+    "actual_split row counts/disjointness_must_not_be_claimed_before bytes are acquired": true,
+    "documented_split_names_may_be_verified_from_official_task page": true,
+    "sequence leakage audit_deferred_to_Block8.2": true
+  },
+  "stage": 8,
+  "status": "FROZEN_PRE_ACCESS_DEEPSENSE_AUTHORITY_AUDIT_CONTRACT",
+  "title": "DeepSense authority/schema/license/split audit before dataset acquisition",
+  "upstream_block80": {
+    "manifest_sha256": "c2a7ad9153c083b73971822798b52819d30ef92cd4f57820623edf010555dfae",
+    "report_sha256": "acddd5550fbeee894b7fc7e2f7ab7695bf89e5f84d3899ed4090c4a87e7bb493",
+    "runner_sha256": "2a41fd762e9261bc1b6b5c8152331a5ceb4b2fa1c21922c0129b04eedc47f906",
+    "seal_sha256": "624b241a95ecd4eaac3147f41d909023202577ce241748c51c324e47d82a1687"
+  }
+}

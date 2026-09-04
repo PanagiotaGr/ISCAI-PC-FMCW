@@ -1,0 +1,60 @@
+{
+  "block": "8.6C",
+  "calibration_split": {
+    "natural_sample_weighting": true,
+    "pooled_rows": 1947,
+    "scenario8_rows": 775,
+    "scenario9_rows": 1172,
+    "source": "official dev_val only"
+  },
+  "calibrator": {
+    "T_bounds": [
+      0.05,
+      20.0
+    ],
+    "formula": "p = softmax(logits / T)",
+    "iterations": 200,
+    "objective": "mean multiclass NLL on corrected 0-based dev_val targets",
+    "optimizer": "deterministic golden-section search over log(T)",
+    "type": "single scalar temperature scaling"
+  },
+  "canonical_upstream": {
+    "block85c_checkpoint_sha256": "7aa785741a2929eedc106e77b0e701f02412f5dbf434823e51eed6d0f4eb6417",
+    "block85c_mapping_sha256": "36b7610ebb1cdf7e8004c10baad794d6e074554fa5805e34eac020eb681eac75",
+    "block85c_seal_sha256": "b0dae15111baae6a0cbe132e402459148474c6bad87c58c5a71eccba737de91e",
+    "train_normalization_sha256": "8e12e7b5bccf57c31075569a575507cd95e4b1710f5bb7327cbdd203c36575fd"
+  },
+  "diagnostics": {
+    "diagnostics_do_not_change_method": true,
+    "metrics": [
+      "NLL",
+      "Brier",
+      "ECE15",
+      "Top-1 accuracy"
+    ],
+    "top1_must_be_invariant_under_positive_scalar_T": true
+  },
+  "forbidden": {
+    "calibration_mmwave_power_payload_open": true,
+    "formal_dev_test_access": true,
+    "formal_power_access": true,
+    "model_parameter_update": true,
+    "post_outcome_tuning": true,
+    "retraining": true
+  },
+  "label_adapter": {
+    "adapter_source": "frozen Block8.5C TRAIN mapping gate 7030/7030",
+    "fit_target": "y0 = y1 - 1",
+    "model_class": "beam_index_1 - 1 (0-based)",
+    "official_csv_label": "beam_index_1 (1-based)"
+  },
+  "next_block": "8.7C corrected pre-formal policy/fallback replay",
+  "project": "Agni",
+  "stage": 8,
+  "status": "FROZEN_CORRECTED_PROBABILITY_CALIBRATION_CONTRACT",
+  "supersession": {
+    "old_block86": "preserved append-only; not canonical after corrected model",
+    "old_block87": "preserved append-only; must be recomputed as 8.7C"
+  },
+  "title": "Corrected DeepSense scalar temperature calibration using 0-based label adapter"
+}

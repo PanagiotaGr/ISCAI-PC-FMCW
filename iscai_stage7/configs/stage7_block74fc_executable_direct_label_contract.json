@@ -1,0 +1,318 @@
+{
+  "block": "7.4F-C",
+  "content_sha256": "6bc0f6ba2d9396d4d546a64cf86840dd66c08515f03d92cd8fe03b3a3590c15c",
+  "direct_ADB": {
+    "OTHER_loss": "none",
+    "actor_classes": [
+      "TYPE_VEHICLE",
+      "TYPE_PEDESTRIAN",
+      "TYPE_CYCLIST"
+    ],
+    "actor_population": "causally matched Stage4 vehicle/pedestrian/cyclist samples",
+    "coordinate_sampling": {
+      "deterministic": true,
+      "empty_positive_support": "no coordinate BCE observations for that actor/horizon",
+      "negative_rank_key": "SHA256(sample_id|horizon_index|theta_index|range_index|ADB_NEG)",
+      "negative_to_positive_ratio": 1.0,
+      "positive_limit_per_actor_horizon": 4096,
+      "positive_rank_key": "SHA256(sample_id|horizon_index|theta_index|range_index|ADB_POS)",
+      "tie_break": "theta_index then range_index"
+    },
+    "future_GT_as_inference_input": false,
+    "future_GT_role": "training_supervision_only",
+    "future_based_actor_selection": false,
+    "future_box": {
+      "center": "future WOMD GT center transformed W->H0",
+      "controller_path": false,
+      "dimensions": "future WOMD GT length/width/height",
+      "future_box_binding": {
+        "end_line": 683,
+        "file_sha256": "dd58b1de2f01331d69b28726831039b87df8771ae4a4818b7d6c35e56d367e02",
+        "function": "future_box_H0",
+        "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_reactive_only_ni_delta_freeze.py",
+        "source_sha256": "be4183c8dc3814ec9a29da28444413c81a15a21f87eae7d81060b45a97d720de",
+        "start_line": 557
+      },
+      "heading": "future WOMD GT heading transformed to H0",
+      "physical_corners": 8,
+      "projection_binding": {
+        "end_line": 921,
+        "file_sha256": "f6e6cc0dd362338eeeaae9d8e25947434a3e7c64b350f0baf81a79a46159f94e",
+        "function": "project_box_to_headlamp",
+        "path": "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/geometry.py",
+        "source_sha256": "e35d26210d20f01cdb3ab6d337361fdbeeea84a690d14dc14eb0df2d1d1876c3",
+        "start_line": 820
+      }
+    },
+    "future_state_alignment": {
+      "authority": "Stage6 superseding physical-timestamp alignment",
+      "candidate_indices": "strictly after anchor",
+      "declared_tolerance_s": 0.001,
+      "future_validity_as_selector": false,
+      "future_validity_role": "loss_mask_only",
+      "interpolation": false,
+      "posthoc_tolerance_gate": false,
+      "selection": "minimum absolute timestamp error",
+      "target_timestamp": "anchor_timestamp + horizon_s",
+      "tie_break": "earliest index among 1e-12-equal minima"
+    },
+    "grid": {
+      "n_range": 301,
+      "n_theta": 501,
+      "range_max_m": 150.0,
+      "range_min_m": 0.0,
+      "range_step_m": 0.5,
+      "shape": [
+        501,
+        301
+      ],
+      "source_binding_sha256": "be5145fe60a941e7906639916cfa384d5674dc29f294f5a42e12c962bc4df4bc",
+      "theta_max_rad": 0.4363323129985824,
+      "theta_min_rad": -0.4363323129985824,
+      "theta_step_rad": 0.0017453292519943296
+    },
+    "horizons_s": [
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "inference_mask_threshold": 0.5,
+    "input": "same frozen causal history/features as shared trajectory predictor + coordinate + horizon + class",
+    "loss": "binary_cross_entropy",
+    "rasterization": {
+      "centroid_rasterization": false,
+      "conservative_subcell_intersection": true,
+      "function_binding": {
+        "end_line": 554,
+        "file_sha256": "dd58b1de2f01331d69b28726831039b87df8771ae4a4818b7d6c35e56d367e02",
+        "function": "rasterize_projected_full_box",
+        "path": "/home/agni/waymo/iscai_stage6/scripts/run_block68_reactive_only_ni_delta_freeze.py",
+        "source_sha256": "8051124719364b3f315938212f850da3404813f274cb07ae7730350611dbbdd3",
+        "start_line": 482
+      },
+      "range_rule": "[r_center-half_step,r_center+half_step] intersects [ground_range_min,ground_range_max]",
+      "semantics": "cell-rectangle intersection with corner-derived projected full-box theta/range bounding support",
+      "theta_rule": "circular_abs(theta_cell_center-theta_box_center) <= theta_span/2 + theta_cell_half_step"
+    },
+    "task": "direct coordinate-conditioned future dim-support prediction"
+  },
+  "direct_beam": {
+    "azimuth": "atan2(receiver_y_H0, receiver_x_H0)",
+    "codebook_sizes": [
+      16,
+      32,
+      64
+    ],
+    "codebooks": {
+      "16": {
+        "beam_count": 16,
+        "boundary_convention": "[lower,upper) except final cell includes support_max",
+        "categorical_index": "clip(floor((decision_azimuth-support_min)/width),0,beam_count-1)",
+        "decision_width_rad": 0.026179938779914945,
+        "outside_support": "clip with complete_partition_decision_azimuth",
+        "support_max_azimuth_rad": 0.20943951023931956,
+        "support_min_azimuth_rad": -0.20943951023931956
+      },
+      "32": {
+        "beam_count": 32,
+        "boundary_convention": "[lower,upper) except final cell includes support_max",
+        "categorical_index": "clip(floor((decision_azimuth-support_min)/width),0,beam_count-1)",
+        "decision_width_rad": 0.013089969389957472,
+        "outside_support": "clip with complete_partition_decision_azimuth",
+        "support_max_azimuth_rad": 0.20943951023931956,
+        "support_min_azimuth_rad": -0.20943951023931956
+      },
+      "64": {
+        "beam_count": 64,
+        "boundary_convention": "[lower,upper) except final cell includes support_max",
+        "categorical_index": "clip(floor((decision_azimuth-support_min)/width),0,beam_count-1)",
+        "decision_width_rad": 0.006544984694978736,
+        "outside_support": "clip with complete_partition_decision_azimuth",
+        "support_max_azimuth_rad": 0.20943951023931956,
+        "support_min_azimuth_rad": -0.20943951023931956
+      }
+    },
+    "future_GT_as_inference_input": false,
+    "future_GT_role": "training_supervision_only",
+    "future_receiver_position": {
+      "center": "future WOMD GT center of selected truth track transformed to H0",
+      "formula": "center_H0 + Rz(heading_H0) @ offset_body",
+      "heading": "future WOMD GT heading transformed to H0",
+      "rotate_offset_binding": {
+        "end_line": 4479,
+        "file_sha256": "16495f3c46ed5f95145918b25b169f8aa33408b2ef84ffc19cb66af1db3c189a",
+        "function": "rotate_body_offset",
+        "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.py",
+        "source_sha256": "b7ce291fec4e72c75e4f733eba75cfcd9447349e9ae38a5f58d97746da3fe10a",
+        "start_line": 4453
+      },
+      "state_center_binding": {
+        "end_line": 4422,
+        "file_sha256": "16495f3c46ed5f95145918b25b169f8aa33408b2ef84ffc19cb66af1db3c189a",
+        "function": "state_center_h0",
+        "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.py",
+        "source_sha256": "e0b3551b06d0a476b3e4341aae7bdb5f37e338c48e9e2b5f0763739f034144c2",
+        "start_line": 4394
+      },
+      "state_heading_binding": {
+        "end_line": 4450,
+        "file_sha256": "16495f3c46ed5f95145918b25b169f8aa33408b2ef84ffc19cb66af1db3c189a",
+        "function": "state_heading_h0",
+        "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.py",
+        "source_sha256": "cdd7fc9f43ec5cc34fc089d7c68c0cbb515fdc6a1cb10cf760cbb18cada7865b",
+        "start_line": 4425
+      },
+      "truth_position_binding": {
+        "end_line": 4523,
+        "file_sha256": "16495f3c46ed5f95145918b25b169f8aa33408b2ef84ffc19cb66af1db3c189a",
+        "function": "receiver_truth_position",
+        "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.py",
+        "source_sha256": "ba0a4515607e9410d9645e1c25749e2aa1300d38ec28554e0f7c367337248458",
+        "start_line": 4482
+      }
+    },
+    "future_state": {
+      "frame_offsets": [
+        1,
+        3,
+        5,
+        10
+      ],
+      "horizons_s": [
+        0.1,
+        0.3,
+        0.5,
+        1.0
+      ],
+      "interpolation": false,
+      "invalid_state": "masked from beam CE loss",
+      "state_index": "scenario.current_time_index + frame_offset"
+    },
+    "input": "same frozen causal history/features as shared trajectory predictor",
+    "loss": "categorical_cross_entropy",
+    "primary_codebook": 32,
+    "receiver_offset": {
+      "covariance_body_m2": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "degenerate_zero_distribution": true,
+      "mean_body_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "offset_frame": "receiver_vehicle_body_frame",
+      "parameter_signature_sha256": "f454f17501c901833c34a6fa40706dd311c4ee117c30252faefd3757fb4cbee7",
+      "post_freeze_retuning_allowed": false,
+      "source": "/home/agni/waymo/iscai_stage5/configs/stage5_contract.json:receiver_geometry_upstream.default_config:offset_mean_body_m/offset_covariance_body_m2",
+      "source_file_sha256": "04fd32e4bc6e160f2627f465a7820c74e19ca2e1a1f47f23ed1884f842cb7db4"
+    },
+    "receiver_selection": {
+      "current_causal_availability_required": true,
+      "function_binding": {
+        "end_line": 3252,
+        "file_sha256": "16495f3c46ed5f95145918b25b169f8aa33408b2ef84ffc19cb66af1db3c189a",
+        "function": "choose_primary_receiver",
+        "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.py",
+        "source_sha256": "3fc4c7f1dd68ccd71fbfbdfe1913eaeaa4d67ab101686e07e4d65da1b8ff10ce",
+        "start_line": 3160
+      },
+      "future_truth_selector": false,
+      "no_eligible_receiver": "explicit_no_link_target",
+      "policy": "nearest_causal_vehicle_ahead",
+      "positive_forward_H0_required": true,
+      "tracks_to_predict_selector": false,
+      "unit": "one frozen causally selected communication receiver per eligible scenario",
+      "vehicle_class_required": true
+    },
+    "target": "one categorical beam index per valid selected-receiver sample/horizon/codebook",
+    "task": "direct categorical beam probability prediction",
+    "training_receiver_geometry_mode": "uncertain_receiver_offset",
+    "uncertain_truth_realization": {
+      "distribution": "multivariate_normal",
+      "numerical_note": "Frozen covariance is exactly zero, therefore the realization equals the frozen mean; seed semantics are nevertheless preserved exactly.",
+      "rng": "numpy.random.default_rng",
+      "same_realization_all_horizons": true,
+      "seed_arguments": [
+        "scenario_id",
+        "formal_receiver_offset_truth"
+      ],
+      "seed_function_binding": {
+        "end_line": 507,
+        "file_sha256": "16495f3c46ed5f95145918b25b169f8aa33408b2ef84ffc19cb66af1db3c189a",
+        "function": "stable_seed",
+        "path": "/home/agni/waymo/iscai_stage5/scripts/run_block58_part2_formal_evaluation.py",
+        "source_sha256": "9e98392b0d199596df6986debe79c5c68a768044de509bff475501ffec0421a9",
+        "start_line": 480
+      },
+      "seed_namespace": "formal_receiver_offset_truth"
+    }
+  },
+  "evidence": {
+    "Block74F_B_log_sha256": "555865df74109f94fb12baca8b818d3488320a789811b1c5327dbeceeb64367e",
+    "receiver_offset_locator_sha256": "50d517636c28877e234039a014668ebbcbc4e0435278445720e5aab0aee52b51"
+  },
+  "freeze_timing": "before label materialization, before direct training, before Stage7 formal N120 access",
+  "next": "Block7.4G training-only label materialization and independent label checker; direct model training remains blocked until that checker passes",
+  "project": "Agni",
+  "repair_classification": {
+    "formal_access": false,
+    "label_rule_change": false,
+    "previous_failure": "receiver-offset authority locator schema mismatch",
+    "scientific_parameter_change": false,
+    "training_change": false
+  },
+  "sample_identity": {
+    "causal_pairing": "historical/current states only",
+    "future_states_used_to_pair": false,
+    "future_track": "scenario.tracks[truth_track_index]",
+    "future_validity_as_selector": false,
+    "future_validity_role": "loss_mask_only",
+    "sample_id": "scenario_id:prediction_id",
+    "truth_track_binding": "SupervisedTrajectorySample.truth_track_index"
+  },
+  "scientific_boundary": {
+    "Stage4_modified": false,
+    "Stage5_modified": false,
+    "Stage6_modified": false,
+    "calibration_partition_used": false,
+    "direct_ADB_training": false,
+    "direct_beam_training": false,
+    "formal_N120_opened": false,
+    "future_GT_as_model_input": false,
+    "label_materialization": false,
+    "optimizer_step": false,
+    "post_outcome_tuning": false
+  },
+  "stage": 7,
+  "status": "FROZEN_EXECUTABLE_TRAINING_ONLY_LABEL_CONTRACT",
+  "training_population": {
+    "calibration_partition_used": false,
+    "development_partition": "frozen_Block4.1_development",
+    "development_scenarios": 512,
+    "development_subset_scenario_id_sha256": "0a30822da389d9872a11e32b2647f3b184af677dc8559d5cba99ee8c0285037f",
+    "fit_partition": "frozen_Block4.1_fit",
+    "fit_scenarios": 4096,
+    "fit_subset_scenario_id_sha256": "9b448793b6917373496ac38c225e6c25f52d30c8ba761f90a38ad906b27fe13f",
+    "formal_partition_used": false,
+    "future_or_outcome_dependent_sampling": false,
+    "max_samples_per_scene": 64,
+    "subset_rule": "exact first N records from frozen SHA-ordered manifests"
+  },
+  "version": "v2_schema_binding_repair"
+}

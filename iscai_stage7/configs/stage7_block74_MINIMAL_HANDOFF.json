@@ -1,0 +1,1407 @@
+{
+  "PDF_handoff_contract": {
+    "Experiment_7": {
+      "required_metric_groups": [
+        "communication_reliability",
+        "beam_overhead",
+        "glare_protection",
+        "VRU_visibility",
+        "over_masking",
+        "latency"
+      ],
+      "same_shared_posterior_must_feed_both_branches": true,
+      "type": "joint_evaluation"
+    },
+    "Stage7_completion_gate": {
+      "common_communication_illumination_tradeoff_table": true,
+      "currently_complete": false,
+      "same_posterior_feeds_communication_and_ADB": true
+    },
+    "Stage7_roadmap": {
+      "codebook_sweeps": true,
+      "common_posterior": true,
+      "joint_metrics": true,
+      "latency_sweeps": true,
+      "statistical_confidence_intervals": true,
+      "uncertainty_sweeps": true
+    },
+    "deferred_to_Stage8": [
+      "DeepSense_external_beam_policy_validation"
+    ],
+    "failure_case_analysis": {
+      "post_outcome_threshold_tuning": false,
+      "required_slice_count": 14,
+      "required_slices": [
+        "actor_near_beam_boundary",
+        "receiver_near_FoV_edge",
+        "abrupt_lane_change",
+        "braking",
+        "intersection_turn",
+        "pedestrian_crossing",
+        "cyclist_lateral_maneuver",
+        "partial_occlusion",
+        "temporary_missing_track",
+        "low_LiDAR_point_count",
+        "short_range_high_angular_velocity",
+        "long_range_small_angular_separation",
+        "two_actors_same_or_neighboring_beam",
+        "dynamic_blocker_between_transmitter_and_receiver"
+      ],
+      "unsupported_slice_policy": "not_evaluable"
+    },
+    "latency_and_resources": {
+      "WOMD_annotated_interval_ms": 100,
+      "millisecond_1_to_10_claim_rule": "only model propagation/interpolation/local refinement; never annotated millisecond WOMD ground truth",
+      "required_latency_components": [
+        "data_loading_latency",
+        "preprocessing_latency",
+        "predictor_inference_time",
+        "beam_selection_latency",
+        "ADB_generation_latency",
+        "total_frame_latency"
+      ],
+      "resources": [
+        "memory_usage",
+        "parameter_count",
+        "FLOPs_if_available"
+      ]
+    },
+    "mandatory_core_remaining_for_Stage7": [
+      "shared_vs_independent_direct_formal_comparison",
+      "joint_communication_illumination_evaluation",
+      "end_to_end_latency",
+      "statistical_confidence_intervals",
+      "failure_case_analysis",
+      "common_communication_illumination_tradeoff_table"
+    ],
+    "optional_not_core_blockers": [
+      "joint_optical_power_allocation",
+      "raw_LiDAR_BEV_predictor",
+      "full_sensor_to_track_pipeline",
+      "ray_tracing",
+      "conformal_beam_sets"
+    ],
+    "section_46": {
+      "communication_and_illumination_actuator_spaces": "DISTINCT",
+      "communication_space": [
+        "narrow_directional_beams",
+        "communication_gain",
+        "receiver_location",
+        "probing_overhead",
+        "SNR_BER_objective"
+      ],
+      "illumination_space": [
+        "headlamp_pixels_or_angular_cells",
+        "light_intensity",
+        "dimming_levels",
+        "glare_constraints",
+        "road_visibility_constraints"
+      ],
+      "same_physical_beam_required": false,
+      "shared_information": "trajectory/angular posterior"
+    },
+    "section_47": {
+      "direct_heads_role": "baselines",
+      "five_systems": [
+        "shared_trajectory_posterior",
+        "independent_models",
+        "direct_beam_classifier",
+        "direct_ADB_predictor",
+        "deterministic_shared_trajectory"
+      ],
+      "required_comparison_categories": [
+        "accuracy_or_task_performance",
+        "calibration",
+        "inference_time",
+        "parameter_count",
+        "memory",
+        "beam_outage",
+        "ADB_violations"
+      ],
+      "shared_main_version": "one trajectory posterior with analytic beam and ADB mappings"
+    },
+    "section_48": {
+      "first_version_allowed": "shared posterior with communication and ADB controllers evaluated separately",
+      "full_joint_optical_power_optimization": "OPTIONAL_EXTENSION",
+      "full_joint_optical_power_optimization_required": false
+    }
+  },
+  "PDF_required_five_system_definitions": {
+    "deterministic_shared_trajectory": {
+      "definition": "shared trajectory without uncertainty"
+    },
+    "direct_ADB_predictor": {
+      "definition": "ADB mask/probability field without explicit trajectory distribution"
+    },
+    "direct_beam_classifier": {
+      "definition": "beam probabilities without explicit trajectory"
+    },
+    "independent_models": {
+      "ADB": "separate trajectory/ADB model",
+      "communication": "separate trajectory/beam model"
+    },
+    "shared_trajectory_posterior": {
+      "ADB_mapping": "analytic ADB mapping",
+      "communication_mapping": "analytic beam mapping",
+      "predictor_count": 1
+    }
+  },
+  "canonical_instruction": "For Block7.5, read THIS handoff first. Treat it as the operational source of truth. The retained Block7.1/7.2/7.3 and Block7.4 preformal files are immutable cryptographic authorities. Historical Block7.4 debugging, failed formal executors, caches and repair logs are intentionally removed.",
+  "cleanup_plan": {
+    "delete_GiB": 3.318189344368875,
+    "delete_allowlist_sha256": "77bf5a775edb2d58c14cd6ae291c114c6e1bcfa4fdbc8201a41974005e335c0a",
+    "delete_bytes": 3562878679,
+    "delete_file_count": 45496,
+    "delete_root_count": 231
+  },
+  "content_sha256": "ae1cc28cc93bb03f49f3b8199b75fb0f372ace5c5c90d4cffd6e61704d36829a",
+  "direct_posthoc_probability_calibrators": {
+    "direct_ADB_predictor": null,
+    "direct_beam_classifier": null
+  },
+  "five_systems": {
+    "deterministic_shared_trajectory": {
+      "ADB_branch": "frozen Stage6 deterministic predictive full-box ADB mapping",
+      "checkpoint": "/home/agni/waymo/iscai_stage4/artifacts/block43/deterministic_gru.pt",
+      "checkpoint_sha256": "5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5",
+      "communication_branch": "same Stage5 analytic beam geometry using deterministic receiver angle",
+      "future_GT_inference_input": false,
+      "new_training": false,
+      "predictive_uncertainty": false
+    },
+    "direct_ADB_predictor": {
+      "best_epoch": 4,
+      "calibration_diagnostics": {
+        "Brier_score": 0.046180428299793956,
+        "ECE": 0.050216244538679185,
+        "evaluation_distribution": "frozen balanced sparse-coordinate distribution; not natural full-grid prevalence"
+      },
+      "checkpoint": "/home/agni/waymo/iscai_stage7/artifacts/block74h_direct/adb/best.pt",
+      "checkpoint_sha256": "c3bbfe83ebde069e5b84e73e54d7d5e71639164761eabc2ed7528a81aeabe88a",
+      "coordinate_sampler_seed": 3232423521,
+      "future_GT_inference_input": false,
+      "joint_evaluation_role": "replace ADB predictive representation only; retain shared analytic communication branch",
+      "mask_rule": "probability > 0.5",
+      "posthoc_probability_calibrator": null,
+      "representation": "coordinate-conditioned implicit ADB probability field without explicit trajectory distribution",
+      "seed": 3910524196,
+      "state_dict_sha256": "0f18d7b14beb5472936cd79c5a8e6f46197758136863af83cac16bfa6f23ff0e",
+      "trainable_parameter_count": 67329
+    },
+    "direct_beam_classifier": {
+      "best_epoch": 20,
+      "calibration_diagnostics": {
+        "Brier_score": 0.40388359391216194,
+        "ECE": 0.11195351925841063,
+        "coverage": {
+          "0.9": {
+            "empirical": 0.9177415873964507,
+            "mean_selected_K": 11.72012218403971
+          },
+          "0.95": {
+            "empirical": 0.950030712020851,
+            "mean_selected_K": 18.175075119942893
+          },
+          "0.975": {
+            "empirical": 0.9717781430018095,
+            "mean_selected_K": 23.408204259840296
+          },
+          "0.99": {
+            "empirical": 0.9870843501502399,
+            "mean_selected_K": 28.441871275129902
+          }
+        }
+      },
+      "checkpoint": "/home/agni/waymo/iscai_stage7/artifacts/block74h_direct/beam/best.pt",
+      "checkpoint_sha256": "bb0a8fd6dab8277f374216da07ea139730df2267148bfb838022201872fff2d4",
+      "codebooks": [
+        16,
+        32,
+        64
+      ],
+      "future_GT_inference_input": false,
+      "joint_evaluation_role": "replace communication branch only; retain shared analytic ADB branch",
+      "posthoc_probability_calibrator": null,
+      "representation": "softmax codebook probabilities without explicit trajectory output",
+      "seed": 2689822245,
+      "state_dict_sha256": "393f17f98f0d619990e1d893c8e0dd686fb2fb7c1cb39b986512f386498dde0a",
+      "trainable_parameter_count": 112192
+    },
+    "independent_models": {
+      "ADB_predictor": {
+        "calibrator_sha256": "c01e8d2070de1f062a6b7b72e76789c12148e00817366920a95fba6bacf9aed6",
+        "checkpoint": "/home/agni/waymo/iscai_stage7/artifacts/block74c/adb/artifacts/gaussian_gru.pt",
+        "checkpoint_sha256": "b40ca65c903f97c7fda3d5ebeb5052987f8c26cefcd032707af57e5c4de0bbf3",
+        "downstream": "same frozen Stage6 analytic mapping",
+        "seed": 2005353450,
+        "state_dict_sha256": "7b6b4e66e5ba1b87dcb12995c014d59b46cd5a8890b0009c1a58b665cf7a599f",
+        "variance_scale": [
+          1.2247207077680975,
+          1.3113968092574453,
+          1.3171913077433048,
+          1.253480773879619
+        ]
+      },
+      "Block7.4C_checker": {
+        "path": "/home/agni/waymo/iscai_stage7/reports/block74c/block74c_independent_checker.json",
+        "sha256": "50054cbbaca5683ecc29d272fd8bb16c80c4cbeae5c6d950afe09d439a75ba67"
+      },
+      "Block7.4D_checker": {
+        "path": "/home/agni/waymo/iscai_stage7/reports/block74d/block74d_independent_calibration_checker.log",
+        "sha256": "0f333300ff598075333337752e374621d6edd80780705c28788680a2f35eaf2b"
+      },
+      "communication_predictor": {
+        "calibrator_sha256": "e2478cd44ca61b4132a50938e7a945bf184d104fe33b4e06c9a20864d821fdd5",
+        "checkpoint": "/home/agni/waymo/iscai_stage7/artifacts/block74c/communication/artifacts/gaussian_gru.pt",
+        "checkpoint_sha256": "0f5fd0b2d77696563fb2b7ff9f5d8b78fa7e3c66757f267e119facc8aeea4880",
+        "downstream": "same frozen Stage5 analytic mapping",
+        "seed": 1049954434,
+        "state_dict_sha256": "d0ea3a27564bd783db8effc9c002fc9762e9408312698beece6c172381affc2c",
+        "variance_scale": [
+          1.243964880250961,
+          1.3371255010653484,
+          1.3427796901088913,
+          1.2926028227740853
+        ]
+      },
+      "formal_used_for_training_or_calibration": false,
+      "full_calibration_partition": 7209,
+      "future_GT_inference_input": false,
+      "parameter_sets_independent": true
+    },
+    "shared_trajectory_posterior": {
+      "ADB_branch": "frozen Stage6 analytic posterior_to_class_aware_ADB mapping",
+      "communication_branch": "frozen Stage5 analytic posterior_to_beam mapping",
+      "future_GT_inference_input": false,
+      "predictor": "frozen calibrated Stage4 Gaussian GRU",
+      "predictor_checkpoint": {
+        "path": "/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt",
+        "sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f"
+      },
+      "single_shared_predictor": true,
+      "training_or_recalibration_after_Stage4": false
+    }
+  },
+  "formal_population": {
+    "calibration_fit_use": false,
+    "model_selection_use": false,
+    "path": "/home/agni/waymo/iscai_stage3/artifacts/block38e/formal_validation_120.jsonl",
+    "scenario_IDs_unique": true,
+    "scenario_count": 120,
+    "scenario_order_sha256": "4ba67f109c67f1306374423429654415ef884217dd93371f33e3d8fe27d948b7",
+    "sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+    "threshold_selection_use": false,
+    "training_use": false
+  },
+  "formal_unseal_boundary": {
+    "allowed_repairs": "mechanical implementation/verifier repairs only when they realize the already-frozen pre-outcome protocol and use no outcome information",
+    "evidence_before_cleanup": {
+      "first_unseal_V3_log": {
+        "fact": "entered Phase B1 and failed at direct-beam checkpoint verifier",
+        "path": "/home/agni/waymo/audits/stage7_pdf_alignment/block74_final_five_system_formal_execution_v3.log",
+        "sha256": "1b3bc277d7d4dc3959c774a3b150691a4d0517321922c82dc5dd7967b8b45738"
+      },
+      "latest_V5_log": {
+        "fact": "failed at DeterministicGRUConfig construction before first read_motion_scenario",
+        "path": "/home/agni/waymo/audits/stage7_pdf_alignment/block74_final_five_system_formal_execution_v5.log",
+        "sha256": "08e18fa762d15db3e7cbc79aed3c31b2afea6b38c15df6802d187dbbbb72e497"
+      },
+      "latest_V5_source": {
+        "path": "/home/agni/waymo/iscai_stage7/scripts/run_block74_final_five_system_formal_execution.safe_import_v5.py",
+        "sha256": "9d0d1d6cc23895f71437116af5edb62cf571735477b80aed4812d4b4c33464e4",
+        "verified_execution_order": "formal_manifest_read < deterministic_config_failure < first_raw_WOMD_scenario_read"
+      },
+      "postunseal_boundary_log": {
+        "fact": "manifest content read YES; raw WOMD inference NO; metrics/outcomes NO",
+        "path": "/home/agni/waymo/audits/stage7_pdf_alignment/block74_postunseal_checkpoint_verifier_repair_v4.log",
+        "sha256": "9a0d7f6f42a1ab33db43833382f9ae3af2e79b32f176b4ad16105efa37392a90"
+      }
+    },
+    "failure_slice_threshold_tuning_allowed": false,
+    "formal_causal_output_lock_written": false,
+    "formal_manifest_content_read": true,
+    "formal_metrics_computed": false,
+    "formal_model_forward_executed": false,
+    "formal_population_unsealed": true,
+    "formal_result_artifact_written": false,
+    "formal_scenario_IDs_read": true,
+    "formal_system_outcomes_computed": false,
+    "model_selection_change_allowed": false,
+    "raw_WOMD_scenario_read": false,
+    "recalibration_allowed": false,
+    "retraining_allowed": false,
+    "scientific_retuning_after_unseal_allowed": false,
+    "sweep_retuning_allowed": false,
+    "threshold_retuning_allowed": false
+  },
+  "from_block": "7.4",
+  "frozen_Block7_1_identity_snapshot": {
+    "already_frozen_stage7_axes": {
+      "codebook_sizes": [
+        16,
+        32,
+        64
+      ],
+      "posterior_mass_targets": [
+        0.9,
+        0.95,
+        0.975,
+        0.99
+      ],
+      "receiver_geometry_modes": [
+        "centroid",
+        "known",
+        "uncertain"
+      ]
+    },
+    "block": "7.1",
+    "downstream_mappings": {
+      "communication": {
+        "physical_space": "communication beam/codebook space",
+        "retraining_in_Block71": false,
+        "reuse": "frozen Stage5 analytic posterior-to-beam mapping"
+      },
+      "full_joint_optical_power_optimization_required": false,
+      "illumination": {
+        "V3_frozen": true,
+        "physical_space": "headlamp theta-range/pixel actuator space",
+        "reuse": "frozen Stage6 analytic posterior-to-ADB mapping"
+      },
+      "same_physical_actuator_required": false
+    },
+    "not_yet_frozen_and_forbidden_to_evaluate": {
+      "confidence_interval_method": true,
+      "confidence_interval_seed": true,
+      "direct_ADB_predictor_architecture": true,
+      "direct_beam_classifier_architecture": true,
+      "failure_slice_executable_binding": true,
+      "independent_model_architecture": true,
+      "latency_sweep_operator": true,
+      "uncertainty_sweep_operator": true
+    },
+    "pdf_role": "the same trajectory posterior must feed communication and illumination controllers",
+    "scientific_boundary": {
+      "Stage5_modified": false,
+      "Stage6_V3_retuned": false,
+      "Stage6_modified": false,
+      "Stage7_outcomes_computed": false,
+      "Stage7_outcomes_read": false,
+      "future_GT_controller_input": false,
+      "post_outcome_tuning": false
+    },
+    "shared_trajectory_posterior": {
+      "Stage5_recalibration": false,
+      "family": "calibrated_Gaussian_GRU",
+      "future_ground_truth_as_controller_input": false,
+      "identity_semantics": "one frozen calibrated trajectory posterior authority consumed by both downstream controller mappings",
+      "measurement_uncertainty_R_t": "remains distinct from predictive covariance",
+      "prediction_horizons_s": [
+        0.1,
+        0.3,
+        0.5,
+        1.0
+      ],
+      "receiver_aware": true,
+      "receiver_geometry_modes": [
+        "centroid",
+        "known",
+        "uncertain"
+      ],
+      "tracks_to_predict_as_receiver_selector": false
+    },
+    "stage": 7,
+    "status": "FROZEN_PRE_OUTCOME_SHARED_POSTERIOR_IDENTITY",
+    "upstream_authority": {
+      "stage5_handoff": {
+        "path": "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/final_reconciliation_v1/stage5_to_stage6_handoff_reconciled_v1.json",
+        "sha256": "ac6564dbfe537f39fe70e7f2e92a7b2a5509aa3285d1037983924714bca36124"
+      },
+      "stage6_certificate": {
+        "path": "/home/agni/waymo/iscai_stage6/reports/stage6_final_certificate.json",
+        "sha256": "e3870d8c93456f0bf6470467dcbf89ee4e75e7910c6a364c487d2f30e8163cfc"
+      },
+      "stage6_freeze_manifest": {
+        "path": "/home/agni/waymo/iscai_stage6/artifacts/stage6_experiment5_freeze_manifest.json",
+        "sha256": "447d1f6aca0902a7a95c583dec85219d9d7b4b58dbb212303b387ac7ca79f2e2"
+      },
+      "stage6_handoff": {
+        "path": "/home/agni/waymo/iscai_stage6/artifacts/stage6_to_stage7_handoff.json",
+        "sha256": "7456e465043fa85e257fc4322159ee44c008992888aeb8d040d4cfeead9fb449"
+      },
+      "stage6_shared_posterior_audit": {
+        "path": "/home/agni/waymo/iscai_stage6/artifacts/block63/block63_predictor_interface_audit.log",
+        "sha256": "19f8050cd999c5789d0e84b83abadd9f036ced67e0c1e79964ca59ab1cfeb88c"
+      }
+    }
+  },
+  "frozen_Block7_2_protocol_snapshot": {
+    "Stage7_completion_gate": {
+      "full_joint_optical_power_optimization": "not_required_for_primary_Stage7",
+      "invented_superiority_threshold": false,
+      "mandatory": {
+        "common_communication_illumination_tradeoff_table": true,
+        "end_to_end_latency_reported": true,
+        "joint_metric_groups_complete": true,
+        "same_posterior_feeds_both_controllers": true,
+        "shared_vs_independent_direct_comparison_complete": true,
+        "statistical_confidence_intervals_reported": true
+      },
+      "negative_or_mixed_results_preserved": true,
+      "post_outcome_retuning": false,
+      "shared_system_must_win_every_metric": false
+    },
+    "block": "7.2",
+    "block71_authority": {
+      "path": "/home/agni/waymo/iscai_stage7/configs/stage7_block71_shared_posterior_identity_freeze.json",
+      "sha256": "1490b1d8547b15ff93fadd59bba816bfc1a711f23492b80d9f5af5123e43f607"
+    },
+    "failure_case_protocol": {
+      "executable_binding": "Block7.3/7.7 must bind each slice only to existing causal/evaluator metadata; unsupported slices must be reported as not_evaluable rather than invented",
+      "post_outcome_slice_selection": false,
+      "required_semantic_slices": [
+        "actor_near_beam_boundary",
+        "receiver_near_FoV_edge",
+        "abrupt_lane_change",
+        "braking",
+        "intersection_turn",
+        "pedestrian_crossing",
+        "cyclist_lateral_maneuver",
+        "partial_occlusion",
+        "temporary_missing_track",
+        "low_LiDAR_point_count",
+        "short_range_high_angular_velocity",
+        "long_range_small_angular_separation",
+        "two_actors_same_or_neighboring_beam",
+        "dynamic_blocker_between_transmitter_and_receiver"
+      ],
+      "slice_thresholds": "must be defined before formal Stage7 outcomes for any slice requiring a new numerical threshold"
+    },
+    "joint_metrics": {
+      "VRU_visibility": [
+        "pedestrian_visibility_proxy",
+        "cyclist_visibility_proxy"
+      ],
+      "beam_overhead": [
+        "selected_K",
+        "probing_overhead_fraction",
+        "overhead_reduction_vs_exhaustive",
+        "beam_switching_rate",
+        "reacquisition_latency_s"
+      ],
+      "communication_reliability": [
+        "probability_coverage",
+        "outage_probability",
+        "beam_gain_loss_db",
+        "snr_loss_db",
+        "BER",
+        "effective_rate_bps",
+        "effective_rate_loss_bps"
+      ],
+      "glare_protection": [
+        "vehicle_shadow_zone_violation",
+        "glare_risk_exposure"
+      ],
+      "latency": [
+        "predictor_inference_s",
+        "beam_selection_s",
+        "beam_probing_s",
+        "ADB_generation_s",
+        "ADB_actuation_s",
+        "total_end_to_end_s"
+      ],
+      "over_masking": [
+        "over_masking_area",
+        "false_dimming",
+        "road_illumination_retention"
+      ],
+      "representation_quality": [
+        "trajectory_accuracy",
+        "trajectory_calibration",
+        "beam_probability_calibration",
+        "ADB_probability_calibration"
+      ],
+      "resource_efficiency": [
+        "unique_parameter_count",
+        "peak_memory_bytes",
+        "predictor_execution_count",
+        "computational_duplication_ratio"
+      ]
+    },
+    "next_block": {
+      "name": "7.3",
+      "purpose": "read-only bind exact Stage4 training/development manifests and implement the frozen independent/direct baselines without formal evaluation"
+    },
+    "pdf_comparison_systems": {
+      "deterministic_shared_trajectory": {
+        "ADB_branch": "frozen Stage6 deterministic predictive full-box ADB mapping",
+        "communication_branch": "same Stage5 analytic beam geometry using deterministic receiver angle",
+        "new_training": false,
+        "pdf_role": "\u00a747 item 5",
+        "predictor_count": 1,
+        "trajectory_representation": "shared calibrated predictor mean only; predictive covariance ignored",
+        "uncertainty_used": false
+      },
+      "direct_ADB_predictor": {
+        "calibration_metrics": [
+          "Brier_score",
+          "ECE"
+        ],
+        "coordinate_training_sampler": {
+          "maximum_positive_cells": 4096,
+          "negative_cells": "uniform deterministic 1:1 negative sample matched to selected positive count",
+          "positive_cells": "all positive cells up to 4096 per actor/horizon",
+          "seed": 3232423521
+        },
+        "encoder": "GRU history encoder matched to frozen predictor encoder layer count and hidden dimension",
+        "explicit_trajectory_output": false,
+        "field_decoder": {
+          "activation": "GELU",
+          "hidden_layers": 2,
+          "hidden_width": "equal_to_frozen_GRU_hidden_dimension",
+          "input": [
+            "history_embedding",
+            "sin(theta)",
+            "cos(theta)",
+            "normalized_range",
+            "normalized_horizon",
+            "actor_class_one_hot"
+          ],
+          "output": "sigmoid_dim_probability",
+          "type": "coordinate_conditioned_implicit_probability_field"
+        },
+        "final_illumination_mapping": "reuse frozen Stage6 Part-A-compatible illumination composition, class floors, temporal smoothing and actuation limits",
+        "future_GT_inference_input": false,
+        "input": "same causal actor history/features available to trajectory predictor",
+        "joint_evaluation_role": "replace ADB predictive representation only; retain frozen shared-posterior communication branch",
+        "mask_rule": "direct_mask = probability > 0.5",
+        "pdf_role": "\u00a747 item 4",
+        "seed": 3910524196,
+        "training_loss": "binary_cross_entropy",
+        "training_target": "constructed future actor full-box support on training data only"
+      },
+      "direct_beam_classifier": {
+        "calibration_metrics": [
+          "Brier_score",
+          "ECE",
+          "probability_coverage"
+        ],
+        "encoder": "GRU history encoder matched to the frozen predictor's encoder layer count and hidden dimension",
+        "explicit_trajectory_output": false,
+        "future_GT_inference_input": false,
+        "heads": {
+          "16": "linear softmax head over 16 beams",
+          "32": "linear softmax head over 32 beams",
+          "64": "linear softmax head over 64 beams"
+        },
+        "input": "same causal history/features available to trajectory predictor",
+        "joint_evaluation_role": "replace communication branch only; retain frozen shared-posterior ADB branch",
+        "loss": "categorical cross_entropy",
+        "pdf_role": "\u00a747 item 3",
+        "probability_output_required": true,
+        "seed": 2689822245,
+        "training_target": "future receiver beam class on training data only"
+      },
+      "independent_models": {
+        "ADB_predictor": {
+          "architecture": "exact same Gaussian-GRU trajectory predictor architecture as shared system",
+          "downstream_mapping": "same frozen Stage6 analytic posterior_to_ADB mapping",
+          "parameter_set": "independent",
+          "seed": 2005353450
+        },
+        "communication_predictor": {
+          "architecture": "exact same Gaussian-GRU trajectory predictor architecture as shared system",
+          "downstream_mapping": "same frozen Stage5 analytic posterior_to_beam mapping",
+          "parameter_set": "independent",
+          "seed": 1049954434
+        },
+        "formal_evaluation_used_for_training": false,
+        "pdf_role": "\u00a747 item 2",
+        "predictor_count": 2,
+        "training_rule": "same causal feature schema, same training/development partitions, same trajectory losses and same calibration protocol as the frozen trajectory predictor; only parameter sets/seeds are independent"
+      },
+      "shared_trajectory_posterior": {
+        "ADB_branch": "frozen Stage6 analytic posterior_to_class_aware_ADB mapping",
+        "Stage4_recalibration": false,
+        "Stage6_V3_retuning": false,
+        "communication_branch": "frozen Stage5 analytic posterior_to_beam mapping",
+        "pdf_role": "\u00a747 item 1",
+        "predictor_count": 1,
+        "predictor_retraining": false,
+        "trajectory_representation": "frozen calibrated probabilistic trajectory posterior"
+      }
+    },
+    "resource_accounting": {
+      "FLOPs": "report where computable; analytic mappings may be declared N/A with operation semantics",
+      "deterministic_shared_trajectory": {
+        "predictor_executions_per_decision": 1
+      },
+      "direct_ADB_predictor": {
+        "resource_accounting": "shared communication predictor path plus direct ADB predictor"
+      },
+      "direct_beam_classifier": {
+        "resource_accounting": "shared ADB predictor path plus direct beam classifier"
+      },
+      "independent_models": {
+        "predictor_executions_per_decision": 2,
+        "predictor_parameters_counted": "sum of both independent predictors"
+      },
+      "memory_measurement": "peak_RSS_with_identical_measurement_boundary",
+      "no_double_count_shared_predictor": true,
+      "parameter_count": "unique_trainable_parameters",
+      "shared_system": {
+        "downstream_analytic_mappings": "count runtime separately",
+        "predictor_executions_per_decision": 1,
+        "predictor_parameters_counted": "once"
+      },
+      "total_latency_formula": "sensing + preprocessing + tracking + unique predictor inference + beam selection + beam probing + ADB generation + ADB actuation"
+    },
+    "scientific_boundary": {
+      "Stage5_modified": false,
+      "Stage6_V3_retuned": false,
+      "Stage6_modified": false,
+      "Stage7_formal_outcomes_computed": false,
+      "Stage7_formal_outcomes_read": false,
+      "Stage7_training_run": false,
+      "future_GT_as_controller_input": false,
+      "post_outcome_tuning": false
+    },
+    "stage": 7,
+    "statistical_protocol": {
+      "aggregation": "equal-weight macro mean over finite scenario-level metric values",
+      "bootstrap_resamples": 10000,
+      "bootstrap_seed": 2338514766,
+      "confidence_level": 0.95,
+      "evaluation_unit": "scenario",
+      "interval": "2.5th_and_97.5th_percentiles",
+      "method": "paired_nonparametric_percentile_bootstrap",
+      "metric_specific_missingness": "use only scenario IDs where both compared systems have finite values for that metric",
+      "multiple_testing_claim": "no confirmatory multiplicity-adjusted superiority claim",
+      "outcome_dependent_method_change": false,
+      "p_values_required": false,
+      "paired_comparison_rule": "for system A versus B, resample common scenario IDs and preserve all within-scenario paired outputs",
+      "reported_for": [
+        "each primary aggregate metric",
+        "paired delta versus shared system"
+      ],
+      "resampling_unit": "scenario_id"
+    },
+    "status": "FROZEN_PRE_OUTCOME_EXPERIMENTAL_PROTOCOL",
+    "sweeps": {
+      "codebook": {
+        "primary": 32,
+        "source": "frozen Stage5 authority",
+        "values": [
+          16,
+          32,
+          64
+        ]
+      },
+      "coverage_target": {
+        "primary": 0.95,
+        "source": "frozen Stage5 authority",
+        "values": [
+          0.9,
+          0.95,
+          0.975,
+          0.99
+        ]
+      },
+      "latency": {
+        "intermediate_time_semantics": "causal propagation/interpolation only; NOT millisecond annotated WOMD ground truth",
+        "multipliers": [
+          0.5,
+          1.0,
+          2.0
+        ],
+        "operator": "tau_stress = multiplier * measured_model_based_total_latency",
+        "prediction_target": "t_plus_tau_stress",
+        "primary": 1.0,
+        "retraining": false
+      },
+      "predictive_uncertainty": {
+        "alpha": [
+          0.5,
+          1.0,
+          1.5,
+          2.0
+        ],
+        "future_GT_used": false,
+        "mean_trajectory_changed": false,
+        "operator": "Sigma_scaled = alpha * Sigma_frozen",
+        "primary": 1.0,
+        "recalibration": false,
+        "retraining": false
+      },
+      "receiver_geometry": {
+        "primary": "uncertain",
+        "source": "frozen Stage5 authority",
+        "values": [
+          "centroid",
+          "known",
+          "uncertain"
+        ]
+      }
+    },
+    "training_and_leakage_boundary": {
+      "deterministic_shared": "no new training",
+      "independent_and_direct_baselines": {
+        "development_population": "exact upstream Stage4 development/calibration partition only",
+        "formal_outcomes_for_calibration": false,
+        "formal_outcomes_for_early_stopping": false,
+        "formal_outcomes_for_model_selection": false,
+        "formal_population": "evaluation only",
+        "future_labels_allowed_during_training": true,
+        "future_labels_as_inference_input": false,
+        "split_manifest_binding": "must be resolved read-only and SHA-frozen before Block7.3 training begins",
+        "training_population": "exact upstream Stage4 training partition only"
+      },
+      "model_selection_metric": "must use development population only; formal Stage7 outcomes forbidden",
+      "post_outcome_hyperparameter_change": false,
+      "post_outcome_retraining": false,
+      "shared_system": "no new training"
+    }
+  },
+  "frozen_Block7_3_architecture_snapshot": {
+    "baseline_implementation_rule": {
+      "architecture_may_change_after_training": false,
+      "direct_ADB_predictor": "reuse exact matched causal encoder architecture; replace trajectory heads with frozen Block7.2 implicit ADB probability-field decoder; no explicit trajectory distribution",
+      "direct_beam_classifier": "reuse exact matched causal encoder architecture; replace trajectory heads with codebook probability heads; no explicit trajectory output",
+      "independent_models": "instantiate exact matched Stage4 trajectory architecture twice with independent frozen Block7.2 seeds"
+    },
+    "block": "7.3",
+    "block72_authority": {
+      "path": "/home/agni/waymo/iscai_stage7/configs/stage7_block72_preoutcome_experimental_protocol_freeze.json",
+      "sha256": "6eb7d6f0662d35ca44a0b3975ab2fa54830bef4fc171e08370f4e0b4aaaa1c5b"
+    },
+    "causal_input_contract": {
+      "future_input": false,
+      "history_feature_dim": 14,
+      "history_frames": 11,
+      "map_context": true,
+      "map_context_dim": 10,
+      "max_neighbors": 8,
+      "measurement_covariance_R_t": "MANDATORY_INPUT",
+      "multi_agent_context": true,
+      "objects_of_interest_input": false,
+      "perfect_track_id_numeric_feature": false,
+      "tracks_to_predict_input": false
+    },
+    "matched_backbone": {
+      "architecture": "GRU",
+      "dropout": 0.0,
+      "fusion_hidden_dim": 128,
+      "gaussian_source_binding": {
+        "classes": [
+          {
+            "init_module_assignments": [],
+            "methods": {
+              "__post_init__": {
+                "args": [
+                  "self"
+                ]
+              },
+              "covariance": {
+                "args": [
+                  "self"
+                ]
+              }
+            },
+            "name": "GaussianTrajectoryOutput"
+          },
+          {
+            "init_module_assignments": [
+              {
+                "attribute": "use_neighbors",
+                "constructor": "bool"
+              },
+              {
+                "attribute": "use_map",
+                "constructor": "bool"
+              },
+              {
+                "attribute": "target_gru",
+                "constructor": "nn.GRU"
+              },
+              {
+                "attribute": "neighbor_gru",
+                "constructor": "nn.GRU"
+              },
+              {
+                "attribute": "map_encoder",
+                "constructor": "nn.Sequential"
+              },
+              {
+                "attribute": "fusion",
+                "constructor": "nn.Sequential"
+              },
+              {
+                "attribute": "mean_head",
+                "constructor": "nn.Linear"
+              },
+              {
+                "attribute": "cholesky_head",
+                "constructor": "nn.Linear"
+              }
+            ],
+            "methods": {
+              "__init__": {
+                "args": [
+                  "self",
+                  "target_hidden_dim",
+                  "neighbor_hidden_dim",
+                  "map_hidden_dim",
+                  "fusion_hidden_dim",
+                  "use_neighbors",
+                  "use_map"
+                ]
+              },
+              "_encode": {
+                "args": [
+                  "self",
+                  "target_history",
+                  "neighbor_histories",
+                  "neighbor_mask",
+                  "map_context"
+                ]
+              },
+              "forward": {
+                "args": [
+                  "self",
+                  "target_history",
+                  "neighbor_histories",
+                  "neighbor_mask",
+                  "map_context"
+                ]
+              }
+            },
+            "name": "GaussianTrajectoryGRU"
+          }
+        ],
+        "path": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/ml/gaussian_gru.py",
+        "sha256": "b5e206d7e62e437bd3b64a5c20c56cab6319494b119882794defeb70a9494bb8"
+      },
+      "map_hidden_dim": 32,
+      "neighbor_hidden_dim": 32,
+      "source_binding": {
+        "classes": [
+          {
+            "init_module_assignments": [],
+            "methods": {
+              "to_dict": {
+                "args": [
+                  "self"
+                ]
+              }
+            },
+            "name": "DeterministicGRUConfig"
+          },
+          {
+            "init_module_assignments": [
+              {
+                "attribute": "target_gru",
+                "constructor": "nn.GRU"
+              },
+              {
+                "attribute": "neighbor_gru",
+                "constructor": "nn.GRU"
+              },
+              {
+                "attribute": "map_encoder",
+                "constructor": "nn.Sequential"
+              },
+              {
+                "attribute": "fusion",
+                "constructor": "nn.Sequential"
+              },
+              {
+                "attribute": "output_head",
+                "constructor": "nn.Linear"
+              }
+            ],
+            "methods": {
+              "__init__": {
+                "args": [
+                  "self",
+                  "config"
+                ]
+              },
+              "forward": {
+                "args": [
+                  "self",
+                  "target_history",
+                  "neighbor_histories",
+                  "neighbor_mask",
+                  "map_context"
+                ]
+              }
+            },
+            "name": "DeterministicTrajectoryGRU"
+          }
+        ],
+        "path": "/home/agni/waymo/iscai_stage4/src/iscai_stage4/models/deterministic_gru.py",
+        "sha256": "7984381e09fe7b3f307b353cffc775941343450d4221969e733a048c9392e9f7"
+      },
+      "target_hidden_dim": 64
+    },
+    "next_block": {
+      "name": "7.4",
+      "purpose": "implement exact matched encoder/direct heads and train only on the frozen fit/development/calibration populations; formal N120 remains unopened"
+    },
+    "scientific_boundary": {
+      "Stage4_modified": false,
+      "Stage5_modified": false,
+      "Stage6_modified": false,
+      "Stage7_formal_metrics_computed": false,
+      "Stage7_formal_outcomes_opened": false,
+      "Stage7_training_run": false,
+      "future_GT_as_inference_input": false,
+      "post_outcome_tuning": false
+    },
+    "shared_posterior_assets": {
+      "covariance_calibrator": {
+        "path": "/home/agni/waymo/iscai_stage4/artifacts/block45/covariance_scaler.json",
+        "sha256": "508ff2e3fbcfafe8e001155340c25baaf3772fe2561a8022a9ed1cf780e66087"
+      },
+      "deterministic_checkpoint": {
+        "path": "/home/agni/waymo/iscai_stage4/artifacts/block43/deterministic_gru.pt",
+        "sha256": "5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5"
+      },
+      "fit_only_normalization": {
+        "path": "/home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json",
+        "sha256": "3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6"
+      },
+      "gaussian_checkpoint": {
+        "path": "/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt",
+        "sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f"
+      }
+    },
+    "stage": 7,
+    "status": "FROZEN_EXACT_TRAINING_AND_ARCHITECTURE_BINDING",
+    "training_population": {
+      "calibration_population": {
+        "full_partition": true,
+        "scenario_count": 7209,
+        "source": "Stage4 frozen calibration partition"
+      },
+      "formal_population": {
+        "outcomes_opened_in_Block73": false,
+        "path": "/home/agni/waymo/iscai_stage3/artifacts/block38e/formal_validation_120.jsonl",
+        "scenario_count": 120,
+        "sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46",
+        "used_for_calibration": false,
+        "used_for_model_selection": false,
+        "used_for_normalization": false,
+        "used_for_training": false
+      },
+      "full_stage4_partitions": {
+        "calibration": {
+          "path": "/home/agni/waymo/iscai_stage4/artifacts/block41/calibration.jsonl",
+          "scenario_count": 7209,
+          "sha256": "e003dd5c4d5a253729700b12c3754c47ffb99dadfa035b46627f01ec91eed4be"
+        },
+        "development": {
+          "path": "/home/agni/waymo/iscai_stage4/artifacts/block41/development.jsonl",
+          "scenario_count": 7208,
+          "sha256": "e4689698bddd80e58add7267f791aea90ef4bef0309ca18d0d7a9e7e94fe7e5c"
+        },
+        "fit": {
+          "path": "/home/agni/waymo/iscai_stage4/artifacts/block41/fit.jsonl",
+          "scenario_count": 57668,
+          "sha256": "284a61c877d937deb07137345beaabf3165690138785f9cc41f81655066d5276"
+        }
+      },
+      "matched_neural_training_subset": {
+        "development_scenario_id_sha256": "0a30822da389d9872a11e32b2647f3b184af677dc8559d5cba99ee8c0285037f",
+        "development_scenarios": 512,
+        "fit_scenario_id_sha256": "9b448793b6917373496ac38c225e6c25f52d30c8ba761f90a38ad906b27fe13f",
+        "fit_scenarios": 4096,
+        "max_supervised_samples_per_scene": 64,
+        "selection": "first_N_records_of_frozen_SHA_ordered_partition_manifest",
+        "selection_uses_future": false,
+        "selection_uses_performance": false
+      },
+      "partition_disjointness": true
+    }
+  },
+  "frozen_Block7_4_formal_evaluation_contract": {
+    "bootstrap_seed": 2338514766,
+    "failure_case_protocol": {
+      "required_semantic_slices": [
+        "actor_near_beam_boundary",
+        "receiver_near_FoV_edge",
+        "abrupt_lane_change",
+        "braking",
+        "intersection_turn",
+        "pedestrian_crossing",
+        "cyclist_lateral_maneuver",
+        "partial_occlusion",
+        "temporary_missing_track",
+        "low_LiDAR_point_count",
+        "short_range_high_angular_velocity",
+        "long_range_small_angular_separation",
+        "two_actors_same_or_neighboring_beam",
+        "dynamic_blocker_between_transmitter_and_receiver"
+      ],
+      "slice_count": 14,
+      "threshold_timing": "must be defined before formal Stage7 outcomes for any slice requiring a new numerical threshold",
+      "unsupported_semantics": "not_evaluable"
+    },
+    "joint_metric_contract": {
+      "VRU_visibility": [
+        "pedestrian_visibility_proxy",
+        "cyclist_visibility_proxy"
+      ],
+      "beam_overhead": [
+        "selected_K",
+        "probing_overhead_fraction",
+        "overhead_reduction_vs_exhaustive",
+        "beam_switching_rate",
+        "reacquisition_latency_s"
+      ],
+      "communication_reliability": [
+        "probability_coverage",
+        "outage_probability",
+        "beam_gain_loss_db",
+        "snr_loss_db",
+        "BER",
+        "effective_rate_bps",
+        "effective_rate_loss_bps"
+      ],
+      "glare_protection": [
+        "vehicle_shadow_zone_violation",
+        "glare_risk_exposure"
+      ],
+      "latency": [
+        "predictor_inference_s",
+        "beam_selection_s",
+        "beam_probing_s",
+        "ADB_generation_s",
+        "ADB_actuation_s",
+        "total_end_to_end_s"
+      ],
+      "over_masking": [
+        "over_masking_area",
+        "false_dimming",
+        "road_illumination_retention"
+      ],
+      "representation_quality": [
+        "trajectory_accuracy",
+        "trajectory_calibration",
+        "beam_probability_calibration",
+        "ADB_probability_calibration"
+      ],
+      "resource_efficiency": [
+        "unique_parameter_count",
+        "peak_memory_bytes",
+        "predictor_execution_count",
+        "computational_duplication_ratio"
+      ]
+    },
+    "no_invented_superiority_threshold": true,
+    "paired_95_percent_scenario_bootstrap": true,
+    "required_PDF_comparison_categories": [
+      "accuracy",
+      "calibration",
+      "inference_time",
+      "parameter_count",
+      "memory",
+      "beam_outage",
+      "ADB_violations"
+    ],
+    "required_system_count": 5,
+    "required_systems": [
+      "shared_trajectory_posterior",
+      "independent_models",
+      "direct_beam_classifier",
+      "direct_ADB_predictor",
+      "deterministic_shared_trajectory"
+    ],
+    "statistical_protocol": {
+      "aggregation": "equal-weight macro mean over finite scenario-level metric values",
+      "bootstrap_resamples": 10000,
+      "bootstrap_seed": 2338514766,
+      "confidence_level": 0.95,
+      "evaluation_unit": "scenario",
+      "interval": "2.5th_and_97.5th_percentiles",
+      "method": "paired_nonparametric_percentile_bootstrap",
+      "metric_specific_missingness": "use only scenario IDs where both compared systems have finite values for that metric",
+      "multiple_testing_claim": "no confirmatory multiplicity-adjusted superiority claim",
+      "outcome_dependent_method_change": false,
+      "p_values_required": false,
+      "paired_comparison_rule": "for system A versus B, resample common scenario IDs and preserve all within-scenario paired outputs",
+      "reported_for": [
+        "each primary aggregate metric",
+        "paired delta versus shared system"
+      ],
+      "resampling_unit": "scenario_id"
+    },
+    "sweep_protocol": {
+      "codebook": {
+        "primary": 32,
+        "source": "frozen Stage5 authority",
+        "values": [
+          16,
+          32,
+          64
+        ]
+      },
+      "coverage_target": {
+        "primary": 0.95,
+        "source": "frozen Stage5 authority",
+        "values": [
+          0.9,
+          0.95,
+          0.975,
+          0.99
+        ]
+      },
+      "latency": {
+        "intermediate_time_semantics": "causal propagation/interpolation only; NOT millisecond annotated WOMD ground truth",
+        "multipliers": [
+          0.5,
+          1.0,
+          2.0
+        ],
+        "operator": "tau_stress = multiplier * measured_model_based_total_latency",
+        "prediction_target": "t_plus_tau_stress",
+        "primary": 1.0,
+        "retraining": false
+      },
+      "predictive_uncertainty": {
+        "alpha": [
+          0.5,
+          1.0,
+          1.5,
+          2.0
+        ],
+        "future_GT_used": false,
+        "mean_trajectory_changed": false,
+        "operator": "Sigma_scaled = alpha * Sigma_frozen",
+        "primary": 1.0,
+        "recalibration": false,
+        "retraining": false
+      },
+      "receiver_geometry": {
+        "primary": "uncertain",
+        "source": "frozen Stage5 authority",
+        "values": [
+          "centroid",
+          "known",
+          "uncertain"
+        ]
+      }
+    }
+  },
+  "frozen_Block7_4_pdf_alignment": {
+    "section_46": {
+      "communication_branch": "Stage5 directional communication beam/codebook/optical-link controller",
+      "formal_metric_execution_pending": true,
+      "illumination_branch": "Stage6 headlamp theta-range pixel/intensity controller",
+      "requirement": "communication beam space and illumination/ADB pixel space remain distinct downstream mappings",
+      "same_exact_physical_beam_or_actuator_required": false,
+      "shared_information": "trajectory/angular posterior",
+      "status": "PASS_PREFORMAL_STRUCTURAL_BINDING"
+    },
+    "section_47": {
+      "five_systems": [
+        "shared_trajectory_posterior",
+        "independent_models",
+        "direct_beam_classifier",
+        "direct_ADB_predictor",
+        "deterministic_shared_trajectory"
+      ],
+      "formal_N120_comparison_complete": false,
+      "may_claim_PDF_section47_complete_now": false,
+      "required_comparison_categories": [
+        "accuracy",
+        "calibration",
+        "inference_time",
+        "parameter_count",
+        "memory",
+        "beam_outage",
+        "ADB_violations"
+      ],
+      "shared_vs_independent_direct_comparison_complete": false,
+      "status": "PREFORMAL_IMPLEMENTATION_COMPLETE_FORMAL_COMPARISON_PENDING",
+      "systems_implemented_and_frozen": true,
+      "training_and_calibration_complete": true
+    },
+    "section_48": {
+      "controllers_evaluated_as_distinct_downstream_branches": true,
+      "formal_tradeoff_table_pending": true,
+      "full_joint_optical_power_optimization": "OPTIONAL_ADVANCED_EXTENSION",
+      "full_joint_optical_power_optimization_required_for_first_version": false,
+      "shared_trajectory_posterior": true,
+      "status": "PASS_SCOPE_BOUNDARY"
+    }
+  },
+  "historical_cleanup_policy": {
+    "Block7_4_audit_logs": "DELETE_AFTER_BOUNDARY_CAPTURE",
+    "direct_calibration_materialization_caches": "DELETE",
+    "direct_label_materialization_caches": "DELETE",
+    "historical_preformal_closure_note": "The immutable Block7.4 preformal closure is retained as a historical status authority. Some historical build/debug dependencies referenced inside it may be intentionally removed by this cleanup. For live Block7.5 execution use this MINIMAL_HANDOFF.",
+    "independent_calibration_per_scenario_caches": "DELETE",
+    "old_Block7_4_formal_execution_attempts": "DELETE",
+    "postunseal_mechanical_repair_files": "DELETE_AFTER_BOUNDARY_CAPTURE",
+    "resume_and_training_progress": "DELETE",
+    "safe_import_V2_V5_runners": "DELETE"
+  },
+  "important_status": {
+    "Block7_4_baseline_package_complete": true,
+    "Block7_4_calibration_complete": true,
+    "Block7_4_training_complete": true,
+    "Stage7_complete": false,
+    "five_systems_frozen": true,
+    "formal_five_system_comparison_complete": false,
+    "joint_tradeoff_table_complete": false
+  },
+  "next_block": "7.5",
+  "next_block_rules": {
+    "Block7_5_role": "EVALUATION_ONLY",
+    "formal_outcomes_may_only_be_used_for_reporting": true,
+    "future_GT_controller_input": false,
+    "invented_superiority_threshold": false,
+    "must_preserve_negative_or_mixed_results": true,
+    "new_calibration_fit": false,
+    "new_failure_slice_threshold_selection": false,
+    "new_model_training": false,
+    "new_sweep_selection": false,
+    "new_threshold_selection": false,
+    "required_shared_posterior_runtime_proof": "sample/content identity proof that the same shared posterior feeds communication and ADB before evaluator-only future GT is opened"
+  },
+  "project": "Agni",
+  "retained_Stage7_files": {
+    "/home/agni/waymo/iscai_stage7/artifacts/block74c/adb/artifacts/gaussian_gru.pt": {
+      "sha256": "b40ca65c903f97c7fda3d5ebeb5052987f8c26cefcd032707af57e5c4de0bbf3"
+    },
+    "/home/agni/waymo/iscai_stage7/artifacts/block74c/adb/engine_config.json": {
+      "sha256": "69fa71ada1310875e2f363856678602928f4fa6d96f9c960e2fba904b0df9018"
+    },
+    "/home/agni/waymo/iscai_stage7/artifacts/block74c/adb/stage7_twin_training_report.json": {
+      "sha256": "cfafba9236bae5c0a30da3bc2c48a4c5c3136c7751eda6a70d663d138963c461"
+    },
+    "/home/agni/waymo/iscai_stage7/artifacts/block74c/communication/artifacts/gaussian_gru.pt": {
+      "sha256": "0f5fd0b2d77696563fb2b7ff9f5d8b78fa7e3c66757f267e119facc8aeea4880"
+    },
+    "/home/agni/waymo/iscai_stage7/artifacts/block74c/communication/engine_config.json": {
+      "sha256": "026af2744c069b057138d620999567553e78bb4e4841da0e49bb6d26770f17d0"
+    },
+    "/home/agni/waymo/iscai_stage7/artifacts/block74c/communication/stage7_twin_training_report.json": {
+      "sha256": "6e486eb26ef299dd41c95efb30b6aad58a357986e799f46628c657d92fd19818"
+    },
+    "/home/agni/waymo/iscai_stage7/artifacts/block74d/adb/artifacts/covariance_scaler.json": {
+      "sha256": "c01e8d2070de1f062a6b7b72e76789c12148e00817366920a95fba6bacf9aed6"
+    },
+    "/home/agni/waymo/iscai_stage7/artifacts/block74d/adb/artifacts/reliability_metrics.json": {
+      "sha256": "e19af0a634d8a1709ff2f9b8a13a788247133c049f2d643ce8a1f6208d7e8a5b"
+    },
+    "/home/agni/waymo/iscai_stage7/artifacts/block74d/adb/stage7_calibration_report.json": {
+      "sha256": "654d9a52f90456cb23a8e36ce528123a16bc1e22a1a3fd1e60a3d3aa4e0c8b85"
+    },
+    "/home/agni/waymo/iscai_stage7/artifacts/block74d/communication/artifacts/covariance_scaler.json": {
+      "sha256": "e2478cd44ca61b4132a50938e7a945bf184d104fe33b4e06c9a20864d821fdd5"
+    },
+    "/home/agni/waymo/iscai_stage7/artifacts/block74d/communication/artifacts/reliability_metrics.json": {
+      "sha256": "b285663ae50cdf749d7de7873030acd8bebbda22dda81406fe6178eab7b3ebce"
+    },
+    "/home/agni/waymo/iscai_stage7/artifacts/block74d/communication/stage7_calibration_report.json": {
+      "sha256": "bf35633cd3910ad8f7b42313e1adaf0e7087cf28d5a00c6257d70e7c180229a1"
+    },
+    "/home/agni/waymo/iscai_stage7/artifacts/block74h_direct/adb/best.pt": {
+      "sha256": "c3bbfe83ebde069e5b84e73e54d7d5e71639164761eabc2ed7528a81aeabe88a"
+    },
+    "/home/agni/waymo/iscai_stage7/artifacts/block74h_direct/beam/best.pt": {
+      "sha256": "bb0a8fd6dab8277f374216da07ea139730df2267148bfb838022201872fff2d4"
+    },
+    "/home/agni/waymo/iscai_stage7/configs/stage7_block71_shared_posterior_identity_freeze.json": {
+      "sha256": "1490b1d8547b15ff93fadd59bba816bfc1a711f23492b80d9f5af5123e43f607"
+    },
+    "/home/agni/waymo/iscai_stage7/configs/stage7_block72_preoutcome_experimental_protocol_freeze.json": {
+      "sha256": "6eb7d6f0662d35ca44a0b3975ab2fa54830bef4fc171e08370f4e0b4aaaa1c5b"
+    },
+    "/home/agni/waymo/iscai_stage7/configs/stage7_block73_exact_training_architecture_binding.json": {
+      "sha256": "609071d7df6676d374b240cb1a6be0ffc98317bcf29ee9354d1e92e2bbe83b3e"
+    },
+    "/home/agni/waymo/iscai_stage7/configs/stage7_block74_preformal_baseline_calibration_closure.json": {
+      "sha256": "174606e5a1b82bb10cf4271d52cd3630ac1a1ae0373df0defd725ce9d5f591ac"
+    },
+    "/home/agni/waymo/iscai_stage7/configs/stage7_block74fc_executable_direct_label_contract.json": {
+      "sha256": "3935148b3c5f5182bf06df11b0d2e4cc892fecb2107f309aacd058918163f7c0"
+    },
+    "/home/agni/waymo/iscai_stage7/configs/stage7_block74h_e_trained_direct_baseline_authority.json": {
+      "sha256": "badfb22ac21be82e0c802821422fd0e8d089a1f9bc0424fd9e70fbdc90bf6a3c"
+    },
+    "/home/agni/waymo/iscai_stage7/configs/stage7_block74h_f_direct_calibration_evaluation_contract.json": {
+      "sha256": "73867bc5f05707d5dc53ab7db320a37dc1fd777c897467ead08a19ebaf71cf1e"
+    },
+    "/home/agni/waymo/iscai_stage7/reports/block74h/block74h_gb2_direct_calibration_inference_metrics.json": {
+      "sha256": "ed855cc6d71ba2ec66626d864d1a323d1c8f926b1b98834a979c059406a5303e"
+    },
+    "/home/agni/waymo/iscai_stage7/reports/block74h/block74h_gb2a_direct_calibration_metric_model_binding_probe.json": {
+      "sha256": "6ceb078bcfa7c05a2abfba04f50135f23126dd6e65a0541e3fca6b2bdc7096c4"
+    },
+    "/home/agni/waymo/iscai_stage7/scripts/check_block74h_e_trained_direct_baselines.py": {
+      "sha256": "52da5a8949725ca28f21ffbd030a4e9dbf81096f9facd5740607d4bad4447af1"
+    },
+    "/home/agni/waymo/iscai_stage7/scripts/freeze_block74h_e_trained_direct_baselines.py": {
+      "sha256": "c9389d01d86869e7ad7a5e60d9991b01131fb6cc649d89f3e87c9acf7847d7c2"
+    },
+    "/home/agni/waymo/iscai_stage7/scripts/run_block74c_independent_gaussian_twin.py": {
+      "sha256": "11c51cf10a31c8f7e1c5517c8b7a9cec911297b8c8255397f47d67f394c6ee20"
+    },
+    "/home/agni/waymo/iscai_stage7/scripts/run_block74d_independent_twin_calibration.py": {
+      "sha256": "7e115213ecfcd58b80fdbcea2316686daac3cdc7585d778134fcd3e1fc9bffcf"
+    },
+    "/home/agni/waymo/iscai_stage7/scripts/run_block74h_d_direct_baseline_training.py": {
+      "sha256": "db9be0d9ac4f4363003986ab3cfa52add2f2a498f32928b66a786bfd8f47a2a5"
+    }
+  },
+  "retained_checkpoint_state_digests": {
+    "direct_ADB": "0f18d7b14beb5472936cd79c5a8e6f46197758136863af83cac16bfa6f23ff0e",
+    "direct_beam": "393f17f98f0d619990e1d893c8e0dd686fb2fb7c1cb39b986512f386498dde0a",
+    "independent_ADB": "7b6b4e66e5ba1b87dcb12995c014d59b46cd5a8890b0009c1a58b665cf7a599f",
+    "independent_communication": "d0ea3a27564bd783db8effc9c002fc9762e9408312698beece6c172381affc2c"
+  },
+  "schema_version": 1,
+  "scientific_claim_boundaries": {
+    "ADB_reference": "constructed evaluator-only reference",
+    "WOMD_LiDAR_is_FMCW": false,
+    "WOMD_has_measured_ADB_ground_truth": false,
+    "communication_beam_labels_in_WOMD": "not_measured",
+    "future_GT_allowed_as_controller_input": false,
+    "future_GT_allowed_for_evaluator_after_controller_decision": true,
+    "measured_per_point_radial_velocity_available": false,
+    "millisecond_WOMD_ground_truth_claim_allowed": false
+  },
+  "stage": 7,
+  "status": "FROZEN_BASELINE_PACKAGE_READY_FOR_CLEAN_HANDOFF",
+  "upstream_runtime_authorities": {
+    "/home/agni/waymo/iscai_stage3/artifacts/block38e/formal_validation_120.jsonl": {
+      "sha256": "2208e7287ddf6439fda4597c435a9cba1d1b9d0e4c4547bc5dd92e56e8124e46"
+    },
+    "/home/agni/waymo/iscai_stage4/artifacts/block43/deterministic_gru.pt": {
+      "sha256": "5456a76b84d558e9983a59b9f1d3060ba245e0d36d60883519654f809996dbc5"
+    },
+    "/home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json": {
+      "sha256": "3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6"
+    },
+    "/home/agni/waymo/iscai_stage4/artifacts/block44/gaussian_gru.pt": {
+      "sha256": "49ff64d145eaa633f295c16f660df380c35383e7e3b61279a5aad7cd700d619f"
+    },
+    "/home/agni/waymo/iscai_stage5/artifacts/fullpdf_v2_independent_formal/final_reconciliation_v1/stage5_to_stage6_handoff_reconciled_v1.json": {
+      "sha256": "ac6564dbfe537f39fe70e7f2e92a7b2a5509aa3285d1037983924714bca36124"
+    },
+    "/home/agni/waymo/iscai_stage5/reports/stage5_final_closure.json": {
+      "sha256": "c83731948749f3ca20742aaac6b7474f53c755cbc8209dd31db969d229f60610"
+    },
+    "/home/agni/waymo/iscai_stage6/artifacts/stage6_to_stage7_handoff.json": {
+      "sha256": "7456e465043fa85e257fc4322159ee44c008992888aeb8d040d4cfeead9fb449"
+    },
+    "/home/agni/waymo/iscai_stage6/reports/stage6_final_certificate.json": {
+      "sha256": "e3870d8c93456f0bf6470467dcbf89ee4e75e7910c6a364c487d2f30e8163cfc"
+    },
+    "/home/agni/waymo/iscai_stage6/src/iscai_stage6/adb/metric_semantics.py": {
+      "sha256": "bf8358b5a7edfe40ffac2718ca7cd5af6e7b5fdb3ff8a2823caad6d0f40f057a"
+    }
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "block": "8.1-final",
+  "project": "Agni",
+  "provenance_rule": "All assertions below were extracted from official deepsense6g.net pages. No dataset archive bytes were downloaded. The host must verify this evidence file by SHA256 and must not re-scrape the site for Block8.1 final.",
+  "retrieval_date_utc": "2026-09-02",
+  "scientific_interpretation": {
+    "dataset_bytes_downloaded": false,
+    "exact_dataset_license_identifier": null,
+    "license_identifier_status": "NOT_CLAIMED_FROM_PAGE_TEXT",
+    "primary_stage8_task": "LiDAR-aided beam prediction, scenarios 8/9, 64-way",
+    "reason_secondary": "The V2V task uses four 64-beam arrays and an overall 0..255 beam index; it must not be silently remapped to the primary 64-way policy.",
+    "secondary_role": "OPTIONAL_SEPARATE_INTERFACE",
+    "secondary_stage8_authority": "V2V scenarios 36-39",
+    "why_primary": "It directly matches the PDF Stage8 requirement for measured beam-power validation with a 64-beam interface and provides LiDAR sensing matrices plus measured 64x1 power vectors."
+  },
+  "sources": [
+    {
+      "assertions": {
+        "challenge_ground_truth_hidden": true,
+        "citation_requirement_present": true,
+        "csv_label_column": "beam_index",
+        "development_labels_include_optimal_beam_index": true,
+        "evaluation_metric_documented_for_challenge": "Top-k beam prediction accuracy",
+        "license_section_present": true,
+        "lidar_columns": [
+          "angle",
+          "nearest-obstacle distance"
+        ],
+        "lidar_sensing_matrix_shape": [
+          416,
+          2
+        ],
+        "measured_power_vector_shape": [
+          64,
+          1
+        ],
+        "receiver_codebook_beams": 64,
+        "sampling_interval_approx_ms": 100,
+        "scenario_folder_split_files": [
+          "train.csv",
+          "val.csv",
+          "test.csv"
+        ],
+        "scenarios": [
+          8,
+          9
+        ],
+        "static_clutter_removed_lidar_variant": true
+      },
+      "id": "official_lidar_task",
+      "title": "DeepSense LiDAR-aided beam prediction",
+      "url": "https://www.deepsense6g.net/lidar-aided-beam-prediction/"
+    },
+    {
+      "assertions": {
+        "scenario_8_has_mmwave_communication": true,
+        "scenario_8_instances": 4043,
+        "scenario_8_supports_beam_prediction": true
+      },
+      "id": "official_scenarios_index",
+      "title": "DeepSense scenarios",
+      "url": "https://www.deepsense6g.net/scenarios/"
+    },
+    {
+      "assertions": {
+        "measured_power_vector_shape": [
+          64,
+          1
+        ],
+        "modalities_include": [
+          "RGB",
+          "64-dimensional received power vector",
+          "GPS",
+          "LiDAR",
+          "Radar"
+        ],
+        "optimal_beam_definition": "index of maximum measured received-power value",
+        "receiver_codebook_beams": 64,
+        "scenario_9_instances": 5964,
+        "scenario_csv_beam_label": "unit1_beam_index",
+        "sequence_index_documented": true,
+        "wireless_frequency_band_ghz": 60
+      },
+      "id": "official_scenario9",
+      "title": "DeepSense Scenario 9",
+      "url": "https://www.deepsense6g.net/scenarios/Scenarios%201-9/scenario-9"
+    },
+    {
+      "assertions": {
+        "average_power_loss_metric_documented": true,
+        "beam_ranges": {
+          "back": [
+            192,
+            255
+          ],
+          "front": [
+            64,
+            127
+          ],
+          "left": [
+            0,
+            63
+          ],
+          "right": [
+            128,
+            191
+          ]
+        },
+        "citation_requirement_present": true,
+        "four_power_vector_columns": [
+          "y1_unit1_pwr1",
+          "y1_unit1_pwr2",
+          "y1_unit1_pwr3",
+          "y1_unit1_pwr4"
+        ],
+        "four_power_vectors_each_length": 64,
+        "license_section_present": true,
+        "overall_beam_index_max": 255,
+        "overall_beam_index_min": 0,
+        "powers_documented_as_linear_units": true,
+        "scenarios": [
+          36,
+          37,
+          38,
+          39
+        ],
+        "v2v_sampling_hz": 10
+      },
+      "id": "official_v2v_tracking",
+      "title": "DeepSense V2V beam tracking task",
+      "url": "https://www.deepsense6g.net/v2v-beam-tracking-task/"
+    },
+    {
+      "assertions": {
+        "average_power_loss_metric_documented": true,
+        "four_power_vectors_each_length": 64,
+        "overall_beam_index_max": 255,
+        "overall_beam_index_min": 0,
+        "test_labels_hidden": true
+      },
+      "id": "official_v2v_2023",
+      "title": "DeepSense V2V Beam Prediction Challenge 2023",
+      "url": "https://www.deepsense6g.net/beam_prediction_challenge_2023/"
+    }
+  ],
+  "stage": 8,
+  "status": "FROZEN_OFFLINE_OFFICIAL_AUTHORITY_EVIDENCE"
+}

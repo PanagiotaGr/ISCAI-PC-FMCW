@@ -1,0 +1,87 @@
+{
+  "block": "8.0",
+  "block81_authorization": {
+    "architecture_selection_from_formal_outcomes": false,
+    "authorized": true,
+    "download_policy": "only bounded files/metadata needed to establish real schema and official split authority; no large-scale corpus acquisition before audit freeze",
+    "formal_measured_power_scoring": false,
+    "large_scale_training": false,
+    "scope": "read-only authority/dataset/schema/license/split audit only"
+  },
+  "fail_closed_conditions": [
+    "Stage7 final PDF-compliance seal SHA differs",
+    "frozen Stage5 adaptive-policy source/policy SHA differs",
+    "DeepSense is treated as optical validation",
+    "measured beam powers are used as controller input",
+    "training/calibration/formal evaluation begins before Blocks 8.1-8.3 freeze the authority, splits, and evaluator contract"
+  ],
+  "frozen_policy_semantics_to_preserve": {
+    "DeepSense_codebook_not_assumed_optically_equivalent_to_Stage5_codebook": true,
+    "controller_must_not_read_measured_power_vector": true,
+    "fallback_policy_source": "frozen Stage5 temporal adaptive controller semantics where DeepSense temporal/schema support is verified",
+    "measured_power_is_evaluator_only": true,
+    "primary_coverage": 0.95,
+    "probability_to_set_rule": "select the smallest beam set whose calibrated probability mass meets the requested coverage",
+    "secondary_coverage_sweep": [
+      0.9,
+      0.95,
+      0.975,
+      0.99
+    ]
+  },
+  "immutable_upstream_boundary": {
+    "Stage4_Stage5_Stage6_Stage7_modification_allowed": false,
+    "Stage7_PDF_compliance_complete": true,
+    "Stage7_formal_outcomes_reuse_as_DeepSense_measured_outcomes": false,
+    "Stage7_models_controllers_metrics_locked": true,
+    "optical_and_mmWave_result_pooling_allowed": false
+  },
+  "pdf_alignment": {
+    "core_external_validation": [
+      "policy-only validation on calibrated beam-probability vectors",
+      "lightweight DeepSense-specific retraining/recalibration while preserving uncertainty/calibration/policy/fallback/evaluation semantics"
+    ],
+    "deepsense_scientific_role": "measured mmWave validation of the beam-selection policy, not optical-headlamp validation",
+    "stage8_completion_gate": [
+      "adaptive Top-K policy evaluated on measured DeepSense beam powers",
+      "DeepSense measured-mmWave results reported separately from optical/PC-FMCW model-based results"
+    ],
+    "zero_shot_transfer": "OPTIONAL_NON_BLOCKING"
+  },
+  "project": "Agni",
+  "result_separation_contract": {
+    "claim_that_DeepSense_validates_optical_headlamp": false,
+    "cross_table_average_or_pooling": false,
+    "table_1": {
+      "metrics": [
+        "pointing loss",
+        "optical SNR",
+        "DPSK BER",
+        "effective optical rate"
+      ],
+      "name": "Optical_PC_FMCW_model_based",
+      "source": "frozen Stage7 and upstream optical evaluation"
+    },
+    "table_2": {
+      "metrics": [
+        "measured power loss",
+        "Top-K coverage",
+        "spectral-efficiency gap",
+        "outage",
+        "probing overhead"
+      ],
+      "name": "DeepSense_measured_mmWave",
+      "source": "future Stage8 formal measured-power evaluation only"
+    }
+  },
+  "stage": 8,
+  "stage8_data_boundary_before_block81": {
+    "DeepSense_calibration_started": false,
+    "DeepSense_dataset_accessed": false,
+    "DeepSense_formal_evaluation_started": false,
+    "DeepSense_measured_beam_powers_accessed": false,
+    "DeepSense_training_started": false
+  },
+  "status": "FROZEN_PRE_DEEPSENSE_SCOPE_CONTRACT",
+  "title": "Stage7-to-Stage8 immutable handoff and DeepSense external-validation scope freeze"
+}

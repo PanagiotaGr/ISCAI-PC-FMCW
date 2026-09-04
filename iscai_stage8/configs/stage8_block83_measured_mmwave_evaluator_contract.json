@@ -1,0 +1,158 @@
+{
+  "aggregation": {
+    "metrics": [
+      "coverage",
+      "mean_K",
+      "mean_probing_overhead",
+      "mean_overhead_reduction",
+      "mean_measured_power_gap_db",
+      "median_measured_power_gap_db",
+      "mean_measured_power_loss_db",
+      "outage_probability_1dB",
+      "outage_probability_3dB",
+      "outage_probability_6dB",
+      "mean_normalized_SE_gap_at_0dB",
+      "mean_normalized_SE_gap_at_10dB",
+      "mean_normalized_SE_gap_at_20dB"
+    ],
+    "pooled_weighting": "sample-weighted across frozen formal rows",
+    "report_per_scenario": true,
+    "report_pooled": true
+  },
+  "authority_semantics": {
+    "important_scope_note": "APL is official for the DeepSense V2V task, not claimed as the official ranking metric of the LiDAR-aided task",
+    "official_measured_power_extension_source": "DeepSense V2V APL semantics: powers are linear; compare selected received power against optimum received power in dB",
+    "primary_task_official_metric": "Top-k beam prediction accuracy / coverage"
+  },
+  "block": "8.3",
+  "failure_analysis": {
+    "allowed_after_formal": [
+      "largest measured-power-loss samples",
+      "coverage failures",
+      "outage-at-3dB samples",
+      "largest K samples"
+    ],
+    "descriptive_only_no_retuning": true
+  },
+  "formal_sample_contract": {
+    "codebook_size": 64,
+    "controller_access_to_measured_power": false,
+    "evaluator_access_to_measured_power": true,
+    "formal_csv_role": "official dev_test",
+    "ground_truth_beam_label": "official beam_index_1 from dev_test CSV",
+    "label_consistency_gate": "labeled beam must attain the maximum measured power within rtol=1e-10, atol=1e-12; ties allowed",
+    "measured_power_vector": "64 finite positive linear values"
+  },
+  "next_block": "8.4 frozen beam-policy interface and baselines",
+  "normalized_spectral_efficiency": {
+    "absolute_measured_spectral_efficiency_claim_allowed": false,
+    "formula": {
+      "SE_gap_bps_per_hz": "SE_opt - SE_selected",
+      "SE_opt": "log2(1 + gamma_ref)",
+      "SE_selected": "log2(1 + gamma_ref * power_ratio)",
+      "gamma_ref": "10^(SNR_ref_db/10)"
+    },
+    "primary_reference_snr_db": 10.0,
+    "reason": "LiDAR task provides measured linear powers but no authoritative per-sample noise power/bandwidth in the frozen task interface",
+    "reference_snr_db": [
+      0.0,
+      10.0,
+      20.0
+    ],
+    "status": "PRE_REGISTERED_NORMALIZED_PROXY_NOT_ABSOLUTE_LINK_SE"
+  },
+  "outage": {
+    "definition": "measured-power outage if measured_power_gap_db < -threshold_db",
+    "primary_threshold_db": 3.0,
+    "reason": "preregistered power-loss tolerance; not an official LiDAR-task threshold",
+    "sensitivity_thresholds_db": [
+      1.0,
+      3.0,
+      6.0
+    ]
+  },
+  "per_sample_metrics": {
+    "K": "number of selected beams",
+    "measured_power_gap_db": "10*log10(P_selected_best/P_optimum), <= 0 dB; 0 is ideal",
+    "measured_power_loss_db": "-measured_power_gap_db, >= 0 dB",
+    "optimum_measured_power": "max measured power among all 64 beams",
+    "overhead_reduction_vs_exhaustive": "1 - K/64",
+    "power_ratio": "P_selected_best/P_optimum, in (0,1]",
+    "probing_overhead": "K / 64",
+    "selected_best_measured_power": "max measured power among selected beams",
+    "topk_coverage": "1 iff official ground-truth beam label lies in selected set"
+  },
+  "policy_contract": {
+    "adaptive_rule": "smallest descending-probability beam set whose cumulative calibrated mass >= q",
+    "deterministic_tie_break": "lower beam index first",
+    "exhaustive_baseline_K": 64,
+    "fixed_baselines": [
+      1,
+      3,
+      5
+    ],
+    "measured_power_never_used_to_choose_or_reorder_controller_beams": true,
+    "primary_coverage_mass": 0.95,
+    "secondary_coverage_masses": [
+      0.9,
+      0.95,
+      0.975,
+      0.99
+    ]
+  },
+  "pre_outcome_boundary": {
+    "calibration_power_vectors_decoded": false,
+    "calibrator_fit_started": false,
+    "formal_metrics_computed": false,
+    "formal_power_vectors_decoded": false,
+    "training_started": false
+  },
+  "project": "Agni",
+  "result_separation": {
+    "DeepSense_table_name": "DeepSense measured mmWave",
+    "must_not_claim": "DeepSense validates optical headlamp/link physics",
+    "must_not_mix_with": "Optical/PC-FMCW model-based table"
+  },
+  "stage": 8,
+  "statistical_inference": {
+    "ci": [
+      0.025,
+      0.975
+    ],
+    "comparison_pairing": "all methods evaluated on exactly the same formal sample IDs and measured-power vectors",
+    "paired_bootstrap_iterations": 10000,
+    "pooled": "stratified-by-scenario paired resampling preserving 437 Scenario8 and 593 Scenario9 draws per replicate",
+    "post_outcome_metric_or_threshold_changes": false,
+    "scenario_level": "resample formal rows with replacement within each scenario",
+    "seed": 20260902
+  },
+  "status": "FROZEN_PRE_OUTCOME_MEASURED_MMWAVE_EVALUATOR_CONTRACT",
+  "title": "Pre-outcome DeepSense measured-mmWave evaluator contract",
+  "upstream_block82b": {
+    "explicit_sequence_group_leakage": "NOT_EVALUABLE_FROM_AVAILABLE_CSV_SCHEMA",
+    "files_sha256": "79dc92fb6a90acd36c4598de436517ebac6c7e7904334dd76a520e1c90a0b895",
+    "frozen_counts": {
+      "pooled": {
+        "CALIBRATION": 1947,
+        "FORMAL_EVALUATION": 1030,
+        "TRAIN": 7030
+      },
+      "scenario8": {
+        "CALIBRATION": 775,
+        "FORMAL_EVALUATION": 437,
+        "TRAIN": 2831
+      },
+      "scenario9": {
+        "CALIBRATION": 1172,
+        "FORMAL_EVALUATION": 593,
+        "TRAIN": 4199
+      }
+    },
+    "refs_sha256": "11aa52287c0e2cb2fee7d8e0f83590517d97aefa72cb276d516cd8547ab6f098",
+    "report_sha256": "53066a0d86a0f092e08e3469f5ba6e6d0f611e5d26584192e6b03833e2b5d340",
+    "runner_sha256": "b54424fd1f09d1e4213d18eaae45e3746c1d6befc0e3d1e88db2137c9a74b3ff",
+    "schema_sha256": "887a796df8138ba175cc5868c49952443ec3497d45b8393876e341f1ef89c5ab",
+    "seal_sha256": "c84eb7ef45d16a1feb3ef068bdaf498e5e4298514f3c4807ffe10db9b1112ba3",
+    "splits_sha256": "67e7624cdb633bf83c0fedab19b6d4c5b41d70ccf0d69c9875873c24b3fe20ce"
+  }
+}

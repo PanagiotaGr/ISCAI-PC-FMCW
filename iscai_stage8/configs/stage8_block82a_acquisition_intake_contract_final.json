@@ -1,0 +1,66 @@
+{
+  "archive_policy": {
+    "extraction_in_8.2A": false,
+    "path_traversal_member_names": "FAIL_CLOSED",
+    "supported": [
+      ".zip",
+      ".tar",
+      ".tar.gz",
+      ".tgz"
+    ],
+    "unsupported_format": "FAIL_CLOSED"
+  },
+  "block": "8.2A-final",
+  "completion_gate": {
+    "Block82B_authorized": true,
+    "all_input_hashes_recorded": true,
+    "at_least_one_nonempty_supported_archive": true,
+    "no_extraction": true,
+    "no_training_calibration_formal_scoring": true,
+    "scenario8_identified_from_member_inventory": true,
+    "scenario9_identified_from_member_inventory": true,
+    "upstream_identity_pass": true,
+    "user_access_attested": true
+  },
+  "intake_semantics": {
+    "all_top_level_input_files_must_be_nonempty": true,
+    "all_top_level_input_files_sha256_recorded": true,
+    "archive_member_names_may_be_read": true,
+    "archive_payloads_extracted": false,
+    "calibration": false,
+    "formal_scoring": false,
+    "measured_power_payloads_opened": false,
+    "minimum_top_level_files": 1,
+    "training": false
+  },
+  "manual_access_boundary": {
+    "authentication": "USER_PERFORMED_OUTSIDE_RUNNER",
+    "credentials_captured_by_runner": false,
+    "incoming_root": "/home/agni/waymo/deepsense_incoming/block82_primary",
+    "runner_downloads_dataset_bytes": false
+  },
+  "project": "Agni",
+  "repair_reason": "The official user-acquired LiDAR.zip may contain both Scenario 8 and Scenario 9 inside one top-level archive. Top-level file count is not a scientific requirement.",
+  "scenario_identity_gate": {
+    "both_scenarios_may_reside_in_same_archive": true,
+    "scenario8_must_be_identified_from_supported_archive_member_names": true,
+    "scenario9_must_be_identified_from_supported_archive_member_names": true,
+    "top_level_filename_alone_is_not_sufficient": true
+  },
+  "scenario_scope": [
+    8,
+    9
+  ],
+  "stage": 8,
+  "status": "FROZEN_PRE_INTAKE_ACQUISITION_CONTRACT_SUPERSEDING",
+  "supersedes_contract_sha256": "306d586438dd3db2ca9c9e3908150db685a3eeb422f249441837f9941381257c",
+  "title": "DeepSense primary-task bounded acquisition intake freeze \u2014 single-container compatible",
+  "upstream_block81_final": {
+    "evidence_sha256": "ac7bda1cf1ce016717a9a98023b2ed17685bd993b502f51726ef23ab896b5e44",
+    "findings_sha256": "d932aeb9a7371996edb145e9b4bb02842692e1e4a249c7ad710ac5eb692ad808",
+    "manifest_sha256": "960ce5fa544d5636d0593835c379f5d0e2530b64d8d91dcee807c8a903747b51",
+    "report_sha256": "828efa4469a435255a2e2960bd52c6248c9e5bdd17ff6eb41fa2f9e94fefc57d",
+    "runner_sha256": "7ceccb3be41856fee80196ad59690e4e75f34bd3583ce716f5ac9693db9ad64b",
+    "seal_sha256": "cbde57e2ecb915e45d1560db6c010132151d03ef269346caad65023905ad97e5"
+  }
+}

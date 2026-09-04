@@ -1,0 +1,43 @@
+{
+  "Stage4_modified": false,
+  "Stage5_modified": false,
+  "Stage6_modified": false,
+  "block": "7.4C",
+  "calibration_performed": false,
+  "checkpoint": {
+    "best_epoch": 11,
+    "calibrated": false,
+    "path": "/home/agni/waymo/iscai_stage7/artifacts/block74c/adb/artifacts/gaussian_gru.pt",
+    "sha256": "b40ca65c903f97c7fda3d5ebeb5052987f8c26cefcd032707af57e5c4de0bbf3",
+    "state_dict_sha256": "7b6b4e66e5ba1b87dcb12995c014d59b46cd5a8890b0009c1a58b665cf7a599f"
+  },
+  "development": {
+    "NLL_improved_over_initialization": true,
+    "best_metric_Gaussian_NLL": 3.154732870373723,
+    "best_planar_ADE_m": 1.55365318258707,
+    "initialized_metric_Gaussian_NLL": 4.984338414030667
+  },
+  "formal_boundary": {
+    "formal_N120_model_selection": false,
+    "formal_N120_training": false,
+    "future_GT_inference_input": false
+  },
+  "post_outcome_tuning": false,
+  "preregistered_seed": 2005353450,
+  "project": "Agni",
+  "regression": {
+    "current_suite_result": "OK",
+    "current_tests_run": 137,
+    "historical_count_matches_current": false,
+    "historical_runner_expected_count": 60,
+    "terminal_failure_semantics": "historical_exact_test_count_gate_only;not_training_or_model_failure"
+  },
+  "reproducibility": {
+    "exact_probabilistic_inference_repeat": true,
+    "prediction_sha256": "68eb2be3cb2bea84e0287745ac62710e0d535399b0ff053f5d775d6188efe139"
+  },
+  "stage": 7,
+  "status": "PASS_INDEPENDENT_GAUSSIAN_TWIN_RECOVERED_AFTER_HISTORICAL_REGRESSION_COUNT_GATE",
+  "training_rerun_by_recovery": false,
+  "twin": "adb"
+}

@@ -1,0 +1,76 @@
+{
+  "block": "8.6",
+  "calibration_diagnostics": {
+    "metrics": [
+      "NLL before/after",
+      "Brier score before/after",
+      "ECE before/after with 15 equal-width confidence bins",
+      "Top-1 accuracy before/after (must be identical under positive scalar T)"
+    ],
+    "reported_on_calibration_split_only": true,
+    "selection_rule": "temperature is always fitted/frozen by NLL objective; diagnostics do not change method"
+  },
+  "calibration_split": {
+    "formal_dev_test_rows_accessed": false,
+    "pooled_rows": 1947,
+    "scenario8_rows": 775,
+    "scenario9_rows": 1172,
+    "scenario_weighting": "natural sample weighting",
+    "source": "official dev_val only"
+  },
+  "calibrator": {
+    "T_positive": true,
+    "classwise_or_vector_scaling": false,
+    "fit_objective": "mean multiclass negative log likelihood on pooled dev_val",
+    "formula": "p = softmax(logits / T)",
+    "isotonic_or_nonparametric": false,
+    "iterations": 200,
+    "log_temperature_bounds": [
+      "ln(0.05)",
+      "ln(20.0)"
+    ],
+    "optimizer": "deterministic golden-section search over log(T)",
+    "tie_rule": "lower log(T) if objective equal within floating-point comparison",
+    "type": "single scalar temperature scaling"
+  },
+  "model": {
+    "checkpoint": "fixed epoch-80 checkpoint from canonical 8.5B CPU deterministic repair",
+    "inference_device": "CPU deterministic",
+    "model_parameters_modified": false,
+    "retraining": false
+  },
+  "next_block": "8.7 pre-formal policy/fallback replay gate",
+  "outcome_boundary": {
+    "calibration_beam_labels": "allowed",
+    "calibration_mmwave_power_payloads": "not opened",
+    "formal_beam_labels": "not opened in 8.6",
+    "formal_metrics": "not computed",
+    "formal_mmwave_power_payloads": "not opened",
+    "post_outcome_tuning": false
+  },
+  "policy_binding": {
+    "downstream_controller_probabilities": "softmax(logits / frozen_temperature)",
+    "measured_power_controller_input": false,
+    "primary_q": 0.95,
+    "q_sweep": [
+      0.9,
+      0.95,
+      0.975,
+      0.99
+    ]
+  },
+  "project": "Agni",
+  "stage": 8,
+  "status": "FROZEN_PRE_FORMAL_DEEPSENSE_PROBABILITY_CALIBRATION_CONTRACT",
+  "title": "DeepSense scalar temperature calibration on frozen dev_val only",
+  "upstream_block85b_canonical": {
+    "checkpoint_sha256": "a31e411a4c729b9ff99c20295f849112417420d301296d3f6e6f73d1a1ac99b5",
+    "namespace": "block85b_encoder_training_cpu_repair",
+    "normalization_sha256": "8e12e7b5bccf57c31075569a575507cd95e4b1710f5bb7327cbdd203c36575fd",
+    "report_sha256": "619b81a0bc425006c0856263f1e4b7cb552763433103bdfe84da486377c82aba",
+    "runner_sha256": "b7e727048a2afcaf0fadb3c488c4e8562b33a5fd5cba6fa63a14b705ef4dd368",
+    "seal_sha256": "ee9e5a8d7f4d630e5334f5f5089484e6016f35e38316346edb5a3194af74ec3b",
+    "train_index_sha256": "cf2905af5711d633a0e6f9e277c03c25028c3aede2a392f09efc9e9f56a75a21",
+    "training_log_sha256": "b16a3217e9ec2c54862b0390540681c21b2de52c3e0a760d74799680309ecae5"
+  }
+}

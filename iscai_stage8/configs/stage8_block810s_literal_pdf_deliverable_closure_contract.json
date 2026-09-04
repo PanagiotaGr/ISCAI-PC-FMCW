@@ -1,0 +1,99 @@
+{
+  "analysis_only": {
+    "calibrator_refit": false,
+    "controller_reexecution": false,
+    "evaluator_reexecution": false,
+    "label_adapter_update": false,
+    "model_forward": false,
+    "policy_update": false,
+    "post_outcome_tuning": false,
+    "raw_lidar_access": false,
+    "raw_mmwave_power_access": false,
+    "training": false
+  },
+  "baseline_crosscheck": {
+    "allowed_text_extensions": [
+      ".json",
+      ".txt",
+      ".md",
+      ".py",
+      ".yaml",
+      ".yml",
+      ".csv",
+      ".sh"
+    ],
+    "max_file_bytes": 8000000,
+    "patterns": {
+      "nearest_beam": [
+        "nearest beam",
+        "nearest-beam",
+        "nearest_beam",
+        "geometry nearest"
+      ],
+      "previous_beam": [
+        "previous beam",
+        "previous-beam",
+        "previous_beam",
+        "persistence"
+      ]
+    },
+    "read_only": true,
+    "scientific_action_if_not_found": "none; record NOT_FOUND_UPSTREAM / NOT_REQUIRED_FOR_STAGE8_SECTION32_GATE",
+    "scope": [
+      "/home/agni/waymo/iscai_stage5",
+      "/home/agni/waymo/iscai_stage7"
+    ]
+  },
+  "block": "8.10S",
+  "canonical_stage8_core": {
+    "block810_final_seal_sha256": "c1c9c06f7ccc80160247ca9eeadd8d64312201168ae1eae26fa6b924ca8b2c17",
+    "block88c_seal_sha256": "f287399f7ddc6070c45f5c42502ae90fc4db0622f6cf42a845aa94d2b8ff8cb4",
+    "block89_seal_sha256": "73c74faab50ff8b52d76089e093439414894a3e95d87e32348da845e05798a29",
+    "stage8_pdf_compliance_superseding_seal_sha256": "497d94565019238e71afa3d1ff05c45d42ba56a507aa7f61706f97bd4df313cc"
+  },
+  "final_status_if_reporting_outputs_pass": "STAGE8_LITERAL_PDF_DELIVERABLE_CLOSURE_COMPLETE",
+  "paper_ready_outputs": [
+    "deepsense_q_coverage_overhead_curve.svg",
+    "deepsense_q_powerloss_overhead_curve.svg",
+    "deepsense_outage_overhead_curve.svg",
+    "deepsense_failure_case_summary.svg",
+    "deepsense_measured_mmwave_final_table.csv",
+    "deepsense_q_tradeoff_table.csv"
+  ],
+  "pdf_basis": {
+    "broader_beam_baselines": [
+      "exhaustive",
+      "previous-beam persistence",
+      "geometry nearest beam",
+      "fixed Top-K",
+      "adaptive Top-K",
+      "blockage-aware adaptive Top-K",
+      "oracle"
+    ],
+    "deepsense_metrics": [
+      "empirical coverage",
+      "average K",
+      "measured beam-power gap",
+      "outage",
+      "overhead",
+      "spectral-efficiency gap"
+    ],
+    "deliverables": [
+      "DeepSense validation pipeline",
+      "ablation/evaluation scripts",
+      "configuration files",
+      "tests",
+      "implementation log",
+      "paper-ready figures including outage-overhead curves, ablation tables, failure cases"
+    ],
+    "note": "The broader beam-baseline list belongs to the full experimental protocol. Section 32 / Stage8 completion does not explicitly require all of them to be rerun on DeepSense.",
+    "stage8_completion": [
+      "Top-K policy evaluated on measured DeepSense beam powers",
+      "mmWave results presented separately from optical"
+    ]
+  },
+  "project": "Agni",
+  "stage": 8,
+  "status": "FROZEN_POST_CORE_REPORTING_COMPLIANCE_SUPPLEMENT_CONTRACT",
+  "title": "Stage8 literal PDF deliverable closure: paper-ready DeepSense reporting + upstream beam-baseline cross-check"
+}

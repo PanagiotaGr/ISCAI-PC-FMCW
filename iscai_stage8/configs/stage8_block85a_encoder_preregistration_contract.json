@@ -1,0 +1,156 @@
+{
+  "architecture": {
+    "fusion": [
+      "concat raw avg/max and SCR avg/max -> 128",
+      "LayerNorm(128)",
+      "Linear(128,64)",
+      "GELU",
+      "Dropout(0.10)",
+      "Linear(64,64) logits"
+    ],
+    "name": "DualLiDARConv1D64",
+    "output_logits": 64,
+    "parameter_count_expected": 18208,
+    "raw_branch": [
+      "Conv1d(2,16,kernel=5,padding=2)",
+      "GELU",
+      "Conv1d(16,32,kernel=5,padding=2)",
+      "GELU",
+      "AdaptiveAvgPool1d(1) + AdaptiveMaxPool1d(1)"
+    ],
+    "scr_branch": "same as raw_branch with independent parameters"
+  },
+  "block": "8.5A",
+  "block85a_boundary": {
+    "calibration_started": false,
+    "formal_metrics_computed": false,
+    "formal_power_vectors_accessed": false,
+    "training_started": false
+  },
+  "inference_fail_closed_fallback": {
+    "fallback_is_controller_side_without_measured_power": true,
+    "invalid_input_shape_or_nonfinite": "exhaustive_64",
+    "nonfinite_logits_or_probabilities": "exhaustive_64"
+  },
+  "next_block": "8.5B fixed-recipe TRAIN-only model training",
+  "normalization": {
+    "calibration_or_formal_used": false,
+    "formula": "(x - mean) / max(std, 1e-8)",
+    "frozen_after_training_data scan": true,
+    "source_split": "TRAIN only",
+    "statistics": "separate raw/SCR, per channel, pooled over Scenario8+9 samples and all points"
+  },
+  "observed_train_only_structural_probe": {
+    "calibration_files_accessed": false,
+    "formal_files_accessed": false,
+    "mmwave_power_files_accessed": false,
+    "scenario8_raw": {
+      "class": "double",
+      "shape": [
+        460,
+        2
+      ],
+      "variable": "data"
+    },
+    "scenario8_scr": {
+      "class": "double",
+      "shape": [
+        216,
+        2
+      ],
+      "variable": "data"
+    },
+    "scenario9_raw": {
+      "class": "double",
+      "shape": [
+        460,
+        2
+      ],
+      "variable": "data"
+    },
+    "scenario9_scr": {
+      "class": "double",
+      "shape": [
+        216,
+        2
+      ],
+      "variable": "data"
+    }
+  },
+  "project": "Agni",
+  "representation": {
+    "beam_label_feature": false,
+    "channels": [
+      "angle",
+      "distance"
+    ],
+    "dtype_runtime": "float32 after finite double load",
+    "measured_power_feature": false,
+    "no_data_augmentation": true,
+    "no_interpolation": true,
+    "no_padding": true,
+    "raw_shape_required": [
+      460,
+      2
+    ],
+    "scenario_id_feature": false,
+    "scr_shape_required": [
+      216,
+      2
+    ],
+    "use_raw_lidar": true,
+    "use_scr_lidar": true,
+    "variable_name_required": "data"
+  },
+  "reproducibility": {
+    "cudnn_benchmark": false,
+    "numpy_seed": 20260902,
+    "python_random_seed": 20260902,
+    "torch_deterministic_algorithms": true,
+    "torch_manual_seed": 20260902
+  },
+  "stage": 8,
+  "status": "FROZEN_PRE_TRAINING_DEEPSENSE_ENCODER_PREREGISTRATION",
+  "title": "DeepSense-specific lightweight LiDAR encoder/data/training preregistration",
+  "training": {
+    "amp": false,
+    "batch_size": 128,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "checkpoint_selection": "fixed final epoch 80 only",
+    "data": "pooled Scenario8+9 official dev_train only",
+    "dataloader_workers": "min(8,max(1,os.cpu_count())) with deterministic worker seeds",
+    "dropout": 0.1,
+    "early_stopping": false,
+    "epochs": 80,
+    "gradient_clip_norm": 5.0,
+    "hyperparameter_search": false,
+    "learning_rate": 0.001,
+    "loss": "CrossEntropyLoss unweighted, label_smoothing=0",
+    "optimizer": "AdamW",
+    "post_outcome_tuning": false,
+    "scenario8_rows": 2831,
+    "scenario9_rows": 4199,
+    "scenario_weighting": "natural sample weighting; no scenario ID or reweighting",
+    "scheduler": "CosineAnnealingLR(T_max=80, eta_min=1e-5)",
+    "seed": 20260902,
+    "shuffle": true,
+    "train_rows_expected": 7030,
+    "validation_for_model_selection": false,
+    "weight_decay": 0.0001
+  },
+  "training_label_access": {
+    "CALIBRATION beam_index_1": "not used in 8.5B training",
+    "FORMAL beam_index_1": "not used in training/model selection",
+    "TRAIN beam_index_1": "allowed as supervised target",
+    "measured_power_vectors": "not used for training"
+  },
+  "upstream": {
+    "block82b_files_manifest_sha256": "79dc92fb6a90acd36c4598de436517ebac6c7e7904334dd76a520e1c90a0b895",
+    "block82b_seal_sha256": "c84eb7ef45d16a1feb3ef068bdaf498e5e4298514f3c4807ffe10db9b1112ba3",
+    "block84_seal_sha256": "c5dcbf5b1bf8d7965fd32bf794f095b4495d30d98e35bddef22ce3abffe554e2",
+    "block84r_seal_sha256": "87f8776d2a5bc3bfb2e3f265e1c791aebd20597eb9da91ba591db71953d208a5"
+  }
+}

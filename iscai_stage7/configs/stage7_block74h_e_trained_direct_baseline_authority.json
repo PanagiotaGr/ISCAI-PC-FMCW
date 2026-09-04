@@ -1,0 +1,77 @@
+{
+  "block": "7.4H-E",
+  "content_sha256": "a39742ae81d5212b7de7eadab78536ddd5ba639c8347ee3b6e85ce7c4b6c2f40",
+  "direct_ADB": {
+    "best_development_loss": 0.23317452110117323,
+    "best_epoch": 4,
+    "file_sha256": "c3bbfe83ebde069e5b84e73e54d7d5e71639164761eabc2ed7528a81aeabe88a",
+    "optimizer_steps": 1839024,
+    "path": "/home/agni/waymo/iscai_stage7/artifacts/block74h_direct/adb/best.pt",
+    "state_dict_sha256": "0f18d7b14beb5472936cd79c5a8e6f46197758136863af83cac16bfa6f23ff0e",
+    "trainable_parameter_count": 67329
+  },
+  "direct_beam": {
+    "best_development_loss": 1.4727941442418981,
+    "best_epoch": 20,
+    "file_sha256": "bb0a8fd6dab8277f374216da07ea139730df2267148bfb838022201872fff2d4",
+    "optimizer_steps": 120,
+    "path": "/home/agni/waymo/iscai_stage7/artifacts/block74h_direct/beam/best.pt",
+    "state_dict_sha256": "393f17f98f0d619990e1d893c8e0dd686fb2fb7c1cb39b986512f386498dde0a",
+    "trainable_parameter_count": 112192
+  },
+  "next": {
+    "allowed": "held-out calibration binding/execution for trained direct baselines",
+    "formal_evaluation": "NOT_YET_ALLOWED",
+    "retraining": "FORBIDDEN"
+  },
+  "provenance": {
+    "executed_trainer": {
+      "path": "/home/agni/waymo/iscai_stage7/scripts/run_block74h_d2_direct_baseline_training_accelerated.py",
+      "sha256": "88ba6bf380e499b9b2e143e78bbeac8b90928efe4c82c43d9e7529c12d7c043b"
+    },
+    "preregistration": {
+      "path": "/home/agni/waymo/iscai_stage7/configs/stage7_block74h_c_direct_training_preregistration.json",
+      "sha256": "fc0726e3c0d964e48b49a63d775070b1487a3716f160813391881d47cccb1333"
+    },
+    "runtime_acceleration_binding": {
+      "path": "/home/agni/waymo/iscai_stage7/configs/stage7_block74h_d2_runtime_acceleration_binding.json",
+      "sha256": "2fd2260a2db2c0c68abe155d45748bb9729d2fda8459007a780302bcba9ae123"
+    },
+    "training_report": {
+      "path": "/home/agni/waymo/iscai_stage7/reports/block74h/block74h_d_direct_baseline_training.json",
+      "sha256": "5171b1be25e3713f021ad2b4588cb44268684900359c53884ad4cec60c2c0d12"
+    }
+  },
+  "purpose": "immutable post-training authority for development-selected direct beam and direct ADB baselines",
+  "runtime_replay": {
+    "exact_parity_steps": 8,
+    "fresh_restart_from_original_frozen_seeds": true,
+    "interrupted_reference_execution_occurred": true,
+    "partial_reference_run": "superseded_by_exact_equivalent_fresh_replay",
+    "reference_vs_accelerated_exact_optimizer_step_parity": true,
+    "scientific_training_parameter_change": false
+  },
+  "scientific_boundary": {
+    "Stage4_modified": false,
+    "Stage5_modified": false,
+    "Stage6_modified": false,
+    "additional_fit_training_allowed": false,
+    "architecture_change_allowed": false,
+    "calibration_partition_opened_in_this_block": false,
+    "checkpoints_frozen": true,
+    "development_reselection_allowed": false,
+    "formal_N120_raw_data_opened": false,
+    "formal_outcomes_opened": false,
+    "hyperparameter_change_allowed": false,
+    "label_change_allowed": false,
+    "training_complete": true
+  },
+  "selection_semantics": {
+    "calibration_used_for_selection": false,
+    "direct_ADB": "minimum development binary cross entropy; earliest epoch on ties",
+    "direct_beam": "minimum development categorical cross entropy; earliest epoch on ties",
+    "formal_used_for_selection": false
+  },
+  "stage": 7,
+  "status": "FROZEN_TRAINED_DIRECT_BASELINE_AUTHORITY"
+}

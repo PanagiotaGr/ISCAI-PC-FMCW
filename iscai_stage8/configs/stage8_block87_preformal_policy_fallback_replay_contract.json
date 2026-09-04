@@ -1,0 +1,80 @@
+{
+  "block": "8.7",
+  "controller_policies_replayed": [
+    "adaptive_topk_q090",
+    "adaptive_topk_q095",
+    "adaptive_topk_q0975",
+    "adaptive_topk_q099",
+    "fixed_top1",
+    "fixed_top3",
+    "fixed_top5",
+    "exhaustive_64"
+  ],
+  "fallback": {
+    "K": 64,
+    "fallback_is_not_tuned_on_outcomes": true,
+    "measured_power_accessed": false,
+    "runtime_wrapper": "safe selection from logits; any invalid/nonfinite logits, invalid temperature, probability failure, or policy exception => exhaustive_64",
+    "selected_beams": "0..63"
+  },
+  "formal_boundary": {
+    "calibration_refit": false,
+    "formal_LiDAR_access": false,
+    "formal_beam_label_access": false,
+    "formal_metrics": false,
+    "formal_mmwave_power_access": false,
+    "training": false
+  },
+  "next_block": "8.8 formal measured DeepSense evaluation",
+  "pipeline": [
+    "frozen raw/SCR LiDAR loader",
+    "frozen TRAIN-only normalization",
+    "frozen epoch-80 DualLiDARConv1D64",
+    "frozen scalar temperature T",
+    "stable softmax",
+    "frozen Block8.4 deterministic beam policy"
+  ],
+  "policy_invariants": {
+    "adaptive_K_monotonic_with_q": "K(q=.90) <= K(.95) <= K(.975) <= K(.99)",
+    "adaptive_minimal_mass_cover": true,
+    "deterministic_lower_index_tie_break": true,
+    "fixed_K_exact": {
+      "exhaustive_64": 64,
+      "fixed_top1": 1,
+      "fixed_top3": 3,
+      "fixed_top5": 5
+    },
+    "measured_power_used_to_select_beams": false,
+    "selected_beams_unique_and_in_0_63": true
+  },
+  "project": "Agni",
+  "replay_split": {
+    "formal_dev_test_access": false,
+    "mmwave_power_payload_access": false,
+    "pooled_rows": 1947,
+    "scenario8_rows": 775,
+    "scenario9_rows": 1172,
+    "source": "official dev_val only"
+  },
+  "stage": 8,
+  "status": "FROZEN_PRE_FORMAL_POLICY_FALLBACK_REPLAY_CONTRACT",
+  "synthetic_fail_closed_cases": [
+    "wrong logit length",
+    "NaN logit",
+    "Inf logit",
+    "nonpositive temperature",
+    "NaN temperature",
+    "unsupported policy name"
+  ],
+  "title": "Pre-formal DeepSense calibrated-policy and fail-closed fallback replay gate",
+  "upstream_block86_final": {
+    "calibration_index_sha256": "dc8a3229b1d103eee281ed824e9b0621b67e8013f0c8fef3b1308a0cf152aa36",
+    "calibrator_sha256": "ddac88b72b6fc08953ca5dcbf899c5bacaa646a252986147389d079bcaea8d82",
+    "diagnostics_sha256": "ec12d83799659005cacb14ed306e862a86f259a62e5b9dfea98677674b878bc6",
+    "manifest_sha256": "52aecb66146ee99f56cbcc17dc244f14c9e9f06fedd5758449feb3bafb7368f8",
+    "report_sha256": "9310098c7dba3c0457e33284f2b736425c2ac293a47556447bfc69bc70769fe8",
+    "runner_sha256": "39a2b3aaf409881931ca84532807dc7b7a88de13687e175a7475c421b8f0b218",
+    "seal_sha256": "6bd11ccb198ee67f6aa15895951e69a663d5474e1630c27643e7d7f8343ed444",
+    "temperature": 1.1038547007246138
+  }
+}

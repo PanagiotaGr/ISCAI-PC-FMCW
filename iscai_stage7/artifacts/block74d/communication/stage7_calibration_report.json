@@ -1,0 +1,659 @@
+{
+  "Gaussian_NLL": {
+    "calibrated": {
+      "by_horizon": {
+        "0.1": 2.3709080379156298,
+        "0.3": 2.672339235084156,
+        "0.5": 3.031808884969707,
+        "1.0": 3.764875785046282
+      },
+      "metric_Gaussian_NLL": 2.944535839627559,
+      "valid_actor_horizon_points": 761039
+    },
+    "raw": {
+      "by_horizon": {
+        "0.1": 2.5081948239257144,
+        "0.3": 2.828857209664525,
+        "0.5": 3.1871389495546243,
+        "1.0": 3.893776453543973
+      },
+      "metric_Gaussian_NLL": 3.0891867387703904,
+      "valid_actor_horizon_points": 761039
+    }
+  },
+  "Stage4_modified": false,
+  "Stage5_modified": false,
+  "Stage6_modified": false,
+  "block": "7.4D",
+  "cache": {
+    "cache_report": "/home/agni/waymo/iscai_stage7/artifacts/block74d/communication/artifacts/calibration_cache_manifest.json",
+    "cache_report_sha256": "f42c998f4a456a5b35cea87a30f3476929a85fc20a74a14b02a50f8ccf0feeda",
+    "exact_repeat_probe": true,
+    "merged_statistics": "/home/agni/waymo/iscai_stage7/artifacts/block74d/communication/artifacts/calibration_sufficient_statistics.npz",
+    "merged_statistics_sha256": "b147cd190cc83f537f28f8118ef5f1461578fcc43683915c37f5baf03de42f96",
+    "resumable": true,
+    "summary": {
+      "class_counts": {
+        "TYPE_CYCLIST": 1662,
+        "TYPE_PEDESTRIAN": 14865,
+        "TYPE_VEHICLE": 184229
+      },
+      "max_samples_in_scene": 64,
+      "sample_count": 200756,
+      "scenario_count": 7209,
+      "sufficient_statistics_content_sha256": "0a3d4a1fb224920f80cf7567d0f5644b973bde577fb1a3f08f1a4baebe5edcbc",
+      "sufficient_statistics_file_sha256": "b147cd190cc83f537f28f8118ef5f1461578fcc43683915c37f5baf03de42f96",
+      "valid_actor_horizon_points": 761039,
+      "zero_sample_scenes": 1
+    }
+  },
+  "calibration_partition": {
+    "development_used": false,
+    "fit_used": false,
+    "formal_N120_used": false,
+    "full_partition": true,
+    "manifest": "/home/agni/waymo/iscai_stage4/artifacts/block41/calibration.jsonl",
+    "manifest_sha256": "e003dd5c4d5a253729700b12c3754c47ffb99dadfa035b46627f01ec91eed4be",
+    "scenario_count": 7209,
+    "source": "frozen_Block4.1_calibration_partition_only"
+  },
+  "calibrator": {
+    "content_sha256": "4ee6c919facadfd2e430627ecc8dc33b1ad7be625cee96e1d2dd53fe33a022ac",
+    "file_sha256": "e2478cd44ca61b4132a50938e7a945bf184d104fe33b4e06c9a20864d821fdd5",
+    "fit_reproducible": true,
+    "mean_modified": false,
+    "measurement_R_t_modified": false,
+    "method": "per_horizon_scalar_covariance_scaling",
+    "path": "/home/agni/waymo/iscai_stage7/artifacts/block74d/communication/artifacts/covariance_scaler.json",
+    "predictive_covariance_modified": true,
+    "standard_deviation_scale": [
+      1.1153317355168197,
+      1.1563414292782856,
+      1.1587837115307116,
+      1.1369269205952004
+    ],
+    "variance_scale": [
+      1.243964880250961,
+      1.3371255010653484,
+      1.3427796901088913,
+      1.2926028227740853
+    ]
+  },
+  "covariance": {
+    "SPD_after_calibration": true
+  },
+  "direct_ADB_training": "BLOCKED",
+  "direct_beam_training": "BLOCKED",
+  "formal_boundary": {
+    "formal_N120_opened": false,
+    "formal_N120_used_for_selection": false,
+    "formal_N120_used_to_fit_calibrator": false,
+    "future_GT_inference_input": false
+  },
+  "normalization": {
+    "path": "/home/agni/waymo/iscai_stage4/artifacts/block43/fit_normalization.json",
+    "refit": false,
+    "sha256": "3d7fc0a66d4a4f566f6569befa9c3766ecae21830bb4e46256df2f326a82a5f6",
+    "source": "fit_only"
+  },
+  "posterior_semantics": "raw_independent_Gaussian_GRU_plus_fitted_per_horizon_covariance_scaler",
+  "project": "Agni",
+  "regression": {
+    "current_suite_result": "OK",
+    "current_tests_passed": 137,
+    "current_tests_total": 137,
+    "engine_native_completion": false,
+    "legacy_count_gate_recovery": true,
+    "legacy_runner_expected_count": 76
+  },
+  "reliability": {
+    "ECE_nonworsening": true,
+    "artifact": "/home/agni/waymo/iscai_stage7/artifacts/block74d/communication/artifacts/reliability_metrics.json",
+    "artifact_sha256": "b285663ae50cdf749d7de7873030acd8bebbda22dda81406fe6178eab7b3ebce",
+    "calibrated": {
+      "by_horizon": {
+        "0.1": {
+          "coverage_ECE": 0.046159215340041304,
+          "levels": {
+            "0.50": {
+              "absolute_error": 0.10128171951349463,
+              "chi_square_df3_threshold": 2.3659738843753377,
+              "coverage_event_Brier": 0.25,
+              "empirical": 0.6012817195134946,
+              "inside": 118500,
+              "nominal": 0.5,
+              "valid": 197079
+            },
+            "0.80": {
+              "absolute_error": 1.0148214675265166e-06,
+              "chi_square_df3_threshold": 4.64162767608745,
+              "coverage_event_Brier": 0.16000060889288056,
+              "empirical": 0.7999989851785325,
+              "inside": 157663,
+              "nominal": 0.8,
+              "valid": 197079
+            },
+            "0.90": {
+              "absolute_error": 0.03538225787628313,
+              "chi_square_df3_threshold": 6.251388631170325,
+              "coverage_event_Brier": 0.11830580630102651,
+              "empirical": 0.8646177421237169,
+              "inside": 170398,
+              "nominal": 0.9,
+              "valid": 197079
+            },
+            "0.95": {
+              "absolute_error": 0.048823314508395055,
+              "chi_square_df3_threshold": 7.814727903251179,
+              "coverage_event_Brier": 0.0914409830575556,
+              "empirical": 0.9011766854916049,
+              "inside": 177603,
+              "nominal": 0.95,
+              "valid": 197079
+            },
+            "0.99": {
+              "absolute_error": 0.04530776998056618,
+              "chi_square_df3_threshold": 11.344866730144373,
+              "coverage_event_Brier": 0.054301614580954845,
+              "empirical": 0.9446922300194338,
+              "inside": 186179,
+              "nominal": 0.99,
+              "valid": 197079
+            }
+          },
+          "valid": 197079
+        },
+        "0.3": {
+          "coverage_ECE": 0.04759372909395469,
+          "levels": {
+            "0.50": {
+              "absolute_error": 0.10570874410741238,
+              "chi_square_df3_threshold": 2.3659738843753377,
+              "coverage_event_Brier": 0.25,
+              "empirical": 0.6057087441074124,
+              "inside": 116797,
+              "nominal": 0.5,
+              "valid": 192827
+            },
+            "0.80": {
+              "absolute_error": 3.111597442262415e-06,
+              "chi_square_df3_threshold": 4.64162767608745,
+              "coverage_event_Brier": 0.1600018669584654,
+              "empirical": 0.7999968884025578,
+              "inside": 154261,
+              "nominal": 0.8,
+              "valid": 192827
+            },
+            "0.90": {
+              "absolute_error": 0.03661987169846548,
+              "chi_square_df3_threshold": 6.251388631170325,
+              "coverage_event_Brier": 0.11929589735877237,
+              "empirical": 0.8633801283015345,
+              "inside": 166483,
+              "nominal": 0.9,
+              "valid": 192827
+            },
+            "0.95": {
+              "absolute_error": 0.04975781399907686,
+              "chi_square_df3_threshold": 7.814727903251179,
+              "coverage_event_Brier": 0.09228203259916921,
+              "empirical": 0.9002421860009231,
+              "inside": 173591,
+              "nominal": 0.95,
+              "valid": 192827
+            },
+            "0.99": {
+              "absolute_error": 0.0458791040673765,
+              "chi_square_df3_threshold": 11.344866730144373,
+              "coverage_event_Brier": 0.05486152198602893,
+              "empirical": 0.9441208959326235,
+              "inside": 182052,
+              "nominal": 0.99,
+              "valid": 192827
+            }
+          },
+          "valid": 192827
+        },
+        "0.5": {
+          "coverage_ECE": 0.04923132615314796,
+          "levels": {
+            "0.50": {
+              "absolute_error": 0.10948903183590764,
+              "chi_square_df3_threshold": 2.3659738843753377,
+              "coverage_event_Brier": 0.25,
+              "empirical": 0.6094890318359076,
+              "inside": 115500,
+              "nominal": 0.5,
+              "valid": 189503
+            },
+            "0.80": {
+              "absolute_error": 2.1107845258327984e-06,
+              "chi_square_df3_threshold": 4.64162767608745,
+              "coverage_event_Brier": 0.16000126647071555,
+              "empirical": 0.7999978892154742,
+              "inside": 151602,
+              "nominal": 0.8,
+              "valid": 189503
+            },
+            "0.90": {
+              "absolute_error": 0.03790283003435302,
+              "chi_square_df3_threshold": 6.251388631170325,
+              "coverage_event_Brier": 0.12032226402748242,
+              "empirical": 0.862097169965647,
+              "inside": 163370,
+              "nominal": 0.9,
+              "valid": 189503
+            },
+            "0.95": {
+              "absolute_error": 0.0519297847527479,
+              "chi_square_df3_threshold": 7.814727903251179,
+              "coverage_event_Brier": 0.09423680627747319,
+              "empirical": 0.8980702152472521,
+              "inside": 170187,
+              "nominal": 0.95,
+              "valid": 189503
+            },
+            "0.99": {
+              "absolute_error": 0.04683287335820541,
+              "chi_square_df3_threshold": 11.344866730144373,
+              "coverage_event_Brier": 0.0557962158910413,
+              "empirical": 0.9431671266417946,
+              "inside": 178733,
+              "nominal": 0.99,
+              "valid": 189503
+            }
+          },
+          "valid": 189503
+        },
+        "1.0": {
+          "coverage_ECE": 0.05101381930297857,
+          "levels": {
+            "0.50": {
+              "absolute_error": 0.11411661069206624,
+              "chi_square_df3_threshold": 2.3659738843753377,
+              "coverage_event_Brier": 0.25,
+              "empirical": 0.6141166106920662,
+              "inside": 111542,
+              "nominal": 0.5,
+              "valid": 181630
+            },
+            "0.80": {
+              "absolute_error": 0.0,
+              "chi_square_df3_threshold": 4.64162767608745,
+              "coverage_event_Brier": 0.16000000000000003,
+              "empirical": 0.8,
+              "inside": 145304,
+              "nominal": 0.8,
+              "valid": 181630
+            },
+            "0.90": {
+              "absolute_error": 0.03911248141826795,
+              "chi_square_df3_threshold": 6.251388631170325,
+              "coverage_event_Brier": 0.12128998513461434,
+              "empirical": 0.8608875185817321,
+              "inside": 156363,
+              "nominal": 0.9,
+              "valid": 181630
+            },
+            "0.95": {
+              "absolute_error": 0.05309970819798482,
+              "chi_square_df3_threshold": 7.814727903251179,
+              "coverage_event_Brier": 0.09528973737818644,
+              "empirical": 0.8969002918020151,
+              "inside": 162904,
+              "nominal": 0.95,
+              "valid": 181630
+            },
+            "0.99": {
+              "absolute_error": 0.04874029620657383,
+              "chi_square_df3_threshold": 11.344866730144373,
+              "coverage_event_Brier": 0.057665490282442326,
+              "empirical": 0.9412597037934262,
+              "inside": 170961,
+              "nominal": 0.99,
+              "valid": 181630
+            }
+          },
+          "valid": 181630
+        }
+      },
+      "confidence_level_weighting": "equal_macro",
+      "confidence_levels": [
+        0.5,
+        0.8,
+        0.9,
+        0.95,
+        0.99
+      ],
+      "coverage_ECE_macro": 0.04849952247253063,
+      "coverage_MAE_macro": 0.04849952247253063,
+      "coverage_event_Brier": 0.13573184065468394,
+      "global_levels": {
+        "0.50": {
+          "absolute_error": 0.10751025900118127,
+          "empirical": 0.6075102590011813,
+          "inside": 462339,
+          "nominal": 0.5,
+          "valid": 761039
+        },
+        "0.80": {
+          "absolute_error": 1.5767917281861443e-06,
+          "empirical": 0.7999984232082719,
+          "inside": 608830,
+          "nominal": 0.8,
+          "valid": 761039
+        },
+        "0.90": {
+          "absolute_error": 0.03721373017677154,
+          "empirical": 0.8627862698232285,
+          "inside": 656614,
+          "nominal": 0.9,
+          "valid": 761039
+        },
+        "0.95": {
+          "absolute_error": 0.05085422691872554,
+          "empirical": 0.8991457730812744,
+          "inside": 684285,
+          "nominal": 0.95,
+          "valid": 761039
+        },
+        "0.99": {
+          "absolute_error": 0.0466514988062372,
+          "empirical": 0.9433485011937628,
+          "inside": 717925,
+          "nominal": 0.99,
+          "valid": 761039
+        }
+      },
+      "horizon_weighting": "equal_macro"
+    },
+    "calibrated_macro_ECE": 0.04849952247253063,
+    "raw": {
+      "by_horizon": {
+        "0.1": {
+          "coverage_ECE": 0.06411546638657595,
+          "levels": {
+            "0.50": {
+              "absolute_error": 0.029523693544213248,
+              "chi_square_df3_threshold": 2.3659738843753377,
+              "coverage_event_Brier": 0.25,
+              "empirical": 0.5295236935442132,
+              "inside": 104358,
+              "nominal": 0.5,
+              "valid": 197079
+            },
+            "0.80": {
+              "absolute_error": 0.05725724201969773,
+              "chi_square_df3_threshold": 4.64162767608745,
+              "coverage_event_Brier": 0.19435434521181863,
+              "empirical": 0.7427427579803023,
+              "inside": 146379,
+              "nominal": 0.8,
+              "valid": 197079
+            },
+            "0.90": {
+              "absolute_error": 0.08106952034463344,
+              "chi_square_df3_threshold": 6.251388631170325,
+              "coverage_event_Brier": 0.1548556162757067,
+              "empirical": 0.8189304796553666,
+              "inside": 161394,
+              "nominal": 0.9,
+              "valid": 197079
+            },
+            "0.95": {
+              "absolute_error": 0.08448921498485373,
+              "chi_square_df3_threshold": 7.814727903251179,
+              "coverage_event_Brier": 0.12354029348636843,
+              "empirical": 0.8655107850151462,
+              "inside": 170574,
+              "nominal": 0.95,
+              "valid": 197079
+            },
+            "0.99": {
+              "absolute_error": 0.06823766103948159,
+              "chi_square_df3_threshold": 11.344866730144373,
+              "coverage_event_Brier": 0.076772907818692,
+              "empirical": 0.9217623389605184,
+              "inside": 181660,
+              "nominal": 0.99,
+              "valid": 197079
+            }
+          },
+          "valid": 197079
+        },
+        "0.3": {
+          "coverage_ECE": 0.07257674495791563,
+          "levels": {
+            "0.50": {
+              "absolute_error": 0.011090251883812963,
+              "chi_square_df3_threshold": 2.3659738843753377,
+              "coverage_event_Brier": 0.25,
+              "empirical": 0.511090251883813,
+              "inside": 98552,
+              "nominal": 0.5,
+              "valid": 192827
+            },
+            "0.80": {
+              "absolute_error": 0.07583792726122385,
+              "chi_square_df3_threshold": 4.64162767608745,
+              "coverage_event_Brier": 0.20550275635673432,
+              "empirical": 0.7241620727387762,
+              "inside": 139638,
+              "nominal": 0.8,
+              "valid": 192827
+            },
+            "0.90": {
+              "absolute_error": 0.09836952294025214,
+              "chi_square_df3_threshold": 6.251388631170325,
+              "coverage_event_Brier": 0.1686956183522017,
+              "empirical": 0.8016304770597479,
+              "inside": 154576,
+              "nominal": 0.9,
+              "valid": 192827
+            },
+            "0.95": {
+              "absolute_error": 0.09924258532259478,
+              "chi_square_df3_threshold": 7.814727903251179,
+              "coverage_event_Brier": 0.1368183267903354,
+              "empirical": 0.8507574146774052,
+              "inside": 164049,
+              "nominal": 0.95,
+              "valid": 192827
+            },
+            "0.99": {
+              "absolute_error": 0.07834343738169447,
+              "chi_square_df3_threshold": 11.344866730144373,
+              "coverage_event_Brier": 0.08667656863406058,
+              "empirical": 0.9116565626183055,
+              "inside": 175792,
+              "nominal": 0.99,
+              "valid": 192827
+            }
+          },
+          "valid": 192827
+        },
+        "0.5": {
+          "coverage_ECE": 0.07429794778974477,
+          "levels": {
+            "0.50": {
+              "absolute_error": 0.014392911985562251,
+              "chi_square_df3_threshold": 2.3659738843753377,
+              "coverage_event_Brier": 0.25,
+              "empirical": 0.5143929119855623,
+              "inside": 97479,
+              "nominal": 0.5,
+              "valid": 189503
+            },
+            "0.80": {
+              "absolute_error": 0.07573178261030178,
+              "chi_square_df3_threshold": 4.64162767608745,
+              "coverage_event_Brier": 0.20543906956618105,
+              "empirical": 0.7242682173896983,
+              "inside": 137251,
+              "nominal": 0.8,
+              "valid": 189503
+            },
+            "0.90": {
+              "absolute_error": 0.09926333620048233,
+              "chi_square_df3_threshold": 6.251388631170325,
+              "coverage_event_Brier": 0.16941066896038584,
+              "empirical": 0.8007366637995177,
+              "inside": 151742,
+              "nominal": 0.9,
+              "valid": 189503
+            },
+            "0.95": {
+              "absolute_error": 0.10139074315446184,
+              "chi_square_df3_threshold": 7.814727903251179,
+              "coverage_event_Brier": 0.13875166883901574,
+              "empirical": 0.8486092568455381,
+              "inside": 160814,
+              "nominal": 0.95,
+              "valid": 189503
+            },
+            "0.99": {
+              "absolute_error": 0.08071096499791564,
+              "chi_square_df3_threshold": 11.344866730144373,
+              "coverage_event_Brier": 0.08899674569795729,
+              "empirical": 0.9092890350020844,
+              "inside": 172313,
+              "nominal": 0.99,
+              "valid": 189503
+            }
+          },
+          "valid": 189503
+        },
+        "1.0": {
+          "coverage_ECE": 0.07202356438914277,
+          "levels": {
+            "0.50": {
+              "absolute_error": 0.03255519462643841,
+              "chi_square_df3_threshold": 2.3659738843753377,
+              "coverage_event_Brier": 0.25,
+              "empirical": 0.5325551946264384,
+              "inside": 96728,
+              "nominal": 0.5,
+              "valid": 181630
+            },
+            "0.80": {
+              "absolute_error": 0.06461487639707097,
+              "chi_square_df3_threshold": 4.64162767608745,
+              "coverage_event_Brier": 0.19876892583824263,
+              "empirical": 0.7353851236029291,
+              "inside": 133568,
+              "nominal": 0.8,
+              "valid": 181630
+            },
+            "0.90": {
+              "absolute_error": 0.09094312613555033,
+              "chi_square_df3_threshold": 6.251388631170325,
+              "coverage_event_Brier": 0.16275450090844024,
+              "empirical": 0.8090568738644497,
+              "inside": 146949,
+              "nominal": 0.9,
+              "valid": 181630
+            },
+            "0.95": {
+              "absolute_error": 0.09514122116390455,
+              "chi_square_df3_threshold": 7.814727903251179,
+              "coverage_event_Brier": 0.13312709904751419,
+              "empirical": 0.8548587788360954,
+              "inside": 155268,
+              "nominal": 0.95,
+              "valid": 181630
+            },
+            "0.99": {
+              "absolute_error": 0.07686340362274957,
+              "chi_square_df3_threshold": 11.344866730144373,
+              "coverage_event_Brier": 0.08522613555029455,
+              "empirical": 0.9131365963772504,
+              "inside": 165853,
+              "nominal": 0.99,
+              "valid": 181630
+            }
+          },
+          "valid": 181630
+        }
+      },
+      "confidence_level_weighting": "equal_macro",
+      "confidence_levels": [
+        0.5,
+        0.8,
+        0.9,
+        0.95,
+        0.99
+      ],
+      "coverage_ECE_macro": 0.07075343088084476,
+      "coverage_MAE_macro": 0.07075343088084476,
+      "coverage_event_Brier": 0.16643766781991465,
+      "global_levels": {
+        "0.50": {
+          "absolute_error": 0.02180900058998292,
+          "empirical": 0.5218090005899829,
+          "inside": 397117,
+          "nominal": 0.5,
+          "valid": 761039
+        },
+        "0.80": {
+          "absolute_error": 0.06832133438627985,
+          "empirical": 0.7316786656137202,
+          "inside": 556836,
+          "nominal": 0.8,
+          "valid": 761039
+        },
+        "0.90": {
+          "absolute_error": 0.09233968298602313,
+          "empirical": 0.8076603170139769,
+          "inside": 614661,
+          "nominal": 0.9,
+          "valid": 761039
+        },
+        "0.95": {
+          "absolute_error": 0.09497811544480628,
+          "empirical": 0.8550218845551937,
+          "inside": 650705,
+          "nominal": 0.95,
+          "valid": 761039
+        },
+        "0.99": {
+          "absolute_error": 0.07596274303945005,
+          "empirical": 0.9140372569605499,
+          "inside": 695618,
+          "nominal": 0.99,
+          "valid": 761039
+        }
+      },
+      "horizon_weighting": "equal_macro"
+    },
+    "raw_macro_ECE": 0.07075343088084476
+  },
+  "scientific_invariants": {
+    "full_3D_SPD_covariance": true,
+    "measurement_uncertainty_R_t_unchanged": true,
+    "post_outcome_tuning": false,
+    "predictive_covariance_scaled_only": true,
+    "predictive_mean_unchanged": true
+  },
+  "stage": 7,
+  "status": "PASS_INDEPENDENT_TWIN_CALIBRATED",
+  "trajectory_mean": {
+    "metrics": {
+      "horizon_planar_error_m": {
+        "0.1": 1.0122758687769098,
+        "0.3": 1.2552088744614407,
+        "0.5": 1.5387537377705334,
+        "1.0": 2.3024115145294144
+      },
+      "planar_ADE_m": 1.5128290804165987
+    },
+    "unchanged": true
+  },
+  "twin": "communication",
+  "upstream_checkpoint": {
+    "checkpoint_modified": false,
+    "path": "/home/agni/waymo/iscai_stage7/artifacts/block74c/communication/artifacts/gaussian_gru.pt",
+    "raw_checkpoint_calibrated_flag": false,
+    "sha256": "0f5fd0b2d77696563fb2b7ff9f5d8b78fa7e3c66757f267e119facc8aeea4880",
+    "state_dict_sha256": "d0ea3a27564bd783db8effc9c002fc9762e9408312698beece6c172381affc2c"
+  }
+}

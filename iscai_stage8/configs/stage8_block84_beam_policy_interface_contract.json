@@ -1,0 +1,111 @@
+{
+  "block": "8.4",
+  "determinism": {
+    "adaptive_rule": "smallest prefix whose normalized cumulative probability mass >= q",
+    "fixed_topk_rule": "first K beams under same deterministic ranking",
+    "probability_sort": "descending probability",
+    "tie_break": "lower beam index first"
+  },
+  "input_interface": {
+    "controller_may_normalize_to_sum_one": true,
+    "finite_nonnegative": true,
+    "length": 64,
+    "measured_power_vector_controller_input": false,
+    "positive_total_mass": true,
+    "type": "calibrated probability vector"
+  },
+  "next_block": "8.5 lightweight DeepSense-specific encoder preregistration and training",
+  "output_record_schema": {
+    "K": "int",
+    "achieved_probability_mass": "float or null",
+    "measured_power_accessed": false,
+    "policy_name": "string",
+    "requested_mass": "float or null",
+    "sample_id": "string",
+    "selected_beams": "sorted list[int] in controller selection order"
+  },
+  "pre_outcome_boundary": {
+    "calibration_started": false,
+    "formal_metrics_computed": false,
+    "formal_power_vectors_accessed": false,
+    "training_started": false
+  },
+  "project": "Agni",
+  "sample_identity": {
+    "formula": "sha256('scenario|role|csv_member|row_index|lidar_ref|power_ref') first 16 hex chars",
+    "purpose": "stable paired formal-evaluation key without using outcome values"
+  },
+  "stage": 8,
+  "stage5_semantic_authority": {
+    "adaptive_topk_sha256": "08bb2145eac117132166a0f8b96a38c61b0a912cfd9b7f2d48f16db649d22865",
+    "beam_codebook_policy_sha256": "bd94f8609393a7c9fe02762cc4bf38e3a77a90cc31adef5f2e6b06aece4074d7",
+    "no_optical_angle_or_codebook_geometry_transfer": true,
+    "semantic_transfer_only": true
+  },
+  "status": "FROZEN_PRE_TRAINING_BEAM_POLICY_INTERFACE_CONTRACT",
+  "supported_local_core_policies": {
+    "adaptive_primary": {
+      "name": "adaptive_topk_q095",
+      "q": 0.95
+    },
+    "adaptive_sweep": [
+      {
+        "name": "adaptive_topk_q090",
+        "q": 0.9
+      },
+      {
+        "name": "adaptive_topk_q095",
+        "q": 0.95
+      },
+      {
+        "name": "adaptive_topk_q0975",
+        "q": 0.975
+      },
+      {
+        "name": "adaptive_topk_q099",
+        "q": 0.99
+      }
+    ],
+    "exhaustive": {
+      "K": 64,
+      "name": "exhaustive_64"
+    },
+    "fixed": [
+      {
+        "K": 1,
+        "name": "fixed_top1"
+      },
+      {
+        "K": 3,
+        "name": "fixed_top3"
+      },
+      {
+        "K": 5,
+        "name": "fixed_top5"
+      }
+    ],
+    "oracle": {
+      "controller_baseline": false,
+      "evaluator_only": true,
+      "may_read_measured_power": true,
+      "name": "measured_power_oracle_best1"
+    }
+  },
+  "title": "DeepSense 64-way beam-policy interface and supported baselines freeze",
+  "unsupported_or_deferred_local_core_policies": {
+    "beam_switching_penalty": "NOT_EVALUABLE_FROM_AVAILABLE_CSV_SCHEMA_NO_EXPLICIT_SEQUENCE_GROUP",
+    "blockage_aware_adaptive": "OPTIONAL_STAGE9_STYLE_EXTENSION_NOT_REQUIRED_FOR_STAGE8_CORE",
+    "hysteresis": "NOT_EVALUABLE_FROM_AVAILABLE_CSV_SCHEMA_NO_EXPLICIT_SEQUENCE_GROUP",
+    "nearest_beam_geometry": "NOT_BOUND_FOR_DEEPSENSE_PRIMARY_TASK_NO_PREREGISTERED ANGULAR CODEBOOK MAPPING",
+    "previous_beam_persistence": "NOT_EVALUABLE_FROM_AVAILABLE_CSV_SCHEMA_NO_EXPLICIT_SEQUENCE_GROUP"
+  },
+  "upstream_block83": {
+    "contract_sha256": "aa70a7ccb299b8337b11d899ae38287189f3a3d4a7d9b8dd7b9ea4860d2166e8",
+    "evaluator_sha256": "7e2c4ffe589e3d6f58e5b6daf1d8fb9e6e44b2eef074bdf1624a3334f8cbe650",
+    "manifest_sha256": "282a84f4d78ffcf195a5b378fa6fb8a01672f8f5117e9f84c4e23383734c8cd4",
+    "report_sha256": "474768c8dd4d0e761103177d7f5afd11b0671cd16f09b445c1d2595550967f44",
+    "runner_sha256": "c1e7f10e812ee50364f1944f5b2ef4284401c833b245b79f8617571b72f25bfc",
+    "seal_sha256": "056371994fa598c6c58622b0161febde17f0e75231b4ba6e1d596d93db4e575f",
+    "tests_sha256": "b0e90df5d8ab740ca5348bed97a2a61bedde235e55aeb61287840998f70c46fe"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "block": "7.5D",
+  "completion_gate": {
+    "ADB_output_identity_to_C1": true,
+    "FLOPs_numeric_or_explicit_NA": true,
+    "all_five_system_isolated_records": true,
+    "all_required_latency_components": true,
+    "communication_output_identity_to_C1": true,
+    "identical_causal_payload_digest_across_systems": true,
+    "per_system_inference_time": true,
+    "per_system_parameter_count": true,
+    "per_system_peak_RSS": true,
+    "per_system_total_frame_latency": true,
+    "superseding_Stage7_PDF_compliance_seal": true
+  },
+  "isolated_process_boundary": [
+    "fresh process",
+    "import frozen modules",
+    "load exactly one comparison-system package including required hybrid models",
+    "load identical causal input",
+    "one warm-up inference for every unique model required by that system",
+    "reset CUDA peak-memory counters where supported; Linux peak RSS is process-lifetime and cannot be reset",
+    "one measured inference for every unique model required by that system",
+    "measure controller mappings on the measured inference outputs",
+    "record process peak RSS and CUDA peak memory if CUDA is available",
+    "exit process"
+  ],
+  "latency_components": {
+    "ADB_actuation_latency": "wall-clock temporal_smooth_schedule plus apply_actuation_rate_limit calls inside the exact frozen ADB mapping",
+    "ADB_generation_latency": "system-specific ADB branch wall-clock excluding neural direct-ADB encode/decode and excluding temporal smoothing/rate-limit actuation calls",
+    "beam_probing_latency": "physical probe count from frozen Stage5 actual_probe_count_for_adaptive_decision times frozen Tbeam=10 microseconds, reported for all four frozen horizons",
+    "beam_selection_latency": "primary 32-beam posterior/direct/deterministic probability-to-adaptive-q0.95 decision mapping; direct-beam neural forward excluded here and counted under predictor inference",
+    "data_loading_latency": "wall-clock read_motion_scenario only",
+    "predictor_inference_time": "sum of all unique neural forwards required by the comparison system; CUDA synchronized immediately before/after every timed GPU region",
+    "preprocessing_latency": "causal Stage2/Stage4 input construction, map context, actor boxes, association, receiver selection, normalization, and current reactive ADB map",
+    "total_frame_latency": "data_loading + preprocessing + tracking + predictor_inference + beam_selection + beam_probing + ADB_generation + ADB_actuation",
+    "tracking_latency": "0.0 because Stage7 consumes frozen WOMD actor tracks and has no separate online tracker in this comparison boundary"
+  },
+  "latency_sensitivity": {
+    "baseline": "new measured per-system primary total-frame latency",
+    "multipliers": [
+      0.5,
+      1.0,
+      2.0
+    ],
+    "semantics": "offline runtime sensitivity only; no controller/model outcome rerun and no annotated millisecond WOMD GT"
+  },
+  "measurement_scenario_rule": {
+    "outcome_or_future_GT_used": false,
+    "reason": "deterministic receiver-evaluable input without outcome-based timing cherry-picking",
+    "rule": "first formal scenario in frozen Stage7 order whose frozen C1 causal lock has a non-null selected receiver",
+    "selection_source": "C1 causal/non-oracle lock only"
+  },
+  "output_identity_gate": {
+    "ADB": "measured ADB schedule must be exactly np.array_equal to the corresponding frozen C1 NPZ schedule; direct_beam hybrid compares against shared ADB alias",
+    "communication": "measured controller output must byte-canonically equal the corresponding frozen C1 communication output for the selected scenario; direct_ADB hybrid compares against the frozen shared communication branch",
+    "purpose": "performance measurement cannot silently change controller semantics"
+  },
+  "primary_summary_rule": {
+    "codebook": 32,
+    "coverage": 0.95,
+    "reason": "conservative preregistered summary; no post-measurement horizon selection",
+    "total_frame_latency_summary": "maximum total-frame latency across the four frozen prediction horizons; all four horizon-specific totals are retained"
+  },
+  "project": "Agni",
+  "purpose": "Close the remaining Stage-7 PDF latency/resource requirements without modifying any frozen C1/C2/C3 scientific outcome.",
+  "resources": {
+    "FLOPs": "numeric only if exact/computable under the installed frozen runtime; otherwise explicit NOT_APPLICABLE_OR_NOT_EXACTLY_COMPUTABLE is acceptable per frozen Block7.5B",
+    "memory": "Linux fresh-process peak RSS; CUDA peak allocated/reserved also recorded where available but RSS is the primary cross-system memory metric",
+    "parameter_count": "unique trainable parameters of all neural models required by the system package; analytic mappings contribute zero trainable parameters"
+  },
+  "scientific_boundary": {
+    "C1_C2_C3_outputs_modified": false,
+    "formal_outcomes_recomputed": false,
+    "future_GT_accessed": false,
+    "future_GT_controller_input": false,
+    "model_selection": false,
+    "model_training": false,
+    "performance_measurement_only_model_forward": true,
+    "post_outcome_tuning": false,
+    "recalibration": false
+  },
+  "stage": 7,
+  "status": "FROZEN_PREMEASUREMENT_LATENCY_RESOURCE_CLOSURE_CONTRACT",
+  "system_package_semantics": {
+    "deterministic_shared_trajectory": "one deterministic predictor + analytic communication + deterministic predictive ADB",
+    "direct_ADB_predictor": "direct ADB field + one shared calibrated Gaussian predictor retained for communication",
+    "direct_beam_classifier": "direct beam classifier + one shared calibrated Gaussian predictor retained for ADB",
+    "independent_models": "two separately loaded calibrated Gaussian predictors; both parameter/inference costs counted",
+    "shared_trajectory_posterior": "one shared calibrated Gaussian predictor + analytic communication + analytic ADB"
+  },
+  "systems": [
+    "shared_trajectory_posterior",
+    "independent_models",
+    "direct_beam_classifier",
+    "direct_ADB_predictor",
+    "deterministic_shared_trajectory"
+  ]
+}
