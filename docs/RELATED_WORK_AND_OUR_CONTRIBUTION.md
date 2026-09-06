@@ -1,433 +1,166 @@
 # Related Work and Our Contribution
 
-## Purpose
+This note keeps only the literature needed to position **ISCAI-PC-FMCW Part B** and the contribution we can defend.
 
-This document maps the papers and datasets that are most relevant to **ISCAI-PC-FMCW Part B**, explains what those works already establish, and states the narrower contribution that this repository can defend.
+## 1. Liu et al. — PC-FMCW ISCAI laser headlamp
 
-The goal is not to claim that PC-FMCW, ISAC/ISCAI, motion forecasting, beam prediction, or adaptive driving-beam control are new by themselves. The paper should instead position Part B as a **predictive, uncertainty-aware extension of PC-FMCW ISCAI in which one calibrated future-motion posterior is reused by both communication beam management and predictive illumination control**.
-
----
-
-## 1. Immediate predecessor: PC-FMCW laser-headlamp ISCAI
-
-### Paper
-
-**S. Liu, T. Sun, X. Shu, J. Song, and Y. Dong, “Phase-Coded FMCW Laser Headlamp for Integrated Sensing, Communication, and Illumination,” IEEE Photonics Technology Letters, 2025/2026 issue record, DOI: `10.1109/LPT.2025.3649597`.**
+**S. Liu, T. Sun, X. Shu, J. Song, and Y. Dong, “Phase-Coded FMCW Laser Headlamp for Integrated Sensing, Communication, and Illumination,” IEEE Photonics Technology Letters, DOI: `10.1109/LPT.2025.3649597`.**
 
 ### What they did
 
-This work introduces a PC-FMCW laser-headlamp architecture that combines:
+They introduced a PC-FMCW laser-headlamp ISCAI system combining:
 
-- communication through phase coding;
-- FMCW sensing/ranging;
-- adaptive driving-beam illumination;
-- multidimensional-Hough-based track-before-detect processing.
+- sensing/ranging;
+- phase-coded communication;
+- Adaptive Driving Beam (ADB) illumination;
+- multidimensional-Hough-based target processing/tracking.
 
-The reported system demonstrates the feasibility of combining gigabit-class communication, centimeter-scale ranging, target tracking, and ADB functionality in one optical ISCAI architecture.
+### What we do differently
 
-### What is already established by this paper
-
-We must **not** claim novelty for:
-
-- the general PC-FMCW ISCAI concept;
-- embedding communication data into FMCW through phase coding;
-- joint sensing + communication + illumination;
-- multidimensional Hough processing as a concept;
-- reactive ADB operation as part of the integrated headlamp system.
-
-### How Part B differs
-
-Part B asks a different question:
-
-> Given an uncertain current sensing state and uncertain future road-user motion, can the ISCAI system use a calibrated future-motion posterior to act **proactively** rather than only reactively?
-
-The main extension is therefore from
-
-```text
-present sensing state -> reactive communication / illumination action
-```
-
-to
-
-```text
-uncertain sensing history
-        -> probabilistic future-motion prediction
-        -> calibrated future posterior
-        -> receiver-aware angular posterior + future occupancy
-        -> adaptive beam management + predictive ADB
-```
+We do **not** claim PC-FMCW ISCAI itself as new. We extend this type of system from mainly present-state/reactive operation to **predictive, uncertainty-aware operation**.
 
 ---
 
-## 2. Waymo Open Motion Dataset
+## 2. Cheng, Wu, and Zhao — calibrated trajectory uncertainty for beam management
 
-### Paper / dataset
+**Q. Cheng, W. Wu, and Z. Zhao, “Uncertainty-Calibrated UAV Trajectory Prediction for Beam Management in UAV-Assisted ISAC Scenarios,” Drones, vol. 10, no. 6, 434, 2026. DOI: `10.3390/drones10060434`.**
+
+### What they did
+
+They predict future UAV trajectories, calibrate trajectory uncertainty, and use that uncertainty for adaptive communication beam management.
+
+Their chain is approximately:
+
+```text
+trajectory prediction
+    -> uncertainty calibration
+    -> beam management
+```
+
+### What this means for us
+
+We must **not** claim that uncertainty-calibrated trajectory prediction for predictive beam management is new by itself.
+
+### What we do differently
+
+Our predicted/calibrated future-motion posterior is used as a **common interface for two different downstream functions**:
+
+```text
+calibrated future-motion posterior
+            |
+      +-----+-----+
+      |           |
+      v           v
+receiver-aware   future actor
+angular posterior occupancy
+      |           |
+      v           v
+adaptive Top-K   predictive
+beam management  class-aware ADB
+```
+
+The communication branch is therefore only one part of the contribution. The main distinction is the reuse of the same probabilistic future state across **communication and illumination inside automotive PC-FMCW ISCAI**.
+
+---
+
+## 3. Waymo Open Motion Dataset (WOMD)
 
 **S. Ettinger et al., “Large Scale Interactive Motion Forecasting for Autonomous Driving: The Waymo Open Motion Dataset,” 2021.**
 
 ### What they did
 
-The Waymo Open Motion Dataset (WOMD) provides large-scale real traffic trajectories, 3D maps, object tracks, and interactive scenarios involving vehicles, pedestrians, and cyclists. It is designed for motion forecasting and interaction modeling rather than for PC-FMCW sensing.
+WOMD provides real multi-agent road trajectories and map/context information for motion forecasting.
 
-### What this establishes
+### How we use it
 
-Realistic motion forecasting datasets and strong trajectory-prediction baselines are already well established.
-
-We must not claim that:
-
-- using WOMD for trajectory forecasting is new;
-- probabilistic motion prediction is new;
-- multi-agent traffic forecasting is new.
-
-### How Part B uses WOMD differently
-
-Part B uses WOMD as **real traffic-dynamics ground truth**, then creates a causal PC-FMCW-like sensing interface from those trajectories. WOMD-LiDAR is not treated as measured FMCW data.
-
-The scientific role of WOMD in Part B is:
+We use WOMD for **real traffic dynamics**, not as measured FMCW data:
 
 ```text
-real road-user dynamics
-        -> PC-FMCW-like noisy observations
-        -> causal tracking / forecasting
-        -> downstream ISCAI control
+real WOMD motion
+    -> simulated PC-FMCW-like observations
+    -> tracking / probabilistic prediction
+    -> ISCAI control
 ```
 
-Thus, the contribution is not a new forecasting benchmark. Forecasting is an intermediate probabilistic state representation used for communication and illumination decisions.
+Therefore our contribution is not a new motion-forecasting dataset or a claim of real PC-FMCW measurements.
 
 ---
 
-## 3. State-of-the-art trajectory forecasting
-
-### Representative paper
-
-**J. Gu, Q. Sun, and H. Zhao, “DenseTNT: Waymo Open Dataset Motion Prediction Challenge 1st Place Solution,” 2021.**
-
-### What they did
-
-DenseTNT and related modern forecasting systems use learned map-aware and multimodal prediction architectures to generate high-quality future trajectories on WOMD.
-
-### What this establishes
-
-High-accuracy learned motion forecasting is already a mature research area. Part B therefore should not position the Gaussian GRU/GMM predictor itself as the main algorithmic novelty.
-
-### How Part B differs
-
-The predictor in Part B is selected for its **calibrated posterior interface**, not solely for minimum ADE/FDE.
-
-The important object is not only
-
-```text
-future mean trajectory
-```
-
-but
-
-```text
-future mean + covariance / probability mass
-```
-
-because downstream beam selection and illumination act directly on uncertainty.
-
-This supports a stronger systems question:
-
-> Does a calibrated motion posterior provide useful decision information for communication and illumination control beyond point prediction alone?
-
----
-
-## 4. DeepSense 6G and sensing-aided beam prediction
-
-### Paper / dataset
+## 4. DeepSense 6G
 
 **A. Alkhateeb et al., “DeepSense 6G: A Large-Scale Real-World Multi-Modal Sensing and Communication Dataset,” 2022.**
 
-DeepSense contains real co-existing sensing and communication measurements. Relevant vehicular scenarios include GPS, camera/radar sensing, and measured beam-power vectors over mmWave codebooks.
+### What they did
 
-### What this establishes
+DeepSense provides real multimodal sensing/communication measurements, including measured beam-power information useful for beam prediction and selection studies.
 
-Sensing-aided beam prediction and beam-selection evaluation on measured wireless data are already established research topics.
+### How we use it
 
-We must not claim that:
+We use measured DeepSense data as an **external validation of the adaptive beam-selection policy**.
 
-- beam prediction from mobility/sensing information is new;
-- adaptive beam selection is new;
-- measured vehicular beam-power datasets are new.
-
-### How Part B differs
-
-DeepSense is used in Part B as an **external measured-beam validation layer** for the adaptive Top-K policy.
-
-The repository explicitly does not claim that mmWave DeepSense measurements validate the optical headlamp physical layer. Instead, they validate the more general policy principle:
-
-```text
-predicted probability over future receiver direction
-        -> smallest beam subset achieving target mass q
-        -> measured coverage / power-loss evaluation
-```
-
-This separation is a strength because it avoids conflating optical and mmWave propagation while still adding measured-data evidence for the beam-selection policy.
+It does not validate the optical PC-FMCW headlamp hardware. Optical and mmWave evaluations remain separate.
 
 ---
 
-## 5. Predictive / position-aided / sensing-aided beam management
+# What is our contribution?
 
-A broad literature already exists on vehicular beam prediction, beam tracking, position-aided beamforming, and sensing-assisted beam management in mmWave/THz and ISAC systems.
-
-Representative themes include:
-
-- predicting future beam directions from vehicle motion;
-- using radar, camera, GPS, LiDAR, or channel maps to reduce beam-training overhead;
-- predictive beamforming for high-mobility links;
-- uncertainty-aware or learning-based beam tracking.
-
-### What this means for our paper
-
-We should **not** claim that predictive beam management is new.
-
-The defensible distinction is the specific Part-B construction:
-
-1. the input is a calibrated **future actor/receiver trajectory posterior** derived from PC-FMCW-like sensing history;
-2. receiver geometry is treated explicitly rather than equating the vehicle centroid with the communication receiver;
-3. posterior probability mass is transformed into an angular distribution over a codebook;
-4. the controller chooses the **minimum Top-K set satisfying a requested probability target**;
-5. the same upstream motion posterior is simultaneously reused by the illumination branch.
-
-This joint use of one uncertainty representation is more specific than generic beam prediction.
-
----
-
-## 6. Adaptive Driving Beam and predictive illumination
-
-ADB and glare-free high-beam control are established automotive technologies and research topics. Existing work includes object-aware illumination, pedestrian/vehicle masking, perception-assisted headlight control, and increasingly predictive or map/perception-aware lighting strategies.
-
-### What is already known
-
-We must not claim novelty for:
-
-- Adaptive Driving Beam itself;
-- object masking for vehicle glare protection;
-- class-aware illumination in general;
-- using perception to control automotive headlights.
-
-### How Part B differs
-
-Part B uses **future probabilistic actor occupancy** rather than only current detections to construct predictive illumination masks.
-
-The key scientific question is not simply whether prediction can reduce glare. It is whether predictive occupancy creates a useful trade-off among:
-
-- vehicle shadow-zone violations;
-- pedestrian visibility;
-- cyclist visibility;
-- over-masking / lost illuminated area.
-
-The frozen Stage-6 result is especially important because it shows that prediction is not automatically better: the predictive controller improves vehicle shadow-zone behavior and preserves VRU visibility, but violates the predeclared over-masking non-inferiority bound.
-
-This should be presented as a genuine **safety–utility trade-off**, not hidden or post-hoc repaired.
-
----
-
-## 7. Uncertainty calibration as a control interface
-
-Probability calibration is well established in machine learning and probabilistic forecasting. Therefore, calibration itself is not a standalone novelty.
-
-Part B uses calibration for a downstream control reason:
-
-> A nominal 95% angular beam set is only meaningful if posterior probability mass is sufficiently calibrated.
-
-The paper can therefore motivate calibration as part of a **decision-valid uncertainty interface** rather than as a generic predictive-model improvement.
-
-This is important because the same posterior must support two different downstream decisions:
-
-```text
-trajectory posterior
-       |                         |
-       v                         v
-angular probability          future occupancy
-       |                         |
-       v                         v
-beam-set selection           predictive ADB
-```
-
----
-
-## 8. Closest combined research gap
-
-The individual components are established:
+The individual ingredients already exist in the literature:
 
 - PC-FMCW ISCAI;
-- motion forecasting on real traffic datasets;
-- probabilistic trajectory prediction;
-- sensing-aided beam prediction;
-- adaptive beam selection;
-- ADB illumination;
-- predictive/perception-aware vehicle lighting;
-- uncertainty calibration.
+- trajectory prediction;
+- uncertainty calibration;
+- predictive beam management;
+- Adaptive Driving Beam control.
 
-The more defensible gap is at their **cross-layer combination**.
+Our contribution is their specific predictive cross-function integration.
 
-A conservative positioning statement is:
+## Core contribution
 
-> **Prior work has established PC-FMCW-based integrated sensing, communication and illumination, probabilistic motion forecasting, sensing-aided beam management, and perception-aware adaptive lighting. Comparatively less attention has been given to using one calibrated future-motion posterior, derived from a PC-FMCW sensing interface, as a common uncertainty representation that simultaneously drives receiver-aware communication beam selection and predictive class-aware ADB control under real traffic dynamics.**
+> **We extend PC-FMCW automotive ISCAI from reactive operation toward uncertainty-aware predictive operation, using one calibrated future-motion posterior as a common probabilistic interface for both receiver-aware communication beam management and predictive class-aware Adaptive Driving Beam control.**
 
-Do not use an absolute “first” claim unless a final systematic literature review supports it.
-
----
-
-# Our contribution
-
-## Main paper idea
-
-**Uncertainty-Aware Predictive ISCAI for Joint Beam Management and Adaptive Driving Beam Control**
-
-### Main research question
-
-> **Can a calibrated probabilistic prediction of future road-user motion improve communication beam management and anticipatory illumination control in a PC-FMCW ISCAI system, and what communication–illumination trade-offs emerge when the same future posterior is used by both tasks?**
-
----
-
-## Proposed contribution C1 — Predictive PC-FMCW ISCAI architecture
-
-We extend a reactive PC-FMCW ISCAI pipeline into a causal predictive system:
+In simple form:
 
 ```text
-real WOMD history
-    -> PC-FMCW-like sensing observations
-    -> tracking / forecasting
-    -> calibrated future-motion posterior
-    -> communication + illumination decisions
+PC-FMCW-like sensing
+        -> probabilistic future-motion prediction
+        -> calibrated future-motion posterior
+                     |
+              +------+------+
+              |             |
+              v             v
+       communication     illumination
+       beam control      ADB control
 ```
 
-The contribution is the predictive decision layer and its cross-task use, not the basic PC-FMCW waveform.
+The important point is therefore **not** “we use uncertainty for beam management.” Cheng et al. already do a closely related prediction-calibration-beam-management chain.
 
----
+The stronger distinction is:
 
-## Proposed contribution C2 — Common probabilistic future-state interface
+> **one future-motion posterior -> two physically different ISCAI control functions**
 
-The same calibrated posterior is transformed into:
+The posterior becomes:
 
-- a receiver-aware angular posterior for beam management;
-- future actor occupancy for ADB control.
+- a receiver/angular probability distribution for adaptive Top-K beam selection; and
+- a future actor-occupancy distribution for predictive class-aware illumination.
 
-This creates a common probabilistic state representation across two traditionally separate downstream subsystems.
+The experiments then evaluate both the communication benefit and the illumination safety/utility trade-off.
 
----
+## Conservative novelty statement
 
-## Proposed contribution C3 — Receiver-aware adaptive Top-K beam management
+> **Prior work has separately established PC-FMCW integrated sensing/communication/illumination and uncertainty-calibrated predictive beam management. Comparatively less attention has been given to using a common calibrated future-motion posterior to drive both receiver-aware communication control and predictive class-aware illumination within an automotive PC-FMCW ISCAI system.**
 
-Instead of predicting only one best beam, the communication controller chooses the smallest set of beams whose cumulative posterior probability reaches a requested target `q`.
+We should use wording such as **“comparatively underexplored”** or **“to the best of our literature review”**, rather than an absolute “first ever” claim.
 
-This explicitly trades probing overhead against coverage reliability.
+## What we should NOT claim
 
-The frozen Stage-5/Stage-8 evidence already supports this principle strongly:
+- We invented PC-FMCW ISCAI.
+- We invented trajectory prediction.
+- We invented uncertainty calibration.
+- We invented predictive beam management.
+- We invented ADB.
+- WOMD is measured FMCW data.
+- DeepSense validates the optical headlamp hardware.
 
-- high empirical coverage at `q = 0.95`;
-- large reduction in probing relative to exhaustive search;
-- external measured-beam validation on DeepSense;
-- small measured power loss and low measured outage in the evaluated cohort.
+## One-sentence paper story
 
----
-
-## Proposed contribution C4 — Predictive class-aware ADB with preserved negative result
-
-Future actor occupancy is propagated into illumination control for vehicles, pedestrians, and cyclists.
-
-The Stage-6 result is scientifically useful because it reveals that prediction improves some safety-related objectives while increasing over-masking beyond the frozen non-inferiority allowance.
-
-The paper should explicitly report this as evidence that predictive illumination has a **non-trivial safety–utility trade-off**.
-
----
-
-## Proposed contribution C5 — Real-trajectory and external-measurement validation layers
-
-The evaluation combines two distinct realism layers:
-
-1. **WOMD:** real multi-agent traffic dynamics, used to drive the causal sensing/prediction/control chain;
-2. **DeepSense:** measured mmWave beam-power data, used to externally validate the adaptive beam-selection policy.
-
-These datasets are used for different purposes and are never presented as measured optical PC-FMCW validation.
-
----
-
-# What the paper should claim
-
-A strong but conservative contribution statement is:
-
-> **We extend reactive PC-FMCW integrated sensing, communication and illumination toward uncertainty-aware predictive operation by using a calibrated future-motion posterior as a common control interface for receiver-aware beam management and class-aware adaptive driving-beam control. The framework is evaluated on real traffic dynamics, preserves causal separation from future ground truth, quantifies the communication–illumination trade-off, and externally validates the adaptive beam-selection principle using measured beam-power data.**
-
----
-
-# What the paper should NOT claim
-
-Do not claim:
-
-- “we introduce PC-FMCW ISCAI”;
-- “we are the first to combine sensing, communication and illumination”;
-- “we introduce motion forecasting for autonomous driving”;
-- “we introduce predictive beam management”;
-- “we introduce Adaptive Driving Beam”;
-- “we introduce probability calibration”;
-- “DeepSense validates our optical PC-FMCW hardware”;
-- “WOMD provides measured FMCW Doppler”;
-- “the predictive ADB universally improves the reactive controller.”
-
-The last point is especially important because the frozen Stage-6 over-masking criterion fails.
-
----
-
-# Recommended related-work structure in the manuscript
-
-A compact manuscript Related Work section can be organized into four subsections:
-
-1. **PC-FMCW / ISCAI systems**  
-   Establish the upstream architecture and immediate predecessor.
-
-2. **Probabilistic motion forecasting for autonomous driving**  
-   Establish that forecasting is mature and explain why calibrated posterior quality matters here.
-
-3. **Sensing-aided predictive beam management**  
-   Position adaptive Top-K against beam-prediction/beam-tracking literature.
-
-4. **Adaptive and predictive automotive illumination**  
-   Position the ADB branch and motivate the communication–illumination trade-off.
-
-The final paragraph of Related Work should then state the cross-layer gap rather than repeating the novelty of any individual component.
-
----
-
-# Priority bibliography shortlist
-
-## PC-FMCW / ISCAI
-
-1. S. Liu, T. Sun, X. Shu, J. Song, and Y. Dong, “Phase-Coded FMCW Laser Headlamp for Integrated Sensing, Communication, and Illumination,” IEEE Photonics Technology Letters, DOI: `10.1109/LPT.2025.3649597`.
-
-## Motion forecasting / WOMD
-
-2. S. Ettinger et al., “Large Scale Interactive Motion Forecasting for Autonomous Driving: The Waymo Open Motion Dataset,” 2021.
-3. J. Gu, Q. Sun, and H. Zhao, “DenseTNT: Waymo Open Dataset Motion Prediction Challenge 1st Place Solution,” 2021.
-
-## Measured sensing + communication / beam validation
-
-4. A. Alkhateeb et al., “DeepSense 6G: A Large-Scale Real-World Multi-Modal Sensing and Communication Dataset,” 2022.
-
-## Additional literature to complete before submission
-
-The final bibliography should add focused papers from IEEE Xplore / Google Scholar / Scopus on:
-
-- trajectory- or position-aided vehicular beam prediction;
-- uncertainty-aware beam tracking;
-- sensing-assisted beam management in ISAC;
-- probabilistic or risk-aware beam selection;
-- predictive Adaptive Driving Beam / glare-free high beam;
-- perception-aware automotive illumination;
-- calibrated probabilistic trajectory forecasting used for downstream control.
-
-These should be checked again immediately before submission, especially for 2025–2026 publications.
-
----
-
-# One-sentence paper story
-
-> **Part B asks whether a PC-FMCW ISCAI vehicle can use calibrated uncertainty about where road users will be next—not only where they are now—to proactively choose communication beams and illumination actions.**
-
-# Bottom line
-
-The paper is not about inventing any one component in isolation. Its strongest identity is the **cross-layer reuse of one calibrated future-motion posterior for two physically different control tasks, evaluated causally on real traffic dynamics and supported by external measured-beam evidence**.
+> **Part B uses calibrated uncertainty about where road users will be next as a shared control representation so that communication and illumination can act proactively rather than only react to the present state.**
