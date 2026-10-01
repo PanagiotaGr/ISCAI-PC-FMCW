@@ -1,4 +1,4 @@
-# Uncertainty-Aware Predictive ISCAI for Joint Beam Management and Adaptive Driving Beam Control
+# Uncertainty-Aware Predictive ISCAI: Shared Future-Motion Posterior for Beam Management, Traffic Criticality, and Adaptive Driving Beam Control
 
 A research implementation of a **predictive, uncertainty-aware extension of a phase-coded FMCW (PC-FMCW) automotive Integrated Sensing, Communication, and Illumination (ISCAI) framework**.
 
@@ -6,7 +6,7 @@ The project studies how uncertainty in the current sensing state and uncertainty
 
 > **Part A estimates the present and reacts; Part B estimates uncertainty, predicts the future, and acts proactively.**
 
-The central idea is to use one calibrated future-motion posterior as a common interface between sensing/prediction and downstream control: the same probabilistic representation is transformed into a receiver-aware angular posterior for communication and into future actor occupancy for illumination.
+The central idea is to use one calibrated future-motion posterior as a common interface between sensing/prediction and downstream control: the same probabilistic representation is transformed into a receiver-aware angular posterior for communication, future actor occupancy for illumination, and — in the Stage-9 paper extension — same-sample future traffic criticality for decision-layer resource allocation.
 
 ---
 
@@ -31,6 +31,9 @@ real WOMD traffic dynamics
         -> adaptive Top-K beam control + predictive ADB
         -> joint system-level evaluation
         -> external measured-beam validation
+        -> Stage-9 shared-posterior decision layer
+           (criticality-constrained communication
+            + secondary recovery-aware ADB)
 ```
 
 ---
@@ -226,39 +229,34 @@ so the Stage-5 controller is evaluated as a communication-system policy rather t
 
 Stage 6 tests whether probabilistic future occupancy can improve ADB behavior while preserving vehicle/VRU safety constraints.
 
-The implementation satisfies the functional requirements for future 3D box projection, probabilistic occupancy, predictive covariance use, class-aware vehicle/pedestrian/cyclist policies, continuity with the Part-A reactive controller, and temporal smoothing/actuation handling.
+The repository preserves the complete scientific lineage rather than treating every Stage-6 artifact as interchangeable. An earlier V1 protocol produced a frozen negative over-masking result. A later, explicitly versioned **Stage6-V3 conservative-budgeted-residual** method was then frozen and evaluated with the final common Experiment-5 evaluator. The V1 result remains provenance and is not deleted or relabeled.
 
-The frozen scientific result is deliberately preserved as a **negative result** rather than being post-hoc retuned into a pass.
+### Final Stage6-V3 / Experiment-5 reporting result
 
-### Frozen scientific outcome
+| Quantity | Reactive ADB | Final class-aware predictive ADB | Difference / outcome |
+| --- | ---: | ---: | ---: |
+| Vehicle shadow-zone violation | **0.0948125** | **0.0730832** | **strict improvement — PASS** |
+| Over-masking area | **0.1925967** | **0.2016184** | **+0.0090217 ≤ +0.0200 — PASS** |
+| Pedestrian visibility proxy | **0.6188124** | **0.6170516** | **−0.0017608 ≥ −0.05 — PASS** |
+| Cyclist visibility proxy | **0.7438343** | **0.7399150** | **−0.0039193 ≥ −0.05 — PASS** |
 
-| Criterion | Outcome |
-| --- | --- |
-| Vehicle shadow-zone violation | **PASS — strict improvement** |
-| Pedestrian visibility | **PASS — non-inferior** |
-| Cyclist visibility | **PASS — non-inferior** |
-| Over-masking non-inferiority | **FAIL** |
+The final Experiment-5 artifact uses the **same final evaluator on both sides** of the reactive-versus-predictive comparison. Under that evaluator, all four frozen Stage-6 acceptance gates pass.
 
-| Quantity | Value |
-| --- | ---: |
-| Reactive over-masking area | **0.1886** |
-| Predictive over-masking area | **0.2652** |
-| Predictive − reactive | **+0.0766** |
-| Pre-outcome allowed delta | **+0.0200** |
-| Excess beyond allowed delta | **+0.0566** |
+### Historical V1 negative result — preserved provenance
 
-Thus, the predictive controller reduces vehicle shadow-zone violations and preserves pedestrian/cyclist visibility, but it does so with **too much additional masking under the frozen non-inferiority criterion**.
+The earlier V1 scientific closure recorded reactive over-masking **0.1886246**, predictive over-masking **0.2652175**, and a difference of **+0.0765929**, which exceeded the frozen **+0.0200** non-inferiority bound. That V1 result remains an immutable historical negative result.
 
-The repository does not change the acceptance threshold after observing this result, does not reinterpret the failure as a pass, and does not use post-outcome retuning. This negative result therefore identifies a real safety/utility trade-off rather than a software failure.
+The final V3 closure therefore does **not** rewrite the V1 outcome. It records a new method/version and a new frozen completion status while preserving the V1 failure as scientific provenance.
 
 **Stage-6 implementation status: COMPLETE.**  
-**Stage-6 frozen scientific gate: FAIL for the evaluated Stage-6 protocol.**
+**Final Stage6-V3 / Experiment-5 gate: PASS.**  
+**Historical V1 gate: FAIL — preserved, not erased.**
 
 ---
 
 ## 4.5 Stage 7 — Frozen joint communication–illumination evaluation
 
-The repository now contains a later **final frozen Stage-7 evaluation**. This must be distinguished from the earlier Stage-6 protocol gate: the Stage-7 result does **not** erase or reinterpret the frozen Stage-6 over-masking failure.
+The repository contains a **final frozen Stage-7 evaluation** that is scientifically separate from the Stage-6 lineage. Stage 7 does not erase or reinterpret the historical Stage-6 V1 over-masking failure, and it also does not substitute for the final Stage6-V3 / Experiment-5 reporting result.
 
 The final Stage-7 formal evaluator records:
 
@@ -326,6 +324,79 @@ The Stage-8 closure also explicitly records:
 
 ---
 
+## 4.7 Stage 9 — Criticality-constrained communication and secondary recovery-aware ADB
+
+Stage 9 is the paper-oriented extension of the frozen Stages 0–8 chain. It does **not** introduce another trajectory predictor. Instead, it reuses the same frozen sensing-informed Monte Carlo future samples as a shared probabilistic interface for:
+
+1. receiver / beam uncertainty;
+2. future traffic criticality; and
+3. a secondary recovery-aware ADB profile-sensitivity analysis.
+
+The primary paper scope is **C1+C2 communication**. The recovery-aware ADB component **C3** is secondary and does not enlarge the primary communication claim.
+
+The current manuscript authority is the certified **Stage 9.16-v2R1** paper-ready package. A dedicated `iscai_stage9/` directory has not yet been committed to this repository, so the Stage-9 section below reports the manuscript-side frozen evidence and claim boundaries rather than claiming that the full Stage-9 reproducibility package is already contained in the GitHub tree.
+
+### Frozen FORMAL cohort and hypothesis status
+
+The frozen FORMAL cohort contains **26,209 scenarios**. A primary receiver was selected pre-outcome in **25,239** scenarios; **970** had no eligible receiver. Among **24,917 valid critical-event labels**, **zero ground-truth critical events were observed**. Zero observed events are treated as an evidence limitation, not as proof of zero risk.
+
+| Hypothesis | Final disposition |
+| --- | --- |
+| H1 — trajectory posterior coverage | **Confirmatory test not available**; later RAW-vs-CAL comparison is non-confirmatory only |
+| H2 — critical-event reliability | **Not evaluable** — zero observed ground-truth critical events |
+| H3 — critical reliability / resource | **Partial** — resource component evaluable; critical-reliability component not evaluable |
+| H4 — matched-overhead critical-event comparison | **Not evaluable** — zero observed ground-truth critical events |
+| H5 — C3 profile sensitivity | **Secondary** — FAST no clear difference; NOMINAL/SLOW reductions supported |
+| H6 — frozen Stage-6 core side-effect gates | **PASS with scope** |
+
+### C2 communication resource component
+
+C2 selects a minimum-size beam set subject to nominal **0.95** coverage and, when raw critical Monte Carlo support exists, a conditional **0.99** critical-sample coverage constraint.
+
+Against fixed `q=0.99`, the evaluable H3 resource component gives the following paired mean-`K` differences:
+
+| Codebook | C2 − fixed q=0.99 mean K | 95% CI |
+| --- | ---: | ---: |
+| 16 | **−0.602 beams** | −0.619 to −0.585 |
+| 32 | **−1.303 beams** | −1.335 to −1.270 |
+| 64 | **−2.747 beams** | −2.809 to −2.685 |
+
+This supports **lower communication resource use** for the frozen C2 resource component. It does **not** establish critical-event reliability because the FORMAL set contained no observed ground-truth critical events.
+
+The later RAW-versus-CAL trajectory-coverage comparison is explicitly non-confirmatory: macro absolute requested-versus-empirical coverage error changed by **−0.002321** (95% CI **−0.002621 to −0.002034**). The absolute errors remained large, so this does not establish good absolute trajectory-posterior calibration.
+
+### Secondary C3 recovery-aware ADB
+
+C3 is reported as profile sensitivity rather than a universal human-safety claim.
+
+- **FAST:** no clear difference relative to either frozen baseline;
+- **NOMINAL:** lower modeled late-response violation rate versus Stage6-V3 and reactive ADB;
+- **SLOW:** lower modeled late-response violation rate versus Stage6-V3 and reactive ADB.
+
+The frozen H6 core side-effect gates are also satisfied relative to reactive ADB. The observed C3-minus-reactive point differences are:
+
+| Core side-effect metric | Difference | Frozen gate |
+| --- | ---: | --- |
+| Vehicle shadow-zone violation | **−0.003185** | must be < 0 — PASS |
+| Over-masking area | **+0.008175** | must be ≤ +0.02 — PASS |
+| Pedestrian visibility | **−0.001284** | must be ≥ −0.05 — PASS |
+| Cyclist visibility | **−0.001505** | must be ≥ −0.05 — PASS |
+
+### Stage-9 claim boundary
+
+The Stage-9 evidence supports the **shared posterior-to-decision interface**, the **H3 communication resource component**, and **bounded profile-sensitive C3 effects**. It does **not** establish:
+
+- critical-event reliability on ground-truth critical events;
+- real-time or end-to-end latency performance;
+- optical/headlamp hardware safety validation;
+- universal human-safety benefit;
+- population-level crash reduction.
+
+**Stage-9 manuscript status: PAPER-READY FROZEN EVIDENCE / bounded claims.**
+
+
+---
+
 ## 5. Dataset and scene representation
 
 The project uses the **Waymo Open Motion Dataset (WOMD)** for real multi-agent traffic dynamics and map context. Actor classes include vehicles, pedestrians and cyclists. WOMD-LiDAR provides synchronized LiDAR history for the observed part of the forecasting window.
@@ -380,7 +451,7 @@ Transforms the receiver posterior into beam probabilities over 16-, 32- and 64-b
 
 ### Stage 6 — Predictive class-aware ADB
 
-Projects future actor occupancy into the illumination controller and evaluates vehicle glare protection, pedestrian/cyclist visibility and masking cost. The frozen Stage-6 protocol produces a preserved negative result because the over-masking non-inferiority criterion is not met.
+Projects future actor occupancy into the illumination controller and evaluates vehicle shadow-zone protection, pedestrian/cyclist visibility and masking cost. Historical V1 preserves a negative over-masking result, while the later frozen Stage6-V3 / final Experiment-5 common-evaluator result passes the four core acceptance gates.
 
 ### Stage 7 — Joint evaluation
 
@@ -389,6 +460,10 @@ Runs frozen multi-system communication/illumination evaluation, evaluator-only f
 ### Stage 8 — External measured-beam validation
 
 Evaluates the adaptive Top-K beam policy on measured DeepSense mmWave beam-power data while maintaining strict separation from the optical headlamp/link model.
+
+### Stage 9 — Shared-posterior criticality-constrained decision layer
+
+Reuses the frozen future-motion posterior for same-sample receiver/beam uncertainty and traffic-criticality reasoning. The primary C1+C2 scope studies minimum-resource criticality-constrained beam selection; the secondary C3 scope studies recovery-aware ADB profile sensitivity under frozen claim boundaries.
 
 ---
 
@@ -471,7 +546,7 @@ DeepSense evaluation includes empirical coverage, selected beam count, probing o
 | `iscai_stage3/` | Classical tracking and forecasting baselines. |
 | `iscai_stage4/` | Deterministic/probabilistic GRU forecasting, GMM, calibration and formal evaluation. |
 | `iscai_stage5/` | Receiver-aware angular posterior, adaptive Top-K beam control and optical link evaluation. |
-| `iscai_stage6/` | Predictive class-aware ADB and frozen negative-result scientific closure. |
+| `iscai_stage6/` | Predictive class-aware ADB, preserved historical V1 negative result, and final frozen V3 / Experiment-5 pass artifacts. |
 | `iscai_stage7/` | Frozen joint communication–illumination evaluation, statistics and sweeps. |
 | `iscai_stage8/` | External DeepSense measured-mmWave beam-policy validation and final reporting. |
 | `part_a_reference/` | Frozen reference to the previous PC-FMCW ISCAI implementation. |
@@ -543,11 +618,15 @@ This repository does **not** claim that:
 - predictive ADB alone is the novelty;
 - adaptive Top-K beam management alone is the novelty;
 - Hough universally dominates other baselines based only on matched-track ADE;
-- the frozen Stage-6 protocol passed its over-masking scientific gate;
-- the later Stage-7 PASS invalidates or erases the Stage-6 negative result;
+- the historical Stage-6 V1 over-masking failure was erased or relabeled as a pass;
+- the final Stage6-V3 / Experiment-5 pass makes the historical V1 negative result disappear;
+- Stage 7 substitutes for either Stage-6 authority;
 - full joint end-to-end Stage-7 latency has been measured when the frozen authorities explicitly mark it not evaluable;
 - DeepSense validates the optical headlamp or optical PC-FMCW link;
-- mmWave and optical measurements are physically interchangeable.
+- mmWave and optical measurements are physically interchangeable;
+- Stage 9 establishes critical-event reliability despite zero observed ground-truth critical events;
+- the Stage-9 C3 profile analysis proves universal human-safety benefit or population-level crash reduction;
+- Stage 9 establishes real-time/end-to-end latency performance.
 
 ---
 
@@ -566,7 +645,10 @@ The project combines:
 9. mapping beam-pointing uncertainty to received power, SNR, DPSK BER and effective rate;
 10. frozen joint system evaluation without future-GT leakage into controller decisions;
 11. external validation of the adaptive beam-selection policy on measured DeepSense beam powers;
-12. a reproducible workflow that preserves both positive and negative scientific outcomes.
+12. a reproducible workflow that preserves both positive and negative scientific outcomes;
+13. a Stage-9 shared posterior-to-decision extension linking same-sample beam uncertainty and traffic criticality;
+14. minimum-resource criticality-constrained beam selection with a frozen resource-use result;
+15. a secondary recovery-aware ADB profile-sensitivity extension with frozen side-effect gates.
 
 A compact project description is:
 
@@ -581,16 +663,18 @@ A compact project description is:
 | Stages 0–3 | **IMPLEMENTED / FROZEN upstream pipeline and classical baselines** |
 | Stage 4 | **COMPLETE — frozen probabilistic forecasting evaluation** |
 | Stage 5 | **PASS — formal adaptive beam-management acceptance** |
-| Stage 6 | **IMPLEMENTATION COMPLETE; FROZEN SCIENTIFIC GATE FAIL — excess over-masking** |
+| Stage 6 | **COMPLETE — historical V1 over-masking FAIL preserved; final frozen V3 / Experiment-5 common-evaluator gate PASS** |
 | Stage 7 | **PASS_FROZEN — final joint evaluator and frozen statistical/sweep analysis complete; full joint latency not evaluable from frozen authorities** |
 | Stage 8 | **COMPLETE / PASS — external measured DeepSense beam-policy validation and final reporting reproducibility** |
+| Stage 9 | **PAPER-READY FROZEN EVIDENCE — H3 resource component supported; H2/H4 and H3 critical reliability not evaluable; C3 secondary/profile-sensitive; dedicated Stage-9 repo directory not yet committed** |
 
 The overall scientific picture is intentionally mixed rather than artificially all-positive:
 
 - **trajectory forecasting is strong and calibrated**;
 - **adaptive Top-K beam management achieves high coverage with large probing reduction**;
-- **predictive ADB improves vehicle shadow-zone protection while exposing an over-masking trade-off under the frozen Stage-6 criterion**;
-- **the later frozen Stage-7 evaluator completes a joint communication/illumination evaluation without using future GT as a controller input**;
-- **Stage 8 externally validates the beam-selection policy on measured mmWave beam powers**.
+- **Stage 6 preserves the historical V1 over-masking failure while the later frozen V3 / Experiment-5 common-evaluator version passes all four core gates**;
+- **the frozen Stage-7 evaluator completes a joint communication/illumination evaluation without using future GT as a controller input**;
+- **Stage 8 externally validates the beam-selection policy on measured mmWave beam powers**;
+- **Stage 9 supports lower beam-resource use for the frozen C2 resource component and bounded profile-sensitive C3 effects, while rare-event reliability remains unresolved because no ground-truth critical event was observed in the valid FORMAL labels**.
 
-The Stage-6 negative result remains part of the scientific contribution. It identifies where uncertainty-aware proactive illumination improves one safety objective while violating another pre-specified constraint, without changing the rules after observing the outcome.
+The repository therefore preserves both the historical Stage-6 negative result and the later versioned Stage-6 pass rather than collapsing them into a single retrospective outcome.
