@@ -587,26 +587,7 @@ DeepSense evaluation includes empirical coverage, selected beam count, probing o
 
 ---
 
-## 10. Repository structure
-
-| Directory | Purpose |
-| --- | --- |
-| `iscai_data_prep/` | Dataset manifests and deterministic data-selection utilities. |
-| `iscai_stage0/` | Environment, dataset-layout, schema, coordinate, map and LiDAR audits. |
-| `iscai_stage1/` | Causal WOMD preprocessing, ego/headlamp geometry, map and receiver representation. |
-| `iscai_stage2/` | PC-FMCW-like observations, sensing SNR, covariance, corruption, misses and clutter. |
-| `iscai_stage3/` | Classical tracking and forecasting baselines. |
-| `iscai_stage4/` | Deterministic/probabilistic GRU forecasting, GMM, calibration and formal evaluation. |
-| `iscai_stage5/` | Receiver-aware angular posterior, adaptive Top-K beam control and optical link evaluation. |
-| `iscai_stage6/` | Predictive class-aware ADB, preserved historical V1 negative result, and final frozen V3 / Experiment-5 pass artifacts. |
-| `iscai_stage7/` | Frozen joint communication–illumination evaluation, statistics and sweeps. |
-| `iscai_stage8/` | External DeepSense measured-mmWave beam-policy validation and final reporting. |
-| `part_a_reference/` | Frozen reference to the previous PC-FMCW ISCAI implementation. |
-| `audits.zip`, `manifests.zip` | Archived reproducibility material. |
-
----
-
-## 11. Reproducibility philosophy
+## 10. Reproducibility philosophy
 
 The repository follows a staged **freeze-and-audit** workflow. Major stages generate machine-readable reports, deterministic manifests, hashes, leakage checks, regression-test evidence and frozen handoff artifacts.
 
@@ -626,7 +607,7 @@ Individual stage directories and their frozen reports are the authoritative sour
 
 ---
 
-## 12. Relationship to Part A
+## 11. Relationship to Part A
 
 ### Previous framework
 
@@ -655,7 +636,7 @@ Part A provides the sensing/communication/illumination reference and Hough-based
 
 ---
 
-## 13. Scientific claims intentionally not made
+## 12. Scientific claims intentionally not made
 
 This repository does **not** claim that:
 
@@ -682,7 +663,7 @@ This repository does **not** claim that:
 
 ---
 
-## 14. Main research contribution
+## 13. Main research contribution
 
 The project combines:
 
@@ -708,7 +689,7 @@ A compact project description is:
 
 ---
 
-## 15. Current scientific status
+## 14. Current scientific status
 
 | Stage | Status |
 | --- | --- |
