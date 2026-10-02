@@ -38,6 +38,26 @@ The central idea is to use one calibrated future-motion posterior as a common in
 
 ---
 
+## Repository structure at a glance
+
+| Folder | Purpose |
+| --- | --- |
+| `iscai_data_prep/` | Dataset preparation, manifests, and deterministic WOMD/WOMD-LiDAR selection utilities. |
+| `iscai_stage0/` | Environment, dataset, schema, coordinate, and reproducibility audits. |
+| `iscai_stage1/` | Causal WOMD scene representation with actors, maps, ego/headlamp geometry, and LiDAR context. |
+| `iscai_stage2/` | PC-FMCW-like observation generation, sensing uncertainty, missed detections, and clutter. |
+| `iscai_stage3/` | Classical tracking and forecasting baselines including CV, CA, CTRV, EKF, IMM, and Multidimensional Hough. |
+| `iscai_stage4/` | Deterministic and probabilistic trajectory forecasting, calibration, GMM evaluation, and ablations. |
+| `iscai_stage5/` | Receiver-aware angular posterior, adaptive Top-K beam selection, and communication-link evaluation. |
+| `iscai_stage6/` | Predictive class-aware ADB with probabilistic future occupancy and frozen safety/side-effect gates. |
+| `iscai_stage7/` | Frozen joint communication–illumination evaluation, bootstrap statistics, sweeps, and reproducibility checks. |
+| `iscai_stage8/` | External DeepSense measured-mmWave validation of the adaptive beam-selection policy. |
+| `iscai_stage9/` | Shared-posterior criticality-constrained beam management and secondary recovery-aware ADB analysis. |
+| `part_a_reference/` | Frozen Part-A PC-FMCW ISCAI reference implementation: present-state estimation with reactive communication and ADB. |
+| `scripts/` | Repository-level utility and support scripts. |
+
+---
+
 ## 1. Research objective
 
 The previous PC-FMCW ISCAI framework combines sensing, communication and Adaptive Driving Beam illumination, but its tracking and ADB evaluation is primarily based on synthetic trajectories and simulated scenes. This repository replaces that less realistic scene-level block with a causal data-driven pipeline based on real multi-agent traffic motion.
