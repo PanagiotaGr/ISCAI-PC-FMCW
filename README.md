@@ -1,4 +1,4 @@
-# Uncertainty-Aware Predictive ISCAI: Shared Future-Motion Posterior for Beam Management, Traffic Criticality, and Adaptive Driving Beam Control
+# A Unified Probabilistic Framework for PC-FMCW Beam Selection, Geometric Criticality, and Adaptive Driving Beam Control
 
 A research implementation of a **predictive, uncertainty-aware extension of a phase-coded FMCW (PC-FMCW) automotive Integrated Sensing, Communication, and Illumination (ISCAI) framework**.
 
