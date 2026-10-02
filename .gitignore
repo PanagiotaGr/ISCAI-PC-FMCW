@@ -49,3 +49,14 @@ checkpoints/
 models/
 wandb/
 runs/
+
+# BEGIN Stage9 paper runtime closure: Stage4 Python data package
+# `**/data/` protects dataset directories globally, but this directory is
+# Python source code required by the authoritative Stage-9 execution chain.
+!iscai_stage4/src/iscai_stage4/data/
+iscai_stage4/src/iscai_stage4/data/*
+!iscai_stage4/src/iscai_stage4/data/__init__.py
+!iscai_stage4/src/iscai_stage4/data/neural_inputs.py
+!iscai_stage4/src/iscai_stage4/data/real_pipeline.py
+!iscai_stage4/src/iscai_stage4/data/supervision.py
+# END Stage9 paper runtime closure: Stage4 Python data package

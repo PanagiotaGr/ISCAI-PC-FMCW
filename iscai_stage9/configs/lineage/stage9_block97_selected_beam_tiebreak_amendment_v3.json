@@ -1,0 +1,53 @@
+{
+  "block": "9.7",
+  "corrected_tie_break": {
+    "excluded_tuple_lexicographic_order_is_authoritative": false,
+    "selected_tuple_lexicographic_order_is_authoritative": true,
+    "semantic": "lexicographically smallest SELECTED beam-index tuple"
+  },
+  "execution_boundary": {
+    "CAL_policy_execution_may_start_after_this_freeze": true,
+    "FORMAL_access_allowed": false,
+    "future_ground_truth_allowed": false
+  },
+  "preserved_from_v2": {
+    "M": 4096,
+    "critical_joint_missed_sample_cap": 40,
+    "epsilon_critical_joint": 0.01,
+    "epsilon_normal": 0.05,
+    "fallback": "all beams on invalid input, infeasibility, solver failure, or integrity failure",
+    "joint_constraint": "sum_{b notin B} u_b <= 0.01",
+    "nominal_missed_sample_cap": 204,
+    "objective_levels_1_to_3": [
+      "minimum selected beam count",
+      "minimum nominal missed mass",
+      "minimum critical missed mass"
+    ]
+  },
+  "safety": {
+    "FORMAL_data_accessed": false,
+    "block95_modified": false,
+    "block96_modified": false,
+    "block97_executed_before_this_amendment": false,
+    "joint_v2_amendment_modified": false,
+    "joint_v2_solver_modified": false,
+    "old_contract_modified": false
+  },
+  "scientific_authority": {
+    "latest_pdf": "stage_9_suggestion(8).pdf",
+    "primary_constraint_semantics": "joint_absolute_critical_miss"
+  },
+  "solver_validation": {
+    "artifact": "artifacts/block97_solver_freeze/stage9_block97_exact_solver_validation_pdf_joint_tiebreak_v3.json",
+    "sha256": "decd9a70f2b636941a61bdc19d62decb2627492c0da666ff359650cb79541b16",
+    "status": "PASS"
+  },
+  "stage": 9,
+  "status": "FROZEN_PRE_EXECUTION_SUPERSEDING_AMENDMENT",
+  "supersedes_only": {
+    "artifact": "artifacts/block97_solver_freeze/stage9_block97_exact_solver_validation_pdf_joint_v2.json",
+    "field": "level_4 deterministic tie-break implementation",
+    "sha256": "1f94b2fde71c4f175fcbdfc3663327cc5bff7de6c0353a74f4d194d8649ad475"
+  },
+  "version": "SELECTED_BEAM_TIEBREAK_V3"
+}

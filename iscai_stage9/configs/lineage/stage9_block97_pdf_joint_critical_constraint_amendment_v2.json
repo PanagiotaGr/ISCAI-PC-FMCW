@@ -1,0 +1,62 @@
+{
+  "block": "9.7",
+  "corrected_primary_constraint": {
+    "conditional_critical_miss": "reporting_metric_not_primary_constraint",
+    "equivalent_selected_mass_form": "sum_{b in B} u_b >= P_C - 0.01",
+    "integer_form_M4096": "sum missed critical_beam_sample_counts <= 40",
+    "joint_mass_form": "sum_{b notin B} u_b <= 0.01",
+    "probability_form": "P(Ccrit intersect Bmiss | Dt) <= 0.01"
+  },
+  "inputs": {
+    "block95_joint_jsonl": "artifacts/block95_joint_beam_criticality_posterior/cal_joint_beam_criticality_by_scenario.jsonl",
+    "block95_sha256": "569bb7b8e18ef52f9bfce675c47b78e432010674479bbb0f453026aaf7ec165c",
+    "receiver_binding": "artifacts/receiver_interface_repair_before_block97/cal_primary_receiver_binding.jsonl",
+    "receiver_binding_sha256": "e23e9b7ec822d70e0b292ae7baa2624cd29e8a5bc3fabd07faee8bd5c1312265"
+  },
+  "latest_scientific_authority": "stage_9_suggestion(8).pdf",
+  "scientific_safety": {
+    "FORMAL_data_accessed": false,
+    "block95_modified": false,
+    "block95_rerun": false,
+    "block96_modified": false,
+    "block96_rerun": false,
+    "block97_executed_before_repair": false,
+    "old_block97_contract_modified": false,
+    "old_solver_artifact_modified": false
+  },
+  "solver_validation": {
+    "artifact": "artifacts/block97_solver_freeze/stage9_block97_exact_solver_validation_pdf_joint_v2.json",
+    "sha256": "1f94b2fde71c4f175fcbdfc3663327cc5bff7de6c0353a74f4d194d8649ad475",
+    "status": "PASS"
+  },
+  "stage": 9,
+  "status": "FROZEN_PRE_EXECUTION_SUPERSEDING_AMENDMENT",
+  "supersedes_only": {
+    "fields": [
+      "critical constraint semantics",
+      "epsilon_c naming",
+      "critical integer realization",
+      "solver critical capacity"
+    ],
+    "old_contract": "configs/stage9_block97_criticality_constrained_beam_policy_contract.json",
+    "old_contract_sha256": "1851ca01f6e43b1aa8a55d32e702e690ac8aad9815bd9a71b04806c98ac2500a",
+    "old_solver_validation": "artifacts/block97_solver_freeze/stage9_block97_exact_solver_validation.json",
+    "old_solver_validation_sha256": "a9b2c44d37883ba13d613e87a6351e85e12b51edff8afaca442c56669a984a21"
+  },
+  "unchanged": {
+    "CAL_only": true,
+    "FORMAL_access": false,
+    "M": 4096,
+    "epsilon_critical_numeric_value": 0.01,
+    "epsilon_normal": 0.05,
+    "fallback": "all beams on invalid input, infeasibility, solver failure, or integrity failure",
+    "nominal_constraint": "sum_b p_b z_b >= 0.95",
+    "objective": [
+      "minimize selected beam count",
+      "minimize nominal missed mass",
+      "minimize critical missed mass",
+      "deterministic lower-beam-index tie break"
+    ]
+  },
+  "version": "PDF_JOINT_CRITICAL_V2"
+}
