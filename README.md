@@ -14,27 +14,6 @@ The central idea is to use one calibrated future-motion posterior as a common in
 <img width="803" height="825" alt="image" src="https://github.com/user-attachments/assets/266c6416-d980-4e02-88c3-ac1e5e41e6fd" />
 
 
----
-
-## Repository at a glance
-
-| Folder | What it contains |
-| --- | --- |
-| `iscai_data_prep/` | Dataset preparation, manifests, and deterministic data selection. |
-| `iscai_stage0/` | Environment, dataset, schema, coordinate, and LiDAR audits. |
-| `iscai_stage1/` | Causal WOMD scene representation, actors, maps, geometry, and LiDAR context. |
-| `iscai_stage2/` | PC-FMCW-like sensing observations and measurement uncertainty. |
-| `iscai_stage3/` | Classical tracking and forecasting baselines. |
-| `iscai_stage4/` | Probabilistic trajectory forecasting and uncertainty calibration. |
-| `iscai_stage5/` | Receiver-aware adaptive Top-K beam management. |
-| `iscai_stage6/` | Predictive class-aware Adaptive Driving Beam control. |
-| `iscai_stage7/` | Frozen joint communication–illumination evaluation. |
-| `iscai_stage8/` | External DeepSense measured-mmWave beam-policy validation. |
-| `iscai_stage9/` | Shared-posterior criticality-constrained beam control and secondary recovery-aware ADB analysis. |
-| `part_a_reference/` | Original PC-FMCW ISCAI reference implementation: present-state sensing/tracking with reactive communication and ADB. |
-| `scripts/` | Repository-level utility scripts. |
-
-> **In short:** Part A is the original reactive PC-FMCW ISCAI reference; Stages 0–9 build the data-driven, uncertainty-aware predictive extension.
 
 ---
 
