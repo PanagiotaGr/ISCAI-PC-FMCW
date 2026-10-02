@@ -8,6 +8,8 @@ The project studies how uncertainty in the current sensing state and uncertainty
 
 The central idea is to use one calibrated future-motion posterior as a common interface between sensing/prediction and downstream control: the same probabilistic representation is transformed into a receiver-aware angular posterior for communication, future actor occupancy for illumination, and — in the Stage-9 paper extension — same-sample future traffic criticality for decision-layer resource allocation.
 
+<img width="767" height="1667" alt="Illustration_4" src="https://github.com/user-attachments/assets/8d729236-85eb-434a-85d4-63a146e30cd8" />
+
 ---
 
 ## 1. Research objective
@@ -122,6 +124,8 @@ Results should be interpreted **within the documented protocol and frozen cohort
 
 ## 4.1 Stage 3 — Classical tracking and forecasting baselines
 
+<img width="717" height="369" alt="image" src="https://github.com/user-attachments/assets/85c34592-d5ed-44f6-bc45-028ec15db502" />
+
 Stage 3 evaluates classical baselines behind the same frozen Stage-2 observation interface. The final validation cohort contains **120 scenarios**, stratified as 40 cyclist, 40 pedestrian-without-cyclist and 40 vehicle-only scenarios. The final closure records **109/109 regression tests passed** and exact reproducibility of the frozen formal run.
 
 | Method | ADE | FDE | Reconstruction recall |
@@ -227,6 +231,8 @@ so the Stage-5 controller is evaluated as a communication-system policy rather t
 
 ## 4.4 Stage 6 — Predictive class-aware ADB
 
+<img width="973" height="292" alt="image" src="https://github.com/user-attachments/assets/d2eac3dc-9515-4162-8191-5471ab28a9bf" />
+
 Stage 6 tests whether probabilistic future occupancy can improve ADB behavior while preserving vehicle/VRU safety constraints.
 
 The repository preserves the complete scientific lineage rather than treating every Stage-6 artifact as interchangeable. An earlier V1 protocol produced a frozen negative over-masking result. A later, explicitly versioned **Stage6-V3 conservative-budgeted-residual** method was then frozen and evaluated with the final common Experiment-5 evaluator. The V1 result remains provenance and is not deleted or relabeled.
@@ -241,6 +247,8 @@ The repository preserves the complete scientific lineage rather than treating ev
 | Cyclist visibility proxy | **0.7438343** | **0.7399150** | **−0.0039193 ≥ −0.05 — PASS** |
 
 The final Experiment-5 artifact uses the **same final evaluator on both sides** of the reactive-versus-predictive comparison. Under that evaluator, all four frozen Stage-6 acceptance gates pass.
+
+<img width="970" height="1010" alt="image" src="https://github.com/user-attachments/assets/c0df3207-b5b3-4ce8-a2a5-9e6446972b4e" />
 
 ### Historical V1 negative result — preserved provenance
 
