@@ -1,5 +1,7 @@
 # Shared Calibrated Predictive Uncertainty for PC-FMCW ISCAI: Beam Selection, Geometric Criticality, and Adaptive Driving Beam Control
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23089733.svg)](https://doi.org/10.5281/zenodo.23089733)
+
 A research implementation of a **predictive, uncertainty-aware extension of a phase-coded FMCW (PC-FMCW) automotive Integrated Sensing, Communication, and Illumination (ISCAI) framework**.
 
 The project studies how uncertainty in the current sensing state and uncertainty in future road-user motion can be propagated into **communication beam management** and **predictive Adaptive Driving Beam (ADB)** control. Real traffic dynamics are taken from the **Waymo Open Motion Dataset (WOMD)** and WOMD-LiDAR context, while the PC-FMCW sensing interface is generated from those real trajectories through a physics-grounded observation and uncertainty model.
@@ -688,6 +690,17 @@ The overall scientific picture is intentionally mixed rather than artificially a
 
 The repository therefore preserves both the historical Stage-6 negative result and the later versioned Stage-6 pass rather than collapsing them into a single retrospective outcome.
 
+
+
+## Citation
+
+If you use this repository, please cite the archived Zenodo release and the associated paper/technical report.
+
+**Zenodo DOI:** [10.5281/zenodo.23089733](https://doi.org/10.5281/zenodo.23089733)
+
+Citation metadata are also provided in [`CITATION.cff`](CITATION.cff).
+
+---
 
 <!-- BEGIN STAGE9 PAPER UPDATE -->
 
