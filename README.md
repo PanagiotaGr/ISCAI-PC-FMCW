@@ -16,18 +16,25 @@ The central idea is to use one calibrated future-motion posterior as a common in
 
 ---
 
-## Part A at a glance
+## Repository at a glance
 
-| Item | Part A |
+| Folder | What it contains |
 | --- | --- |
-| **What it is** | The original PC-FMCW ISCAI reference framework on which this work builds. |
-| **Sensing / communication** | PC-FMCW / DPSK sensing and communication with coherent processing. |
-| **Processing** | Range-Doppler processing and CFAR-based detection. |
-| **Tracking** | Present-state tracking, including the legacy Multidimensional Hough context. |
-| **Control** | Reactive communication and Adaptive Driving Beam (ADB) control based on the current estimated scene. |
-| **How Part B extends it** | Adds real WOMD traffic, explicit measurement/predictive uncertainty, probabilistic future motion, adaptive beam management, and predictive ADB. |
+| `iscai_data_prep/` | Dataset preparation, manifests, and deterministic data selection. |
+| `iscai_stage0/` | Environment, dataset, schema, coordinate, and LiDAR audits. |
+| `iscai_stage1/` | Causal WOMD scene representation, actors, maps, geometry, and LiDAR context. |
+| `iscai_stage2/` | PC-FMCW-like sensing observations and measurement uncertainty. |
+| `iscai_stage3/` | Classical tracking and forecasting baselines. |
+| `iscai_stage4/` | Probabilistic trajectory forecasting and uncertainty calibration. |
+| `iscai_stage5/` | Receiver-aware adaptive Top-K beam management. |
+| `iscai_stage6/` | Predictive class-aware Adaptive Driving Beam control. |
+| `iscai_stage7/` | Frozen joint communication–illumination evaluation. |
+| `iscai_stage8/` | External DeepSense measured-mmWave beam-policy validation. |
+| `iscai_stage9/` | Shared-posterior criticality-constrained beam control and secondary recovery-aware ADB analysis. |
+| `part_a_reference/` | Original PC-FMCW ISCAI reference implementation: present-state sensing/tracking with reactive communication and ADB. |
+| `scripts/` | Repository-level utility scripts. |
 
-> **In short:** Part A estimates the current scene and reacts; Part B propagates uncertainty, predicts future motion, and acts proactively.
+> **In short:** Part A is the original reactive PC-FMCW ISCAI reference; Stages 0–9 build the data-driven, uncertainty-aware predictive extension.
 
 ---
 
