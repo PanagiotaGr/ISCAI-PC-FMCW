@@ -32,7 +32,7 @@ The central idea is to use one calibrated future-motion posterior as a common in
 | `iscai_stage7/` | Frozen joint communication–illumination evaluation, bootstrap statistics, sweeps, and reproducibility checks. |
 | `iscai_stage8/` | External DeepSense measured-mmWave validation of the adaptive beam-selection policy. |
 | `iscai_stage9/` | Shared-posterior criticality-constrained beam management and secondary recovery-aware ADB analysis. |
-| `part_a_reference/` | Frozen Part-A PC-FMCW ISCAI reference implementation: present-state estimation with reactive communication and ADB. |
+| `part_a_reference/` | Previous PC-FMCW ISCAI implementation used as the reference baseline for the predictive framework developed here. |
 
 ---
 
