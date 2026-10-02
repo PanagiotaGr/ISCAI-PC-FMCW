@@ -76,6 +76,19 @@ Future WOMD states are used only as labels/evaluator truth. The causal pipeline 
 
 Whenever an **oracle future trajectory** is reported, it uses evaluator-only future ground truth as the reference trajectory. Therefore its trajectory displacement error is identically zero by construction. It is included only as a **non-deployable ideal evaluation bound** and must not be interpreted as a trained forecasting model or an online system result.
 
+### Part A at a glance
+
+| Item | Part A |
+| --- | --- |
+| **Role** | Original PC-FMCW ISCAI reference framework used as the baseline for this work. |
+| **Sensing / communication** | PC-FMCW / DPSK sensing and communication with coherent processing. |
+| **Signal processing** | Range-Doppler processing and CFAR-based detection. |
+| **Tracking** | Present-state tracking, including the legacy Multidimensional Hough context. |
+| **Control philosophy** | Reactive communication and Adaptive Driving Beam (ADB) control based on the current estimated state. |
+| **Role in this repository** | Preserved under `part_a_reference/` as the frozen reference; Part B extends it with real WOMD traffic, explicit uncertainty, probabilistic future prediction, adaptive beam management, and predictive ADB. |
+
+> **In short:** Part A estimates the current scene and reacts; Part B propagates uncertainty, predicts future motion, and acts proactively.
+
 ---
 
 ## 3. End-to-end architecture
