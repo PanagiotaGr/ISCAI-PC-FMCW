@@ -8,7 +8,8 @@ The project studies how uncertainty in the current sensing state and uncertainty
 
 The central idea is to use one calibrated future-motion posterior as a common interface between sensing/prediction and downstream control: the same probabilistic representation is transformed into a receiver-aware angular posterior for communication, future actor occupancy for illumination, and — in the Stage-9 paper extension — same-sample future traffic criticality for decision-layer resource allocation.
 
-<img width="767" height="1667" alt="Illustration_4" src="https://github.com/user-attachments/assets/8d729236-85eb-434a-85d4-63a146e30cd8" />
+<img width="803" height="825" alt="image" src="https://github.com/user-attachments/assets/266c6416-d980-4e02-88c3-ac1e5e41e6fd" />
+
 
 ---
 
