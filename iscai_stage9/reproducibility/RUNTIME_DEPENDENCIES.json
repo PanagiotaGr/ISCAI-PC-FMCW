@@ -1,0 +1,39 @@
+{
+  "authority_note": "These support files do not supersede or modify any sealed scientific authority.",
+  "purpose": "Runtime support files required by the byte-identical authoritative Stage-9 execution snapshots.",
+  "schema": "stage9_publication_runtime_dependency_closure_v2",
+  "stage0_8_import_checks": [
+    {
+      "module": "iscai_stage4.data.neural_inputs",
+      "paths": [],
+      "status": "MISSING"
+    },
+    {
+      "module": "iscai_stage4.data.real_pipeline",
+      "paths": [],
+      "status": "MISSING"
+    },
+    {
+      "module": "iscai_stage4.data.supervision",
+      "paths": [],
+      "status": "MISSING"
+    },
+    {
+      "module": "iscai_stage6.adb",
+      "paths": [
+        "iscai_stage6/src/iscai_stage6/adb/__init__.py"
+      ],
+      "status": "FOUND"
+    }
+  ],
+  "stage9_support_modules": [
+    {
+      "bytes": 8385,
+      "github_path": "iscai_stage9/src/iscai_stage9/criticality_geometry_v1.py",
+      "kind": "module",
+      "module": "iscai_stage9.criticality_geometry_v1",
+      "server_source": "/home/agni/waymo/iscai_stage9/src/iscai_stage9/criticality_geometry_v1.py",
+      "sha256": "e53b8bea562d0f26989c11cfa1c20ef658f277eb6be53872727227c3204c00a5"
+    }
+  ]
+}

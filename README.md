@@ -678,3 +678,45 @@ The overall scientific picture is intentionally mixed rather than artificially a
 - **Stage 9 supports lower beam-resource use for the frozen C2 resource component and bounded profile-sensitive C3 effects, while rare-event reliability remains unresolved because no ground-truth critical event was observed in the valid FORMAL labels**.
 
 The repository therefore preserves both the historical Stage-6 negative result and the later versioned Stage-6 pass rather than collapsing them into a single retrospective outcome.
+
+
+<!-- BEGIN STAGE9 PAPER UPDATE -->
+
+## Stage 9 — final paper implementation
+
+The repository now includes the curated Stage-9 paper implementation under
+[`iscai_stage9/`](iscai_stage9/).
+
+Stage 9 uses the frozen sensing-informed future-motion posterior as a common
+uncertainty interface for communication beam management and traffic-criticality
+reasoning. The primary contribution is the C1+C2 chain: shared uncertainty
+representation plus minimum-cardinality beam probing under nominal and stricter
+critical-conditional reliability constraints.
+
+The recovery-aware predictive ADB component (C3) is included as a secondary
+FORMAL human-profile-sensitivity extension rather than as the original
+confirmatory winner.
+
+The published Stage-9 directory contains:
+
+- byte-identical authoritative execution snapshots,
+- current and historical-lineage configuration contracts,
+- compact paper-ready aggregate results,
+- claim/evidence and limitations metadata,
+- final authority/seal artifacts,
+- runtime dependency provenance, and
+- SHA256 verification metadata.
+
+Raw WOMD/WOMD-LiDAR, raw DeepSense, and large per-scene/future-ground-truth
+evaluation caches are not redistributed.
+
+For the exact scientific authority and reporting boundaries, see:
+
+- [`iscai_stage9/README.md`](iscai_stage9/README.md)
+- [`iscai_stage9/AUTHORITY.md`](iscai_stage9/AUTHORITY.md)
+- [`iscai_stage9/REPRODUCIBILITY.md`](iscai_stage9/REPRODUCIBILITY.md)
+
+The v2R1 Stage-9 package is paper-ready but its sealed state remains
+**awaiting independent certification**.
+
+<!-- END STAGE9 PAPER UPDATE -->
