@@ -8,12 +8,26 @@ A research implementation of a **predictive, uncertainty-aware extension of a ph
 
 The project studies how uncertainty in the current sensing state and uncertainty in future road-user motion can be propagated into **communication beam management** and **predictive Adaptive Driving Beam (ADB)** control. Real traffic dynamics are taken from the **Waymo Open Motion Dataset (WOMD)** and WOMD-LiDAR context, while the PC-FMCW sensing interface is generated from those real trajectories through a physics-grounded observation and uncertainty model.
 
-> **Part A estimates the present and reacts; Part B estimates uncertainty, predicts the future, and acts proactively.**
 
 The central idea is to use one calibrated future-motion posterior as a common interface between sensing/prediction and downstream control: the same probabilistic representation is transformed into a receiver-aware angular posterior for communication, future actor occupancy for illumination, and — in the Stage-9 paper extension — same-sample future traffic criticality for decision-layer resource allocation.
 
 <img width="803" height="825" alt="image" src="https://github.com/user-attachments/assets/266c6416-d980-4e02-88c3-ac1e5e41e6fd" />
 
+
+---
+
+## Part A at a glance
+
+| Item | Part A |
+| --- | --- |
+| **What it is** | The original PC-FMCW ISCAI reference framework on which this work builds. |
+| **Sensing / communication** | PC-FMCW / DPSK sensing and communication with coherent processing. |
+| **Processing** | Range-Doppler processing and CFAR-based detection. |
+| **Tracking** | Present-state tracking, including the legacy Multidimensional Hough context. |
+| **Control** | Reactive communication and Adaptive Driving Beam (ADB) control based on the current estimated scene. |
+| **How Part B extends it** | Adds real WOMD traffic, explicit measurement/predictive uncertainty, probabilistic future motion, adaptive beam management, and predictive ADB. |
+
+> **In short:** Part A estimates the current scene and reacts; Part B propagates uncertainty, predicts future motion, and acts proactively.
 
 ---
 
@@ -75,21 +89,6 @@ Future WOMD states are used only as labels/evaluator truth. The causal pipeline 
 ### Oracle results are evaluation bounds, not deployable predictors
 
 Whenever an **oracle future trajectory** is reported, it uses evaluator-only future ground truth as the reference trajectory. Therefore its trajectory displacement error is identically zero by construction. It is included only as a **non-deployable ideal evaluation bound** and must not be interpreted as a trained forecasting model or an online system result.
-
-### Part A at a glance
-
-| Item | Part A |
-| --- | --- |
-| **Role** | Original PC-FMCW ISCAI reference framework used as the baseline for this work. |
-| **Sensing / communication** | PC-FMCW / DPSK sensing and communication with coherent processing. |
-| **Signal processing** | Range-Doppler processing and CFAR-based detection. |
-| **Tracking** | Present-state tracking, including the legacy Multidimensional Hough context. |
-| **Control philosophy** | Reactive communication and Adaptive Driving Beam (ADB) control based on the current estimated state. |
-| **Role in this repository** | Preserved under `part_a_reference/` as the frozen reference; Part B extends it with real WOMD traffic, explicit uncertainty, probabilistic future prediction, adaptive beam management, and predictive ADB. |
-
-> **In short:** Part A estimates the current scene and reacts; Part B propagates uncertainty, predicts future motion, and acts proactively.
-
----
 
 ## 3. End-to-end architecture
 
