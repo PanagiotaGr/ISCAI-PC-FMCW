@@ -364,7 +364,7 @@ Stage 9 is the paper-oriented extension of the frozen Stages 0–8 chain. It doe
 
 The primary paper scope is **C1+C2 communication**. The recovery-aware ADB component **C3** is secondary and does not enlarge the primary communication claim.
 
-The current manuscript authority is the certified **Stage 9.16-v2R1** paper-ready package. A dedicated `iscai_stage9/` directory has not yet been committed to this repository, so the Stage-9 section below reports the manuscript-side frozen evidence and claim boundaries rather than claiming that the full Stage-9 reproducibility package is already contained in the GitHub tree.
+The current manuscript authority is the **Stage 9.16-v2R1 paper-ready package** under `iscai_stage9/`. The package is frozen and paper-ready, but it remains **awaiting independent read-only certification**; the repository therefore does not describe it as independently certified.
 
 ### Frozen FORMAL cohort and hypothesis status
 
@@ -392,6 +392,22 @@ Against fixed `q=0.99`, the evaluable H3 resource component gives the following 
 | 64 | **−2.747 beams** | −2.809 to −2.685 |
 
 This supports **lower communication resource use** for the frozen C2 resource component. It does **not** establish critical-event reliability because the FORMAL set contained no observed ground-truth critical events.
+
+For manuscript ablation/reporting, the pre-outcome frozen uncertainty-only `q=0.95` arm is also retained. The point estimates on the common (N=24,917) receiver/reference support are:
+
+| Codebook | Policy | Mean K | Unconditional directional coverage |
+| --- | --- | ---: | ---: |
+| 16 | fixed q=0.95 | 3.158 | 98.050% |
+| 16 | proposed C2 | 3.379 | 98.118% |
+| 16 | fixed q=0.99 | 3.981 | 99.037% |
+| 32 | fixed q=0.95 | 5.435 | 97.777% |
+| 32 | proposed C2 | 5.788 | 97.869% |
+| 32 | fixed q=0.99 | 7.091 | 98.924% |
+| 64 | fixed q=0.95 | 9.950 | 97.612% |
+| 64 | proposed C2 | 10.482 | 97.668% |
+| 64 | fixed q=0.99 | 13.228 | 98.832% |
+
+The proposed-versus-`q=0.95` contrast is reported as a **descriptive frozen ablation only**. No new post-FORMAL paired confidence interval is introduced for that contrast, and it is not converted into a critical-event reliability claim.
 
 The later RAW-versus-CAL trajectory-coverage comparison is explicitly non-confirmatory: macro absolute requested-versus-empirical coverage error changed by **−0.002321** (95% CI **−0.002621 to −0.002034**). The absolute errors remained large, so this does not establish good absolute trajectory-posterior calibration.
 
@@ -677,7 +693,7 @@ A compact project description is:
 | Stage 6 | **COMPLETE — historical V1 over-masking FAIL preserved; final frozen V3 / Experiment-5 common-evaluator gate PASS** |
 | Stage 7 | **PASS_FROZEN — final joint evaluator and frozen statistical/sweep analysis complete; full joint latency not evaluable from frozen authorities** |
 | Stage 8 | **COMPLETE / PASS — external measured DeepSense beam-policy validation and final reporting reproducibility** |
-| Stage 9 | **PAPER-READY FROZEN EVIDENCE — H3 resource component supported; H2/H4 and H3 critical reliability not evaluable; C3 secondary/profile-sensitive; dedicated Stage-9 repo directory not yet committed** |
+| Stage 9 | **PAPER-READY FROZEN EVIDENCE — H3 resource component supported; H2/H4 and H3 critical reliability not evaluable; C3 secondary/profile-sensitive; Stage-9 authority and paper-ready package committed under `iscai_stage9/`, awaiting independent certification** |
 
 The overall scientific picture is intentionally mixed rather than artificially all-positive:
 
